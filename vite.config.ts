@@ -18,7 +18,7 @@ const symlinkImages = ({ imagesPath }: { imagesPath: string }) => ({
     // Remove existing path (symlink or directory)
     if (fs.existsSync(publicImagesPath)) {
       try {
-        fs.unlinkSync(publicImagesPath);
+        fs.rmSync(publicImagesPath, { recursive: true });
         console.log(`🗑️ Removed existing symlink or path: ${publicImagesPath}`);
       } catch (err) {
         console.error('❌ Failed to remove existing path:', err.message);
