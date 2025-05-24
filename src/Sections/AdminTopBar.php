@@ -12,6 +12,8 @@ class AdminTopBar extends BladeSection
 {
     protected static string $view = 'shop::sections.admin-topbar';
 
+    protected static array $disabledOn = ['*'];
+
     public static function name(): string
     {
         return _t('admin-topbar.name');
