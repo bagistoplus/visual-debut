@@ -5,7 +5,7 @@
   $currentLocale = core()->getCurrentLocale();
 @endphp
 
-@if ($locales->count() > 0)
+@if ($locales->count() > 1)
   <div class="contents">
     @isset($mobile)
       <label for="mobile-locale" class="mb-2 block text-sm font-medium">Language</label>
