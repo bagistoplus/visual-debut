@@ -11,23 +11,33 @@
 - **Theme Settings**: Easily configure colors, fonts, and layouts through the visual editor.
 - **Accessible**: Built with accessibility best practices in mind.
 
+## 🌐 Live Demo
+
+Check out the theme in action: [https://visual-debut-demo.bagistoplus.com](https://visual-debut-demo.bagistoplus.com)
+
 ## 🚀 Getting Started
 
-### 1. Clone the Repository
+### 1. Install Bagisto Visual
+
+Before installing the theme, make sure you have [Bagisto Visual](https://github.com/bagistoplus/visual) installed in your Bagisto project. Follow the installation steps in the Bagisto Visual repository.
+
+### 2. Install the Theme via Composer
+
+Install the Visual Debut theme using Composer:
 
 ```bash
 composer require bagistoplus/visual-debut
 ```
 
-### 2. Publish a assets
+### 3. Publish Assets
 
-Ensure that Bagisto Visual is installed in your Bagisto project. Then, link the theme:
+Publish the theme assets:
 
 ```bash
 php artisan vendor:publish --tag=visual-debut-assets
 ```
 
-You can now enable the theme in admin panel
+You can now enable the theme in the admin panel.
 
 ## 🤝 Contributing
 
