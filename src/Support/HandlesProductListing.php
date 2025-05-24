@@ -94,6 +94,19 @@ trait HandlesProductListing
         });
     }
 
+    protected function initializeSort(): void
+    {
+        if ($this->sort) {
+            return;
+        }
+
+        $defaultSort = app(Toolbar::class)->getDefaultOrder();
+
+        if ($defaultSort) {
+            $this->sort = $defaultSort['value'];
+        }
+    }
+
     protected function buildProductParams(array $additionalParams = []): array
     {
         return array_merge(

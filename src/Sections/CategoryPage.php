@@ -86,6 +86,7 @@ class CategoryPage extends LivewireSection
     {
         $this->initializeMaxPrice(['category_id' => $this->context['category']->id]);
         $this->initializeFilters();
+        $this->initializeSort();
     }
 
     public function getViewData(): array

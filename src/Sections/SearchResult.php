@@ -54,6 +54,7 @@ class SearchResult extends LivewireSection
     {
         $this->initializeMaxPrice();
         $this->initializeFilters();
+        $this->initializeSort();
     }
 
     public function getViewData(): array
