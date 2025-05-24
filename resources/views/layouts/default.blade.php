@@ -13,7 +13,7 @@
     {!! view_render_event('bagisto.shop.layout.head.after') !!}
   </head>
 
-  <body class="{{ $direction }} style="scroll-behavior: smooth;">
+  <body class="{{ $direction }}" style="scroll-behavior: smooth;">
     {!! view_render_event('bagisto.shop.layout.body.before') !!}
 
     <x-shop::toasts />
