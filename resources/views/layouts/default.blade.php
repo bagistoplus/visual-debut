@@ -23,6 +23,10 @@
     {!! view_render_event('bagisto.shop.layout.content.before') !!}
 
     <main role="main" tabindex="-1">
+      @if ($theme->settings->enable_admin_bar)
+        <visual:section name="visual-debut::admin-top-bar" />
+      @endif
+
       <visual:section name="visual-debut::announcement-bar" />
       <visual:section name="visual-debut::header" />
 

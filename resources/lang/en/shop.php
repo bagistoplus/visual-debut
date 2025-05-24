@@ -40,6 +40,7 @@ return [
         'buttons' => 'Buttons',
         'inputs' => 'Inputs',
         'boxes' => 'Boxes',
-        'social-links' => 'Social Media Links'
+        'social-links' => 'Social Media Links',
+        'general' => 'General'
     ]
 ];
