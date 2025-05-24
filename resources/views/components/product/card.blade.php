@@ -16,7 +16,7 @@
       <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
         <div class="absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center gap-2">
           <livewire:add-to-cart-button
-            key="add-to-card-{{ $productResource['id'] }}"
+            :key="str()->random(16)"
             :product-id="$productResource['id']"
             size="lg"
             circle
@@ -25,7 +25,7 @@
           @auth('customer')
             @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
               <livewire:add-to-wishlist-button
-                key="add-to-wishlist-{{ $productResource['id'] }}"
+                :key="str()->random(16)"
                 :product-id="$productResource['id']"
                 :in-user-wishlist="$productResource['is_wishlist']"
                 size="lg"
@@ -34,7 +34,7 @@
           @endauth
           @if (!$noCompare && core()->getConfigData('catalog.products.settings.compare_option'))
             <livewire:add-to-compare-button
-              key="add-to-compare-{{ $productResource['id'] }}"
+              :key="str()->random(16)"
               :product-id="$productResource['id']"
               size="lg"
             />
@@ -118,7 +118,7 @@
           @auth('customer')
             @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
               <livewire:add-to-wishlist-button
-                key="add-to-wishlist-{{ $productResource['id'] }}-list"
+                :key="str()->random(16)"
                 :product-id="$productResource['id']"
                 :in-user-wishlist="$productResource['is_wishlist']"
               />
@@ -136,7 +136,7 @@
           </div>
 
           <livewire:add-to-cart-button
-            key="add-to-cart-{{ $productResource['id'] }}-list"
+            :key="str()->random(16)"
             x-data="{ submit() { this.$wire.addToCart() } }"
             :productId="$productResource['id']"
           />
