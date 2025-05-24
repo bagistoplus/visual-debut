@@ -18,7 +18,7 @@ class ProductReviews extends LivewireSection
 
     protected static string $view = 'shop::sections.product-reviews';
 
-    protected static string $previewImageUrl = 'themes/shop/visual-debut/images/sections/products-reviews.png';
+    protected static string $previewImageUrl = 'themes/shop/visual-debut/images/sections/product-reviews.png';
 
     protected static array $enabledOn = ['product'];
 
