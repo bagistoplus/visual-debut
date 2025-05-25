@@ -14,8 +14,8 @@ trait HandlesProductListing
     #[Url]
     public $sort = '';
 
-    #[Url]
-    public $limit;
+    #[Url(except: '')]
+    public $limit = '';
 
     #[Url]
     public $filters = [];
@@ -47,7 +47,7 @@ trait HandlesProductListing
         $this->resetPage();
     }
 
-    public function updatedLimit()
+    public function updatedLimit($value)
     {
         $this->resetPage();
     }

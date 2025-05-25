@@ -1,4 +1,4 @@
-<div x-data="{ displayMode: $wire.entangle('displayMode') }">
+<div>
   <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
     @if (request()->has('image-search'))
       <div class="bg-surface-alt text-on-surface-alt border-on-surface-alt/8 box flex p-5" x-data="{
@@ -45,29 +45,35 @@
 
       <div class="flex-1">
         <!-- Toolbar -->
-        <x-shop::product.toolbar :availableSortOptions="$this->availableSortOptions" :availablePaginationLimits="$this->availablePaginationLimits" />
+        <x-shop::product.toolbar
+          :availableSortOptions="$this->availableSortOptions"
+          :availablePaginationLimits="$this->availablePaginationLimits"
+          :displayMode="$displayMode"
+        />
 
         <!-- Products grid view -->
-        <div x-show="displayMode === 'grid'" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          @foreach ($products as $product)
-            <x-shop::product.card
-              :key="$product->id"
-              :product="$product"
-              x-model="displayMode"
-            />
-          @endforeach
-        </div>
-
-        <!-- Products list view -->
-        <div x-show="displayMode === 'list'" class="grid grid-cols-1 gap-6">
-          @foreach ($products as $product)
-            <x-shop::product.card
-              :key="$product->id"
-              :product="$product"
-              x-model="displayMode"
-            />
-          @endforeach
-        </div>
+        @if ($displayMode === 'grid')
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            @foreach ($products as $product)
+              <x-shop::product.card
+                :key="$product->id"
+                :product="$product"
+                mode="grid"
+              />
+            @endforeach
+          </div>
+        @else
+          <!-- Products list view -->
+          <div class="grid grid-cols-1 gap-6">
+            @foreach ($products as $product)
+              <x-shop::product.card
+                :key="$product->id"
+                :product="$product"
+                mode="list"
+              />
+            @endforeach
+          </div>
+        @endif
 
         <div class="mt-4">
           {{ $products->links() }}
