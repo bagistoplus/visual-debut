@@ -512,4 +512,35 @@ return [
         'description' => 'Affiche un message d’erreur stylisé (par exemple 404 ou 500) avec des liens de navigation ou une recherche en option pour aider les utilisateurs à se repérer.',
     ],
 
+    'feature-icons' => [
+        'name' => 'Icônes de Fonctionnalité',
+        'description' => 'Afficher une rangée d’icônes avec des titres et de courtes descriptions.',
+
+        'settings' => [
+            'heading_label'     => 'Titre de la section',
+            'description_label' => 'Description de la section',
+            'icon_size_label'   => 'Taille des icônes (px)',
+            'columns_label'     => 'Colonnes sur ordinateur',
+            'layout_label'      => 'Disposition',
+            'layout_horizontal' => 'Icône à gauche, texte à droite',
+            'layout_vertical'   => 'Icône en haut, texte en dessous',
+        ],
+
+        'blocks' => [
+            'feature' => [
+                'label' => 'Fonctionnalité',
+                'settings' => [
+                    'icon_label'  => 'Icône',
+                    'title_label' => 'Titre',
+                    'text_label'  => 'Description',
+                ],
+            ],
+        ],
+
+        'placeholders' => [
+            'title' => 'Titre',
+            'text'  => 'Un texte complémentaire pour développer la fonctionnalité',
+        ],
+    ],
+
 ];

@@ -541,4 +541,35 @@ return [
         'description' => 'يعرض رسالة خطأ بتصميم خاص (مثل 404 أو 500) مع روابط تنقل اختيارية أو خيار بحث لمساعدة المستخدمين على المتابعة.',
     ],
 
+    'feature-icons' => [
+        'name' => 'رموز الميزات',
+        'description' => 'عرض صف من الرموز مع عناوين ووصف قصير.',
+
+        'settings' => [
+            'heading_label'     => 'عنوان القسم',
+            'description_label' => 'وصف القسم',
+            'icon_size_label'   => 'حجم الرمز (بكسل)',
+            'columns_label'     => 'عدد الأعمدة على سطح المكتب',
+            'layout_label'      => 'التخطيط',
+            'layout_horizontal' => 'الرمز على اليسار، النص على اليمين',
+            'layout_vertical'   => 'الرمز في الأعلى، النص في الأسفل',
+        ],
+
+        'blocks' => [
+            'feature' => [
+                'label' => 'ميزة',
+                'settings' => [
+                    'icon_label'  => 'رمز',
+                    'title_label' => 'عنوان',
+                    'text_label'  => 'وصف',
+                ],
+            ],
+        ],
+
+        'placeholders' => [
+            'title' => 'عنوان',
+            'text'  => 'نص إضافي لشرح الميزة',
+        ],
+    ],
+
 ];

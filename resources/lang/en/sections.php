@@ -544,4 +544,35 @@ return [
         'description' => 'Displays a styled error message (e.g. 404 or 500) with optional navigation links or search to help users recover.',
     ],
 
+    'feature-icons' => [
+        'name' => 'Feature Icons',
+        'description' => 'Display a row of icons with titles and short descriptions.',
+
+        'settings' => [
+            'heading_label'     => 'Section Heading',
+            'description_label' => 'Section Description',
+            'icon_size_label'   => 'Icon Size (px)',
+            'columns_label'     => 'Columns on Desktop',
+            'layout_label'      => 'Layout',
+            'layout_horizontal' => 'Icon Left, Text Right',
+            'layout_vertical'   => 'Icon Top, Text Below',
+        ],
+
+        'blocks' => [
+            'feature' => [
+                'label' => 'Feature',
+                'settings' => [
+                    'icon_label'  => 'Icon',
+                    'title_label' => 'Title',
+                    'text_label'  => 'Description',
+                ],
+            ],
+        ],
+
+        'placeholders' => [
+            'title' => 'Heading',
+            'text'  => 'Some followup text to build on the feature',
+        ],
+    ],
+
 ];
