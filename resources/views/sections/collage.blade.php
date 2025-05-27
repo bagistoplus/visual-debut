@@ -31,6 +31,7 @@
                 src="{{ $block->settings->image ?? 'https://placehold.co/800x800?text=Image' }}"
                 class="h-full w-full object-cover"
                 alt=""
+                {{ $block->liveUpdate('image', 'src') }}
               >
             @break
 
@@ -90,7 +91,11 @@
             @case('custom')
               <div class="box bg-surface text-on-surface flex h-full flex-col gap-2 border-none pb-4">
                 @if ($block->settings->image)
-                  <img src="{{ $block->settings->image }}" class="h-auto w-full object-cover">
+                  <img
+                    src="{{ $block->settings->image }}"
+                    {{ $block->liveUpdate('image', 'src') }}
+                    class="h-auto w-full object-cover"
+                  >
                 @endif
 
                 @if ($block->settings->title)
@@ -105,9 +110,11 @@
                   <a
                     href="{{ $block->settings->link }}"
                     class="text-primary inline-block px-4 text-sm hover:underline"
-                    {{ $block->liveUpdate('link_text') }}
+                    {{ $block->liveUpdate('link', 'href') }}
                   >
-                    {{ $block->settings->link_text }}
+                    <span {{ $block->liveUpdate('link_text') }}>
+                      {{ $block->settings->link_text }}
+                    </span>
                   </a>
                 @endif
               </div>
