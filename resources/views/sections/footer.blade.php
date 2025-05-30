@@ -13,10 +13,10 @@
   <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
       <div>
-        <h3 class="heading text-on-surface-alt mb-4 text-lg font-bold">
+        <h3 class="heading text-on-surface-alt mb-4 text-lg font-bold" {{ $section->liveUpdate()->text('heading') }}>
           {{ $section->settings->heading ?? config('app.name') }}
         </h3>
-        <div class="prose description text-sm">
+        <div class="prose description text-sm" {{ $section->liveUpdate()->html('description') }}>
           {!! $section->settings->description !!}
         </div>
       </div>

@@ -34,7 +34,7 @@ class HeroBanner extends BladeSection
             Settings\Image::make('background', _t('hero-banner.settings.background_label')),
 
             Settings\Range::make('overlay_opacity', _t('hero-banner.settings.overlay_opacity_label'))
-                ->min(0)->max(100)->step(5)->default(60),
+                ->min(0)->max(100)->step(5)->default(50),
 
             Settings\Select::make('height', _t('hero-banner.settings.height_label'))
                 ->options([

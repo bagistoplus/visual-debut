@@ -34,15 +34,42 @@
     @foreach ($features as $feature)
       <div class="{{ $isRow ? 'flex flex-row items-start gap-4 text-left' : 'flex flex-col gap-4 items-center text-center' }} text-sm text-gray-600">
 
-        <div class="border-on-background/70 flex flex-none items-center justify-center rounded-full border" style="width: {{ $iconSize + 24 }}px; height: {{ $iconSize + 24 }}px;">
-          @svg($feature['icon'] ?? 'lucide-tag', ['class' => 'text-on-background', 'style' => "width: {$iconSize}px; height: {$iconSize}px;"])
+        <div class="border-on-background/70 flex flex-none items-center justify-center rounded-full border p-3">
+          @svg($feature['icon'] ?? 'lucide-tag', [
+              'class' => 'text-on-background',
+              'style' => "width: {$iconSize}px;",
+              $section->liveUpdate()->style('icon_size', 'width'),
+          ])
         </div>
 
         <div>
-          <h3 class="text-on-background mb-1 text-base font-semibold">{{ $feature['title'] }}</h3>
-          <p class="text-on-background/90 text-xs">{{ $feature['text'] }}</p>
+          <h3 class="text-on-background mb-1 text-base font-semibold" {{ $feature['liveUpdateTitle'] ?? '' }}>{{ $feature['title'] }}</h3>
+          <p class="text-on-background/90 text-xs" {{ $feature['liveUpdateText'] ?? '' }}>{{ $feature['text'] }}</p>
         </div>
       </div>
     @endforeach
   </div>
 </div>
+
+@visual_design_mode
+@pushOnce('scripts')
+  <script>
+    document.addEventListener('visual:editor:init', function() {
+      window.Visual.handleLiveUpdate('{{ $section->type }}', {
+        section: {
+          columns: {
+            target: '.grid',
+            handler(el, value) {
+              Array.from(Array(6)).forEach((_, i) => {
+                const cls = `md:grid-cols-${i + 1}`;
+                el.classList.remove(cls);
+              });
+              el.classList.add(`md:grid-cols-${value}`);
+            }
+          },
+        }
+      });
+    });
+  </script>
+@endpushOnce
+@end_visual_design_mode

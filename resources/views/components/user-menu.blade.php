@@ -6,12 +6,8 @@
   x-dropdown
   class="relative"
   @visual_design_mode
-  x-on:visual:block:selected.window="
-    if ($event.detail.blockId === '{{ $block->id }}')
-      $dropdown.open = true;
-    else
-      $dropdown.open = false;
-  "
+  x-on:visual:block:select:{{ $block->id }}.window="$dropdown.open = true"
+  x-on:visual:block:deselect:{{ $block->id }}.window="$dropdown.open = false"
   @end_visual_design_mode
 >
   <button

@@ -4,9 +4,9 @@
   <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     @if ($section->settings->heading)
       <h2
-        class="text mb-8 text-center font-bold leading-tight"
+        class="text heading mb-8 text-center font-bold leading-tight"
         style="font-size: calc(1.875rem*{{ $section->settings->heading_size / 100 }})"
-        {{ $section->liveUpdate('heading') }}
+        {{ $section->liveUpdate()->text('heading') }}
       >
         {{ $section->settings->heading }}
       </h2>
@@ -31,7 +31,7 @@
                 src="{{ $block->settings->image ?? 'https://placehold.co/800x800?text=Image' }}"
                 class="h-full w-full object-cover"
                 alt=""
-                {{ $block->liveUpdate('image', 'src') }}
+                {{ $block->liveUpdate()->attr('image', 'src') }}
               >
             @break
 
@@ -93,28 +93,28 @@
                 @if ($block->settings->image)
                   <img
                     src="{{ $block->settings->image }}"
-                    {{ $block->liveUpdate('image', 'src') }}
+                    {{ $block->liveUpdate()->attr('image', 'src') }}
                     class="h-auto w-full object-cover"
                   >
                 @endif
 
                 @if ($block->settings->title)
-                  <h3 class="px-4 text-lg font-semibold" {{ $block->liveUpdate('title') }}>{{ $block->settings->title }}</h3>
+                  <h3 class="px-4 text-lg font-semibold" {{ $block->liveUpdate()->text('title') }}>{{ $block->settings->title }}</h3>
                 @endif
 
                 @if ($block->settings->text)
-                  <div class="prose prose-sm px-4 text-sm">{!! $block->settings->text !!}</div>
+                  <div class="prose prose-sm px-4 text-sm" {{ $block->liveUpdate()->html('text') }}>
+                    {!! $block->settings->text !!}
+                  </div>
                 @endif
 
                 @if ($block->settings->link)
                   <a
                     href="{{ $block->settings->link }}"
                     class="text-primary inline-block px-4 text-sm hover:underline"
-                    {{ $block->liveUpdate('link', 'href') }}
+                    {{ $block->liveUpdate()->text('link_text')->attr('link', 'href') }}
                   >
-                    <span {{ $block->liveUpdate('link_text') }}>
-                      {{ $block->settings->link_text }}
-                    </span>
+                    {{ $block->settings->link_text }}
                   </a>
                 @endif
               </div>
@@ -125,3 +125,23 @@
     </div>
   </div>
 </div>
+
+@visual_design_mode
+@pushOnce('scripts')
+  <script>
+    document.addEventListener('visual:editor:init', function() {
+      window.Visual.handleLiveUpdate('{{ $section->type }}', {
+        section: {
+          heading_size: {
+            target: '.heading',
+            style: 'font-size',
+            transform: function(value) {
+              return `calc(1.875rem * ${value / 100})`;
+            }
+          }
+        }
+      });
+    });
+  </script>
+@endpushOnce
+@end_visual_design_mode

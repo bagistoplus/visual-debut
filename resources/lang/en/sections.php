@@ -464,7 +464,7 @@ return [
 
         'settings' => [
             'heading_label'        => 'Heading',
-            'heading_size_label'   => 'Heading Size (px)',
+            'heading_size_label'   => 'Heading Size',
         ],
 
         'blocks' => [

@@ -461,7 +461,7 @@ return [
 
         'settings' => [
             'heading_label'        => 'العنوان',
-            'heading_size_label'   => 'حجم العنوان (بكسل)',
+            'heading_size_label'   => 'حجم العنوان',
         ],
 
         'blocks' => [

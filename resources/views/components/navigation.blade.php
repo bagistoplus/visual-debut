@@ -5,6 +5,7 @@
 @endphp
 
 <div
+  id="navigation"
   x-data
   x-navigation
   {{ $attributes->merge(['class' => 'h-full flex items-center']) }}

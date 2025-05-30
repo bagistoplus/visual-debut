@@ -79,6 +79,8 @@ class FeatureIcons extends BladeSection
                 'icon'  => $block->settings->icon ?? null,
                 'title' => $block->settings->title ?? '',
                 'text'  => $block->settings->text ?? '',
+                'liveUpdateTitle' => $block->liveUpdate()->text('title'),
+                'liveUpdateText'  => $block->liveUpdate()->text('text'),
             ])->all();
         }
 

@@ -4,7 +4,7 @@
   <div class="flex items-center gap-4">
     @if ($showSorting && $availableSortOptions->isNotEmpty())
       <select
-        class="w-auto"
+        class="sorting w-auto"
         name="sort"
         aria-label="Sort by"
         wire:model.live="sort"

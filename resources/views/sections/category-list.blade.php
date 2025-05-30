@@ -22,7 +22,7 @@
 
 <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
   @if ($section->settings->heading)
-    <h2 class="{{ $headingSize[$section->settings->heading_size] }} text-on-background mb-12 text-center font-bold" {{ $section->liveUpdate('heading') }}>
+    <h2 class="heading {{ $headingSize[$section->settings->heading_size] }} text-on-background mb-12 text-center font-bold" {{ $section->liveUpdate()->text('heading') }}>
       {{ $section->settings->heading }}
     </h2>
   @endif
@@ -66,3 +66,52 @@
     @endforelse
   </div>
 </div>
+
+@visual_design_mode
+@pushOnce('scripts')
+  <script>
+    document.addEventListener('visual:editor:init', () => {
+      window.Visual.handleLiveUpdate('{{ $section->type }}', {
+        section: {
+          heading_size: {
+            target: 'h2.heading',
+            handler(el, value) {
+              const newClass = ({
+                'small': 'text-2xl',
+                'medium': 'text-3xl',
+                'large': 'text-4xl',
+              })[value];
+
+              ['text-2xl', 'text-3xl', 'text-4xl'].forEach((cls) => {
+                el.classList.remove(cls);
+              });
+
+              el.classList.add(newClass);
+            }
+          },
+          columns_desktop: {
+            target: '.grid',
+            handler(el, value) {
+              Array.from(Array(6)).forEach((_, i) => {
+                const cls = `md:grid-cols-${i + 1}`;
+                el.classList.remove(cls);
+              });
+              el.classList.add(`md:grid-cols-${value}`);
+            }
+          },
+          columns_mobile: {
+            target: '.grid',
+            handler(el, value) {
+              Array.from(Array(2)).forEach((_, i) => {
+                const cls = `grid-cols-${i + 1}`;
+                el.classList.remove(cls);
+              });
+              el.classList.add(`grid-cols-${value}`);
+            }
+          }
+        }
+      })
+    });
+  </script>
+@endpushOnce
+@end_visual_design_mode

@@ -463,7 +463,7 @@ return [
 
         'settings' => [
             'heading_label'        => 'शीर्षक',
-            'heading_size_label'   => 'शीर्षक का आकार (पिक्सेल)',
+            'heading_size_label'   => 'शीर्षक का आकार',
         ],
 
         'blocks' => [

@@ -15,14 +15,16 @@
   x-show="show"
 >
   @if ($section->settings->link)
-    <a href="{{ $section->settings->link }}" class="hover:underline">
-      <span class="announcement-text" {{ $section->liveUpdate('text') }}>
-        {{ $section->settings->text }}
-      </span>
+    <a
+      href="{{ $section->settings->link }}"
+      class="hover:underline"
+      {{ $section->liveUpdate()->text('text')->attr('link', 'href') }}
+    >
+      {{ $section->settings->text }}
     </a>
     @svg('lucide-arrow-right', ['class' => 'w-4 h-4 inline-block', 'aria-hidden' => true])
   @else
-    <p class="announcement-text" {{ $section->liveUpdate('text') }}>
+    <p class="announcement-text" {{ $section->liveUpdate()->text('text') }}>
       {{ $section->settings->text }}
     </p>
   @endif

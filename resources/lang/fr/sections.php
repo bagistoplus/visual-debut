@@ -432,7 +432,7 @@ return [
 
         'settings' => [
             'heading_label'        => 'Titre',
-            'heading_size_label'   => 'Taille du titre (px)',
+            'heading_size_label'   => 'Taille du titre',
         ],
 
         'blocks' => [

@@ -6,8 +6,8 @@ use BagistoPlus\Visual\Sections\BladeSection;
 use BagistoPlus\Visual\Sections\Block;
 use BagistoPlus\Visual\Settings\Image;
 use BagistoPlus\Visual\Settings\Link;
+use BagistoPlus\Visual\Settings\RichText;
 use BagistoPlus\Visual\Settings\Text;
-use BagistoPlus\Visual\Settings\Textarea;
 use BagistoPlus\Visual\Settings\Select;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -80,7 +80,7 @@ class TextWithImage extends BladeSection
                     'center' => _t('text-with-image.settings.align_center'),
                     'end'    => _t('text-with-image.settings.align_end'),
                 ])
-                ->default('start'),
+                ->default('center'),
         ];
     }
 
@@ -95,7 +95,7 @@ class TextWithImage extends BladeSection
 
             Block::make('body', _t('text-with-image.blocks.body.label'))
                 ->settings([
-                    Textarea::make('content', _t('text-with-image.blocks.body.settings.content_label'))
+                    RichText::make('content', _t('text-with-image.blocks.body.settings.content_label'))
                         ->default(_t('text-with-image.blocks.body.settings.content_default')),
                 ]),
 

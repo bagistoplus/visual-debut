@@ -4,12 +4,8 @@
   x-dropdown="{ open: $wire.entangle('open') }"
   class="relative"
   @visual_design_mode
-  x-on:visual:block:selected.window="
-    if ($event.detail.blockId === '{{ $block['id'] }}')
-      $dropdown.open = true;
-    else
-      $dropdown.open = false;
-  "
+  x-on:visual:block:select:{{ $block['id'] }}.window="$dropdown.open = true"
+  x-on:visual:block:deselect:{{ $block['id'] }}.window="$dropdown.open = false"
   @end_visual_design_mode
 >
   <!-- Cart Button -->
@@ -37,7 +33,7 @@
       <h3 class="mb-1 text-xl font-medium" {!! $block['liveUpdate']['heading'] !!}>
         {{ $block['heading'] }}
       </h3>
-      <div class="text-on-surface/80 prose prose-sm mb-4 text-sm">
+      <div class="text-on-surface/80 prose prose-sm mb-4 text-sm" {!! $block['liveUpdate']['description'] !!}>
         {!! $block['description'] !!}
       </div>
     </div>

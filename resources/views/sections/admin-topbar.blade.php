@@ -6,8 +6,7 @@
     href="{{ $section->settings->url }}"
     class="flex items-center gap-2 hover:underline"
     target="_blank"
-    {{ $section->liveUpdate('url', 'href') }}
-    {{ $section->liveUpdate('text') }}
+    {{ $section->liveUpdate()->text('text')->attr('url', 'href') }}
   >
     {{ $section->settings->text }}
     <x-lucide-arrow-right class="h-5 w-5" />

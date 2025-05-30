@@ -18,51 +18,67 @@
       </x-shop::ui.drawer>
 
       @foreach ($section->blocks as $block)
-        @if ($block->type === 'logo')
-          <x-shop::header.logo :block="$block" />
-        @elseif($block->type === 'nav')
-          @php
-            $navClasses = $block->settings->push_to_left ? ' mr-auto' : '';
-            $navClasses .= $block->settings->push_to_right ? ' ml-auto' : '';
-          @endphp
-          <div class="{{ $navClasses }} hidden h-full sm:block">
-            <x-shop::navigation :categories="$categories" />
-          </div>
-        @endif
+        @switch($block->type)
+          @case('logo')
+            <x-shop::header.logo :block="$block" />
+          @break
+
+          @case('nav')
+            @php
+              $navClasses = $block->settings->push_to_left ? ' mr-auto' : '';
+              $navClasses .= $block->settings->push_to_right ? ' ml-auto' : '';
+            @endphp
+            <div class="{{ $navClasses }} hidden h-full sm:block" {{ $block->liveUpdate()->toggleClass('push_to_left', 'mr-auto')->toggleClass('push_to_right', 'ml-auto') }}>
+              <x-shop::navigation :categories="$categories" />
+            </div>
+          @break
+        @endswitch
       @endforeach
 
       <div class="flex items-center gap-2">
         @foreach ($section->blocks as $block)
-          @if ($block->type === 'currency')
-            <x-shop::currency-selector />
-          @elseif ($block->type === 'locale')
-            <x-shop::language-selector :icon="$block->settings->icon" />
-          @elseif ($block->type === 'search')
-            <x-shop::search-form :search-icon="$block->settings->search_icon" :image-search-icon="$block->settings->image_search_icon" />
-          @elseif ($block->type === 'user')
-            <x-shop::user-menu :block="$block" />
-          @elseif ($block->type === 'cart')
-            <livewire:cart-preview key="cart-preview" :block="[
-                'id' => $block->id,
-                'heading' => $block->settings->heading,
-                'description' => $block->settings->description,
-                'liveUpdate' => [
-                    'heading' => $block->liveUpdate('heading')->toHtml(),
-                    'description' => $block->liveUpdate('description')->toHtml(),
-                ],
-            ]" />
-          @elseif ($block->type === 'compare')
-            @if (core()->getConfigData('catalog.products.settings.compare_option'))
-              <a
-                class="relative hidden items-center p-2 sm:flex"
-                aria-label="@lang('shop::app.components.layouts.header.compare')"
-                title="@lang('shop::app.components.layouts.header.compare')"
-                href="{{ route('shop.compare.index') }}"
-              >
-                @svg($block->settings->icon, ['class' => 'hover:text-primary h-5 w-5 transition-colors'])
-              </a>
-            @endif
-          @endif
+          @switch($block->type)
+            @case('currency')
+              <x-shop::currency-selector />
+            @break
+
+            @case('locale')
+              <x-shop::language-selector :icon="$block->settings->icon" />
+            @break
+
+            @case('search')
+              <x-shop::search-form :search-icon="$block->settings->search_icon" :image-search-icon="$block->settings->image_search_icon" />
+            @break
+
+            @case('user')
+              <x-shop::user-menu :block="$block" />
+            @break
+
+            @case('cart')
+              <livewire:cart-preview key="cart-preview" :block="[
+                  'id' => $block->id,
+                  'heading' => $block->settings->heading,
+                  'description' => $block->settings->description,
+                  'liveUpdate' => [
+                      'heading' => $block->liveUpdate()->text('heading')->toHtml(),
+                      'description' => $block->liveUpdate()->html('description')->toHtml(),
+                  ],
+              ]" />
+            @break
+
+            @case('compare')
+              @if (core()->getConfigData('catalog.products.settings.compare_option'))
+                <a
+                  class="relative hidden items-center p-2 sm:flex"
+                  aria-label="@lang('shop::app.components.layouts.header.compare')"
+                  title="@lang('shop::app.components.layouts.header.compare')"
+                  href="{{ route('shop.compare.index') }}"
+                >
+                  @svg($block->settings->icon, ['class' => 'hover:text-primary h-5 w-5 transition-colors'])
+                </a>
+              @endif
+            @break
+          @endswitch
         @endforeach
       </div>
     </div>
