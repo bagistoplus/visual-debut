@@ -15,7 +15,7 @@
     class="relative p-2"
     aria-label="user menu"
   >
-    @svg($block->settings->icon, ['class' => 'hover:text-primary h-5 w-5 transition-colors'])
+    @svg($block->settings->icon ?? 'lucide-user', ['class' => 'hover:text-primary h-5 w-5 transition-colors'])
   </button>
   <div
     x-cloak
