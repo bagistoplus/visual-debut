@@ -74,7 +74,7 @@
                   title="@lang('shop::app.components.layouts.header.compare')"
                   href="{{ route('shop.compare.index') }}"
                 >
-                  @svg($block->settings->icon, ['class' => 'hover:text-primary h-5 w-5 transition-colors'])
+                  @svg($block->settings->icon ?? 'lucide-arrow-left-right', ['class' => 'hover:text-primary h-5 w-5 transition-colors'])
                 </a>
               @endif
             @break
