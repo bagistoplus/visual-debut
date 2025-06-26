@@ -48,8 +48,6 @@ class ServiceProvider extends ThemeServiceProvider
         $this->bootViewEventListeners();
         $this->bootLivewireFeatures();
 
-        $this->bootDirectives();
-
         $this->whenActive(function () {
             $this->bootVendorViews();
         });
@@ -90,17 +88,6 @@ class ServiceProvider extends ThemeServiceProvider
             Event::listen('bagisto.shop.checkout.payment.paypal_smart_button', function (ViewRenderEventManager $event) {
                 $event->addTemplate('paypal::checkout.onepage.payment-button');
             });
-        });
-    }
-
-    protected function bootDirectives(): void
-    {
-        Blade::directive('style', function () {
-            return '<style>';
-        });
-
-        Blade::directive('endstyle', function () {
-            return '</style>';
         });
     }
 }
