@@ -12,6 +12,7 @@ use function BagistoPlus\VisualDebut\_t;
 #[On(Events::SHIPPING_METHOD_SET)]
 #[On(Events::COUPON_APPLIED)]
 #[On(Events::COUPON_REMOVED)]
+#[On(Events::CART_UPDATED)]
 class CartContent extends LivewireSection
 {
     use InteractsWithCart;

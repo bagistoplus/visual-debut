@@ -14,6 +14,8 @@ class CartPreview extends Component
 
     public $open = false;
 
+    public $initialized = false;
+
     public $heading;
 
     public $description;
@@ -21,6 +23,11 @@ class CartPreview extends Component
     public $block = [];
 
     public function mount() {}
+
+    public function initCart()
+    {
+        $this->initialized = true;
+    }
 
     public function updateItemQuantity($itemId, $quantity)
     {

@@ -2,6 +2,7 @@
   id="cart-preview"
   x-data
   x-dropdown="{ open: $wire.entangle('open') }"
+  wire:init="initCart"
   class="relative"
   @visual_design_mode
   x-on:visual:block:select:{{ $block['id'] }}.window="$dropdown.open = true"
@@ -15,7 +16,7 @@
     aria-label="cart preview"
   >
     <x-lucide-shopping-cart class="hover:text-primary h-5 w-5 transition-colors" />
-    @if (!$this->isCartEmpty())
+    @if (!$this->isCartEmpty() && $initialized)
       <span class="bg-primary text-on-primary absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full text-xs">
         {{ $this->getItemsCount() }}
       </span>
