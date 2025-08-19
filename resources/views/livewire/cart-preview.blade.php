@@ -12,7 +12,7 @@
   <!-- Cart Button -->
   <button
     x-dropdown:trigger
-    class="relative p-2"
+    class="relative p-2 cursor-pointer"
     aria-label="cart preview"
   >
     <x-lucide-shopping-cart class="hover:text-primary h-5 w-5 transition-colors" />
