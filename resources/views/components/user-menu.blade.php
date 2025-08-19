@@ -12,7 +12,7 @@
 >
   <button
     x-dropdown:trigger
-    class="relative p-2"
+    class="relative p-2 cursor-pointer"
     aria-label="user menu"
   >
     @svg($block->settings->icon ?? 'lucide-user', ['class' => 'hover:text-primary h-5 w-5 transition-colors'])
