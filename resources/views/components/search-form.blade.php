@@ -6,7 +6,7 @@
 <div id="search-form">
   <div x-data="{ showSearch: false }">
     <button
-      class="p-2"
+      class="p-2 cursor-pointer"
       aria-label="Search"
       x-on:click="showSearch = !showSearch"
     >
