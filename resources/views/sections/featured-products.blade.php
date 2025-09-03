@@ -13,7 +13,9 @@
   </div>
   <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
     @forelse($products as $product)
-      <x-shop::product.card :product="$product" />
+      @if ($product->url_key)
+        <x-shop::product.card :product="$product" />
+      @endif
     @empty
     @endforelse
   </div>
