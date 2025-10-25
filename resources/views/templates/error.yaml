@@ -1,6 +1,6 @@
 sections:
   error:
-    type: visual-debut::error-page
+    type: '@visual-debut/error-page'
 
 order:
   - error

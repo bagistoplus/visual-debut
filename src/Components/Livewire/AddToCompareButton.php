@@ -11,6 +11,14 @@ class AddToCompareButton extends Component
     #[Locked]
     public $productId;
 
+    public $size = 'md';
+    public $variant = 'soft';
+    public $color = 'secondary';
+    public $icon = null;
+    public $circle = false;
+    public $square = false;
+    public $block = false;
+
     public function handle()
     {
         $response = app(AddProductToCompare::class)->execute($this->productId);

@@ -1,6 +1,6 @@
 sections:
   address-form:
-    type: visual-debut::customer-edit-address
+    type: '@visual-debut/customer-edit-address'
 
 order:
   - address-form

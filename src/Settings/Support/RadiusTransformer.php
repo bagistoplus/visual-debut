@@ -2,9 +2,11 @@
 
 namespace BagistoPlus\VisualDebut\Settings\Support;
 
-class RadiusTransformer
+use BagistoPlus\Visual\Contracts\SettingTransformerInterface;
+
+class RadiusTransformer implements SettingTransformerInterface
 {
-    public function __invoke($value)
+    public function transform(mixed $value): string
     {
         return match ($value) {
             'xs' => '0.125rem',

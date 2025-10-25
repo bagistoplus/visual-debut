@@ -1,6 +1,6 @@
 sections:
   profile-form:
-    type: visual-debut::profile-form
+    type: '@visual-debut/profile-form'
 
 order:
   - profile-form

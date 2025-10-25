@@ -1,5 +1,5 @@
 <div>
-  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+  <div {{ $section->editor_attributes }} class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
     @if (request()->has('image-search'))
       <div class="bg-surface-alt text-on-surface-alt border-on-surface-alt/8 box flex p-5" x-data="{
           query: '{{ request('query') }}',

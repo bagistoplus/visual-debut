@@ -16,6 +16,14 @@ class AddToCartButton extends Component
 
     public $quantity = 1;
 
+    public $size = 'md';
+    public $variant = 'solid';
+    public $color = 'primary';
+    public $icon = null;
+    public $circle = false;
+    public $square = false;
+    public $block = false;
+
     public function addToCart()
     {
         $result = app(AddProductToCart::class)->execute([

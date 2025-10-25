@@ -1,6 +1,6 @@
 sections:
   addresses:
-    type: visual-debut::customer-addresses
+    type: '@visual-debut/customer-addresses'
 
 order:
   - addresses

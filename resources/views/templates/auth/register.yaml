@@ -1,6 +1,6 @@
 sections:
   register-form:
-    type: visual-debut::register-form
+    type: '@visual-debut/register-form'
 
 order:
   - register-form

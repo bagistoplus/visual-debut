@@ -1,4 +1,4 @@
-<div {{ $section->settings->scheme?->attributes() }} class="bg-surface text-on-surface py-16">
+<div {{ $section->editor_attributes }} {{ $section->settings->scheme?->attributes() }} class="bg-surface text-on-surface py-16">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <h2 class="heading mb-4 text-center text-3xl" {{ $section->liveUpdate()->text('heading') }}>
       {{ $section->settings->heading }}

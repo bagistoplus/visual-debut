@@ -1,5 +1,5 @@
 sections:
   search-result:
-    type: visual-debut::search-result
+    type: '@visual-debut/search-result'
 order:
   - search-result

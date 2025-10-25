@@ -2,122 +2,84 @@
 
 namespace BagistoPlus\VisualDebut\Sections;
 
-use BagistoPlus\Visual\Sections\BladeSection;
-use BagistoPlus\Visual\Sections\Block;
-use BagistoPlus\Visual\Settings\Checkbox;
-use BagistoPlus\Visual\Settings\Link;
-use BagistoPlus\Visual\Settings\RichText;
-use BagistoPlus\Visual\Settings\Text;
-use BagistoPlus\Visual\Settings\Textarea;
+use BagistoPlus\Visual\Blocks\BladeSection;
+use BagistoPlus\Visual\Settings\ColorScheme;
+use BagistoPlus\Visual\Settings\Header;
+use BagistoPlus\Visual\Settings\Range;
+use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\VisualDebut\Presets\ClassicFooter;
+use BagistoPlus\VisualDebut\Presets\MinimalFooter;
+use BagistoPlus\VisualDebut\Presets\NewsletterFooter;
 
 use function BagistoPlus\VisualDebut\_t;
 
 class Footer extends BladeSection
 {
+    protected static string $type = '@visual-debut/footer';
+
     protected static string $view = 'shop::sections.footer';
 
-    protected static array $disabledOn = ['*'];
+    protected static string $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="7" x="3" y="3" rx="1"/><rect width="18" height="7" x="3" y="14" rx="1"/></svg>';
+
+    protected static string $category = 'Layout';
+
+    protected static array $enabledOn = [
+        'regions' => ['footer']
+    ];
 
     protected static string $wrapper = 'footer';
 
-    public function getLinks()
-    {
-        $groups = collect();
-        $currentGroup = null;
-
-        collect($this->section->blocks)->each(function ($block) use (&$groups, &$currentGroup) {
-            if ($block->type === 'group') {
-                $currentGroup = collect([
-                    'group' => $block->settings->title ?? '',
-                    'links' => collect(),
-                ]);
-
-                $groups->push($currentGroup);
-            }
-
-            if ($block->type === 'link' && $currentGroup) {
-                $currentGroup['links']->push([
-                    'text' => $block->settings->text,
-                    'url' => $block->settings->link
-                ]);
-            }
-        });
-
-        return $groups->isEmpty() ? $this->getDefaultLinks() : $groups;
-    }
-
-    protected function getDefaultLinks()
-    {
-        return [
-            [
-                'group' => 'Company',
-                'links' => [
-                    ['text' => 'About Us', 'url' => route('shop.cms.page', 'about-us')],
-                    ['text' => 'Contact Us', 'url' => route('shop.home.contact_us')],
-                    ['text' => 'About Us', 'url' => route('shop.cms.page', 'customer-service')],
-                ],
-            ],
-            [
-                'group' => 'Policy',
-                'links' => [
-                    ['text' => 'Privacy Policy', 'url' => route('shop.cms.page', 'privacy-policy')],
-                    ['text' => 'Payment Policy', 'url' => route('shop.cms.page', 'payment-policy')],
-                    ['text' => 'Shipping Policy', 'url' => route('shop.cms.page', 'shipping-policy')],
-                ],
-            ],
-            [
-                'group' => 'Account',
-                'links' => [
-                    ['text' => 'Sign In', 'url' => route('shop.customer.session.index')],
-                    ['text' => 'Create Account', 'url' => route('shop.customers.register.index')],
-                    ['text' => 'Forget Password', 'url' => route('shop.customers.forgot_password.create')],
-                ],
-            ],
-        ];
-    }
+    protected static array $accepts = ['*'];
 
     public static function name(): string
     {
-        return _t('footer.name');
+        return _t('sections.footer.name');
     }
 
     public static function description(): string
     {
-        return _t('footer.description');
+        return _t('sections.footer.description');
     }
 
     public static function settings(): array
     {
         return [
-            Text::make('heading', _t('footer.settings.heading_label'))
-                ->default(_t('footer.settings.heading_default')),
+            Header::make(_t('sections.footer.settings.layout_header')),
 
-            RichText::make('description', _t('footer.settings.description_label'))
-                ->default(_t('footer.settings.description_default')),
+            Select::make('content_width', _t('sections.footer.settings.content_width_label'))
+                ->options([
+                    'full' => _t('sections.footer.settings.content_width_options.full'),
+                    'container' => _t('sections.footer.settings.content_width_options.container'),
+                ])
+                ->default('container')
+                ->info(_t('sections.footer.settings.content_width_info')),
 
-            Checkbox::make('show_social_links', _t('footer.settings.show_social_links_label'))
-                ->default(true)
-                ->info(_t('footer.settings.show_social_links_info')),
+            Header::make(_t('sections.footer.settings.spacing_header')),
+
+            Range::make('padding_top', _t('sections.footer.settings.padding_top_label'))
+                ->min(0)->max(24)->step(1)
+                ->default(['_default' => 12])
+                ->responsive(),
+
+            Range::make('padding_bottom', _t('sections.footer.settings.padding_bottom_label'))
+                ->min(0)->max(24)->step(1)
+                ->default(['_default' => 12])
+                ->responsive(),
+
+            Header::make(_t('sections.footer.settings.appearance_header')),
+
+            ColorScheme::make('color_scheme', _t('sections.footer.settings.color_scheme_label'))
+                ->default(null)
+                ->info(_t('sections.footer.settings.color_scheme_info')),
         ];
     }
 
-    public static function blocks(): array
+    public static function presets(): array
     {
         return [
-            Block::make('group', _t('footer.blocks.group.name'))
-                ->settings([
-                    Text::make('title', _t('footer.blocks.group.settings.title_label'))
-                        ->default(_t('footer.blocks.group.settings.title_default')),
-                ]),
-
-            Block::make('link', _t('footer.blocks.link.name'))
-                ->settings([
-                    Text::make('text', _t('footer.blocks.link.settings.text_label'))
-                        ->default(_t('footer.blocks.link.settings.text_default')),
-
-                    Link::make('link', _t('footer.blocks.link.settings.link_label'))
-                        ->default('/'),
-                ]),
+            ClassicFooter::class,
+            MinimalFooter::class,
+            NewsletterFooter::class,
         ];
     }
 }

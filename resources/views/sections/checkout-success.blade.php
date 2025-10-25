@@ -1,4 +1,4 @@
-<div class="min-h-screen py-12">
+<div {{ $section->editor_attributes }} class="min-h-screen py-12">
   <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
     <div class="mb-12 text-center">
       <div class="bg-success/10 mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full">

@@ -1,8 +1,8 @@
 sections:
   breadcrumbs:
-    type: visual-debut::breadcrumbs
+    type: '@visual-debut/breadcrumbs'
   compare:
-    type: visual-debut::compare
+    type: '@visual-debut/compare'
 
 order:
   - breadcrumbs

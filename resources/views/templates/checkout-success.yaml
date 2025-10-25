@@ -1,6 +1,6 @@
 sections:
   checkout-success:
-    type: visual-debut::checkout-success
+    type: '@visual-debut/checkout-success'
 
 order:
   - checkout-success

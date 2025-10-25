@@ -1,4 +1,4 @@
-<div class="bg-background box border-none shadow-sm" x-data>
+<div {{ $section->editor_attributes }} class="bg-background box border-none shadow-sm" x-data>
   <div class="border-b p-4">
     <div class="flex items-center justify-between">
       <h1 class="text-on-background text-2xl">

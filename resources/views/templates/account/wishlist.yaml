@@ -1,6 +1,6 @@
 sections:
   wishlist:
-    type: visual-debut::wishlist
+    type: '@visual-debut/wishlist'
 
 order:
   - wishlist

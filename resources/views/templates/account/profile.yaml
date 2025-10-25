@@ -1,6 +1,6 @@
 sections:
   profile:
-    type: visual-debut::profile
+    type: '@visual-debut/profile'
 
 order:
   - profile

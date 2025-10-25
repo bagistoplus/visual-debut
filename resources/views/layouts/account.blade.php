@@ -89,7 +89,7 @@
                 class="border-danger text-danger hover:bg-danger hover:text-danger-50 flex w-full items-center justify-center gap-2 rounded-lg border-2 px-4 py-3 transition-colors"
               >
                 <x-lucide-log-out class="h-5 w-5" />
-                @lang('shop::app.components.layouts.header.logout')
+                @lang('visual-debut::shop.header.logout')
               </button>
             </form>
           </div>

@@ -2,11 +2,43 @@
 @plugin "@tailwindcss/typography";
 @config "../../../tailwind.config.js";
 
+@custom-variant parent-hover (*:hover > &);
+
+/* Named group support for product cards */
+@source inline("group/product-card");
+@source inline("group-hover/product-card:{opacity-0,opacity-100,pointer-events-none,pointer-events-auto}");
+
 @source "../../views";
+
+/* bagisto utilities */
+@source inline("label-{processing,active,canceled,closed,pending}");
+@source inline("icon-eye");
+@source inline("line-through");
+@source inline("max-sm:leading-4");
+
+/* Container block - Dynamic utilities with responsive variants */
+@source inline("{mobile:,tablet:,desktop:,}gap-{0..24}");
+@source inline("{mobile:,tablet:,desktop:,}grid-cols-{1..12}");
+@source inline("{mobile:,tablet:,desktop:,}grid-rows-{1..6}");
+@source inline("{mobile:,tablet:,desktop:,}{p,m}{t,b,s,e,x,y}-{0..24}");
+@source inline("{mobile:,tablet:,desktop:,}border-{0..8,dotted,dashed}");
+@source inline("{mobile:,tablet:,desktop:,}z-{0,10,20,30,40,50}");
+@source inline("{mobile:,tablet:,desktop:,}w-{auto,full,fit,screen}");
+@source inline("{mobile:,tablet:,desktop:,}h-{auto,full,fit,screen}");
+
+/* Image block - Hover effects */
+@source inline("hover:scale-{100,105,110,125,150}");
+@source inline("group-hover:scale-{100,105,110,125,150}");
 
 @import './tokens.css' layer(theme);
 @import './base.css' layer(base);
 @import './animation.css' layer(base);
 @import './button.css' layer(components);
 @import './inputs.css' layer(components);
+@import './typography.css' layer(components);
 @import './utilities.css' layer(base);
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+}

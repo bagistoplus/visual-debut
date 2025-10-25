@@ -1,5 +1,5 @@
 <section>
-  {{-- <div class="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/30">
+  {{-- <div {{ $section->editor_attributes }} class="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/30">
     <x-lucide-loader-2 class="h-16 w-16 animate-spin text-white" />
   </div> --}}
   <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8" x-data="{

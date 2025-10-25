@@ -1,8 +1,10 @@
 @props(['product', 'mode' => 'grid', 'noCompare' => false])
 
+{{-- blade-formatter-disable --}}
 @php
   $productResource = (new \Webkul\Shop\Http\Resources\ProductResource($product))->resolve();
 @endphp
+{{-- blade-formatter-enable --}}
 
 @if ($mode === 'grid')
   <div {{ $attributes->class('bg-surface text-on-surface box group relative h-full overflow-hidden border-none shadow-sm transition-shadow hover:shadow-md') }}>

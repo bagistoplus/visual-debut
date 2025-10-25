@@ -1,4 +1,4 @@
-<div class="" x-data>
+<div {{ $section->editor_attributes }} class="" x-data>
   <!-- Order Title & Status -->
   <div class="flex items-center">
     <h1 class="text-on-background mr-6 text-2xl font-semibold">

@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'common' => [
+        'color_scheme_label' => 'Color Scheme',
+        'color_scheme_info' => 'Override the global theme color scheme for this section',
+    ],
+
     'admin-topbar' => [
         'name' => 'Admin Top Bar',
         'description' => 'Displays a topbar with a link to the admin panel. Useful for admin-accessible storefronts.',
@@ -25,43 +30,19 @@ return [
         ],
     ],
 
-    'hero-banner' => [
-        'name' => 'Hero Banner',
-        'description' => 'A full-width banner with text and call-to-action buttons.',
-
-        'settings' => [
-            'scheme_label'           => 'Color Scheme',
-            'background_label'       => 'Background Image',
-            'overlay_label'          => 'Show Overlay',
-            'overlay_opacity_label'  => 'Overlay Opacity (%)',
-            'height_label'           => 'Banner Height',
-            'scheme_note' => 'This overrides the global theme color scheme. Changes to the main theme scheme will not affect this section.'
-        ],
-
-        'blocks' => [
-            'heading' => [
-                'name'          => 'Heading',
-                'text_label'    => 'Heading Text',
-                'default_text'  => 'Welcome to our store',
-            ],
-            'subtext' => [
-                'name'          => 'Subtext',
-                'text_label'    => 'Subtext',
-                'default_text'  => 'Discover our best products and offers.',
-            ],
-            'button' => [
-                'name'          => 'Button',
-                'text_label'    => 'Button Text',
-                'default_text'  => 'View collections',
-                'link_label'    => 'Button Link',
-                'color_label'   => 'Variant'
-            ],
-        ],
-    ],
-
     'header' => [
         'name' => 'Header',
-        'description' => '',
+        'description' => 'Main site header with logo, navigation, and utility elements',
+        'settings' => [
+            'content_width_label' => 'Content Width',
+            'content_width_container' => 'Container',
+            'content_width_fullwidth' => 'Full Width',
+        ],
+        'presets' => [
+            'default' => [
+                'name' => 'Header',
+            ],
+        ],
         'blocks' => [
             'logo' => [
                 'name' => 'Name/Logo',
@@ -70,16 +51,11 @@ return [
                     'logo_text_label' => 'Logo Text',
                     'mobile_logo_image_label' => 'Mobile logo',
                     'logo_text_placeholder' => 'Displayed when no logo image is set',
-                    'push_to_left' => 'Push this element to the start',
-                    'push_to_right' => 'Push this element to the end'
                 ],
             ],
             'nav' => [
                 'name' => 'Navigation',
-                'settings' => [
-                    'push_to_left' => 'Push this element to the start',
-                    'push_to_right' => 'Push this element to the end'
-                ]
+                'settings' => []
             ],
             'currency' => [
                 'name' => 'Currency selector',
@@ -129,17 +105,49 @@ return [
 
     'footer' => [
         'name' => 'Footer',
-        'description' => 'The bottom section of your website with links and branding.',
+        'description' => 'Flexible footer section that accepts any blocks for complete customization.',
 
         'settings' => [
-            'heading_label' => 'Heading',
-            'heading_default' => 'My Store',
+            'layout_header' => 'Layout',
 
-            'description_label' => 'Description',
-            'description_default' => 'Add a description of your store here',
+            'content_width_label' => 'Content Width',
+            'content_width_options' => [
+                'full' => 'Full Width',
+                'container' => 'Container',
+            ],
+            'content_width_info' => 'Choose whether footer content should be constrained to a container or span full width',
 
-            'show_social_links_label' => 'Show social links',
-            'show_social_links_info' => 'You can configure links in theme settings',
+            'spacing_header' => 'Spacing',
+
+            'padding_top_label' => 'Padding Top',
+            'padding_bottom_label' => 'Padding Bottom',
+
+            'appearance_header' => 'Appearance',
+
+            'color_scheme_label' => 'Color Scheme',
+            'color_scheme_info' => 'Override the global theme color scheme for this section',
+        ],
+
+        'presets' => [
+            'classic' => [
+                'name' => 'Classic Footer',
+                'brand_title' => 'My Store',
+                'brand_description' => 'Add a description of your store here. Tell your customers about your mission, values, and what makes your products special.',
+                'company_title' => 'Company',
+                'policy_title' => 'Policy',
+                'account_title' => 'Account',
+            ],
+
+            'minimal' => [
+                'name' => 'Minimal Centered Footer',
+                'tagline' => 'Your trusted e-commerce partner',
+            ],
+
+            'newsletter' => [
+                'name' => 'Newsletter Footer',
+                'heading' => 'Stay in the loop',
+                'description' => 'Subscribe to our newsletter for exclusive offers and updates.',
+            ],
         ],
 
         'blocks' => [
@@ -211,18 +219,54 @@ return [
 
     'category-list' => [
         'name' => 'Category List',
-        'description' => 'Display a grid of selected categories with images and links.',
+        'description' => 'Display categories in a responsive grid or carousel layout.',
         'settings' => [
-            'heading_label'         => 'Heading',
-            'heading_default'       => 'Shop by Category',
+            'heading_default'       => 'Shop by category',
 
-            'heading_size_label'    => 'Heading Size',
-            'size_small_label'      => 'Small',
-            'size_medium_label'     => 'Medium',
-            'size_large_label'      => 'Large',
+            'parent_category_label' => 'Parent Category',
+            'parent_category_info'  => 'Select a parent category to display its children. Leave empty to show manually added categories.',
 
-            'columns_desktop_label' => 'Columns (Desktop)',
-            'columns_mobile_label'  => 'Columns (Mobile)',
+            'layout_header'         => 'Layout',
+            'layout_type_label'     => 'Layout Type',
+            'layout_type_options'   => [
+                'grid'     => 'Grid',
+                'carousel' => 'Carousel',
+            ],
+            'columns_label'         => 'Columns',
+            'gap_label'             => 'Gap',
+            'gap_info'              => 'Space between items (0-24, where 4 = 1rem)',
+
+            'carousel_nav_header'   => 'Carousel Navigation',
+            'nav_style_label'       => 'Navigation Style',
+            'nav_style_options'     => [
+                'arrow'   => 'Arrow',
+                'chevron' => 'Chevron',
+                'none'    => 'None',
+            ],
+            'nav_shape_label'       => 'Navigation Shape',
+            'nav_shape_options'     => [
+                'none'   => 'None',
+                'circle' => 'Circle',
+                'square' => 'Square',
+            ],
+
+            'appearance_header'       => 'Appearance',
+
+            'content_width_label'     => 'Content Width',
+            'content_width_options'   => [
+                'container' => 'Container',
+                'full'      => 'Full Width',
+            ],
+
+            'padding_header'          => 'Padding',
+            'padding_top_label'     => 'Padding Top',
+            'padding_bottom_label'  => 'Padding Bottom',
+        ],
+        'presets' => [
+            'grid' => [
+                'name' => 'Category Grid',
+                'heading' => 'Shop by Category',
+            ],
         ],
         'blocks' => [
             'category' => [
@@ -234,24 +278,60 @@ return [
         ],
     ],
 
-    'featured-products' => [
-        'name' => 'Featured Products',
-        'description' => 'Show handpicked or automatically loaded products like featured or new.',
+    'product-list' => [
+        'name' => 'Product List',
+        'description' => 'Display a list of products from a category, or filter by product type (featured, new).',
 
         'settings' => [
-            'heading_label' => 'Heading',
-            'heading_default' => 'Featured Products',
+            'parent_category_label' => 'Parent Category',
+            'parent_category_info' => 'Filter products by category. Leave empty to show products from all categories.',
 
-            'subheading_label' => 'Subheading',
-            'subheading_default' => 'Check out our latest products',
-
-            'nb_products_label' => 'Number of Products to show',
-            'nb_products_info' => 'Only used when no product block is added',
             'product_type_label' => 'Product Type',
-            'product_type_info' => 'Only used when no product block is added',
-
+            'product_type_info' => 'Only used when no product blocks are added and no parent category is selected',
             'new_label'             => 'New Products',
             'featured_label'        => 'Featured Products',
+
+            'nb_products_label' => 'Number of Products',
+            'nb_products_info' => 'Maximum number of products to display',
+
+            'layout_header' => 'Layout',
+            'layout_type_label' => 'Layout Type',
+            'layout_type_options' => [
+                'grid' => 'Grid',
+                'carousel' => 'Carousel',
+            ],
+
+            'columns_label' => 'Columns',
+            'gap_label' => 'Gap',
+            'gap_info' => 'Space between products',
+
+            'content_width_label' => 'Content Width',
+            'content_width_options' => [
+                'container' => 'Container',
+                'full' => 'Full Width',
+            ],
+
+            'carousel_nav_header' => 'Carousel Navigation',
+            'nav_style_label' => 'Navigation Style',
+            'nav_style_options' => [
+                'arrow' => 'Arrows',
+                'dot' => 'Dots',
+                'both' => 'Both',
+                'none' => 'None',
+            ],
+            'nav_shape_label' => 'Navigation Shape',
+            'nav_shape_options' => [
+                'circle' => 'Circle',
+                'square' => 'Square',
+                'none' => 'None',
+            ],
+
+            'spacing_header' => 'Spacing',
+            'padding_top_label' => 'Padding Top',
+            'padding_bottom_label' => 'Padding Bottom',
+
+            'appearance_header' => 'Appearance',
+            'color_scheme_label' => 'Color Scheme',
         ],
 
         'blocks' => [
@@ -281,80 +361,33 @@ return [
         ],
     ],
 
-    'product-details' => [
-        'name' => 'Product Details',
-        'description' => 'Displays product info using individual blocks: title, price, description, cart.',
+    'product-information' => [
+        'name' => 'Product Information',
+        'description' => 'Display product media gallery and details in a flexible grid layout.',
 
         'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right',
-            'position_under_gallery' => 'Under images gallery',
-        ],
+            'section_width_label' => 'Section Width',
+            'section_width_options' => [
+                'container' => 'Container',
+                'full_width' => 'Full Width',
+            ],
 
-        'blocks' => [
-            'text' => [
-                'name' => 'Text',
-                'settings' => [
-                    'text_label' => 'Text',
-                ],
+            'layout_header' => 'Layout',
+            'media_position_label' => 'Media Position',
+            'media_position_options' => [
+                'left' => 'Left',
+                'right' => 'Right',
             ],
-            'title' => [
-                'name' => 'Title',
-                'settings' => [
-                    'title_tag_label' => 'Title tag',
-                    'title_size' => 'Title size'
-                ]
-            ],
-            'price' => [
-                'name' => 'Price',
-            ],
-            'rating' => [
-                'name' => 'Rating',
-            ],
-            'short-description' => [
-                'name' => 'Short description',
-            ],
-            'quantity-selector' => [
-                'name' => 'Quantity selector',
-            ],
-            'buy-buttons' => [
-                'name' => 'Buy buttons',
-                'settings' => [
-                    'enable_buy_now_label' => 'Show buy now button',
-                    'enable_buy_now_info' => 'Enable this option to display a \'Buy Now\' button, allowing customers to proceed directly to checkout for a faster purchasing experience.',
-                ],
-            ],
-            'description' => [
-                'name' => 'Product description',
-                'settings' => [
-                    'show_in_panel_label' => 'Show in collapsible panel',
-                    'should_open_panel_label' => 'Open the panel by default'
-                ]
-            ],
-            'collapsible' => [
-                'name' => 'Collapsible panel',
-                'settings' => [
-                    'icon_label' => 'Icon',
-                    'heading_label' => 'Heading',
-                    'content_label' => 'Content of the panel',
-                    'should_open_panel_label' => 'Open the panel by default'
-                ]
-            ],
-            'separator' => [
-                'name' => 'Separator',
-            ],
-            'variant-picker' => [
-                'name' => 'Variant Picker',
-            ],
-            'grouped-options' => [
-                'name' => 'Grouped product options',
-            ],
-            'bundle-options' => [
-                'name' => 'Product bundle options',
-            ],
-            'downloadable-options' => [
-                'name' => 'Downloadable products options',
-            ],
+            'equal_columns_label' => 'Equal Columns',
+            'equal_columns_info' => 'Make media and details columns equal width (50/50 instead of 2:1 ratio)',
+            'gap_label' => 'Gap',
+            'gap_info' => 'Space between media and details columns',
+
+            'appearance_header' => 'Appearance',
+
+            'padding_header' => 'Padding',
+            'padding_top_label' => 'Padding Top',
+            'padding_bottom_label' => 'Padding Bottom',
         ],
     ],
 
@@ -387,118 +420,6 @@ return [
         'no_reviews'     => 'No reviews yet.',
     ],
 
-    'text-with-image' => [
-        'name'        => 'Text with Image',
-        'description' => 'Show text content alongside an image with configurable layout.',
-
-        'settings' => [
-            'image_label'           => 'Image',
-            'image_position_label'  => 'Image Position',
-            'left_label'            => 'Image first',
-            'right_label'           => 'Image second',
-
-            'image_height_label'    => 'Image Height',
-            'image_height_auto'     => 'Adapt to Image',
-            'image_height_sm'       => 'Small',
-            'image_height_md'       => 'Medium',
-            'image_height_lg'       => 'Large',
-
-            'image_width_label'     => 'Image Width (Desktop)',
-            'width_sm'              => 'Small',
-            'width_md'              => 'Medium',
-            'width_lg'              => 'Large',
-
-            'content_position_label'    => 'Content Position (Vertical)',
-            'position_top'              => 'Top',
-            'position_middle'           => 'Middle',
-            'position_bottom'           => 'Bottom',
-
-            'content_align_label'       => 'Content Alignment (Desktop)',
-            'content_align_mobile_label' => 'Content Alignment (Mobile)',
-            'align_start'               => 'Start',
-            'align_center'              => 'Center',
-            'align_end'                 => 'End',
-        ],
-
-        'blocks' => [
-            'heading' => [
-                'label' => 'Heading',
-                'settings' => [
-                    'text_label' => 'Heading Text',
-                    'text_default' => 'Image with text'
-                ],
-            ],
-            'body' => [
-                'label' => 'Body Text',
-                'settings' => [
-                    'content_label' => 'Paragraph Text',
-                    'content_default' => 'Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review'
-                ],
-            ],
-            'button' => [
-                'label' => 'Button',
-                'settings' => [
-                    'text_label' => 'Button Text',
-                    'url_label'  => 'Button URL',
-                    'text_default' => 'Button Text',
-                    'variant_label'        => 'Button Variant',
-
-                    'variant_primary'      => 'Primary',
-                    'variant_secondary'    => 'Secondary',
-                    'variant_accent'       => 'Accent',
-                    'variant_neutral'      => 'Neutral',
-
-                    'style_label'          => 'Button Style',
-                    'style_solid'          => 'Solid',
-                    'style_soft'           => 'Soft',
-                    'style_outline'        => 'Outline',
-                    'style_ghost'          => 'Ghost',
-                ],
-            ],
-        ],
-    ],
-
-    'collage' => [
-        'name'        => 'Collage',
-        'description' => 'Flexible layout to mix images, products, and categories.',
-
-        'settings' => [
-            'heading_label'        => 'Heading',
-            'heading_size_label'   => 'Heading Size',
-        ],
-
-        'blocks' => [
-            'image' => [
-                'label' => 'Image',
-                'settings' => [
-                    'image_label' => 'Image',
-                ],
-            ],
-            'product' => [
-                'label' => 'Product',
-                'settings' => [
-                    'product_label' => 'Product',
-                ],
-            ],
-            'custom' => [
-                'label' => 'Custom Content',
-                'settings' => [
-                    'image_label' => 'Image',
-                    'title_label' => 'Title',
-                    'text_label'  => 'Description',
-                    'link_label'  => 'Link',
-                    'link_text_label' => 'Link text'
-                ],
-            ],
-            'category' => [
-                'label' => 'Category',
-                'settings' => [
-                    'category_label' => 'Select Category',
-                ],
-            ],
-        ],
-    ],
-
     'contact-form' => [
         'name'        => 'Contact Form',
         'description' => 'Simple section with name, email, and message form.',
@@ -516,7 +437,7 @@ return [
 
     'cart-content' => [
         'name' => 'Cart Content',
-        'description' => 'Displays a summary of the customer’s cart, including products, quantities, prices, and actions like updating or removing items.',
+        'description' => 'Displays a summary of the customer\'s cart, including products, quantities, prices, and actions like updating or removing items.',
     ],
 
     'checkout' => [
@@ -531,7 +452,17 @@ return [
 
     'search-result' => [
         'name' => 'Search Results',
-        'description' => 'Displays products or content matching the user’s search query, with support for filtering and pagination.',
+        'description' => 'Displays products or content matching the user\'s search query, with support for filtering and pagination.',
+    ],
+
+    'compare' => [
+        'name' => 'Compare Products',
+        'description' => 'Displays a comparison table of selected products with their attributes and features.',
+    ],
+
+    'wishlist' => [
+        'name' => 'Wishlist',
+        'description' => 'Displays the customer\'s saved wishlist items with options to add to cart or remove.',
     ],
 
     'cms-page' => [
@@ -544,34 +475,174 @@ return [
         'description' => 'Displays a styled error message (e.g. 404 or 500) with optional navigation links or search to help users recover.',
     ],
 
-    'feature-icons' => [
-        'name' => 'Feature Icons',
-        'description' => 'Display a row of icons with titles and short descriptions.',
+    'flex-section' => [
+        'name' => 'Flexible Section',
+        'description' => 'A universal section that accepts any block type with comprehensive layout, sizing, and styling controls.',
 
-        'settings' => [
-            'heading_label'     => 'Section Heading',
-            'description_label' => 'Section Description',
-            'icon_size_label'   => 'Icon Size (px)',
-            'columns_label'     => 'Columns on Desktop',
-            'layout_label'      => 'Layout',
-            'layout_horizontal' => 'Icon Left, Text Right',
-            'layout_vertical'   => 'Icon Top, Text Below',
-        ],
+        'empty_state' => 'Add blocks to get started',
 
-        'blocks' => [
-            'feature' => [
-                'label' => 'Feature',
-                'settings' => [
-                    'icon_label'  => 'Icon',
-                    'title_label' => 'Title',
-                    'text_label'  => 'Description',
-                ],
+        'presets' => [
+            'custom_section' => [
+                'name' => 'Custom Section',
+                'category' => 'Layout',
+            ],
+            'rich_text' => [
+                'name' => 'Rich Text Section',
+                'category' => 'Content',
+            ],
+            'faq' => [
+                'name' => 'FAQ Section',
+                'category' => 'Content',
+            ],
+            'image_with_text' => [
+                'name' => 'Image with Text',
+                'category' => 'Content',
+            ],
+            'hero_banner' => [
+                'name' => 'Hero Banner',
+                'category' => 'Content',
+            ],
+            'feature_icons' => [
+                'name' => 'Feature Icons',
             ],
         ],
 
-        'placeholders' => [
-            'title' => 'Heading',
-            'text'  => 'Some followup text to build on the feature',
+        'settings' => [
+            'layout_header' => 'Layout',
+
+            'flex_direction_label' => 'Flex Direction',
+            'flex_direction_info' => 'Direction of the content flow',
+            'flex_direction_options' => [
+                'row' => 'Horizontal',
+                'row_reverse' => 'Horizontal (Reversed)',
+                'column' => 'Vertical',
+                'column_reverse' => 'Vertical (Reversed)',
+            ],
+
+            'justify_content_label' => 'Justify Content',
+            'justify_content_options' => [
+                'start' => 'Start',
+                'center' => 'Center',
+                'end' => 'End',
+                'between' => 'Space Between',
+                'around' => 'Space Around',
+                'evenly' => 'Space Evenly',
+            ],
+
+            'align_items_label' => 'Align Items',
+            'align_items_options' => [
+                'start' => 'Start',
+                'center' => 'Center',
+                'end' => 'End',
+                'stretch' => 'Stretch',
+                'baseline' => 'Baseline',
+            ],
+
+            'gap_label' => 'Gap Between Items',
+            'gap_info' => 'Space between child blocks',
+
+            'size_header' => 'Size',
+
+            'section_width_label' => 'Content Width',
+            'section_width_options' => [
+                'full' => 'Full Width',
+                'container' => 'Container',
+            ],
+
+            'section_height_label' => 'Section Height',
+            'section_height_options' => [
+                'auto' => 'Auto',
+                'xs' => 'Extra Small (20rem)',
+                'sm' => 'Small (25rem)',
+                'md' => 'Medium (37.5rem)',
+                'lg' => 'Large (50rem)',
+                'screen' => 'Full Screen',
+                'custom' => 'Custom',
+            ],
+
+            'section_height_custom_label' => 'Custom Height',
+
+            'appearance_header' => 'Appearance',
+
+            'color_scheme_label' => 'Color Scheme',
+
+            'background_type_label' => 'Background Type',
+            'background_type_options' => [
+                'none' => 'None',
+                'color' => 'Color',
+                'gradient' => 'Gradient',
+                'image' => 'Image',
+            ],
+
+            'background_color_label' => 'Background Color',
+
+            'background_gradient_label' => 'Background Gradient',
+
+            'background_image_label' => 'Background Image',
+
+            'background_position_label' => 'Background Position',
+            'background_position_options' => [
+                'center' => 'Center',
+                'top' => 'Top',
+                'bottom' => 'Bottom',
+                'left' => 'Left',
+                'right' => 'Right',
+            ],
+
+            'background_size_label' => 'Background Size',
+            'background_size_options' => [
+                'cover' => 'Cover',
+                'contain' => 'Contain',
+                'auto' => 'Auto',
+            ],
+
+            'background_repeat_label' => 'Background Repeat',
+            'background_repeat_options' => [
+                'no_repeat' => 'No Repeat',
+                'repeat' => 'Repeat',
+                'repeat_x' => 'Repeat Horizontally',
+                'repeat_y' => 'Repeat Vertically',
+            ],
+
+            'border_label' => 'Show Border',
+
+            'border_width_label' => 'Border Width',
+
+            'border_opacity_label' => 'Border Opacity',
+
+            'border_radius_label' => 'Border Radius',
+            'border_radius_options' => [
+                'none' => 'None',
+                'sm' => 'Small',
+                'md' => 'Medium',
+                'lg' => 'Large',
+                'xl' => 'Extra Large',
+                'full' => 'Full',
+            ],
+
+            'toggle_overlay_label' => 'Show Overlay',
+            'toggle_overlay_info' => 'Add an overlay on top of background media',
+
+            'overlay_color_label' => 'Overlay Color',
+            'overlay_color_options' => [
+                'black' => 'Black',
+                'white' => 'White',
+            ],
+
+            'overlay_style_label' => 'Overlay Style',
+            'overlay_style_options' => [
+                'solid' => 'Solid',
+                'gradient' => 'Gradient',
+            ],
+
+            'overlay_gradient_label' => 'Overlay Gradient',
+
+            'spacing_header' => 'Spacing',
+
+            'padding_top_label' => 'Padding Top',
+            'padding_bottom_label' => 'Padding Bottom',
+            'padding_left_label' => 'Padding Left',
+            'padding_right_label' => 'Padding Right',
         ],
     ],
 

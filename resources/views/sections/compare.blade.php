@@ -12,7 +12,7 @@
   x-products-compare="@js($props)"
   class="py-12"
 >
-  <div class="py-12">
+  <div {{ $section->editor_attributes }} class="py-12">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       @if ($items->isEmpty())
         <div class="text-center">
@@ -76,3 +76,4 @@
       @endif
     </div>
   </div>
+</div>

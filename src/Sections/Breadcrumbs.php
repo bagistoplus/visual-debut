@@ -2,7 +2,7 @@
 
 namespace BagistoPlus\VisualDebut\Sections;
 
-use BagistoPlus\Visual\Sections\BladeSection;
+use BagistoPlus\Visual\Blocks\BladeSection;
 use Diglactic\Breadcrumbs\Breadcrumbs as BreadcrumbsBreadcrumbs;
 use Illuminate\Support\Facades\Route;
 
@@ -10,20 +10,32 @@ use function BagistoPlus\VisualDebut\_t;
 
 class Breadcrumbs extends BladeSection
 {
+    protected static string $type = '@visual-debut/breadcrumbs';
+
     protected static string $view = 'shop::sections.breadcrumbs';
 
-    protected static array $disabledOn = ['index', 'category'];
+    protected static string $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>';
+
+    protected static string $category = 'Navigation';
+
+    protected static array $disabledOn = [
+        'templates' => ['index', 'category'],
+    ];
+
+    protected static array $enabledOn = [
+        'regions' => ['header']
+    ];
 
     protected static string $previewImageUrl = 'themes/shop/visual-debut/images/sections/breadcrumbs.png';
 
     public static function name(): string
     {
-        return _t('breadcrumbs.name');
+        return _t('sections.breadcrumbs.name');
     }
 
     public static function description(): string
     {
-        return _t('breadcrumbs.description');
+        return _t('sections.breadcrumbs.description');
     }
 
     public function getViewData(): array

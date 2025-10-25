@@ -6,9 +6,9 @@ use BagistoPlus\Visual\Settings\Base;
 
 class Radius extends Base
 {
-    public static string $component = 'radius-setting';
+    public static string $type = 'radius';
 
-    public static function make(string $id, string $label = '')
+    public static function make(string $id, string $label = ''): static
     {
         return parent::make($id, $label)->default('md');
     }

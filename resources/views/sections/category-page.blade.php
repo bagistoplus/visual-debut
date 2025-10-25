@@ -1,4 +1,4 @@
-<div>
+<div {{ $section->editor_attributes }}>
   @if ($section->settings->show_category_banner)
     <div class="banner bg-surface-alt text-on-surface-alt relative py-8">
       @if ($category->banner_url)

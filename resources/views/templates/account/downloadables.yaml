@@ -1,6 +1,6 @@
 sections:
   downloadables:
-    type: visual-debut::downloadables
+    type: '@visual-debut/downloadables'
 
 order:
   - downloadables

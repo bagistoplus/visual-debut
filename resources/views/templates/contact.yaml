@@ -1,6 +1,6 @@
 sections:
   contact-form:
-    type: visual-debut::contact-form
+    type: '@visual-debut/contact-form'
 
 order:
   - contact-form

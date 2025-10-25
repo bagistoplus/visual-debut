@@ -1,6 +1,6 @@
 sections:
   page:
-    type: visual-debut::cms-page
+    type: '@visual-debut/cms-page'
 
 order:
   - page

@@ -1,9 +1,9 @@
 sections:
   breadcrumbs:
-    type: visual-debut::breadcrumbs
+    type: '@visual-debut/breadcrumbs'
 
   checkout:
-    type: visual-debut::checkout
+    type: '@visual-debut/checkout'
 
 order:
   - breadcrumbs

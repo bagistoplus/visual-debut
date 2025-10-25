@@ -1,18 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  safelist: [
-    'label-processing',
-    'label-active',
-    'label-canceled',
-    'label-closed',
-    'label-pending',
-    'label-canceled',
-    'icon-eye',
-    'line-through',
-    'max-sm:leading-4',
-  ],
   theme: {
     extend: {
+      screens: {
+        'mobile': {'max': '639px'},
+        'tablet': {'min': '640px', 'max': '1023px'},
+        'desktop': {'min': '1024px'},
+      },
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {

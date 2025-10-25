@@ -1,26 +1,166 @@
 sections:
   hero-banner:
-    type: visual-debut::hero-banner
+    id: hero-banner
+    type: '@visual-debut/flex-section'
+    name: 'Hero Banner'
+    settings:
+      flex_direction: column
+      justify_content: center
+      align_items: center
+      flex_gap: 4
+      section_width: container
+      section_height: sm
+      background_type: image
+      background_image: 'themes/shop/visual-debut/images/hero-banner.avif'
+      background_position: center
+      background_size: cover
+      background_repeat: no-repeat
+      toggle_overlay: true
+      overlay_style: solid
+      overlay_color: '#00000059'
+      padding_top: 0
+      padding_bottom: 0
+      padding_left: 4
+      padding_right: 4
+    blocks:
+      hero-heading:
+        id: 'hero-heading'
+        type: '@visual-debut/heading'
+        settings:
+          text: 'Welcome to our store'
+          heading_level: 'h1'
+          type_preset: 'h1'
+          custom_color: true
+          text_color: '#EBE6E6FF'
+      hero-subheading:
+        id: hero-subheading
+        type: '@visual-debut/text'
+        settings:
+          text: 'Discover our best products and offers.'
+          type_preset: 'paragraph'
+          width: 'fit-content'
+          max_width: 'normal'
+          alignment: 'center'
+          custom_color: true
+          text_color: '#EBE6E6FF'
+      hero-buttons-container:
+        id: 'hero-buttons-container'
+        type: '@visual-debut/container'
+        name: 'Buttons'
+        settings:
+          layout_type: 'flex'
+          flex_direction: 'row'
+          justify_content: 'center'
+          align_items: 'center'
+          flex_gap: 4
+        blocks:
+          hero-button-1:
+            id: 'hero-button-1'
+            type: '@visual-debut/button'
+            settings:
+              label: 'View collections'
+              link: '/collections'
+              style_class: 'solid'
+              color: 'primary'
+              width: 'fit-content'
 
   category-list:
-    type: visual-debut::category-list
+    id: category-list
+    type: '@visual-debut/category-list'
+    settings:
+      layout_type:
+        _default: 'grid'
+      columns:
+        _default: 4
+        mobile: 2
+      gap: 4
+      content_width: 'container'
+      nav_style: 'arrow'
+      nav_shape: 'none'
+      padding_top:
+        _default: 4
+      padding_bottom:
+        _default: 4
     blocks:
       category-1:
-        type: category
+        type: '@visual-debut/category'
+        name: 'Category'
+        ghost: true
         settings:
           category: 2
       category-2:
-        type: category
+        type: '@visual-debut/category'
+        name: 'Category'
+        ghost: true
         settings:
           category: 3
+      heading:
+        id: heading
+        type: '@visual-debut/heading'
+        settings:
+          tag: 'h2'
+          heading_level: 'h2'
+          text: 'Shop by Category'
+          width: '100%'
+          alignment: 'center'
+          type_preset: 'h2'
+          padding_block_start:
+            _default: 8
+          padding_block_end:
+            _default: 8
+      static-category-card:
+        id: static-category-card
+        type: '@visual-debut/category-card'
+        static: true
+        repeated: true
+        name: 'Category Card'
+        blocks:
+          category-image:
+            id: category-image
+            type: '@visual-debut/category-image'
+            name: 'Category Image'
+            settings:
+              image_source: 'logo'
+              aspect_ratio: 'square'
+              object_fit: 'cover'
+              hover_zoom: true
+              hover_zoom_scale: 105
+          category-name-container:
+            id: category-name-container
+            type: '@visual-debut/container'
+            settings:
+              layout_type: 'flex'
+              flex_direction: 'row'
+              flex_wrap: 'nowrap'
+              justify_content: 'center'
+              align_items: 'center'
+              flex_gap: 4
+              is_overlay: true
+              overlay_visibility: 'always'
+              background_color: '#000000FF'
+              background_opacity: 35
+              z_index: 10
+            blocks:
+              category-name:
+                id: category-name
+                type: '@visual-debut/category-name'
+                settings:
+                  width: 'fit-content'
+                  max_width: 'normal'
+                  alignment: 'center'
+                  type_preset: 'h3'
+                  wrap: 'pretty'
+                  custom_color: true
+                  text_color: '#FFFFFFFF'
+                  tag': 'h3'
 
   featured-products:
-    type: visual-debut::featured-products
+    type: '@visual-debut/product-list'
     settings:
       product_type: featured
       nb_products: 4
   newsletter:
-    type: visual-debut::newsletter
+    type: '@visual-debut/newsletter'
 
 order:
   - hero-banner

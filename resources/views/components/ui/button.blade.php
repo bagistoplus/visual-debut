@@ -8,6 +8,7 @@
     'square' => false,
     'block' => false,
     'loading' => null,
+    'additionalAttributes' => '',
 ])
 
 @php
@@ -41,6 +42,7 @@
 <{{ $tag }}
   @if ($href) href="{{ $href }}" @endif
   {{ $attributes->merge(['class' => $classes]) }}
+  {!! $additionalAttributes !!}
   @if ($loading) wire:loading.attr="loading" @endif
 >
   @if ($icon)

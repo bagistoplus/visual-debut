@@ -1,9 +1,12 @@
 <x-shop::ui.button
   wire:click="handle"
-  variant="soft"
-  circle
-  :color="$inUserWishlist ? 'danger' : 'secondary'"
-  :icon="$inUserWishlist ? 'heroicon-s-heart' : 'heroicon-o-heart'"
+  :variant="$variant"
+  :size="$size"
+  :circle="$circle"
+  :square="$square"
+  :block="$block"
+  :color="$inUserWishlist ? 'danger' : ($color ?? 'secondary')"
+  :icon="$icon ?? ($inUserWishlist ? 'heroicon-s-heart' : 'heroicon-o-heart')"
   loading
   {{ $attributes }}
 />

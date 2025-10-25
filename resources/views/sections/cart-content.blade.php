@@ -1,4 +1,4 @@
-<div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+<div {{ $section->editor_attributes }} class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
   @if ($this->isCartEmpty())
     <div class="flex flex-col items-center justify-center py-16 text-center">
       <p>@lang('shop::app.checkout.cart.index.empty-product')</p>

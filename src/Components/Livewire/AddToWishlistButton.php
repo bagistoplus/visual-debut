@@ -14,6 +14,14 @@ class AddToWishlistButton extends Component
     #[Locked]
     public $inUserWishlist = false;
 
+    public $size = 'md';
+    public $variant = 'soft';
+    public $color = 'secondary';
+    public $icon = null;
+    public $circle = false;
+    public $square = false;
+    public $block = false;
+
     public function handle()
     {
         $response = app(AddProductToWishlist::class)->execute($this->productId);

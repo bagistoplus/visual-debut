@@ -1,7 +1,11 @@
 import './style.css';
 import RadiusPicker from './components/RadiusPicker.vue';
 
-document.addEventListener('visual:editor:booting', (event) => {
-  const { vueApp } = (event as CustomEvent).detail;
-  vueApp.component('radius-setting', RadiusPicker);
+document.addEventListener('visual:editor:ready', (event) => {
+  const { editor } = (event as CustomEvent).detail;
+
+  editor.ui.registerPropertyField({
+    type: 'radius',
+    render: RadiusPicker,
+  });
 });

@@ -1,4 +1,4 @@
-<div id="admin-topbar" class="flex justify-between bg-gray-900 px-4 py-2 text-sm text-white">
+<div {{ $section->editor_attributes }} id="admin-topbar" class="flex justify-between bg-gray-900 px-4 py-2 text-sm text-white">
   <p>
     <a href="https://visual.bagistoplus.com" target="_blank">Bagisto Visual</a>
   </p>

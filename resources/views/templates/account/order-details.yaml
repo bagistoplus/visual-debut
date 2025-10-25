@@ -1,6 +1,6 @@
 sections:
   order-details:
-    type: visual-debut::customer-order-details
+    type: '@visual-debut/customer-order-details'
 
 order:
   - order-details

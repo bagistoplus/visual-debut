@@ -27,14 +27,13 @@
         <visual:section name="visual-debut::admin-top-bar" />
       @endif
 
-      <visual:section name="visual-debut::announcement-bar" />
-      <visual:section name="visual-debut::header" />
+      @visualRegion('header')
 
       @section('body')
         @visual_layout_content
       @show
 
-      <visual:section name="visual-debut::footer" />
+      @visualRegion('footer')
     </main>
 
     {!! view_render_event('bagisto.shop.layout.content.after') !!}

@@ -2,7 +2,7 @@
   {!! \Webkul\Customer\Facades\Captcha::renderJS() !!}
 @endpush
 
-<div class="py-12">
+<div {{ $section->editor_attributes }} class="py-12">
   <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
     <div class="bg-surface text-on-surface box p-8 shadow-sm">
       <h1 class="mb-6 text-3xl">

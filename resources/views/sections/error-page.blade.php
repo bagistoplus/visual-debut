@@ -1,4 +1,4 @@
-<div class="flex min-h-screen items-center justify-center p-4">
+<div {{ $section->editor_attributes }} class="flex min-h-screen items-center justify-center p-4">
   <div class="w-full max-w-md text-center">
     <div class="mb-8">
       <div class="bg-danger-50 mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full">

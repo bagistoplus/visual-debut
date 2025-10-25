@@ -8,19 +8,28 @@ use BagistoPlus\Visual\Settings\Range;
 
 use function BagistoPlus\VisualDebut\_t;
 use BagistoPlus\Visual\Settings\Checkbox;
-use BagistoPlus\Visual\Sections\LivewireSection;
+use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\Visual\Actions\GetProductReviews;
 use BagistoPlus\Visual\Actions\StoreProductReview;
 
 class ProductReviews extends LivewireSection
 {
+    protected static string $type = '@visual-debut/product-reviews';
+
     use WithFileUploads;
 
     protected static string $view = 'shop::sections.product-reviews';
 
+    protected static string $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+
+    protected static string $category = 'Products';
+
     protected static string $previewImageUrl = 'themes/shop/visual-debut/images/sections/product-reviews.png';
 
-    protected static array $enabledOn = ['product'];
+    protected static array $enabledOn = [
+        'templates' => ['product'],
+        'regions' => ['main']
+    ];
 
     public $reviews;
 
@@ -38,6 +47,16 @@ class ProductReviews extends LivewireSection
         'attachments' => [],
         'file' => []
     ];
+
+    public static function name(): string
+    {
+        return _t('sections.product-reviews.name');
+    }
+
+    public static function description(): string
+    {
+        return _t('sections.product-reviews.description');
+    }
 
     public function updatedReviewFormFile($files)
     {
@@ -82,8 +101,6 @@ class ProductReviews extends LivewireSection
         return core()->getConfigData('catalog.products.review.guest_review')
             && ! auth()->guard('customer')->user();
     }
-
-
     public function mount()
     {
         $this->reviews = collect();
@@ -119,26 +136,16 @@ class ProductReviews extends LivewireSection
         ];
     }
 
-    public static function name(): string
-    {
-        return _t('product-reviews.name');
-    }
-
-    public static function description(): string
-    {
-        return _t('product-reviews.description');
-    }
-
     public static function settings(): array
     {
         return [
-            Checkbox::make('show_rating_summary', _t('product-reviews.settings.rating_summary_label'))
+            Checkbox::make('show_rating_summary', _t('sections.product-reviews.settings.rating_summary_label'))
                 ->default(true),
 
-            Checkbox::make('show_reviews', _t('product-reviews.settings.reviews_label'))
+            Checkbox::make('show_reviews', _t('sections.product-reviews.settings.reviews_label'))
                 ->default(true),
 
-            Range::make('limit', _t('product-reviews.settings.limit_label'))
+            Range::make('limit', _t('sections.product-reviews.settings.limit_label'))
                 ->min(1)->max(20)->step(1)
                 ->default(5),
         ];

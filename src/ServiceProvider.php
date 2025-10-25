@@ -2,23 +2,24 @@
 
 namespace BagistoPlus\VisualDebut;
 
-use BagistoPlus\Visual\Facades\ThemeEditor;
-use BagistoPlus\Visual\Providers\ThemeServiceProvider;
-use BagistoPlus\Visual\Settings\Support\SettingsValues;
-use BagistoPlus\VisualDebut\Components\Livewire\AddToCartButton;
-use BagistoPlus\VisualDebut\Components\Livewire\AddToCompareButton;
-use BagistoPlus\VisualDebut\Components\Livewire\AddToWishlistButton;
-use BagistoPlus\VisualDebut\Components\Livewire\CartCouponForm;
-use BagistoPlus\VisualDebut\Components\Livewire\CartPreview;
-use BagistoPlus\VisualDebut\Components\Livewire\EstimateShipping;
-use BagistoPlus\VisualDebut\LivewireFeatures\AddressDataSynth;
-use BagistoPlus\VisualDebut\LivewireFeatures\InterceptSessionFlash;
-use BagistoPlus\VisualDebut\Settings\Support\RadiusTransformer;
+use Livewire\Livewire;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Vite;
-use Livewire\Livewire;
+use BagistoPlus\Visual\Facades\Visual;
 use Webkul\Theme\ViewRenderEventManager;
+use BagistoPlus\Visual\Facades\ThemeEditor;
+use BagistoPlus\Visual\Providers\ThemeServiceProvider;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use BagistoPlus\VisualDebut\Components\Livewire\CartPreview;
+use BagistoPlus\VisualDebut\LivewireFeatures\AddressDataSynth;
+use BagistoPlus\VisualDebut\Components\Livewire\CartCouponForm;
+use BagistoPlus\VisualDebut\Settings\Support\RadiusTransformer;
+use BagistoPlus\VisualDebut\Components\Livewire\AddToCartButton;
+use BagistoPlus\VisualDebut\Components\Livewire\EstimateShipping;
+use BagistoPlus\VisualDebut\Components\Livewire\AddToCompareButton;
+use BagistoPlus\VisualDebut\LivewireFeatures\InterceptSessionFlash;
+use BagistoPlus\VisualDebut\Components\Livewire\AddToWishlistButton;
 
 class ServiceProvider extends ThemeServiceProvider
 {
@@ -56,7 +57,11 @@ class ServiceProvider extends ThemeServiceProvider
             ThemeEditor::assets('themes/shop/visual-debut/editor');
         });
 
-        SettingsValues::registerTransformer('radius', new RadiusTransformer);
+        Visual::registerSettingTransformer('radius', new RadiusTransformer);
+        Visual::filterLivewireContextUsing(function ($context) {
+            return $context->except(['menuItem', 'subMenuItem'])
+                ->filter(fn($value) => !($value instanceof LengthAwarePaginator));
+        });
     }
 
     protected function bootVendorViews(): void
@@ -80,6 +85,7 @@ class ServiceProvider extends ThemeServiceProvider
     {
         $this->app['livewire']->componentHook(InterceptSessionFlash::class);
         Livewire::propertySynthesizer(AddressDataSynth::class);
+        Visual::supportLivewire();
     }
 
     protected function bootViewEventListeners()

@@ -6,7 +6,7 @@ use BagistoPlus\Visual\Actions\Checkout\PlaceOrder;
 use BagistoPlus\Visual\Actions\Checkout\StoreAddresses;
 use BagistoPlus\Visual\Actions\Checkout\StorePaymentMethod;
 use BagistoPlus\Visual\Actions\Checkout\StoreShippingMethod;
-use BagistoPlus\Visual\Sections\LivewireSection;
+use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\VisualDebut\Data\AddressData;
 use BagistoPlus\VisualDebut\Enums\Events;
 use BagistoPlus\VisualDebut\Support\InteractsWithCart;
@@ -20,11 +20,22 @@ use function BagistoPlus\VisualDebut\_t;
 #[On(Events::COUPON_REMOVED)]
 class Checkout extends LivewireSection
 {
+    protected static string $type = '@visual-debut/checkout';
+
     use InteractsWithCart;
 
-    protected static array $enabledOn = ['checkout'];
+    protected static array $enabledOn = [
+        'templates' => ['checkout'],
+        'template' => ['main']
+    ];
 
     protected static string $view = 'shop::sections.checkout';
+
+    protected static string $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>';
+
+    protected static string $category = 'Commerce';
+
+    protected static string $previewImageUrl = 'themes/shop/visual-debut/images/sections/checkout.png';
 
     public string $currentStep = 'address';
 
@@ -42,6 +53,16 @@ class Checkout extends LivewireSection
 
     /** @var Collection<int, AddressData> */
     protected Collection $savedAddresses;
+
+    public static function name(): string
+    {
+        return _t('sections.checkout.name');
+    }
+
+    public static function description(): string
+    {
+        return _t('sections.checkout.description');
+    }
 
     /**
      * Initialize the component state.
@@ -212,19 +233,4 @@ class Checkout extends LivewireSection
             ]);
         }
     }
-
-    public static function name(): string
-    {
-        return _t('checkout.name');
-    }
-
-    public static function description(): string
-    {
-        return _t('checkout.description');
-    }
-
-    // public static function previewImageUrl(): string
-    // {
-    //     return bagisto_asset('images/sections/checkout.png', 'visual-debut');
-    // }
 }

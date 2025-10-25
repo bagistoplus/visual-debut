@@ -13,9 +13,12 @@
   x-data="VisualAddToCompare({{ Js::from($alpineProps) }})"
   x-on:click="handle"
   title="{{ trans('shop::app.components.products.card.add-to-compare') }}"
-  variant="soft"
-  color="secondary"
-  icon="lucide-arrow-left-right"
-  circle
+  :variant="$variant"
+  :color="$color"
+  :size="$size"
+  :icon="$icon ?? 'lucide-arrow-left-right'"
+  :circle="$circle"
+  :square="$square"
+  :block="$block"
   {{ $attributes }}
 />

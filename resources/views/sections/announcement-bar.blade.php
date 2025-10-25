@@ -9,6 +9,7 @@
 @endphp
 
 <div
+  {{ $section->editor_attributes }}
   {{ $section->settings->scheme?->attributes() }}
   class="{{ $classes }} relative truncate px-4 py-2 text-center text-sm"
   x-data="{ show: true }"

@@ -3,7 +3,7 @@
 namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Actions\GetProducts;
-use BagistoPlus\Visual\Sections\LivewireSection;
+use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\VisualDebut\Support\HandlesProductListing;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
@@ -13,21 +13,32 @@ use function BagistoPlus\VisualDebut\_t;
 
 class SearchResult extends LivewireSection
 {
+    protected static string $type = '@visual-debut/search-result';
+
     use HandlesProductListing;
     use WithPagination;
 
-    protected static array $enabledOn = ['search'];
+    protected static array $enabledOn = [
+        'templates' => ['search'],
+        'regions' => ['main']
+    ];
 
     protected static string $view = 'shop::sections.search-result';
 
+    protected static string $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>';
+
+    protected static string $category = 'Search';
+
+    protected static string $previewImageUrl = 'themes/shop/visual-debut/images/sections/search-result.png';
+
     public static function name(): string
     {
-        return _t('search-result.name');
+        return _t('sections.search-result.name');
     }
 
     public static function description(): string
     {
-        return _t('search-result.description');
+        return _t('sections.search-result.description');
     }
 
     public function paginationView()
@@ -54,7 +65,6 @@ class SearchResult extends LivewireSection
     {
         $this->initializeMaxPrice();
         $this->initializeFilters();
-        $this->initializeSort();
     }
 
     public function getViewData(): array

@@ -1,6 +1,6 @@
 sections:
   login-form:
-    type: visual-debut::login-form
+    type: '@visual-debut/login-form'
 
 order:
   - login-form

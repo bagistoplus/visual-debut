@@ -1,4 +1,4 @@
-<div class="flex items-center justify-center px-4 py-12">
+<div {{ $section->editor_attributes }} class="flex items-center justify-center px-4 py-12">
   <div class="bg-surface text-on-surface w-full max-w-lg space-y-8 rounded-2xl p-8 shadow-sm">
     <div class="text-center">
       <h2 class="text-3xl font-semibold">
