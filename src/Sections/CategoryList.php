@@ -17,7 +17,7 @@ class CategoryList extends BladeSection
 
     protected static string $previewImageUrl = 'themes/shop/visual-debut/images/sections/category-list.png';
 
-    public function categories()
+    public function getCategories()
     {
         return collect($this->section->blocks)
             ->map(fn($block) => $block->settings->category)

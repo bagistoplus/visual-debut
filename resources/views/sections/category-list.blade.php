@@ -28,7 +28,7 @@
   @endif
 
   <div class="{{ $mobileGridClass[$section->settings->columns_mobile] }} {{ $desktopGridClass[$section->settings->columns_desktop] }} grid gap-8">
-    @forelse ($categories() as $category)
+    @forelse ($getCategories() as $category)
       <div class="bg-surface-alt box group relative h-64 cursor-pointer overflow-hidden border-none">
         @php($image = $category->banner_url ?? $category->logo_url)
 
