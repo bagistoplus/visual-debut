@@ -97,7 +97,7 @@ class ProductDetails extends LivewireSection
         $cartParams = [
             'product_id' => $product->id,
             'quantity' => $this->quantity,
-            'is_buy_now' => $buyNow,
+            'is_buy_now' => $buyNow ? 1 : 0,
         ];
 
         // Add configurable options if present
