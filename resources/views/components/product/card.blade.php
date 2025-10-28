@@ -31,6 +31,7 @@
                 :product-id="$productResource['id']"
                 :in-user-wishlist="$productResource['is_wishlist']"
                 size="lg"
+                circle
               />
             @endif
           @endauth
@@ -39,6 +40,7 @@
               :key="str()->random(16)"
               :product-id="$productResource['id']"
               size="lg"
+              circle
             />
           @endif
         </div>
@@ -123,12 +125,17 @@
                 :key="str()->random(16)"
                 :product-id="$productResource['id']"
                 :in-user-wishlist="$productResource['is_wishlist']"
+                circle
               />
             @endif
           @endauth
 
           @if (!$noCompare && core()->getConfigData('catalog.products.settings.compare_option'))
-            <livewire:add-to-compare-button key="add-to-compare-{{ $productResource['id'] }}-list" :product-id="$productResource['id']" />
+            <livewire:add-to-compare-button
+              key="add-to-compare-{{ $productResource['id'] }}-list"
+              :product-id="$productResource['id']"
+              circle
+            />
           @endif
         </div>
 
