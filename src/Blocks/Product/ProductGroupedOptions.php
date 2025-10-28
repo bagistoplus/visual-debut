@@ -38,7 +38,7 @@ class ProductGroupedOptions extends SimpleBlock
     protected function getViewData(): array
     {
         return [
-            'product' => $this->block->settings->product
+            'product' => $this->block->settings->product ?? $this->context['product'] ?? null
         ];
     }
 }

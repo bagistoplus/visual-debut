@@ -5,6 +5,7 @@ namespace BagistoPlus\VisualDebut\Blocks\Product;
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\Product as ProductSetting;
 use BagistoPlus\Visual\Settings\Select;
+use Webkul\Product\Helpers\ConfigurableOption;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -38,10 +39,30 @@ class ProductVariantPicker extends SimpleBlock
     protected function getViewData(): array
     {
         $product = $this->block->settings->product ?? $this->context['product'] ?? null;
+        $hasVariants = $product ? \Webkul\Product\Helpers\ProductType::hasVariants($product->type) : false;
 
-        return [
-            'product' => $product,
-            'hasVariants' => $product ? \Webkul\Product\Helpers\ProductType::hasVariants($product->type) : false,
+        $variantData = [
+            'variantAttributes' => [],
+            'variantPrices' => [],
+            'variantImages' => [],
+            'variantVideos' => [],
         ];
+
+        if ($product && $hasVariants) {
+            $variantHelper = app(ConfigurableOption::class);
+            $variantConfig = $variantHelper->getConfigurationConfig($product);
+
+            $variantData = [
+                'variantAttributes' => $variantConfig['attributes'] ?? [],
+                'variantPrices' => $variantConfig['variant_prices'] ?? [],
+                'variantImages' => $variantConfig['variant_images'] ?? [],
+                'variantVideos' => $variantConfig['variant_videos'] ?? [],
+            ];
+        }
+
+        return array_merge([
+            'product' => $product,
+            'hasVariants' => $hasVariants,
+        ], $variantData);
     }
 }
