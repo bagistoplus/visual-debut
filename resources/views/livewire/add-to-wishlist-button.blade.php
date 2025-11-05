@@ -5,7 +5,7 @@
   :circle="$circle"
   :square="$square"
   :block="$block"
-  :color="$inUserWishlist ? 'danger' : ($color ?? 'secondary')"
+  :color="$inUserWishlist ? 'danger' : $color ?? 'secondary'"
   :icon="$icon ?? ($inUserWishlist ? 'heroicon-s-heart' : 'heroicon-o-heart')"
   loading
   {{ $attributes }}
