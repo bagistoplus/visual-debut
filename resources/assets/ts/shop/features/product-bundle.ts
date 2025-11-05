@@ -1,5 +1,4 @@
-import type { AlpineComponent } from 'alpinejs';
-import { defineScope, defineComponent } from '../utils/define-component';
+import { defineScope, defineComponent, setup } from 'alpine-define-component';
 
 interface Product {
   id: number;
@@ -17,34 +16,15 @@ interface BundleOption {
   products: Product[];
 }
 
-interface ProductBundleState {
-  options: BundleOption[];
-  selectedProducts: Record<number, any>;
-  quantities: Record<number, number>;
-
-  totalPrice: number;
-  formattedTotalPrice: string;
-
-  init(): void;
-  productIsSelected(optionId: number, productId: number): boolean;
-  onQuantityChange(optionId: number, quantity: number): void;
-  onSelectionChange(optionId: number, value?: any): void;
+interface Props {
+  options?: BundleOption[];
 }
-
-// ───────────────────────────────────────
-// Scope: option
-// ───────────────────────────────────────
 
 interface ProductBundleOptionScope {
   option: BundleOption;
-
   isSelected(productId: number): boolean;
   updateSelection(value: any): void;
 }
-
-// ───────────────────────────────────────
-// Scope: summaryItem
-// ───────────────────────────────────────
 
 interface ProductBundleSummaryItemScope {
   label: string;
@@ -52,23 +32,14 @@ interface ProductBundleSummaryItemScope {
   isSelected(productId: number): boolean;
 }
 
-type ProductBundleAPI = ProductBundleState & {
-  $option: ProductBundleOptionScope;
-  $summaryItem: ProductBundleSummaryItemScope;
-};
-
-// ───────────────────────────────────────
-// Component Definition
-// ───────────────────────────────────────
-
-export default defineComponent<ProductBundleAPI>({
+export default defineComponent({
   name: 'product-bundle',
 
-  setup(props) {
+  setup: setup((props: Props) => {
     return {
       options: props.options ?? [],
-      selectedProducts: {},
-      quantities: {},
+      selectedProducts: {} as Record<number, any>,
+      quantities: {} as Record<number, number>,
 
       get totalPrice() {
         let total = 0;
@@ -93,11 +64,11 @@ export default defineComponent<ProductBundleAPI>({
       },
 
       init() {
-        this.options.forEach((option) => {
+        this.options.forEach((option: BundleOption) => {
           const isMultiSelect = ['checkbox', 'multiselect'].includes(option.type);
           this.selectedProducts[option.id] = isMultiSelect ? [] : '';
 
-          option.products.forEach((product) => {
+          option.products.forEach((product: Product) => {
             if (product.is_default) {
               if (isMultiSelect) {
                 (this.selectedProducts[option.id] as number[]).push(product.id);
@@ -108,22 +79,22 @@ export default defineComponent<ProductBundleAPI>({
           });
 
           if (['select', 'radio'].includes(option.type)) {
-            const selected = option.products.find((p) => p.id === this.selectedProducts[option.id]);
+            const selected = option.products.find((p: Product) => p.id === this.selectedProducts[option.id]);
             this.quantities[option.id] = selected ? selected.qty : 0;
           }
         });
       },
 
-      productIsSelected(optionId, productId) {
+      productIsSelected(optionId: number, productId: number) {
         const selected = this.selectedProducts[optionId];
         return Array.isArray(selected) ? selected.includes(productId) : selected === productId;
       },
 
-      onQuantityChange(optionId, quantity) {
+      onQuantityChange(optionId: number, quantity: number) {
         this.quantities[optionId] = quantity;
 
-        const option = this.options.find((opt) => opt.id === optionId);
-        const selected = option?.products.find((p) => p.id === this.selectedProducts[optionId]);
+        const option = this.options.find((opt: BundleOption) => opt.id === optionId);
+        const selected = option?.products.find((p: Product) => p.id === this.selectedProducts[optionId]);
 
         if (selected) {
           selected.qty = quantity;
@@ -132,30 +103,30 @@ export default defineComponent<ProductBundleAPI>({
         this.$wire.set('bundleProductQuantities', this.quantities, false);
       },
 
-      onSelectionChange(optionId, _value) {
-        const option = this.options.find((opt) => opt.id === optionId);
+      onSelectionChange(optionId: number, _value: any) {
+        const option = this.options.find((opt: BundleOption) => opt.id === optionId);
 
         if (option?.type === 'checkbox') {
           (this.$store.productForm as any).setDisabled((this.selectedProducts[optionId] as number[]).length === 0);
         }
       },
     };
-  },
+  }),
 
   parts: {
-    option: defineScope<ProductBundleAPI, 'option', ProductBundleOptionScope>({
+    option: defineScope({
       name: 'option',
       setup(api, el, { value }) {
-        const option = api.options.find((o) => o.id === Number(value))!;
+        const option = api.options.find((o: BundleOption) => o.id === Number(value))!;
 
         return {
           option,
 
-          isSelected(productId) {
+          isSelected(productId: number) {
             return api.productIsSelected(option.id, productId);
           },
 
-          updateSelection(value) {
+          updateSelection(value: any) {
             api.onSelectionChange(option.id, value);
           },
         };
@@ -169,14 +140,14 @@ export default defineComponent<ProductBundleAPI>({
       },
     }),
 
-    summaryItem: defineScope<ProductBundleAPI, 'summaryItem', ProductBundleSummaryItemScope>({
+    summaryItem: defineScope({
       name: 'summaryItem',
       setup(api, _, ctx) {
-        const option = api.options.find((o) => o.id === Number(ctx.value))!;
+        const option = api.options.find((o: BundleOption) => o.id === Number(ctx.value))!;
         return {
           label: option.label,
           products: option.products,
-          isSelected(productId) {
+          isSelected(productId: number) {
             return api.productIsSelected(option.id, productId);
           },
         };

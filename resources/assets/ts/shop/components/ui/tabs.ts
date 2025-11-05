@@ -1,15 +1,7 @@
-import { defineScope, defineComponent } from '../../utils/define-component';
+import { defineScope, defineComponent, setup } from 'alpine-define-component';
 
-interface TabsState {
-  selected: string;
-  names: string[];
-  select(name: string): void;
-  isSelected(name: string): boolean;
-  focusTab(name: string): void;
-  _registerTab(el: HTMLElement, name?: string): string;
-  _registerPanel(el: HTMLElement, name?: string): string;
-  _unregisterTab(name: string): void;
-  _unregisterPanel(name: string): void;
+interface Props {
+  selected?: string;
 }
 
 interface TabScope {
@@ -27,15 +19,10 @@ interface PanelScope {
   panelId: string;
 }
 
-type TabsAPI = TabsState & {
-  $tab: TabScope;
-  $panel: PanelScope;
-};
-
-export default defineComponent<TabsAPI>({
+export default defineComponent({
   name: 'tabs',
 
-  setup(props, ctx) {
+  setup: setup((props: Props) => {
     const tabMap = new Map<string, HTMLElement>();
     const panelMap = new Map<string, HTMLElement>();
 
@@ -46,21 +33,21 @@ export default defineComponent<TabsAPI>({
         return Array.from(tabMap.keys());
       },
 
-      select(name) {
+      select(name: string) {
         this.selected = name;
         this.$dispatch('tab:change', name);
         this.focusTab(name);
       },
 
-      isSelected(name) {
+      isSelected(name: string) {
         return this.selected === name;
       },
 
-      focusTab(name) {
+      focusTab(name: string) {
         tabMap.get(name)?.focus();
       },
 
-      _registerTab(el, name) {
+      _registerTab(el: HTMLElement, name?: string) {
         const tabName = name || `tab-${tabMap.size}`;
 
         if (!tabMap.has(tabName)) {
@@ -74,7 +61,7 @@ export default defineComponent<TabsAPI>({
         return tabName;
       },
 
-      _registerPanel(el, name) {
+      _registerPanel(el: HTMLElement, name?: string) {
         const panelName = name || `tab-${panelMap.size}`;
 
         if (!panelMap.has(panelName)) {
@@ -84,7 +71,7 @@ export default defineComponent<TabsAPI>({
         return panelName;
       },
 
-      _unregisterTab(name) {
+      _unregisterTab(name: string) {
         tabMap.delete(name);
 
         if (this.selected === name && this.names.length > 0) {
@@ -92,18 +79,18 @@ export default defineComponent<TabsAPI>({
         }
       },
 
-      _unregisterPanel(name) {
+      _unregisterPanel(name: string) {
         panelMap.delete(name);
       },
     };
-  },
+  }),
 
   parts: {
     tablist: () => ({
       role: 'tablist',
     }),
 
-    tab: defineScope<TabsAPI, 'tab', TabScope>({
+    tab: defineScope({
       name: 'tab',
       setup(api, el, { value, generateId, cleanup }) {
         const name = api._registerTab(el, value);
@@ -148,7 +135,7 @@ export default defineComponent<TabsAPI>({
       },
     }),
 
-    panel: defineScope<TabsAPI, 'panel', PanelScope>({
+    panel: defineScope({
       name: 'panel',
       setup(api, el, { value, generateId, cleanup }) {
         const name = api._registerPanel(el, value);

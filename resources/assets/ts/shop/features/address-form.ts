@@ -1,4 +1,4 @@
-import { defineComponent, defineScope } from '../utils/define-component';
+import { defineComponent, defineScope, setup } from 'alpine-define-component';
 
 type StatesByCountry = Record<string, { code: string; default_name: string }[]>;
 
@@ -20,21 +20,12 @@ interface Address {
   default_address?: boolean;
 }
 
-interface AddressFormSetup {
-  selectedCountry: string;
-  statesByCountry: StatesByCountry;
-  states: StatesByCountry[string];
-  haveStates: boolean;
-
-  // used by checkout form
-  name: 'billingAddress' | 'shippingAddress';
+interface Props {
+  selectedCountry?: string;
+  statesByCountry?: StatesByCountry;
+  name?: 'billingAddress' | 'shippingAddress';
   initialAddress?: Address;
   showAddressFields?: boolean;
-
-  fillAddressFields(address: Partial<Address>): void;
-  resetInitialAddress(): void;
-  clearAddressFields(): void;
-  editAddress(address: Address): void;
 }
 
 interface AddressScope {
@@ -43,14 +34,10 @@ interface AddressScope {
   edit(): void;
 }
 
-type AddressFormAPI = AddressFormSetup & {
-  $address: AddressScope;
-};
-
-export default defineComponent<AddressFormAPI>({
+export default defineComponent({
   name: 'address-form',
 
-  setup: (props) => ({
+  setup: setup((props: Props) => ({
     selectedCountry: props.selectedCountry ?? '',
     statesByCountry: props.statesByCountry ?? {},
 
@@ -66,7 +53,7 @@ export default defineComponent<AddressFormAPI>({
       return this.states.length > 0;
     },
 
-    fillAddressFields(address) {
+    fillAddressFields(address: Partial<Address>) {
       const newAddress: any = {};
 
       for (const key of Object.keys(this.initialAddress as any) as (keyof Address)[]) {
@@ -90,11 +77,11 @@ export default defineComponent<AddressFormAPI>({
       });
     },
 
-    editAddress(address) {
+    editAddress(address: Address) {
       this.fillAddressFields(address);
       this.showAddressFields = true;
     },
-  }),
+  })),
 
   parts: {
     country() {
@@ -103,7 +90,7 @@ export default defineComponent<AddressFormAPI>({
       };
     },
 
-    address: defineScope<AddressFormAPI, 'address', AddressScope>({
+    address: defineScope({
       name: 'address',
       setup: (api, _, { value }) => ({
         address: value,

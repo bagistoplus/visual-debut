@@ -1,29 +1,25 @@
-import { defineComponent } from '../../utils/define-component';
+import { defineComponent, setup } from 'alpine-define-component';
 
-interface SliderAPI {
-  value: number[];
-  min: number;
-  max: number;
-  step: number;
-  minStepsBetweenThumbs: number | undefined;
-  activeIndex: number | null;
-  setActiveIndex(index: number): void;
-  setValue(index: number, value: number): void;
-  getPercent(index: number): number;
+interface Props {
+  value?: number[];
+  min?: number;
+  max?: number;
+  step?: number;
+  minStepsBetweenThumbs?: number;
 }
 
-export default defineComponent<SliderAPI>({
+export default defineComponent({
   name: 'slider',
 
-  setup: (props) => ({
+  setup: setup((props: Props) => ({
     value: props.value || [0],
     min: props.min ?? 0,
     max: props.max ?? 100,
     step: props.step ?? 1,
     minStepsBetweenThumbs: props.minStepsBetweenThumbs,
-    activeIndex: null,
+    activeIndex: null as number | null,
 
-    setActiveIndex(index) {
+    setActiveIndex(index: number) {
       this.activeIndex = index;
     },
 
@@ -51,11 +47,11 @@ export default defineComponent<SliderAPI>({
       this.$dispatch('change', this.value);
     },
 
-    getPercent(index) {
+    getPercent(index: number) {
       const range = this.max - this.min;
       return ((this.value[index] - this.min) / range) * 100;
     },
-  }),
+  })),
 
   parts: {
     root(api) {

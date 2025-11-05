@@ -1,18 +1,6 @@
-import { defineScope, defineComponent } from '../utils/define-component';
+import { defineScope, defineComponent, setup } from 'alpine-define-component';
 
-interface NavigationState {
-  dropdownOpen: boolean;
-  activeItem: number | null;
-  hideDelay: number;
-  hideTimer: ReturnType<typeof setTimeout> | null;
-
-  openDropdown(triggerEl: HTMLElement, id: number): void;
-  closeDropdown(): void;
-  startHideTimer(): void;
-  cancelHideTimer(): void;
-  positionDropdown(triggerEl: HTMLElement): void;
-  isActive(id: number): boolean;
-}
+interface Props {}
 
 interface NavigationItemScope {
   id: number;
@@ -25,22 +13,16 @@ interface NavigationSectionScope {
   isActive: boolean;
 }
 
-type NavigationAPI = NavigationState & {
-  $item: NavigationItemScope;
-  $section: NavigationSectionScope;
-};
-
-export default defineComponent<NavigationAPI>({
+export default defineComponent({
   name: 'navigation',
 
-  setup() {
-    return {
+  setup: setup((props: Props) => ({
       dropdownOpen: false,
-      activeItem: null,
+      activeItem: null as number | null,
       hideDelay: 200,
-      hideTimer: null,
+      hideTimer: null as ReturnType<typeof setTimeout> | null,
 
-      openDropdown(triggerEl, id) {
+      openDropdown(triggerEl: HTMLElement, id: number) {
         this.dropdownOpen = true;
         this.activeItem = id;
         this.$nextTick(() => {
@@ -56,7 +38,7 @@ export default defineComponent<NavigationAPI>({
       startHideTimer() {
         this.hideTimer = setTimeout(() => {
           this.closeDropdown();
-        }, this.hideDelay);
+        }, this.hideDelay) as any;
       },
 
       cancelHideTimer() {
@@ -65,7 +47,7 @@ export default defineComponent<NavigationAPI>({
         }
       },
 
-      positionDropdown(triggerEl) {
+      positionDropdown(triggerEl: HTMLElement) {
         this.cancelHideTimer();
 
         requestAnimationFrame(() => {
@@ -85,14 +67,13 @@ export default defineComponent<NavigationAPI>({
         });
       },
 
-      isActive(id) {
+      isActive(id: number) {
         return this.activeItem === id;
       },
-    };
-  },
+    })),
 
   parts: {
-    item: defineScope<NavigationAPI, 'item', NavigationItemScope>({
+    item: defineScope({
       name: 'item',
 
       setup(api, el, { value }) {
@@ -121,7 +102,7 @@ export default defineComponent<NavigationAPI>({
       },
     }),
 
-    section: defineScope<NavigationAPI, 'section', NavigationSectionScope>({
+    section: defineScope({
       name: 'section',
 
       setup(api, el, { value }) {
