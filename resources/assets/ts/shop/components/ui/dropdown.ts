@@ -1,4 +1,4 @@
-import { defineComponent } from '../../utils/define-component';
+import { defineComponent, setup } from 'alpine-define-component';
 
 /**
  * Example Usage:
@@ -9,19 +9,15 @@ import { defineComponent } from '../../utils/define-component';
  * </div>
  */
 
-interface DropdownAPI {
-  open: boolean;
-  placement: 'start' | 'end';
-  triggerId: string;
-  contentId: string;
-  toggle(): void;
-  close(): void;
+interface Props {
+  open?: boolean;
+  placement?: 'start' | 'end';
 }
 
-export default defineComponent<DropdownAPI>({
+export default defineComponent({
   name: 'dropdown',
 
-  setup: (props, { generateId }) => ({
+  setup: setup((props: Props, { generateId }) => ({
     open: props.open ?? false,
     placement: props.placement === 'start' ? 'start' : 'end',
 
@@ -35,7 +31,7 @@ export default defineComponent<DropdownAPI>({
     close() {
       this.open = false;
     },
-  }),
+  })),
 
   parts: {
     trigger: (api) => ({

@@ -1,18 +1,14 @@
-import { defineComponent } from '../../utils/define-component';
-import { useId } from '../../utils/use-id';
+import { defineComponent, setup } from 'alpine-define-component';
 
-interface ModalAPI {
-  name: string;
-  open: boolean;
-  show(): void;
-  hide(): void;
+interface Props {
+  name?: string;
 }
 
-export default defineComponent<ModalAPI>({
+export default defineComponent({
   name: 'modal',
 
-  setup: (props) => {
-    const name = props.name ?? useId('modal');
+  setup: setup((props: Props, { generateId }) => {
+    const name = props.name ?? generateId('modal');
 
     return {
       name,
@@ -27,7 +23,7 @@ export default defineComponent<ModalAPI>({
         this.open = false;
       },
     };
-  },
+  }),
 
   parts: {
     root(api) {

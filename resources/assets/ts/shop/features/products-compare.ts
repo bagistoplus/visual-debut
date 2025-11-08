@@ -1,20 +1,17 @@
-import { defineComponent } from '../utils/define-component';
+import { defineComponent, setup } from 'alpine-define-component';
 
-interface ProductsCompareAPI {
-  isUserLoggedIn: boolean;
-  productIds: number[];
-  messages: {
-    itemRemoved: string;
-    removeAll: string;
+interface Props {
+  isUserLoggedIn?: boolean;
+  messages?: {
+    itemRemoved?: string;
+    removeAll?: string;
   };
-  removeItem(id: number): void;
-  removeAllItems(): void;
 }
 
-export default defineComponent<ProductsCompareAPI>({
+export default defineComponent({
   name: 'products-compare',
 
-  setup(props) {
+  setup: setup((props: Props) => {
     const stored = localStorage.getItem('compare_items');
     const productIds = stored ? JSON.parse(stored) : [];
 
@@ -39,7 +36,7 @@ export default defineComponent<ProductsCompareAPI>({
           return;
         }
 
-        this.productIds = this.productIds.filter((pid) => pid !== id);
+        this.productIds = this.productIds.filter((pid: number) => pid !== id);
         localStorage.setItem('compare_items', JSON.stringify(this.productIds));
         this.$wire.loadItems(this.productIds);
 
@@ -59,7 +56,7 @@ export default defineComponent<ProductsCompareAPI>({
         this.$toaster.success(this.messages.removeAll);
       },
     };
-  },
+  }),
 
   parts: {
     remove(api, _, { value }) {

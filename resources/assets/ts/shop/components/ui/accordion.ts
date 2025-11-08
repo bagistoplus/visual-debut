@@ -1,5 +1,4 @@
-import { defineComponent } from '../../utils/define-component';
-import { useId } from '../../utils/use-id';
+import { defineComponent, setup } from 'alpine-define-component';
 
 /**
  * Example Usage:
@@ -16,17 +15,15 @@ import { useId } from '../../utils/use-id';
  * </div>
  */
 
-interface AccordionAPI {
-  value: string[];
-  multiple: boolean;
-  toggle(id: string): void;
-  isOpen(id: string): boolean;
+interface Props {
+  value?: string[];
+  multiple?: boolean;
 }
 
-export default defineComponent<AccordionAPI>({
+export default defineComponent({
   name: 'accordion',
 
-  setup: (props) => ({
+  setup: setup((props: Props) => ({
     value: props.value || [],
     multiple: props.multiple || false,
 
@@ -36,11 +33,11 @@ export default defineComponent<AccordionAPI>({
       }
     },
 
-    toggle(id) {
+    toggle(id: string) {
       const isOpen = this.value.includes(id);
 
       if (isOpen) {
-        this.value = this.value.filter((i) => i !== id);
+        this.value = this.value.filter((i: string) => i !== id);
       } else {
         if (this.multiple) {
           this.value = [...this.value, id];
@@ -50,14 +47,14 @@ export default defineComponent<AccordionAPI>({
       }
     },
 
-    isOpen(id) {
+    isOpen(id: string) {
       return this.value.includes(id);
     },
-  }),
+  })),
 
   parts: {
-    item(api, _, { value }) {
-      const id = value ?? useId('item');
+    item(api, _, { value, generateId }) {
+      const id = value ?? generateId('item');
       return {
         'x-collapsible': '',
         'x-on:toggle': () => api.toggle(id),

@@ -1,4 +1,4 @@
-import { defineComponent, defineScope } from '../utils/define-component';
+import { defineComponent, defineScope, setup } from 'alpine-define-component';
 
 interface Column {
   index: string;
@@ -47,37 +47,6 @@ interface ItemRecord {
   actions?: Action[]; // Row-specific actions
 }
 
-interface AvailableState {
-  id: string | null;
-  columns: Column[];
-  actions: Action[];
-  massActions: MassAction[];
-  records: ItemRecord[];
-  meta: Partial<DataGridMeta>;
-}
-
-interface AppliedState {
-  massActions: {
-    meta: {
-      mode: 'none' | 'partial' | 'all';
-      action: MassAction | null;
-    };
-    indices: number[]; // selected rows ids
-    value: any | null; // Value for mass action option
-  };
-  pagination: {
-    page: number;
-    perPage: number;
-  };
-  sort: {
-    column: string | null;
-    order: 'asc' | 'desc' | null;
-  };
-  filters: {
-    columns: AppliedFilter[];
-  };
-}
-
 interface Messages {
   pagination: {
     showing: string;
@@ -87,60 +56,6 @@ interface Messages {
   results: string;
 }
 
-interface DataGridState {
-  src: string;
-  isLoading: boolean;
-  isFilterDirty: boolean;
-
-  messages: Messages;
-  available: AvailableState;
-  applied: AppliedState;
-
-  // Computed properties
-  haveRecords: boolean;
-  haveSelection: boolean;
-  paginationText: string;
-
-  // Methods
-  loadSavedState(): void;
-  applyUrlParams(): void;
-  setupWatchers(): void;
-
-  findAppliedColumn(index: string): AppliedFilter | undefined;
-  hasAnyAppliedColumnValues(index: string): boolean;
-  hasAnyValue(column: AppliedFilter): boolean;
-  getAppliedColumnValues(columnIndex: string): any[];
-  removeAppliedColumnValue(columnIndex: string, value: any): void;
-  removeAppliedColumnAllValues(columnIndex: string): void;
-  getColumnValueLabel(column: Column, value: any): any;
-
-  updateGlobalSearch(value: string): void;
-  addFilter(value: any, column?: Column | null, additional?: any): void;
-  applyColumnValues(column: Column, requestedValue: any, additional?: any): void;
-  handleDateFilter(column: Column, appliedColumn: AppliedFilter | undefined, value: any, range?: any): void;
-  updateOrCreateColumn(column: Column, appliedColumn: AppliedFilter | undefined, value: any): void;
-  shouldSkipValue(appliedColumn: AppliedFilter | undefined, requestedValue: any): boolean;
-  applyFilters(): void;
-
-  changeSort(column: Column): void;
-
-  changePagination(perPage: number): void;
-  changePage(page: number): void;
-
-  fetchData(): void;
-  buildRequestParams(): any;
-
-  toggleSelectAll(): void;
-  setCurrentSelectionMode(): void;
-  handleAction(action: Action): void;
-  handleMassAction(action: MassAction, option?: any): void;
-  validateMassAction(): boolean;
-
-  saveToStorage(key: string, value: any): void;
-  getFromStorage(key: string): any;
-  updateDatagrids(): void;
-  notifyExportComponent(): void;
-}
 interface TableHeaderScope {
   column: Column;
   isSorted: boolean;
@@ -183,7 +98,6 @@ interface PaginationControlScope {
   goToNextPage(): void;
 }
 
-// Added missing scoped interfaces
 interface SearchInputScope {
   value: string;
   updateSearch(value: string): void;
@@ -201,23 +115,26 @@ interface FilterValueScope {
   remove(): void;
 }
 
-type DataGridAPI = DataGridState & {
+type DataGridScopes = {
   $filter: FilterScope;
   $filterValue: FilterValueScope;
-
   $searchInput: SearchInputScope;
   $massAction: MassActionScope;
   $pagination: PaginationControlScope;
   $pageSizeSelector: PageSizeSelectorScope;
-
   $tableHeader: TableHeaderScope;
   $tableRow: TableRowScope;
 };
 
-export default defineComponent<DataGridAPI>({
+interface Props {
+  src?: string;
+  messages?: Partial<Messages>;
+}
+
+export default defineComponent({
   name: 'datagrid',
 
-  setup(props) {
+  setup: setup((props: Props) => {
     return {
       src: props.src || '',
       isLoading: false,
@@ -230,11 +147,11 @@ export default defineComponent<DataGridAPI>({
       },
 
       available: {
-        id: null,
-        columns: [],
-        actions: [],
-        massActions: [],
-        records: [],
+        id: null as string | null,
+        columns: [] as Column[],
+        actions: [] as Action[],
+        massActions: [] as MassAction[],
+        records: [] as ItemRecord[],
         meta: {} as DataGridMeta,
       },
 
@@ -242,9 +159,9 @@ export default defineComponent<DataGridAPI>({
         massActions: {
           meta: {
             mode: 'none' as 'none' | 'all' | 'partial',
-            action: null,
+            action: null as MassAction | null,
           },
-          indices: [],
+          indices: [] as number[],
           value: null,
         },
         pagination: {
@@ -252,21 +169,20 @@ export default defineComponent<DataGridAPI>({
           perPage: 10,
         },
         sort: {
-          column: null,
-          order: null,
+          column: null as string | null,
+          order: null as 'asc' | 'desc' | null,
         },
         filters: {
           columns: [
             {
               index: 'all',
-              value: [],
-            },
-          ],
+              value: [] as any[],
+            } as AppliedFilter,
+          ] as AppliedFilter[],
         },
       },
 
       // Computed properties
-
       get haveRecords() {
         return this.available.records.length > 0;
       },
@@ -343,20 +259,20 @@ export default defineComponent<DataGridAPI>({
       },
 
       // Filter utilities
-      findAppliedColumn(index) {
-        return this.applied.filters.columns.find((column) => column.index === index);
+      findAppliedColumn(index: string) {
+        return this.applied.filters.columns.find((column: AppliedFilter) => column.index === index);
       },
 
-      hasAnyAppliedColumnValues(index) {
+      hasAnyAppliedColumnValues(index: string) {
         const appliedColumn = this.findAppliedColumn(index);
         return appliedColumn ? this.hasAnyValue(appliedColumn) : false;
       },
 
-      hasAnyValue(column) {
+      hasAnyValue(column: AppliedFilter) {
         return column.allow_multiple_values ? column.value.length > 0 : !!column.value;
       },
 
-      getAppliedColumnValues(columnIndex) {
+      getAppliedColumnValues(columnIndex: string) {
         const appliedColumn = this.findAppliedColumn(columnIndex);
 
         if (!appliedColumn || !this.hasAnyValue(appliedColumn)) {
@@ -366,7 +282,7 @@ export default defineComponent<DataGridAPI>({
         return Array.isArray(appliedColumn.value) ? appliedColumn.value : [appliedColumn.value];
       },
 
-      removeAppliedColumnValue(columnIndex, value) {
+      removeAppliedColumnValue(columnIndex: string, value: any) {
         const appliedColumn = this.findAppliedColumn(columnIndex);
 
         if (!appliedColumn) {
@@ -386,18 +302,22 @@ export default defineComponent<DataGridAPI>({
         }
 
         if (!appliedColumn.value?.length) {
-          this.applied.filters.columns = this.applied.filters.columns.filter((column) => column.index !== columnIndex);
+          this.applied.filters.columns = this.applied.filters.columns.filter(
+            (column: AppliedFilter) => column.index !== columnIndex
+          );
         }
 
         this.isFilterDirty = true;
       },
 
-      removeAppliedColumnAllValues(columnIndex) {
-        this.applied.filters.columns = this.applied.filters.columns.filter((column) => column.index !== columnIndex);
+      removeAppliedColumnAllValues(columnIndex: string) {
+        this.applied.filters.columns = this.applied.filters.columns.filter(
+          (column: AppliedFilter) => column.index !== columnIndex
+        );
         this.isFilterDirty = true;
       },
 
-      getColumnValueLabel(column, value) {
+      getColumnValueLabel(column: Column, value: any) {
         if (column.filterable_options!.length > 0) {
           const option = column.filterable_options!.find((option) => {
             if (
@@ -421,7 +341,7 @@ export default defineComponent<DataGridAPI>({
       },
 
       // Filter & search handlers
-      updateGlobalSearch(value) {
+      updateGlobalSearch(value: string) {
         let searchColumn = this.findAppliedColumn('all');
 
         if (searchColumn) {
@@ -430,14 +350,14 @@ export default defineComponent<DataGridAPI>({
           this.applied.filters.columns.unshift({
             index: 'all',
             value: [value],
-          });
+          } as AppliedFilter);
         }
 
         this.applied.pagination.page = 1;
         this.fetchData();
       },
 
-      addFilter(value, column = null, additional = {}) {
+      addFilter(value: any, column: Column | null = null, additional: any = {}) {
         if (additional.quickFilter && ['date', 'datetime'].includes(column?.type as string)) {
           this.applyColumnValues(column!, value);
           return;
@@ -446,7 +366,7 @@ export default defineComponent<DataGridAPI>({
         this.applyColumnValues(column!, value, additional);
       },
 
-      applyColumnValues(column, requestedValue, additional = {}) {
+      applyColumnValues(column: Column, requestedValue: any, additional: any = {}) {
         if (!column) {
           return;
         }
@@ -465,7 +385,7 @@ export default defineComponent<DataGridAPI>({
         this.isFilterDirty = true;
       },
 
-      handleDateFilter(column, appliedColumn, value, range) {
+      handleDateFilter(column: Column, appliedColumn: AppliedFilter | undefined, value: any, range: any) {
         if (!range) {
           this.updateOrCreateColumn(column, appliedColumn, value);
           return;
@@ -487,7 +407,7 @@ export default defineComponent<DataGridAPI>({
         this.updateOrCreateColumn(column, appliedColumn, [rangeValues]);
       },
 
-      updateOrCreateColumn(column, appliedColumn, value) {
+      updateOrCreateColumn(column: Column, appliedColumn: AppliedFilter | undefined, value: any) {
         const isDateType = ['date', 'datetime'].includes(column.type as string);
         const shouldBeArray = !isDateType && column.allow_multiple_values;
 
@@ -506,11 +426,11 @@ export default defineComponent<DataGridAPI>({
             type: column.type,
             value: formattedValue,
             allow_multiple_values: column.allow_multiple_values,
-          });
+          } as AppliedFilter);
         }
       },
 
-      shouldSkipValue(appliedColumn, requestedValue) {
+      shouldSkipValue(appliedColumn: AppliedFilter | undefined, requestedValue: any) {
         if (!requestedValue) {
           return true;
         }
@@ -529,20 +449,18 @@ export default defineComponent<DataGridAPI>({
       },
 
       // Sorting
-      changeSort(column) {
+      changeSort(column: Column) {
         if (!column.sortable) return;
 
-        this.applied.sort = {
-          column: column.index,
-          order: this.applied.sort.order === 'asc' ? 'desc' : 'asc',
-        };
+        this.applied.sort.column = column.index;
+        this.applied.sort.order = this.applied.sort.order === 'asc' ? 'desc' : 'asc';
 
         this.applied.pagination.page = 1;
         this.fetchData();
       },
 
       // Pagination handler
-      changePagination(perPage) {
+      changePagination(perPage: number) {
         this.applied.pagination.perPage = perPage;
 
         this.applied.pagination.page = 1;
@@ -550,7 +468,7 @@ export default defineComponent<DataGridAPI>({
         this.fetchData();
       },
 
-      changePage(page) {
+      changePage(page: number) {
         if (page === this.applied.pagination.page) {
           return;
         }
@@ -613,13 +531,15 @@ export default defineComponent<DataGridAPI>({
       toggleSelectAll() {
         const primaryColumn = this.available.meta.primary_column!;
         const currentMode = this.applied.massActions.meta.mode;
-        const currentIds = this.available.records.map((record) => record[primaryColumn]);
+        const currentIds = this.available.records.map((record: ItemRecord) => record[primaryColumn]);
 
         if (currentMode === 'none') {
           this.applied.massActions.indices = [...this.applied.massActions.indices, ...currentIds];
           this.applied.massActions.meta.mode = 'all';
         } else {
-          this.applied.massActions.indices = this.applied.massActions.indices.filter((id) => !currentIds.includes(id));
+          this.applied.massActions.indices = this.applied.massActions.indices.filter(
+            (id: number) => !currentIds.includes(id)
+          );
           this.applied.massActions.meta.mode = 'none';
         }
       },
@@ -630,7 +550,7 @@ export default defineComponent<DataGridAPI>({
         if (this.available.records.length === 0) return;
 
         const primaryColumn = this.available.meta.primary_column!;
-        const selectedCount = this.available.records.filter((record) =>
+        const selectedCount = this.available.records.filter((record: ItemRecord) =>
           this.applied.massActions.indices.includes(record[primaryColumn])
         ).length;
 
@@ -639,7 +559,7 @@ export default defineComponent<DataGridAPI>({
         }
       },
 
-      handleAction(action) {
+      handleAction(action: Action) {
         const method = action.method.toLowerCase();
 
         if (['post', 'put', 'patch', 'delete'].includes(method)) {
@@ -664,7 +584,7 @@ export default defineComponent<DataGridAPI>({
         }
       },
 
-      handleMassAction(action, option = null) {
+      handleMassAction(action: MassAction, option: any = null) {
         this.applied.massActions.meta.action = action;
         this.applied.massActions.value = option ? option.value : null;
 
@@ -686,11 +606,11 @@ export default defineComponent<DataGridAPI>({
               }
 
               this.$request(action.url, method as any, params)
-                .then((data) => {
+                .then((data: any) => {
                   this.$toaster.success(data.message);
                   this.fetchData();
                 })
-                .catch((error) => {
+                .catch((error: any) => {
                   if (error.message) {
                     this.$toaster.error(error.message);
                   }
@@ -722,11 +642,11 @@ export default defineComponent<DataGridAPI>({
       },
 
       // Storage & notifications
-      saveToStorage(key, value) {
+      saveToStorage(key: string, value: any) {
         localStorage.setItem(key, JSON.stringify(value));
       },
 
-      getFromStorage(key) {
+      getFromStorage(key: string) {
         const value = localStorage.getItem(key);
         return value ? JSON.parse(value) : null;
       },
@@ -764,283 +684,284 @@ export default defineComponent<DataGridAPI>({
         );
       },
     };
-  },
+  }),
 
-  parts: {
-    totalResults: (api) => ({
-      'x-text': () => api.messages.results.replace(':total', (api.available.meta.total ?? 0).toString()),
-    }),
+  parts: ({ withScopes }) =>
+    withScopes<DataGridScopes>({
+      totalResults: (api) => ({
+        'x-text': () => api.messages.results.replace(':total', (api.available.meta.total ?? 0).toString()),
+      }),
 
-    searchInput: defineScope<DataGridAPI, 'searchInput', SearchInputScope>({
-      name: 'searchInput',
-      setup(api) {
-        return {
-          get value() {
-            const searchColumn = api.findAppliedColumn('all');
-            return searchColumn?.value ?? [];
-          },
+      searchInput: defineScope({
+        name: 'searchInput',
+        setup(api) {
+          return {
+            get value() {
+              const searchColumn = api.findAppliedColumn('all');
+              return searchColumn?.value ?? [];
+            },
 
-          updateSearch(value) {
-            api.updateGlobalSearch(value.trim());
-          },
-        };
-      },
-      bindings(_, scope) {
-        return {
-          'x-bind:value': () => scope.value,
-          'x-on:input.debounce.500ms': ($event: Event) =>
-            scope.updateSearch(($event.target as HTMLInputElement)?.value || ''),
-          'x-on:keyup.enter.prevent': ($event: Event) =>
-            scope.updateSearch(($event.target as HTMLInputElement)?.value || ''),
-        };
-      },
-    }),
+            updateSearch(value: string) {
+              api.updateGlobalSearch(value.trim());
+            },
+          };
+        },
+        bindings(_, scope) {
+          return {
+            'x-bind:value': () => scope.value,
+            'x-on:input.debounce.500ms': ($event: Event) =>
+              scope.updateSearch(($event.target as HTMLInputElement)?.value || ''),
+            'x-on:keyup.enter.prevent': ($event: Event) =>
+              scope.updateSearch(($event.target as HTMLInputElement)?.value || ''),
+          };
+        },
+      }),
 
-    // Select All Checkbox
-    selectAll: (api) => ({
-      'x-bind:checked': () => ['all'].includes(api.applied.massActions.meta.mode),
-      '@change': () => api.toggleSelectAll(),
-    }),
+      // Select All Checkbox
+      selectAll: (api) => ({
+        'x-bind:checked': () => ['all'].includes(api.applied.massActions.meta.mode),
+        '@change': () => api.toggleSelectAll(),
+      }),
 
-    // Pagination Controls
-    pagination: defineScope<DataGridAPI, 'pagination', PaginationControlScope>({
-      name: 'pagination',
-      setup(api) {
-        return {
-          get currentPage() {
-            return api.applied.pagination.page;
-          },
+      // Pagination Controls
+      pagination: defineScope({
+        name: 'pagination',
+        setup(api) {
+          return {
+            get currentPage() {
+              return api.applied.pagination.page;
+            },
 
-          get totalPages() {
-            return api.available.meta.last_page ?? 0;
-          },
+            get totalPages() {
+              return api.available.meta.last_page ?? 0;
+            },
 
-          get isFirstPage() {
-            return this.currentPage <= 1;
-          },
+            get isFirstPage() {
+              return this.currentPage <= 1;
+            },
 
-          get isLastPage() {
-            return this.currentPage >= this.totalPages;
-          },
+            get isLastPage() {
+              return this.currentPage >= this.totalPages;
+            },
 
-          goToPage(page) {
-            api.changePage(page);
-          },
+            goToPage(page: number) {
+              api.changePage(page);
+            },
 
-          goToPreviousPage() {
-            api.changePage(this.currentPage - 1);
-          },
+            goToPreviousPage() {
+              api.changePage(this.currentPage - 1);
+            },
 
-          goToNextPage() {
-            api.changePage(this.currentPage + 1);
-          },
-        };
-      },
-    }),
+            goToNextPage() {
+              api.changePage(this.currentPage + 1);
+            },
+          };
+        },
+      }),
 
-    // Pagination Per Page Select
-    pageSizeSelector: defineScope<DataGridAPI, 'pageSizeSelector', PageSizeSelectorScope>({
-      name: 'pageSizeSelector',
-      setup(api) {
-        return {
-          get value() {
-            return api.applied.pagination.perPage;
-          },
+      // Pagination Per Page Select
+      pageSizeSelector: defineScope({
+        name: 'pageSizeSelector',
+        setup(api) {
+          return {
+            get value() {
+              return api.applied.pagination.perPage;
+            },
 
-          get options() {
-            return api.available.meta.per_page_options || [10, 25, 50, 100];
-          },
+            get options() {
+              return api.available.meta.per_page_options || [10, 25, 50, 100];
+            },
 
-          change(value) {
-            api.changePagination(parseInt(value, 10));
-          },
-        };
-      },
-      bindings(api, scope) {
-        return {
-          'x-bind:value': () => scope.value,
-          'x-on:change': ($event: Event) => scope.change(($event.target as HTMLSelectElement).value),
-        };
-      },
-    }),
+            change(value: string) {
+              api.changePagination(parseInt(value, 10));
+            },
+          };
+        },
+        bindings(api, scope) {
+          return {
+            'x-bind:value': () => scope.value,
+            'x-on:change': ($event: Event) => scope.change(($event.target as HTMLSelectElement).value),
+          };
+        },
+      }),
 
-    // Mass Action
-    massAction: defineScope<DataGridAPI, 'massAction', MassActionScope>({
-      name: 'massAction',
-      setup(api, el, { value }) {
-        const actionIndex = parseInt(value);
-        const action = api.available.massActions[actionIndex];
+      // Mass Action
+      massAction: defineScope({
+        name: 'massAction',
+        setup(api, el, { value }) {
+          const actionIndex = parseInt(value);
+          const action = api.available.massActions[actionIndex];
 
-        return {
-          action,
+          return {
+            action,
 
-          performAction(option = null) {
-            api.handleMassAction(action, option);
-          },
+            performAction(option: any = null) {
+              api.handleMassAction(action, option);
+            },
 
-          get hasOptions() {
-            return action.options?.length! > 0;
-          },
-        };
-      },
-    }),
+            get hasOptions() {
+              return action.options?.length! > 0;
+            },
+          };
+        },
+      }),
 
-    // Mass Action Option
-    massActionOption(api, el, { value }) {
-      const optionIndex = parseInt(value);
-      const option = api.$massAction.action.options![optionIndex];
-
-      return {
-        'x-on:click': () => api.$massAction.performAction(option),
-      };
-    },
-
-    // Table Header
-    tableHeader: defineScope<DataGridAPI, 'tableHeader', TableHeaderScope>({
-      name: 'tableHeader',
-      setup(api, el, { value }) {
-        const column = api.available.columns.find((col) => col.index === value) as Column;
+      // Mass Action Option
+      massActionOption(api, el, { value }) {
+        const optionIndex = parseInt(value);
+        const option = api.$massAction.action.options![optionIndex];
 
         return {
-          column,
-
-          get isSorted() {
-            return api.applied.sort.column === column.index;
-          },
-
-          get sortOrder() {
-            return this.isSorted ? api.applied.sort.order : null;
-          },
-
-          sort() {
-            api.changeSort(column);
-          },
+          'x-on:click': () => api.$massAction.performAction(option),
         };
       },
 
-      bindings(api, scope) {
-        return {
-          'x-bind:class': () => (scope.column.sortable ? 'cursor-pointer' : ''),
-          'x-on:click': () => scope.column.sortable && scope.sort(),
-        };
-      },
+      // Table Header
+      tableHeader: defineScope({
+        name: 'tableHeader',
+        setup(api, el, { value }) {
+          const column = api.available.columns.find((col) => col.index === value) as Column;
+
+          return {
+            column,
+
+            get isSorted() {
+              return api.applied.sort.column === column.index;
+            },
+
+            get sortOrder() {
+              return this.isSorted ? api.applied.sort.order : null;
+            },
+
+            sort() {
+              api.changeSort(column);
+            },
+          };
+        },
+
+        bindings(api, scope) {
+          return {
+            'x-bind:class': () => (scope.column.sortable ? 'cursor-pointer' : ''),
+            'x-on:click': () => scope.column.sortable && scope.sort(),
+          };
+        },
+      }),
+
+      // Table Row
+      tableRow: defineScope({
+        name: 'tableRow',
+        setup(api, el, { value: record }) {
+          const primaryKey = api.available.meta.primary_column as string;
+
+          return {
+            record,
+            primaryKey,
+
+            get isSelected() {
+              return api.applied.massActions.indices.includes(record[primaryKey]);
+            },
+
+            toggleSelection() {
+              const currentIndices = api.applied.massActions.indices;
+              const id = record[primaryKey];
+
+              if (currentIndices.includes(id)) {
+                api.applied.massActions.indices = currentIndices.filter((i) => i !== id);
+              } else {
+                api.applied.massActions.indices = [...currentIndices, id];
+              }
+            },
+          };
+        },
+
+        bindings(_, scope) {
+          return {
+            'x-bind:data-selected': () => (scope.isSelected ? 'true' : 'false'),
+          };
+        },
+      }),
+
+      // Row Checkbox
+      tableRowCheckbox: (api) => ({
+        'x-bind:checked': () => api.$tableRow.isSelected,
+        'x-bind:value': () => api.$tableRow.record[api.$tableRow.primaryKey],
+        'x-on:change': () => api.$tableRow.toggleSelection(),
+      }),
+
+      // Filter
+      filter: defineScope({
+        name: 'filter',
+        setup(api, el, { value }) {
+          const columnIndex = value;
+          const column = api.available.columns.find((col) => col.index === columnIndex) as Column;
+
+          return {
+            column,
+
+            get appliedValues() {
+              return api.getAppliedColumnValues(columnIndex);
+            },
+
+            get hasValues() {
+              return api.hasAnyAppliedColumnValues(columnIndex);
+            },
+
+            addValue(value: any, options: any = {}) {
+              api.addFilter(value, column, options);
+            },
+
+            addQuickOptionValue(option: any) {
+              this.addValue(option.name, { quickFilter: option });
+            },
+
+            addDateRangeValue(value: any, rangeName: string) {
+              this.addValue(value, { range: { name: rangeName } });
+            },
+
+            removeValue(value: any) {
+              api.removeAppliedColumnValue(columnIndex, value);
+            },
+
+            removeAllValues() {
+              api.removeAppliedColumnAllValues(columnIndex);
+            },
+
+            getValueLabel(value: any) {
+              return api.getColumnValueLabel(column, value);
+            },
+          };
+        },
+      }),
+
+      clearFilter: (api) => ({
+        'x-show': () => api.$filter.hasValues,
+        'x-on:click': () => api.$filter.removeAllValues(),
+      }),
+
+      // Filter Tag
+      filterValue: defineScope({
+        name: 'filterValue',
+        setup(api, el, { value }) {
+          const tagValue = value;
+
+          return {
+            value: tagValue,
+
+            get label() {
+              return api.$filter.getValueLabel(tagValue);
+            },
+
+            remove() {
+              api.$filter.removeValue(tagValue);
+            },
+          };
+        },
+      }),
+
+      // Filter Apply Button
+      applyFilters: (api) => ({
+        'x-bind:disabled': () => !api.isFilterDirty,
+        'x-on:click': () => api.applyFilters(),
+      }),
     }),
-
-    // Table Row
-    tableRow: defineScope<DataGridAPI, 'tableRow', TableRowScope>({
-      name: 'tableRow',
-      setup(api, el, { value: record }) {
-        const primaryKey = api.available.meta.primary_column as string;
-
-        return {
-          record,
-          primaryKey,
-
-          get isSelected() {
-            return api.applied.massActions.indices.includes(record[primaryKey]);
-          },
-
-          toggleSelection() {
-            const currentIndices = api.applied.massActions.indices;
-            const id = record[primaryKey];
-
-            if (currentIndices.includes(id)) {
-              api.applied.massActions.indices = currentIndices.filter((i) => i !== id);
-            } else {
-              api.applied.massActions.indices = [...currentIndices, id];
-            }
-          },
-        };
-      },
-
-      bindings(_, scope) {
-        return {
-          'x-bind:data-selected': () => (scope.isSelected ? 'true' : 'false'),
-        };
-      },
-    }),
-
-    // Row Checkbox
-    tableRowCheckbox: (api) => ({
-      'x-bind:checked': () => api.$tableRow.isSelected,
-      'x-bind:value': () => api.$tableRow.record[api.$tableRow.primaryKey],
-      'x-on:change': () => api.$tableRow.toggleSelection(),
-    }),
-
-    // Filter
-    filter: defineScope<DataGridAPI, 'filter', FilterScope>({
-      name: 'filter',
-      setup(api, el, { value }) {
-        const columnIndex = value;
-        const column = api.available.columns.find((col) => col.index === columnIndex) as Column;
-
-        return {
-          column,
-
-          get appliedValues() {
-            return api.getAppliedColumnValues(columnIndex);
-          },
-
-          get hasValues() {
-            return api.hasAnyAppliedColumnValues(columnIndex);
-          },
-
-          addValue(value, options = {}) {
-            api.addFilter(value, column, options);
-          },
-
-          addQuickOptionValue(option) {
-            this.addValue(option.name, { quickFilter: option });
-          },
-
-          addDateRangeValue(value, rangeName) {
-            this.addValue(value, { range: { name: rangeName } });
-          },
-
-          removeValue(value) {
-            api.removeAppliedColumnValue(columnIndex, value);
-          },
-
-          removeAllValues() {
-            api.removeAppliedColumnAllValues(columnIndex);
-          },
-
-          getValueLabel(value) {
-            return api.getColumnValueLabel(column, value);
-          },
-        };
-      },
-    }),
-
-    clearFilter: (api) => ({
-      'x-show': () => api.$filter.hasValues,
-      'x-on:click': () => api.$filter.removeAllValues(),
-    }),
-
-    // Filter Tag
-    filterValue: defineScope<DataGridAPI, 'filterValue', FilterValueScope>({
-      name: 'filterValue',
-      setup(api, el, { value }) {
-        const tagValue = value;
-
-        return {
-          value: tagValue,
-
-          get label() {
-            return api.$filter.getValueLabel(tagValue);
-          },
-
-          remove() {
-            api.$filter.removeValue(tagValue);
-          },
-        };
-      },
-    }),
-
-    // Filter Apply Button
-    applyFilters: (api) => ({
-      'x-bind:disabled': () => !api.isFilterDirty,
-      'x-on:click': () => api.applyFilters(),
-    }),
-  },
 });

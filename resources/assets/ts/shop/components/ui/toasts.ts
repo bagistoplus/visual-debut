@@ -1,5 +1,5 @@
 import type { Alpine as AlpineType } from 'alpinejs';
-import { defineComponent, defineScope } from '../../utils/define-component';
+import { defineComponent, defineScope, setup } from 'alpine-define-component';
 
 declare namespace Alpine {
   interface Magics<T> {
@@ -40,23 +40,16 @@ interface ToastScope extends Toast {
   dismiss(): void;
 }
 
-interface ToasterAPI {
-  placement: Placement;
-  placements: Placement[];
-  store: Toast[];
-  create(toast: Partial<Toast>): void;
-  dismiss(id: string): void;
-
-  $group: GroupScope;
-  $toast: ToastScope;
+interface Props {
+  placement?: Placement;
 }
 
-export default defineComponent<ToasterAPI>({
+export default defineComponent({
   name: 'toasts',
 
-  setup: (props) => ({
+  setup: setup((props: Props) => ({
     placement: props.placement || 'top-end',
-    store: [],
+    store: [] as Toast[],
 
     get placements() {
       return Array.from(
@@ -65,12 +58,12 @@ export default defineComponent<ToasterAPI>({
     },
 
     init() {
-      window.addEventListener('toasts:create', (e) => {
+      window.addEventListener('toasts:create', (e: Event) => {
         this.create((e as CustomEvent).detail);
       });
     },
 
-    create(toast) {
+    create(toast: Partial<Toast>) {
       const newToast: Toast = {
         id: String(Date.now()),
         type: toast.type || 'info',
@@ -89,20 +82,20 @@ export default defineComponent<ToasterAPI>({
       }
     },
 
-    dismiss(id) {
+    dismiss(id: string) {
       setTimeout(() => {
-        this.store = this.store.filter((t) => t.id !== id);
+        this.store = this.store.filter((t: Toast) => t.id !== id);
       }, 300);
     },
-  }),
+  })),
 
   parts: {
-    group: defineScope<ToasterAPI, 'group', GroupScope>({
+    group: defineScope({
       name: 'group',
 
       setup: (api, _, { value: placement }) => ({
         placement,
-        toasts: () => api.store.filter((t) => t.placement === placement),
+        toasts: () => api.store.filter((t: Toast) => t.placement === placement),
       }),
 
       bindings: (_, scope) => {
@@ -116,7 +109,7 @@ export default defineComponent<ToasterAPI>({
       },
     }),
 
-    toast: defineScope<ToasterAPI, 'toast', ToastScope>({
+    toast: defineScope({
       name: 'toast',
 
       setup: (api, _, { value: toast }) => ({

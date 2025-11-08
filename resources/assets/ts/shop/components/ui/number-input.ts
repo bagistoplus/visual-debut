@@ -1,19 +1,16 @@
-import { defineComponent } from '../../utils/define-component';
+import { defineComponent, setup } from 'alpine-define-component';
 
-interface NumberInputAPI {
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  increment(): void;
-  decrement(): void;
-  setValue(v: number): void;
+interface Props {
+  value?: number;
+  min?: number;
+  max?: number;
+  step?: number;
 }
 
-export default defineComponent<NumberInputAPI>({
+export default defineComponent({
   name: 'number-input',
 
-  setup: (props) => ({
+  setup: setup((props: Props) => ({
     value: 0,
     min: props.min ?? Number.MIN_SAFE_INTEGER,
     max: props.max ?? Number.MAX_SAFE_INTEGER,
@@ -35,14 +32,14 @@ export default defineComponent<NumberInputAPI>({
       this.$dispatch('change', this.value);
     },
 
-    setValue(v) {
+    setValue(v: number) {
       const n = Number(v);
       if (!isNaN(n)) {
         this.value = Math.max(this.min, Math.min(this.max, n));
         this.$dispatch('change', this.value);
       }
     },
-  }),
+  })),
 
   parts: {
     label(api, el, { generateId }) {

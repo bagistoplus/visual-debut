@@ -1,15 +1,8 @@
-import { defineScope, defineComponent } from '../utils/define-component';
+import { defineScope, defineComponent, setup } from 'alpine-define-component';
 
-interface MediaGalleryState {
-  medias: any[];
-  defaultMedias: any[];
-  selectedIndex: number;
-  scrollAmount: number;
-  hasOverflowAbove: boolean;
-  hasOverflowBelow: boolean;
-  selectedMedia: any | null;
-  scrollThumbs(direction: 'up' | 'down'): void;
-  onMediasChanged(event: CustomEvent): void;
+interface Props {
+  medias?: any[];
+  scrollAmount?: number;
 }
 
 interface ThumbsScope {
@@ -24,20 +17,15 @@ interface ThumbScope {
   onKeydown(event: KeyboardEvent): void;
 }
 
-type MediaGalleryAPI = MediaGalleryState & {
-  $thumbs: ThumbsScope;
-  $thumb: ThumbScope;
-};
-
-export default defineComponent<MediaGalleryAPI>({
+export default defineComponent({
   name: 'media-gallery',
 
-  setup(props) {
+  setup: setup((props: Props) => {
     let thumbsEl: HTMLElement | null = null;
 
     return {
-      medias: [],
-      defaultMedias: [],
+      medias: [] as any[],
+      defaultMedias: [] as any[],
       selectedIndex: 0,
       scrollAmount: props.scrollAmount ?? 100,
 
@@ -79,10 +67,10 @@ export default defineComponent<MediaGalleryAPI>({
         window.removeEventListener('variant-medias-change', this.onMediasChanged as EventListener);
       },
     };
-  },
+  }),
 
   parts: {
-    thumbs: defineScope<MediaGalleryAPI, 'thumbs', ThumbsScope>({
+    thumbs: defineScope({
       name: 'thumbs',
 
       setup(api, el) {
@@ -120,7 +108,7 @@ export default defineComponent<MediaGalleryAPI>({
       };
     },
 
-    thumb: defineScope<MediaGalleryAPI, 'thumb', ThumbScope>({
+    thumb: defineScope({
       name: 'thumb',
 
       setup(api, el, ctx) {

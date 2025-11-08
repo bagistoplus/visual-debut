@@ -1,4 +1,4 @@
-import { defineScope, defineComponent } from '../utils/define-component';
+import { defineScope, defineComponent, setup } from 'alpine-define-component';
 import { ProductForm } from './product-form';
 
 interface VariantAttribute {
@@ -16,26 +16,11 @@ interface VariantOption {
   isAvailable?: boolean;
 }
 
-interface VariantPickerProps {
-  variantAttributes: VariantAttribute[];
-  variantPrices: Record<number, any>;
-  variantImages: Record<number, string[]>;
-  variantVideos: Record<number, string[]>;
-}
-
-interface VariantPickerState extends VariantPickerProps {
-  selections: Record<number, number>;
-  matchingProducts: Set<number>;
-  selectedVariant: number | null;
-
-  isDropdownSwatch(swatchType?: string): boolean;
-  findAttribute(id: number): VariantAttribute | undefined;
-  findOption(attribute: VariantAttribute | undefined, optionId: number): VariantOption | undefined;
-  findMatchingProducts(selections: Record<number, number>): Set<number>;
-  updateMatchingProducts(): void;
-  updateOptionAvailability(): void;
-  onOptionSelected(attributeId: number, value: number | null): void;
-  dispatchChange(): void;
+interface Props {
+  variantAttributes?: VariantAttribute[];
+  variantPrices?: Record<number, any>;
+  variantImages?: Record<number, string[]>;
+  variantVideos?: Record<number, string[]>;
 }
 
 interface AttributeScope extends VariantAttribute {
@@ -48,14 +33,10 @@ interface AttributeScope extends VariantAttribute {
   };
 }
 
-type VariantPickerAPI = VariantPickerState & {
-  $attribute: AttributeScope;
-};
-
-export default defineComponent<VariantPickerAPI>({
+export default defineComponent({
   name: 'variant-picker',
 
-  setup(props) {
+  setup: setup((props: Props) => {
     const variantAttributes = props.variantAttributes ?? [];
     const variantPrices = props.variantPrices ?? {};
     const variantImages = props.variantImages ?? {};
@@ -104,14 +85,14 @@ export default defineComponent<VariantPickerAPI>({
       },
 
       findAttribute(id: number) {
-        return this.variantAttributes.find((attr) => attr.id === id);
+        return this.variantAttributes.find((attr: VariantAttribute) => attr.id === id);
       },
 
-      findOption(attribute, optionId) {
-        return attribute?.options.find((o) => o.id === optionId);
+      findOption(attribute: VariantAttribute | undefined, optionId: number) {
+        return attribute?.options.find((o: VariantOption) => o.id === optionId);
       },
 
-      findMatchingProducts(selections) {
+      findMatchingProducts(selections: Record<number, number>) {
         const products = new Set<number>();
         let isFirst = true;
 
@@ -122,7 +103,7 @@ export default defineComponent<VariantPickerAPI>({
           if (!option) return new Set();
 
           if (isFirst) {
-            option.products.forEach((p) => products.add(p));
+            option.products.forEach((p: number) => products.add(p));
             isFirst = false;
           } else {
             for (const p of Array.from(products)) {
@@ -135,7 +116,7 @@ export default defineComponent<VariantPickerAPI>({
       },
 
       updateMatchingProducts() {
-        this.matchingProducts = this.findMatchingProducts(this.selections);
+        this.matchingProducts = this.findMatchingProducts(this.selections) as Set<number>;
         this.updateOptionAvailability();
       },
 
@@ -153,12 +134,12 @@ export default defineComponent<VariantPickerAPI>({
 
             // Check if this option is compatible with other selections
             const matching = this.findMatchingProducts(otherSelections);
-            option.isAvailable = option.products.some((id) => matching.has(id));
+            option.isAvailable = option.products.some((id: number) => matching.has(id));
           }
         }
       },
 
-      onOptionSelected(attributeId, value) {
+      onOptionSelected(attributeId: number, value: number | null) {
         value = Number.isNaN(Number(value)) ? null : Number(value);
 
         if (value === null || this.selections[attributeId] === value) {
@@ -220,10 +201,10 @@ export default defineComponent<VariantPickerAPI>({
         });
       },
     };
-  },
+  }),
 
   parts: {
-    attribute: defineScope<VariantPickerAPI, 'attribute', AttributeScope>({
+    attribute: defineScope({
       name: 'attribute',
       setup(api, el, { value: attribute }: { value: VariantAttribute }) {
         return {
@@ -237,11 +218,11 @@ export default defineComponent<VariantPickerAPI>({
             return api.isDropdownSwatch(attribute.swatch_type);
           },
 
-          select(value) {
+          select(value: number) {
             api.onOptionSelected(attribute.id, value);
           },
 
-          getOptionState(optionId) {
+          getOptionState(optionId: number) {
             const isSelected = api.selections[attribute.id] === optionId;
             const option = attribute.options.find((o) => o.id === optionId);
             return {

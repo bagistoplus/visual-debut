@@ -1,13 +1,8 @@
-import { defineScope, defineComponent } from '../../utils/define-component';
+import { defineScope, defineComponent, setup } from 'alpine-define-component';
 
-interface RatingState {
-  value: number;
-  hover: number | null;
-  max: number;
-  set(value: number): void;
-  onHover(value: number | null): void;
-  isActive(index: number): boolean;
-  isHovered(index: number): boolean;
+interface Props {
+  value?: number;
+  max?: number;
 }
 
 interface RatingStarScope {
@@ -19,39 +14,37 @@ interface RatingStarScope {
   leave(): void;
 }
 
-type RatingAPI = RatingState & { $star: RatingStarScope };
-
-export default defineComponent<RatingAPI>({
+export default defineComponent({
   name: 'rating',
 
-  setup(props) {
+  setup: setup((props: Props) => {
     const initial = Number(props.value ?? 0);
     const max = Number(props.max ?? 5);
 
     return {
       value: initial,
-      hover: null,
+      hover: null as number | null,
       max,
 
-      set(value) {
+      set(value: number) {
         this.value = value;
         this.hover = null;
         this.$dispatch('change', value);
       },
 
-      onHover(value) {
+      onHover(value: number | null) {
         this.hover = value;
       },
 
-      isActive(index) {
+      isActive(index: number) {
         return index <= this.value;
       },
 
-      isHovered(index) {
+      isHovered(index: number) {
         return this.hover !== null && index <= this.hover;
       },
     };
-  },
+  }),
 
   parts: {
     root: () => ({
@@ -59,7 +52,7 @@ export default defineComponent<RatingAPI>({
       'aria-label': 'Star rating',
     }),
 
-    star: defineScope<RatingAPI, 'star', RatingStarScope>({
+    star: defineScope({
       name: 'star',
 
       setup(api, _el, { value }) {

@@ -1,29 +1,14 @@
-import { defineComponent } from '../utils/define-component';
+import { defineComponent, setup } from 'alpine-define-component';
 
-interface ImageSearchAPI {
-  searchUrl: string;
-  messages: {
-    invalidFileType: string;
-    fileTooLarge: string;
-    uploadFailed: string;
-    analysisFailed: string;
-    libraryLoadFailed: string;
+interface Props {
+  searchUrl?: string;
+  messages?: {
+    invalidFileType?: string;
+    fileTooLarge?: string;
+    uploadFailed?: string;
+    analysisFailed?: string;
+    libraryLoadFailed?: string;
   };
-  librariesLoaded: boolean;
-  isSearching: boolean;
-  uploadedImageUrl: string | null;
-
-  handleImageSelection(event: Event): void;
-  validateImage(image: File): boolean;
-  uploadImage(image: File): Promise<void>;
-  analyzeImage(): Promise<void>;
-  storeSearchResults(terms: string[]): void;
-  redirectToSearchResults(terms: string[]): void;
-
-  resetSearch(): void;
-
-  loadLibraries(): Promise<void>;
-  loadScript(src: string): Promise<void>;
 }
 
 // Constants
@@ -35,10 +20,10 @@ const LIBRARIES = {
     'https://cdn.jsdelivr.net/npm/tensorflow-models-mobilenet-patch@2.1.1/dist/mobilenet.min.js',
 };
 
-export default defineComponent<ImageSearchAPI>({
+export default defineComponent({
   name: 'image-search',
 
-  setup: (props) => ({
+  setup: setup((props: Props) => ({
     searchUrl: props.searchUrl || '/search',
     messages: {
       invalidFileType: 'Only image files are allowed.',
@@ -50,9 +35,9 @@ export default defineComponent<ImageSearchAPI>({
     },
     librariesLoaded: false,
     isSearching: false,
-    uploadedImageUrl: null,
+    uploadedImageUrl: null as string | null,
 
-    handleImageSelection(event) {
+    handleImageSelection(event: Event) {
       const image = (event.target as HTMLInputElement).files?.[0];
 
       if (!image || !this.validateImage(image)) {
@@ -125,12 +110,12 @@ export default defineComponent<ImageSearchAPI>({
       }
     },
 
-    storeSearchResults(terms) {
+    storeSearchResults(terms: string[]) {
       localStorage.setItem('searchedImageUrl', this.uploadedImageUrl as string);
       localStorage.setItem('searchedTerms', terms.join('_'));
     },
 
-    redirectToSearchResults(terms) {
+    redirectToSearchResults(terms: string[]) {
       const q = terms[0].replace(/\s+/g, '+');
       const url = new URL(this.searchUrl, window.location.origin);
       url.searchParams.append('query', q);
@@ -151,8 +136,8 @@ export default defineComponent<ImageSearchAPI>({
       }
     },
 
-    loadScript(src) {
-      return new Promise((resolve, reject) => {
+    loadScript(src: string) {
+      return new Promise<void>((resolve, reject) => {
         // Don't load script if it's already loaded
         if (document.querySelector(`script[src="${src}"]`)) {
           return resolve();
@@ -173,7 +158,7 @@ export default defineComponent<ImageSearchAPI>({
         (this.$refs.fileInput as HTMLInputElement).value = '';
       }
     },
-  }),
+  })),
 
   parts: {
     trigger(api) {

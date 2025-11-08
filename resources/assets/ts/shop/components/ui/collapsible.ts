@@ -1,16 +1,11 @@
-import { defineComponent } from '../../utils/define-component';
+import { defineComponent, setup } from 'alpine-define-component';
 
-interface CollapsibleAPI {
-  triggerId: string;
-  contentId: string;
-  expanded: boolean;
-  toggle(): void;
-}
+interface Props {}
 
-export default defineComponent<CollapsibleAPI>({
+export default defineComponent({
   name: 'collapsible',
 
-  setup: (_, { generateId }) => {
+  setup: setup((_props: Props, { generateId }) => {
     const triggerId = generateId('trigger');
     const contentId = generateId('content');
 
@@ -24,7 +19,7 @@ export default defineComponent<CollapsibleAPI>({
         this.$dispatch('toggle', this.expanded);
       },
     };
-  },
+  }),
 
   parts: {
     trigger(api) {

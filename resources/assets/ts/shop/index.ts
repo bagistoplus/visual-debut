@@ -22,9 +22,10 @@ import variantPicker from './features/variant-picker';
 import navigation from './features/navigation';
 import productActions from './features/product-actions';
 import rating from './components/ui/rating';
+import carousel from './components/ui/carousel';
 
 // ui components as plugin
-Alpine.plugin([accordion, collapsible, dropdown, modal, numberInput, slider, tabs, toasts, rating]);
+Alpine.plugin([accordion, collapsible, dropdown, modal, numberInput, slider, tabs, toasts, rating, carousel]);
 
 // plugins
 Alpine.plugin([confirm, helpers, modals, toaster]);
