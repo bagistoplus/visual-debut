@@ -26,7 +26,7 @@ Before installing the theme, make sure you have [Bagisto Visual](https://github.
 Install the Visual Debut theme using Composer:
 
 ```bash
-composer require bagistoplus/visual-debut
+composer require bagistoplus/visual-debut:^1.0
 ```
 
 ### 3. Publish Assets
