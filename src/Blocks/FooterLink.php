@@ -10,7 +10,7 @@ use function BagistoPlus\VisualDebut\_t;
 
 class FooterLink extends BladeBlock
 {
-    protected static string $type = '@visual-debut/link';
+    protected static string $type = '@visual-debut/footer-link';
 
     protected static string $view = 'visual-debut::blocks.footer-link';
 
@@ -28,5 +28,4 @@ class FooterLink extends BladeBlock
                 ->default('/'),
         ];
     }
-
 }
