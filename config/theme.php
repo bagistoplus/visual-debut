@@ -3,7 +3,7 @@
 return [
     'code' => 'visual-debut',
     'name' => 'Visual Debut',
-    'version' => '1.0.0',
+    'version' => '2.0.0-alpha',
     'author' => 'Bagisto Plus',
     'assets_path' => 'public/themes/shop/visual-debut',
     'views_path' => 'resources/themes/visual-debut/views',
