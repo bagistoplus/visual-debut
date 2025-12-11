@@ -9,7 +9,7 @@ use function BagistoPlus\VisualDebut\_t;
 
 class FooterGroup extends BladeBlock
 {
-    protected static string $type = '@visual-debut/group';
+    protected static string $type = '@visual-debut/footer-group';
 
     protected static string $view = 'visual-debut::blocks.footer-group';
 
@@ -20,8 +20,8 @@ class FooterGroup extends BladeBlock
     public static function settings(): array
     {
         return [
-            Text::make('title', _t('blocks.group.settings.title_label'))
-                ->default(_t('blocks.group.settings.title_default')),
+            Text::make('title', _t('blocks.footer-group.title_label'))
+                ->default(_t('blocks.footer-group.title_default')),
         ];
     }
 

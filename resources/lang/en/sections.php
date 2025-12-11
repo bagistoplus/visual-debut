@@ -325,6 +325,11 @@ return [
                 'square' => 'Square',
                 'none' => 'None',
             ],
+            'nav_icon_label' => 'Navigation Icon',
+            'nav_icon_options' => [
+                'arrow' => 'Arrow',
+                'chevron' => 'Chevron',
+            ],
 
             'spacing_header' => 'Spacing',
             'padding_top_label' => 'Padding Top',

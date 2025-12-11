@@ -3,6 +3,7 @@
 namespace BagistoPlus\VisualDebut\Blocks\Category;
 
 use BagistoPlus\Visual\Settings\Category as CategorySetting;
+use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\VisualDebut\Blocks\Basic\Text;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -27,10 +28,13 @@ class CategoryName extends Text
         );
     }
 
-    public function share(): array
+    public static function presets(): array
     {
         return [
-            'category' => $this->block->settings->category ?? $this->context['category'] ?? null
+            Preset::make(_t('blocks.text.presets.category-name.name'))
+                ->settings([
+                    'text' => '@category.name',
+                ]),
         ];
     }
 }

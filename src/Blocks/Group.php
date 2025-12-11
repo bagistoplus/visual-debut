@@ -22,11 +22,11 @@ use matthieumastadenis\couleur\ColorFactory;
 use matthieumastadenis\couleur\ColorInterface;
 use BagistoPlus\Visual\Settings\Support\GradientValue;
 
-class Container extends SimpleBlock
+class Group extends SimpleBlock
 {
-    protected static string $type = '@visual-debut/container';
+    protected static string $type = '@visual-debut/group';
 
-    protected static string $view = 'visual-debut::blocks.container';
+    protected static string $view = 'visual-debut::blocks.group';
 
     protected static array $accepts = ['*'];
 
@@ -38,63 +38,63 @@ class Container extends SimpleBlock
     {
         return [
             // Layout Configuration
-            Header::make(_t('blocks.container.settings.layout_header')),
+            Header::make(_t('blocks.group.settings.layout_header')),
 
-            Select::make('layout_type', _t('blocks.container.settings.layout_type_label'))
+            Select::make('layout_type', _t('blocks.group.settings.layout_type_label'))
                 ->options([
-                    'block' => _t('blocks.container.settings.layout_type_options.block'),
-                    'flex' => _t('blocks.container.settings.layout_type_options.flex'),
-                    'grid' => _t('blocks.container.settings.layout_type_options.grid'),
+                    'block' => _t('blocks.group.settings.layout_type_options.block'),
+                    'flex' => _t('blocks.group.settings.layout_type_options.flex'),
+                    'grid' => _t('blocks.group.settings.layout_type_options.grid'),
                 ])
                 ->default('flex')
                 ->asSegment()
-                ->info(_t('blocks.container.settings.layout_type_info')),
+                ->info(_t('blocks.group.settings.layout_type_info')),
 
             // Flex Settings
-            Select::make('flex_direction', _t('blocks.container.settings.flex_direction_label'))
+            Select::make('flex_direction', _t('blocks.group.settings.flex_direction_label'))
                 ->options([
-                    'row' => _t('blocks.container.settings.flex_direction_options.row'),
-                    'row-reverse' => _t('blocks.container.settings.flex_direction_options.row_reverse'),
-                    'column' => _t('blocks.container.settings.flex_direction_options.column'),
-                    'column-reverse' => _t('blocks.container.settings.flex_direction_options.column_reverse'),
+                    'row' => _t('blocks.group.settings.flex_direction_options.row'),
+                    'row-reverse' => _t('blocks.group.settings.flex_direction_options.row_reverse'),
+                    'column' => _t('blocks.group.settings.flex_direction_options.column'),
+                    'column-reverse' => _t('blocks.group.settings.flex_direction_options.column_reverse'),
                 ])
                 ->default('row')
                 ->responsive()
                 ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')),
 
-            Select::make('flex_wrap', _t('blocks.container.settings.flex_wrap_label'))
+            Select::make('flex_wrap', _t('blocks.group.settings.flex_wrap_label'))
                 ->options([
-                    'nowrap' => _t('blocks.container.settings.flex_wrap_options.nowrap'),
-                    'wrap' => _t('blocks.container.settings.flex_wrap_options.wrap'),
-                    'wrap-reverse' => _t('blocks.container.settings.flex_wrap_options.wrap_reverse'),
+                    'nowrap' => _t('blocks.group.settings.flex_wrap_options.nowrap'),
+                    'wrap' => _t('blocks.group.settings.flex_wrap_options.wrap'),
+                    'wrap-reverse' => _t('blocks.group.settings.flex_wrap_options.wrap_reverse'),
                 ])
                 ->default('nowrap')
                 ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')),
 
-            Select::make('justify_content', _t('blocks.container.settings.justify_content_label'))
+            Select::make('justify_content', _t('blocks.group.settings.justify_content_label'))
                 ->options([
-                    'start' => _t('blocks.container.settings.justify_content_options.start'),
-                    'center' => _t('blocks.container.settings.justify_content_options.center'),
-                    'end' => _t('blocks.container.settings.justify_content_options.end'),
-                    'between' => _t('blocks.container.settings.justify_content_options.between'),
-                    'around' => _t('blocks.container.settings.justify_content_options.around'),
-                    'evenly' => _t('blocks.container.settings.justify_content_options.evenly'),
+                    'start' => _t('blocks.group.settings.justify_content_options.start'),
+                    'center' => _t('blocks.group.settings.justify_content_options.center'),
+                    'end' => _t('blocks.group.settings.justify_content_options.end'),
+                    'between' => _t('blocks.group.settings.justify_content_options.between'),
+                    'around' => _t('blocks.group.settings.justify_content_options.around'),
+                    'evenly' => _t('blocks.group.settings.justify_content_options.evenly'),
                 ])
                 ->default('start')
                 ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')),
 
-            Select::make('align_items', _t('blocks.container.settings.align_items_label'))
+            Select::make('align_items', _t('blocks.group.settings.align_items_label'))
                 ->options([
-                    'start' => _t('blocks.container.settings.align_items_options.start'),
-                    'center' => _t('blocks.container.settings.align_items_options.center'),
-                    'end' => _t('blocks.container.settings.align_items_options.end'),
-                    'stretch' => _t('blocks.container.settings.align_items_options.stretch'),
-                    'baseline' => _t('blocks.container.settings.align_items_options.baseline'),
+                    'start' => _t('blocks.group.settings.align_items_options.start'),
+                    'center' => _t('blocks.group.settings.align_items_options.center'),
+                    'end' => _t('blocks.group.settings.align_items_options.end'),
+                    'stretch' => _t('blocks.group.settings.align_items_options.stretch'),
+                    'baseline' => _t('blocks.group.settings.align_items_options.baseline'),
                 ])
                 ->default('stretch')
                 ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')),
 
-            Range::make('flex_gap', _t('blocks.container.settings.gap_label'))
+            Range::make('flex_gap', _t('blocks.group.settings.gap_label'))
                 ->min(0)
                 ->max(24)
                 ->step(1)
@@ -106,7 +106,7 @@ class Container extends SimpleBlock
                 ->info(_t('blocks.common.color_scheme_info')),
 
             // Grid Settings
-            Range::make('grid_columns', _t('blocks.container.settings.grid_columns_label'))
+            Range::make('grid_columns', _t('blocks.group.settings.grid_columns_label'))
                 ->min(1)
                 ->max(12)
                 ->step(1)
@@ -114,9 +114,9 @@ class Container extends SimpleBlock
                 ->responsive()
                 ->visibleWhen(fn($rule) => $rule->when('layout_type', 'grid')),
 
-            Select::make('grid_rows', _t('blocks.container.settings.grid_rows_label'))
+            Select::make('grid_rows', _t('blocks.group.settings.grid_rows_label'))
                 ->options([
-                    'auto' => _t('blocks.container.settings.grid_rows_options.auto'),
+                    'auto' => _t('blocks.group.settings.grid_rows_options.auto'),
                     '1' => '1',
                     '2' => '2',
                     '3' => '3',
@@ -127,7 +127,7 @@ class Container extends SimpleBlock
                 ->default('auto')
                 ->visibleWhen(fn($rule) => $rule->when('layout_type', 'grid')),
 
-            Range::make('grid_gap', _t('blocks.container.settings.gap_label'))
+            Range::make('grid_gap', _t('blocks.group.settings.gap_label'))
                 ->min(0)
                 ->max(24)
                 ->step(1)
@@ -136,58 +136,58 @@ class Container extends SimpleBlock
                 ->visibleWhen(fn($rule) => $rule->when('layout_type', 'grid')),
 
             // Spacing
-            Header::make(_t('blocks.container.settings.spacing_header')),
+            Header::make(_t('blocks.group.settings.spacing_header')),
 
-            Range::make('padding_top', _t('blocks.container.settings.padding_top_label'))
+            Range::make('padding_top', _t('blocks.group.settings.padding_top_label'))
                 ->min(0)
                 ->max(24)
                 ->step(1)
                 ->default(0)
                 ->responsive(),
 
-            Range::make('padding_bottom', _t('blocks.container.settings.padding_bottom_label'))
+            Range::make('padding_bottom', _t('blocks.group.settings.padding_bottom_label'))
                 ->min(0)
                 ->max(24)
                 ->step(1)
                 ->default(0)
                 ->responsive(),
 
-            Range::make('padding_left', _t('blocks.container.settings.padding_left_label'))
+            Range::make('padding_left', _t('blocks.group.settings.padding_left_label'))
                 ->min(0)
                 ->max(24)
                 ->step(1)
                 ->default(0)
                 ->responsive(),
 
-            Range::make('padding_right', _t('blocks.container.settings.padding_right_label'))
+            Range::make('padding_right', _t('blocks.group.settings.padding_right_label'))
                 ->min(0)
                 ->max(24)
                 ->step(1)
                 ->default(0)
                 ->responsive(),
 
-            Range::make('margin_top', _t('blocks.container.settings.margin_top_label'))
+            Range::make('margin_top', _t('blocks.group.settings.margin_top_label'))
                 ->min(0)
                 ->max(24)
                 ->step(1)
                 ->default(0)
                 ->responsive(),
 
-            Range::make('margin_bottom', _t('blocks.container.settings.margin_bottom_label'))
+            Range::make('margin_bottom', _t('blocks.group.settings.margin_bottom_label'))
                 ->min(0)
                 ->max(24)
                 ->step(1)
                 ->default(0)
                 ->responsive(),
 
-            Range::make('margin_left', _t('blocks.container.settings.margin_left_label'))
+            Range::make('margin_left', _t('blocks.group.settings.margin_left_label'))
                 ->min(0)
                 ->max(24)
                 ->step(1)
                 ->default(0)
                 ->responsive(),
 
-            Range::make('margin_right', _t('blocks.container.settings.margin_right_label'))
+            Range::make('margin_right', _t('blocks.group.settings.margin_right_label'))
                 ->min(0)
                 ->max(24)
                 ->step(1)
@@ -195,20 +195,20 @@ class Container extends SimpleBlock
                 ->responsive(),
 
             // Sizing
-            Header::make(_t('blocks.container.settings.sizing_header')),
+            Header::make(_t('blocks.group.settings.sizing_header')),
 
-            Select::make('width', _t('blocks.container.settings.width_label'))
+            Select::make('width', _t('blocks.group.settings.width_label'))
                 ->options([
-                    'auto' => _t('blocks.container.settings.width_options.auto'),
-                    'full' => _t('blocks.container.settings.width_options.full'),
-                    'fit' => _t('blocks.container.settings.width_options.fit'),
-                    'screen' => _t('blocks.container.settings.width_options.screen'),
-                    'custom' => _t('blocks.container.settings.width_options.custom'),
+                    'auto' => _t('blocks.group.settings.width_options.auto'),
+                    'full' => _t('blocks.group.settings.width_options.full'),
+                    'fit' => _t('blocks.group.settings.width_options.fit'),
+                    'screen' => _t('blocks.group.settings.width_options.screen'),
+                    'custom' => _t('blocks.group.settings.width_options.custom'),
                 ])
                 ->default('auto')
                 ->responsive(),
 
-            Range::make('custom_width', _t('blocks.container.settings.custom_width_label'))
+            Range::make('custom_width', _t('blocks.group.settings.custom_width_label'))
                 ->min(0)
                 ->max(100)
                 ->step(1)
@@ -216,38 +216,38 @@ class Container extends SimpleBlock
                 ->unit('%')
                 ->visibleWhen(fn($rule) => $rule->when('width', 'custom')),
 
-            Range::make('min_width', _t('blocks.container.settings.min_width_label'))
+            Range::make('min_width', _t('blocks.group.settings.min_width_label'))
                 ->min(0)
                 ->max(1000)
                 ->step(10)
                 ->default(0)
                 ->unit('px'),
 
-            Select::make('max_width', _t('blocks.container.settings.max_width_label'))
+            Select::make('max_width', _t('blocks.group.settings.max_width_label'))
                 ->options([
-                    'none' => _t('blocks.container.settings.max_width_options.none'),
+                    'none' => _t('blocks.group.settings.max_width_options.none'),
                     'xs' => 'XS (20rem)',
                     'sm' => 'SM (24rem)',
                     'md' => 'MD (28rem)',
                     'lg' => 'LG (32rem)',
                     'xl' => 'XL (36rem)',
                     '2xl' => '2XL (42rem)',
-                    'full' => _t('blocks.container.settings.max_width_options.full'),
-                    'screen' => _t('blocks.container.settings.max_width_options.screen'),
+                    'full' => _t('blocks.group.settings.max_width_options.full'),
+                    'screen' => _t('blocks.group.settings.max_width_options.screen'),
                 ])
                 ->default('none'),
 
-            Select::make('height', _t('blocks.container.settings.height_label'))
+            Select::make('height', _t('blocks.group.settings.height_label'))
                 ->options([
-                    'auto' => _t('blocks.container.settings.height_options.auto'),
-                    'full' => _t('blocks.container.settings.height_options.full'),
-                    'fit' => _t('blocks.container.settings.height_options.fit'),
-                    'screen' => _t('blocks.container.settings.height_options.screen'),
-                    'custom' => _t('blocks.container.settings.height_options.custom'),
+                    'auto' => _t('blocks.group.settings.height_options.auto'),
+                    'full' => _t('blocks.group.settings.height_options.full'),
+                    'fit' => _t('blocks.group.settings.height_options.fit'),
+                    'screen' => _t('blocks.group.settings.height_options.screen'),
+                    'custom' => _t('blocks.group.settings.height_options.custom'),
                 ])
                 ->default('auto'),
 
-            Range::make('custom_height', _t('blocks.container.settings.custom_height_label'))
+            Range::make('custom_height', _t('blocks.group.settings.custom_height_label'))
                 ->min(0)
                 ->max(1000)
                 ->step(10)
@@ -255,7 +255,7 @@ class Container extends SimpleBlock
                 ->unit('px')
                 ->visibleWhen(fn($rule) => $rule->when('height', 'custom')),
 
-            Range::make('min_height', _t('blocks.container.settings.min_height_label'))
+            Range::make('min_height', _t('blocks.group.settings.min_height_label'))
                 ->min(0)
                 ->max(1000)
                 ->step(10)
@@ -263,12 +263,12 @@ class Container extends SimpleBlock
                 ->unit('px'),
 
             // Borders
-            Header::make(_t('blocks.container.settings.borders_header')),
+            Header::make(_t('blocks.group.settings.borders_header')),
 
-            Checkbox::make('border', _t('blocks.container.settings.border_label'))
+            Checkbox::make('border', _t('blocks.group.settings.border_label'))
                 ->default(false),
 
-            Range::make('border_width', _t('blocks.container.settings.border_width_label'))
+            Range::make('border_width', _t('blocks.group.settings.border_width_label'))
                 ->min(0)
                 ->max(8)
                 ->step(1)
@@ -276,21 +276,21 @@ class Container extends SimpleBlock
                 ->unit('px')
                 ->visibleWhen(fn($rule) => $rule->whenTruthy('border')),
 
-            Select::make('border_style', _t('blocks.container.settings.border_style_label'))
+            Select::make('border_style', _t('blocks.group.settings.border_style_label'))
                 ->options([
-                    'solid' => _t('blocks.container.settings.border_style_options.solid'),
-                    'dashed' => _t('blocks.container.settings.border_style_options.dashed'),
-                    'dotted' => _t('blocks.container.settings.border_style_options.dotted'),
+                    'solid' => _t('blocks.group.settings.border_style_options.solid'),
+                    'dashed' => _t('blocks.group.settings.border_style_options.dashed'),
+                    'dotted' => _t('blocks.group.settings.border_style_options.dotted'),
                 ])
                 ->default('solid')
                 ->asSegment()
                 ->visibleWhen(fn($rule) => $rule->whenTruthy('border')),
 
-            Color::make('border_color', _t('blocks.container.settings.border_color_label'))
+            Color::make('border_color', _t('blocks.group.settings.border_color_label'))
                 ->default('currentColor')
                 ->visibleWhen(fn($rule) => $rule->whenTruthy('border')),
 
-            Range::make('border_opacity', _t('blocks.container.settings.border_opacity_label'))
+            Range::make('border_opacity', _t('blocks.group.settings.border_opacity_label'))
                 ->min(0)
                 ->max(100)
                 ->step(5)
@@ -298,111 +298,111 @@ class Container extends SimpleBlock
                 ->unit('%')
                 ->visibleWhen(fn($rule) => $rule->whenTruthy('border')),
 
-            Select::make('border_radius', _t('blocks.container.settings.border_radius_label'))
+            Select::make('border_radius', _t('blocks.group.settings.border_radius_label'))
                 ->options([
-                    'none' => _t('blocks.container.settings.border_radius_options.none'),
+                    'none' => _t('blocks.group.settings.border_radius_options.none'),
                     'sm' => 'SM',
                     'md' => 'MD',
                     'lg' => 'LG',
                     'xl' => 'XL',
                     '2xl' => '2XL',
                     '3xl' => '3XL',
-                    'full' => _t('blocks.container.settings.border_radius_options.full'),
+                    'full' => _t('blocks.group.settings.border_radius_options.full'),
                 ])
                 ->default('none'),
 
             // Background
-            Header::make(_t('blocks.container.settings.background_header')),
+            Header::make(_t('blocks.group.settings.background_header')),
 
-            Select::make('background_type', _t('blocks.container.settings.background_type_label'))
+            Select::make('background_type', _t('blocks.group.settings.background_type_label'))
                 ->options([
-                    'none' => _t('blocks.container.settings.background_type_options.none'),
-                    'color' => _t('blocks.container.settings.background_type_options.color'),
-                    'gradient' => _t('blocks.container.settings.background_type_options.gradient'),
-                    'image' => _t('blocks.container.settings.background_type_options.image'),
+                    'none' => _t('blocks.group.settings.background_type_options.none'),
+                    'color' => _t('blocks.group.settings.background_type_options.color'),
+                    'gradient' => _t('blocks.group.settings.background_type_options.gradient'),
+                    'image' => _t('blocks.group.settings.background_type_options.image'),
                 ])
                 ->asSegment()
                 ->default('none'),
 
-            Color::make('background_color', _t('blocks.container.settings.background_color_label'))
+            Color::make('background_color', _t('blocks.group.settings.background_color_label'))
                 ->default('rgba(0, 0, 0, 0)')
                 ->visibleWhen(fn($rule) => $rule->when('background_type', 'color')),
 
-            Gradient::make('background_gradient', _t('blocks.container.settings.background_gradient_label'))
+            Gradient::make('background_gradient', _t('blocks.group.settings.background_gradient_label'))
                 ->visibleWhen(fn($rule) => $rule->when('background_type', 'gradient')),
 
-            Image::make('background_image', _t('blocks.container.settings.background_image_label'))
+            Image::make('background_image', _t('blocks.group.settings.background_image_label'))
                 ->visibleWhen(fn($rule) => $rule->when('background_type', 'image')),
 
-            Select::make('background_position', _t('blocks.container.settings.background_position_label'))
+            Select::make('background_position', _t('blocks.group.settings.background_position_label'))
                 ->options([
-                    'center' => _t('blocks.container.settings.background_position_options.center'),
-                    'top' => _t('blocks.container.settings.background_position_options.top'),
-                    'bottom' => _t('blocks.container.settings.background_position_options.bottom'),
-                    'left' => _t('blocks.container.settings.background_position_options.left'),
-                    'right' => _t('blocks.container.settings.background_position_options.right'),
+                    'center' => _t('blocks.group.settings.background_position_options.center'),
+                    'top' => _t('blocks.group.settings.background_position_options.top'),
+                    'bottom' => _t('blocks.group.settings.background_position_options.bottom'),
+                    'left' => _t('blocks.group.settings.background_position_options.left'),
+                    'right' => _t('blocks.group.settings.background_position_options.right'),
                 ])
                 ->default('center')
                 ->visibleWhen(fn($rule) => $rule->when('background_type', 'image')),
 
-            Select::make('background_size', _t('blocks.container.settings.background_size_label'))
+            Select::make('background_size', _t('blocks.group.settings.background_size_label'))
                 ->options([
-                    'cover' => _t('blocks.container.settings.background_size_options.cover'),
-                    'contain' => _t('blocks.container.settings.background_size_options.contain'),
-                    'auto' => _t('blocks.container.settings.background_size_options.auto'),
+                    'cover' => _t('blocks.group.settings.background_size_options.cover'),
+                    'contain' => _t('blocks.group.settings.background_size_options.contain'),
+                    'auto' => _t('blocks.group.settings.background_size_options.auto'),
                 ])
                 ->default('cover')
                 ->visibleWhen(fn($rule) => $rule->when('background_type', 'image')),
 
-            Select::make('background_repeat', _t('blocks.container.settings.background_repeat_label'))
+            Select::make('background_repeat', _t('blocks.group.settings.background_repeat_label'))
                 ->options([
-                    'no-repeat' => _t('blocks.container.settings.background_repeat_options.no_repeat'),
-                    'repeat' => _t('blocks.container.settings.background_repeat_options.repeat'),
-                    'repeat-x' => _t('blocks.container.settings.background_repeat_options.repeat_x'),
-                    'repeat-y' => _t('blocks.container.settings.background_repeat_options.repeat_y'),
+                    'no-repeat' => _t('blocks.group.settings.background_repeat_options.no_repeat'),
+                    'repeat' => _t('blocks.group.settings.background_repeat_options.repeat'),
+                    'repeat-x' => _t('blocks.group.settings.background_repeat_options.repeat_x'),
+                    'repeat-y' => _t('blocks.group.settings.background_repeat_options.repeat_y'),
                 ])
                 ->default('no-repeat')
                 ->visibleWhen(fn($rule) => $rule->when('background_type', 'image')),
 
             // Overlay
-            Header::make(_t('blocks.container.settings.overlay_header')),
+            Header::make(_t('blocks.group.settings.overlay_header')),
 
-            Checkbox::make('is_overlay', _t('blocks.container.settings.is_overlay_label'))
+            Checkbox::make('is_overlay', _t('blocks.group.settings.is_overlay_label'))
                 ->default(false)
-                ->info(_t('blocks.container.settings.is_overlay_info')),
+                ->info(_t('blocks.group.settings.is_overlay_info')),
 
-            Select::make('overlay_visibility', _t('blocks.container.settings.overlay_visibility_label'))
+            Select::make('overlay_visibility', _t('blocks.group.settings.overlay_visibility_label'))
                 ->options([
-                    'always' => _t('blocks.container.settings.overlay_visibility_options.always'),
-                    'hover' => _t('blocks.container.settings.overlay_visibility_options.hover'),
+                    'always' => _t('blocks.group.settings.overlay_visibility_options.always'),
+                    'hover' => _t('blocks.group.settings.overlay_visibility_options.hover'),
                 ])
                 ->default('always')
-                ->info(_t('blocks.container.settings.overlay_visibility_info'))
+                ->info(_t('blocks.group.settings.overlay_visibility_info'))
                 ->visibleWhen(fn($rule) => $rule->whenTruthy('is_overlay')),
 
-            Select::make('overlay_hover_target', _t('blocks.container.settings.overlay_hover_target_label'))
+            Select::make('overlay_hover_target', _t('blocks.group.settings.overlay_hover_target_label'))
                 ->options([
-                    'parent' => _t('blocks.container.settings.overlay_hover_target_options.parent'),
-                    'group' => _t('blocks.container.settings.overlay_hover_target_options.group'),
-                    'group/product-card' => _t('blocks.container.settings.overlay_hover_target_options.product_card'),
+                    'parent' => _t('blocks.group.settings.overlay_hover_target_options.parent'),
+                    'group' => _t('blocks.group.settings.overlay_hover_target_options.group'),
+                    'group/product-card' => _t('blocks.group.settings.overlay_hover_target_options.product_card'),
                 ])
                 ->default('parent')
-                ->info(_t('blocks.container.settings.overlay_hover_target_info'))
+                ->info(_t('blocks.group.settings.overlay_hover_target_info'))
                 ->visibleWhen(fn($rule) => $rule->whenTruthy('is_overlay')->when('overlay_visibility', 'hover')),
 
-            Range::make('z_index', _t('blocks.container.settings.z_index_label'))
+            Range::make('z_index', _t('blocks.group.settings.z_index_label'))
                 ->min(0)
                 ->max(50)
                 ->step(1)
                 ->default(10)
                 ->visibleWhen(fn($rule) => $rule->whenTruthy('is_overlay')),
 
-            Select::make('position', _t('blocks.container.settings.position_label'))
+            Select::make('position', _t('blocks.group.settings.position_label'))
                 ->options([
-                    'static' => _t('blocks.container.settings.position_options.static'),
-                    'relative' => _t('blocks.container.settings.position_options.relative'),
-                    'absolute' => _t('blocks.container.settings.position_options.absolute'),
-                    'fixed' => _t('blocks.container.settings.position_options.fixed'),
+                    'static' => _t('blocks.group.settings.position_options.static'),
+                    'relative' => _t('blocks.group.settings.position_options.relative'),
+                    'absolute' => _t('blocks.group.settings.position_options.absolute'),
+                    'fixed' => _t('blocks.group.settings.position_options.fixed'),
                 ])
                 ->default('static')
                 ->visibleWhen(fn($rule) => $rule->whenFalsy('is_overlay')),
@@ -412,22 +412,22 @@ class Container extends SimpleBlock
     public static function presets(): array
     {
         return [
-            Preset::make(_t('blocks.container.presets.basic.name'))
-                ->category(_t('blocks.container.presets.basic.category'))
+            Preset::make(_t('blocks.group.presets.basic.name'))
+                ->category(_t('blocks.group.presets.basic.category'))
                 ->settings([
                     'layout_type' => 'block',
                 ]),
 
-            Preset::make(_t('blocks.container.presets.centered.name'))
-                ->category(_t('blocks.container.presets.centered.category'))
+            Preset::make(_t('blocks.group.presets.centered.name'))
+                ->category(_t('blocks.group.presets.centered.category'))
                 ->settings([
                     'max_width' => 'xl',
                     'margin_left' => 'auto',
                     'margin_right' => 'auto',
                 ]),
 
-            Preset::make(_t('blocks.container.presets.card.name'))
-                ->category(_t('blocks.container.presets.card.category'))
+            Preset::make(_t('blocks.group.presets.card.name'))
+                ->category(_t('blocks.group.presets.card.category'))
                 ->settings([
                     'padding_top' => 6,
                     'padding_bottom' => 6,
@@ -437,24 +437,24 @@ class Container extends SimpleBlock
                     'border_radius' => 'lg',
                 ]),
 
-            Preset::make(_t('blocks.container.presets.flex_row.name'))
-                ->category(_t('blocks.container.presets.flex_row.category'))
+            Preset::make(_t('blocks.group.presets.flex_row.name'))
+                ->category(_t('blocks.group.presets.flex_row.category'))
                 ->settings([
                     'layout_type' => 'flex',
                     'flex_direction' => 'row',
                     'flex_gap' => 4,
                 ]),
 
-            Preset::make(_t('blocks.container.presets.grid.name'))
-                ->category(_t('blocks.container.presets.grid.category'))
+            Preset::make(_t('blocks.group.presets.grid.name'))
+                ->category(_t('blocks.group.presets.grid.category'))
                 ->settings([
                     'layout_type' => 'grid',
                     'grid_columns' => 3,
                     'grid_gap' => 4,
                 ]),
 
-            Preset::make(_t('blocks.container.presets.overlay.name'))
-                ->category(_t('blocks.container.presets.overlay.category'))
+            Preset::make(_t('blocks.group.presets.overlay.name'))
+                ->category(_t('blocks.group.presets.overlay.category'))
                 ->settings([
                     'is_overlay' => true,
                     'background_color' => 'rgba(0, 0, 0, 0.5)',
@@ -481,31 +481,30 @@ class Container extends SimpleBlock
     {
         $classes = ['group'];
         $styles = [];
-        $properties = $this->block->properties->all();
 
-        $this->mapPosition($classes, $styles, $properties);
+        $this->mapPosition($classes, $styles);
 
-        if (isset($properties['layout_type'])) {
-            $layoutType = $properties['layout_type'] ?? 'block';
+        if ($this->block->settings->has('layout_type')) {
+            $layoutType = $this->block->settings->layout_type ?? 'block';
             $this->mapLayoutType($classes, $layoutType);
 
             if ($layoutType === 'flex') {
-                $this->mapFlexProperties($classes, $properties);
+                $this->mapFlexProperties($classes);
             }
 
             if ($layoutType === 'grid') {
-                $this->mapGridProperties($classes, $properties);
+                $this->mapGridProperties($classes);
             }
-        } elseif (isset($properties['flex_direction'])) {
+        } elseif ($this->block->settings->has('flex_direction')) {
             $classes[] = 'flex';
-            $this->mapFlexProperties($classes, $properties);
+            $this->mapFlexProperties($classes);
         }
 
-        $this->mapSpacing($classes, $styles, $properties);
-        $this->mapSizing($classes, $styles, $properties);
-        $this->mapBorder($classes, $styles, $properties);
-        $this->mapBackground($classes, $styles, $properties);
-        $this->mapOverlay($classes, $styles, $properties);
+        $this->mapSpacing($classes, $styles);
+        $this->mapSizing($classes, $styles);
+        $this->mapBorder($classes, $styles);
+        $this->mapBackground($classes, $styles);
+        $this->mapOverlay($classes, $styles);
 
         return [
             'class' => implode(' ', $classes),
@@ -513,15 +512,15 @@ class Container extends SimpleBlock
         ];
     }
 
-    protected function mapPosition(array &$classes, array &$styles, array $properties): void
+    protected function mapPosition(array &$classes, array &$styles): void
     {
-        if ($properties['is_overlay'] ?? false) {
+        if ($this->block->settings->is_overlay ?? false) {
 
             $classes[] = 'absolute inset-0';
 
-            $overlayVisibility = $properties['overlay_visibility'] ?? 'always';
+            $overlayVisibility = $this->block->settings->overlay_visibility ?? 'always';
             if ($overlayVisibility === 'hover') {
-                $hoverTarget = $properties['overlay_hover_target'] ?? 'parent';
+                $hoverTarget = $this->block->settings->overlay_hover_target ?? 'parent';
 
                 // Determine hover prefix based on target
                 // Support named groups with 'group/name' syntax
@@ -537,8 +536,8 @@ class Container extends SimpleBlock
                 $classes[] = "opacity-0 pointer-events-none {$hoverPrefix}:opacity-100 {$hoverPrefix}:pointer-events-auto transition-opacity duration-300 [&>*]:pointer-events-auto";
             }
 
-            if (isset($properties['z_index'])) {
-                $zIndex = $properties['z_index'];
+            if ($this->block->settings->has('z_index')) {
+                $zIndex = $this->block->settings->z_index;
                 $commonZIndexes = [0, 10, 20, 30, 40, 50];
                 if (in_array($zIndex, $commonZIndexes)) {
                     $classes[] = "z-{$zIndex}";
@@ -548,7 +547,7 @@ class Container extends SimpleBlock
             }
         } else {
             // Use selected position when not overlay
-            $classes[] = match ($properties['position'] ?? 'static') {
+            $classes[] = match ($this->block->settings->position ?? 'static') {
                 'relative' => 'relative',
                 'absolute' => 'absolute',
                 'fixed' => 'fixed',
@@ -566,10 +565,10 @@ class Container extends SimpleBlock
         };
     }
 
-    protected function mapFlexProperties(array &$classes, array $properties): void
+    protected function mapFlexProperties(array &$classes): void
     {
-        if (isset($properties['flex_direction'])) {
-            $classes[] = Tailwind::responsive($properties['flex_direction'], fn($v) => match ($v) {
+        if ($this->block->settings->has('flex_direction')) {
+            $classes[] = Tailwind::responsive($this->block->settings->flex_direction, fn($v) => match ($v) {
                 'row' => 'flex-row',
                 'row-reverse' => 'flex-row-reverse',
                 'column' => 'flex-col',
@@ -578,8 +577,8 @@ class Container extends SimpleBlock
             });
         }
 
-        if (isset($properties['flex_wrap'])) {
-            $classes[] = Tailwind::responsive($properties['flex_wrap'], fn($v) => match ($v) {
+        if ($this->block->settings->has('flex_wrap')) {
+            $classes[] = Tailwind::responsive($this->block->settings->flex_wrap, fn($v) => match ($v) {
                 'nowrap' => 'flex-nowrap',
                 'wrap' => 'flex-wrap',
                 'wrap-reverse' => 'flex-wrap-reverse',
@@ -587,8 +586,8 @@ class Container extends SimpleBlock
             });
         }
 
-        if (isset($properties['justify_content'])) {
-            $classes[] = Tailwind::responsive($properties['justify_content'], fn($v) => match ($v) {
+        if ($this->block->settings->has('justify_content')) {
+            $classes[] = Tailwind::responsive($this->block->settings->justify_content, fn($v) => match ($v) {
                 'start' => 'justify-start',
                 'end' => 'justify-end',
                 'center' => 'justify-center',
@@ -599,8 +598,8 @@ class Container extends SimpleBlock
             });
         }
 
-        if (isset($properties['align_items'])) {
-            $classes[] = Tailwind::responsive($properties['align_items'], fn($v) => match ($v) {
+        if ($this->block->settings->has('align_items')) {
+            $classes[] = Tailwind::responsive($this->block->settings->align_items, fn($v) => match ($v) {
                 'stretch' => 'items-stretch',
                 'start' => 'items-start',
                 'end' => 'items-end',
@@ -610,37 +609,37 @@ class Container extends SimpleBlock
             });
         }
 
-        if (isset($properties['flex_gap'])) {
-            $classes[] = Tailwind::responsive($properties['flex_gap'], fn($v) => "gap-{$v}");
+        if ($this->block->settings->has('flex_gap')) {
+            $classes[] = Tailwind::responsive($this->block->settings->flex_gap, fn($v) => "gap-{$v}");
         }
     }
 
-    protected function mapGridProperties(array &$classes, array $properties): void
+    protected function mapGridProperties(array &$classes): void
     {
-        if (isset($properties['grid_columns'])) {
-            $classes[] = Tailwind::responsive($properties['grid_columns'], fn($v) => is_numeric($v) ? "grid-cols-{$v}" : (string)$v);
+        if ($this->block->settings->has('grid_columns')) {
+            $classes[] = Tailwind::responsive($this->block->settings->grid_columns, fn($v) => is_numeric($v) ? "grid-cols-{$v}" : (string)$v);
         }
 
-        if (isset($properties['grid_rows'])) {
-            $classes[] = Tailwind::responsive($properties['grid_rows'], fn($v) => $v === 'auto' ? 'grid-rows-auto' : "grid-rows-{$v}");
+        if ($this->block->settings->has('grid_rows')) {
+            $classes[] = Tailwind::responsive($this->block->settings->grid_rows, fn($v) => $v === 'auto' ? 'grid-rows-auto' : "grid-rows-{$v}");
         }
 
-        if (isset($properties['grid_gap'])) {
-            $classes[] = Tailwind::responsive($properties['grid_gap'], fn($v) => "gap-{$v}");
+        if ($this->block->settings->has('grid_gap')) {
+            $classes[] = Tailwind::responsive($this->block->settings->grid_gap, fn($v) => "gap-{$v}");
         }
     }
 
-    protected function mapSpacing(array &$classes, array &$styles, array $properties): void
+    protected function mapSpacing(array &$classes, array &$styles): void
     {
-        $pt = $properties['padding_top'] ?? null;
-        $pb = $properties['padding_bottom'] ?? null;
-        $ps = $properties['padding_left'] ?? null;
-        $pe = $properties['padding_right'] ?? null;
+        $pt = $this->block->settings->padding_top ?? null;
+        $pb = $this->block->settings->padding_bottom ?? null;
+        $ps = $this->block->settings->padding_left ?? null;
+        $pe = $this->block->settings->padding_right ?? null;
 
-        $mt = $properties['margin_top'] ?? null;
-        $mb = $properties['margin_bottom'] ?? null;
-        $ms = $properties['margin_left'] ?? null;
-        $me = $properties['margin_right'] ?? null;
+        $mt = $this->block->settings->margin_top ?? null;
+        $mb = $this->block->settings->margin_bottom ?? null;
+        $ms = $this->block->settings->margin_left ?? null;
+        $me = $this->block->settings->margin_right ?? null;
 
         // Padding
         if ($pt && $pb && $this->responsiveValuesEqual($pt, $pb)) {
@@ -689,13 +688,13 @@ class Container extends SimpleBlock
         }
     }
 
-    protected function mapSizing(array &$classes, array &$styles, array $properties): void
+    protected function mapSizing(array &$classes, array &$styles): void
     {
         // Width
-        if (isset($properties['width'])) {
-            $width = $properties['width'];
-            if ($width === 'custom' && isset($properties['custom_width'])) {
-                $customWidth = $properties['custom_width'];
+        if ($this->block->settings->has('width')) {
+            $width = $this->block->settings->width;
+            if ($width === 'custom' && $this->block->settings->has('custom_width')) {
+                $customWidth = $this->block->settings->custom_width;
                 $styles[] = "width: {$customWidth}%";
             } elseif ($width !== 'auto') {
                 $classes[] = Tailwind::responsive($width, fn($v) => match ($v) {
@@ -708,16 +707,16 @@ class Container extends SimpleBlock
         }
 
         // Min width
-        if (isset($properties['min_width'])) {
-            $minWidth = $properties['min_width'];
+        if ($this->block->settings->has('min_width')) {
+            $minWidth = $this->block->settings->min_width;
             if ($minWidth > 0) {
                 $styles[] = "min-width: {$minWidth}px";
             }
         }
 
         // Max width
-        if (isset($properties['max_width'])) {
-            $maxWidth = $properties['max_width'];
+        if ($this->block->settings->has('max_width')) {
+            $maxWidth = $this->block->settings->max_width;
             if ($maxWidth !== 'none') {
                 $classes[] = Tailwind::responsive($maxWidth, fn($v) => match ($v) {
                     'xs' => 'max-w-xs',
@@ -734,10 +733,10 @@ class Container extends SimpleBlock
         }
 
         // Height
-        if (isset($properties['height'])) {
-            $height = $properties['height'];
-            if ($height === 'custom' && isset($properties['custom_height'])) {
-                $customHeight = $properties['custom_height'];
+        if ($this->block->settings->has('height')) {
+            $height = $this->block->settings->height;
+            if ($height === 'custom' && $this->block->settings->has('custom_height')) {
+                $customHeight = $this->block->settings->custom_height;
                 $styles[] = "height: {$customHeight}px";
             } elseif ($height !== 'auto') {
                 $classes[] = Tailwind::responsive($height, fn($v) => match ($v) {
@@ -750,23 +749,23 @@ class Container extends SimpleBlock
         }
 
         // Min height
-        if (isset($properties['min_height'])) {
-            $minHeight = $properties['min_height'];
+        if ($this->block->settings->has('min_height')) {
+            $minHeight = $this->block->settings->min_height;
             if ($minHeight > 0) {
                 $styles[] = "min-height: {$minHeight}px";
             }
         }
     }
 
-    protected function mapBorder(array &$classes, array &$styles, array $properties): void
+    protected function mapBorder(array &$classes, array &$styles): void
     {
-        if (!($properties['border'] ?? false)) {
+        if (!($this->block->settings->border ?? false)) {
             return;
         }
 
         // Border width
-        if (isset($properties['border_width'])) {
-            $borderWidth = $properties['border_width'];
+        if ($this->block->settings->has('border_width')) {
+            $borderWidth = $this->block->settings->border_width;
             if ($borderWidth >= 0 && $borderWidth <= 8) {
                 $classes[] = $borderWidth === 1 ? 'border' : "border-{$borderWidth}";
             } else {
@@ -775,17 +774,17 @@ class Container extends SimpleBlock
         }
 
         // Border style
-        if (isset($properties['border_style'])) {
-            $classes[] = "border-{$properties['border_style']}";
+        if ($this->block->settings->has('border_style')) {
+            $classes[] = "border-{$this->block->settings->border_style}";
         }
 
         // Border color with opacity
-        if (isset($properties['border_color'])) {
-            $borderColor = $this->parseColor($properties['border_color']);
+        if ($this->block->settings->has('border_color')) {
+            $borderColor = $this->parseColor($this->block->settings->border_color);
 
             if ($borderColor) {
-                if (isset($properties['border_opacity'])) {
-                    $opacity = $properties['border_opacity'] / 100;
+                if ($this->block->settings->has('border_opacity')) {
+                    $opacity = $this->block->settings->border_opacity / 100;
                     $rgb = $borderColor->toRgb();
                     $coords = $rgb->coordinates();
                     $colorStr = "rgba({$coords[0]}, {$coords[1]}, {$coords[2]}, {$opacity})";
@@ -797,8 +796,8 @@ class Container extends SimpleBlock
         }
 
         // Border radius
-        if (isset($properties['border_radius'])) {
-            $borderRadius = $properties['border_radius'];
+        if ($this->block->settings->has('border_radius')) {
+            $borderRadius = $this->block->settings->border_radius;
             if ($borderRadius !== 'none') {
                 $classes[] = Tailwind::responsive($borderRadius, fn($v) => match ($v) {
                     'sm' => 'rounded-sm',
@@ -814,18 +813,18 @@ class Container extends SimpleBlock
         }
     }
 
-    protected function mapBackground(array &$classes, array &$styles, array $properties): void
+    protected function mapBackground(array &$classes, array &$styles): void
     {
-        $bgType = $properties['background_type'] ?? 'none';
+        $bgType = $this->block->settings->background_type ?? 'none';
 
-        if ($bgType === 'color' && isset($properties['background_color']) && $properties['background_color']) {
-            $styles[] = "background-color: {$properties['background_color']}";
-        } elseif ($bgType === 'gradient' && isset($properties['background_gradient']) && $properties['background_gradient']) {
-            $styles[] = "background-image: {$properties['background_gradient']}";
-        } elseif ($bgType === 'image' && isset($properties['background_image']) && $properties['background_image']) {
-            $styles[] = "background-image: url('{$properties['background_image']}')";
+        if ($bgType === 'color' && $this->block->settings->has('background_color') && $this->block->settings->background_color) {
+            $styles[] = "background-color: {$this->block->settings->background_color}";
+        } elseif ($bgType === 'gradient' && $this->block->settings->has('background_gradient') && $this->block->settings->background_gradient) {
+            $styles[] = "background-image: {$this->block->settings->background_gradient}";
+        } elseif ($bgType === 'image' && $this->block->settings->has('background_image') && $this->block->settings->background_image) {
+            $styles[] = "background-image: url('{$this->block->settings->background_image}')";
 
-            $classes[] = match ($properties['background_position'] ?? 'center') {
+            $classes[] = match ($this->block->settings->background_position ?? 'center') {
                 'top' => 'bg-top',
                 'bottom' => 'bg-bottom',
                 'left' => 'bg-left',
@@ -833,13 +832,13 @@ class Container extends SimpleBlock
                 default => 'bg-center',
             };
 
-            $classes[] = match ($properties['background_size'] ?? 'cover') {
+            $classes[] = match ($this->block->settings->background_size ?? 'cover') {
                 'contain' => 'bg-contain',
                 'auto' => 'bg-auto',
                 default => 'bg-cover',
             };
 
-            $classes[] = match ($properties['background_repeat'] ?? 'no-repeat') {
+            $classes[] = match ($this->block->settings->background_repeat ?? 'no-repeat') {
                 'repeat' => 'bg-repeat',
                 'repeat-x' => 'bg-repeat-x',
                 'repeat-y' => 'bg-repeat-y',
@@ -848,7 +847,7 @@ class Container extends SimpleBlock
         }
     }
 
-    protected function mapOverlay(array &$classes, array &$styles, array $properties): void
+    protected function mapOverlay(array &$classes, array &$styles): void
     {
         // Note: Overlay settings are handled in mapPosition() for positioning
         // This method is kept for potential future overlay-specific styling

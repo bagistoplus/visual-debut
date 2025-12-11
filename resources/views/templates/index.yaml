@@ -45,7 +45,7 @@ sections:
           text_color: '#EBE6E6FF'
       hero-buttons-container:
         id: 'hero-buttons-container'
-        type: '@visual-debut/container'
+        type: '@visual-debut/group'
         name: 'Buttons'
         settings:
           layout_type: 'flex'
@@ -127,7 +127,7 @@ sections:
               hover_zoom_scale: 105
           category-name-container:
             id: category-name-container
-            type: '@visual-debut/container'
+            type: '@visual-debut/group'
             settings:
               layout_type: 'flex'
               flex_direction: 'row'

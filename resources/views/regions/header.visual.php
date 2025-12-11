@@ -20,7 +20,7 @@ return TemplateBuilder::make()
             ])
             ->blocks([
                 // Logo Container
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->id('container-logo')
                     ->name('Logo')
                     ->settings([
@@ -34,7 +34,7 @@ return TemplateBuilder::make()
                     ]),
 
                 // Navigation Container
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->id('container-nav')
                     ->name('Navigation')
                     ->settings([
@@ -50,7 +50,7 @@ return TemplateBuilder::make()
                     ]),
 
                 // Actions Container
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->id('container-actions')
                     ->name('Actions')
                     ->settings([

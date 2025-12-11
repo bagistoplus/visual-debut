@@ -1,36 +1,30 @@
 @php
-  // Section height (using rem)
   $sectionHeight = match ($section->settings->section_height) {
-      'auto' => 'min-h-fit',
-      'xs' => 'min-h-[20rem]',
-      'sm' => 'min-h-[25rem]',
-      'md' => 'min-h-[37.5rem]',
-      'lg' => 'min-h-[50rem]',
-      'screen' => 'min-h-screen',
-      'custom' => 'min-h-[' . ($section->settings->section_height_custom ?? 600) . 'px]',
-      default => 'min-h-fit',
+      'auto' => 'h-auto',
+      'xs' => 'h-[20rem]',
+      'sm' => 'h-[25rem]',
+      'md' => 'h-[37.5rem]',
+      'lg' => 'h-[50rem]',
+      'screen' => 'h-screen',
+      'custom' => 'h-[' . ($section->settings->section_height_custom ?? 600) . 'px]',
+      default => 'h-auto',
   };
 
-  // Content wrapper width
   $contentWidth = $section->settings->section_width === 'container' ? 'container mx-auto px-4 sm:px-6 lg:px-8' : '';
 @endphp
 
-{{-- Outer container: position context + background + border --}}
 <div
   {{ $section->editor_attributes }}
-  class="relative overflow-hidden {{ $outerClass }}"
+  class="{{ $outerClass }} relative overflow-hidden"
   style="{{ $outerStyle }}"
 >
   {{-- Overlay layer --}}
   @if ($section->settings->toggle_overlay)
-    <div
-      class="absolute inset-0"
-      style="{{ $overlayStyle }}"
-    ></div>
+    <div class="absolute inset-0" style="{{ $overlayStyle }}"></div>
   @endif
 
   {{-- Flex container: container + layout + height + padding --}}
-  <div class="relative z-10 flex {{ $contentWidth }} {{ $sectionHeight }} {{ $flexClass }}" style="{{ $flexStyle }}">
+  <div class="{{ $contentWidth }} {{ $sectionHeight }} {{ $flexClass }} relative z-10 flex" style="{{ $flexStyle }}">
     @children
   </div>
 </div>

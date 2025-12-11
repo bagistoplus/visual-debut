@@ -20,7 +20,7 @@ class ProductCardWithOverlay extends Preset
             ->properties(['product' => null])
             ->blocks([
                 // Image Container + Overlay
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/product-card-group')
                     ->name('Container')
                     ->properties([
                         'layout_type' => 'block',
@@ -43,7 +43,7 @@ class ProductCardWithOverlay extends Preset
                             ]),
 
                         // Overlay Container with Action Buttons
-                        PresetBlock::make('@visual-debut/container')
+                        PresetBlock::make('@visual-debut/product-card-group')
                             ->name('Buttons')
                             ->properties([
                                 'layout_type' => 'flex',
@@ -96,7 +96,7 @@ class ProductCardWithOverlay extends Preset
                     ]),
 
                 // Product Info Container
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/product-card-group')
                     ->name('Informations')
                     ->properties([
                         'layout_type' => 'block',
@@ -118,7 +118,7 @@ class ProductCardWithOverlay extends Preset
                             ]),
 
                         // Price and Labels Container
-                        PresetBlock::make('@visual-debut/container')
+                        PresetBlock::make('@visual-debut/product-card-group')
                             ->name('Price & Labels')
                             ->properties([
                                 'layout_type' => 'flex',

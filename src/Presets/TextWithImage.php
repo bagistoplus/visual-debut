@@ -29,7 +29,7 @@ class TextWithImage extends Preset
             ])
             ->blocks([
                 // Image Container
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->name('Image')
                     ->settings([
                         'layout_type' => 'block',
@@ -45,7 +45,7 @@ class TextWithImage extends Preset
                     ]),
 
                 // Content Container
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->name('Content')
                     ->settings([
                         'layout_type' => 'flex',

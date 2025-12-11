@@ -31,7 +31,7 @@ class CategoryCardOverlay extends Preset
                     ]),
 
                 // Overlay Container with Category Name
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'row',

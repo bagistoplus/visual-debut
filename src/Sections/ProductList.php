@@ -12,6 +12,7 @@ use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\VisualDebut\Blocks\Basic\Heading;
 use BagistoPlus\VisualDebut\Blocks\Product as ProductBlock;
+use BagistoPlus\VisualDebut\Blocks\ProductCardGroup;
 use BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay;
 use Webkul\Product\Repositories\ProductFlatRepository;
 
@@ -39,7 +40,8 @@ class ProductList extends BladeSection
 
     protected static array $accepts = [
         Heading::class,
-        ProductBlock::class
+        ProductBlock::class,
+        ProductCardGroup::class,
     ];
 
     protected function hasManualProducts(): bool
@@ -184,7 +186,7 @@ class ProductList extends BladeSection
                     'carousel' => _t('sections.product-list.settings.layout_type_options.carousel'),
                 ])
                 ->default('grid')
-                ->responsive(),
+                ->asSegment(),
 
             Range::make('columns', _t('sections.product-list.settings.columns_label'))
                 ->min(1)->max(6)->step(1)
@@ -222,6 +224,14 @@ class ProductList extends BladeSection
                     'none' => _t('sections.product-list.settings.nav_shape_options.none'),
                 ])
                 ->default('circle')
+                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'carousel')),
+
+            Select::make('nav_icon', _t('sections.product-list.settings.nav_icon_label'))
+                ->options([
+                    'arrow' => _t('sections.product-list.settings.nav_icon_options.arrow'),
+                    'chevron' => _t('sections.product-list.settings.nav_icon_options.chevron'),
+                ])
+                ->default('chevron')
                 ->visibleWhen(fn($rule) => $rule->when('layout_type', 'carousel')),
 
             Header::make(_t('sections.product-list.settings.spacing_header')),

@@ -210,15 +210,8 @@ class Text extends SimpleBlock
     {
         return [
             Preset::make(_t('blocks.text.presets.text.name'))
-                ->category(_t('blocks.text.presets.text.category'))
                 ->settings([
-                    'text' => '<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>',
-                ]),
-
-            Preset::make(_t('blocks.text.presets.heading.name'))
-                ->category(_t('blocks.text.presets.heading.category'))
-                ->settings([
-                    'text' => '<h2>New arrivals</h2>',
+                    'text' => 'We make things that work better and last longer. Our products solve real problems with clean design and honest materials.',
                 ]),
         ];
     }

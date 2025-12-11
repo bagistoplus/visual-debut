@@ -60,7 +60,7 @@ class HeroBanner extends Preset
                         'text_color' => '#EBE6E6FF',
                     ]),
 
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->name('Buttons')
                     ->settings([
                         'layout_type' => 'flex',

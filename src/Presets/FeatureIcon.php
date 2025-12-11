@@ -11,13 +11,13 @@ class FeatureIcon extends Preset
 {
     protected function getType(): string
     {
-        return '@visual-debut/container';
+        return '@visual-debut/group';
     }
 
     protected function build(): void
     {
         $this
-            ->name(_t('blocks.container.presets.feature_icon.name'))
+            ->name(_t('blocks.group.presets.feature_icon.name'))
             ->category('Content')
             ->settings([
                 'layout_type' => 'flex',
@@ -27,7 +27,7 @@ class FeatureIcon extends Preset
             ])
             ->blocks([
                 // Icon Container (circular border)
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->settings([
                         'layout_type' => 'flex',
                         'justify_content' => 'center',
@@ -52,7 +52,7 @@ class FeatureIcon extends Preset
                     ]),
 
                 // Content Container
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',

@@ -48,7 +48,7 @@ class FeatureIcons extends Preset
                     ]),
 
                 // Grid Container for Features
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->name('Features Grid')
                     ->settings([
                         'layout_type' => 'grid',
@@ -68,7 +68,7 @@ class FeatureIcons extends Preset
 
     protected function createFeatureItem(string $title, string $description, string $icon): PresetBlock
     {
-        return PresetBlock::make('@visual-debut/container')
+        return PresetBlock::make('@visual-debut/group')
             ->name('Feature')
             ->settings([
                 'layout_type' => 'flex',
@@ -78,7 +78,7 @@ class FeatureIcons extends Preset
             ])
             ->blocks([
                 // Icon Container (circular border)
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->settings([
                         'layout_type' => 'flex',
                         'justify_content' => 'center',
@@ -103,7 +103,7 @@ class FeatureIcons extends Preset
                     ]),
 
                 // Content
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',

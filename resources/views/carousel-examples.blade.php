@@ -37,7 +37,7 @@
         }"
           style="position: relative;"
         >
-          <div x-carousel:viewport style="overflow: hidden; border-radius: 8px;">
+          <div x-carousel:viewport class="overflow-hidden no-scrollbar overflow-touch rounded-lg">
             <div style="display: flex;">
               <div x-carousel:slide
                 style="flex-shrink: 0; width: 100%; height: 300px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;"
@@ -104,7 +104,7 @@
         }"
           style="position: relative;"
         >
-          <div x-carousel:viewport style="overflow: hidden; border-radius: 8px;">
+          <div x-carousel:viewport class="overflow-hidden no-scrollbar overflow-touch rounded-lg">
             <div style="display: flex; gap: 16px;">
               <div x-carousel:slide
                 style="flex-shrink: 0; width: 280px; height: 200px; background: #ff6b6b; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;"
@@ -168,7 +168,7 @@
         }"
           style="position: relative;"
         >
-          <div x-carousel:viewport style="overflow: hidden;">
+          <div x-carousel:viewport class="overflow-hidden no-scrollbar overflow-touch">
             <div style="display: flex; gap: 20px;">
               <div x-carousel:slide
                 style="flex-shrink: 0; width: calc((100% - 40px) / 3); height: 150px; background: #e74c3c; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;"

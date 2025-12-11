@@ -3,7 +3,6 @@
 namespace BagistoPlus\VisualDebut\Blocks\Product;
 
 use BagistoPlus\Visual\Settings\Product;
-use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\VisualDebut\Blocks\Basic\Heading;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -22,18 +21,17 @@ class ProductTitle extends Heading
 
     public static function settings(): array
     {
+        // Get parent settings and filter out the 'text' setting
+        $parentSettings = array_filter(
+            parent::settings(),
+            fn($setting) => !isset($setting->id) || $setting->id !== 'text'
+        );
+
         return array_merge(
             [
                 Product::make('product', _t('blocks.common.product_label')),
-
-                Select::make('position', _t('blocks.product-title.settings.position_label'))
-                    ->options([
-                        'right' => _t('blocks.product-title.settings.position_right'),
-                        'under_gallery' => _t('blocks.product-title.settings.position_under_gallery'),
-                    ])
-                    ->default('right'),
             ],
-            parent::settings()
+            $parentSettings
         );
     }
 

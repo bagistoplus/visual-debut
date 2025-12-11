@@ -1,6 +1,17 @@
 import { defineScope, defineComponent, setup } from 'alpine-define-component';
 
 /**
+ * Debounce helper function
+ */
+function debounce<T extends (...args: any[]) => any>(func: T, wait: number): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+  return (...args: Parameters<T>) => {
+    if (timeout) clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+}
+
+/**
  * Advanced Carousel Component
  *
  * Features:
@@ -10,7 +21,6 @@ import { defineScope, defineComponent, setup } from 'alpine-define-component';
  * - Autoplay with pause on hover/focus
  * - Loop mode
  * - Responsive breakpoints
- * - Keyboard navigation
  * - Accessibility support
  *
  * @example
@@ -41,36 +51,22 @@ interface A11yConfig {
 }
 
 interface Props {
-  // Layout
   slidesPerView?: number | 'auto';
   spaceBetween?: number;
-  centeredSlides?: boolean;
   loop?: boolean;
-
-  // Navigation
-  navigation?: boolean;
-  pagination?: 'dots' | 'fraction' | 'progress' | false;
   keyboard?: boolean;
-  mousewheel?: boolean;
-
-  // Interaction
   draggable?: boolean;
   freeMode?: boolean;
   snapToSlides?: boolean;
   threshold?: number;
   resistance?: boolean;
-
-  // Autoplay
   autoplay?: boolean | AutoplayConfig;
   speed?: number;
-
-  // Responsive
   breakpoints?: {
     [width: number]: Partial<Props>;
   };
-
-  // Accessibility
   a11y?: A11yConfig;
+  id?: string;
 }
 
 interface SlideData {
@@ -105,17 +101,13 @@ export default defineComponent({
   name: 'carousel',
 
   setup: setup((props: Props) => {
-    // Element references
     let viewportEl: HTMLElement | null = null;
     let resizeObserver: ResizeObserver | null = null;
     let intersectionObserver: IntersectionObserver | null = null;
     let autoplayTimer: ReturnType<typeof setInterval> | null = null;
-    let breakpointListener: ((e: MediaQueryListEvent) => void) | null = null;
 
-    // Slide management
     const slidesMap = new Map<number, SlideData>();
 
-    // Drag state
     let isDragging = false;
     let dragStartX = 0;
     let dragStartScrollLeft = 0;
@@ -123,16 +115,11 @@ export default defineComponent({
     let lastDragTime = 0;
     let lastDragX = 0;
 
-    // Configuration with defaults
     const config = {
       slidesPerView: props.slidesPerView ?? 1,
       spaceBetween: props.spaceBetween ?? 0,
-      centeredSlides: props.centeredSlides ?? false,
       loop: props.loop ?? false,
-      navigation: props.navigation ?? true,
-      pagination: props.pagination ?? 'dots',
       keyboard: props.keyboard ?? true,
-      mousewheel: props.mousewheel ?? false,
       draggable: props.draggable ?? true,
       freeMode: props.freeMode ?? false,
       snapToSlides: props.snapToSlides ?? true,
@@ -152,18 +139,20 @@ export default defineComponent({
         paginationBulletMessage: 'Go to slide {{index}}',
         ...props.a11y,
       },
+      breakpoints: props.breakpoints ?? {},
     };
 
     return {
-      // State
+      id: props.id || null,
       activeIndex: 0,
       viewportWidth: 0,
       visibleSlidesCount: 1,
       isAtStart: true,
       isAtEnd: false,
       isAutoplayPaused: false,
+      slidesPerView: config.slidesPerView,
+      spaceBetween: config.spaceBetween,
 
-      // Computed
       get totalSlides() {
         return slidesMap.size;
       },
@@ -181,13 +170,24 @@ export default defineComponent({
         return (this.activeIndex / (this.totalSlides - 1)) * 100;
       },
 
-      // Core navigation
+      get computedSlideWidth() {
+        if (this.slidesPerView === 'auto') {
+          return 'auto';
+        }
+
+        const totalGaps = this.slidesPerView - 1;
+        const totalGapWidth = totalGaps * this.spaceBetween;
+
+        return `calc((100% - ${totalGapWidth}px) / ${this.slidesPerView})`;
+      },
+
       goTo(index: number, smooth = true) {
-        if (!viewportEl || this.totalSlides === 0) return;
+        if (!viewportEl || this.totalSlides === 0) {
+          return;
+        }
 
         let targetIndex = index;
 
-        // Handle bounds
         if (config.loop) {
           targetIndex = ((index % this.totalSlides) + this.totalSlides) % this.totalSlides;
         } else {
@@ -196,7 +196,6 @@ export default defineComponent({
 
         this.activeIndex = targetIndex;
 
-        // Scroll to slide
         const slide = Array.from(slidesMap.values()).find((s) => s.index === targetIndex);
         if (slide) {
           const scrollLeft = this.calculateScrollPosition(targetIndex);
@@ -208,28 +207,37 @@ export default defineComponent({
 
         this.$dispatch('slidechange', { index: targetIndex });
 
-        // Announce to screen readers
         if (config.a11y.enabled) {
           this.announceSlide(targetIndex);
         }
       },
 
       next() {
-        if (!this.canGoNext) return;
+        if (!this.canGoNext) {
+          return;
+        }
+
         this.goTo(this.activeIndex + 1);
       },
 
       prev() {
-        if (!this.canGoPrev) return;
+        if (!this.canGoPrev) {
+          return;
+        }
+
         this.goTo(this.activeIndex - 1);
       },
 
-      // Calculate scroll position for a slide index
       calculateScrollPosition(index: number): number {
         const slides = Array.from(slidesMap.values()).sort((a, b) => a.index - b.index);
 
-        if (index === 0) return 0;
-        if (index >= slides.length) return viewportEl?.scrollWidth ?? 0;
+        if (index === 0) {
+          return 0;
+        }
+
+        if (index >= slides.length) {
+          return viewportEl?.scrollWidth ?? 0;
+        }
 
         let position = 0;
         for (let i = 0; i < index && i < slides.length; i++) {
@@ -239,31 +247,32 @@ export default defineComponent({
         return position;
       },
 
-      // Update viewport width and recalculate visible slides
       updateViewportSize() {
-        if (!viewportEl) return;
+        if (!viewportEl) {
+          return;
+        }
 
         this.viewportWidth = viewportEl.clientWidth;
         this.recalculateVisibleSlides();
       },
 
-      // Recalculate how many slides are visible
       recalculateVisibleSlides() {
-        if (config.slidesPerView !== 'auto') {
-          this.visibleSlidesCount = config.slidesPerView as number;
+        if (this.slidesPerView !== 'auto') {
+          this.visibleSlidesCount = this.slidesPerView;
           return;
         }
 
-        // Dynamic calculation based on slide widths
         const slides = Array.from(slidesMap.values()).sort((a, b) => a.index - b.index);
-        if (slides.length === 0) return;
+        if (slides.length === 0) {
+          return;
+        }
 
         let totalWidth = 0;
         let count = 0;
 
         for (const slide of slides) {
           if (totalWidth + slide.width <= this.viewportWidth) {
-            totalWidth += slide.width + (count > 0 ? config.spaceBetween : 0);
+            totalWidth += slide.width + (count > 0 ? this.spaceBetween : 0);
             count++;
           } else {
             break;
@@ -273,10 +282,37 @@ export default defineComponent({
         this.visibleSlidesCount = Math.max(1, count);
       },
 
-      // Register a slide
+      applyBreakpoints() {
+        const windowWidth = window.innerWidth;
+
+        const breakpoints = Object.entries(config.breakpoints)
+          .map(([width, settings]) => [Number(width), settings] as [number, Partial<Props>])
+          .sort((a, b) => a[0] - b[0]);
+
+        let activeBreakpoint: Partial<Props> | null = null;
+        for (const [width, settings] of breakpoints) {
+          if (windowWidth >= width) {
+            activeBreakpoint = settings;
+          } else {
+            break;
+          }
+        }
+
+        if (activeBreakpoint) {
+          if (activeBreakpoint.slidesPerView !== undefined) {
+            this.slidesPerView = activeBreakpoint.slidesPerView;
+          }
+
+          if (activeBreakpoint.spaceBetween !== undefined) {
+            this.spaceBetween = activeBreakpoint.spaceBetween;
+          }
+        }
+
+        this.recalculateVisibleSlides();
+      },
+
       registerSlide(el: HTMLElement, index?: number): number {
-        // Calculate next available index if not provided
-        const actualIndex = index ?? (slidesMap.size > 0 ? Math.max(...slidesMap.keys()) + 1 : 0);
+        const actualIndex = index ?? (slidesMap.size > 0 ? Math.max(...Array.from(slidesMap.keys())) + 1 : 0);
 
         slidesMap.set(actualIndex, {
           el,
@@ -285,7 +321,6 @@ export default defineComponent({
           position: 0,
         });
 
-        // Observe slide size changes
         resizeObserver?.observe(el);
 
         this.recalculateVisibleSlides();
@@ -293,7 +328,6 @@ export default defineComponent({
         return actualIndex;
       },
 
-      // Unregister a slide
       unregisterSlide(index: number) {
         const slide = slidesMap.get(index);
         if (slide) {
@@ -303,7 +337,6 @@ export default defineComponent({
         }
       },
 
-      // Update slide width
       updateSlideWidth(index: number, width: number) {
         const slide = slidesMap.get(index);
         if (slide) {
@@ -312,7 +345,6 @@ export default defineComponent({
         }
       },
 
-      // Check if slide is visible in viewport
       isSlideVisible(index: number): boolean {
         if (!viewportEl) return false;
 
@@ -326,9 +358,10 @@ export default defineComponent({
         return position < scrollRight && slideRight > scrollLeft;
       },
 
-      // Drag handlers
       onPointerDown(e: PointerEvent) {
-        if (!config.draggable || !viewportEl) return;
+        if (!config.draggable || !viewportEl) {
+          return;
+        }
 
         isDragging = true;
         dragStartX = e.clientX;
@@ -342,7 +375,9 @@ export default defineComponent({
       },
 
       onPointerMove(e: PointerEvent) {
-        if (!isDragging || !viewportEl) return;
+        if (!isDragging || !viewportEl) {
+          return;
+        }
 
         const currentTime = Date.now();
         const deltaTime = currentTime - lastDragTime;
@@ -355,7 +390,6 @@ export default defineComponent({
         const distance = dragStartX - e.clientX;
         let newScrollLeft = dragStartScrollLeft + distance;
 
-        // Apply resistance at boundaries
         if (config.resistance && !config.loop) {
           const maxScroll = viewportEl.scrollWidth - viewportEl.clientWidth;
           if (newScrollLeft < 0) {
@@ -372,18 +406,18 @@ export default defineComponent({
       },
 
       onPointerUp() {
-        if (!isDragging || !viewportEl) return;
+        if (!isDragging || !viewportEl) {
+          return;
+        }
 
         isDragging = false;
 
         const distance = Math.abs(dragStartScrollLeft - viewportEl.scrollLeft);
 
-        // Snap to nearest slide if threshold met and not in free mode
         if (distance > config.threshold && !config.freeMode && config.snapToSlides) {
-          const momentum = dragVelocity * 50; // Velocity multiplier
+          const momentum = dragVelocity * 50;
           const targetScrollLeft = viewportEl.scrollLeft + momentum;
 
-          // Find nearest slide
           const slides = Array.from(slidesMap.values()).sort((a, b) => a.index - b.index);
           let closestIndex = 0;
           let minDist = Infinity;
@@ -400,16 +434,16 @@ export default defineComponent({
           this.goTo(closestIndex, true);
         }
 
-        // Re-enable snap
         if (config.snapToSlides) {
           viewportEl.style.scrollSnapType = '';
           viewportEl.style.scrollBehavior = '';
         }
       },
 
-      // Autoplay
       startAutoplay() {
-        if (!config.autoplay || autoplayTimer) return;
+        if (!config.autoplay || autoplayTimer) {
+          return;
+        }
 
         autoplayTimer = setInterval(() => {
           if (!this.isAutoplayPaused) {
@@ -433,9 +467,10 @@ export default defineComponent({
         this.isAutoplayPaused = false;
       },
 
-      // Keyboard navigation
       onKeydown(e: KeyboardEvent) {
-        if (!config.keyboard) return;
+        if (!config.keyboard) {
+          return;
+        }
 
         switch (e.key) {
           case 'ArrowLeft':
@@ -457,10 +492,8 @@ export default defineComponent({
         }
       },
 
-      // Accessibility
       announceSlide(index: number) {
         const announcement = `Slide ${index + 1} of ${this.totalSlides}`;
-        // Create a live region announcement
         const liveRegion = document.createElement('div');
         liveRegion.setAttribute('role', 'status');
         liveRegion.setAttribute('aria-live', 'polite');
@@ -471,7 +504,6 @@ export default defineComponent({
         setTimeout(() => liveRegion.remove(), 1000);
       },
 
-      // Update active index based on scroll position
       updateActiveIndexFromScroll() {
         if (!viewportEl) return;
 
@@ -495,13 +527,11 @@ export default defineComponent({
           this.$dispatch('slidechange', { index: closestIndex });
         }
 
-        // Update boundary states
         const maxScroll = viewportEl.scrollWidth - viewportEl.clientWidth;
         this.isAtStart = scrollLeft <= 0;
         this.isAtEnd = scrollLeft >= maxScroll;
       },
 
-      // Lifecycle
       init() {
         viewportEl = this.$el.querySelector('[x-carousel\\:viewport]') as HTMLElement;
 
@@ -510,13 +540,11 @@ export default defineComponent({
           return;
         }
 
-        // Setup ResizeObserver for viewport
         resizeObserver = new ResizeObserver((entries) => {
           for (const entry of entries) {
             if (entry.target === viewportEl) {
               this.updateViewportSize();
             } else {
-              // It's a slide
               const slideData = Array.from(slidesMap.values()).find((s) => s.el === entry.target);
               if (slideData) {
                 this.updateSlideWidth(slideData.index, entry.contentRect.width);
@@ -527,13 +555,11 @@ export default defineComponent({
 
         resizeObserver.observe(viewportEl);
 
-        // Setup IntersectionObserver for slide visibility
         intersectionObserver = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               const slideData = Array.from(slidesMap.values()).find((s) => s.el === entry.target);
               if (slideData) {
-                // Can dispatch visibility change event if needed
                 this.$dispatch('slide:visibility', {
                   index: slideData.index,
                   isVisible: entry.isIntersecting,
@@ -547,22 +573,25 @@ export default defineComponent({
           }
         );
 
-        // Scroll event listener
         viewportEl.addEventListener('scroll', () => {
           if (!isDragging) {
             this.updateActiveIndexFromScroll();
           }
         });
 
-        // Initial calculations
         this.updateViewportSize();
 
-        // Start autoplay
+        if (Object.keys(config.breakpoints).length > 0) {
+          this.applyBreakpoints();
+
+          const resizeHandler = debounce(() => this.applyBreakpoints(), 150);
+          window.addEventListener('resize', resizeHandler);
+        }
+
         if (config.autoplay) {
           this.startAutoplay();
         }
 
-        // Reduced motion support
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) {
           config.speed = 0;
@@ -573,21 +602,37 @@ export default defineComponent({
         resizeObserver?.disconnect();
         intersectionObserver?.disconnect();
         this.stopAutoplay();
-
-        if (breakpointListener) {
-          // Clean up media query listeners
-          // (Would need to store MediaQueryList references for proper cleanup)
-        }
       },
     };
   }),
 
   parts: ({ withScopes }) =>
     withScopes<CarouselScopes>({
-      viewport(api) {
+      viewport(api, el) {
         return {
           role: 'region',
           'aria-label': 'Carousel',
+          'x-init'() {
+            el.style.setProperty('--slide-width', api.computedSlideWidth);
+            el.style.setProperty('--carousel-space-between', '16px');
+
+            document.addEventListener('visual:block:updated', (data: any) => {
+              if (api.id && data.detail.blockId === api.id) {
+                this.$nextTick(() => {
+                  const updatedApi = (window as any).Alpine.$data(el);
+
+                  api.slidesPerView = updatedApi.slidesPerView;
+                  api.spaceBetween = updatedApi.spaceBetween;
+
+                  el.style.setProperty('--slide-width', api.computedSlideWidth);
+                  el.style.setProperty('--carousel-space-between', `${api.spaceBetween}px`);
+                });
+              }
+            });
+          },
+          'x-effect'() {
+            el.style.setProperty('--slide-width', api.computedSlideWidth);
+          },
           'x-on:pointerdown': (e: PointerEvent) => api.onPointerDown(e),
           'x-on:pointermove': (e: PointerEvent) => api.onPointerMove(e),
           'x-on:pointerup': () => api.onPointerUp(),
@@ -604,7 +649,10 @@ export default defineComponent({
       slide: defineScope({
         name: 'slide',
         setup(api, el, { value, cleanup }) {
-          const index = api.registerSlide(el, value !== undefined && value !== null && value !== '' ? Number(value) : undefined);
+          const index = api.registerSlide(
+            el,
+            value !== undefined && value !== null && value !== '' ? Number(value) : undefined
+          );
 
           cleanup(() => {
             api.unregisterSlide(index);

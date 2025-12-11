@@ -25,7 +25,7 @@ class MinimalFooter extends Preset
                 'padding_bottom' => ['_default' => 8],
             ])
             ->blocks([
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->name('Centered Content')
                     ->settings([
                         'layout_type' => 'flex',
@@ -73,7 +73,7 @@ class MinimalFooter extends Preset
 
     protected function createSocialIcons(): PresetBlock
     {
-        return PresetBlock::make('@visual-debut/container')
+        return PresetBlock::make('@visual-debut/group')
             ->name('Social Icons')
             ->settings([
                 'layout_type' => 'flex',

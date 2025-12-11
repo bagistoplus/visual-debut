@@ -25,7 +25,7 @@ class NewsletterFooter extends Preset
                 'padding_bottom' => ['_default' => 16],
             ])
             ->blocks([
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->name('Newsletter + Links')
                     ->settings([
                         'layout_type' => 'grid',
@@ -35,7 +35,7 @@ class NewsletterFooter extends Preset
                     ])
                     ->blocks([
                         // Newsletter section
-                        PresetBlock::make('@visual-debut/container')
+                        PresetBlock::make('@visual-debut/group')
                             ->name('Newsletter')
                             ->settings([
                                 'layout_type' => 'flex',
@@ -56,7 +56,7 @@ class NewsletterFooter extends Preset
                             ]),
 
                         // Links grid
-                        PresetBlock::make('@visual-debut/container')
+                        PresetBlock::make('@visual-debut/group')
                             ->name('Links')
                             ->settings([
                                 'layout_type' => 'grid',
@@ -111,7 +111,7 @@ class NewsletterFooter extends Preset
                 ]);
         }, $links);
 
-        return PresetBlock::make('@visual-debut/container')
+        return PresetBlock::make('@visual-debut/group')
             ->name($name)
             ->settings([
                 'layout_type' => 'flex',

@@ -7,7 +7,7 @@ use BagistoPlus\Visual\Settings;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\VisualDebut\Blocks\Basic\Logo;
-use BagistoPlus\VisualDebut\Blocks\Container;
+use BagistoPlus\VisualDebut\Blocks\Group;
 use BagistoPlus\VisualDebut\Blocks\Header\Cart;
 use BagistoPlus\VisualDebut\Blocks\Header\Compare;
 use BagistoPlus\VisualDebut\Blocks\Header\Currency;
@@ -44,7 +44,7 @@ class Header extends BladeSection
         Compare::class,
         User::class,
         Cart::class,
-        Container::class
+        Group::class
     ];
 
     public static function name(): string
@@ -77,7 +77,7 @@ class Header extends BladeSection
                 ->category('Layout')
                 ->blocks([
                     // Logo Group
-                    PresetBlock::make('@visual-debut/container')
+                    PresetBlock::make('@visual-debut/group')
                         ->name('Logo')
                         ->settings([
                             'layout_type' => 'flex',
@@ -90,7 +90,7 @@ class Header extends BladeSection
                         ]),
 
                     // Navigation Group
-                    PresetBlock::make('@visual-debut/container')
+                    PresetBlock::make('@visual-debut/group')
                         ->name('Navigation')
                         ->settings([
                             'layout_type' => 'flex',
@@ -106,7 +106,7 @@ class Header extends BladeSection
                         ]),
 
                     // Actions Group
-                    PresetBlock::make('@visual-debut/container')
+                    PresetBlock::make('@visual-debut/group')
                         ->name('Actions')
                         ->settings([
                             'layout_type' => 'flex',

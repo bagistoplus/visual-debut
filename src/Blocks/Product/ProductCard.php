@@ -3,9 +3,13 @@
 namespace BagistoPlus\VisualDebut\Blocks\Product;
 
 use BagistoPlus\Visual\Blocks\SimpleBlock;
+use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Product;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
+use BagistoPlus\VisualDebut\Blocks\Basic\Heading;
+use BagistoPlus\VisualDebut\Blocks\Basic\Text;
+use BagistoPlus\VisualDebut\Blocks\ProductCardGroup;
 use BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -14,17 +18,24 @@ class ProductCard extends SimpleBlock
 {
     protected static string $type = '@visual-debut/product-card';
 
-    protected static array $accepts = ['@visual-debut/container', '@visual-debut/product-*'];
-
     protected static string $view = 'shop::blocks.products.product-card';
 
     protected static string $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/></svg>';
 
     protected static string $category = 'Product';
 
+    protected static array $accepts = [
+        ProductCardGroup::class,
+        '@visual-debut/product-*',
+    ];
+
     public static function settings(): array
     {
-        return [Product::make('product', _t('blocks.common.product_label'))];
+        return [
+            Product::make('product', _t('blocks.common.product_label')),
+            ColorScheme::make('color_scheme', _t('blocks.common.color_scheme_label'))
+                ->default('inherit'),
+        ];
     }
 
     public function share(): array
@@ -48,7 +59,7 @@ class ProductCard extends SimpleBlock
             // Preset::make(_t('blocks.product-card.presets.vertical.name'))
             //     ->category(_t('blocks.product-card.presets.vertical.category'))
             //     ->blocks([
-            //         PresetBlock::make('@visual-debut/container')
+            //         PresetBlock::make('@visual-debut/group')
             //             ->properties([
             //                 'layout_type' => 'flex',
             //                 'flex_direction' => ['_default' => 'column'],
@@ -67,7 +78,7 @@ class ProductCard extends SimpleBlock
             //                         'aspect_ratio' => 'square',
             //                         'object_fit' => 'cover',
             //                     ]),
-            //                 PresetBlock::make('@visual-debut/container')
+            //                 PresetBlock::make('@visual-debut/group')
             //                     ->properties([
             //                         'layout_type' => 'flex',
             //                         'flex_direction' => ['_default' => 'column'],
@@ -92,7 +103,7 @@ class ProductCard extends SimpleBlock
             // Preset::make(_t('blocks.product-card.presets.horizontal.name'))
             //     ->category(_t('blocks.product-card.presets.horizontal.category'))
             //     ->blocks([
-            //         PresetBlock::make('@visual-debut/container')
+            //         PresetBlock::make('@visual-debut/group')
             //             ->properties([
             //                 'layout_type' => 'flex',
             //                 'flex_direction' => ['_default' => 'row', 'mobile' => 'column'],
@@ -105,7 +116,7 @@ class ProductCard extends SimpleBlock
             //                 'background_color' => 'transparent',
             //             ])
             //             ->children([
-            //                 PresetBlock::make('@visual-debut/container')
+            //                 PresetBlock::make('@visual-debut/group')
             //                     ->properties([
             //                         'layout_type' => 'block',
             //                         'width' => ['_default' => 'custom'],
@@ -119,7 +130,7 @@ class ProductCard extends SimpleBlock
             //                                 'object_fit' => 'cover',
             //                             ]),
             //                     ]),
-            //                 PresetBlock::make('@visual-debut/container')
+            //                 PresetBlock::make('@visual-debut/group')
             //                     ->properties([
             //                         'layout_type' => 'flex',
             //                         'flex_direction' => ['_default' => 'column'],

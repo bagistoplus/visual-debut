@@ -30,6 +30,14 @@
 @source inline("hover:scale-{100,105,110,125,150}");
 @source inline("group-hover:scale-{100,105,110,125,150}");
 
+/* Scroll utilities */
+@source inline("no-scrollbar");
+@source inline("scrollbar-{thin,auto,none}");
+@source inline("ms-overflow-{auto,none,scrollbar}");
+@source inline("overflow-{touch,auto-scroll}");
+@source inline("scroll-{smooth,auto}");
+@source inline("scroll-snap-{none,x,y,both,x-proximity,y-proximity}");
+
 @import './tokens.css' layer(theme);
 @import './base.css' layer(base);
 @import './animation.css' layer(base);
@@ -41,4 +49,77 @@
 @utility container {
   margin-inline: auto;
   padding-inline: 1rem;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+@utility scrollbar-auto {
+  scrollbar-width: auto;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+}
+
+@utility ms-overflow-auto {
+  -ms-overflow-style: auto;
+}
+
+@utility ms-overflow-none {
+  -ms-overflow-style: none;
+}
+
+@utility ms-overflow-scrollbar {
+  -ms-overflow-style: scrollbar;
+}
+
+@utility overflow-touch {
+  -webkit-overflow-scrolling: touch;
+}
+
+@utility overflow-auto-scroll {
+  -webkit-overflow-scrolling: auto;
+}
+
+@utility scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+@utility scroll-auto {
+  scroll-behavior: auto;
+}
+
+@utility scroll-snap-none {
+  scroll-snap-type: none;
+}
+
+@utility scroll-snap-x {
+  scroll-snap-type: x mandatory;
+}
+
+@utility scroll-snap-y {
+  scroll-snap-type: y mandatory;
+}
+
+@utility scroll-snap-both {
+  scroll-snap-type: both mandatory;
+}
+
+@utility scroll-snap-x-proximity {
+  scroll-snap-type: x proximity;
+}
+
+@utility scroll-snap-y-proximity {
+  scroll-snap-type: y proximity;
 }

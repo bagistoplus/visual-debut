@@ -31,7 +31,7 @@ class ProductDetails extends BladeBlock
         Blocks\Product\ProductDownloadableOptions::class,
 
         // Generic layout blocks
-        Blocks\Container::class,
+        Blocks\Group::class,
         Blocks\Accordion::class,
         Blocks\AccordionRow::class,
         Blocks\Basic\Divider::class,

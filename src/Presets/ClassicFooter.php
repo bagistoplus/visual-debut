@@ -26,7 +26,7 @@ class ClassicFooter extends Preset
             ])
             ->blocks([
                 // Main content grid
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->name('Footer Columns')
                     ->settings([
                         'layout_type' => 'grid',
@@ -84,7 +84,7 @@ class ClassicFooter extends Preset
                     ]),
 
                 // Bottom bar
-                PresetBlock::make('@visual-debut/container')
+                PresetBlock::make('@visual-debut/group')
                     ->name('Bottom Bar')
                     ->settings([
                         'layout_type' => 'flex',
@@ -109,7 +109,7 @@ class ClassicFooter extends Preset
 
     protected function createFooterColumn(string $name, string $title, string $description): PresetBlock
     {
-        return PresetBlock::make('@visual-debut/container')
+        return PresetBlock::make('@visual-debut/group')
             ->name($name)
             ->settings([
                 'layout_type' => 'flex',
@@ -148,7 +148,7 @@ class ClassicFooter extends Preset
                 ]);
         }, $links);
 
-        return PresetBlock::make('@visual-debut/container')
+        return PresetBlock::make('@visual-debut/group')
             ->name($name)
             ->settings([
                 'layout_type' => 'flex',
@@ -171,7 +171,7 @@ class ClassicFooter extends Preset
 
     protected function createSocialIcons(): PresetBlock
     {
-        return PresetBlock::make('@visual-debut/container')
+        return PresetBlock::make('@visual-debut/group')
             ->name('Social Icons')
             ->settings([
                 'layout_type' => 'flex',

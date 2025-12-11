@@ -13,6 +13,10 @@ return [
         ],
     ],
 
+    'product-card-group' => [
+        'name' => 'Product Card Group',
+    ],
+
     'divider' => [
         'settings' => [
             'thickness_label' => 'Thickness',
@@ -187,6 +191,9 @@ return [
                 'name' => 'Text',
                 'category' => 'Text',
             ],
+            'category-name' => [
+                'name' => 'Category Name',
+            ],
             'heading' => [
                 'name' => 'Heading',
                 'category' => 'Text',
@@ -261,7 +268,7 @@ return [
             'square_info' => 'Make the button square (icon-only)',
 
             'block_label' => 'Full Width',
-            'block_info' => 'Make the button span the full width of its container',
+            'block_info' => 'Make the button span the full width of its parent',
 
             'width_label' => 'Width (Desktop)',
             'width_options' => [
@@ -788,7 +795,7 @@ return [
                 'landscape' => 'Landscape (4:3)',
                 'auto' => 'Auto',
             ],
-            'aspect_ratio_info' => 'Set the aspect ratio of the image container',
+            'aspect_ratio_info' => 'Set the aspect ratio of the image',
 
             'object_fit_label' => 'Object Fit',
             'object_fit_options' => [
@@ -796,7 +803,7 @@ return [
                 'contain' => 'Contain',
                 'fill' => 'Fill',
             ],
-            'object_fit_info' => 'How the image should fit within its container',
+            'object_fit_info' => 'How the image should fit within its bounds',
         ],
     ],
 
@@ -880,7 +887,7 @@ return [
             'square_label' => 'Square Button',
             'square_info' => 'Make the button square (icon only)',
             'block_label' => 'Full Width',
-            'block_info' => 'Make the button span the full width of its container',
+            'block_info' => 'Make the button span the full width of its parent',
         ],
         'placeholder' => [
             'cart' => 'Add to Cart',
@@ -1060,9 +1067,9 @@ return [
         ],
     ],
 
-    'container' => [
-        'name' => 'Container',
-        'description' => 'Versatile container for layout composition with flex, grid, spacing, sizing, and borders',
+    'group' => [
+        'name' => 'Group',
+        'description' => 'Versatile group for layout composition with flex, grid, spacing, sizing, and borders',
         'settings' => [
             // Layout
             'layout_header' => 'Layout',
@@ -1209,7 +1216,7 @@ return [
             // Overlay
             'overlay_header' => 'Overlay',
             'is_overlay_label' => 'Position as Overlay',
-            'is_overlay_info' => 'When enabled, this container will be positioned absolutely over its parent container',
+            'is_overlay_info' => 'When enabled, this group will be positioned absolutely over its parent',
             'overlay_visibility_label' => 'Overlay Visibility',
             'overlay_visibility_info' => 'Control when the overlay is visible',
             'overlay_visibility_options' => [
@@ -1234,11 +1241,11 @@ return [
         ],
         'presets' => [
             'basic' => [
-                'name' => 'Container',
+                'name' => 'Group',
                 'category' => 'Layout',
             ],
             'centered' => [
-                'name' => 'Centered Container',
+                'name' => 'Centered Group',
                 'category' => 'Layout',
             ],
             'card' => [
@@ -1250,11 +1257,11 @@ return [
                 'category' => 'Layout',
             ],
             'grid' => [
-                'name' => 'Grid Container',
+                'name' => 'Grid Group',
                 'category' => 'Layout',
             ],
             'overlay' => [
-                'name' => 'Overlay Container',
+                'name' => 'Overlay Group',
                 'category' => 'Layout',
             ],
             'feature_icon' => [
