@@ -515,13 +515,40 @@ return [
         'settings' => [
             'layout_header' => 'Layout',
 
-            'flex_direction_label' => 'Flex Direction',
-            'flex_direction_info' => 'Direction of the content flow',
-            'flex_direction_options' => [
-                'row' => 'Horizontal',
-                'row_reverse' => 'Horizontal (Reversed)',
-                'column' => 'Vertical',
-                'column_reverse' => 'Vertical (Reversed)',
+            'direction_label' => 'Direction',
+            'direction_options' => [
+                'horizontal' => 'Horizontal',
+                'vertical' => 'Vertical',
+            ],
+
+            'vertical_justify_label' => 'Content Position',
+            'vertical_justify_options' => [
+                'top' => 'Top',
+                'center' => 'Center',
+                'space_between' => 'Space Between',
+                'bottom' => 'Bottom',
+            ],
+
+            'vertical_align_label' => 'Content Alignment',
+            'vertical_align_options' => [
+                'start' => 'Start',
+                'center' => 'Center',
+                'end' => 'End',
+            ],
+
+            'horizontal_justify_label' => 'Content Position',
+            'horizontal_justify_options' => [
+                'left' => 'Left',
+                'center' => 'Center',
+                'space_between' => 'Space Between',
+                'right' => 'Right',
+            ],
+
+            'horizontal_align_label' => 'Content Alignment',
+            'horizontal_align_options' => [
+                'top' => 'Top',
+                'center' => 'Center',
+                'bottom' => 'Bottom',
             ],
 
             'justify_content_label' => 'Justify Content',
@@ -553,14 +580,15 @@ return [
                 'full' => 'Full Width',
                 'container' => 'Container',
             ],
+            'section_width_info' => 'Container constrains maximum width and centers content',
 
             'section_height_label' => 'Section Height',
             'section_height_options' => [
                 'auto' => 'Auto',
-                'xs' => 'Extra Small (20rem)',
-                'sm' => 'Small (25rem)',
-                'md' => 'Medium (37.5rem)',
-                'lg' => 'Large (50rem)',
+                'xs' => 'Extra Small',
+                'sm' => 'Small',
+                'md' => 'Medium',
+                'lg' => 'Large',
                 'screen' => 'Full Screen',
                 'custom' => 'Custom',
             ],

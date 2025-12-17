@@ -21,8 +21,8 @@ class RichTextSection extends Preset
             ->category('Content')
             ->settings([
                 'flex_direction' => 'column',
-                'justify_content' => 'start',
-                'align_items' => 'center',
+                'vertical_justify_content' => 'center',
+                'vertical_align_items' => 'center',
                 'flex_gap' => 6,
                 'section_width' => 'container',
                 'section_height' => 'sm',
@@ -32,13 +32,14 @@ class RichTextSection extends Preset
                 'padding_right' => 0,
             ])
             ->blocks([
-                PresetBlock::make('@visual-debut/text')
+                PresetBlock::make('@visual-debut/heading')
                     ->id('heading')
                     ->settings([
                         'text' => 'New arrivals',
                         'width' => 'fit-content',
                         'max_width' => 'normal',
                         'alignment' => 'left',
+                        'type_preset' => 'h2',
                     ]),
 
                 PresetBlock::make('@visual-debut/text')
@@ -47,7 +48,7 @@ class RichTextSection extends Preset
                         'text' => 'We make things that work better and last longer. Our products solve real problems with clean design and honest materials.',
                         'width' => 'fit-content',
                         'max_width' => 'normal',
-                        'alignment' => 'left',
+                        'alignment' => 'center',
                     ]),
 
                 PresetBlock::make('@visual-debut/button')

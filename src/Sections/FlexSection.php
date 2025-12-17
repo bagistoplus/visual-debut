@@ -159,28 +159,67 @@ class FlexSection extends BladeSection
             default => 'flex-col',
         });
 
-        // Justify content
-        $classes[] = match ($s->justify_content ?? 'center') {
-            'start' => 'justify-start',
-            'end' => 'justify-end',
-            'center' => 'justify-center',
-            'between' => 'justify-between',
-            'around' => 'justify-around',
-            'evenly' => 'justify-evenly',
-            default => 'justify-center',
-        };
+        if ($s->get('vertical_justify_content')) {
+            $classes[] = Tailwind::responsive($s->vertical_justify_content, fn($v) => match ($v) {
+                'start' => 'justify-start',
+                'center' => 'justify-center',
+                'between' => 'justify-between',
+                'end' => 'justify-end',
+                default => 'justify-center',
+            });
+        }
 
-        // Align items
-        $classes[] = match ($s->align_items ?? 'center') {
-            'start' => 'items-start',
-            'end' => 'items-end',
-            'center' => 'items-center',
-            'stretch' => 'items-stretch',
-            'baseline' => 'items-baseline',
-            default => 'items-center',
-        };
+        if ($s->get('vertical_align_items')) {
+            $classes[] = Tailwind::responsive($s->vertical_align_items, fn($v) => match ($v) {
+                'start' => 'items-start',
+                'center' => 'items-center',
+                'end' => 'items-end',
+                default => 'items-center',
+            });
+        }
 
-        // Gap (responsive)
+        if ($s->get('horizontal_justify_content')) {
+            $classes[] = Tailwind::responsive($s->horizontal_justify_content, fn($v) => match ($v) {
+                'start' => 'justify-start',
+                'center' => 'justify-center',
+                'between' => 'justify-between',
+                'end' => 'justify-end',
+                default => 'justify-center',
+            });
+        }
+
+        if ($s->get('horizontal_align_items')) {
+            $classes[] = Tailwind::responsive($s->horizontal_align_items, fn($v) => match ($v) {
+                'start' => 'items-start',
+                'center' => 'items-center',
+                'end' => 'items-end',
+                default => 'items-center',
+            });
+        }
+
+        if ($s->has('justify_content') && !$s->has('vertical_justify_content') && !$s->has('horizontal_justify_content')) {
+            $classes[] = match ($s->justify_content) {
+                'start' => 'justify-start',
+                'end' => 'justify-end',
+                'center' => 'justify-center',
+                'between' => 'justify-between',
+                'around' => 'justify-around',
+                'evenly' => 'justify-evenly',
+                default => 'justify-center',
+            };
+        }
+
+        if ($s->has('align_items') && !$s->has('vertical_align_items') && !$s->has('horizontal_align_items')) {
+            $classes[] = match ($s->align_items) {
+                'start' => 'items-start',
+                'end' => 'items-end',
+                'center' => 'items-center',
+                'stretch' => 'items-stretch',
+                'baseline' => 'items-baseline',
+                default => 'items-center',
+            };
+        }
+
         $gap = $s->flex_gap ?? ['_default' => 4];
         $classes[] = Tailwind::responsive($gap, fn($v) => "gap-{$v}");
 
@@ -207,37 +246,58 @@ class FlexSection extends BladeSection
         return [
             Header::make(_t('sections.flex-section.settings.layout_header')),
 
-            Select::make('flex_direction', _t('sections.flex-section.settings.flex_direction_label'))
+            Select::make('flex_direction', _t('sections.flex-section.settings.direction_label'))
                 ->options([
-                    'row' => _t('sections.flex-section.settings.flex_direction_options.row'),
-                    'row-reverse' => _t('sections.flex-section.settings.flex_direction_options.row_reverse'),
-                    'column' => _t('sections.flex-section.settings.flex_direction_options.column'),
-                    'column-reverse' => _t('sections.flex-section.settings.flex_direction_options.column_reverse'),
+                    'column' => _t('sections.flex-section.settings.direction_options.vertical'),
+                    'row' => _t('sections.flex-section.settings.direction_options.horizontal'),
                 ])
                 ->default('column')
                 ->responsive()
-                ->info(_t('sections.flex-section.settings.flex_direction_info')),
+                ->asSegment(),
 
-            Select::make('justify_content', _t('sections.flex-section.settings.justify_content_label'))
+            // Vertical layout settings
+            Select::make('vertical_justify_content', _t('sections.flex-section.settings.vertical_justify_label'))
                 ->options([
-                    'start' => _t('sections.flex-section.settings.justify_content_options.start'),
-                    'center' => _t('sections.flex-section.settings.justify_content_options.center'),
-                    'end' => _t('sections.flex-section.settings.justify_content_options.end'),
-                    'between' => _t('sections.flex-section.settings.justify_content_options.between'),
-                    'around' => _t('sections.flex-section.settings.justify_content_options.around'),
-                    'evenly' => _t('sections.flex-section.settings.justify_content_options.evenly'),
+                    'start' => _t('sections.flex-section.settings.vertical_justify_options.top'),
+                    'center' => _t('sections.flex-section.settings.vertical_justify_options.center'),
+                    'between' => _t('sections.flex-section.settings.vertical_justify_options.space_between'),
+                    'end' => _t('sections.flex-section.settings.vertical_justify_options.bottom'),
                 ])
-                ->default('center'),
+                // ->default('center')
+                ->responsive()
+                ->visibleWhen(fn($rule) => $rule->when('flex_direction', 'column')),
 
-            Select::make('align_items', _t('sections.flex-section.settings.align_items_label'))
+            Select::make('vertical_align_items', _t('sections.flex-section.settings.vertical_align_label'))
                 ->options([
-                    'start' => _t('sections.flex-section.settings.align_items_options.start'),
-                    'center' => _t('sections.flex-section.settings.align_items_options.center'),
-                    'end' => _t('sections.flex-section.settings.align_items_options.end'),
-                    'stretch' => _t('sections.flex-section.settings.align_items_options.stretch'),
-                    'baseline' => _t('sections.flex-section.settings.align_items_options.baseline'),
+                    'start' => _t('sections.flex-section.settings.vertical_align_options.start'),
+                    'center' => _t('sections.flex-section.settings.vertical_align_options.center'),
+                    'end' => _t('sections.flex-section.settings.vertical_align_options.end'),
                 ])
-                ->default('center'),
+                // ->default('center')
+                ->responsive()
+                ->visibleWhen(fn($rule) => $rule->when('flex_direction', 'column')),
+
+            // Horizontal layout settings
+            Select::make('horizontal_justify_content', _t('sections.flex-section.settings.horizontal_justify_label'))
+                ->options([
+                    'start' => _t('sections.flex-section.settings.horizontal_justify_options.left'),
+                    'center' => _t('sections.flex-section.settings.horizontal_justify_options.center'),
+                    'between' => _t('sections.flex-section.settings.horizontal_justify_options.space_between'),
+                    'end' => _t('sections.flex-section.settings.horizontal_justify_options.right'),
+                ])
+                // ->default('center')
+                ->responsive()
+                ->visibleWhen(fn($rule) => $rule->when('flex_direction', 'row')),
+
+            Select::make('horizontal_align_items', _t('sections.flex-section.settings.horizontal_align_label'))
+                ->options([
+                    'start' => _t('sections.flex-section.settings.horizontal_align_options.top'),
+                    'center' => _t('sections.flex-section.settings.horizontal_align_options.center'),
+                    'end' => _t('sections.flex-section.settings.horizontal_align_options.bottom'),
+                ])
+                // ->default('center')
+                ->responsive()
+                ->visibleWhen(fn($rule) => $rule->when('flex_direction', 'row')),
 
             Range::make('flex_gap', _t('sections.flex-section.settings.gap_label'))
                 ->min(0)
@@ -255,7 +315,8 @@ class FlexSection extends BladeSection
                     'container' => _t('sections.flex-section.settings.section_width_options.container'),
                 ])
                 ->asSegment()
-                ->default('container'),
+                ->default('container')
+                ->info(_t('sections.flex-section.settings.section_width_info')),
 
             Select::make('section_height', _t('sections.flex-section.settings.section_height_label'))
                 ->options([
@@ -290,7 +351,7 @@ class FlexSection extends BladeSection
                 ->default('none'),
 
             Color::make('background_color', _t('sections.flex-section.settings.background_color_label'))
-                ->default('rgba(0, 0, 0, 0)')
+                ->default('#000000ff')
                 ->visibleWhen(fn($rule) => $rule->when('background_type', 'color')),
 
             Gradient::make('background_gradient', _t('sections.flex-section.settings.background_gradient_label'))

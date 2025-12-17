@@ -21,13 +21,13 @@ class HeroBanner extends Preset
             ->category('Content')
             ->settings([
                 'flex_direction' => ['_default' => 'column'],
-                'justify_content' => 'center',
-                'align_items' => 'center',
+                'vertical_justify_content' => ['_default' => 'center'],
+                'vertical_align_items' => ['_default' => 'center'],
                 'flex_gap' => ['_default' => 4],
                 'section_width' => 'container',
                 'section_height' => 'sm',
                 'background_type' => 'image',
-                'background_image' => asset('themes/shop/visual-debut/images/hero-banner.avif'),
+                'background_image' => '/themes/shop/visual-debut/images/hero-banner.avif',
                 'background_position' => 'center',
                 'background_size' => 'cover',
                 'background_repeat' => 'no-repeat',
@@ -55,7 +55,7 @@ class HeroBanner extends Preset
                         'type_preset' => 'paragraph',
                         'width' => 'fit-content',
                         'max_width' => 'normal',
-                        'alignment' => 'center',
+                        'alignment' => 'left',
                         'color' => 'custom',
                         'text_color' => '#EBE6E6FF',
                     ]),
@@ -65,8 +65,8 @@ class HeroBanner extends Preset
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'row',
-                        'justify_content' => 'center',
-                        'align_items' => 'center',
+                        'horizontal_justify_content' => 'center',
+                        'horizontal_align_items' => 'center',
                         'flex_gap' => ['_default' => 4],
                     ])
                     ->blocks([

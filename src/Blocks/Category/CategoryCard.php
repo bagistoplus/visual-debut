@@ -116,8 +116,8 @@ class CategoryCard extends SimpleBlock
                                 ->properties([
                                     'layout_type' => 'flex',
                                     'flex_direction' => ['_default' => 'column'],
-                                    'justify_content' => 'center',
-                                    'align_items' => 'center',
+                                    'vertical_justify_content' => 'center',
+                                    'vertical_align_items' => 'center',
                                     'padding_top' => ['_default' => 4],
                                     'padding_bottom' => ['_default' => 4],
                                     'padding_left' => ['_default' => 4],

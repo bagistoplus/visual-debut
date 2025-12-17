@@ -21,8 +21,8 @@ class FaqSection extends Preset
             ->category('Content')
             ->settings([
                 'flex_direction' => 'column',
-                'justify_content' => 'start',
-                'align_items' => 'center',
+                'vertical_justify_content' => 'start',
+                'vertical_align_items' => 'center',
                 'flex_gap' => 8,
                 'section_width' => 'container',
                 'section_height' => 'auto',

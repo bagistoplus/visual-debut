@@ -53,46 +53,55 @@ class Group extends SimpleBlock
             // Flex Settings
             Select::make('flex_direction', _t('blocks.group.settings.flex_direction_label'))
                 ->options([
-                    'row' => _t('blocks.group.settings.flex_direction_options.row'),
-                    'row-reverse' => _t('blocks.group.settings.flex_direction_options.row_reverse'),
-                    'column' => _t('blocks.group.settings.flex_direction_options.column'),
-                    'column-reverse' => _t('blocks.group.settings.flex_direction_options.column_reverse'),
+                    'column' => _t('blocks.group.settings.flex_direction_options.vertical'),
+                    'row' => _t('blocks.group.settings.flex_direction_options.horizontal'),
                 ])
                 ->default('row')
                 ->responsive()
+                ->asSegment()
                 ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')),
 
-            Select::make('flex_wrap', _t('blocks.group.settings.flex_wrap_label'))
+            Select::make('vertical_justify_content', _t('blocks.group.settings.vertical_justify_label'))
                 ->options([
-                    'nowrap' => _t('blocks.group.settings.flex_wrap_options.nowrap'),
-                    'wrap' => _t('blocks.group.settings.flex_wrap_options.wrap'),
-                    'wrap-reverse' => _t('blocks.group.settings.flex_wrap_options.wrap_reverse'),
+                    'start' => _t('blocks.group.settings.vertical_justify_options.top'),
+                    'center' => _t('blocks.group.settings.vertical_justify_options.center'),
+                    'between' => _t('blocks.group.settings.vertical_justify_options.space_between'),
+                    'end' => _t('blocks.group.settings.vertical_justify_options.bottom'),
                 ])
-                ->default('nowrap')
-                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')),
+                // ->default('start')
+                ->responsive()
+                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')->when('flex_direction', 'column')),
 
-            Select::make('justify_content', _t('blocks.group.settings.justify_content_label'))
+            Select::make('vertical_align_items', _t('blocks.group.settings.vertical_align_label'))
                 ->options([
-                    'start' => _t('blocks.group.settings.justify_content_options.start'),
-                    'center' => _t('blocks.group.settings.justify_content_options.center'),
-                    'end' => _t('blocks.group.settings.justify_content_options.end'),
-                    'between' => _t('blocks.group.settings.justify_content_options.between'),
-                    'around' => _t('blocks.group.settings.justify_content_options.around'),
-                    'evenly' => _t('blocks.group.settings.justify_content_options.evenly'),
+                    'start' => _t('blocks.group.settings.vertical_align_options.start'),
+                    'center' => _t('blocks.group.settings.vertical_align_options.center'),
+                    'end' => _t('blocks.group.settings.vertical_align_options.end'),
                 ])
-                ->default('start')
-                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')),
+                // ->default('start')
+                ->responsive()
+                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')->when('flex_direction', 'column')),
 
-            Select::make('align_items', _t('blocks.group.settings.align_items_label'))
+            Select::make('horizontal_justify_content', _t('blocks.group.settings.horizontal_justify_label'))
                 ->options([
-                    'start' => _t('blocks.group.settings.align_items_options.start'),
-                    'center' => _t('blocks.group.settings.align_items_options.center'),
-                    'end' => _t('blocks.group.settings.align_items_options.end'),
-                    'stretch' => _t('blocks.group.settings.align_items_options.stretch'),
-                    'baseline' => _t('blocks.group.settings.align_items_options.baseline'),
+                    'start' => _t('blocks.group.settings.horizontal_justify_options.left'),
+                    'center' => _t('blocks.group.settings.horizontal_justify_options.center'),
+                    'between' => _t('blocks.group.settings.horizontal_justify_options.space_between'),
+                    'end' => _t('blocks.group.settings.horizontal_justify_options.right'),
                 ])
-                ->default('stretch')
-                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')),
+                // ->default('start')
+                ->responsive()
+                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')->when('flex_direction', 'row')),
+
+            Select::make('horizontal_align_items', _t('blocks.group.settings.horizontal_align_label'))
+                ->options([
+                    'start' => _t('blocks.group.settings.horizontal_align_options.top'),
+                    'center' => _t('blocks.group.settings.horizontal_align_options.center'),
+                    'end' => _t('blocks.group.settings.horizontal_align_options.bottom'),
+                ])
+                // ->default('start')
+                ->responsive()
+                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'flex')->when('flex_direction', 'row')),
 
             Range::make('flex_gap', _t('blocks.group.settings.gap_label'))
                 ->min(0)
@@ -567,8 +576,10 @@ class Group extends SimpleBlock
 
     protected function mapFlexProperties(array &$classes): void
     {
-        if ($this->block->settings->has('flex_direction')) {
-            $classes[] = Tailwind::responsive($this->block->settings->flex_direction, fn($v) => match ($v) {
+        $s = $this->block->settings;
+
+        if ($s->has('flex_direction')) {
+            $classes[] = Tailwind::responsive($s->flex_direction, fn($v) => match ($v) {
                 'row' => 'flex-row',
                 'row-reverse' => 'flex-row-reverse',
                 'column' => 'flex-col',
@@ -577,8 +588,46 @@ class Group extends SimpleBlock
             });
         }
 
-        if ($this->block->settings->has('flex_wrap')) {
-            $classes[] = Tailwind::responsive($this->block->settings->flex_wrap, fn($v) => match ($v) {
+        if ($s->get('vertical_justify_content')) {
+            $classes[] = Tailwind::responsive($s->vertical_justify_content, fn($v) => match ($v) {
+                'start' => 'justify-start',
+                'center' => 'justify-center',
+                'between' => 'justify-between',
+                'end' => 'justify-end',
+                default => 'justify-start',
+            });
+        }
+
+        if ($s->get('vertical_align_items')) {
+            $classes[] = Tailwind::responsive($s->vertical_align_items, fn($v) => match ($v) {
+                'start' => 'items-start',
+                'center' => 'items-center',
+                'end' => 'items-end',
+                default => 'items-stretch',
+            });
+        }
+
+        if ($s->get('horizontal_justify_content')) {
+            $classes[] = Tailwind::responsive($s->horizontal_justify_content, fn($v) => match ($v) {
+                'start' => 'justify-start',
+                'center' => 'justify-center',
+                'between' => 'justify-between',
+                'end' => 'justify-end',
+                default => 'justify-start',
+            });
+        }
+
+        if ($s->get('horizontal_align_items')) {
+            $classes[] = Tailwind::responsive($s->horizontal_align_items, fn($v) => match ($v) {
+                'start' => 'items-start',
+                'center' => 'items-center',
+                'end' => 'items-end',
+                default => 'items-start',
+            });
+        }
+
+        if ($s->has('flex_wrap')) {
+            $classes[] = Tailwind::responsive($s->flex_wrap, fn($v) => match ($v) {
                 'nowrap' => 'flex-nowrap',
                 'wrap' => 'flex-wrap',
                 'wrap-reverse' => 'flex-wrap-reverse',
@@ -586,8 +635,8 @@ class Group extends SimpleBlock
             });
         }
 
-        if ($this->block->settings->has('justify_content')) {
-            $classes[] = Tailwind::responsive($this->block->settings->justify_content, fn($v) => match ($v) {
+        if ($s->has('justify_content') && !$s->has('vertical_justify_content') && !$s->has('horizontal_justify_content')) {
+            $classes[] = Tailwind::responsive($s->justify_content, fn($v) => match ($v) {
                 'start' => 'justify-start',
                 'end' => 'justify-end',
                 'center' => 'justify-center',
@@ -598,8 +647,8 @@ class Group extends SimpleBlock
             });
         }
 
-        if ($this->block->settings->has('align_items')) {
-            $classes[] = Tailwind::responsive($this->block->settings->align_items, fn($v) => match ($v) {
+        if ($s->has('align_items') && !$s->has('vertical_align_items') && !$s->has('horizontal_align_items')) {
+            $classes[] = Tailwind::responsive($s->align_items, fn($v) => match ($v) {
                 'stretch' => 'items-stretch',
                 'start' => 'items-start',
                 'end' => 'items-end',
@@ -609,8 +658,8 @@ class Group extends SimpleBlock
             });
         }
 
-        if ($this->block->settings->has('flex_gap')) {
-            $classes[] = Tailwind::responsive($this->block->settings->flex_gap, fn($v) => "gap-{$v}");
+        if ($s->has('flex_gap')) {
+            $classes[] = Tailwind::responsive($s->flex_gap, fn($v) => "gap-{$v}");
         }
     }
 

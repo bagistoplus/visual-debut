@@ -1082,13 +1082,40 @@ return [
             ],
 
             // Flex Settings
-            'flex_direction_label' => 'Flex Direction',
+            'flex_direction_label' => 'Direction',
             'flex_direction_options' => [
-                'row' => 'Row',
-                'row_reverse' => 'Row Reverse',
-                'column' => 'Column',
-                'column_reverse' => 'Column Reverse',
+                'horizontal' => 'Horizontal',
+                'vertical' => 'Vertical',
             ],
+
+            'vertical_justify_label' => 'Content Position',
+            'vertical_justify_options' => [
+                'top' => 'Top',
+                'center' => 'Center',
+                'space_between' => 'Space Between',
+                'bottom' => 'Bottom',
+            ],
+            'vertical_align_label' => 'Content Alignment',
+            'vertical_align_options' => [
+                'start' => 'Start',
+                'center' => 'Center',
+                'end' => 'End',
+            ],
+
+            'horizontal_justify_label' => 'Content Position',
+            'horizontal_justify_options' => [
+                'left' => 'Left',
+                'center' => 'Center',
+                'space_between' => 'Space Between',
+                'right' => 'Right',
+            ],
+            'horizontal_align_label' => 'Content Alignment',
+            'horizontal_align_options' => [
+                'top' => 'Top',
+                'center' => 'Center',
+                'bottom' => 'Bottom',
+            ],
+
             'flex_wrap_label' => 'Flex Wrap',
             'flex_wrap_options' => [
                 'nowrap' => 'No Wrap',

@@ -56,7 +56,7 @@ class FeatureIcon extends Preset
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',
-                        'align_items' => 'center',
+                        'vertical_align_items' => 'center',
                     ])
                     ->blocks([
                         PresetBlock::make('@visual-debut/heading')

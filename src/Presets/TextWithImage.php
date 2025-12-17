@@ -19,8 +19,10 @@ class TextWithImage extends Preset
             ->category('Content')
             ->settings([
                 'flex_direction' => ['_default' => 'row', 'mobile' => 'column'],
-                'justify_content' => 'between',
-                'align_items' => 'center',
+                'horizontal_justify_content' => ['_default' => 'between'],
+                'horizontal_align_items' => ['_default' => 'center'],
+                'vertical_justify_content' => ['mobile' => 'start'],
+                'vertical_align_items' => ['mobile' => 'center'],
                 'flex_gap' => ['_default' => 8],
                 'section_width' => 'container',
                 'section_height' => 'auto',
@@ -50,8 +52,8 @@ class TextWithImage extends Preset
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',
-                        'justify_content' => 'center',
-                        'align_items' => 'start',
+                        'vertical_justify_content' => 'center',
+                        'vertical_align_items' => 'start',
                         'flex_gap' => ['_default' => 4],
                         'width' => ['_default' => '50%', 'mobile' => '100%'],
                     ])
@@ -60,6 +62,7 @@ class TextWithImage extends Preset
                             ->settings([
                                 'text' => 'Image with text',
                                 'tag' => 'h2',
+                                'type_preset' => 'h2',
                             ]),
                         PresetBlock::make('@visual-debut/text')
                             ->settings([

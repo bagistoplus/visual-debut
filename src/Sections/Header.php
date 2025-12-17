@@ -82,7 +82,7 @@ class Header extends BladeSection
                         ->settings([
                             'layout_type' => 'flex',
                             'flex_direction' => 'row',
-                            'align_items' => 'center',
+                            'horizontal_align_items' => 'center',
                             'flex_gap' => 4,
                         ])
                         ->blocks([
@@ -95,7 +95,7 @@ class Header extends BladeSection
                         ->settings([
                             'layout_type' => 'flex',
                             'flex_direction' => 'row',
-                            'align_items' => 'center',
+                            'horizontal_align_items' => 'center',
                             'flex_gap' => 4,
                             'width' => [
                                 '_default' => 'full',
@@ -111,7 +111,7 @@ class Header extends BladeSection
                         ->settings([
                             'layout_type' => 'flex',
                             'flex_direction' => 'row',
-                            'justify_content' => 'end',
+                            'horizontal_justify_content' => 'end',
                             'align_items' => 'center',
                             'flex_gap' => [
                                 '_default' => 2,

@@ -30,7 +30,7 @@ class MinimalFooter extends Preset
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',
-                        'align_items' => 'center',
+                        'vertical_align_items' => 'center',
                         'gap' => ['_default' => 6],
                         'width' => '100%',
                     ])

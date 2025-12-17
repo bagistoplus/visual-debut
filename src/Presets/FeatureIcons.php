@@ -21,8 +21,8 @@ class FeatureIcons extends Preset
             ->category('Content')
             ->settings([
                 'flex_direction' => ['_default' => 'column'],
-                'justify_content' => 'start',
-                'align_items' => 'stretch',
+                'vertical_justify_content' => ['_default' => 'start'],
+                'vertical_align_items' => ['_default' => 'start'],
                 'flex_gap' => ['_default' => 6],
                 'section_width' => 'container',
                 'section_height' => 'auto',
@@ -73,7 +73,7 @@ class FeatureIcons extends Preset
             ->settings([
                 'layout_type' => 'flex',
                 'flex_direction' => 'column',
-                'align_items' => 'center',
+                'vertical_align_items' => 'center',
                 'flex_gap' => ['_default' => 4],
             ])
             ->blocks([

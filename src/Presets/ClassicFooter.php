@@ -89,8 +89,8 @@ class ClassicFooter extends Preset
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => ['_default' => 'row', 'mobile' => 'column'],
-                        'justify_content' => 'between',
-                        'align_items' => 'center',
+                        'horizontal_justify_content' => 'between',
+                        'horizontal_align_items' => 'center',
                         'gap' => ['_default' => 4],
                         'width' => '100%',
                     ])
