@@ -30,4 +30,23 @@
       </div>
     @endif
   @endif
+@else
+  @visual_design_mode
+  <div {{ $block->editor_attributes }} class="grid w-full max-w-sm gap-4 text-muted">
+    <div class="flex items-center justify-between gap-4">
+      <div class="text-xs">
+        <p class="text-on-background font-semibold">Product Item</p>
+        <p class="mt-1">Sample Product + $25.00</p>
+      </div>
+      <x-shop::quantity-selector :min="1" :value="1" disabled />
+    </div>
+    <div class="flex items-center justify-between gap-4">
+      <div class="text-xs">
+        <p class="text-on-background font-semibold">Product Item</p>
+        <p class="mt-1">Another Product + $15.00</p>
+      </div>
+      <x-shop::quantity-selector :min="1" :value="1" disabled />
+    </div>
+  </div>
+  @end_visual_design_mode
 @endisset

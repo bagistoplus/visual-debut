@@ -9,7 +9,11 @@
       ];
     @endphp
 
-    <div {{ $block->editor_attributes }} x-data x-variant-picker="@js($props)">
+    <div
+      {{ $block->editor_attributes }}
+      x-data
+      x-variant-picker="@js($props)"
+    >
       <template x-for="attribute in variantAttributes" x-bind:key="attribute.id">
         <div x-variant-picker:attribute="attribute" class="mb-4 max-w-72">
           <label class="mb-1 block font-medium" x-text="attribute.label">
@@ -101,5 +105,31 @@
         </div>
       </template>
     </div>
+  @else
+    <div {{ $block->editor_attributes }} class="text-muted">
+      This product does not have any variants.
+    </div>
   @endif
+@else
+  @visual_design_mode
+  <div {{ $block->editor_attributes }} class="space-y-4">
+    <div class="mb-4 max-w-72">
+      <label class="text-muted mb-1 block font-medium">Size</label>
+      <div class="grid grid-cols-5 gap-2">
+        <button class="bg-primary text-on-primary rounded-md px-3 py-2 text-sm font-medium">S</button>
+        <button class="bg-background text-on-background/90 rounded-md border px-3 py-2 text-sm font-medium">M</button>
+        <button class="bg-background text-on-background/90 rounded-md border px-3 py-2 text-sm font-medium">L</button>
+        <button class="bg-background text-on-background/90 rounded-md border px-3 py-2 text-sm font-medium">XL</button>
+      </div>
+    </div>
+    <div class="mb-4 max-w-72">
+      <label class="text-muted mb-1 block font-medium">Color</label>
+      <div class="flex gap-4">
+        <button class="ring-primary h-8 w-8 rounded-full border ring-2 ring-offset-2" style="background-color: #000000"></button>
+        <button class="h-8 w-8 rounded-full border hover:ring-2 hover:ring-neutral-200 hover:ring-offset-2" style="background-color: #FFFFFF"></button>
+        <button class="h-8 w-8 rounded-full border hover:ring-2 hover:ring-neutral-200 hover:ring-offset-2" style="background-color: #EF4444"></button>
+      </div>
+    </div>
+  </div>
+  @end_visual_design_mode
 @endisset

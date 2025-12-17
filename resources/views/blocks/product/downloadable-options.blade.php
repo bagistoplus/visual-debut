@@ -62,4 +62,29 @@
       @endif
     </div>
   @endif
+@else
+  @visual_design_mode
+  <div {{ $block->editor_attributes }} class="space-y-4 text-muted">
+    <div>
+      <h3 class="text-on-background mb-2 text-base font-semibold">Samples</h3>
+      <ul>
+        <li><a class="text-primary" href="#">Download Sample 1</a></li>
+        <li><a class="text-primary" href="#">Download Sample 2</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="text-on-background mb-2 text-base font-semibold">Links</h3>
+      <div class="grid gap-2">
+        <label class="flex items-center gap-x-2">
+          <input type="checkbox" disabled class="text-primary">
+          <span>Download Link 1 + $5.00</span>
+        </label>
+        <label class="flex items-center gap-x-2">
+          <input type="checkbox" disabled class="text-primary">
+          <span>Download Link 2 + $3.00</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  @end_visual_design_mode
 @endisset

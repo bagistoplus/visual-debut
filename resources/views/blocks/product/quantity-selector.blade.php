@@ -1,11 +1,15 @@
-@isset($product)
-  @if ($showQuantitySelector)
-    <div {{ $block->editor_attributes }}>
-      <x-shop::quantity-selector label="{{ trans('Quantity') }}" x-on:change="$wire.quantity = $event.detail" />
-    </div>
-  @endif
-@else
+@if ($product && $showQuantitySelector)
   <div {{ $block->editor_attributes }}>
-    This block should be used in a context where a product is defined
+    <x-shop::quantity-selector label="{{ trans('Quantity') }}" x-on:change="$wire.quantity = $event.detail" />
   </div>
-@endisset
+@else
+  @visual_design_mode
+  <div {{ $block->editor_attributes }}>
+    <x-shop::quantity-selector
+      label="{{ trans('Quantity') }}"
+      :value="1"
+      disabled
+    />
+  </div>
+  @end_visual_design_mode
+@endif

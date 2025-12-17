@@ -4,7 +4,11 @@
       $config = app('Webkul\Product\Helpers\BundleOption')->getBundleConfig($product);
     @endphp
 
-    <div {{ $block->editor_attributes }} x-data x-product-bundle="@js(['options' => $config['options']])">
+    <div
+      {{ $block->editor_attributes }}
+      x-data
+      x-product-bundle="@js(['options' => $config['options']])"
+    >
       <div class="grid gap-2">
         @foreach ($config['options'] as $option)
           <div class="grid gap-4 border-b pb-3 last:border-b-0">
@@ -145,5 +149,39 @@
         </template>
       </ul>
     </div>
+  @else
+    <div {{ $block->editor_attributes }}>
+      This product does not support bundle
+    </div>
   @endif
+@else
+  @visual_design_mode
+  <div {{ $block->editor_attributes }} class="text-muted space-y-4">
+    <div class="grid gap-2">
+      <div class="grid gap-4 border-b pb-3">
+        <label>
+          <span class="text-sm font-semibold">Choose a Processor</span>
+          <select class="mt-1 w-full" disabled>
+            <option>Intel Core i5 + $100.00</option>
+            <option>Intel Core i7 + $150.00</option>
+          </select>
+        </label>
+      </div>
+      <div class="grid gap-4 border-b pb-3">
+        <label>
+          <span class="text-sm font-semibold">Choose Memory</span>
+          <select class="mt-1 w-full" disabled>
+            <option>8GB RAM + $50.00</option>
+            <option>16GB RAM + $100.00</option>
+          </select>
+        </label>
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="flex items-center justify-between">
+      <label>Total Amount</label>
+      <div class="text-primary text-xl font-medium">$150.00</div>
+    </div>
+  </div>
+  @end_visual_design_mode
 @endisset

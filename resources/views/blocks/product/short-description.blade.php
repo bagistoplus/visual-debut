@@ -3,7 +3,9 @@
     {!! visual_clear_inline_styles($product->short_description) !!}
   </div>
 @else
-  <div {{ $block->editor_attributes }}>
-    This block should be used in a context where a product is defined
+  @visual_design_mode
+  <div {{ $block->editor_attributes }} class="prose text-muted">
+    <p>Short product description will appear here. This is a brief summary of the product's key features and benefits.</p>
   </div>
+  @end_visual_design_mode
 @endisset

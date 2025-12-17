@@ -1,5 +1,9 @@
 @isset($product)
-  <div {{ $block->editor_attributes }} x-data="VisualBuyButtons" class="flex w-full max-w-sm flex-col gap-4">
+  <div
+    {{ $block->editor_attributes }}
+    x-data="VisualBuyButtons"
+    class="flex w-full max-w-sm flex-col gap-4"
+  >
     <x-shop::ui.button
       wire:target="addToCart"
       icon="lucide-shopping-cart"
@@ -24,4 +28,18 @@
       </x-shop::ui.button>
     @endif
   </div>
+@else
+  @visual_design_mode
+  <div {{ $block->editor_attributes }} class="flex w-full max-w-sm flex-col gap-4">
+    <x-shop::ui.button icon="lucide-shopping-cart" variant="{{ $block->settings->enable_buy_now ? 'outline' : 'primary' }}">
+      {{ trans('shop::app.products.view.add-to-cart') }}
+    </x-shop::ui.button>
+
+    @if ($block->settings->enable_buy_now)
+      <x-shop::ui.button icon="lucide-shopping-cart" variant="primary">
+        {{ trans('shop::app.products.view.buy-now') }}
+      </x-shop::ui.button>
+    @endif
+  </div>
+  @end_visual_design_mode
 @endisset
