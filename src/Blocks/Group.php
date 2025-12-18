@@ -171,6 +171,7 @@ class Group extends SimpleBlock
                 ->step(1)
                 ->default(100)
                 ->unit('%')
+                ->responsive()
                 ->visibleWhen(fn($rule) => $rule->when('width', 'custom')),
 
             Range::make('min_width', _t('blocks.group.settings.min_width_label'))
@@ -657,17 +658,35 @@ class Group extends SimpleBlock
         // Width
         if ($this->block->settings->has('width')) {
             $width = $this->block->settings->width;
-            if ($width === 'custom' && $this->block->settings->has('custom_width')) {
-                $customWidth = $this->block->settings->custom_width;
-                $styles[] = "width: {$customWidth}%";
-            } elseif ($width !== 'auto') {
-                $classes[] = Tailwind::responsive($width, fn($v) => match ($v) {
-                    'full' => 'w-full',
-                    'fit' => 'w-fit',
-                    'screen' => 'w-screen',
-                    default => '',
-                });
+
+            // Check if any breakpoint has 'custom' width
+            $widthRv = Tailwind::toResponsiveValue($width);
+            $hasCustomWidth = false;
+            foreach ($widthRv->all() as $val) {
+                if ($val === 'custom') {
+                    $hasCustomWidth = true;
+                    break;
+                }
             }
+
+            if ($hasCustomWidth && $this->block->settings->has('custom_width')) {
+                $customWidthData = Tailwind::buildResponsiveStyleFor(
+                    value: $this->block->settings->custom_width,
+                    prefix: 'w',
+                    property: 'width'
+                );
+                $classes[] = $customWidthData['classes'];
+                $styles = array_merge($styles, $customWidthData['styles']);
+            }
+
+            // Handle non-custom widths (auto, full, fit, screen)
+            $classes[] = Tailwind::responsive($width, fn($v) => match ($v) {
+                'full' => 'w-full',
+                'fit' => 'w-fit',
+                'screen' => 'w-screen',
+                'custom' => '', // handled above
+                default => '',
+            });
         }
 
         // Min width

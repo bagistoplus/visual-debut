@@ -68,8 +68,8 @@ class Image extends SimpleBlock
 
             Select::make('width', _t('blocks.image.settings.width_label'))
                 ->options([
-                    'fit-content' => _t('blocks.image.settings.width_options.fit_content'),
                     'fill' => _t('blocks.image.settings.width_options.fill'),
+                    'fit-content' => _t('blocks.image.settings.width_options.fit_content'),
                     'custom' => _t('blocks.image.settings.width_options.custom'),
                 ])
                 ->default('fill')

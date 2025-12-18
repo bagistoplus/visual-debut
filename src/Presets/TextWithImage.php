@@ -19,10 +19,8 @@ class TextWithImage extends Preset
             ->category('Content')
             ->settings([
                 'flex_direction' => ['_default' => 'row', 'mobile' => 'column'],
-                'horizontal_justify_content' => ['_default' => 'between'],
+                'horizontal_justify_content' => ['_default' => 'left'],
                 'horizontal_align_items' => ['_default' => 'center'],
-                'vertical_justify_content' => ['mobile' => 'start'],
-                'vertical_align_items' => ['mobile' => 'center'],
                 'flex_gap' => ['_default' => 8],
                 'section_width' => 'container',
                 'section_height' => 'auto',
@@ -34,20 +32,11 @@ class TextWithImage extends Preset
                 ],
             ])
             ->blocks([
-                // Image Container
-                PresetBlock::make('@visual-debut/group')
-                    ->name('Image Box')
+                PresetBlock::make('@visual-debut/image')
                     ->settings([
-                        'layout_type' => 'block',
-                        'width' => ['_default' => '50%', 'mobile' => '100%'],
-                    ])
-                    ->blocks([
-                        PresetBlock::make('@visual-debut/image')
-                            ->settings([
-                                'aspect_ratio' => 'adapt',
-                                'object_fit' => 'cover',
-                                'width' => 'fill',
-                            ])
+                        'aspect_ratio' => 'square',
+                        'object_fit' => 'cover',
+                        'width' => 'fill',
                     ]),
 
                 // Content Container
@@ -59,7 +48,7 @@ class TextWithImage extends Preset
                         'vertical_justify_content' => 'center',
                         'vertical_align_items' => 'start',
                         'flex_gap' => ['_default' => 4],
-                        'width' => ['_default' => '50%', 'mobile' => '100%'],
+                        'width' => 'full',
                     ])
                     ->blocks([
                         PresetBlock::make('@visual-debut/heading')

@@ -42,7 +42,7 @@ class Tailwind
         return implode(' ', $classes);
     }
 
-    protected static function toResponsiveValue($value): ResponsiveValue
+    public static function toResponsiveValue($value): ResponsiveValue
     {
         if ($value instanceof ResponsiveValue) {
             return $value;
@@ -107,5 +107,43 @@ class Tailwind
         }
 
         return implode(' ', $result);
+    }
+
+    /**
+     * Build responsive CSS classes and inline styles for a CSS property
+     *
+     * @param ResponsiveValue|mixed $value Responsive value
+     * @param string $prefix Tailwind class prefix (e.g., 'w', 'h')
+     * @param string $property CSS property name (e.g., 'width', 'height')
+     * @param string $unit Unit to append to values (default: '%')
+     * @return array ['classes' => string, 'styles' => array]
+     */
+    public static function buildResponsiveStyleFor($value, string $prefix, string $property, string $unit = '%'): array
+    {
+        $rv = static::toResponsiveValue($value);
+        $classes = [];
+        $styles = [];
+
+        foreach ($rv->all() as $breakpoint => $val) {
+            if ($val === null || $val <= 0) {
+                continue;
+            }
+
+            $varName = $breakpoint === '_default'
+                ? "--{$property}"
+                : "--{$property}-{$breakpoint}";
+
+            $className = $breakpoint === '_default'
+                ? "{$prefix}-(--{$property})"
+                : "{$breakpoint}:{$prefix}-(--{$property}-{$breakpoint})";
+
+            $classes[] = $className;
+            $styles[] = "{$varName}: {$val}{$unit}";
+        }
+
+        return [
+            'classes' => implode(' ', $classes),
+            'styles' => $styles,
+        ];
     }
 }

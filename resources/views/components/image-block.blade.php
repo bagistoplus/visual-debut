@@ -36,21 +36,28 @@
       },
   );
 
-  // Custom width (responsive) - inline styles
-  $customWidthStyle = '';
-  $customWidth = $block->settings->custom_width ?? null;
-  if ($customWidth) {
-      if (is_array($customWidth)) {
-          $styles = [];
-          foreach ($customWidth as $breakpoint => $value) {
-              if ($value !== null && $value > 0) {
-                  $styles[] = "width: {$value}%";
-              }
-          }
-          $customWidthStyle = !empty($styles) ? implode('; ', $styles) : '';
-      } elseif ($customWidth > 0) {
-          $customWidthStyle = "width: {$customWidth}%";
+  // Custom width (responsive) - classes and styles
+  $customWidthClasses = '';
+  $customWidthStyles = [];
+
+  // Check if any breakpoint has 'custom' width
+  $widthRv = Tailwind::toResponsiveValue($block->settings->width ?? 'fill');
+  $hasCustomWidth = false;
+  foreach ($widthRv->all() as $val) {
+      if ($val === 'custom') {
+          $hasCustomWidth = true;
+          break;
       }
+  }
+
+  if ($hasCustomWidth && $block->settings->custom_width) {
+      $customWidthData = Tailwind::buildResponsiveStyleFor(
+          value: $block->settings->custom_width,
+          prefix: 'w',
+          property: 'width'
+      );
+      $customWidthClasses = $customWidthData['classes'];
+      $customWidthStyles = $customWidthData['styles'];
   }
 
   // Height
@@ -90,7 +97,7 @@
   }
 
   // Combine inline styles
-  $inlineStyles = array_filter(array_merge($borderStyles, $customWidthStyle ? [$customWidthStyle] : []));
+  $inlineStyles = array_filter(array_merge($borderStyles, $customWidthStyles));
   $styleAttr = !empty($inlineStyles) ? ' style="' . implode('; ', $inlineStyles) . '"' : '';
 
   $paddingClasses = '';
@@ -102,7 +109,7 @@
 @if ($image)
   <div
     {{ $block->editor_attributes }}
-    class="{{ $widthClass }} {{ $heightClass }} {{ $aspectRatioClass }} {{ implode(' ', $borderClasses) }} {{ $paddingClasses }} relative overflow-hidden"
+    class="{{ $widthClass }} {{ $customWidthClasses }} {{ $heightClass }} {{ $aspectRatioClass }} {{ implode(' ', $borderClasses) }} {{ $paddingClasses }} relative overflow-hidden"
     {!! $styleAttr !!}
     {{ $attributes }}
   >
@@ -115,7 +122,7 @@
 @else
   <div
     {{ $block->editor_attributes }}
-    class="{{ $widthClass }} {{ $heightClass }} {{ $aspectRatioClass }} {{ implode(' ', $borderClasses) }} {{ $paddingClasses }} relative flex min-h-56 items-center justify-center overflow-hidden bg-gray-200"
+    class="{{ $widthClass }} {{ $customWidthClasses }} {{ $heightClass }} {{ $aspectRatioClass }} {{ implode(' ', $borderClasses) }} {{ $paddingClasses }} relative flex min-h-56 items-center justify-center overflow-hidden bg-gray-200"
     {!! $styleAttr !!}
     {{ $attributes }}
   >
