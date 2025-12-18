@@ -100,7 +100,7 @@ class ClassicFooter extends Preset
                         'horizontal_justify_content' => 'between',
                         'horizontal_align_items' => 'center',
                         'gap' => ['_default' => 4],
-                        'width' => '100%',
+                        'width' => 'fill',
                     ])
                     ->blocks([
                         PresetBlock::make('@visual-debut/text')

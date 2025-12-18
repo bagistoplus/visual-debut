@@ -52,7 +52,7 @@ class AccordionRow extends BladeBlock
                         ->id('text-1')
                         ->settings([
                             'text' => '<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>',
-                            'width' => '100%',
+                            'width' => 'fill',
                         ]),
                 ])
                 ->settings([
@@ -60,5 +60,4 @@ class AccordionRow extends BladeBlock
                 ]),
         ];
     }
-
 }

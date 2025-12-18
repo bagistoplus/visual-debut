@@ -36,7 +36,7 @@ class MinimalFooter extends Preset
                         'flex_direction' => 'column',
                         'vertical_align_items' => 'center',
                         'gap' => ['_default' => 6],
-                        'width' => '100%',
+                        'width' => 'fill',
                     ])
                     ->blocks([
                         PresetBlock::make('@visual-debut/heading')

@@ -35,7 +35,7 @@ class NewsletterFooter extends Preset
                         'layout_type' => 'grid',
                         'grid_columns' => ['_default' => 2, 'mobile' => 1],
                         'gap' => ['_default' => 12],
-                        'width' => '100%',
+                        'width' => 'fill',
                     ])
                     ->blocks([
                         // Newsletter section

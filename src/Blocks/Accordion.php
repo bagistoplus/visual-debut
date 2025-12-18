@@ -134,7 +134,7 @@ class Accordion extends BladeBlock
                                 ->id('text-1')
                                 ->settings([
                                     'text' => '<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn\'t the case, let us know and we\'ll do our best to work with you to make it right.</p>',
-                                    'width' => '100%',
+                                    'width' => 'fill',
                                 ]),
                         ]),
 
@@ -148,7 +148,7 @@ class Accordion extends BladeBlock
                                 ->id('text-1')
                                 ->settings([
                                     'text' => '<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>',
-                                    'width' => '100%',
+                                    'width' => 'fill',
                                 ]),
                         ]),
 
@@ -162,7 +162,7 @@ class Accordion extends BladeBlock
                                 ->id('text-1')
                                 ->settings([
                                     'text' => '<p>Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value.</p>',
-                                    'width' => '100%',
+                                    'width' => 'fill',
                                 ]),
                         ]),
                 ]),

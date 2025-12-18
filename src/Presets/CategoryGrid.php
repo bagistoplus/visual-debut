@@ -40,7 +40,7 @@ class CategoryGrid extends Preset
                         'tag' => 'h2',
                         'heading_level' => 'h2',
                         'text' => _t('sections.category-list.presets.grid.heading'),
-                        'width' => '100%',
+                        'width' => 'fill',
                         'alignment' => 'center',
                         'type_preset' => 'h2',
                         'padding' => [

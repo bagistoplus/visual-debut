@@ -279,7 +279,7 @@ class ProductList extends BladeSection
                         ->settings([
                             'text' => 'Featured Products',
                             'tag' => 'h2',
-                            'width' => '100%',
+                            'width' => 'fill',
                             'alignment' => 'center',
                             'padding' => [
                                 'top' => 4,
@@ -307,7 +307,7 @@ class ProductList extends BladeSection
                         ->settings([
                             'text' => 'New Arrivals',
                             'tag' => 'h2',
-                            'width' => '100%',
+                            'width' => 'fill',
                             'alignment' => 'center',
                         ]),
 

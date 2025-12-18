@@ -40,7 +40,7 @@ class FeatureIcons extends Preset
                         'text' => 'Why Shop With Us?',
                         'tag' => 'h2',
                         'type_preset' => 'h2',
-                        'width' => '100%',
+                        'width' => 'fill',
                         'alignment' => 'center',
                     ]),
 
@@ -48,7 +48,7 @@ class FeatureIcons extends Preset
                 PresetBlock::make('@visual-debut/text')
                     ->settings([
                         'text' => 'Explore our customer-focused features',
-                        'width' => '100%',
+                        'width' => 'fill',
                         'alignment' => 'center',
                     ]),
 
@@ -59,7 +59,7 @@ class FeatureIcons extends Preset
                         'layout_type' => 'grid',
                         'grid_columns' => ['_default' => 4, 'mobile' => 1],
                         'grid_gap' => ['_default' => 6],
-                        'width' => '100%',
+                        'width' => 'fill',
                     ])
                     ->blocks([
                         // Feature Item 1
@@ -121,7 +121,7 @@ class FeatureIcons extends Preset
                             ->settings([
                                 'text' => $title,
                                 'tag' => 'h3',
-                                'width' => '100%',
+                                'width' => 'fill',
                                 'alignment' => 'center',
                                 'type_preset' => 'custom',
                                 'font_size' => 16,
@@ -131,7 +131,7 @@ class FeatureIcons extends Preset
                         PresetBlock::make('@visual-debut/text')
                             ->settings([
                                 'text' => $description,
-                                'width' => '100%',
+                                'width' => 'fill',
                                 'alignment' => 'center',
                                 'type_preset' => 'custom',
                                 'font_size' => 12,

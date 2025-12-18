@@ -54,7 +54,7 @@ class Text extends SimpleBlock
                     'normal' => _t('blocks.text.settings.max_width_options.normal'),
                     'none' => _t('blocks.text.settings.max_width_options.none'),
                 ])
-                ->default('normal'),
+                ->default('none'),
 
             Select::make('alignment', _t('blocks.text.settings.alignment_label'))
                 ->options([

@@ -17,7 +17,7 @@ return TemplateBuilder::make()
                     ->settings([
                         'text' => 'Featured Products',
                         'tag' => 'h2',
-                        'width' => '100%',
+                        'width' => 'fill',
                         'alignment' => 'center',
                         'type_preset' => 'h2',
                         'padding' => [
