@@ -11,7 +11,11 @@
   {{ $attributes->merge(['x-on:click.prevent' => '$wire.' . $action . '()']) }}
 >
   @if (!$circle && !$square)
-    <span wire:target="{{ $action }}" wire:loading.class="opacity-0" class="transition-opacity duration-200">
+    <span
+      wire:target="{{ $action }}"
+      wire:loading.class="opacity-0"
+      class="transition-opacity duration-200"
+    >
       {{ trans('shop::app.components.products.card.add-to-cart') }}
     </span>
   @endif

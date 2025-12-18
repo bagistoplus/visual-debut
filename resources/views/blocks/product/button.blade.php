@@ -7,7 +7,7 @@
   $circle = $block->settings->circle ?? false;
   $square = $block->settings->square ?? false;
   $blockWidth = $block->settings->block ?? false;
-  $editorAttrs = $block->editor_attributes;
+  $editorAttrs = $block->editor_attributes->toHtml();
 @endphp
 
 @if (!$productResource)
