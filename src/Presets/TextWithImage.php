@@ -46,7 +46,7 @@ class TextWithImage extends Preset
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',
                         'vertical_justify_content' => 'center',
-                        'vertical_align_items' => 'start',
+                        'vertical_align_items' => ['_default' => 'start', 'mobile' => 'center'],
                         'flex_gap' => ['_default' => 4],
                         'width' => 'full',
                     ])
@@ -60,6 +60,9 @@ class TextWithImage extends Preset
                         PresetBlock::make('@visual-debut/text')
                             ->settings([
                                 'text' => 'Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.',
+                                'width' => ['_default' => 'fit-content', 'mobile' => 'fill'],
+                                'max_width' => 'narrow',
+                                'alignment' => ['_default' => 'left', 'mobile' => 'center'],
                             ]),
                         PresetBlock::make('@visual-debut/button')
                             ->settings([

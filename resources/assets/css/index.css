@@ -3,6 +3,9 @@
 @config "../../../tailwind.config.js";
 
 @custom-variant parent-hover (*:hover > &);
+@custom-variant mobile (@media (max-width: 639px));
+@custom-variant tablet (@media (min-width: 640px) and (max-width: 1023px));
+@custom-variant desktop (@media (min-width: 1024px));
 
 /* Named group support for product cards */
 @source inline("group/product-card");
@@ -25,6 +28,10 @@
 @source inline("{mobile:,tablet:,desktop:,}z-{0,10,20,30,40,50}");
 @source inline("{mobile:,tablet:,desktop:,}w-{auto,full,fit,screen}");
 @source inline("{mobile:,tablet:,desktop:,}h-{auto,full,fit,screen}");
+@source inline("{mobile:,tablet:,desktop:,}flex-{row,col}");
+@source inline("{mobile:,tablet:,desktop:,}justify-{start,end,center,between}");
+@source inline("{mobile:,tablet:,desktop:,}items-{start,end,center}");
+@source inline("{mobile:,tablet:,desktop:,}text-{left,center,right}");
 
 /* Image block - Custom width with CSS variables */
 @source inline("w-(--width)");

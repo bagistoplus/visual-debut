@@ -2,11 +2,11 @@
 export default {
   theme: {
     extend: {
-      screens: {
-        'mobile': {'max': '639px'},
-        'tablet': {'min': '640px', 'max': '1023px'},
-        'desktop': {'min': '1024px'},
-      },
+      // screens: {
+      //   mobile: { max: '639px' },
+      //   tablet: { min: '640px', max: '1023px' },
+      //   desktop: { min: '1024px' },
+      // },
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {

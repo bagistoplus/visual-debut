@@ -42,10 +42,11 @@ class Text extends SimpleBlock
             Select::make('width', _t('blocks.text.settings.width_label'))
                 ->options([
                     'fit-content' => _t('blocks.text.settings.width_options.fit'),
-                    '100%' => _t('blocks.text.settings.width_options.fill'),
+                    'fill' => _t('blocks.text.settings.width_options.fill'),
                 ])
                 ->asSegment()
-                ->default('fit-content'),
+                ->default('fit-content')
+                ->responsive(),
 
             Select::make('max_width', _t('blocks.text.settings.max_width_label'))
                 ->options([
@@ -62,7 +63,8 @@ class Text extends SimpleBlock
                     'right' => _t('blocks.text.settings.alignment_options.right'),
                 ])
                 ->default('left')
-                ->visibleWhen(fn($rule) => $rule->when('width', '100%')),
+                ->visibleWhen(fn($rule) => $rule->when('width', 'fill'))
+                ->responsive(),
 
             Header::make(_t('blocks.text.settings.typography_header')),
 

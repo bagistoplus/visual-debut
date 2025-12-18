@@ -2,8 +2,15 @@
 
 @php
   use BagistoPlus\VisualDebut\Tailwind;
-  // Width classes
-  $widthClass = $block->settings->width === '100%' ? 'w-full' : 'w-fit';
+  // Width
+  $widthClass = Tailwind::responsive(
+      $block->settings->width ?? 'fit',
+      fn($v) => match ($v) {
+          'fill' => 'w-full',
+          'fit' => 'w-fit',
+          default => 'w-fit',
+      },
+  );
 
   // Max width classes
   $maxWidthClasses = [
@@ -13,13 +20,16 @@
   ];
   $maxWidthClass = $maxWidthClasses[$block->settings->max_width] ?? 'max-w-2xl';
 
-  // Alignment classes
-  $alignmentClasses = [
-      'left' => 'text-left',
-      'center' => 'text-center mx-auto',
-      'right' => 'text-right ml-auto',
-  ];
-  $alignmentClass = $alignmentClasses[$block->settings->alignment] ?? 'text-left';
+  // Alignment
+  $alignmentClass = Tailwind::responsive(
+      $block->settings->alignment ?? 'left',
+      fn($v) => match ($v) {
+          'left' => 'text-left',
+          'center' => 'text-center',
+          'right' => 'text-right',
+          default => 'text-left',
+      },
+  );
 
   // Line height and letter spacing classes - only for custom mode
   // Presets already define these via CSS variables

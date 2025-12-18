@@ -154,9 +154,7 @@ class FlexSection extends BladeSection
         $flexDir = $s->flex_direction ?? ['_default' => 'column'];
         $classes[] = Tailwind::responsive($flexDir, fn($v) => match ($v) {
             'row' => 'flex-row',
-            'row-reverse' => 'flex-row-reverse',
             'column' => 'flex-col',
-            'column-reverse' => 'flex-col-reverse',
             default => 'flex-col',
         });
 
