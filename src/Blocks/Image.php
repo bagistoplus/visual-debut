@@ -8,6 +8,7 @@ use BagistoPlus\Visual\Settings\Image as ImageSetting;
 use BagistoPlus\Visual\Settings\Link;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Support\Preset;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -105,35 +106,12 @@ class Image extends BladeBlock
                 ->default(0)
                 ->unit('px'),
 
-            Header::make(_t('blocks.image.settings.padding_header')),
+            Header::make(_t('blocks.common.padding_header')),
 
-            Range::make('padding_block_start', _t('blocks.image.settings.padding_top_label'))
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
                 ->min(0)
-                ->max(100)
-                ->step(1)
-                ->default(0)
-                ->unit('px'),
-
-            Range::make('padding_block_end', _t('blocks.image.settings.padding_bottom_label'))
-                ->min(0)
-                ->max(100)
-                ->step(1)
-                ->default(0)
-                ->unit('px'),
-
-            Range::make('padding_inline_start', _t('blocks.image.settings.padding_left_label'))
-                ->min(0)
-                ->max(100)
-                ->step(1)
-                ->default(0)
-                ->unit('px'),
-
-            Range::make('padding_inline_end', _t('blocks.image.settings.padding_right_label'))
-                ->min(0)
-                ->max(100)
-                ->step(1)
-                ->default(0)
-                ->unit('px'),
+                ->max(24),
         ];
     }
 
@@ -147,5 +125,4 @@ class Image extends BladeBlock
                 ]),
         ];
     }
-
 }

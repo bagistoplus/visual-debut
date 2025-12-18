@@ -118,10 +118,12 @@ class CategoryCard extends SimpleBlock
                                     'flex_direction' => ['_default' => 'column'],
                                     'vertical_justify_content' => 'center',
                                     'vertical_align_items' => 'center',
-                                    'padding_top' => ['_default' => 4],
-                                    'padding_bottom' => ['_default' => 4],
-                                    'padding_left' => ['_default' => 4],
-                                    'padding_right' => ['_default' => 4],
+                                    'padding' => [
+                                        'top' => 4,
+                                        'right' => 4,
+                                        'bottom' => 4,
+                                        'left' => 4,
+                                    ],
                                 ])
                                 ->children([
                                     PresetBlock::make('@visual-debut/category-name')

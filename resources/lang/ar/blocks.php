@@ -5,6 +5,12 @@ return [
         'product_label' => 'المنتج',
         'color_scheme_label' => 'نظام الألوان',
         'color_scheme_info' => 'تجاوز نظام ألوان القسم لهذا البلوك',
+
+        // Spacing
+        'spacing_header' => 'التباعد',
+        'padding_header' => 'الحشوة',
+        'padding_label' => 'الحشوة',
+        'margin_label' => 'الهامش',
     ],
 
     'product' => [

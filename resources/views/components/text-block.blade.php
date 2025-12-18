@@ -53,12 +53,6 @@
   ];
   $wrapClass = $wrapClasses[$block->settings->wrap] ?? 'text-pretty';
 
-  // Padding - using Tailwind responsive scale
-  $ptClass = Tailwind::responsive($block->settings->padding_block_start ?? 0, fn($v) => $v > 0 ? "pt-{$v}" : '');
-  $pbClass = Tailwind::responsive($block->settings->padding_block_end ?? 0, fn($v) => $v > 0 ? "pb-{$v}" : '');
-  $psClass = Tailwind::responsive($block->settings->padding_inline_start ?? 0, fn($v) => $v > 0 ? "ps-{$v}" : '');
-  $peClass = Tailwind::responsive($block->settings->padding_inline_end ?? 0, fn($v) => $v > 0 ? "pe-{$v}" : '');
-
   // Typography classes
   $presetClass = '';
   $fontClass = '';
@@ -108,12 +102,17 @@
           default => 'div',
       };
   }
+
+  $paddingClasses = '';
+  if ($block->settings->has('padding')) {
+      $paddingClasses = Tailwind::responsive($block->settings->padding, fn($v) => Tailwind::buildSpacingClasses($v, 'p'));
+  }
 @endphp
 
 <{{ $tag }}
   {{ $block->editor_attributes }}
   {{ $block->settings->color_scheme?->attributes() }}
-  class="{{ $widthClass }} {{ $maxWidthClass }} {{ $alignmentClass }} {{ $ptClass }} {{ $pbClass }} {{ $psClass }} {{ $peClass }} {{ $lineHeightClass }} {{ $letterSpacingClass }} {{ $caseClass }} {{ $wrapClass }} {{ $presetClass }} {{ $fontClass }} {{ $fontSizeClass }} {{ $colorClass }}"
+  class="{{ $widthClass }} {{ $maxWidthClass }} {{ $alignmentClass }} {{ $paddingClasses }} {{ $lineHeightClass }} {{ $letterSpacingClass }} {{ $caseClass }} {{ $wrapClass }} {{ $presetClass }} {{ $fontClass }} {{ $fontSizeClass }} {{ $colorClass }}"
   @if ($inlineStyle) style="{{ $inlineStyle }}" @endif
   {{ $attributes }}
   {!! $additionalAttributes !!}

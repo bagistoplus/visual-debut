@@ -9,8 +9,10 @@ use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Settings\Text as SettingsText;
 use BagistoPlus\Visual\Support\Preset;
+use BagistoPlus\VisualDebut\Tailwind;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -166,35 +168,12 @@ class Text extends SimpleBlock
                 ->default('#000000FF')
                 ->visibleWhen(fn($rule) => $rule->when('color', 'custom')),
 
-            Header::make(_t('blocks.text.settings.padding_header')),
+            Header::make(_t('blocks.common.padding_header')),
 
-            Range::make('padding_block_start', _t('blocks.text.settings.padding_top_label'))
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
                 ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('padding_block_end', _t('blocks.text.settings.padding_bottom_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('padding_inline_start', _t('blocks.text.settings.padding_left_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('padding_inline_end', _t('blocks.text.settings.padding_right_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
+                ->max(24),
         ];
     }
 

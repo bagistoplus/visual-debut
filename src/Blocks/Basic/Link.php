@@ -9,8 +9,10 @@ use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Link as LinkSetting;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Settings\Text as TextSetting;
 use BagistoPlus\Visual\Support\Preset;
+use BagistoPlus\VisualDebut\Tailwind;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -86,17 +88,12 @@ class Link extends SimpleBlock
                 ])
                 ->default('hover'),
 
-            Header::make(_t('blocks.link.settings.spacing_header')),
+            Header::make(_t('blocks.common.spacing_header')),
 
-            Range::make('padding_block_start', _t('blocks.link.settings.padding_top_label'))
-                ->min(0)->max(24)->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('padding_block_end', _t('blocks.link.settings.padding_bottom_label'))
-                ->min(0)->max(24)->step(1)
-                ->default(0)
-                ->responsive(),
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
+                ->min(0)
+                ->max(24),
         ];
     }
 
@@ -109,6 +106,21 @@ class Link extends SimpleBlock
                     'text' => 'Link',
                     'url' => '/',
                 ]),
+        ];
+    }
+
+    protected function getViewData(): array
+    {
+        $paddingClasses = '';
+        if ($this->block->settings->has('padding')) {
+            $paddingClasses = Tailwind::responsive(
+                $this->block->settings->padding,
+                fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+            );
+        }
+
+        return [
+            'paddingClasses' => $paddingClasses,
         ];
     }
 }

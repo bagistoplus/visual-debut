@@ -10,7 +10,7 @@
       default => 'h-auto',
   };
 
-  $contentWidth = $section->settings->section_width === 'container' ? 'container mx-auto px-4 sm:px-6 lg:px-8' : '';
+  $contentWidth = $section->settings->section_width === 'container' ? 'container mx-auto' : '';
 @endphp
 
 <div

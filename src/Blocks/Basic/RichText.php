@@ -5,9 +5,10 @@ namespace BagistoPlus\VisualDebut\Blocks\Basic;
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Header;
-use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\RichText as RichTextSetting;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
+use BagistoPlus\VisualDebut\Tailwind;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -57,35 +58,12 @@ class RichText extends SimpleBlock
                 ->default('left')
                 ->visibleWhen(fn($rule) => $rule->when('width', '100%')),
 
-            Header::make(_t('blocks.richtext.settings.padding_header')),
+            Header::make(_t('blocks.common.padding_header')),
 
-            Range::make('padding_top', _t('blocks.richtext.settings.padding_top_label'))
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
                 ->min(0)
-                ->max(100)
-                ->step(1)
-                ->unit('px')
-                ->default(0),
-
-            Range::make('padding_bottom', _t('blocks.richtext.settings.padding_bottom_label'))
-                ->min(0)
-                ->max(100)
-                ->step(1)
-                ->unit('px')
-                ->default(0),
-
-            Range::make('padding_left', _t('blocks.richtext.settings.padding_left_label'))
-                ->min(0)
-                ->max(100)
-                ->step(1)
-                ->unit('px')
-                ->default(0),
-
-            Range::make('padding_right', _t('blocks.richtext.settings.padding_right_label'))
-                ->min(0)
-                ->max(100)
-                ->step(1)
-                ->unit('px')
-                ->default(0),
+                ->max(24),
         ];
     }
 
@@ -111,15 +89,18 @@ class RichText extends SimpleBlock
         ];
         $alignmentClass = $alignmentClasses[$this->block->settings->alignment] ?? 'text-left';
 
+        // Padding classes
+        $paddingClass = '';
+        if ($this->block->settings->has('padding')) {
+            $paddingClass = Tailwind::responsive($this->block->settings->padding, fn($v) => Tailwind::buildSpacingClasses($v, 'p'));
+        }
+
         return [
             'content' => $this->block->settings->content,
             'widthClass' => $widthClass,
             'maxWidthClass' => $maxWidthClass,
             'alignmentClass' => $alignmentClass,
-            'paddingTop' => $this->block->settings->padding_top,
-            'paddingBottom' => $this->block->settings->padding_bottom,
-            'paddingLeft' => $this->block->settings->padding_left,
-            'paddingRight' => $this->block->settings->padding_right,
+            'paddingClass' => $paddingClass,
         ];
     }
 }

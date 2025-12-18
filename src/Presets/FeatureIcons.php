@@ -26,8 +26,12 @@ class FeatureIcons extends Preset
                 'flex_gap' => ['_default' => 6],
                 'section_width' => 'container',
                 'section_height' => 'auto',
-                'padding_top' => ['_default' => 16],
-                'padding_bottom' => ['_default' => 16],
+                'padding' => [
+                    'top' => 16,
+                    'right' => 0,
+                    'bottom' => 16,
+                    'left' => 0,
+                ],
             ])
             ->blocks([
                 // Section Heading
@@ -35,6 +39,7 @@ class FeatureIcons extends Preset
                     ->settings([
                         'text' => 'Why Shop With Us?',
                         'tag' => 'h2',
+                        'type_preset' => 'h2',
                         'width' => '100%',
                         'alignment' => 'center',
                     ]),
@@ -89,10 +94,12 @@ class FeatureIcons extends Preset
                         'border_width' => 1,
                         'border_opacity' => 70,
                         'border_radius' => 'full',
-                        'padding_top' => ['_default' => 3],
-                        'padding_bottom' => ['_default' => 3],
-                        'padding_left' => ['_default' => 3],
-                        'padding_right' => ['_default' => 3],
+                        'padding' => [
+                            'top' => 3,
+                            'right' => 3,
+                            'bottom' => 3,
+                            'left' => 3,
+                        ],
                     ])
                     ->blocks([
                         PresetBlock::make('@visual-debut/icon')

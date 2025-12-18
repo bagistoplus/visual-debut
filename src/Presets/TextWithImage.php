@@ -26,13 +26,17 @@ class TextWithImage extends Preset
                 'flex_gap' => ['_default' => 8],
                 'section_width' => 'container',
                 'section_height' => 'auto',
-                'padding_top' => ['_default' => 12],
-                'padding_bottom' => ['_default' => 12],
+                'padding' => [
+                    'top' => 12,
+                    'right' => 0,
+                    'bottom' => 12,
+                    'left' => 0,
+                ],
             ])
             ->blocks([
                 // Image Container
                 PresetBlock::make('@visual-debut/group')
-                    ->name('Image')
+                    ->name('Image Box')
                     ->settings([
                         'layout_type' => 'block',
                         'width' => ['_default' => '50%', 'mobile' => '100%'],

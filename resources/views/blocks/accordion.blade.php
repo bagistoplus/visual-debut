@@ -13,26 +13,17 @@
 
   $borderRadius = 'border-radius: ' . ($block->settings->border_radius ?? 0) . 'px;';
 
-  // Padding
-  $paddingStyle = sprintf(
-      'padding-block-start: %spx; padding-block-end: %spx; padding-inline-start: %spx; padding-inline-end: %spx;',
-      $block->settings->padding_block_start ?? 0,
-      $block->settings->padding_block_end ?? 0,
-      $block->settings->padding_inline_start ?? 0,
-      $block->settings->padding_inline_end ?? 0,
-  );
-
   // Typography preset
   $typePreset = $block->settings->type_preset ?: 'h5';
   $typographyStyle = sprintf('--summary-font-size: var(--font-%s--size, 1rem); --summary-line-height: var(--font-%s--line-height, 1.5);', $typePreset, $typePreset);
 
-  $style = $borderStyle . $borderRadius . $paddingStyle . $typographyStyle;
+  $style = $borderStyle . $borderRadius . $typographyStyle;
 @endphp
 
 <div
   {{ $block->editor_attributes }}
   x-accordion="{ value: @js($openByDefault), multiple: true }"
-  class="accordion {{ $dividersClass }} {{ $colorClass }} w-full"
+  class="accordion {{ $dividersClass }} {{ $colorClass }} w-full {{ $paddingClasses }}"
   style="{{ $style }}"
 >
   @children

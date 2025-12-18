@@ -34,10 +34,12 @@ class HeroBanner extends Preset
                 'toggle_overlay' => true,
                 'overlay_style' => 'solid',
                 'overlay_color' => '#00000059',
-                'padding_top' => ['_default' => 0],
-                'padding_bottom' => ['_default' => 0],
-                'padding_left' => ['_default' => 4],
-                'padding_right' => ['_default' => 4],
+                'padding' => [
+                    'top' => 0,
+                    'right' => 4,
+                    'bottom' => 0,
+                    'left' => 4,
+                ],
             ])
             ->blocks([
                 PresetBlock::make('@visual-debut/heading')

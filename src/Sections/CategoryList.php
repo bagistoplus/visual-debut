@@ -8,11 +8,13 @@ use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\VisualDebut\Blocks\Category as CategoryBlock;
 use BagistoPlus\VisualDebut\Blocks\Basic\Heading;
 use BagistoPlus\VisualDebut\Presets\CategoryGrid;
+use BagistoPlus\VisualDebut\Tailwind;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -49,8 +51,17 @@ class CategoryList extends BladeSection
 
     protected function getViewData(): array
     {
+        $paddingClasses = '';
+        if ($this->section->settings->has('padding')) {
+            $paddingClasses = Tailwind::responsive(
+                $this->section->settings->padding,
+                fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+            );
+        }
+
         return [
-            'categoryItems' => $this->getCategories()
+            'categoryItems' => $this->getCategories(),
+            'paddingClasses' => $paddingClasses,
         ];
     }
 
@@ -128,17 +139,18 @@ class CategoryList extends BladeSection
             ColorScheme::make('color_scheme', _t('blocks.common.color_scheme_label'))
                 ->info(_t('blocks.common.color_scheme_info')),
 
-            Header::make(_t('sections.category-list.settings.padding_header')),
+            Header::make(_t('blocks.common.padding_header')),
 
-            Range::make('padding_top', _t('sections.category-list.settings.padding_top_label'))
-                ->min(0)->max(24)->step(1)
-                ->default(['_default' => 12])
-                ->responsive(),
-
-            Range::make('padding_bottom', _t('sections.category-list.settings.padding_bottom_label'))
-                ->min(0)->max(24)->step(1)
-                ->default(['_default' => 12])
-                ->responsive(),
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
+                ->min(0)
+                ->max(24)
+                ->default([
+                    'top' => 12,
+                    'right' => 0,
+                    'bottom' => 12,
+                    'left' => 0,
+                ]),
         ];
     }
 

@@ -5,6 +5,12 @@ return [
         'product_label' => 'उत्पाद',
         'color_scheme_label' => 'रंग योजना',
         'color_scheme_info' => 'इस ब्लॉक के लिए अनुभाग रंग योजना को ओवरराइड करें',
+
+        // Spacing
+        'spacing_header' => 'स्पेसिंग',
+        'padding_header' => 'पैडिंग',
+        'padding_label' => 'पैडिंग',
+        'margin_label' => 'मार्जिन',
     ],
 
     'product' => [

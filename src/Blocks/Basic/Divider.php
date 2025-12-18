@@ -7,6 +7,7 @@ use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\VisualDebut\Tailwind;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -60,21 +61,12 @@ class Divider extends SimpleBlock
             ColorScheme::make('color_scheme', _t('blocks.common.color_scheme_label'))
                 ->info(_t('blocks.common.color_scheme_info')),
 
-            Header::make(_t('blocks.divider.settings.padding_header')),
+            Header::make(_t('blocks.common.padding_header')),
 
-            Range::make('padding_top', _t('blocks.divider.settings.padding_top_label'))
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
                 ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(['_default' => 0])
-                ->responsive(),
-
-            Range::make('padding_bottom', _t('blocks.divider.settings.padding_bottom_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(['_default' => 0])
-                ->responsive(),
+                ->max(24),
         ];
     }
 
@@ -86,13 +78,10 @@ class Divider extends SimpleBlock
             'right' => 'justify-end',
         ];
 
-        $paddingTop = $this->block->settings->padding_top ?? ['_default' => 0];
-        $paddingBottom = $this->block->settings->padding_bottom ?? ['_default' => 0];
-
-        $paddingClasses = implode(' ', [
-            Tailwind::responsive($paddingTop, fn($v) => "pt-{$v}"),
-            Tailwind::responsive($paddingBottom, fn($v) => "pb-{$v}"),
-        ]);
+        $paddingClasses = '';
+        if ($this->block->settings->has('padding')) {
+            $paddingClasses = Tailwind::responsive($this->block->settings->padding, fn($v) => Tailwind::buildSpacingClasses($v, 'p'));
+        }
 
         return [
             'thickness' => $this->block->settings->thickness,

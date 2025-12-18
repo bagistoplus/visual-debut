@@ -3,9 +3,6 @@
 
   $widthClass = $section->settings->content_width === 'container' ? 'container mx-auto px-4 sm:px-6 lg:px-8' : 'px-4 sm:px-6 lg:px-8';
 
-  $paddingTopClasses = Tailwind::responsive($section->settings->padding_top, fn($v) => "pt-{$v}");
-  $paddingBottomClasses = Tailwind::responsive($section->settings->padding_bottom, fn($v) => "pb-{$v}");
-
   $columnClasses = Tailwind::responsive($section->settings->columns, fn($v) => "grid-cols-{$v}");
   $gapClass = 'gap-' . ($section->settings->gap ?? 4);
 
@@ -16,7 +13,7 @@
 <div
   {{ $section->editor_attributes }}
   {{ $section->settings->color_scheme?->attributes() }}
-  class="{{ $paddingTopClasses }} {{ $paddingBottomClasses }}"
+  class="{{ $paddingClasses }}"
 >
   <div class="{{ $widthClass }}">
     @children

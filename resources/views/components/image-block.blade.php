@@ -89,21 +89,20 @@
       };
   }
 
-  // Padding (responsive, using Tailwind scale)
-  $ptClass = Tailwind::responsive($block->settings->padding_block_start ?? 0, fn($v) => $v > 0 ? "pt-{$v}" : '');
-  $pbClass = Tailwind::responsive($block->settings->padding_block_end ?? 0, fn($v) => $v > 0 ? "pb-{$v}" : '');
-  $psClass = Tailwind::responsive($block->settings->padding_inline_start ?? 0, fn($v) => $v > 0 ? "ps-{$v}" : '');
-  $peClass = Tailwind::responsive($block->settings->padding_inline_end ?? 0, fn($v) => $v > 0 ? "pe-{$v}" : '');
-
   // Combine inline styles
   $inlineStyles = array_filter(array_merge($borderStyles, $customWidthStyle ? [$customWidthStyle] : []));
   $styleAttr = !empty($inlineStyles) ? ' style="' . implode('; ', $inlineStyles) . '"' : '';
+
+  $paddingClasses = '';
+  if ($block->settings->has('padding')) {
+      $paddingClasses = Tailwind::responsive($block->settings->padding, fn($v) => Tailwind::buildSpacingClasses($v, 'p'));
+  }
 @endphp
 
 @if ($image)
   <div
     {{ $block->editor_attributes }}
-    class="{{ $widthClass }} {{ $heightClass }} {{ $aspectRatioClass }} {{ implode(' ', $borderClasses) }} {{ $ptClass }} {{ $pbClass }} {{ $psClass }} {{ $peClass }} relative overflow-hidden"
+    class="{{ $widthClass }} {{ $heightClass }} {{ $aspectRatioClass }} {{ implode(' ', $borderClasses) }} {{ $paddingClasses }} relative overflow-hidden"
     {!! $styleAttr !!}
     {{ $attributes }}
   >
@@ -116,7 +115,7 @@
 @else
   <div
     {{ $block->editor_attributes }}
-    class="{{ $widthClass }} {{ $heightClass }} {{ $aspectRatioClass }} {{ implode(' ', $borderClasses) }} {{ $ptClass }} {{ $pbClass }} {{ $psClass }} {{ $peClass }} relative flex min-h-56 items-center justify-center overflow-hidden bg-gray-200"
+    class="{{ $widthClass }} {{ $heightClass }} {{ $aspectRatioClass }} {{ implode(' ', $borderClasses) }} {{ $paddingClasses }} relative flex min-h-56 items-center justify-center overflow-hidden bg-gray-200"
     {!! $styleAttr !!}
     {{ $attributes }}
   >

@@ -21,8 +21,12 @@ class MinimalFooter extends Preset
             ->category('Footer')
             ->settings([
                 'content_width' => 'container',
-                'padding_top' => ['_default' => 8],
-                'padding_bottom' => ['_default' => 8],
+                'padding' => [
+                    'top' => 8,
+                    'right' => 0,
+                    'bottom' => 8,
+                    'left' => 0,
+                ],
             ])
             ->blocks([
                 PresetBlock::make('@visual-debut/group')
@@ -56,8 +60,12 @@ class MinimalFooter extends Preset
                             ->settings([
                                 'width_percent' => 50,
                                 'alignment' => 'center',
-                                'padding_top' => ['_default' => 4],
-                                'padding_bottom' => ['_default' => 4],
+                                'padding' => [
+                                    'top' => 4,
+                                    'right' => 0,
+                                    'bottom' => 4,
+                                    'left' => 0,
+                                ],
                             ]),
 
                         PresetBlock::make('@visual-debut/text')

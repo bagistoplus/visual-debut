@@ -49,17 +49,17 @@
   // Border radius
   $borderRadiusStyle = 'border-radius: ' . ($block->settings->border_radius ?? 0) . 'px;';
 
-  // Padding
-  $paddingStyle = sprintf(
-      'padding-block-start: %spx; padding-block-end: %spx; padding-inline-start: %spx; padding-inline-end: %spx;',
-      $block->settings->padding_block_start ?? 0,
-      $block->settings->padding_block_end ?? 0,
-      $block->settings->padding_inline_start ?? 0,
-      $block->settings->padding_inline_end ?? 0,
-  );
+  // Padding classes
+  $paddingClasses = '';
+  if ($block->settings->has('padding')) {
+      $paddingClasses = \BagistoPlus\VisualDebut\Tailwind::responsive(
+          $block->settings->padding,
+          fn($v) => \BagistoPlus\VisualDebut\Tailwind::buildSpacingClasses($v, 'p')
+      );
+  }
 
   // Combine styles
-  $containerStyle = trim($customWidthStyle . ' ' . $borderStyle . ' ' . $borderRadiusStyle . ' ' . $paddingStyle);
+  $containerStyle = trim($customWidthStyle . ' ' . $borderStyle . ' ' . $borderRadiusStyle);
 
   // Determine if we need a link wrapper
   $hasLink = !empty($block->settings->link);
@@ -74,7 +74,7 @@
   @if ($hasLink)
     href="{{ $block->settings->link }}"
   @endif
-  class="block {{ $widthClass }} {{ $widthMobileClass }}"
+  class="block {{ $widthClass }} {{ $widthMobileClass }} {{ $paddingClasses }}"
   @if ($containerStyle) style="{{ $containerStyle }}" @endif
 >
   <img

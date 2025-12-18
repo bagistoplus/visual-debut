@@ -5,6 +5,12 @@ return [
         'product_label' => 'Produit',
         'color_scheme_label' => 'Schéma de couleurs',
         'color_scheme_info' => 'Remplacer le schéma de couleurs de la section pour ce bloc',
+
+        // Spacing
+        'spacing_header' => 'Espacement',
+        'padding_header' => 'Marge intérieure',
+        'padding_label' => 'Marge intérieure',
+        'margin_label' => 'Marge extérieure',
     ],
 
     'product' => [

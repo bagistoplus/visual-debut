@@ -8,12 +8,14 @@ use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\VisualDebut\Blocks\Basic\Heading;
 use BagistoPlus\VisualDebut\Blocks\Product as ProductBlock;
 use BagistoPlus\VisualDebut\Blocks\ProductCardGroup;
 use BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay;
+use BagistoPlus\VisualDebut\Tailwind;
 use Webkul\Product\Repositories\ProductFlatRepository;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -145,8 +147,17 @@ class ProductList extends BladeSection
 
     public function getViewData(): array
     {
+        $paddingClasses = '';
+        if ($this->section->settings->has('padding')) {
+            $paddingClasses = Tailwind::responsive(
+                $this->section->settings->padding,
+                fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+            );
+        }
+
         return [
             'products' => $this->getProducts(),
+            'paddingClasses' => $paddingClasses,
         ];
     }
 
@@ -234,17 +245,18 @@ class ProductList extends BladeSection
                 ->default('chevron')
                 ->visibleWhen(fn($rule) => $rule->when('layout_type', 'carousel')),
 
-            Header::make(_t('sections.product-list.settings.spacing_header')),
+            Header::make(_t('blocks.common.spacing_header')),
 
-            Range::make('padding_top', _t('sections.product-list.settings.padding_top_label'))
-                ->min(0)->max(24)->step(1)
-                ->default(['_default' => 8])
-                ->responsive(),
-
-            Range::make('padding_bottom', _t('sections.product-list.settings.padding_bottom_label'))
-                ->min(0)->max(24)->step(1)
-                ->default(['_default' => 8])
-                ->responsive(),
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
+                ->min(0)
+                ->max(24)
+                ->default([
+                    'top' => 8,
+                    'right' => 0,
+                    'bottom' => 8,
+                    'left' => 0,
+                ]),
 
             Header::make(_t('sections.product-list.settings.appearance_header')),
 
@@ -269,8 +281,12 @@ class ProductList extends BladeSection
                             'tag' => 'h2',
                             'width' => '100%',
                             'alignment' => 'center',
-                            'padding_block_start' => 4,
-                            'padding_block_end' => 4,
+                            'padding' => [
+                                'top' => 4,
+                                'right' => 0,
+                                'bottom' => 4,
+                                'left' => 0,
+                            ],
                             'type_preset' => 'h2',
                         ]),
 

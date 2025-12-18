@@ -7,6 +7,7 @@ use BagistoPlus\Visual\Settings\Image;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 use function BagistoPlus\VisualDebut\_t;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Gradient;
@@ -224,21 +225,12 @@ class FlexSection extends BladeSection
         $classes[] = Tailwind::responsive($gap, fn($v) => "gap-{$v}");
 
         // Padding (responsive)
-        $this->addResponsivePadding($classes, 'padding_top', 'pt');
-        $this->addResponsivePadding($classes, 'padding_bottom', 'pb');
-        $this->addResponsivePadding($classes, 'padding_left', 'pl');
-        $this->addResponsivePadding($classes, 'padding_right', 'pr');
+        if ($s->has('padding')) {
+            $classes[] = Tailwind::responsive($s->padding, fn($v) => Tailwind::buildSpacingClasses($v, 'p'));
+        }
 
         $this->flexClass = implode(' ', array_filter($classes));
         $this->flexStyle = implode('; ', $styles);
-    }
-
-    protected function addResponsivePadding(array &$classes, string $setting, string $prefix): void
-    {
-        $s = $this->section->settings;
-        $value = $s->$setting ?? ['_default' => 0];
-
-        $classes[] = Tailwind::responsive($value, fn($v) => "{$prefix}-{$v}");
     }
 
     public static function settings(): array
@@ -440,35 +432,18 @@ class FlexSection extends BladeSection
             Gradient::make('overlay_gradient', _t('sections.flex-section.settings.overlay_gradient_label'))
                 ->visibleWhen(fn($rule) => $rule->whenTruthy('toggle_overlay')->when('overlay_style', 'gradient')),
 
-            Header::make(_t('sections.flex-section.settings.spacing_header')),
+            Header::make(_t('blocks.common.spacing_header')),
 
-            Range::make('padding_top', _t('sections.flex-section.settings.padding_top_label'))
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
                 ->min(0)
                 ->max(24)
-                ->step(1)
-                ->default(12)
-                ->responsive(),
-
-            Range::make('padding_bottom', _t('sections.flex-section.settings.padding_bottom_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(12)
-                ->responsive(),
-
-            Range::make('padding_left', _t('sections.flex-section.settings.padding_left_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('padding_right', _t('sections.flex-section.settings.padding_right_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
+                ->default([
+                    'top' => 12,
+                    'right' => 0,
+                    'bottom' => 12,
+                    'left' => 0,
+                ]),
         ];
     }
 

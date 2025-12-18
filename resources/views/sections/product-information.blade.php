@@ -3,8 +3,6 @@
   $mediaPosition = $section->settings->media_position ?? 'left';
   $equalColumns = $section->settings->equal_columns ?? false;
   $gap = $section->settings->gap ?? 12;
-  $paddingTop = $section->settings->padding_top ?? 8;
-  $paddingBottom = $section->settings->padding_bottom ?? 8;
 
   $containerClass = $sectionWidth === 'container' ? 'container mx-auto px-4 sm:px-6 lg:px-8' : 'px-4 sm:px-6 lg:px-8';
 
@@ -22,7 +20,7 @@
 <div
   {{ $section->editor_attributes }}
   {{ $section->settings->color_scheme?->attributes() }}
-  class="{{ $containerClass }} pt-{{ $paddingTop }} pb-{{ $paddingBottom }}"
+  class="{{ $containerClass }} {{ $paddingClasses }}"
 >
   <form x-on:submit.prevent>
     <div class="grid grid-cols-1 {{ $gridCols }} gap-{{ $gap }}">

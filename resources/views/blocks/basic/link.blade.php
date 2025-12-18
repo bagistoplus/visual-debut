@@ -1,6 +1,4 @@
 @php
-  use BagistoPlus\VisualDebut\Tailwind;
-
   // Type preset classes
   $presetClass = '';
   $fontClass = '';
@@ -22,10 +20,6 @@
   ];
   $underlineClass = $underlineClasses[$block->settings->underline ?? 'hover'] ?? 'hover:underline';
 
-  // Padding - using Tailwind responsive scale
-  $ptClass = Tailwind::responsive($block->settings->padding_block_start ?? 0, fn($v) => $v > 0 ? "pt-{$v}" : '');
-  $pbClass = Tailwind::responsive($block->settings->padding_block_end ?? 0, fn($v) => $v > 0 ? "pb-{$v}" : '');
-
   // Target attribute
   $target = $block->settings->open_in_new_tab ? '_blank' : null;
   $rel = $block->settings->open_in_new_tab ? 'noopener noreferrer' : null;
@@ -37,7 +31,7 @@
   href="{{ $block->settings->url }}"
   @if($target) target="{{ $target }}" @endif
   @if($rel) rel="{{ $rel }}" @endif
-  class="inline-block {{ $presetClass }} {{ $fontClass }} {{ $fontSizeClass }} {{ $underlineClass }} {{ $ptClass }} {{ $pbClass }}"
+  class="inline-block {{ $presetClass }} {{ $fontClass }} {{ $fontSizeClass }} {{ $underlineClass }} {{ $paddingClasses }}"
   {{ $block->liveUpdate()->text('text') }}
 >
   {{ $block->settings->text }}

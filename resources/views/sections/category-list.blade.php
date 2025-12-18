@@ -3,16 +3,12 @@
 
   // Content width
   $widthClass = $section->settings->content_width === 'container' ? 'container mx-auto px-4 sm:px-6 lg:px-8' : 'px-4 sm:px-6 lg:px-8';
-
-  // Responsive padding
-  $paddingTopClasses = Tailwind::responsive($section->settings->padding_top, fn($v) => "pt-{$v}");
-  $paddingBottomClasses = Tailwind::responsive($section->settings->padding_bottom, fn($v) => "pb-{$v}");
 @endphp
 
 <div
   {{ $section->editor_attributes }}
   {{ $section->settings->color_scheme?->attributes() }}
-  class="{{ $widthClass }} {{ $paddingTopClasses }} {{ $paddingBottomClasses }}"
+  class="{{ $widthClass }} {{ $paddingClasses }}"
 >
   {{-- Responsive grid layout --}}
   @php

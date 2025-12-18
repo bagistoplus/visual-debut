@@ -21,8 +21,12 @@ class ClassicFooter extends Preset
             ->category('Footer')
             ->settings([
                 'content_width' => 'container',
-                'padding_top' => ['_default' => 8],
-                'padding_bottom' => ['_default' => 8],
+                'padding' => [
+                    'top' => 8,
+                    'right' => 0,
+                    'bottom' => 8,
+                    'left' => 0,
+                ],
             ])
             ->blocks([
                 // Main content grid
@@ -79,8 +83,12 @@ class ClassicFooter extends Preset
                 // Divider
                 PresetBlock::make('@visual-debut/divider')
                     ->settings([
-                        'padding_top' => 4,
-                        'padding_bottom' => 4,
+                        'padding' => [
+                            'top' => 4,
+                            'right' => 0,
+                            'bottom' => 4,
+                            'left' => 0,
+                        ],
                     ]),
 
                 // Bottom bar
@@ -143,8 +151,12 @@ class ClassicFooter extends Preset
                     'url' => $link['url'],
                     'type_preset' => 'paragraph',
                     'underline' => 'hover',
-                    'padding_block_start' => 1,
-                    'padding_block_end' => 1,
+                    'padding' => [
+                        'top' => 1,
+                        'right' => 0,
+                        'bottom' => 1,
+                        'left' => 0,
+                    ],
                 ]);
         }, $links);
 

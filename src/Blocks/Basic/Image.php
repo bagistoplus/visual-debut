@@ -8,6 +8,7 @@ use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Image as ImageSetting;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Settings\Text;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -136,27 +137,12 @@ class Image extends SimpleBlock
                 ->default('none'),
 
             // Padding Header (using Tailwind scale 0-24)
-            Header::make(_t('blocks.image.settings.padding_header')),
+            Header::make(_t('blocks.common.padding_header')),
 
-            Range::make('padding_block_start', _t('blocks.image.settings.padding_top_label'))
-                ->min(0)->max(24)->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('padding_block_end', _t('blocks.image.settings.padding_bottom_label'))
-                ->min(0)->max(24)->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('padding_inline_start', _t('blocks.image.settings.padding_left_label'))
-                ->min(0)->max(24)->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('padding_inline_end', _t('blocks.image.settings.padding_right_label'))
-                ->min(0)->max(24)->step(1)
-                ->default(0)
-                ->responsive(),
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
+                ->min(0)
+                ->max(24),
         ];
     }
 }

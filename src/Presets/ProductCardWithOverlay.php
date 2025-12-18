@@ -100,10 +100,12 @@ class ProductCardWithOverlay extends Preset
                     ->name('Informations')
                     ->properties([
                         'layout_type' => 'block',
-                        'padding_top' => ['_default' => '3'],
-                        'padding_bottom' => ['_default' => '3'],
-                        'padding_left' => ['_default' => '4'],
-                        'padding_right' => ['_default' => '4']
+                        'padding' => [
+                            'top' => 3,
+                            'right' => 4,
+                            'bottom' => 3,
+                            'left' => 4,
+                        ],
                     ])
                     ->addBlocks([
                         // Product Title
@@ -126,7 +128,12 @@ class ProductCardWithOverlay extends Preset
                                 'justify_content' => 'between',
                                 'align_items' => 'stretch',
                                 'flex_gap' => 4,
-                                'margin_top' => ['_default' => '2']
+                                'margin' => [
+                                    'top' => 2,
+                                    'right' => 0,
+                                    'bottom' => 0,
+                                    'left' => 0,
+                                ],
                             ])
                             ->addBlocks([
                                 // Product Price

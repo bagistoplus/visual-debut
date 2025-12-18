@@ -38,10 +38,12 @@ class FeatureIcon extends Preset
                         'border_width' => 1,
                         'border_opacity' => 70,
                         'border_radius' => 'full',
-                        'padding_top' => ['_default' => 3],
-                        'padding_bottom' => ['_default' => 3],
-                        'padding_left' => ['_default' => 3],
-                        'padding_right' => ['_default' => 3],
+                        'padding' => [
+                            'top' => 3,
+                            'right' => 3,
+                            'bottom' => 3,
+                            'left' => 3,
+                        ],
                     ])
                     ->blocks([
                         PresetBlock::make('@visual-debut/icon')

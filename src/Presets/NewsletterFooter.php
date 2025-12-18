@@ -21,8 +21,12 @@ class NewsletterFooter extends Preset
             ->category('Footer')
             ->settings([
                 'content_width' => 'container',
-                'padding_top' => ['_default' => 16],
-                'padding_bottom' => ['_default' => 16],
+                'padding' => [
+                    'top' => 16,
+                    'right' => 0,
+                    'bottom' => 16,
+                    'left' => 0,
+                ],
             ])
             ->blocks([
                 PresetBlock::make('@visual-debut/group')
@@ -83,8 +87,12 @@ class NewsletterFooter extends Preset
 
                 PresetBlock::make('@visual-debut/divider')
                     ->settings([
-                        'padding_top' => ['_default' => 4],
-                        'padding_bottom' => ['_default' => 4],
+                        'padding' => [
+                            'top' => 4,
+                            'right' => 0,
+                            'bottom' => 4,
+                            'left' => 0,
+                        ],
                     ]),
 
                 PresetBlock::make('@visual-debut/text')
@@ -106,8 +114,12 @@ class NewsletterFooter extends Preset
                     'url' => $link['url'],
                     'type_preset' => 'paragraph',
                     'underline' => 'hover',
-                    'padding_block_start' => 1,
-                    'padding_block_end' => 1,
+                    'padding' => [
+                        'top' => 1,
+                        'right' => 0,
+                        'bottom' => 1,
+                        'left' => 0,
+                    ],
                 ]);
         }, $links);
 

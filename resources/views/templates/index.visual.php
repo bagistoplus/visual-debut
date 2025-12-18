@@ -19,9 +19,13 @@ return TemplateBuilder::make()
                         'tag' => 'h2',
                         'width' => '100%',
                         'alignment' => 'center',
-                        'padding_block_start' => 4,
-                        'padding_block_end' => 4,
                         'type_preset' => 'h2',
+                        'padding' => [
+                            'top' => 0,
+                            'right' => 4,
+                            'bottom' => 4,
+                            'left' => 0,
+                        ],
                     ]),
 
                 \BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay::asChild()

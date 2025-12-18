@@ -26,10 +26,12 @@ class RichTextSection extends Preset
                 'flex_gap' => 6,
                 'section_width' => 'container',
                 'section_height' => 'sm',
-                'padding_top' => 12,
-                'padding_bottom' => 12,
-                'padding_left' => 0,
-                'padding_right' => 0,
+                'padding' => [
+                    'top' => 12,
+                    'right' => 0,
+                    'bottom' => 12,
+                    'left' => 0,
+                ],
             ])
             ->blocks([
                 PresetBlock::make('@visual-debut/heading')

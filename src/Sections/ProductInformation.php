@@ -9,9 +9,11 @@ use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductMediaGallery;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductDetails;
 use BagistoPlus\VisualDebut\Enums\Events;
+use BagistoPlus\VisualDebut\Tailwind;
 use Webkul\Product\Helpers\ProductType;
 use Webkul\Product\Helpers\Review;
 
@@ -98,19 +100,18 @@ class ProductInformation extends LivewireSection
             ColorScheme::make('color_scheme', _t('sections.common.color_scheme_label'))
                 ->info(_t('sections.common.color_scheme_info')),
 
-            Header::make(_t('sections.product-information.settings.padding_header')),
+            Header::make(_t('blocks.common.padding_header')),
 
-            Range::make('padding_top', _t('sections.product-information.settings.padding_top_label'))
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
                 ->min(0)
                 ->max(24)
-                ->step(1)
-                ->default(8),
-
-            Range::make('padding_bottom', _t('sections.product-information.settings.padding_bottom_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(8),
+                ->default([
+                    'top' => 8,
+                    'right' => 0,
+                    'bottom' => 8,
+                    'left' => 0,
+                ]),
         ];
     }
 
@@ -268,6 +269,14 @@ class ProductInformation extends LivewireSection
         $videos = $this->getVideos();
         $reviewHelper = app(Review::class);
 
+        $paddingClasses = '';
+        if ($this->section->settings->has('padding')) {
+            $paddingClasses = Tailwind::responsive(
+                $this->section->settings->padding,
+                fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+            );
+        }
+
         return [
             'images' => $images,
             'videos' => $videos,
@@ -276,6 +285,7 @@ class ProductInformation extends LivewireSection
             'averageRating' => $reviewHelper->getAverageRating($product),
             'hasVariants' => ProductType::hasVariants($product->type),
             'showQuantitySelector' => $product->getTypeInstance()->showQuantityBox(),
+            'paddingClasses' => $paddingClasses,
         ];
     }
 
@@ -287,8 +297,12 @@ class ProductInformation extends LivewireSection
                 'media_position' => 'left',
                 'equal_columns' => false,
                 'gap' => 12,
-                'padding_top' => 8,
-                'padding_bottom' => 8,
+                'padding' => [
+                    'top' => 8,
+                    'right' => 0,
+                    'bottom' => 8,
+                    'left' => 0,
+                ],
             ],
         ];
     }

@@ -11,6 +11,7 @@ use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Image;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 
@@ -145,63 +146,10 @@ class Group extends SimpleBlock
                 ->visibleWhen(fn($rule) => $rule->when('layout_type', 'grid')),
 
             // Spacing
-            Header::make(_t('blocks.group.settings.spacing_header')),
+            Header::make(_t('blocks.common.spacing_header')),
 
-            Range::make('padding_top', _t('blocks.group.settings.padding_top_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('padding_bottom', _t('blocks.group.settings.padding_bottom_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('padding_left', _t('blocks.group.settings.padding_left_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('padding_right', _t('blocks.group.settings.padding_right_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('margin_top', _t('blocks.group.settings.margin_top_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('margin_bottom', _t('blocks.group.settings.margin_bottom_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('margin_left', _t('blocks.group.settings.margin_left_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
-
-            Range::make('margin_right', _t('blocks.group.settings.margin_right_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0)
-                ->responsive(),
+            Spacing::make('padding', _t('blocks.common.padding_label'))->responsive()->min(0)->max(24),
+            Spacing::make('margin', _t('blocks.common.margin_label'))->responsive()->min(0)->max(24),
 
             // Sizing
             Header::make(_t('blocks.group.settings.sizing_header')),
@@ -431,17 +379,23 @@ class Group extends SimpleBlock
                 ->category(_t('blocks.group.presets.centered.category'))
                 ->settings([
                     'max_width' => 'xl',
-                    'margin_left' => 'auto',
-                    'margin_right' => 'auto',
+                    'margin' => [
+                        'top' => 0,
+                        'right' => 'auto',
+                        'bottom' => 0,
+                        'left' => 'auto',
+                    ],
                 ]),
 
             Preset::make(_t('blocks.group.presets.card.name'))
                 ->category(_t('blocks.group.presets.card.category'))
                 ->settings([
-                    'padding_top' => 6,
-                    'padding_bottom' => 6,
-                    'padding_left' => 6,
-                    'padding_right' => 6,
+                    'padding' => [
+                        'top' => 6,
+                        'right' => 6,
+                        'bottom' => 6,
+                        'left' => 6,
+                    ],
                     'border' => true,
                     'border_radius' => 'lg',
                 ]),
@@ -467,8 +421,12 @@ class Group extends SimpleBlock
                 ->settings([
                     'is_overlay' => true,
                     'background_color' => 'rgba(0, 0, 0, 0.5)',
-                    'padding_top' => 8,
-                    'padding_bottom' => 8,
+                    'padding' => [
+                        'top' => 8,
+                        'right' => 0,
+                        'bottom' => 8,
+                        'left' => 0,
+                    ],
                 ])
                 ->blocks([
                     PresetBlock::make('@visual-debut/text')
@@ -680,60 +638,17 @@ class Group extends SimpleBlock
 
     protected function mapSpacing(array &$classes, array &$styles): void
     {
-        $pt = $this->block->settings->padding_top ?? null;
-        $pb = $this->block->settings->padding_bottom ?? null;
-        $ps = $this->block->settings->padding_left ?? null;
-        $pe = $this->block->settings->padding_right ?? null;
+        if ($this->block->id === 'visual_debut_product_card_group_1_8093ec3e_3866a968') {
+            // dd($this->block->settings->padding, $this->block->settings->margin);
+        }
+        $s = $this->block->settings;
 
-        $mt = $this->block->settings->margin_top ?? null;
-        $mb = $this->block->settings->margin_bottom ?? null;
-        $ms = $this->block->settings->margin_left ?? null;
-        $me = $this->block->settings->margin_right ?? null;
-
-        // Padding
-        if ($pt && $pb && $this->responsiveValuesEqual($pt, $pb)) {
-            $classes[] = Tailwind::responsive($pt, fn($v) => "py-{$v}");
-        } else {
-            if ($pt) {
-                $classes[] = Tailwind::responsive($pt, fn($v) => "pt-{$v}");
-            }
-            if ($pb) {
-                $classes[] = Tailwind::responsive($pb, fn($v) => "pb-{$v}");
-            }
+        if ($s->has('padding')) {
+            $classes[] = Tailwind::responsive($s->padding, fn($v) => Tailwind::buildSpacingClasses($v, 'p'));
         }
 
-        if ($ps && $pe && $this->responsiveValuesEqual($ps, $pe)) {
-            $classes[] = Tailwind::responsive($ps, fn($v) => "px-{$v}");
-        } else {
-            if ($ps) {
-                $classes[] = Tailwind::responsive($ps, fn($v) => "ps-{$v}");
-            }
-            if ($pe) {
-                $classes[] = Tailwind::responsive($pe, fn($v) => "pe-{$v}");
-            }
-        }
-
-        // Margin
-        if ($mt && $mb && $this->responsiveValuesEqual($mt, $mb)) {
-            $classes[] = Tailwind::responsive($mt, fn($v) => "my-{$v}");
-        } else {
-            if ($mt) {
-                $classes[] = Tailwind::responsive($mt, fn($v) => "mt-{$v}");
-            }
-            if ($mb) {
-                $classes[] = Tailwind::responsive($mb, fn($v) => "mb-{$v}");
-            }
-        }
-
-        if ($ms && $me && $this->responsiveValuesEqual($ms, $me)) {
-            $classes[] = Tailwind::responsive($ms, fn($v) => "mx-{$v}");
-        } else {
-            if ($ms) {
-                $classes[] = Tailwind::responsive($ms, fn($v) => "ms-{$v}");
-            }
-            if ($me) {
-                $classes[] = Tailwind::responsive($me, fn($v) => "me-{$v}");
-            }
+        if ($s->has('margin')) {
+            $classes[] = Tailwind::responsive($s->margin, fn($v) => Tailwind::buildSpacingClasses($v, 'm'));
         }
     }
 

@@ -117,11 +117,6 @@ return [
             ],
             'content_width_info' => 'Choose whether footer content should be constrained to a container or span full width',
 
-            'spacing_header' => 'Spacing',
-
-            'padding_top_label' => 'Padding Top',
-            'padding_bottom_label' => 'Padding Bottom',
-
             'appearance_header' => 'Appearance',
 
             'color_scheme_label' => 'Color Scheme',
@@ -257,10 +252,6 @@ return [
                 'container' => 'Container',
                 'full'      => 'Full Width',
             ],
-
-            'padding_header'          => 'Padding',
-            'padding_top_label'     => 'Padding Top',
-            'padding_bottom_label'  => 'Padding Bottom',
         ],
         'presets' => [
             'grid' => [
@@ -331,10 +322,6 @@ return [
                 'chevron' => 'Chevron',
             ],
 
-            'spacing_header' => 'Spacing',
-            'padding_top_label' => 'Padding Top',
-            'padding_bottom_label' => 'Padding Bottom',
-
             'appearance_header' => 'Appearance',
             'color_scheme_label' => 'Color Scheme',
         ],
@@ -389,10 +376,6 @@ return [
             'gap_info' => 'Space between media and details columns',
 
             'appearance_header' => 'Appearance',
-
-            'padding_header' => 'Padding',
-            'padding_top_label' => 'Padding Top',
-            'padding_bottom_label' => 'Padding Bottom',
         ],
     ],
 
@@ -669,13 +652,6 @@ return [
             ],
 
             'overlay_gradient_label' => 'Overlay Gradient',
-
-            'spacing_header' => 'Spacing',
-
-            'padding_top_label' => 'Padding Top',
-            'padding_bottom_label' => 'Padding Bottom',
-            'padding_left_label' => 'Padding Left',
-            'padding_right_label' => 'Padding Right',
         ],
     ],
 

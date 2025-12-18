@@ -6,7 +6,9 @@ use BagistoPlus\Visual\Blocks\BladeBlock;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
+use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\VisualDebut\Blocks;
+use BagistoPlus\VisualDebut\Tailwind;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -62,31 +64,27 @@ class ProductDetails extends BladeBlock
                 ->default(false)
                 ->info(_t('blocks.product-details.settings.sticky_info')),
 
-            Header::make(_t('blocks.product-details.settings.spacing_header')),
+            Header::make(_t('blocks.common.spacing_header')),
 
-            Range::make('padding_top', _t('blocks.product-details.settings.padding_top_label'))
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
                 ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0),
+                ->max(24),
+        ];
+    }
 
-            Range::make('padding_bottom', _t('blocks.product-details.settings.padding_bottom_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0),
+    protected function getViewData(): array
+    {
+        $paddingClasses = '';
+        if ($this->block->settings->has('padding')) {
+            $paddingClasses = Tailwind::responsive(
+                $this->block->settings->padding,
+                fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+            );
+        }
 
-            Range::make('padding_left', _t('blocks.product-details.settings.padding_left_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0),
-
-            Range::make('padding_right', _t('blocks.product-details.settings.padding_right_label'))
-                ->min(0)
-                ->max(24)
-                ->step(1)
-                ->default(0),
+        return [
+            'paddingClasses' => $paddingClasses,
         ];
     }
 }

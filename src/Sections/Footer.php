@@ -7,9 +7,11 @@ use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\VisualDebut\Presets\ClassicFooter;
 use BagistoPlus\VisualDebut\Presets\MinimalFooter;
 use BagistoPlus\VisualDebut\Presets\NewsletterFooter;
+use BagistoPlus\VisualDebut\Tailwind;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -54,17 +56,18 @@ class Footer extends BladeSection
                 ->default('container')
                 ->info(_t('sections.footer.settings.content_width_info')),
 
-            Header::make(_t('sections.footer.settings.spacing_header')),
+            Header::make(_t('blocks.common.spacing_header')),
 
-            Range::make('padding_top', _t('sections.footer.settings.padding_top_label'))
-                ->min(0)->max(24)->step(1)
-                ->default(['_default' => 12])
-                ->responsive(),
-
-            Range::make('padding_bottom', _t('sections.footer.settings.padding_bottom_label'))
-                ->min(0)->max(24)->step(1)
-                ->default(['_default' => 12])
-                ->responsive(),
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
+                ->min(0)
+                ->max(24)
+                ->default([
+                    'top' => 12,
+                    'right' => 0,
+                    'bottom' => 12,
+                    'left' => 0,
+                ]),
 
             Header::make(_t('sections.footer.settings.appearance_header')),
 
@@ -80,6 +83,21 @@ class Footer extends BladeSection
             ClassicFooter::class,
             MinimalFooter::class,
             NewsletterFooter::class,
+        ];
+    }
+
+    protected function getViewData(): array
+    {
+        $paddingClasses = '';
+        if ($this->section->settings->has('padding')) {
+            $paddingClasses = Tailwind::responsive(
+                $this->section->settings->padding,
+                fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+            );
+        }
+
+        return [
+            'paddingClasses' => $paddingClasses,
         ];
     }
 }

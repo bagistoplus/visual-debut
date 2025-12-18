@@ -26,8 +26,12 @@ class CategoryGrid extends Preset
                 'content_width' => 'container',
                 'nav_style' => 'arrow',
                 'nav_shape' => 'none',
-                'padding_top' => ['_default' => 4],
-                'padding_bottom' => ['_default' => 4],
+                'padding' => [
+                    'top' => 4,
+                    'right' => 0,
+                    'bottom' => 4,
+                    'left' => 0,
+                ],
             ])
             ->blocks([
                 // Heading
@@ -39,8 +43,12 @@ class CategoryGrid extends Preset
                         'width' => '100%',
                         'alignment' => 'center',
                         'type_preset' => 'h2',
-                        'padding_block_start' => ['_default' => 8],
-                        'padding_block_end' => ['_default' => 8],
+                        'padding' => [
+                            'top' => 8,
+                            'right' => 0,
+                            'bottom' => 8,
+                            'left' => 0,
+                        ],
                     ]),
 
                 // Static repeated category card using CategoryCardOverlay preset

@@ -11,8 +11,12 @@ return TemplateBuilder::make()
             'media_position' => 'left',
             'equal_columns' => true,
             'gap' => 8,
-            'padding_top' => 4,
-            'padding_bottom' => 4,
+            'padding' => [
+                'top' => 4,
+                'right' => 0,
+                'bottom' => 4,
+                'left' => 0,
+            ],
         ])
         ->blocks([
             PresetBlock::make('@visual-debut/product-media-gallery')

@@ -5,6 +5,12 @@ return [
         'product_label' => 'Product',
         'color_scheme_label' => 'Color Scheme',
         'color_scheme_info' => 'Override section color scheme for this block',
+
+        // Spacing
+        'spacing_header' => 'Spacing',
+        'padding_header' => 'Padding',
+        'padding_label' => 'Padding',
+        'margin_label' => 'Margin',
     ],
 
     'product' => [
@@ -38,10 +44,6 @@ return [
                 'center' => 'Center',
                 'right' => 'Right',
             ],
-
-            'padding_header' => 'Padding',
-            'padding_top_label' => 'Top',
-            'padding_bottom_label' => 'Bottom',
         ],
     ],
 
@@ -71,12 +73,6 @@ return [
                 'center' => 'Center',
                 'right' => 'Right',
             ],
-
-            'padding_header' => 'Padding',
-            'padding_top_label' => 'Top',
-            'padding_bottom_label' => 'Bottom',
-            'padding_left_label' => 'Left',
-            'padding_right_label' => 'Right',
         ],
     ],
 
@@ -177,13 +173,6 @@ return [
             'text_color_label' => 'Custom Color',
 
             'appearance_header' => 'Appearance',
-
-            'padding_header' => 'Padding',
-
-            'padding_top_label' => 'Top',
-            'padding_bottom_label' => 'Bottom',
-            'padding_left_label' => 'Left',
-            'padding_right_label' => 'Right',
         ],
 
         'presets' => [
@@ -333,11 +322,6 @@ return [
                 'hover' => 'On Hover',
                 'always' => 'Always',
             ],
-
-            'spacing_header' => 'Spacing',
-
-            'padding_top_label' => 'Padding Top',
-            'padding_bottom_label' => 'Padding Bottom',
         ],
 
         'presets' => [
@@ -516,13 +500,6 @@ return [
             'border_width_label' => 'Border Thickness',
             'border_opacity_label' => 'Border Opacity',
             'border_radius_label' => 'Border Radius',
-
-            'padding_header' => 'Padding',
-
-            'padding_top_label' => 'Top',
-            'padding_bottom_label' => 'Bottom',
-            'padding_left_label' => 'Left',
-            'padding_right_label' => 'Right',
         ],
 
         'presets' => [
@@ -632,13 +609,6 @@ return [
                 '3xl' => '3X Large',
                 'full' => 'Full',
             ],
-
-            'padding_header' => 'Padding',
-
-            'padding_top_label' => 'Top',
-            'padding_bottom_label' => 'Bottom',
-            'padding_left_label' => 'Left',
-            'padding_right_label' => 'Right',
         ],
 
         'presets' => [
@@ -681,13 +651,6 @@ return [
                 'auto' => 'Auto',
                 'full' => 'Full',
             ],
-
-            'padding_header' => 'Padding',
-
-            'padding_top_label' => 'Top',
-            'padding_bottom_label' => 'Bottom',
-            'padding_left_label' => 'Left',
-            'padding_right_label' => 'Right',
         ],
 
         'presets' => [
@@ -758,12 +721,6 @@ return [
 
             'sticky_label' => 'Sticky',
             'sticky_info' => 'Keep product details visible while scrolling',
-
-            'spacing_header' => 'Spacing',
-            'padding_top_label' => 'Padding Top',
-            'padding_bottom_label' => 'Padding Bottom',
-            'padding_left_label' => 'Padding Left',
-            'padding_right_label' => 'Padding Right',
         ],
     ],
 
@@ -1147,17 +1104,6 @@ return [
                 'auto' => 'Auto',
             ],
             'gap_label' => 'Gap',
-
-            // Spacing
-            'spacing_header' => 'Spacing',
-            'padding_top_label' => 'Padding Top',
-            'padding_bottom_label' => 'Padding Bottom',
-            'padding_left_label' => 'Padding Left',
-            'padding_right_label' => 'Padding Right',
-            'margin_top_label' => 'Margin Top',
-            'margin_bottom_label' => 'Margin Bottom',
-            'margin_left_label' => 'Margin Left',
-            'margin_right_label' => 'Margin Right',
 
             // Sizing
             'sizing_header' => 'Sizing',

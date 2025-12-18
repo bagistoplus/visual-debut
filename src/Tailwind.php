@@ -56,4 +56,56 @@ class Tailwind
         // Otherwise wrap the scalar value
         return new ResponsiveValue(['_default' => $value]);
     }
+
+    /**
+     * Build spacing classes from a spacing value object
+     *
+     * @param object $value Object with top, right, bottom, left properties
+     * @param string $prefix Class prefix (p for padding, m for margin)
+     * @return string Generated Tailwind classes
+     */
+    public static function buildSpacingClasses($value, string $prefix): string
+    {
+        $top = $value->top ?? 0;
+        $right = $value->right ?? 0;
+        $bottom = $value->bottom ?? 0;
+        $left = $value->left ?? 0;
+
+        if ($top == $right && $right == $bottom && $bottom == $left) {
+            return $top > 0 ? "{$prefix}-{$top}" : '';
+        }
+
+        if ($top == $bottom && $left == $right) {
+            $result = [];
+
+            if ($top > 0) {
+                $result[] = "{$prefix}y-{$top}";
+            }
+
+            if ($left > 0) {
+                $result[] = "{$prefix}x-{$left}";
+            }
+
+            return implode(' ', $result);
+        }
+
+        $result = [];
+        if ($top > 0) {
+            $result[] = "{$prefix}t-{$top}";
+        }
+
+        if ($right > 0) {
+            $result[] = "{$prefix}e-{$right}";
+        }
+
+        if ($bottom > 0) {
+            $result[] = "{$prefix}b-{$bottom}";
+        }
+
+        if ($left > 0) {
+            $result[] = "{$prefix}s-{$left}";
+        }
+
+        return implode(' ', $result);
+    }
 }

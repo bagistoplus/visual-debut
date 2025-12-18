@@ -7,8 +7,10 @@ use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
+use BagistoPlus\VisualDebut\Tailwind;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -84,35 +86,12 @@ class Accordion extends BladeBlock
                 ->default(0)
                 ->unit('px'),
 
-            Header::make(_t('blocks.accordion.settings.padding_header')),
+            Header::make(_t('blocks.common.padding_header')),
 
-            Range::make('padding_block_start', _t('blocks.accordion.settings.padding_top_label'))
+            Spacing::make('padding', _t('blocks.common.padding_label'))
+                ->responsive()
                 ->min(0)
-                ->max(100)
-                ->step(1)
-                ->default(0)
-                ->unit('px'),
-
-            Range::make('padding_block_end', _t('blocks.accordion.settings.padding_bottom_label'))
-                ->min(0)
-                ->max(100)
-                ->step(1)
-                ->default(0)
-                ->unit('px'),
-
-            Range::make('padding_inline_start', _t('blocks.accordion.settings.padding_left_label'))
-                ->min(0)
-                ->max(100)
-                ->step(1)
-                ->default(0)
-                ->unit('px'),
-
-            Range::make('padding_inline_end', _t('blocks.accordion.settings.padding_right_label'))
-                ->min(0)
-                ->max(100)
-                ->step(1)
-                ->default(0)
-                ->unit('px'),
+                ->max(24),
         ];
     }
 
@@ -120,6 +99,21 @@ class Accordion extends BladeBlock
     {
         return [
             'accordionIconType' => $this->block->settings->icon ?? 'caret',
+        ];
+    }
+
+    protected function getViewData(): array
+    {
+        $paddingClasses = '';
+        if ($this->block->settings->has('padding')) {
+            $paddingClasses = Tailwind::responsive(
+                $this->block->settings->padding,
+                fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+            );
+        }
+
+        return [
+            'paddingClasses' => $paddingClasses,
         ];
     }
 
