@@ -9,10 +9,15 @@ use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
-use BagistoPlus\Visual\Support\Preset;
-use BagistoPlus\Visual\Support\PresetBlock;
-use BagistoPlus\VisualDebut\Blocks\Category as CategoryBlock;
+use BagistoPlus\VisualDebut\Blocks\Basic\Button;
+use BagistoPlus\VisualDebut\Blocks\Basic\Divider;
 use BagistoPlus\VisualDebut\Blocks\Basic\Heading;
+use BagistoPlus\VisualDebut\Blocks\Basic\Icon;
+use BagistoPlus\VisualDebut\Blocks\Basic\Image;
+use BagistoPlus\VisualDebut\Blocks\Basic\Link;
+use BagistoPlus\VisualDebut\Blocks\Basic\RichText;
+use BagistoPlus\VisualDebut\Blocks\Basic\Text;
+use BagistoPlus\VisualDebut\Blocks\Group;
 use BagistoPlus\VisualDebut\Presets\CategoryGrid;
 use BagistoPlus\VisualDebut\Tailwind;
 
@@ -31,8 +36,15 @@ class CategoryList extends BladeSection
     protected static string $previewImageUrl = 'themes/shop/visual-debut/images/sections/category-list.png';
 
     protected static array $accepts = [
+        Button::class,
+        Divider::class,
+        Group::class,
         Heading::class,
-        CategoryBlock::class
+        Icon::class,
+        Image::class,
+        Link::class,
+        RichText::class,
+        Text::class,
     ];
 
     protected static array $enabledOn = [
