@@ -125,8 +125,7 @@ class ProductCardWithOverlay extends Preset
                             ->properties([
                                 'layout_type' => 'flex',
                                 'flex_direction' => 'row',
-                                'justify_content' => 'between',
-                                'align_items' => 'stretch',
+                                'horizontal_justify_content' => 'between',
                                 'flex_gap' => 4,
                                 'margin' => [
                                     'top' => 2,
