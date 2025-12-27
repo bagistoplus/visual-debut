@@ -23,7 +23,7 @@
 @source inline("{mobile:,tablet:,desktop:,}gap-{0..24}");
 @source inline("{mobile:,tablet:,desktop:,}grid-cols-{1..12}");
 @source inline("{mobile:,tablet:,desktop:,}grid-rows-{1..6}");
-@source inline("{mobile:,tablet:,desktop:,}{p,m}{t,b,s,e,x,y}-{0..24}");
+@source inline("{mobile:,tablet:,desktop:,}{p,m}{t,b,s,e,x,y,}-{0..24}");
 @source inline("{mobile:,tablet:,desktop:,}border-{0..8,dotted,dashed}");
 @source inline("{mobile:,tablet:,desktop:,}z-{0,10,20,30,40,50}");
 @source inline("{mobile:,tablet:,desktop:,}w-{auto,full,fit,screen}");
