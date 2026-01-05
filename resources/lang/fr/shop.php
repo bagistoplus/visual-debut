@@ -16,6 +16,14 @@ return [
 
     'product' => [
         'links-required' => 'Les liens sont obligatoires.',
+        'option-required' => 'Le :option est requis.',
+
+        'customizable-options' => [
+            'none' => 'Aucun',
+            'choose' => 'Choisissez une option',
+            'choose-options' => 'Choisissez des options',
+            'allowed-types' => 'Types de fichiers autorisés',
+        ],
     ],
 
     'review' => [

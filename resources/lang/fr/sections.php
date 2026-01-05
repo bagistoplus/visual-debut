@@ -326,6 +326,9 @@ return [
             'downloadable-options' => [
                 'name' => 'Options de produits téléchargeables',
             ],
+            'customizable-options' => [
+                'name' => 'Options personnalisables',
+            ],
         ],
     ],
 

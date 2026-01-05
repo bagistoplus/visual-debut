@@ -6,6 +6,9 @@ use BagistoPlus\Visual\Actions\Cart\AddProductToCart;
 use BagistoPlus\Visual\Sections\LivewireSection;
 use BagistoPlus\VisualDebut\Enums\Events;
 use BagistoPlus\VisualDebut\Sections\Schemas\ProductDetailsSchema;
+use Illuminate\Http\UploadedFile;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Webkul\Product\Helpers\ProductType;
 use Webkul\Product\Helpers\Review;
 
@@ -13,6 +16,8 @@ use function BagistoPlus\VisualDebut\_t;
 
 class ProductDetails extends LivewireSection
 {
+    use WithFileUploads;
+
     protected static array $enabledOn = ['product'];
 
     protected static string $view = 'shop::sections.product-details';
@@ -31,12 +36,20 @@ class ProductDetails extends LivewireSection
 
     public array $bundleProductQuantities = [];
 
+    public array $customizableOptions = [];
+
     public array $links = [];
+
+    public function boot(): void
+    {
+        $this->registerCustomizableOptionsValidationAttributes();
+    }
 
     public function mount(): void
     {
         $this->initializeGroupedProductQuantities();
         $this->initializeBundleProductOptions();
+        $this->initializeCustomizableOptions();
     }
 
     /**
@@ -87,13 +100,134 @@ class ProductDetails extends LivewireSection
     }
 
     /**
+     * Register validation attribute translations for customizable options.
+     */
+    protected function registerCustomizableOptionsValidationAttributes(): void
+    {
+        $product = $this->context['product'] ?? null;
+
+        if (! $product || ! $product->getTypeInstance()->isCustomizable()) {
+            return;
+        }
+
+        $options = $product->customizable_options()->get();
+        $validationAttributes = [];
+
+        foreach ($options as $option) {
+            $validationAttributes["validation.attributes.customizableOptions.{$option->id}"] = $option->label;
+        }
+
+        app('translator')->addLines($validationAttributes, app()->getLocale());
+    }
+
+    /**
+     * Initialize customizable options with proper data types.
+     */
+    public function initializeCustomizableOptions(): void
+    {
+        $product = $this->context['product'];
+
+        if (! $product->getTypeInstance()->isCustomizable()) {
+            return;
+        }
+
+        $options = $product
+            ->customizable_options()
+            ->with(['customizable_option_prices'])
+            ->get();
+
+        foreach ($options as $option) {
+            $isMultiValue = in_array($option->type, ['checkbox', 'multiselect']);
+            $this->customizableOptions[$option->id] = $isMultiValue ? [] : null;
+        }
+    }
+
+    /**
+     * Validate required customizable options before adding to cart.
+     */
+    protected function validateRequiredCustomizableOptions(): void
+    {
+        $product = $this->context['product'];
+
+        if (! $product->getTypeInstance()->isCustomizable()) {
+            return;
+        }
+
+        $options = $product->customizable_options()->get();
+        $rules = [];
+        $messages = [];
+
+        foreach ($options as $option) {
+            if ($option->is_required) {
+                $fieldName = "customizableOptions.{$option->id}";
+
+                if (in_array($option->type, ['checkbox', 'multiselect'])) {
+                    $rules[$fieldName] = ['required', 'array', 'min:1'];
+                    $messages["{$fieldName}.required"] = trans('visual-debut::shop.product.option-required', ['option' => $option->label]);
+                    $messages["{$fieldName}.min"] = trans('visual-debut::shop.product.option-required', ['option' => $option->label]);
+                } else {
+                    $rules[$fieldName] = ['required'];
+                    $messages["{$fieldName}.required"] = trans('visual-debut::shop.product.option-required', ['option' => $option->label]);
+                }
+            }
+        }
+
+        if (! empty($rules)) {
+            $this->validate($rules, $messages);
+        }
+    }
+
+    /**
+     * Validate customizable option when updated (real-time validation).
+     */
+    public function updatedCustomizableOptions($value, $key): void
+    {
+        if (! $value) {
+            return;
+        }
+
+        $product = $this->context['product'];
+        $option = $product->customizable_options()->find($key);
+
+        if ($option && $option->type === 'file' && $option->supported_file_extensions) {
+            $extensions = array_map('trim', explode(',', $option->supported_file_extensions));
+
+            $this->validate([
+                "customizableOptions.{$key}" => ['file', 'mimes:' . implode(',', $extensions)],
+            ]);
+        }
+    }
+
+    /**
+     * Transform customizable options, converting Livewire temporary files to Laravel UploadedFile
+     * and wrapping all values in arrays as expected by Bagisto.
+     */
+    protected function transformCustomizableOptions(array $options): array
+    {
+        return collect($options)->map(function ($value) {
+            if ($value instanceof TemporaryUploadedFile) {
+                $value = new UploadedFile(
+                    $value->getRealPath(),
+                    $value->getClientOriginalName(),
+                    $value->getMimeType(),
+                    $value->getError(),
+                    true // Mark as test file to avoid validation issues
+                );
+            }
+
+            return is_array($value) ? $value : [$value];
+        })->toArray();
+    }
+
+    /**
      * Add the product to the cart.
      */
     public function addToCart(bool $buyNow = false): void
     {
         $product = $this->context['product'];
 
-        // Build the basic cart parameters
+        $this->validateRequiredCustomizableOptions();
+
         $cartParams = [
             'product_id' => $product->id,
             'quantity' => $this->quantity,
@@ -121,9 +255,15 @@ class ProductDetails extends LivewireSection
             ]);
         }
 
-        // Add bundle product options and quantities if present
+        // Add downloadable product links if present
         if (! empty($this->links)) {
             $cartParams = array_merge($cartParams, ['links' => $this->links]);
+        }
+
+        // Add customizable options if present
+        if (! empty($this->customizableOptions)) {
+            $transformedOptions = $this->transformCustomizableOptions($this->customizableOptions);
+            $cartParams = array_merge($cartParams, ['customizable_options' => $transformedOptions]);
         }
 
         $result = app(AddProductToCart::class)->execute($cartParams);

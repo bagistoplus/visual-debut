@@ -105,6 +105,10 @@ class ProductDetailsSchema
                 ->limit(1)
                 ->settings([clone $positionSelect]),
 
+            Block::make('customizable-options', _t('product-details.blocks.customizable-options.name'))
+                ->limit(1)
+                ->settings([clone $positionSelect]),
+
             Block::make('collapsible', _t('product-details.blocks.collapsible.name'))
                 ->settings([
                     Checkbox::make('should_open_panel', _t('product-details.blocks.collapsible.settings.should_open_panel_label'))
@@ -133,6 +137,7 @@ class ProductDetailsSchema
                 ['type' => 'grouped-options'],
                 ['type' => 'bundle-options'],
                 ['type' => 'downloadable-options'],
+                ['type' => 'customizable-options'],
                 ['type' => 'quantity-selector'],
                 ['type' => 'buy-buttons'],
                 ['type' => 'separator'],

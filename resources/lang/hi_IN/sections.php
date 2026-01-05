@@ -352,6 +352,9 @@ return [
             'downloadable-options' => [
                 'name' => 'डाउनलोड करने योग्य उत्पाद विकल्प',
             ],
+            'customizable-options' => [
+                'name' => 'अनुकूलन योग्य विकल्प',
+            ],
         ],
     ],
 

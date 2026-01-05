@@ -351,6 +351,9 @@ return [
             'downloadable-options' => [
                 'name' => 'خيارات المنتجات القابلة للتنزيل',
             ],
+            'customizable-options' => [
+                'name' => 'خيارات قابلة للتخصيص',
+            ],
         ],
     ],
 

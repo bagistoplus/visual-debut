@@ -126,4 +126,8 @@
       @endif
     @break
 
+    @case('customizable-options')
+      <x-shop::product.customizable-options :product="$product" />
+    @break
+
   @endswitch

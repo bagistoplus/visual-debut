@@ -21,6 +21,7 @@ import productForm from './features/product-form';
 import variantPicker from './features/variant-picker';
 import navigation from './features/navigation';
 import productActions from './features/product-actions';
+import customizableOptions from './features/customizable-options';
 import rating from './components/ui/rating';
 
 // ui components as plugin
@@ -39,6 +40,7 @@ Alpine.plugin([
   productForm,
   productActions,
   productBundle,
+  customizableOptions,
   productsCompare,
   variantPicker,
 ]);

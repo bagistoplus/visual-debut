@@ -355,6 +355,9 @@ return [
             'downloadable-options' => [
                 'name' => 'Downloadable products options',
             ],
+            'customizable-options' => [
+                'name' => 'Customizable options',
+            ],
         ],
     ],
 

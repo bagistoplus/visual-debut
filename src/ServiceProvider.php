@@ -47,6 +47,7 @@ class ServiceProvider extends ThemeServiceProvider
         $this->bootLivewireComponents();
         $this->bootViewEventListeners();
         $this->bootLivewireFeatures();
+        $this->bootValidationTranslations();
 
         $this->whenActive(function () {
             $this->bootVendorViews();
@@ -89,5 +90,12 @@ class ServiceProvider extends ThemeServiceProvider
                 $event->addTemplate('paypal::checkout.onepage.payment-button');
             });
         });
+    }
+
+    protected function bootValidationTranslations(): void
+    {
+        app('translator')->addLines([
+            'validation.uploaded' => trans('visual-debut::validation.uploaded'),
+        ], app()->getLocale());
     }
 }
