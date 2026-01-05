@@ -29,9 +29,7 @@ export type RequestFn = (
  */
 function getLocale(): string {
   const rawLocale = document.documentElement.getAttribute('lang') || 'en-US';
-  return rawLocale === 'ar'
-    ? 'ar-SA'
-    : rawLocale.replace(/([a-z]{2})_([A-Z]{2})/g, '$1-$2');
+  return rawLocale === 'ar' ? 'ar-SA' : rawLocale.replace(/([a-z]{2})_([A-Z]{2})/g, '$1-$2');
 }
 
 /**
@@ -127,25 +125,17 @@ export default function (Alpine: AlpineType) {
       case 'right_with_space':
         return `${formattedCurrency} ${symbol}`;
       default:
-        return formattedCurrency;
+        return `${symbol}${formattedCurrency}`;
     }
   });
 
   Alpine.magic('request', (): RequestFn => {
-    return async (
-      url,
-      method = 'GET',
-      data = null,
-      customOptions = {}
-    ): Promise<any> => {
+    return async (url, method = 'GET', data = null, customOptions = {}): Promise<any> => {
       const options: RequestOptions = {
         method: method.toUpperCase() as HttpMethod,
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-TOKEN':
-            document
-              .querySelector('meta[name="csrf-token"]')
-              ?.getAttribute('content') || '',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
         },
         ...customOptions,
       };
@@ -176,9 +166,7 @@ export default function (Alpine: AlpineType) {
             const errorData = await response.json();
             throw errorData;
           } catch {
-            throw new Error(
-              `Request failed with status ${response.status}: ${response.statusText}`
-            );
+            throw new Error(`Request failed with status ${response.status}: ${response.statusText}`);
           }
         }
 

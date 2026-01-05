@@ -953,6 +953,11 @@ return [
         ],
     ],
 
+    'product-customizable-options' => [
+        'name' => 'Product Customizable Options',
+        'description' => 'Display customizable product options with price adjustments',
+    ],
+
     'logo' => [
         'name' => 'Logo',
         'description' => 'Site logo or name',

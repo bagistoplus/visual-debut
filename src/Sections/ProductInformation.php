@@ -14,6 +14,9 @@ use BagistoPlus\VisualDebut\Blocks\Product\ProductMediaGallery;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductDetails;
 use BagistoPlus\VisualDebut\Enums\Events;
 use BagistoPlus\VisualDebut\Tailwind;
+use Illuminate\Http\UploadedFile;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Livewire\WithFileUploads;
 use Webkul\Product\Helpers\ProductType;
 use Webkul\Product\Helpers\Review;
 
@@ -21,6 +24,8 @@ use function BagistoPlus\VisualDebut\_t;
 
 class ProductInformation extends LivewireSection
 {
+    use WithFileUploads;
+
     protected static string $type = '@visual-debut/product-information';
 
     protected static array $enabledOn = [
@@ -54,6 +59,8 @@ class ProductInformation extends LivewireSection
     public array $bundleProductQuantities = [];
 
     public array $links = [];
+
+    public array $customizableOptions = [];
 
     public static function name(): string
     {
@@ -115,10 +122,16 @@ class ProductInformation extends LivewireSection
         ];
     }
 
+    public function boot(): void
+    {
+        $this->registerCustomizableOptionsValidationAttributes();
+    }
+
     public function mount(): void
     {
         $this->initializeGroupedProductQuantities();
         $this->initializeBundleProductOptions();
+        $this->initializeCustomizableOptions();
     }
 
     /**
@@ -169,11 +182,112 @@ class ProductInformation extends LivewireSection
     }
 
     /**
+     * Initialize customizable options.
+     */
+    public function initializeCustomizableOptions(): void
+    {
+        $product = $this->context('product');
+
+        if (! $product->getTypeInstance()->isCustomizable()) {
+            return;
+        }
+
+        $options = $product
+            ->customizable_options()
+            ->with(['customizable_option_prices'])
+            ->get();
+
+        foreach ($options as $option) {
+            $isMultiValue = in_array($option->type, ['checkbox', 'multiselect']);
+            $this->customizableOptions[$option->id] = $isMultiValue ? [] : null;
+        }
+    }
+
+    /**
+     * Register validation attributes for customizable options.
+     */
+    protected function registerCustomizableOptionsValidationAttributes(): void
+    {
+        $product = $this->context('product');
+
+        if (! $product || ! $product->getTypeInstance()->isCustomizable()) {
+            return;
+        }
+
+        $options = $product->customizable_options()->get();
+        $validationAttributes = [];
+
+        foreach ($options as $option) {
+            $validationAttributes["validation.attributes.customizableOptions.{$option->id}"] = $option->label;
+        }
+
+        app('translator')->addLines($validationAttributes, app()->getLocale());
+    }
+
+    /**
+     * Validate required customizable options.
+     */
+    protected function validateRequiredCustomizableOptions(): void
+    {
+        $product = $this->context('product');
+
+        if (! $product->getTypeInstance()->isCustomizable()) {
+            return;
+        }
+
+        $options = $product->customizable_options()->get();
+        $rules = [];
+        $messages = [];
+
+        foreach ($options as $option) {
+            if ($option->is_required) {
+                $fieldName = "customizableOptions.{$option->id}";
+
+                if (in_array($option->type, ['checkbox', 'multiselect'])) {
+                    $rules[$fieldName] = ['required', 'array', 'min:1'];
+                    $messages["{$fieldName}.required"] = trans('visual-debut::shop.product.option-required', ['option' => $option->label]);
+                    $messages["{$fieldName}.min"] = trans('visual-debut::shop.product.option-required', ['option' => $option->label]);
+                } else {
+                    $rules[$fieldName] = ['required'];
+                    $messages["{$fieldName}.required"] = trans('visual-debut::shop.product.option-required', ['option' => $option->label]);
+                }
+            }
+        }
+
+        if (! empty($rules)) {
+            $this->validate($rules, $messages);
+        }
+    }
+
+    /**
+     * Livewire hook for when customizable options are updated.
+     */
+    public function updatedCustomizableOptions($value, $key): void
+    {
+        if (! $value) {
+            return;
+        }
+
+        $product = $this->context('product');
+        $option = $product->customizable_options()->find($key);
+
+        if ($option && $option->type === 'file' && $option->supported_file_extensions) {
+            $extensions = array_map('trim', explode(',', $option->supported_file_extensions));
+
+            $this->validate([
+                "customizableOptions.{$key}" => ['file', 'mimes:' . implode(',', $extensions)],
+            ]);
+        }
+    }
+
+    /**
      * Add the product to the cart.
      */
     public function addToCart(bool $buyNow = false): void
     {
-        $product = $this->context['product'];
+        $this->validateRequiredCustomizableOptions();
+
+        $product = $this->context('product');
 
         // Build the basic cart parameters
         $cartParams = [
@@ -208,6 +322,12 @@ class ProductInformation extends LivewireSection
             $cartParams = array_merge($cartParams, ['links' => $this->links]);
         }
 
+        // Add customizable options if present
+        if (! empty($this->customizableOptions)) {
+            $transformedOptions = $this->transformCustomizableOptions($this->customizableOptions);
+            $cartParams = array_merge($cartParams, ['customizable_options' => $transformedOptions]);
+        }
+
         $result = app(AddProductToCart::class)->execute($cartParams);
 
         if ($result['success']) {
@@ -229,6 +349,26 @@ class ProductInformation extends LivewireSection
     public function buyNow(): void
     {
         $this->addToCart(buyNow: true);
+    }
+
+    /**
+     * Transform customizable options to the format expected by cart.
+     */
+    protected function transformCustomizableOptions(array $options): array
+    {
+        return collect($options)->map(function ($value) {
+            if ($value instanceof TemporaryUploadedFile) {
+                $value = new UploadedFile(
+                    $value->getRealPath(),
+                    $value->getClientOriginalName(),
+                    $value->getMimeType(),
+                    $value->getError(),
+                    true // Mark as test file to avoid validation issues
+                );
+            }
+
+            return is_array($value) ? $value : [$value];
+        })->toArray();
     }
 
     /**

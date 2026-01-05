@@ -15,7 +15,15 @@ return [
     ],
 
     'product' => [
-        'links-required' => 'The links are required.'
+        'links-required' => 'The links are required.',
+        'option-required' => 'The :option is required.',
+
+        'customizable-options' => [
+            'none' => 'None',
+            'choose' => 'Choose an option',
+            'choose-options' => 'Choose options',
+            'allowed-types' => 'Allowed file types',
+        ],
     ],
 
     'review' => [

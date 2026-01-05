@@ -15,7 +15,15 @@ return [
     ],
 
     'product' => [
-        'links-required' => 'लिंक आवश्यक हैं।'
+        'links-required' => 'लिंक आवश्यक हैं।',
+        'option-required' => ':option आवश्यक है।',
+
+        'customizable-options' => [
+            'none' => 'कोई नहीं',
+            'choose' => 'एक विकल्प चुनें',
+            'choose-options' => 'विकल्प चुनें',
+            'allowed-types' => 'अनुमत फ़ाइल प्रकार',
+        ],
     ],
 
     'review' => [

@@ -1002,6 +1002,11 @@ return [
         ],
     ],
 
+    'product-customizable-options' => [
+        'name' => 'Options personnalisables du produit',
+        'description' => 'Afficher les options personnalisables du produit avec ajustements de prix',
+    ],
+
     'logo' => [
         'name' => 'Logo',
         'description' => 'Logo ou nom du site',

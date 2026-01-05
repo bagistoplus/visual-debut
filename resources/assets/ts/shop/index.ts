@@ -17,6 +17,7 @@ import tabs from './components/ui/tabs';
 import mediaGallery from './features/media-gallery';
 import productsCompare from './features/products-compare';
 import productBundle from './features/product-bundle';
+import productCustomizable from './features/product-customizable';
 import productForm from './features/product-form';
 import variantPicker from './features/variant-picker';
 import navigation from './features/navigation';
@@ -40,6 +41,7 @@ Alpine.plugin([
   productForm,
   productActions,
   productBundle,
+  productCustomizable,
   productsCompare,
   variantPicker,
 ]);

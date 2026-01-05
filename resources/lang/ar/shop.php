@@ -15,7 +15,15 @@ return [
     ],
 
     'product' => [
-        'links-required' => 'الروابط مطلوبة.'
+        'links-required' => 'الروابط مطلوبة.',
+        'option-required' => ':option مطلوب.',
+
+        'customizable-options' => [
+            'none' => 'لا شيء',
+            'choose' => 'اختر خياراً',
+            'choose-options' => 'اختر الخيارات',
+            'allowed-types' => 'أنواع الملفات المسموح بها',
+        ],
     ],
 
     'review' => [

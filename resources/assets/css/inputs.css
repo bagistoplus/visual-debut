@@ -5,9 +5,11 @@
 [type='number'],
 [type='date'],
 [type='datetime-local'],
+[type='time'],
 [type='search'],
 [type='tel'],
 [type='url'],
+[type='file'],
 input:where(:not([type])),
 textarea,
 select {
@@ -45,6 +47,7 @@ textarea {
 
 select:is([multiple]) {
   --input-size: calc(var(--input-size-base, 0.25rem) * 20);
+  @apply py-2.5;
 }
 select:not([multiple]) {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
