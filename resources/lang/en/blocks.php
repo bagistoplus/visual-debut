@@ -104,58 +104,8 @@ return [
 
             'typography_header' => 'Typography',
 
-            'type_preset_label' => 'Type Preset',
-            'type_preset_info' => 'Apply predefined text styles',
-            'type_preset_options' => [
-                'paragraph' => 'Paragraph',
-                'h1' => 'Heading 1',
-                'h2' => 'Heading 2',
-                'h3' => 'Heading 3',
-                'h4' => 'Heading 4',
-                'h5' => 'Heading 5',
-                'h6' => 'Heading 6',
-                'custom' => 'Custom',
-            ],
-
-            'font_label' => 'Font Family',
-            'font_options' => [
-                'body' => 'Body',
-                'subheading' => 'Subheading',
-                'heading' => 'Heading',
-                'accent' => 'Accent',
-            ],
-
-            'font_size_label' => 'Font Size',
-            'font_size_options' => [
-                'default' => 'Default',
-            ],
-
-            'line_height_label' => 'Line Height',
-            'line_height_options' => [
-                'tight' => 'Tight',
-                'normal' => 'Normal',
-                'loose' => 'Loose',
-            ],
-
-            'letter_spacing_label' => 'Letter Spacing',
-            'letter_spacing_options' => [
-                'tight' => 'Tight',
-                'normal' => 'Normal',
-                'loose' => 'Loose',
-            ],
-
-            'case_label' => 'Text Case',
-            'case_options' => [
-                'none' => 'Default',
-                'uppercase' => 'Uppercase',
-            ],
-
-            'wrap_label' => 'Text Wrap',
-            'wrap_options' => [
-                'pretty' => 'Pretty',
-                'balance' => 'Balance',
-                'nowrap' => 'No Wrap',
-            ],
+            'typography_label' => 'Typography',
+            'typography_info' => 'Select typography style',
 
             'color_label' => 'Text Color',
             'color_options' => [
@@ -292,27 +242,8 @@ return [
 
             'typography_header' => 'Typography',
 
-            'type_preset_label' => 'Type Preset',
-            'type_preset_info' => 'Apply predefined text styles',
-            'type_preset_options' => [
-                'paragraph' => 'Paragraph',
-                'h1' => 'Heading 1',
-                'h2' => 'Heading 2',
-                'h3' => 'Heading 3',
-                'h4' => 'Heading 4',
-                'h5' => 'Heading 5',
-                'h6' => 'Heading 6',
-                'custom' => 'Custom',
-            ],
-
-            'font_size_label' => 'Font Size',
-            'font_weight_label' => 'Font Weight',
-            'font_weight_options' => [
-                'normal' => 'Normal',
-                'medium' => 'Medium',
-                'semibold' => 'Semi Bold',
-                'bold' => 'Bold',
-            ],
+            'typography_label' => 'Typography',
+            'typography_info' => 'Select typography style',
 
             'appearance_header' => 'Appearance',
 
@@ -473,18 +404,8 @@ return [
 
             'dividers_label' => 'Show Dividers',
 
-            'type_preset_label' => 'Heading Preset',
-            'type_preset_info' => 'Typography preset for accordion headings',
-            'type_preset_options' => [
-                'default' => 'Default',
-                'paragraph' => 'Paragraph',
-                'h1' => 'Heading 1',
-                'h2' => 'Heading 2',
-                'h3' => 'Heading 3',
-                'h4' => 'Heading 4',
-                'h5' => 'Heading 5',
-                'h6' => 'Heading 6',
-            ],
+            'typography_label' => 'Typography',
+            'typography_info' => 'Select typography style',
 
             'inherit_color_scheme_label' => 'Inherit Color Scheme',
             'color_scheme_label' => 'Color Scheme',

@@ -99,8 +99,6 @@ class NewsletterFooter extends Preset
                     ->settings([
                         'text' => '© ' . date('Y') . ' ' . config('app.name'),
                         'alignment' => 'center',
-                        'type_preset' => 'custom',
-                        'font_size' => 'text-sm',
                     ]),
             ]);
     }
@@ -112,7 +110,6 @@ class NewsletterFooter extends Preset
                 ->settings([
                     'text' => $link['label'],
                     'url' => $link['url'],
-                    'type_preset' => 'paragraph',
                     'underline' => 'hover',
                     'padding' => [
                         'top' => 1,
@@ -135,9 +132,6 @@ class NewsletterFooter extends Preset
                     ->settings([
                         'text' => $title,
                         'tag' => 'h4',
-                        'type_preset' => 'custom',
-                        'font_size' => 'text-base',
-                        'font_weight' => '600',
                     ]),
 
                 ...$linkBlocks,

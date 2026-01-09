@@ -9,9 +9,13 @@
 
 @stack('meta')
 
-@if ($theme->settings->default_font)
-  {{ $theme->settings->default_font->toHtml() }}
-@endif
+@php
+  $fonts = collect($theme->settings->typography_presets)->map->fontFamily->filter()->unique(fn($font) => $font->slug);
+@endphp
+
+@foreach ($fonts as $font)
+  {{ $font->toHtml() }}
+@endforeach
 
 <script type="application/ld+json" id="currency-data">
   @json(core()->getCurrentCurrency()->toArray())

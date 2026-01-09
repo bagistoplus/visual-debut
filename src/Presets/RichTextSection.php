@@ -41,7 +41,7 @@ class RichTextSection extends Preset
                         'width' => 'fit-content',
                         'max_width' => 'normal',
                         'alignment' => 'left',
-                        'type_preset' => 'h2',
+                        'typography' => 'heading-2',
                     ]),
 
                 PresetBlock::make('@visual-debut/text')

@@ -50,8 +50,6 @@ class MinimalFooter extends Preset
                             ->settings([
                                 'text' => _t('sections.footer.presets.minimal.tagline'),
                                 'alignment' => 'center',
-                                'type_preset' => 'custom',
-                                'font_size' => 'text-sm',
                             ]),
 
                         $this->createSocialIcons(),
@@ -72,8 +70,6 @@ class MinimalFooter extends Preset
                             ->settings([
                                 'text' => '© ' . date('Y') . ' All rights reserved.',
                                 'alignment' => 'center',
-                                'type_preset' => 'custom',
-                                'font_size' => 'text-xs',
                             ]),
                     ]),
             ]);

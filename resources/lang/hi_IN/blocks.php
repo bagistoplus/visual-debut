@@ -114,58 +114,8 @@ return [
 
             'typography_header' => 'टाइपोग्राफी',
 
-            'type_preset_label' => 'टाइप प्रीसेट',
-            'type_preset_info' => 'पूर्वनिर्धारित पाठ शैलियाँ लागू करें',
-            'type_preset_options' => [
-                'paragraph' => 'अनुच्छेद',
-                'h1' => 'शीर्षक 1',
-                'h2' => 'शीर्षक 2',
-                'h3' => 'शीर्षक 3',
-                'h4' => 'शीर्षक 4',
-                'h5' => 'शीर्षक 5',
-                'h6' => 'शीर्षक 6',
-                'custom' => 'कस्टम',
-            ],
-
-            'font_label' => 'फ़ॉन्ट परिवार',
-            'font_options' => [
-                'body' => 'मुख्य',
-                'subheading' => 'उपशीर्षक',
-                'heading' => 'शीर्षक',
-                'accent' => 'उच्चारण',
-            ],
-
-            'font_size_label' => 'फ़ॉन्ट आकार',
-            'font_size_options' => [
-                'default' => 'डिफ़ॉल्ट',
-            ],
-
-            'line_height_label' => 'पंक्ति ऊँचाई',
-            'line_height_options' => [
-                'tight' => 'संकीर्ण',
-                'normal' => 'सामान्य',
-                'loose' => 'ढीला',
-            ],
-
-            'letter_spacing_label' => 'अक्षर अंतराल',
-            'letter_spacing_options' => [
-                'tight' => 'संकीर्ण',
-                'normal' => 'सामान्य',
-                'loose' => 'ढीला',
-            ],
-
-            'case_label' => 'पाठ केस',
-            'case_options' => [
-                'none' => 'डिफ़ॉल्ट',
-                'uppercase' => 'बड़े अक्षर',
-            ],
-
-            'wrap_label' => 'पाठ रैप',
-            'wrap_options' => [
-                'pretty' => 'सुंदर',
-                'balance' => 'संतुलित',
-                'nowrap' => 'रैप नहीं',
-            ],
+            'typography_label' => 'टाइपोग्राफी',
+            'typography_info' => 'टाइपोग्राफी शैली चुनें',
 
             'color_label' => 'पाठ रंग',
             'color_options' => [
@@ -309,27 +259,8 @@ return [
 
             'typography_header' => 'टाइपोग्राफी',
 
-            'type_preset_label' => 'टाइप प्रीसेट',
-            'type_preset_info' => 'पूर्वनिर्धारित पाठ शैलियाँ लागू करें',
-            'type_preset_options' => [
-                'paragraph' => 'अनुच्छेद',
-                'h1' => 'शीर्षक 1',
-                'h2' => 'शीर्षक 2',
-                'h3' => 'शीर्षक 3',
-                'h4' => 'शीर्षक 4',
-                'h5' => 'शीर्षक 5',
-                'h6' => 'शीर्षक 6',
-                'custom' => 'कस्टम',
-            ],
-
-            'font_size_label' => 'फ़ॉन्ट आकार',
-            'font_weight_label' => 'फ़ॉन्ट वजन',
-            'font_weight_options' => [
-                'normal' => 'सामान्य',
-                'medium' => 'मध्यम',
-                'semibold' => 'अर्ध मोटा',
-                'bold' => 'मोटा',
-            ],
+            'typography_label' => 'टाइपोग्राफी',
+            'typography_info' => 'टाइपोग्राफी शैली चुनें',
 
             'appearance_header' => 'रूप',
 
@@ -495,18 +426,8 @@ return [
 
             'dividers_label' => 'विभाजक दिखाएं',
 
-            'type_preset_label' => 'शीर्षक प्रीसेट',
-            'type_preset_info' => 'अकॉर्डियन शीर्षकों के लिए टाइपोग्राफी प्रीसेट',
-            'type_preset_options' => [
-                'default' => 'डिफ़ॉल्ट',
-                'paragraph' => 'अनुच्छेद',
-                'h1' => 'शीर्षक 1',
-                'h2' => 'शीर्षक 2',
-                'h3' => 'शीर्षक 3',
-                'h4' => 'शीर्षक 4',
-                'h5' => 'शीर्षक 5',
-                'h6' => 'शीर्षक 6',
-            ],
+            'typography_label' => 'टाइपोग्राफी',
+            'typography_info' => 'टाइपोग्राफी शैली चुनें',
 
             'inherit_color_scheme_label' => 'रंग योजना विरासत में लें',
             'color_scheme_label' => 'रंग योजना',

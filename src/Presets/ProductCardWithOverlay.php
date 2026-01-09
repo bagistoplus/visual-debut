@@ -112,11 +112,10 @@ class ProductCardWithOverlay extends Preset
                         PresetBlock::make('@visual-debut/product-title')
                             ->name('Product Title')
                             ->properties([
-                                'product' => null,
                                 'heading_level' => 'h3',
                                 'width' => 'fit-content',
                                 'alignment' => 'left',
-                                'type_preset' => 'paragraph'
+                                'typography' => 'body',
                             ]),
 
                         // Price and Labels Container

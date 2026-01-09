@@ -114,58 +114,8 @@ return [
 
             'typography_header' => 'Typographie',
 
-            'type_preset_label' => 'Préréglage de type',
-            'type_preset_info' => 'Appliquer des styles de texte prédéfinis',
-            'type_preset_options' => [
-                'paragraph' => 'Paragraphe',
-                'h1' => 'Titre 1',
-                'h2' => 'Titre 2',
-                'h3' => 'Titre 3',
-                'h4' => 'Titre 4',
-                'h5' => 'Titre 5',
-                'h6' => 'Titre 6',
-                'custom' => 'Personnalisé',
-            ],
-
-            'font_label' => 'Famille de police',
-            'font_options' => [
-                'body' => 'Corps',
-                'subheading' => 'Sous-titre',
-                'heading' => 'Titre',
-                'accent' => 'Accent',
-            ],
-
-            'font_size_label' => 'Taille de police',
-            'font_size_options' => [
-                'default' => 'Par défaut',
-            ],
-
-            'line_height_label' => 'Hauteur de ligne',
-            'line_height_options' => [
-                'tight' => 'Serré',
-                'normal' => 'Normal',
-                'loose' => 'Espacé',
-            ],
-
-            'letter_spacing_label' => 'Espacement des lettres',
-            'letter_spacing_options' => [
-                'tight' => 'Serré',
-                'normal' => 'Normal',
-                'loose' => 'Espacé',
-            ],
-
-            'case_label' => 'Casse du texte',
-            'case_options' => [
-                'none' => 'Par défaut',
-                'uppercase' => 'Majuscules',
-            ],
-
-            'wrap_label' => 'Retour à la ligne',
-            'wrap_options' => [
-                'pretty' => 'Joli',
-                'balance' => 'Équilibré',
-                'nowrap' => 'Pas de retour',
-            ],
+            'typography_label' => 'Typographie',
+            'typography_info' => 'Sélectionner le style de typographie',
 
             'color_label' => 'Couleur du texte',
             'color_options' => [
@@ -309,27 +259,8 @@ return [
 
             'typography_header' => 'Typographie',
 
-            'type_preset_label' => 'Préréglage de type',
-            'type_preset_info' => 'Appliquer des styles de texte prédéfinis',
-            'type_preset_options' => [
-                'paragraph' => 'Paragraphe',
-                'h1' => 'Titre 1',
-                'h2' => 'Titre 2',
-                'h3' => 'Titre 3',
-                'h4' => 'Titre 4',
-                'h5' => 'Titre 5',
-                'h6' => 'Titre 6',
-                'custom' => 'Personnalisé',
-            ],
-
-            'font_size_label' => 'Taille de police',
-            'font_weight_label' => 'Graisse de police',
-            'font_weight_options' => [
-                'normal' => 'Normal',
-                'medium' => 'Moyen',
-                'semibold' => 'Semi gras',
-                'bold' => 'Gras',
-            ],
+            'typography_label' => 'Typographie',
+            'typography_info' => 'Sélectionner le style de typographie',
 
             'appearance_header' => 'Apparence',
 
@@ -495,18 +426,8 @@ return [
 
             'dividers_label' => 'Afficher les séparateurs',
 
-            'type_preset_label' => 'Préréglage de titre',
-            'type_preset_info' => 'Préréglage typographique pour les titres d\'accordéon',
-            'type_preset_options' => [
-                'default' => 'Par défaut',
-                'paragraph' => 'Paragraphe',
-                'h1' => 'Titre 1',
-                'h2' => 'Titre 2',
-                'h3' => 'Titre 3',
-                'h4' => 'Titre 4',
-                'h5' => 'Titre 5',
-                'h6' => 'Titre 6',
-            ],
+            'typography_label' => 'Typographie',
+            'typography_info' => 'Sélectionner le style de typographie',
 
             'inherit_color_scheme_label' => 'Hériter du schéma de couleurs',
             'color_scheme_label' => 'Schéma de couleurs',

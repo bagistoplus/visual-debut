@@ -46,7 +46,7 @@ class HeroBanner extends Preset
                     ->settings([
                         'text' => 'Welcome to our store',
                         'heading_level' => 'h1',
-                        'type_preset' => 'h1',
+                        'typography' => 'heading-1',
                         'color' => 'custom',
                         'text_color' => '#EBE6E6FF',
                     ]),
@@ -54,7 +54,6 @@ class HeroBanner extends Preset
                 PresetBlock::make('@visual-debut/text')
                     ->settings([
                         'text' => 'Discover our best products and offers.',
-                        'type_preset' => 'paragraph',
                         'width' => 'fit-content',
                         'max_width' => 'normal',
                         'alignment' => 'left',

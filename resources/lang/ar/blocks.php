@@ -114,58 +114,8 @@ return [
 
             'typography_header' => 'الطباعة',
 
-            'type_preset_label' => 'قالب النوع',
-            'type_preset_info' => 'تطبيق أنماط نصية محددة مسبقاً',
-            'type_preset_options' => [
-                'paragraph' => 'فقرة',
-                'h1' => 'عنوان 1',
-                'h2' => 'عنوان 2',
-                'h3' => 'عنوان 3',
-                'h4' => 'عنوان 4',
-                'h5' => 'عنوان 5',
-                'h6' => 'عنوان 6',
-                'custom' => 'مخصص',
-            ],
-
-            'font_label' => 'عائلة الخط',
-            'font_options' => [
-                'body' => 'النص الأساسي',
-                'subheading' => 'عنوان فرعي',
-                'heading' => 'عنوان',
-                'accent' => 'تمييز',
-            ],
-
-            'font_size_label' => 'حجم الخط',
-            'font_size_options' => [
-                'default' => 'افتراضي',
-            ],
-
-            'line_height_label' => 'ارتفاع السطر',
-            'line_height_options' => [
-                'tight' => 'ضيق',
-                'normal' => 'عادي',
-                'loose' => 'واسع',
-            ],
-
-            'letter_spacing_label' => 'تباعد الأحرف',
-            'letter_spacing_options' => [
-                'tight' => 'ضيق',
-                'normal' => 'عادي',
-                'loose' => 'واسع',
-            ],
-
-            'case_label' => 'حالة النص',
-            'case_options' => [
-                'none' => 'افتراضي',
-                'uppercase' => 'أحرف كبيرة',
-            ],
-
-            'wrap_label' => 'التفاف النص',
-            'wrap_options' => [
-                'pretty' => 'جميل',
-                'balance' => 'متوازن',
-                'nowrap' => 'بدون التفاف',
-            ],
+            'typography_label' => 'الطباعة',
+            'typography_info' => 'اختر نمط الطباعة',
 
             'color_label' => 'لون النص',
             'color_options' => [
@@ -309,27 +259,8 @@ return [
 
             'typography_header' => 'الطباعة',
 
-            'type_preset_label' => 'قالب النوع',
-            'type_preset_info' => 'تطبيق أنماط نصية محددة مسبقاً',
-            'type_preset_options' => [
-                'paragraph' => 'فقرة',
-                'h1' => 'عنوان 1',
-                'h2' => 'عنوان 2',
-                'h3' => 'عنوان 3',
-                'h4' => 'عنوان 4',
-                'h5' => 'عنوان 5',
-                'h6' => 'عنوان 6',
-                'custom' => 'مخصص',
-            ],
-
-            'font_size_label' => 'حجم الخط',
-            'font_weight_label' => 'سمك الخط',
-            'font_weight_options' => [
-                'normal' => 'عادي',
-                'medium' => 'متوسط',
-                'semibold' => 'شبه عريض',
-                'bold' => 'عريض',
-            ],
+            'typography_label' => 'الطباعة',
+            'typography_info' => 'اختر نمط الطباعة',
 
             'appearance_header' => 'المظهر',
 
@@ -495,18 +426,8 @@ return [
 
             'dividers_label' => 'إظهار الفواصل',
 
-            'type_preset_label' => 'قالب العنوان',
-            'type_preset_info' => 'قالب الطباعة لعناوين الأكورديون',
-            'type_preset_options' => [
-                'default' => 'افتراضي',
-                'paragraph' => 'فقرة',
-                'h1' => 'عنوان 1',
-                'h2' => 'عنوان 2',
-                'h3' => 'عنوان 3',
-                'h4' => 'عنوان 4',
-                'h5' => 'عنوان 5',
-                'h6' => 'عنوان 6',
-            ],
+            'typography_label' => 'الطباعة',
+            'typography_info' => 'اختر نمط الطباعة',
 
             'inherit_color_scheme_label' => 'وراثة نظام الألوان',
             'color_scheme_label' => 'نظام الألوان',

@@ -11,6 +11,7 @@ use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Settings\Text as TextSetting;
+use BagistoPlus\Visual\Settings\Typography;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\VisualDebut\Tailwind;
 
@@ -40,40 +41,8 @@ class Link extends SimpleBlock
 
             Header::make(_t('blocks.link.settings.typography_header')),
 
-            Select::make('type_preset', _t('blocks.link.settings.type_preset_label'))
-                ->options([
-                    'paragraph' => _t('blocks.link.settings.type_preset_options.paragraph'),
-                    'h1' => _t('blocks.link.settings.type_preset_options.h1'),
-                    'h2' => _t('blocks.link.settings.type_preset_options.h2'),
-                    'h3' => _t('blocks.link.settings.type_preset_options.h3'),
-                    'h4' => _t('blocks.link.settings.type_preset_options.h4'),
-                    'h5' => _t('blocks.link.settings.type_preset_options.h5'),
-                    'h6' => _t('blocks.link.settings.type_preset_options.h6'),
-                    'custom' => _t('blocks.link.settings.type_preset_options.custom'),
-                ])
-                ->default('paragraph')
-                ->info(_t('blocks.link.settings.type_preset_info')),
-
-            Select::make('font_size', _t('blocks.link.settings.font_size_label'))
-                ->options([
-                    'text-xs' => '12px (xs)',
-                    'text-sm' => '14px (sm)',
-                    'text-base' => '16px (base)',
-                    'text-lg' => '18px (lg)',
-                    'text-xl' => '20px (xl)',
-                ])
-                ->default('text-base')
-                ->visibleWhen(fn($rule) => $rule->when('type_preset', 'custom')),
-
-            Select::make('font_weight', _t('blocks.link.settings.font_weight_label'))
-                ->options([
-                    'font-normal' => _t('blocks.link.settings.font_weight_options.normal'),
-                    'font-medium' => _t('blocks.link.settings.font_weight_options.medium'),
-                    'font-semibold' => _t('blocks.link.settings.font_weight_options.semibold'),
-                    'font-bold' => _t('blocks.link.settings.font_weight_options.bold'),
-                ])
-                ->default('font-normal')
-                ->visibleWhen(fn($rule) => $rule->when('type_preset', 'custom')),
+            Typography::make('typography', _t('blocks.link.settings.typography_label'))
+                ->info(_t('blocks.link.settings.typography_info')),
 
             Header::make(_t('blocks.link.settings.appearance_header')),
 

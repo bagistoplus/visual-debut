@@ -31,46 +31,9 @@
       },
   );
 
-  // Line height and letter spacing classes - only for custom mode
-  // Presets already define these via CSS variables
-  $lineHeightClass = '';
-  $letterSpacingClass = '';
-
-  if ($block->settings->type_preset === 'custom') {
-      $lineHeightClasses = [
-          'tight' => 'leading-tight',
-          'normal' => 'leading-normal',
-          'loose' => 'leading-loose',
-      ];
-      $lineHeightClass = $lineHeightClasses[$block->settings->line_height] ?? 'leading-normal';
-
-      $letterSpacingClasses = [
-          'tight' => 'tracking-tight',
-          'normal' => 'tracking-normal',
-          'loose' => 'tracking-wide',
-      ];
-      $letterSpacingClass = $letterSpacingClasses[$block->settings->letter_spacing] ?? 'tracking-normal';
-  }
-
-  // Case classes
-  $caseClass = $block->settings->case === 'uppercase' ? 'uppercase' : '';
-
-  // Wrap classes
-  $wrapClasses = [
-      'pretty' => 'text-pretty',
-      'balance' => 'text-balance',
-      'nowrap' => 'whitespace-nowrap',
-  ];
-  $wrapClass = $wrapClasses[$block->settings->wrap] ?? 'text-pretty';
-
-  // Typography classes
-  $presetClass = '';
-  $fontClass = '';
-  $colorClass = '';
-  $fontSizeClass = '';
-  $textColorStyle = '';
-
   // Color mapping
+  $colorClass = '';
+  $textColorStyle = '';
   $color = $block->settings->color ?? 'default';
   if ($color === 'custom') {
       $textColorStyle = 'color: ' . ($block->settings->text_color ?? '#000000FF') . ';';
@@ -88,27 +51,19 @@
       $colorClass = $colorClasses[$color] ?? 'text-on-background';
   }
 
-  if ($block->settings->type_preset === 'custom') {
-      $fontClass = $block->settings->font ?? 'font-body';
-      $fontSizeClass = $block->settings->font_size ?? '';
-  } else {
-      // Use preset class
-      $presetClass = 'text-preset-' . $block->settings->type_preset;
-  }
-
   // Inline styles
   $inlineStyle = $textColorStyle;
 
   // Determine tag based on preset if not provided
   if (!$tag) {
-      $tag = match ($block->settings->type_preset) {
-          'h1' => 'h1',
-          'h2' => 'h2',
-          'h3' => 'h3',
-          'h4' => 'h4',
-          'h5' => 'h5',
-          'h6' => 'h6',
-          'paragraph' => 'p',
+      $tag = match ($block->settings->typography?->id) {
+          'heading-1' => 'h1',
+          'heading-2' => 'h2',
+          'heading-3' => 'h3',
+          'heading-4' => 'h4',
+          'heading-5' => 'h5',
+          'heading-6' => 'h6',
+          'body' => 'p',
           default => 'div',
       };
   }
@@ -122,7 +77,8 @@
 <{{ $tag }}
   {{ $block->editor_attributes }}
   {{ $block->settings->color_scheme?->attributes() }}
-  class="{{ $widthClass }} {{ $maxWidthClass }} {{ $alignmentClass }} {{ $paddingClasses }} {{ $lineHeightClass }} {{ $letterSpacingClass }} {{ $caseClass }} {{ $wrapClass }} {{ $presetClass }} {{ $fontClass }} {{ $fontSizeClass }} {{ $colorClass }}"
+  {{ $block->settings->typography?->attributes() }}
+  class="{{ $widthClass }} {{ $maxWidthClass }} {{ $alignmentClass }} {{ $paddingClasses }} {{ $colorClass }}"
   @if ($inlineStyle) style="{{ $inlineStyle }}" @endif
   {{ $attributes }}
   {!! $additionalAttributes !!}

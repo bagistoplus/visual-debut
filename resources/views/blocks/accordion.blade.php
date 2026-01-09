@@ -13,15 +13,12 @@
 
   $borderRadius = 'border-radius: ' . ($block->settings->border_radius ?? 0) . 'px;';
 
-  // Typography preset
-  $typePreset = $block->settings->type_preset ?: 'h5';
-  $typographyStyle = sprintf('--summary-font-size: var(--font-%s--size, 1rem); --summary-line-height: var(--font-%s--line-height, 1.5);', $typePreset, $typePreset);
-
-  $style = $borderStyle . $borderRadius . $typographyStyle;
+  $style = $borderStyle . $borderRadius;
 @endphp
 
 <div
   {{ $block->editor_attributes }}
+  {{ $block->settings->typography?->attributes() }}
   x-accordion="{ value: @js($openByDefault), multiple: true }"
   class="accordion {{ $dividersClass }} {{ $colorClass }} w-full {{ $paddingClasses }}"
   style="{{ $style }}"

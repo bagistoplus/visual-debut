@@ -287,7 +287,7 @@ class ProductList extends BladeSection
                                 'bottom' => 4,
                                 'left' => 0,
                             ],
-                            'type_preset' => 'h2',
+                            'typography' => 'heading-2',
                         ]),
 
                     ProductCardWithOverlay::asChild()

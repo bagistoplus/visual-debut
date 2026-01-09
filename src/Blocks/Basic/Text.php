@@ -11,6 +11,7 @@ use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Settings\Text as SettingsText;
+use BagistoPlus\Visual\Settings\Typography;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\VisualDebut\Tailwind;
 
@@ -68,84 +69,8 @@ class Text extends SimpleBlock
 
             Header::make(_t('blocks.text.settings.typography_header')),
 
-            Select::make('type_preset', _t('blocks.text.settings.type_preset_label'))
-                ->options([
-                    'paragraph' => _t('blocks.text.settings.type_preset_options.paragraph'),
-                    'h1' => _t('blocks.text.settings.type_preset_options.h1'),
-                    'h2' => _t('blocks.text.settings.type_preset_options.h2'),
-                    'h3' => _t('blocks.text.settings.type_preset_options.h3'),
-                    'h4' => _t('blocks.text.settings.type_preset_options.h4'),
-                    'h5' => _t('blocks.text.settings.type_preset_options.h5'),
-                    'h6' => _t('blocks.text.settings.type_preset_options.h6'),
-                    'custom' => _t('blocks.text.settings.type_preset_options.custom'),
-                ])
-                ->default('paragraph')
-                ->info(_t('blocks.text.settings.type_preset_info')),
-
-            Select::make('font', _t('blocks.text.settings.font_label'))
-                ->options([
-                    'font-body' => _t('blocks.text.settings.font_options.body'),
-                    'font-subheading' => _t('blocks.text.settings.font_options.subheading'),
-                    'font-heading' => _t('blocks.text.settings.font_options.heading'),
-                    'font-accent' => _t('blocks.text.settings.font_options.accent'),
-                ])
-                ->default('font-body')
-                ->visibleWhen(fn($rule) => $rule->when('type_preset', 'custom')),
-
-            Select::make('font_size', _t('blocks.text.settings.font_size_label'))
-                ->options([
-                    '' => _t('blocks.text.settings.font_size_options.default'),
-                    'text-xs' => '12px (xs)',
-                    'text-sm' => '14px (sm)',
-                    'text-base' => '16px (base)',
-                    'text-lg' => '18px (lg)',
-                    'text-xl' => '20px (xl)',
-                    'text-2xl' => '24px (2xl)',
-                    'text-3xl' => '30px (3xl)',
-                    'text-4xl' => '36px (4xl)',
-                    'text-5xl' => '48px (5xl)',
-                    'text-6xl' => '60px (6xl)',
-                    'text-7xl' => '72px (7xl)',
-                    'text-8xl' => '96px (8xl)',
-                    'text-9xl' => '128px (9xl)',
-                ])
-                ->default('')
-                ->visibleWhen(fn($rule) => $rule->when('type_preset', 'custom')),
-
-            Select::make('line_height', _t('blocks.text.settings.line_height_label'))
-                ->options([
-                    'tight' => _t('blocks.text.settings.line_height_options.tight'),
-                    'normal' => _t('blocks.text.settings.line_height_options.normal'),
-                    'loose' => _t('blocks.text.settings.line_height_options.loose'),
-                ])
-                ->default('normal')
-                ->visibleWhen(fn($rule) => $rule->when('type_preset', 'custom')),
-
-            Select::make('letter_spacing', _t('blocks.text.settings.letter_spacing_label'))
-                ->options([
-                    'tight' => _t('blocks.text.settings.letter_spacing_options.tight'),
-                    'normal' => _t('blocks.text.settings.letter_spacing_options.normal'),
-                    'loose' => _t('blocks.text.settings.letter_spacing_options.loose'),
-                ])
-                ->default('normal')
-                ->visibleWhen(fn($rule) => $rule->when('type_preset', 'custom')),
-
-            Select::make('case', _t('blocks.text.settings.case_label'))
-                ->options([
-                    'none' => _t('blocks.text.settings.case_options.none'),
-                    'uppercase' => _t('blocks.text.settings.case_options.uppercase'),
-                ])
-                ->default('none')
-                ->visibleWhen(fn($rule) => $rule->when('type_preset', 'custom')),
-
-            Select::make('wrap', _t('blocks.text.settings.wrap_label'))
-                ->options([
-                    'pretty' => _t('blocks.text.settings.wrap_options.pretty'),
-                    'balance' => _t('blocks.text.settings.wrap_options.balance'),
-                    'nowrap' => _t('blocks.text.settings.wrap_options.nowrap'),
-                ])
-                ->default('pretty')
-                ->visibleWhen(fn($rule) => $rule->when('type_preset', 'custom')),
+            Typography::make('typography', _t('blocks.text.settings.typography_label'))
+                ->info(_t('blocks.text.settings.typography_info')),
 
             Header::make(_t('blocks.text.settings.appearance_header')),
 

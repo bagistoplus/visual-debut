@@ -39,7 +39,7 @@ class FeatureIcons extends Preset
                     ->settings([
                         'text' => 'Why Shop With Us?',
                         'tag' => 'h2',
-                        'type_preset' => 'h2',
+                        'typography' => 'heading-2',
                         'width' => 'fill',
                         'alignment' => 'center',
                     ]),
@@ -123,9 +123,6 @@ class FeatureIcons extends Preset
                                 'tag' => 'h3',
                                 'width' => 'fill',
                                 'alignment' => 'center',
-                                'type_preset' => 'custom',
-                                'font_size' => 16,
-                                'font_weight' => '600',
                             ]),
 
                         PresetBlock::make('@visual-debut/text')
@@ -133,8 +130,6 @@ class FeatureIcons extends Preset
                                 'text' => $description,
                                 'width' => 'fill',
                                 'alignment' => 'center',
-                                'type_preset' => 'custom',
-                                'font_size' => 12,
                             ]),
                     ])
             ]);

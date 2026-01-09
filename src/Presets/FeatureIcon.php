@@ -67,9 +67,6 @@ class FeatureIcon extends Preset
                                 'tag' => 'h3',
                                 'width' => 'fill',
                                 'alignment' => 'center',
-                                'type_preset' => 'custom',
-                                'font_size' => 16,
-                                'font_weight' => '600',
                             ]),
 
                         PresetBlock::make('@visual-debut/text')
@@ -77,8 +74,6 @@ class FeatureIcon extends Preset
                                 'text' => 'Feature description goes here',
                                 'width' => 'fill',
                                 'alignment' => 'center',
-                                'type_preset' => 'custom',
-                                'font_size' => 12,
                             ]),
                     ])
             ]);

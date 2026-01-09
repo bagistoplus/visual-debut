@@ -106,8 +106,6 @@ class ClassicFooter extends Preset
                         PresetBlock::make('@visual-debut/text')
                             ->settings([
                                 'text' => '© ' . date('Y') . ' ' . config('app.name') . '. All rights reserved.',
-                                'type_preset' => 'custom',
-                                'font_size' => 'text-sm',
                             ]),
 
                         $this->createSocialIcons(),
@@ -128,16 +126,12 @@ class ClassicFooter extends Preset
                 PresetBlock::make('@visual-debut/heading')
                     ->settings([
                         'text' => $title,
-                        'tag' => 'h3',
-                        'type_preset' => 'custom',
-                        'font_size' => 'text-lg',
+                        'heading_level' => 'h3',
                     ]),
 
                 PresetBlock::make('@visual-debut/richtext')
                     ->settings([
                         'content' => '<p>' . $description . '</p>',
-                        'type_preset' => 'custom',
-                        'font_size' => 'text-sm',
                     ]),
             ]);
     }
@@ -149,7 +143,6 @@ class ClassicFooter extends Preset
                 ->settings([
                     'text' => $link['label'],
                     'url' => $link['url'],
-                    'type_preset' => 'paragraph',
                     'underline' => 'hover',
                     'padding' => [
                         'top' => 1,
@@ -171,10 +164,8 @@ class ClassicFooter extends Preset
                 PresetBlock::make('@visual-debut/heading')
                     ->settings([
                         'text' => $title,
-                        'tag' => 'h4',
-                        'type_preset' => 'custom',
-                        'font_size' => 'text-base',
-                        'font_weight' => '600',
+                        'heading_level' => 'h3',
+                        'typography' => 'heading-5',
                     ]),
 
                 ...$linkBlocks,

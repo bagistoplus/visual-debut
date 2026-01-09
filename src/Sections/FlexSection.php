@@ -13,6 +13,7 @@ use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Gradient;
 use BagistoPlus\Visual\Blocks\BladeSection;
 use BagistoPlus\Visual\Settings\ColorScheme;
+use BagistoPlus\Visual\Settings\Typography;
 use BagistoPlus\VisualDebut\Tailwind;
 use BagistoPlus\VisualDebut\Presets\CustomSection;
 use BagistoPlus\VisualDebut\Presets\RichTextSection;
@@ -234,6 +235,7 @@ class FlexSection extends BladeSection
     public static function settings(): array
     {
         return [
+            Typography::make('typography', 'Typography'),
             Header::make(_t('sections.flex-section.settings.layout_header')),
 
             Select::make('flex_direction', _t('sections.flex-section.settings.direction_label'))
