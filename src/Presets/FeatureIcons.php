@@ -79,7 +79,7 @@ class FeatureIcons extends Preset
                 'layout_type' => 'flex',
                 'flex_direction' => 'column',
                 'vertical_align_items' => 'center',
-                'flex_gap' => ['_default' => 4],
+                'flex_gap' => ['_default' => 2],
             ])
             ->blocks([
                 // Icon Container (circular border)
@@ -115,6 +115,7 @@ class FeatureIcons extends Preset
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',
                         'align_items' => 'center',
+                        'flex_gap' => ['_default' => 2]
                     ])
                     ->blocks([
                         PresetBlock::make('@visual-debut/heading')
@@ -123,6 +124,7 @@ class FeatureIcons extends Preset
                                 'tag' => 'h3',
                                 'width' => 'fill',
                                 'alignment' => 'center',
+                                'typography' => 'heading-6'
                             ]),
 
                         PresetBlock::make('@visual-debut/text')
