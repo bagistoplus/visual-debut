@@ -54,19 +54,19 @@
         $menuItems = collect([
             [
                 'route' => 'shop.customers.account.profile.index',
-                'text' => __('shop::app.components.layouts.header.profile'),
+                'text' => __('visual-debut::shop.account.profile'),
                 'icon' => 'lucide-user-circle-2',
                 'show' => true,
             ],
             [
                 'route' => 'shop.customers.account.orders.index',
-                'text' => __('shop::app.components.layouts.header.orders'),
+                'text' => __('visual-debut::shop.account.orders'),
                 'icon' => 'lucide-package',
                 'show' => true,
             ],
             [
                 'route' => 'shop.customers.account.wishlist.index',
-                'text' => __('shop::app.components.layouts.header.wishlist'),
+                'text' => __('visual-debut::shop.account.wishlist'),
                 'icon' => 'lucide-heart',
                 'show' => !!core()->getConfigData('customer.settings.wishlist.wishlist_option'),
             ],
@@ -106,7 +106,7 @@
             @method('delete')
             <button type="submit" class="hover:text-danger hover:bg-surface-alt flex w-full items-center gap-3 px-4 py-2 transition-colors">
               <x-lucide-log-out class="h-5 w-5" />
-              @lang('shop::app.components.layouts.header.logout')
+              @lang('visual-debut::shop.account.logout')
             </button>
           </form>
         </div>

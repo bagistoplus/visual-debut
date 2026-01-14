@@ -47,9 +47,9 @@
     <span class="flex items-center">
       <x-lucide-user class="mr-3 h-5 w-5" />
       @auth('customer')
-        @lang('shop::app.components.layouts.header.profile')
+        @lang('visual-debut::shop.account.profile')
       @else
-        @lang('shop::app.components.layouts.header.sign-in')
+        @lang('visual-debut::shop.account.sign-in')
       @endauth
     </span>
     <x-lucide-chevron-right class="h-5 w-5" />

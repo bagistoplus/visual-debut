@@ -49,5 +49,14 @@ return [
         'inputs' => 'इनपुट',
         'boxes' => 'बॉक्स',
         'social-links' => 'सोशल मीडिया लिंक'
+    ],
+
+    'account' => [
+        'profile' => 'प्रोफ़ाइल',
+        'orders' => 'आदेश',
+        'wishlist' => 'इच्छा सूची',
+        'logout' => 'लॉग आउट',
+        'sign-in' => 'साइन इन',
+        'compare' => 'तुलना करें',
     ]
 ];

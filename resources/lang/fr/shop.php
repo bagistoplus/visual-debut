@@ -50,4 +50,13 @@ return [
         'boxes' => 'Cadres',
         'social-links' => 'Liens vers les réseaux sociaux',
     ],
+
+    'account' => [
+        'profile' => 'Profil',
+        'orders' => 'Commandes',
+        'wishlist' => 'Liste de souhaits',
+        'logout' => 'Se déconnecter',
+        'sign-in' => 'Se connecter',
+        'compare' => 'Comparer',
+    ]
 ];

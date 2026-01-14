@@ -50,5 +50,14 @@ return [
         'boxes' => 'Boxes',
         'social-links' => 'Social Media Links',
         'general' => 'General'
+    ],
+
+    'account' => [
+        'profile' => 'Profile',
+        'orders' => 'Orders',
+        'wishlist' => 'Wishlist',
+        'logout' => 'Logout',
+        'sign-in' => 'Sign In',
+        'compare' => 'Compare',
     ]
 ];
