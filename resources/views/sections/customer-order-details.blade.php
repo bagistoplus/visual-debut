@@ -100,7 +100,7 @@
         @endif
       </div>
 
-      <div class="bmb-6 rounded-lg p-6 shadow">
+      <div class="mb-6 rounded-lg p-6 shadow">
         <h2 class="mb-5 text-lg font-semibold">
           @lang('shop::app.customers.account.orders.view.information.placed-on')
           {{ core()->formatDate($order->created_at, 'd M Y') }}
@@ -112,7 +112,7 @@
               $image = product_image()->getProductBaseImage($item->product);
             @endphp
 
-            <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start">
               <img
                 src="{{ $image['small_image_url'] }}"
                 alt="Product 2"
@@ -123,9 +123,9 @@
                   {{ $item->name }}
                 </h4>
 
-                <p class="text-sm">SKU: {{ $item->getTypeInstance()->getOrderedItem($item)->sku }}</p>
+                <p class="text-sm font-bold">SKU: {{ $item->getTypeInstance()->getOrderedItem($item)->sku }}</p>
                 <p class="mt-1 text-sm">
-                  <span>@lang('shop::app.customers.account.orders.view.information.item-status'):</span>
+                  <span class="font-bold">@lang('shop::app.customers.account.orders.view.information.item-status'):</span>
                   @if ($item->qty_ordered)
                     <span>@lang('shop::app.customers.account.orders.view.information.ordered-item', ['qty_ordered' => $item->qty_ordered])</span>
                   @endif
@@ -146,6 +146,17 @@
                     <span>, @lang('shop::app.customers.account.orders.view.information.item-canceled', ['qty_canceled' => $item->qty_canceled])</span>
                   @endif
                 </p>
+
+                @if (isset($item->additional['attributes']))
+                  <div class="mt-1">
+                    @foreach ($item->additional['attributes'] as $attribute)
+                      <p class="text-sm">
+                        <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
+                        <span>{{ $attribute['option_label'] }}</span>
+                      </p>
+                    @endforeach
+                  </div>
+                @endif
               </div>
 
               <div class="flex-none sm:text-right">
