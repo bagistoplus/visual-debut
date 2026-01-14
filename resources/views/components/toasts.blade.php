@@ -1,13 +1,15 @@
 @pushOnce('scripts')
   <script>
-    @foreach (session()->only(['success', 'error', 'warning', 'info']) as $type => $message)
-      window.dispatchEvent(new CustomEvent('toasts:create', {
-        detail: {
-          type: '{{ $type }}',
-          title: '{{ $message }}'
-        }
-      }));
-    @endforeach
+    document.addEventListener('DOMContentLoaded', () => {
+      @foreach (session()->only(['success', 'error', 'warning', 'info']) as $type => $message)
+        window.dispatchEvent(new CustomEvent('toasts:create', {
+          detail: {
+            type: '{{ $type }}',
+            title: '{{ $message }}'
+          }
+        }));
+      @endforeach
+    });
   </script>
 @endpushOnce
 

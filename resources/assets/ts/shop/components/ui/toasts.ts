@@ -13,13 +13,7 @@ declare namespace Alpine {
   }
 }
 
-type Placement =
-  | 'top-start'
-  | 'top-center'
-  | 'top-end'
-  | 'bottom-start'
-  | 'bottom-center'
-  | 'bottom-end';
+type Placement = 'top-start' | 'top-center' | 'top-end' | 'bottom-start' | 'bottom-center' | 'bottom-end';
 
 export interface Toast {
   id: string;
@@ -59,9 +53,7 @@ export default defineComponent<ToasterAPI>({
     store: [],
 
     get placements() {
-      return Array.from(
-        new Set(this.store.map((t: Toast) => t.placement))
-      ) as Placement[];
+      return Array.from(new Set(this.store.map((t: Toast) => t.placement))) as Placement[];
     },
 
     init() {
@@ -154,11 +146,10 @@ export function toaster(Alpine: AlpineType) {
     window.dispatchEvent(new CustomEvent('toasts:create', { detail: toast }));
   };
 
-  const createToster =
-    (type: Toast['type']) => (toast: string | Partial<Toast>) => {
-      const detail = typeof toast === 'string' ? { title: toast } : toast;
-      create({ ...detail, type });
-    };
+  const createToster = (type: Toast['type']) => (toast: string | Partial<Toast>) => {
+    const detail = typeof toast === 'string' ? { title: toast } : toast;
+    create({ ...detail, type });
+  };
 
   Alpine.magic('toaster', () => ({
     create,
