@@ -101,6 +101,12 @@
                   <x-lucide-trash-2 class="h-5 w-5" />
                 </button>
               </div>
+
+              <!-- Customizable items options -->
+              @if (!empty($item->options))
+                <x-shop::cart.customizable-items :options="$item->options" />
+              @endif
+
               <div class="mt-2 flex items-center">
                 <x-shop::quantity-selector
                   :min="1"
