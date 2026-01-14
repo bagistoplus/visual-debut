@@ -152,7 +152,18 @@
                     @foreach ($item->additional['attributes'] as $attribute)
                       <p class="text-sm">
                         <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
-                        <span>{{ $attribute['option_label'] }}</span>
+                        @if ($attribute['attribute_type'] == 'file')
+                          <a
+                            href="{{ Storage::url($attribute['option_label']) }}"
+                            target="_blank"
+                            class="text-primary"
+                            download="{{ File::basename($attribute['option_label']) }}"
+                          >
+                            {{ File::basename($attribute['option_label']) }}
+                          </a>
+                        @else
+                          <span>{{ $attribute['option_label'] }}</span>
+                        @endif
                       </p>
                     @endforeach
                   </div>
@@ -333,6 +344,29 @@
                     <p class="text-on-background mb-2 font-medium">
                       {{ $item->name }}
                     </p>
+
+                    @if (isset($item->additional['attributes']))
+                      <div class="mb-2 mt-1">
+                        @foreach ($item->additional['attributes'] as $attribute)
+                          <p class="{{ $attribute['attribute_type'] == 'file' ? 'truncate' : '' }} text-sm">
+                            <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
+                            @if ($attribute['attribute_type'] == 'file')
+                              <a
+                                href="{{ Storage::url($attribute['option_label']) }}"
+                                target="_blank"
+                                class="text-primary"
+                                download="{{ File::basename($attribute['option_label']) }}"
+                              >
+                                {{ File::basename($attribute['option_label']) }}
+                              </a>
+                            @else
+                              <span>{{ $attribute['option_label'] }}</span>
+                            @endif
+                          </p>
+                        @endforeach
+                      </div>
+                    @endif
+
                     <div class="flex justify-between">
                       <p class="text-on-background text-sm">
                         @lang('shop::app.customers.account.orders.view.invoices.sku'):
@@ -398,6 +432,27 @@
                         </td>
                         <td class="px-4 py-3">
                           {{ $item->name }}
+                          @if (isset($item->additional['attributes']))
+                            <div class="mt-1">
+                              @foreach ($item->additional['attributes'] as $attribute)
+                                <p class="text-sm">
+                                  <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
+                                  @if ($attribute['attribute_type'] == 'file')
+                                    <a
+                                      href="{{ Storage::url($attribute['option_label']) }}"
+                                      target="_blank"
+                                      class="text-primary"
+                                      download="{{ File::basename($attribute['option_label']) }}"
+                                    >
+                                      {{ File::basename($attribute['option_label']) }}
+                                    </a>
+                                  @else
+                                    <span>{{ $attribute['option_label'] }}</span>
+                                  @endif
+                                </p>
+                              @endforeach
+                            </div>
+                          @endif
                         </td>
                         <td class="px-4 py-3">
                           {{ $item->qty }}
@@ -530,6 +585,27 @@
                     <p class="text-on-background mb-2 font-medium">
                       {{ $item->name }}
                     </p>
+                    @if (isset($item->additional['attributes']))
+                      <div class="mb-2 mt-1">
+                        @foreach ($item->additional['attributes'] as $attribute)
+                          <p class="{{ $attribute['attribute_type'] == 'file' ? 'truncate' : '' }} text-sm">
+                            <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
+                            @if ($attribute['attribute_type'] == 'file')
+                              <a
+                                href="{{ Storage::url($attribute['option_label']) }}"
+                                target="_blank"
+                                class="text-primary"
+                                download="{{ File::basename($attribute['option_label']) }}"
+                              >
+                                {{ File::basename($attribute['option_label']) }}
+                              </a>
+                            @else
+                              <span>{{ $attribute['option_label'] }}</span>
+                            @endif
+                          </p>
+                        @endforeach
+                      </div>
+                    @endif
                     <div class="flex justify-between">
                       <p class="text-on-background text-sm">
                         @lang('shop::app.customers.account.orders.view.shipments.sku'):
@@ -577,6 +653,27 @@
                         </td>
                         <td class="px-4 py-3">
                           {{ $item->name }}
+                          @if (isset($item->additional['attributes']))
+                            <div class="mt-1">
+                              @foreach ($item->additional['attributes'] as $attribute)
+                                <p class="text-sm">
+                                  <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
+                                  @if ($attribute['attribute_type'] == 'file')
+                                    <a
+                                      href="{{ Storage::url($attribute['option_label']) }}"
+                                      target="_blank"
+                                      class="text-primary"
+                                      download="{{ File::basename($attribute['option_label']) }}"
+                                    >
+                                      {{ File::basename($attribute['option_label']) }}
+                                    </a>
+                                  @else
+                                    <span>{{ $attribute['option_label'] }}</span>
+                                  @endif
+                                </p>
+                              @endforeach
+                            </div>
+                          @endif
                         </td>
                         <td class="px-4 py-3">
                           {{ $item->qty }}
@@ -611,6 +708,29 @@
                     <p class="text-on-background mb-2 font-medium">
                       {{ $item->name }}
                     </p>
+
+                    @if (isset($item->additional['attributes']))
+                      <div class="mb-2 mt-1">
+                        @foreach ($item->additional['attributes'] as $attribute)
+                          <p class="{{ $attribute['attribute_type'] == 'file' ? 'truncate' : '' }} text-sm">
+                            <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
+                            @if ($attribute['attribute_type'] == 'file')
+                              <a
+                                href="{{ Storage::url($attribute['option_label']) }}"
+                                target="_blank"
+                                class="text-primary"
+                                download="{{ File::basename($attribute['option_label']) }}"
+                              >
+                                {{ File::basename($attribute['option_label']) }}
+                              </a>
+                            @else
+                              <span>{{ $attribute['option_label'] }}</span>
+                            @endif
+                          </p>
+                        @endforeach
+                      </div>
+                    @endif
+
                     <div class="flex justify-between">
                       <p class="text-on-background text-sm">
                         @lang('shop::app.customers.account.orders.view.refunds.sku'):
@@ -708,6 +828,28 @@
                         </td>
                         <td class="px-4 py-3">
                           {{ $item->name }}
+
+                          @if (isset($item->additional['attributes']))
+                            <div class="mt-1">
+                              @foreach ($item->additional['attributes'] as $attribute)
+                                <p class="text-sm">
+                                  <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
+                                  @if ($attribute['attribute_type'] == 'file')
+                                    <a
+                                      href="{{ Storage::url($attribute['option_label']) }}"
+                                      target="_blank"
+                                      class="text-primary"
+                                      download="{{ File::basename($attribute['option_label']) }}"
+                                    >
+                                      {{ File::basename($attribute['option_label']) }}
+                                    </a>
+                                  @else
+                                    <span>{{ $attribute['option_label'] }}</span>
+                                  @endif
+                                </p>
+                              @endforeach
+                            </div>
+                          @endif
                         </td>
                         <td class="px-4 py-3">
                           {{ $item->qty }}
