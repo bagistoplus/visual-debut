@@ -14,3 +14,12 @@ h6,
   letter-spacing: var(--typography-letter-spacing);
   text-transform: var(--typography-text-transform);
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold;
+}

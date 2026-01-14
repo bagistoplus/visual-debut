@@ -56,7 +56,7 @@
 @import './animation.css' layer(base);
 @import './button.css' layer(components);
 @import './inputs.css' layer(components);
-@import './typography.css' layer(components);
+@import './typography.css' layer(base);
 @import './utilities.css' layer(base);
 
 @utility container {
