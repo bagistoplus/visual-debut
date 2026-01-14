@@ -33,7 +33,7 @@ return [
             Settings\TypographyPresets::make('typography_presets', 'Typography Presets')
                 ->presets([
                     'body' => [
-                        'fontFamily' => 'roboto',
+                        'fontFamily' => 'poppins',
                         'fontSize' => 'base',
                         'fontStyle' => 'normal',
                         'lineHeight' => 'normal',
@@ -41,7 +41,7 @@ return [
                         'textTransform' => 'normal',
                     ],
                     'heading-1' => [
-                        'fontFamily' => 'roboto',
+                        'fontFamily' => 'poppins',
                         'fontSize' => ['_default' => '5xl', 'mobile' => '4xl'],
                         'fontStyle' => 'normal',
                         'lineHeight' => 'tight',
@@ -49,7 +49,7 @@ return [
                         'textTransform' => 'normal',
                     ],
                     'heading-2' => [
-                        'fontFamily' => 'roboto',
+                        'fontFamily' => 'poppins',
                         'fontSize' => ['_default' => '4xl', 'mobile' => '3xl'],
                         'fontStyle' => 'normal',
                         'lineHeight' => 'tight',
@@ -57,7 +57,7 @@ return [
                         'textTransform' => 'normal',
                     ],
                     'heading-3' => [
-                        'fontFamily' => 'roboto',
+                        'fontFamily' => 'poppins',
                         'fontSize' => ['_default' => '3xl', 'mobile' => '2xl'],
                         'fontStyle' => 'normal',
                         'lineHeight' => 'snug',
@@ -65,7 +65,7 @@ return [
                         'textTransform' => 'normal',
                     ],
                     'heading-4' => [
-                        'fontFamily' => 'roboto',
+                        'fontFamily' => 'poppins',
                         'fontSize' => ['_default' => '2xl', 'mobile' => 'xl'],
                         'fontStyle' => 'normal',
                         'lineHeight' => 'snug',
@@ -73,7 +73,7 @@ return [
                         'textTransform' => 'normal',
                     ],
                     'heading-5' => [
-                        'fontFamily' => 'roboto',
+                        'fontFamily' => 'poppins',
                         'fontSize' => ['_default' => 'xl', 'mobile' => 'lg'],
                         'fontStyle' => 'normal',
                         'lineHeight' => 'normal',
@@ -81,7 +81,7 @@ return [
                         'textTransform' => 'normal',
                     ],
                     'heading-6' => [
-                        'fontFamily' => 'roboto',
+                        'fontFamily' => 'poppins',
                         'fontSize' => 'base',
                         'fontStyle' => 'normal',
                         'lineHeight' => 'normal',
