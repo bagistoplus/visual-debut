@@ -1,6 +1,6 @@
 <div
-  {{ $block->editor_attributes }}
   id="user-menu"
+  {{ $block->editor_attributes }}
   x-data
   x-dropdown
   class="relative"
