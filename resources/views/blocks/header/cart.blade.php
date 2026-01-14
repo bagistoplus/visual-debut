@@ -69,6 +69,11 @@
                     <x-lucide-trash-2 class="h-4 w-4" />
                   </button>
                 </div>
+
+                @if (!empty($item->options))
+                  <x-shop::cart.customizable-items :options="$item->options" />
+                @endif
+
                 <div class="mt-1 flex items-start justify-between">
                   <!-- Quantity Controls -->
                   <div class="flex items-center gap-2 rounded border">
