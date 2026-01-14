@@ -1,5 +1,5 @@
 import type { Alpine as AlpineType } from 'alpinejs';
-import { defineComponent, defineScope, setup } from 'alpine-define-component';
+import { defineComponent, defineScope, setup, withScopes } from 'alpine-define-component';
 
 declare namespace Alpine {
   interface Magics<T> {
@@ -13,13 +13,7 @@ declare namespace Alpine {
   }
 }
 
-type Placement =
-  | 'top-start'
-  | 'top-center'
-  | 'top-end'
-  | 'bottom-start'
-  | 'bottom-center'
-  | 'bottom-end';
+type Placement = 'top-start' | 'top-center' | 'top-end' | 'bottom-start' | 'bottom-center' | 'bottom-end';
 
 export interface Toast {
   id: string;
@@ -35,7 +29,7 @@ interface GroupScope {
   toasts(): Toast[];
 }
 
-interface ToastScope extends Toast {
+interface ToastScope {
   dismissed?: boolean;
   dismiss(): void;
 }
@@ -52,9 +46,7 @@ export default defineComponent({
     store: [] as Toast[],
 
     get placements() {
-      return Array.from(
-        new Set(this.store.map((t: Toast) => t.placement))
-      ) as Placement[];
+      return Array.from(new Set(this.store.map((t: Toast) => t.placement))) as Placement[];
     },
 
     init() {
@@ -89,57 +81,58 @@ export default defineComponent({
     },
   })),
 
-  parts: {
-    group: defineScope({
-      name: 'group',
+  parts: ({ withScopes }) =>
+    withScopes<{ $toast: ToastScope }>({
+      group: defineScope({
+        name: 'group',
 
-      setup: (api, _, { value: placement }) => ({
-        placement,
-        toasts: () => api.store.filter((t: Toast) => t.placement === placement),
-      }),
+        setup: (api, _, { value: placement }) => ({
+          placement,
+          toasts: () => api.store.filter((t: Toast) => t.placement === placement),
+        }),
 
-      bindings: (_, scope) => {
-        const [side, align] = scope.placement?.split('-') as string[];
-        return {
-          role: 'region',
-          'data-placement': scope.placement,
-          'data-side': side,
-          'data-align': align,
-        };
-      },
-    }),
-
-    toast: defineScope({
-      name: 'toast',
-
-      setup: (api, _, { value: toast }) => ({
-        ...toast,
-        dismissed: false,
-        dismiss() {
-          this.dismissed = true;
-          api.dismiss(this.id);
+        bindings: (_, scope) => {
+          const [side, align] = scope.placement?.split('-') as string[];
+          return {
+            role: 'region',
+            'data-placement': scope.placement,
+            'data-side': side,
+            'data-align': align,
+          };
         },
       }),
 
-      bindings: (_, scope) => {
-        const [side, align] = scope.placement?.split('-') as string[];
+      toast: defineScope({
+        name: 'toast',
+
+        setup: (api, _, { value: toast }) => ({
+          ...toast,
+          dismissed: false,
+          dismiss() {
+            this.dismissed = true;
+            api.dismiss(this.id);
+          },
+        }),
+
+        bindings: (_, scope) => {
+          const [side, align] = scope.placement?.split('-') as string[];
+          return {
+            'data-type': scope.type,
+            'data-placement': scope.placement,
+            'data-side': side,
+            'data-align': align,
+            'x-bind:data-state': () => (scope.dismissed ? 'closed' : 'open'),
+          };
+        },
+      }),
+
+      toastCloseTrigger(api) {
         return {
-          'data-type': scope.type,
-          'data-placement': scope.placement,
-          'data-side': side,
-          'data-align': align,
-          'x-bind:data-state': () => (scope.dismissed ? 'closed' : 'open'),
+          type: 'button',
+          'x-on:click': () => api.$toast.dismiss(),
         };
       },
     }),
-
-    toastCloseTrigger(api) {
-      return {
-        type: 'button',
-        'x-on:click': () => api.$toast.dismiss(),
-      };
-    },
-  },
 });
 
 export function toaster(Alpine: AlpineType) {
@@ -147,11 +140,10 @@ export function toaster(Alpine: AlpineType) {
     window.dispatchEvent(new CustomEvent('toasts:create', { detail: toast }));
   };
 
-  const createToster =
-    (type: Toast['type']) => (toast: string | Partial<Toast>) => {
-      const detail = typeof toast === 'string' ? { title: toast } : toast;
-      create({ ...detail, type });
-    };
+  const createToster = (type: Toast['type']) => (toast: string | Partial<Toast>) => {
+    const detail = typeof toast === 'string' ? { title: toast } : toast;
+    create({ ...detail, type });
+  };
 
   Alpine.magic('toaster', () => ({
     create,
