@@ -7,7 +7,7 @@ use BagistoPlus\Visual\Support\PresetBlock;
 
 class ProductCardWithOverlay extends Preset
 {
-    protected function getType(): string
+    public static function getType(): string
     {
         return '@visual-debut/product-card';
     }

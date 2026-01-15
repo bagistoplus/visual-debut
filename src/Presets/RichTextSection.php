@@ -9,7 +9,7 @@ use function BagistoPlus\VisualDebut\_t;
 
 class RichTextSection extends Preset
 {
-    protected function getType(): string
+    public static function getType(): string
     {
         return '@visual-debut/flex-section';
     }

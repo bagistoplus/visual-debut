@@ -2,10 +2,32 @@
 
 use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\Visual\Support\TemplateBuilder;
+use BagistoPlus\VisualDebut\Blocks\Accordion;
+use BagistoPlus\VisualDebut\Blocks\AccordionRow;
+use BagistoPlus\VisualDebut\Blocks\Basic\Divider;
+use BagistoPlus\VisualDebut\Blocks\Product\{
+    ProductBundleOptions,
+    ProductBuyButtons,
+    ProductCustomizableOptions,
+    ProductDescription,
+    ProductDetails,
+    ProductDownloadableOptions,
+    ProductGroupedOptions,
+    ProductMediaGallery,
+    ProductPrice,
+    ProductQuantitySelector,
+    ProductRating,
+    ProductShortDescription,
+    ProductTitle,
+    ProductVariantPicker,
+};
+use BagistoPlus\VisualDebut\Sections\Breadcrumbs;
+use BagistoPlus\VisualDebut\Sections\ProductInformation;
+use BagistoPlus\VisualDebut\Sections\ProductReviews;
 
 return TemplateBuilder::make()
-    ->section('breadcrumbs', '@visual-debut/breadcrumbs')
-    ->section('product-information', '@visual-debut/product-information', fn($section) => $section
+    ->section('breadcrumbs', Breadcrumbs::class)
+    ->section('product-information', ProductInformation::class, fn($section) => $section
         ->properties([
             'section_width' => 'container',
             'media_position' => 'left',
@@ -19,7 +41,7 @@ return TemplateBuilder::make()
             ],
         ])
         ->blocks([
-            PresetBlock::make('@visual-debut/product-media-gallery')
+            PresetBlock::make(ProductMediaGallery::class)
                 ->id('static-product-media')
                 ->static()
                 ->settings([
@@ -28,7 +50,7 @@ return TemplateBuilder::make()
                     'zoom' => true,
                     'sticky' => true,
                 ]),
-            PresetBlock::make('@visual-debut/product-details')
+            PresetBlock::make(ProductDetails::class)
                 ->id('static-product-details')
                 ->static()
                 ->settings([
@@ -36,43 +58,43 @@ return TemplateBuilder::make()
                     'sticky' => false,
                 ])
                 ->blocks([
-                    PresetBlock::make('@visual-debut/product-title')
+                    PresetBlock::make(ProductTitle::class)
                         ->id('title')
                         ->settings([
                             'tag' => 'h1',
                             'size' => ['_default' => '2xl'],
                         ]),
-                    PresetBlock::make('@visual-debut/product-price')
+                    PresetBlock::make(ProductPrice::class)
                         ->id('price')
                         ->settings([
                             'show_compare_price' => true,
                         ]),
-                    PresetBlock::make('@visual-debut/product-rating')->id('rating'),
-                    PresetBlock::make('@visual-debut/divider')->id('separator-1'),
-                    PresetBlock::make('@visual-debut/product-short-description')->id('short-description'),
-                    PresetBlock::make('@visual-debut/product-variant-picker')->id('variants'),
-                    PresetBlock::make('@visual-debut/product-grouped-options')->id('grouped-options'),
-                    PresetBlock::make('@visual-debut/product-bundle-options')->id('bundle-options'),
-                    PresetBlock::make('@visual-debut/product-downloadable-options')->id('downloadable-options'),
-                    PresetBlock::make('@visual-debut/product-customizable-options')->id('customizable-options'),
-                    PresetBlock::make('@visual-debut/product-quantity-selector')->id('quantity-selector'),
-                    PresetBlock::make('@visual-debut/product-buy-buttons')->id('buy-buttons'),
-                    PresetBlock::make('@visual-debut/divider')->id('separator-2'),
-                    PresetBlock::make('@visual-debut/accordion')
+                    PresetBlock::make(ProductRating::class)->id('rating'),
+                    PresetBlock::make(Divider::class)->id('separator-1'),
+                    PresetBlock::make(ProductShortDescription::class)->id('short-description'),
+                    PresetBlock::make(ProductVariantPicker::class)->id('variants'),
+                    PresetBlock::make(ProductGroupedOptions::class)->id('grouped-options'),
+                    PresetBlock::make(ProductBundleOptions::class)->id('bundle-options'),
+                    PresetBlock::make(ProductDownloadableOptions::class)->id('downloadable-options'),
+                    PresetBlock::make(ProductCustomizableOptions::class)->id('customizable-options'),
+                    PresetBlock::make(ProductQuantitySelector::class)->id('quantity-selector'),
+                    PresetBlock::make(ProductBuyButtons::class)->id('buy-buttons'),
+                    PresetBlock::make(Divider::class)->id('separator-2'),
+                    PresetBlock::make(Accordion::class)
                         ->id('description-accordion')
                         ->blocks([
-                            PresetBlock::make('@visual-debut/accordion-row')
+                            PresetBlock::make(AccordionRow::class)
                                 ->id('description-row')
                                 ->settings([
                                     'heading' => 'Description',
                                     'open' => true,
                                 ])
                                 ->blocks([
-                                    PresetBlock::make('@visual-debut/product-description')
+                                    PresetBlock::make(ProductDescription::class)
                                         ->id('description-content'),
                                 ]),
                         ]),
                 ]),
         ]))
-    ->section('product-reviews', '@visual-debut/product-reviews')
+    ->section('product-reviews', ProductReviews::class)
     ->order(['breadcrumbs', 'product-information', 'product-reviews']);

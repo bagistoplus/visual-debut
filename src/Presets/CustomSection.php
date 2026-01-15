@@ -8,7 +8,7 @@ use function BagistoPlus\VisualDebut\_t;
 
 class CustomSection extends Preset
 {
-    protected function getType(): string
+    public static function getType(): string
     {
         return '@visual-debut/flex-section';
     }
