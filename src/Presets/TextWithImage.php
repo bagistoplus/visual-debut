@@ -7,7 +7,7 @@ use BagistoPlus\Visual\Support\PresetBlock;
 
 class TextWithImage extends Preset
 {
-    protected function getType(): string
+    public static function getType(): string
     {
         return '@visual-debut/flex-section';
     }

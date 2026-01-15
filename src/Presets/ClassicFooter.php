@@ -9,7 +9,7 @@ use function BagistoPlus\VisualDebut\_t;
 
 class ClassicFooter extends Preset
 {
-    protected function getType(): string
+    public static function getType(): string
     {
         return '@visual-debut/footer';
     }

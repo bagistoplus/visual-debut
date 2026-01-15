@@ -1,19 +1,22 @@
 <?php
 
 use BagistoPlus\Visual\Support\TemplateBuilder;
+use BagistoPlus\VisualDebut\Blocks\Basic\Heading;
 use BagistoPlus\VisualDebut\Presets\CategoryGrid;
 use BagistoPlus\VisualDebut\Presets\HeroBanner;
+use BagistoPlus\VisualDebut\Sections\Newsletter;
+use BagistoPlus\VisualDebut\Sections\ProductList;
 
 return TemplateBuilder::make()
     ->section('hero-banner', HeroBanner::class)
     ->section('category-list', CategoryGrid::class)
     ->section(
         'featured-products',
-        '@visual-debut/product-list',
+        ProductList::class,
         fn($section) => $section
             ->properties(['nb_products' => 4])
             ->blocks([
-                \BagistoPlus\Visual\Support\PresetBlock::make('@visual-debut/heading')
+                \BagistoPlus\Visual\Support\PresetBlock::make(Heading::class)
                     ->settings([
                         'text' => 'Featured Products',
                         'tag' => 'h2',
@@ -34,5 +37,5 @@ return TemplateBuilder::make()
                     ->repeated(),
             ])
     )
-    ->section('newsletter', '@visual-debut/newsletter')
+    ->section('newsletter', Newsletter::class)
     ->order(['hero-banner', 'category-list', 'featured-products', 'newsletter']);

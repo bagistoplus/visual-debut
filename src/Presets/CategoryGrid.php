@@ -9,7 +9,7 @@ use function BagistoPlus\VisualDebut\_t;
 
 class CategoryGrid extends Preset
 {
-    protected function getType(): string
+    public static function getType(): string
     {
         return '@visual-debut/category-list';
     }
