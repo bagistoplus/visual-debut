@@ -1,6 +1,6 @@
 @isset($product)
   <div {{ $block->editor_attributes }} class="prose max-w-none">
-    {!! visual_clear_inline_styles($product->short_description) !!}
+    {!! visual_clear_inline_styles($product->description) !!}
   </div>
 @else
   @visual_design_mode
