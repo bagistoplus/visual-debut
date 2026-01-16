@@ -1,3 +1,22 @@
+h1 {
+  font-weight: 700;
+}
+h2 {
+  font-weight: 600;
+}
+h3 {
+  font-weight: 600;
+}
+h4 {
+  font-weight: 500;
+}
+h5 {
+  font-weight: 500;
+}
+h6 {
+  font-weight: 500;
+}
+
 html,
 body,
 h1,
@@ -9,17 +28,9 @@ h6,
 [data-typography] {
   font-family: var(--typography-font-family);
   font-style: var(--typography-font-style);
+  font-weight: var(--typography-font-weight);
   font-size: var(--typography-font-size);
   line-height: var(--typography-line-height);
   letter-spacing: var(--typography-letter-spacing);
   text-transform: var(--typography-text-transform);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-bold;
 }
