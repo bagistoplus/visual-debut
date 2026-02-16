@@ -14,7 +14,7 @@ export default {
             '--tw-prose-headings': 'var(--color-on-background)',
             '--tw-prose-lead': 'var(--color-on-background)',
             '--tw-prose-links': 'var(--color-primary)',
-            '--tw-prose-bold': 'var(--color-on-background)',
+            '--tw-prose-bold': 'currentColor',
             '--tw-prose-bullets': 'var(--color-neutral-300)',
             '--tw-prose-hr': 'var(--color-neutral-200)',
             '--tw-prose-quotes': 'var(--color-on-background)',
