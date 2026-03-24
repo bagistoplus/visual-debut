@@ -12,7 +12,7 @@ use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductMediaGallery;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductDetails;
-use BagistoPlus\VisualDebut\Enums\Events;
+use BagistoPlus\Visual\Enums\Events;
 use BagistoPlus\VisualDebut\Tailwind;
 use Illuminate\Http\UploadedFile;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;

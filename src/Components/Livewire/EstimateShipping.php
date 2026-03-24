@@ -2,7 +2,7 @@
 
 namespace BagistoPlus\VisualDebut\Components\Livewire;
 
-use BagistoPlus\VisualDebut\Enums\Events;
+use BagistoPlus\Visual\Enums\Events;
 use BagistoPlus\VisualDebut\Sections\CartContent;
 use Livewire\Component;
 use Webkul\Shop\Http\Controllers\API\CartController;

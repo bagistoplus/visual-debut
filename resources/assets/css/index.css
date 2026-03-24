@@ -12,6 +12,8 @@
 @source inline("group-hover/product-card:{opacity-0,opacity-100,pointer-events-none,pointer-events-auto}");
 
 @source "../../views";
+@source "../../../vendor/bagistoplus/basic-blocks/resources/views";
+@source "../../../vendor/bagistoplus/basic-blocks/src";
 
 /* bagisto utilities */
 @source inline("label-{processing,active,canceled,closed,pending}");

@@ -3,7 +3,7 @@
 namespace BagistoPlus\VisualDebut\Components\Livewire;
 
 use BagistoPlus\Visual\Actions\Cart\AddProductToCart;
-use BagistoPlus\VisualDebut\Enums\Events;
+use BagistoPlus\Visual\Enums\Events;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 

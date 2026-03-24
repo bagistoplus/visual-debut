@@ -3,7 +3,7 @@
 namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Blocks\LivewireSection;
-use BagistoPlus\VisualDebut\Enums\Events;
+use BagistoPlus\Visual\Enums\Events;
 use BagistoPlus\VisualDebut\Support\InteractsWithCart;
 use Livewire\Attributes\On;
 

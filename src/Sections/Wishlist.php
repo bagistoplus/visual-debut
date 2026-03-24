@@ -7,7 +7,7 @@ use BagistoPlus\Visual\Actions\ClearWishlist;
 use BagistoPlus\Visual\Actions\GetWishlistItems;
 use BagistoPlus\Visual\Actions\RemoveItemFromWishlist;
 use BagistoPlus\Visual\Blocks\LivewireSection;
-use BagistoPlus\VisualDebut\Enums\Events;
+use BagistoPlus\Visual\Enums\Events;
 
 use function BagistoPlus\VisualDebut\_t;
 

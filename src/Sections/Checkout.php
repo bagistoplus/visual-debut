@@ -8,7 +8,7 @@ use BagistoPlus\Visual\Actions\Checkout\StorePaymentMethod;
 use BagistoPlus\Visual\Actions\Checkout\StoreShippingMethod;
 use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\VisualDebut\Data\AddressData;
-use BagistoPlus\VisualDebut\Enums\Events;
+use BagistoPlus\Visual\Enums\Events;
 use BagistoPlus\VisualDebut\Support\InteractsWithCart;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;

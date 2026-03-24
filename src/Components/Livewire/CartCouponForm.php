@@ -3,7 +3,7 @@
 namespace BagistoPlus\VisualDebut\Components\Livewire;
 
 use BagistoPlus\Visual\Actions\Cart\StoreCoupon;
-use BagistoPlus\VisualDebut\Enums\Events;
+use BagistoPlus\Visual\Enums\Events;
 use BagistoPlus\VisualDebut\Support\InteractsWithCart;
 use Livewire\Component;
 use Webkul\Shop\Http\Controllers\API\CartController;

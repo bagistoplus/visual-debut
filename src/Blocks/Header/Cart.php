@@ -5,7 +5,7 @@ namespace BagistoPlus\VisualDebut\Blocks\Header;
 use BagistoPlus\Visual\Blocks\LivewireBlock;
 use BagistoPlus\Visual\Settings\RichText;
 use BagistoPlus\Visual\Settings\Text;
-use BagistoPlus\VisualDebut\Enums\Events;
+use BagistoPlus\Visual\Enums\Events;
 use BagistoPlus\VisualDebut\Support\InteractsWithCart;
 use Livewire\Attributes\On;
 
