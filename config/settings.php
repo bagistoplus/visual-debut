@@ -95,18 +95,29 @@ return [
                         'letterSpacing' => 'normal',
                         'textTransform' => 'none',
                     ],
+                    'body-sm' => [
+                        'fontFamily' => 'poppins',
+                        'fontWeight' => '400',
+                        'fontSize' => 'sm',
+                        'fontStyle' => 'normal',
+                        'lineHeight' => 'normal',
+                        'letterSpacing' => 'normal',
+                        'textTransform' => 'none',
+                    ],
+                    'body-xs' => [
+                        'fontFamily' => 'poppins',
+                        'fontWeight' => '400',
+                        'fontSize' => 'xs',
+                        'fontStyle' => 'normal',
+                        'lineHeight' => 'normal',
+                        'letterSpacing' => 'normal',
+                        'textTransform' => 'none',
+                    ],
                 ]),
         ],
     ],
 
-    [
-        'name' => 'visual-debut::shop.settings.buttons',
-        'settings' => [
-            // Settings\Header::make('Borders'),
-            Settings\Range::make('button_border_width', 'Border width')->min(0)->max(4)->step(0.5)->unit('px')->default(0),
-            Radius::make('button_border_radius', 'Border radius')
-        ]
-    ],
+    \BagistoPlus\BasicBlocks\Settings\ButtonSettingsSchema::flat(),
 
     [
         'name' => 'visual-debut::shop.settings.inputs',

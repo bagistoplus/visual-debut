@@ -1,7 +1,11 @@
 @style
   :root {
-  --btn-radius: {{ $theme->settings->button_border_radius }};
-  --btn-border-width: {{ $theme->settings->button_border_width }}px;
+  @php
+    $btnVars = \BagistoPlus\BasicBlocks\Settings\ButtonSettingsSchema::resolveCssVars($theme->settings);
+  @endphp
+  @foreach ($btnVars as $var => $value)
+  {{ $var }}: {{ $value }};
+  @endforeach
 
   --box-radius: {{ $theme->settings->box_border_radius }};
   --box-border-width: {{ $theme->settings->box_border_width }}px;

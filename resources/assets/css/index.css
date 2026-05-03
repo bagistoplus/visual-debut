@@ -10,6 +10,7 @@
 /* Named group support for product cards */
 @source inline("group/product-card");
 @source inline("group-hover/product-card:{opacity-0,opacity-100,pointer-events-none,pointer-events-auto}");
+@source inline("parent-hover:{opacity-0,opacity-100,pointer-events-none,pointer-events-auto}");
 
 @source "../../views";
 @source "../../../vendor/bagistoplus/basic-blocks/resources/views";
@@ -28,8 +29,8 @@
 @source inline("{mobile:,tablet:,desktop:,}{p,m}{t,b,s,e,x,y,}-{0..24}");
 @source inline("{mobile:,tablet:,desktop:,}border-{0..8,dotted,dashed}");
 @source inline("{mobile:,tablet:,desktop:,}z-{0,10,20,30,40,50}");
-@source inline("{mobile:,tablet:,desktop:,}w-{auto,full,fit,screen}");
-@source inline("{mobile:,tablet:,desktop:,}h-{auto,full,fit,screen}");
+@source inline("{mobile:,tablet:,desktop:,}w-{auto,full,fit,screen,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24}");
+@source inline("{mobile:,tablet:,desktop:,}h-{auto,full,fit,screen,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24}");
 @source inline("{mobile:,tablet:,desktop:,}flex-{row,col}");
 @source inline("{mobile:,tablet:,desktop:,}justify-{start,end,center,between}");
 @source inline("{mobile:,tablet:,desktop:,}items-{start,end,center}");
@@ -53,10 +54,13 @@
 @source inline("scroll-{smooth,auto}");
 @source inline("scroll-snap-{none,x,y,both,x-proximity,y-proximity}");
 
+/* Safelist responsive aspect ratio classes */
+@source inline("{mobile:,tablet:,desktop:,}{aspect-square,aspect-[3/4],aspect-[4/3]}");
+
 @import './tokens.css' layer(theme);
 @import './base.css' layer(base);
 @import './animation.css' layer(base);
-@import './button.css' layer(components);
+@import '../../../vendor/bagistoplus/basic-blocks/resources/assets/css/index.css';
 @import './inputs.css' layer(components);
 @import './typography.css' layer(base);
 @import './utilities.css' layer(base);
