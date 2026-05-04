@@ -50,7 +50,7 @@ class NewsletterFooter extends Preset
                             ->settings([
                                 'layout_type' => 'flex',
                                 'flex_direction' => 'column',
-                                'gap' => ['_default' => 4],
+                                'flex_gap' => ['_default' => 4],
                             ])
                             ->blocks([
                                 PresetBlock::make(Heading::class)
@@ -131,7 +131,7 @@ class NewsletterFooter extends Preset
             ->settings([
                 'layout_type' => 'flex',
                 'flex_direction' => 'column',
-                'gap' => ['_default' => 2],
+                'flex_gap' => ['_default' => 2],
             ])
             ->blocks([
                 PresetBlock::make(Heading::class)

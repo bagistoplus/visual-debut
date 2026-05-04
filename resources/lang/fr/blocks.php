@@ -394,6 +394,10 @@ return [
         ],
     ],
 
+    'header-group' => [
+        'name' => 'Groupe d\'en-tête',
+    ],
+
     'header-currency' => [
         'name' => 'Sélecteur de devise',
         'description' => 'Permet aux clients de basculer entre les devises disponibles',

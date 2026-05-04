@@ -1,12 +1,12 @@
 <?php
 
-use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\Visual\Support\TemplateBuilder;
 use BagistoPlus\VisualDebut\Blocks\Basic\Logo;
 use BagistoPlus\VisualDebut\Blocks\Header\Cart;
 use BagistoPlus\VisualDebut\Blocks\Header\Compare;
 use BagistoPlus\VisualDebut\Blocks\Header\Currency;
+use BagistoPlus\VisualDebut\Blocks\Header\HeaderGroup;
 use BagistoPlus\VisualDebut\Blocks\Header\Locale;
 use BagistoPlus\VisualDebut\Blocks\Header\Nav;
 use BagistoPlus\VisualDebut\Blocks\Header\Search;
@@ -31,12 +31,12 @@ return TemplateBuilder::make()
             ])
             ->blocks([
                 // Logo Container
-                PresetBlock::make(Group::class)
+                PresetBlock::make(HeaderGroup::class)
                     ->id('container-logo')
                     ->name('Logo')
                     ->settings([
                         'layout_type' => 'flex',
-                        'gap' => ['_default' => 4],
+                        'flex_gap' => ['_default' => 4],
                         'width' => 'auto',
                     ])
                     ->blocks([
@@ -45,13 +45,13 @@ return TemplateBuilder::make()
                     ]),
 
                 // Navigation Container
-                PresetBlock::make(Group::class)
+                PresetBlock::make(HeaderGroup::class)
                     ->id('container-nav')
                     ->name('Navigation')
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_justify' => 'start',
-                        'gap' => ['_default' => 4],
+                        'flex_gap' => ['_default' => 4],
                         'width' => 'full',
                     ])
                     ->blocks([
@@ -61,13 +61,13 @@ return TemplateBuilder::make()
                     ]),
 
                 // Actions Container
-                PresetBlock::make(Group::class)
+                PresetBlock::make(HeaderGroup::class)
                     ->id('container-actions')
                     ->name('Actions')
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_justify' => 'end',
-                        'gap' => ['_default' => 2],
+                        'flex_gap' => ['_default' => 2],
                         'width' => 'auto',
                     ])
                     ->blocks([

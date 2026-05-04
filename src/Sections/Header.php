@@ -2,7 +2,6 @@
 
 namespace BagistoPlus\VisualDebut\Sections;
 
-use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\Visual\Blocks\BladeSection;
 use BagistoPlus\Visual\Settings;
 use BagistoPlus\Visual\Support\Preset;
@@ -11,6 +10,7 @@ use BagistoPlus\VisualDebut\Blocks\Basic\Logo;
 use BagistoPlus\VisualDebut\Blocks\Header\Cart;
 use BagistoPlus\VisualDebut\Blocks\Header\Compare;
 use BagistoPlus\VisualDebut\Blocks\Header\Currency;
+use BagistoPlus\VisualDebut\Blocks\Header\HeaderGroup;
 use BagistoPlus\VisualDebut\Blocks\Header\Locale;
 use BagistoPlus\VisualDebut\Blocks\Header\Nav;
 use BagistoPlus\VisualDebut\Blocks\Header\Search;
@@ -44,7 +44,7 @@ class Header extends BladeSection
         Compare::class,
         User::class,
         Cart::class,
-        Group::class,
+        HeaderGroup::class,
     ];
 
     public static function name(): string
@@ -77,7 +77,7 @@ class Header extends BladeSection
                 ->category('Layout')
                 ->blocks([
                     // Logo Group
-                    PresetBlock::make(Group::class)
+                    PresetBlock::make(HeaderGroup::class)
                         ->name('Logo')
                         ->settings([
                             'layout_type' => 'flex',
@@ -90,7 +90,7 @@ class Header extends BladeSection
                         ]),
 
                     // Navigation Group
-                    PresetBlock::make(Group::class)
+                    PresetBlock::make(HeaderGroup::class)
                         ->name('Navigation')
                         ->settings([
                             'layout_type' => 'flex',
@@ -106,7 +106,7 @@ class Header extends BladeSection
                         ]),
 
                     // Actions Group
-                    PresetBlock::make(Group::class)
+                    PresetBlock::make(HeaderGroup::class)
                         ->name('Actions')
                         ->settings([
                             'layout_type' => 'flex',

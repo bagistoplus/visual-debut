@@ -41,7 +41,7 @@ class MinimalFooter extends Preset
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',
                         'flex_align' => 'center',
-                        'gap' => ['_default' => 6],
+                        'flex_gap' => ['_default' => 6],
                         'width' => 'full',
                     ])
                     ->blocks([

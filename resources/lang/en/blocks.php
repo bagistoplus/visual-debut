@@ -381,6 +381,10 @@ return [
         ],
     ],
 
+    'header-group' => [
+        'name' => 'Header Group',
+    ],
+
     'header-currency' => [
         'name' => 'Currency Selector',
         'description' => 'Allows customers to switch between available currencies',

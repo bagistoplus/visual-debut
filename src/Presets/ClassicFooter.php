@@ -107,7 +107,7 @@ class ClassicFooter extends Preset
                         'flex_direction' => ['_default' => 'row', 'mobile' => 'column'],
                         'flex_justify' => 'between',
                         'flex_align' => 'center',
-                        'gap' => ['_default' => 4],
+                        'flex_gap' => ['_default' => 4],
                         'width' => 'full',
                     ])
                     ->blocks([
