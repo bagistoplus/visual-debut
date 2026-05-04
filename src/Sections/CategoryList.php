@@ -2,13 +2,6 @@
 
 namespace BagistoPlus\VisualDebut\Sections;
 
-use BagistoPlus\Visual\Blocks\BladeSection;
-use BagistoPlus\Visual\Settings\Category;
-use BagistoPlus\Visual\Settings\ColorScheme;
-use BagistoPlus\Visual\Settings\Header;
-use BagistoPlus\Visual\Settings\Range;
-use BagistoPlus\Visual\Settings\Select;
-use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\BasicBlocks\Blocks\Basic\Button;
 use BagistoPlus\BasicBlocks\Blocks\Basic\Divider;
 use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
@@ -18,6 +11,13 @@ use BagistoPlus\BasicBlocks\Blocks\Basic\RichText;
 use BagistoPlus\BasicBlocks\Blocks\Basic\Text;
 use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\BasicBlocks\Blocks\Media\Image;
+use BagistoPlus\Visual\Blocks\BladeSection;
+use BagistoPlus\Visual\Settings\Category;
+use BagistoPlus\Visual\Settings\ColorScheme;
+use BagistoPlus\Visual\Settings\Header;
+use BagistoPlus\Visual\Settings\Range;
+use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\VisualDebut\Presets\CategoryGrid;
 use BagistoPlus\VisualDebut\Tailwind;
 
@@ -48,7 +48,7 @@ class CategoryList extends BladeSection
     ];
 
     protected static array $enabledOn = [
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     public static function name(): string
@@ -67,7 +67,7 @@ class CategoryList extends BladeSection
         if ($this->section->settings->has('padding')) {
             $paddingClasses = Tailwind::responsive(
                 $this->section->settings->padding,
-                fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+                fn ($v) => Tailwind::buildSpacingClasses($v, 'p')
             );
         }
 
@@ -89,8 +89,8 @@ class CategoryList extends BladeSection
 
         // Otherwise, return manually added category blocks
         return collect($this->section->children())
-            ->filter(fn($child) => $child->type === '@visual-debut/category')
-            ->map(fn($child) => $child->settings->category)
+            ->filter(fn ($child) => $child->type === '@visual-debut/category')
+            ->map(fn ($child) => $child->settings->category)
             ->filter(); // Remove null values
     }
 

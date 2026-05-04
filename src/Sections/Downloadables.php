@@ -10,7 +10,7 @@ class Downloadables extends BladeSection
 
     protected static array $enabledOn = [
         'templates' => ['account/downloadables'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.downloadables';

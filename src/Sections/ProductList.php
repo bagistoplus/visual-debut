@@ -25,11 +25,11 @@ class ProductList extends BladeSection
     protected static string $type = '@visual-debut/product-list';
 
     protected static array $disabledOn = [
-        'templates' => ['auth/*', 'account/*']
+        'templates' => ['auth/*', 'account/*'],
     ];
 
     protected static array $enabledOn = [
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.product-list';
@@ -48,16 +48,16 @@ class ProductList extends BladeSection
 
     protected function hasManualProducts(): bool
     {
-        return !empty($this->section->children()) &&
+        return ! empty($this->section->children()) &&
             collect($this->section->children())
-            ->some(fn($block) => $block->type === '@visual-debut/product');
+                ->some(fn ($block) => $block->type === '@visual-debut/product');
     }
 
     protected function getManualProducts()
     {
         return collect($this->section->children())
-            ->filter(fn($block) => $block->type === '@visual-debut/product')
-            ->map(fn($block) => $block->settings->product)
+            ->filter(fn ($block) => $block->type === '@visual-debut/product')
+            ->map(fn ($block) => $block->settings->product)
             ->filter();
     }
 
@@ -151,7 +151,7 @@ class ProductList extends BladeSection
         if ($this->section->settings->has('padding')) {
             $paddingClasses = Tailwind::responsive(
                 $this->section->settings->padding,
-                fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+                fn ($v) => Tailwind::buildSpacingClasses($v, 'p')
             );
         }
 
@@ -179,7 +179,7 @@ class ProductList extends BladeSection
 
             Select::make('product_type', _t('sections.product-list.settings.product_type_label'))
                 ->options([
-                    'new'      => _t('sections.product-list.settings.new_label'),
+                    'new' => _t('sections.product-list.settings.new_label'),
                     'featured' => _t('sections.product-list.settings.featured_label'),
                 ])
                 ->default('new')
@@ -226,7 +226,7 @@ class ProductList extends BladeSection
                     'none' => _t('sections.product-list.settings.nav_style_options.none'),
                 ])
                 ->default('arrow')
-                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'carousel')),
+                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'carousel')),
 
             Select::make('nav_shape', _t('sections.product-list.settings.nav_shape_label'))
                 ->options([
@@ -235,7 +235,7 @@ class ProductList extends BladeSection
                     'none' => _t('sections.product-list.settings.nav_shape_options.none'),
                 ])
                 ->default('circle')
-                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'carousel')),
+                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'carousel')),
 
             Select::make('nav_icon', _t('sections.product-list.settings.nav_icon_label'))
                 ->options([
@@ -243,7 +243,7 @@ class ProductList extends BladeSection
                     'chevron' => _t('sections.product-list.settings.nav_icon_options.chevron'),
                 ])
                 ->default('chevron')
-                ->visibleWhen(fn($rule) => $rule->when('layout_type', 'carousel')),
+                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'carousel')),
 
             Header::make(_t('blocks.common.spacing_header')),
 
@@ -293,7 +293,7 @@ class ProductList extends BladeSection
                     ProductCardWithOverlay::asChild()
                         ->id('static-product-card')
                         ->static()
-                        ->repeated()
+                        ->repeated(),
                 ]),
 
             Preset::make('New Arrivals')
@@ -314,8 +314,8 @@ class ProductList extends BladeSection
                     ProductCardWithOverlay::asChild()
                         ->id('static-product-card')
                         ->static()
-                        ->repeated()
-                ])
+                        ->repeated(),
+                ]),
         ];
     }
 }

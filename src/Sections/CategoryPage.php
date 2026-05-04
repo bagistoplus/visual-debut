@@ -23,7 +23,7 @@ class CategoryPage extends LivewireSection
 
     protected static array $enabledOn = [
         'templates' => ['category'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.category-page';
@@ -86,7 +86,7 @@ class CategoryPage extends LivewireSection
             $filterableAttributes = app(AttributeRepository::class)->getFilterableAttributes();
         }
 
-        return $filterableAttributes->filter(function ($filter) {
+        return collect($filterableAttributes)->filter(function ($filter) {
             return $filter->type === 'price' || $filter->options->isNotEmpty();
         });
     }

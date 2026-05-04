@@ -17,7 +17,7 @@ class Wishlist extends LivewireSection
 
     protected static array $enabledOn = [
         'templates' => ['account/wishlist'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.wishlist';

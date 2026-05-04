@@ -72,7 +72,7 @@ class FeatureIcons extends Preset
                         $this->createFeatureItem('24/7 Support', 'Contact us anytime, anywhere', 'lucide-headphones'),
                         $this->createFeatureItem('Secure Payment', '100% secure payment guaranteed', 'lucide-shield-check'),
                         $this->createFeatureItem('Easy Returns', '30-day return policy', 'lucide-package-check'),
-                    ])
+                    ]),
             ]);
     }
 
@@ -111,7 +111,7 @@ class FeatureIcons extends Preset
                             ->settings([
                                 'icon' => $icon,
                                 'size' => ['_default' => '5'],
-                            ])
+                            ]),
                     ]),
 
                 // Content
@@ -120,7 +120,7 @@ class FeatureIcons extends Preset
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',
                         'flex_align' => 'center',
-                        'flex_gap' => ['_default' => 2]
+                        'flex_gap' => ['_default' => 2],
                     ])
                     ->blocks([
                         PresetBlock::make(Heading::class)
@@ -129,7 +129,7 @@ class FeatureIcons extends Preset
                                 'heading_level' => 'h3',
                                 'width' => 'fill',
                                 'alignment' => 'center',
-                                'typography' => 'heading-6'
+                                'typography' => 'heading-6',
                             ]),
 
                         PresetBlock::make(Text::class)
@@ -138,7 +138,7 @@ class FeatureIcons extends Preset
                                 'width' => 'fill',
                                 'alignment' => 'center',
                             ]),
-                    ])
+                    ]),
             ]);
     }
 }

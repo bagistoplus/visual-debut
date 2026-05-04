@@ -21,7 +21,7 @@ class CartContent extends LivewireSection
 
     protected static array $enabledOn = [
         'templates' => ['cart'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.cart-content';

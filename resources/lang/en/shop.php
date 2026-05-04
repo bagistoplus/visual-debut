@@ -11,7 +11,7 @@ return [
 
     'cart' => [
         'start-shopping' => 'Start Shopping',
-        'continue-shopping' => 'Continue Shopping'
+        'continue-shopping' => 'Continue Shopping',
     ],
 
     'product' => [
@@ -27,11 +27,11 @@ return [
     ],
 
     'review' => [
-        'failed-to-upload' => 'One or more attachments failed to upload. Please try again.'
+        'failed-to-upload' => 'One or more attachments failed to upload. Please try again.',
     ],
 
     'order' => [
-        'download-invoice' => 'Download Invoice'
+        'download-invoice' => 'Download Invoice',
     ],
 
     'profile' => [
@@ -51,7 +51,7 @@ return [
         'inputs' => 'Inputs',
         'boxes' => 'Boxes',
         'social-links' => 'Social Media Links',
-        'general' => 'General'
+        'general' => 'General',
     ],
 
     'header' => [

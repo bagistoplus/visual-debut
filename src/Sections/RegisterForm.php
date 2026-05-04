@@ -10,7 +10,7 @@ class RegisterForm extends BladeSection
 
     protected static array $enabledOn = [
         'templates' => ['auth/register'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.register-form';

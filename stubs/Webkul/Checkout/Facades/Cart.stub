@@ -1,0 +1,12 @@
+<?php
+
+namespace Webkul\Checkout\Facades;
+
+/**
+ * @method static \Webkul\Checkout\Models\Cart|null getCart()
+ * @method static bool hasError()
+ * @method static bool removeItem(int $itemId)
+ * @method static bool|\Exception updateItems(array<int|string, mixed> $data)
+ * @method static \Webkul\Checkout\Cart collectTotals()
+ */
+class Cart {}

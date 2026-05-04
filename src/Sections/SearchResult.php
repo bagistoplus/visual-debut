@@ -20,7 +20,7 @@ class SearchResult extends LivewireSection
 
     protected static array $enabledOn = [
         'templates' => ['search'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.search-result';
@@ -56,7 +56,7 @@ class SearchResult extends LivewireSection
     {
         $filterableAttributes = app(AttributeRepository::class)->getFilterableAttributes();
 
-        return $filterableAttributes->filter(function ($filter) {
+        return collect($filterableAttributes)->filter(function ($filter) {
             return $filter->type === 'price' || $filter->options->isNotEmpty();
         });
     }

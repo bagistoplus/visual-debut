@@ -12,7 +12,7 @@ class ErrorPage extends BladeSection
 
     protected static array $enabledOn = [
         'templates' => ['error'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.error-page';

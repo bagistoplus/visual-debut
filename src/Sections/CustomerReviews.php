@@ -10,7 +10,7 @@ class CustomerReviews extends BladeSection
 
     protected static array $enabledOn = [
         'templates' => ['account/reviews'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.customer-reviews';

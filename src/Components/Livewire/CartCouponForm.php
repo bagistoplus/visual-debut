@@ -37,7 +37,7 @@ class CartCouponForm extends Component
 
     public function render()
     {
-        return view('shop::livewire.coupon-form', [
+        return view()->make('shop::livewire.coupon-form', [
             'cart' => $this->getCartResource(),
         ]);
     }

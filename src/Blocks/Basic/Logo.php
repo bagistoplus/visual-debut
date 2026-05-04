@@ -39,5 +39,4 @@ class Logo extends SimpleBlock
                 ->info(_t('blocks.common.color_scheme_info')),
         ];
     }
-
 }

@@ -45,25 +45,26 @@ class MigrateBasicBlocks extends Command
 
             if (! is_array($data)) {
                 $this->warn("Skipping invalid JSON: {$path}");
+
                 continue;
             }
 
             $migrated = $this->migrateNode($data);
             $encoded = json_encode($migrated, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
-            if ($encoded === false || $encoded . PHP_EOL === $original || $encoded === $original) {
+            if ($encoded === false || $encoded.PHP_EOL === $original || $encoded === $original) {
                 continue;
             }
 
             $changed++;
-            $this->line(($dryRun ? 'Would update ' : 'Updated ') . $path);
+            $this->line(($dryRun ? 'Would update ' : 'Updated ').$path);
 
             if (! $dryRun) {
-                File::put($path, $encoded . PHP_EOL);
+                File::put($path, $encoded.PHP_EOL);
             }
         }
 
-        $this->info(($dryRun ? 'Files needing migration: ' : 'Migrated files: ') . $changed);
+        $this->info(($dryRun ? 'Files needing migration: ' : 'Migrated files: ').$changed);
 
         return self::SUCCESS;
     }
@@ -71,12 +72,12 @@ class MigrateBasicBlocks extends Command
     private function defaultPaths(): array
     {
         $dataPath = config('bagisto-visual.data_path', storage_path('bagisto-visual'));
-        $base = rtrim($dataPath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'visual-debut';
+        $base = rtrim($dataPath, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.'themes'.DIRECTORY_SEPARATOR.'visual-debut';
 
         return [
-            $base . DIRECTORY_SEPARATOR . 'editor',
-            $base . DIRECTORY_SEPARATOR . 'live',
-            $base . DIRECTORY_SEPARATOR . 'versions',
+            $base.DIRECTORY_SEPARATOR.'editor',
+            $base.DIRECTORY_SEPARATOR.'live',
+            $base.DIRECTORY_SEPARATOR.'versions',
         ];
     }
 
@@ -87,6 +88,7 @@ class MigrateBasicBlocks extends Command
         foreach ($paths as $path) {
             if (File::isFile($path) && str_ends_with($path, '.json')) {
                 $files[] = $path;
+
                 continue;
             }
 
@@ -191,7 +193,7 @@ class MigrateBasicBlocks extends Command
     private function migrateTextSettings(array $settings): array
     {
         if (array_key_exists('width', $settings)) {
-            $settings['width'] = $this->mapResponsiveValue($settings['width'], fn($value) => match ($value) {
+            $settings['width'] = $this->mapResponsiveValue($settings['width'], fn ($value) => match ($value) {
                 'fit-content' => 'fit',
                 '100%' => 'fill',
                 default => $value,
@@ -272,6 +274,6 @@ class MigrateBasicBlocks extends Command
             return $mapper($value);
         }
 
-        return array_map(fn($item) => $this->mapResponsiveValue($item, $mapper), $value);
+        return array_map(fn ($item) => $this->mapResponsiveValue($item, $mapper), $value);
     }
 }

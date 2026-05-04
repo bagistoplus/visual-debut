@@ -12,11 +12,17 @@ class AddToCompareButton extends Component
     public $productId;
 
     public $size = 'md';
+
     public $variant = 'soft';
+
     public $color = 'secondary';
+
     public $icon = null;
+
     public $circle = false;
+
     public $square = false;
+
     public $block = false;
 
     public function handle()
@@ -30,6 +36,6 @@ class AddToCompareButton extends Component
 
     public function render()
     {
-        return view('shop::livewire.add-to-compare-button');
+        return view()->make('shop::livewire.add-to-compare-button');
     }
 }

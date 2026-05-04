@@ -1,0 +1,5 @@
+<?php
+
+namespace Webkul\Customer\Models;
+
+class Wishlist extends \Illuminate\Database\Eloquent\Model {}

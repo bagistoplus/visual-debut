@@ -10,7 +10,7 @@ class ProfileForm extends BladeSection
 
     protected static array $enabledOn = [
         'templates' => ['account/edit-profile'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.profile-form';

@@ -46,5 +46,4 @@ class User extends SimpleBlock
                 ->default(_t('blocks.header-user.settings.guest_description_default')),
         ];
     }
-
 }

@@ -74,7 +74,7 @@ class TextWithImage extends Preset
                             ->settings([
                                 'text' => 'Shop now',
                             ]),
-                    ])
+                    ]),
             ]);
     }
 }

@@ -54,7 +54,7 @@ class FeatureIcon extends Preset
                             ->settings([
                                 'icon' => 'lucide-tag',
                                 'size' => ['_default' => '5'],
-                            ])
+                            ]),
                     ]),
 
                 // Content Container
@@ -79,7 +79,7 @@ class FeatureIcon extends Preset
                                 'width' => 'fill',
                                 'alignment' => 'center',
                             ]),
-                    ])
+                    ]),
             ]);
     }
 }

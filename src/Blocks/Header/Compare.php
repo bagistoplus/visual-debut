@@ -38,5 +38,4 @@ class Compare extends SimpleBlock
                 ->default('lucide-arrow-left-right'),
         ];
     }
-
 }

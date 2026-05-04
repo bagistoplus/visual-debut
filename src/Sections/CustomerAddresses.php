@@ -10,7 +10,7 @@ class CustomerAddresses extends BladeSection
 
     protected static array $enabledOn = [
         'templates' => ['account/addresses'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.customer-addresses';

@@ -23,6 +23,8 @@ trait HandlesProductListing
     #[Url(as: 'mode')]
     public $displayMode = 'grid';
 
+    abstract public function availableFilters();
+
     public function setFilter($code, $value)
     {
         $this->filters[$code] = $value;
@@ -31,7 +33,7 @@ trait HandlesProductListing
 
     public function resetFilters()
     {
-        $this->availableFilters->each(function ($filter) {
+        $this->availableFilters()->each(function ($filter) {
             if ($filter->type === 'price') {
                 $this->filters[$filter->code] = [0, $this->maxPrice];
             } else {
@@ -78,11 +80,7 @@ trait HandlesProductListing
 
     protected function initializeFilters()
     {
-        if (! isset($this->availableFilters)) {
-            return;
-        }
-
-        $this->availableFilters->each(function ($filter) {
+        $this->availableFilters()->each(function ($filter) {
             if (isset($this->filters[$filter->code])) {
                 return;
             }
@@ -116,7 +114,7 @@ trait HandlesProductListing
                 'sort' => $this->sort,
             ],
             collect($this->filters)
-                ->map(fn($value) => is_array($value) ? implode(',', $value) : $value)
+                ->map(fn ($value) => is_array($value) ? implode(',', $value) : $value)
                 ->filter()
                 ->toArray(),
             $additionalParams

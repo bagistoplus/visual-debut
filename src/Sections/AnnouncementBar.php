@@ -21,7 +21,7 @@ class AnnouncementBar extends BladeSection
     protected static string $category = 'Marketing';
 
     protected static array $enabledOn = [
-        'regions' => ['header']
+        'regions' => ['header'],
     ];
 
     public static function settings(): array
@@ -34,10 +34,10 @@ class AnnouncementBar extends BladeSection
 
             Select::make('variant', _t('sections.announcement-bar.settings.variant_label'))
                 ->options([
-                    'primary'   => 'Primary',
+                    'primary' => 'Primary',
                     'secondary' => 'Secondary',
-                    'accent'    => 'Accent',
-                    'neutral'   => 'Neutral',
+                    'accent' => 'Accent',
+                    'neutral' => 'Neutral',
                 ])->default('primary'),
 
             ColorScheme::make('scheme', _t('sections.announcement-bar.settings.scheme_label'))

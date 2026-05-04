@@ -34,7 +34,6 @@ class ProductQuantitySelector extends SimpleBlock
         ];
     }
 
-
     protected function getViewData(): array
     {
         $product = $this->block->settings->product ?? $this->context['product'] ?? null;

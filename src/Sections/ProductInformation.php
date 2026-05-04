@@ -4,15 +4,15 @@ namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Actions\Cart\AddProductToCart;
 use BagistoPlus\Visual\Blocks\LivewireSection;
+use BagistoPlus\Visual\Enums\Events;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
-use BagistoPlus\VisualDebut\Blocks\Product\ProductMediaGallery;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductDetails;
-use BagistoPlus\Visual\Enums\Events;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductMediaGallery;
 use BagistoPlus\VisualDebut\Tailwind;
 use Illuminate\Http\UploadedFile;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
@@ -30,7 +30,7 @@ class ProductInformation extends LivewireSection
 
     protected static array $enabledOn = [
         'templates' => ['product'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.product-information';
@@ -145,7 +145,7 @@ class ProductInformation extends LivewireSection
         }
 
         $this->groupedProductQuantities = $product->grouped_products
-            ->mapWithKeys(fn($groupedProduct) => [$groupedProduct->associated_product->id => $groupedProduct->qty])
+            ->mapWithKeys(fn ($groupedProduct) => [$groupedProduct->associated_product->id => $groupedProduct->qty])
             ->all();
     }
 
@@ -162,20 +162,20 @@ class ProductInformation extends LivewireSection
         $bundleConfig = app('Webkul\Product\Helpers\BundleOption')->getBundleConfig($product);
 
         $this->bundleProductOptions = collect($bundleConfig['options'])
-            ->mapWithKeys(fn($bundleOption) => [
+            ->mapWithKeys(fn ($bundleOption) => [
                 $bundleOption['id'] => collect($bundleOption['products'])
-                    ->filter(fn($p) => $p['is_default'])
-                    ->map(fn($p) => $p['id'])
+                    ->filter(fn ($p) => $p['is_default'])
+                    ->map(fn ($p) => $p['id'])
                     ->all(),
             ])
             ->all();
 
         $this->bundleProductQuantities = collect($bundleConfig['options'])
-            ->filter(fn($bundleOption) => in_array($bundleOption['type'], ['select', 'radio']))
-            ->mapWithKeys(fn($bundleOption) => [
+            ->filter(fn ($bundleOption) => in_array($bundleOption['type'], ['select', 'radio']))
+            ->mapWithKeys(fn ($bundleOption) => [
                 $bundleOption['id'] => collect($bundleOption['products'])
-                    ->filter(fn($p) => $p['is_default'])
-                    ->map(fn($p) => $p['qty'])
+                    ->filter(fn ($p) => $p['is_default'])
+                    ->map(fn ($p) => $p['qty'])
                     ->first(),
             ])
             ->all();
@@ -275,7 +275,7 @@ class ProductInformation extends LivewireSection
             $extensions = array_map('trim', explode(',', $option->supported_file_extensions));
 
             $this->validate([
-                "customizableOptions.{$key}" => ['file', 'mimes:' . implode(',', $extensions)],
+                "customizableOptions.{$key}" => ['file', 'mimes:'.implode(',', $extensions)],
             ]);
         }
     }
@@ -378,7 +378,7 @@ class ProductInformation extends LivewireSection
     {
         $images = product_image()->getGalleryImages($this->context['product']);
 
-        return array_map(fn($image) => array_merge($image, ['type' => 'image']), $images);
+        return array_map(fn ($image) => array_merge($image, ['type' => 'image']), $images);
     }
 
     /**
@@ -413,7 +413,7 @@ class ProductInformation extends LivewireSection
         if ($this->section->settings->has('padding')) {
             $paddingClasses = Tailwind::responsive(
                 $this->section->settings->padding,
-                fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+                fn ($v) => Tailwind::buildSpacingClasses($v, 'p')
             );
         }
 

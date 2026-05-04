@@ -1,0 +1,29 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: 5
+    paths:
+        - src
+        - config
+        - resources
+    bootstrapFiles:
+        - vendor/bagisto/bagisto/packages/Webkul/Core/src/Http/helpers.php
+        - vendor/bagisto/bagisto/packages/Webkul/Theme/src/Http/helpers.php
+        - vendor/bagisto/bagisto/packages/Webkul/Product/src/Http/helpers.php
+
+    tmpDir: build/phpstan
+    checkOctaneCompatibility: true
+    checkModelProperties: true
+    treatPhpDocTypesAsCertain: false
+    universalObjectCratesClasses:
+        - BagistoPlus\Visual\Data\BlockData
+        - Craftile\Laravel\PropertyBag
+        - Craftile\Core\Data\PropertyBag
+    stubFiles:
+        - stubs/Webkul/Checkout/Cart.stub
+        - stubs/Webkul/Checkout/Facades/Cart.stub
+        - stubs/Webkul/Checkout/Models/Cart.stub
+        - stubs/Webkul/Customer/Models/CustomerAddress.stub
+        - stubs/Webkul/Customer/Models/Customer.stub
+        - stubs/Webkul/Customer/Models/Wishlist.stub

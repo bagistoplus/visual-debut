@@ -38,5 +38,4 @@ class Locale extends SimpleBlock
                 ->default('lucide-globe'),
         ];
     }
-
 }

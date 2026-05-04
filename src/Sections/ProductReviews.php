@@ -2,15 +2,16 @@
 
 namespace BagistoPlus\VisualDebut\Sections;
 
-use Livewire\WithFileUploads;
-use Livewire\Attributes\Computed;
-use BagistoPlus\Visual\Settings\Range;
-
-use function BagistoPlus\VisualDebut\_t;
-use BagistoPlus\Visual\Settings\Checkbox;
-use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\Visual\Actions\GetProductReviews;
 use BagistoPlus\Visual\Actions\StoreProductReview;
+use BagistoPlus\Visual\Blocks\LivewireSection;
+use BagistoPlus\Visual\Settings\Checkbox;
+use BagistoPlus\Visual\Settings\Range;
+use Livewire\Attributes\Computed;
+use Livewire\WithFileUploads;
+use Webkul\Product\Helpers\Review;
+
+use function BagistoPlus\VisualDebut\_t;
 
 class ProductReviews extends LivewireSection
 {
@@ -28,7 +29,7 @@ class ProductReviews extends LivewireSection
 
     protected static array $enabledOn = [
         'templates' => ['product'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     public $reviews;
@@ -45,7 +46,7 @@ class ProductReviews extends LivewireSection
         'title' => '',
         'comment' => '',
         'attachments' => [],
-        'file' => []
+        'file' => [],
     ];
 
     public static function name(): string
@@ -62,7 +63,7 @@ class ProductReviews extends LivewireSection
     {
         $this->validate([
             'reviewForm.file' => 'array',
-            'reviewForm.file.*' => 'file|mimetypes:image/*,video/*'
+            'reviewForm.file.*' => 'file|mimetypes:image/*,video/*',
         ], [], ['reviewForm.file.0' => 'attachment']);
 
         foreach ($files as $file) {
@@ -101,6 +102,7 @@ class ProductReviews extends LivewireSection
         return core()->getConfigData('catalog.products.review.guest_review')
             && ! auth()->guard('customer')->user();
     }
+
     public function mount()
     {
         $this->reviews = collect();
@@ -115,7 +117,7 @@ class ProductReviews extends LivewireSection
         $this->reviews = $this->reviews->merge(collect($newReviews->items())->map(function ($review) {
             $data = $review->resolve();
             $data['initials'] = collect(explode(' ', $data['name']))
-                ->map(fn($part) => strtoupper(mb_substr($part, 0, 1)))
+                ->map(fn ($part) => strtoupper(mb_substr($part, 0, 1)))
                 ->join('');
 
             return $data;
@@ -126,7 +128,7 @@ class ProductReviews extends LivewireSection
 
     public function getViewData(): array
     {
-        $reviewHelper = app(\Webkul\Product\Helpers\Review::class);
+        $reviewHelper = app(Review::class);
         $product = $this->context['product'];
 
         return [
@@ -154,8 +156,8 @@ class ProductReviews extends LivewireSection
     protected static array $default = [
         'settings' => [
             'show_rating_summary' => true,
-            'show_reviews'        => true,
-            'limit'               => 5,
+            'show_reviews' => true,
+            'limit' => 5,
         ],
     ];
 }

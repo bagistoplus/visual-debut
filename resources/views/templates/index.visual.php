@@ -1,9 +1,11 @@
 <?php
 
 use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
+use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\Visual\Support\TemplateBuilder;
 use BagistoPlus\VisualDebut\Presets\CategoryGrid;
 use BagistoPlus\VisualDebut\Presets\HeroBanner;
+use BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay;
 use BagistoPlus\VisualDebut\Sections\Newsletter;
 use BagistoPlus\VisualDebut\Sections\ProductList;
 
@@ -13,10 +15,10 @@ return TemplateBuilder::make()
     ->section(
         'featured-products',
         ProductList::class,
-        fn($section) => $section
+        fn ($section) => $section
             ->properties(['nb_products' => 4])
             ->blocks([
-                \BagistoPlus\Visual\Support\PresetBlock::make(Heading::class)
+                PresetBlock::make(Heading::class)
                     ->settings([
                         'text' => 'Featured Products',
                         'heading_level' => 'h2',
@@ -31,7 +33,7 @@ return TemplateBuilder::make()
                         ],
                     ]),
 
-                \BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay::asChild()
+                ProductCardWithOverlay::asChild()
                     ->id('static-product-card')
                     ->static()
                     ->repeated(),

@@ -13,6 +13,6 @@ return [
     'vite' => [
         'hot_file' => 'themes/shop/visual-debut/visual-debut-vite.hot',
         'build_directory' => 'themes/shop/visual-debut',
-        'package_assets_directory' => 'resources/assets'
-    ]
+        'package_assets_directory' => 'resources/assets',
+    ],
 ];

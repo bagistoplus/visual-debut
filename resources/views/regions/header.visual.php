@@ -25,7 +25,7 @@ return TemplateBuilder::make()
     ->section(
         'main-header',
         Header::class,
-        fn($section) => $section
+        fn ($section) => $section
             ->properties([
                 'content_width' => 'container',
             ])

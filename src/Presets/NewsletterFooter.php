@@ -103,7 +103,7 @@ class NewsletterFooter extends Preset
 
                 PresetBlock::make(Text::class)
                     ->settings([
-                        'text' => '© ' . date('Y') . ' ' . config('app.name'),
+                        'text' => '© '.date('Y').' '.config('app.name'),
                         'alignment' => 'center',
                     ]),
             ]);

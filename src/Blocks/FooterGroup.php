@@ -24,5 +24,4 @@ class FooterGroup extends BladeBlock
                 ->default(_t('blocks.footer-group.title_default')),
         ];
     }
-
 }

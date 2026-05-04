@@ -41,5 +41,4 @@ class Search extends SimpleBlock
                 ->default('lucide-camera'),
         ];
     }
-
 }

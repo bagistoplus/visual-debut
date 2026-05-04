@@ -24,5 +24,4 @@ class FeaturedProduct extends BladeBlock
                 ->info(_t('blocks.product.settings.product_info')),
         ];
     }
-
 }

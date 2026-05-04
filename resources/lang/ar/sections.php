@@ -5,13 +5,13 @@ return [
         'name' => 'شريط الإعلان',
         'description' => 'شريط إعلان بسيط لعرض معلومات مهمة لعملائك.',
         'settings' => [
-            'text_label'      => 'نص الإعلان',
-            'default_text'    => 'شحن مجاني للطلبات التي تزيد عن 50 دولارًا',
-            'link_label'      => 'الرابط',
-            'variant_label'   => 'نوع الخلفية',
+            'text_label' => 'نص الإعلان',
+            'default_text' => 'شحن مجاني للطلبات التي تزيد عن 50 دولارًا',
+            'link_label' => 'الرابط',
+            'variant_label' => 'نوع الخلفية',
 
-            'scheme_label'    => 'نظام الألوان',
-            'scheme_note'     => 'يتجاوز هذا إعداد نظام ألوان القالب العام. التغييرات في نظام القالب الرئيسي لن تؤثر على هذا القسم.',
+            'scheme_label' => 'نظام الألوان',
+            'scheme_note' => 'يتجاوز هذا إعداد نظام ألوان القالب العام. التغييرات في نظام القالب الرئيسي لن تؤثر على هذا القسم.',
         ],
     ],
 
@@ -20,35 +20,34 @@ return [
         'description' => 'لافتة بعرض كامل تحتوي على نص وأزرار للدعوة إلى اتخاذ إجراء.',
 
         'settings' => [
-            'scheme_label'           => 'نظام الألوان',
-            'background_label'       => 'صورة الخلفية',
-            'overlay_label'          => 'عرض التراكب',
-            'overlay_opacity_label'  => 'شفافية التراكب (%)',
-            'height_label'           => 'ارتفاع البانر',
+            'scheme_label' => 'نظام الألوان',
+            'background_label' => 'صورة الخلفية',
+            'overlay_label' => 'عرض التراكب',
+            'overlay_opacity_label' => 'شفافية التراكب (%)',
+            'height_label' => 'ارتفاع البانر',
             'scheme_note' => 'يتجاوز هذا إعداد نظام ألوان القالب العام. التغييرات في نظام القالب الرئيسي لن تؤثر على هذا القسم.',
         ],
 
         'blocks' => [
             'heading' => [
-                'name'          => 'العنوان',
-                'text_label'    => 'نص العنوان',
-                'default_text'  => 'مرحبًا بك في متجرنا',
+                'name' => 'العنوان',
+                'text_label' => 'نص العنوان',
+                'default_text' => 'مرحبًا بك في متجرنا',
             ],
             'subtext' => [
-                'name'          => 'النص الفرعي',
-                'text_label'    => 'النص الفرعي',
-                'default_text'  => 'اكتشف أفضل منتجاتنا وعروضنا.',
+                'name' => 'النص الفرعي',
+                'text_label' => 'النص الفرعي',
+                'default_text' => 'اكتشف أفضل منتجاتنا وعروضنا.',
             ],
             'button' => [
-                'name'          => 'زر',
-                'text_label'    => 'نص الزر',
-                'default_text'  => 'عرض المجموعات',
-                'link_label'    => 'رابط الزر',
-                'color_label'   => 'النوع',
+                'name' => 'زر',
+                'text_label' => 'نص الزر',
+                'default_text' => 'عرض المجموعات',
+                'link_label' => 'رابط الزر',
+                'color_label' => 'النوع',
             ],
         ],
     ],
-
 
     'header' => [
         'name' => 'رأس الصفحة',
@@ -118,7 +117,6 @@ return [
         ],
     ],
 
-
     'footer' => [
         'name' => 'تذييل الصفحة',
         'description' => 'الجزء السفلي من موقعك مع الروابط والعلامة التجارية.',
@@ -153,7 +151,6 @@ return [
             ],
         ],
     ],
-
 
     'hero' => [
         'name' => 'بانر رئيسي',
@@ -206,16 +203,16 @@ return [
         'name' => 'قائمة الفئات',
         'description' => 'عرض شبكة من الفئات المحددة مع الصور والروابط.',
         'settings' => [
-            'heading_label'         => 'العنوان',
-            'heading_default'       => 'تسوق حسب الفئة',
+            'heading_label' => 'العنوان',
+            'heading_default' => 'تسوق حسب الفئة',
 
-            'heading_size_label'    => 'حجم العنوان',
-            'size_small_label'      => 'صغير',
-            'size_medium_label'     => 'متوسط',
-            'size_large_label'      => 'كبير',
+            'heading_size_label' => 'حجم العنوان',
+            'size_small_label' => 'صغير',
+            'size_medium_label' => 'متوسط',
+            'size_large_label' => 'كبير',
 
             'columns_desktop_label' => 'عدد الأعمدة (سطح المكتب)',
-            'columns_mobile_label'  => 'عدد الأعمدة (الجوال)',
+            'columns_mobile_label' => 'عدد الأعمدة (الجوال)',
         ],
         'blocks' => [
             'category' => [
@@ -226,7 +223,6 @@ return [
             ],
         ],
     ],
-
 
     'featured-products' => [
         'name' => 'منتجات مميزة',
@@ -244,7 +240,7 @@ return [
             'product_type_label' => 'نوع المنتج',
             'product_type_info' => 'يُستخدم فقط عند عدم إضافة أي كتل منتجات',
 
-            'new_label'      => 'منتجات جديدة',
+            'new_label' => 'منتجات جديدة',
             'featured_label' => 'منتجات مميزة',
         ],
 
@@ -259,9 +255,8 @@ return [
         ],
     ],
 
-
     'newsletter' => [
-        'name'        => 'الاشتراك في النشرة البريدية',
+        'name' => 'الاشتراك في النشرة البريدية',
         'description' => 'اسمح للعملاء بالاشتراك لتلقي التحديثات والعروض الترويجية.',
 
         'settings' => [
@@ -271,72 +266,71 @@ return [
             'description_label' => 'الوصف',
             'description_default' => 'استخدم هذا النص لمشاركة معلومات حول علامتك التجارية مع عملائك. صف منتجًا، أو شارك الإعلانات، أو رحب بالعملاء في متجرك.',
 
-            'scheme_label'    => 'نظام الألوان',
-            'scheme_note'     => 'يتجاوز هذا إعداد نظام ألوان القالب العام. التغييرات في نظام القالب الرئيسي لن تؤثر على هذا القسم.',
+            'scheme_label' => 'نظام الألوان',
+            'scheme_note' => 'يتجاوز هذا إعداد نظام ألوان القالب العام. التغييرات في نظام القالب الرئيسي لن تؤثر على هذا القسم.',
         ],
     ],
 
     'category-page' => [
-        'name'        => 'منتجات الفئة',
+        'name' => 'منتجات الفئة',
         'description' => 'يعرض المنتجات ضمن الفئة الحالية مع خيارات التصفية والفرز.',
 
         'settings' => [
-            'heading_label'         => 'عنوان مخصص (اختياري)',
-            'columns_label'         => 'أعمدة الشبكة (سطح المكتب)',
-            'columns_tablet_label'  => 'أعمدة الشبكة (الأجهزة اللوحية)',
-            'columns_mobile_label'  => 'أعمدة الشبكة (الجوال)',
-            'filters_label'         => 'عرض الفلاتر',
-            'sorting_label'         => 'عرض خيارات الفرز',
-            'banner_label'          => 'عرض بانر الفئة',
+            'heading_label' => 'عنوان مخصص (اختياري)',
+            'columns_label' => 'أعمدة الشبكة (سطح المكتب)',
+            'columns_tablet_label' => 'أعمدة الشبكة (الأجهزة اللوحية)',
+            'columns_mobile_label' => 'أعمدة الشبكة (الجوال)',
+            'filters_label' => 'عرض الفلاتر',
+            'sorting_label' => 'عرض خيارات الفرز',
+            'banner_label' => 'عرض بانر الفئة',
         ],
     ],
 
-
     'product-reviews' => [
-        'name'        => 'مراجعات المنتج',
+        'name' => 'مراجعات المنتج',
         'description' => 'يعرض أحدث مراجعات العملاء للمنتج الحالي.',
 
         'settings' => [
             'rating_summary_label' => 'عرض ملخص التقييم',
-            'reviews_label'        => 'عرض المراجعات الفردية',
-            'limit_label'          => 'عدد المراجعات المعروضة',
+            'reviews_label' => 'عرض المراجعات الفردية',
+            'limit_label' => 'عدد المراجعات المعروضة',
         ],
 
         'average_rating' => 'متوسط التقييم',
-        'no_reviews'     => 'لا توجد مراجعات بعد.',
+        'no_reviews' => 'لا توجد مراجعات بعد.',
     ],
 
     'text-with-image' => [
-        'name'        => 'نص مع صورة',
+        'name' => 'نص مع صورة',
         'description' => 'عرض محتوى نصي بجانب صورة مع تخطيط قابل للتعديل.',
 
         'settings' => [
-            'image_label'           => 'الصورة',
-            'image_position_label'  => 'موضع الصورة',
-            'left_label'            => 'الصورة أولاً',
-            'right_label'           => 'الصورة ثانياً',
+            'image_label' => 'الصورة',
+            'image_position_label' => 'موضع الصورة',
+            'left_label' => 'الصورة أولاً',
+            'right_label' => 'الصورة ثانياً',
 
-            'image_height_label'    => 'ارتفاع الصورة',
-            'image_height_auto'     => 'تكيّف مع الصورة',
-            'image_height_sm'       => 'صغير',
-            'image_height_md'       => 'متوسط',
-            'image_height_lg'       => 'كبير',
+            'image_height_label' => 'ارتفاع الصورة',
+            'image_height_auto' => 'تكيّف مع الصورة',
+            'image_height_sm' => 'صغير',
+            'image_height_md' => 'متوسط',
+            'image_height_lg' => 'كبير',
 
-            'image_width_label'     => 'عرض الصورة (سطح المكتب)',
-            'width_sm'              => 'صغير',
-            'width_md'              => 'متوسط',
-            'width_lg'              => 'كبير',
+            'image_width_label' => 'عرض الصورة (سطح المكتب)',
+            'width_sm' => 'صغير',
+            'width_md' => 'متوسط',
+            'width_lg' => 'كبير',
 
-            'content_position_label'    => 'موضع المحتوى (عمودي)',
-            'position_top'              => 'أعلى',
-            'position_middle'           => 'منتصف',
-            'position_bottom'           => 'أسفل',
+            'content_position_label' => 'موضع المحتوى (عمودي)',
+            'position_top' => 'أعلى',
+            'position_middle' => 'منتصف',
+            'position_bottom' => 'أسفل',
 
-            'content_align_label'       => 'محاذاة المحتوى (سطح المكتب)',
+            'content_align_label' => 'محاذاة المحتوى (سطح المكتب)',
             'content_align_mobile_label' => 'محاذاة المحتوى (الجوال)',
-            'align_start'               => 'بداية',
-            'align_center'              => 'المنتصف',
-            'align_end'                 => 'النهاية',
+            'align_start' => 'بداية',
+            'align_center' => 'المنتصف',
+            'align_end' => 'النهاية',
         ],
 
         'blocks' => [
@@ -344,46 +338,46 @@ return [
                 'label' => 'العنوان',
                 'settings' => [
                     'text_label' => 'نص العنوان',
-                    'text_default' => 'صورة مع نص'
+                    'text_default' => 'صورة مع نص',
                 ],
             ],
             'body' => [
                 'label' => 'النص الأساسي',
                 'settings' => [
                     'content_label' => 'نص الفقرة',
-                    'content_default' => 'ادمج نصًا مع صورة لتسليط الضوء على منتجك أو مجموعتك أو مقالة مدونتك. أضف تفاصيل حول التوفر أو النمط أو حتى مراجعة.'
+                    'content_default' => 'ادمج نصًا مع صورة لتسليط الضوء على منتجك أو مجموعتك أو مقالة مدونتك. أضف تفاصيل حول التوفر أو النمط أو حتى مراجعة.',
                 ],
             ],
             'button' => [
                 'label' => 'زر',
                 'settings' => [
                     'text_label' => 'نص الزر',
-                    'url_label'  => 'رابط الزر',
+                    'url_label' => 'رابط الزر',
                     'text_default' => 'نص الزر',
-                    'variant_label'        => 'نوع الزر',
+                    'variant_label' => 'نوع الزر',
 
-                    'variant_primary'      => 'رئيسي',
-                    'variant_secondary'    => 'ثانوي',
-                    'variant_accent'       => 'بارز',
-                    'variant_neutral'      => 'محايد',
+                    'variant_primary' => 'رئيسي',
+                    'variant_secondary' => 'ثانوي',
+                    'variant_accent' => 'بارز',
+                    'variant_neutral' => 'محايد',
 
-                    'style_label'          => 'نمط الزر',
-                    'style_solid'          => 'صلب',
-                    'style_soft'           => 'ناعم',
-                    'style_outline'        => 'مخطط',
-                    'style_ghost'          => 'شبح',
+                    'style_label' => 'نمط الزر',
+                    'style_solid' => 'صلب',
+                    'style_soft' => 'ناعم',
+                    'style_outline' => 'مخطط',
+                    'style_ghost' => 'شبح',
                 ],
             ],
         ],
     ],
 
     'collage' => [
-        'name'        => 'كولاج',
+        'name' => 'كولاج',
         'description' => 'تخطيط مرن لدمج الصور والمنتجات والفئات.',
 
         'settings' => [
-            'heading_label'        => 'العنوان',
-            'heading_size_label'   => 'حجم العنوان',
+            'heading_label' => 'العنوان',
+            'heading_size_label' => 'حجم العنوان',
         ],
 
         'blocks' => [
@@ -402,10 +396,10 @@ return [
             'custom' => [
                 'label' => 'محتوى مخصص',
                 'settings' => [
-                    'image_label'     => 'صورة',
-                    'title_label'     => 'العنوان',
-                    'text_label'      => 'الوصف',
-                    'link_label'      => 'الرابط',
+                    'image_label' => 'صورة',
+                    'title_label' => 'العنوان',
+                    'text_label' => 'الوصف',
+                    'link_label' => 'الرابط',
                     'link_text_label' => 'نص الرابط',
                 ],
             ],
@@ -419,7 +413,7 @@ return [
     ],
 
     'contact-form' => [
-        'name'        => 'نموذج الاتصال',
+        'name' => 'نموذج الاتصال',
         'description' => 'قسم بسيط يحتوي على نموذج الاسم، البريد الإلكتروني، والرسالة.',
 
         'success_message' => 'شكرًا لك! تم إرسال رسالتك.',
@@ -468,29 +462,29 @@ return [
         'description' => 'عرض صف من الرموز مع عناوين ووصف قصير.',
 
         'settings' => [
-            'heading_label'     => 'عنوان القسم',
+            'heading_label' => 'عنوان القسم',
             'description_label' => 'وصف القسم',
-            'icon_size_label'   => 'حجم الرمز (بكسل)',
-            'columns_label'     => 'عدد الأعمدة على سطح المكتب',
-            'layout_label'      => 'التخطيط',
+            'icon_size_label' => 'حجم الرمز (بكسل)',
+            'columns_label' => 'عدد الأعمدة على سطح المكتب',
+            'layout_label' => 'التخطيط',
             'layout_horizontal' => 'الرمز على اليسار، النص على اليمين',
-            'layout_vertical'   => 'الرمز في الأعلى، النص في الأسفل',
+            'layout_vertical' => 'الرمز في الأعلى، النص في الأسفل',
         ],
 
         'blocks' => [
             'feature' => [
                 'label' => 'ميزة',
                 'settings' => [
-                    'icon_label'  => 'رمز',
+                    'icon_label' => 'رمز',
                     'title_label' => 'عنوان',
-                    'text_label'  => 'وصف',
+                    'text_label' => 'وصف',
                 ],
             ],
         ],
 
         'placeholders' => [
             'title' => 'عنوان',
-            'text'  => 'نص إضافي لشرح الميزة',
+            'text' => 'نص إضافي لشرح الميزة',
         ],
     ],
 

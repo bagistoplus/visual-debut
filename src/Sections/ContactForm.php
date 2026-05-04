@@ -19,7 +19,7 @@ class ContactForm extends BladeSection
     protected static string $previewImageUrl = 'themes/shop/visual-debut/images/sections/contact.png';
 
     protected static array $enabledOn = [
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     public static function name(): string

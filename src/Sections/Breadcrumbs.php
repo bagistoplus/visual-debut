@@ -23,7 +23,7 @@ class Breadcrumbs extends BladeSection
     ];
 
     protected static array $enabledOn = [
-        'regions' => ['header']
+        'regions' => ['header'],
     ];
 
     protected static string $previewImageUrl = 'themes/shop/visual-debut/images/sections/breadcrumbs.png';

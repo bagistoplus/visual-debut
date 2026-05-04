@@ -11,7 +11,7 @@ return [
 
     'cart' => [
         'start-shopping' => 'खरीदारी शुरू करें',
-        'continue-shopping' => 'खरीदारी जारी रखें'
+        'continue-shopping' => 'खरीदारी जारी रखें',
     ],
 
     'product' => [
@@ -27,11 +27,11 @@ return [
     ],
 
     'review' => [
-        'failed-to-upload' => 'एक या अधिक अटैचमेंट अपलोड करने में विफल रहे। कृपया पुनः प्रयास करें।'
+        'failed-to-upload' => 'एक या अधिक अटैचमेंट अपलोड करने में विफल रहे। कृपया पुनः प्रयास करें।',
     ],
 
     'order' => [
-        'download-invoice' => 'इनवॉइस डाउनलोड करें'
+        'download-invoice' => 'इनवॉइस डाउनलोड करें',
     ],
 
     'profile' => [
@@ -48,6 +48,6 @@ return [
         'buttons' => 'बटन',
         'inputs' => 'इनपुट',
         'boxes' => 'बॉक्स',
-        'social-links' => 'सोशल मीडिया लिंक'
-    ]
+        'social-links' => 'सोशल मीडिया लिंक',
+    ],
 ];

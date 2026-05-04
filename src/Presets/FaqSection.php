@@ -112,7 +112,7 @@ class FaqSection extends Preset
                                         'width' => 'fill',
                                     ]),
                             ]),
-                    ])
+                    ]),
             ]);
     }
 }

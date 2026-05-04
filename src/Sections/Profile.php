@@ -10,7 +10,7 @@ class Profile extends BladeSection
 
     protected static array $enabledOn = [
         'templates' => ['account/profile'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.profile';

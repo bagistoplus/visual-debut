@@ -30,9 +30,9 @@ class Tailwind
             if (is_callable($callback)) {
                 $cls = $callback($v);
             } elseif (is_array($callback) && (is_string($v) || is_int($v))) {
-                $cls = $callback[$v] ?? (string)$v;
+                $cls = $callback[$v] ?? (string) $v;
             } else {
-                $cls = (string)$v;
+                $cls = (string) $v;
             }
 
             $prefix = static::$breakpointMap[$key] ?? '';
@@ -60,8 +60,8 @@ class Tailwind
     /**
      * Build spacing classes from a spacing value object
      *
-     * @param object $value Object with top, right, bottom, left properties
-     * @param string $prefix Class prefix (p for padding, m for margin)
+     * @param  object  $value  Object with top, right, bottom, left properties
+     * @param  string  $prefix  Class prefix (p for padding, m for margin)
      * @return string Generated Tailwind classes
      */
     public static function buildSpacingClasses($value, string $prefix): string
@@ -112,10 +112,10 @@ class Tailwind
     /**
      * Build responsive CSS classes and inline styles for a CSS property
      *
-     * @param ResponsiveValue|mixed $value Responsive value
-     * @param string $prefix Tailwind class prefix (e.g., 'w', 'h')
-     * @param string $property CSS property name (e.g., 'width', 'height')
-     * @param string $unit Unit to append to values (default: '%')
+     * @param  ResponsiveValue|mixed  $value  Responsive value
+     * @param  string  $prefix  Tailwind class prefix (e.g., 'w', 'h')
+     * @param  string  $property  CSS property name (e.g., 'width', 'height')
+     * @param  string  $unit  Unit to append to values (default: '%')
      * @return array ['classes' => string, 'styles' => array]
      */
     public static function buildResponsiveStyleFor($value, string $prefix, string $property, string $unit = '%'): array

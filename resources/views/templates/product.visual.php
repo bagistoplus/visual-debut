@@ -1,35 +1,31 @@
 <?php
 
 use BagistoPlus\BasicBlocks\Blocks\Basic\Divider;
-use BagistoPlus\BasicBlocks\Blocks\Product\{
-    ProductDescription,
-    ProductShortDescription,
-    ProductTitle,
-};
+use BagistoPlus\BasicBlocks\Blocks\Product\ProductDescription;
+use BagistoPlus\BasicBlocks\Blocks\Product\ProductShortDescription;
+use BagistoPlus\BasicBlocks\Blocks\Product\ProductTitle;
 use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\Visual\Support\TemplateBuilder;
 use BagistoPlus\VisualDebut\Blocks\Accordion;
 use BagistoPlus\VisualDebut\Blocks\AccordionRow;
-use BagistoPlus\VisualDebut\Blocks\Product\{
-    ProductBundleOptions,
-    ProductBuyButtons,
-    ProductCustomizableOptions,
-    ProductDetails,
-    ProductDownloadableOptions,
-    ProductGroupedOptions,
-    ProductMediaGallery,
-    ProductPrice,
-    ProductQuantitySelector,
-    ProductRating,
-    ProductVariantPicker,
-};
+use BagistoPlus\VisualDebut\Blocks\Product\ProductBundleOptions;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductBuyButtons;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductCustomizableOptions;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductDetails;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductDownloadableOptions;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductGroupedOptions;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductMediaGallery;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductPrice;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductQuantitySelector;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductRating;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductVariantPicker;
 use BagistoPlus\VisualDebut\Sections\Breadcrumbs;
 use BagistoPlus\VisualDebut\Sections\ProductInformation;
 use BagistoPlus\VisualDebut\Sections\ProductReviews;
 
 return TemplateBuilder::make()
     ->section('breadcrumbs', Breadcrumbs::class)
-    ->section('product-information', ProductInformation::class, fn($section) => $section
+    ->section('product-information', ProductInformation::class, fn ($section) => $section
         ->properties([
             'section_width' => 'container',
             'media_position' => 'left',

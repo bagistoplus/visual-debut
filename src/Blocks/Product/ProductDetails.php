@@ -31,16 +31,16 @@ class ProductDetails extends BladeBlock
     protected static array $accepts = [
         // Product-specific blocks
         ProductTitle::class,
-        Blocks\Product\ProductPrice::class,
-        Blocks\Product\ProductRating::class,
+        ProductPrice::class,
+        ProductRating::class,
         ProductShortDescription::class,
-        Blocks\Product\ProductQuantitySelector::class,
-        Blocks\Product\ProductBuyButtons::class,
+        ProductQuantitySelector::class,
+        ProductBuyButtons::class,
         ProductDescription::class,
-        Blocks\Product\ProductVariantPicker::class,
-        Blocks\Product\ProductGroupedOptions::class,
-        Blocks\Product\ProductBundleOptions::class,
-        Blocks\Product\ProductDownloadableOptions::class,
+        ProductVariantPicker::class,
+        ProductGroupedOptions::class,
+        ProductBundleOptions::class,
+        ProductDownloadableOptions::class,
 
         // Generic layout blocks
         Group::class,
@@ -89,7 +89,7 @@ class ProductDetails extends BladeBlock
         if ($this->block->settings->has('padding')) {
             $paddingClasses = Tailwind::responsive(
                 $this->block->settings->padding,
-                fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+                fn ($v) => Tailwind::buildSpacingClasses($v, 'p')
             );
         }
 

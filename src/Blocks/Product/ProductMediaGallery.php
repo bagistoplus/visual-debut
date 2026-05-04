@@ -24,7 +24,7 @@ class ProductMediaGallery extends BladeBlock
     {
         $product = $this->context['product'] ?? null;
 
-        if (!$product) {
+        if (! $product) {
             return [
                 'medias' => [],
                 'images' => [],
@@ -34,7 +34,7 @@ class ProductMediaGallery extends BladeBlock
         }
 
         $images = product_image()->getGalleryImages($product);
-        $images = array_map(fn($image) => array_merge($image, ['type' => 'image']), $images);
+        $images = array_map(fn ($image) => array_merge($image, ['type' => 'image']), $images);
 
         $videos = product_video()->getVideos($product);
 
@@ -68,7 +68,7 @@ class ProductMediaGallery extends BladeBlock
                     '2' => '2',
                 ])
                 ->default('1')
-                ->visibleWhen(fn($rule) => $rule->when('media_presentation', 'grid')),
+                ->visibleWhen(fn ($rule) => $rule->when('media_presentation', 'grid')),
 
             Range::make('image_gap', _t('blocks.product-media-gallery.settings.image_gap_label'))
                 ->min(0)
@@ -76,7 +76,7 @@ class ProductMediaGallery extends BladeBlock
                 ->step(4)
                 ->default(8)
                 ->unit('px')
-                ->visibleWhen(fn($rule) => $rule->when('media_presentation', 'grid')),
+                ->visibleWhen(fn ($rule) => $rule->when('media_presentation', 'grid')),
 
             Header::make(_t('blocks.product-media-gallery.settings.image_settings_header')),
 

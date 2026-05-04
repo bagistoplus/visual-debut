@@ -5,12 +5,12 @@ return [
         'name' => 'Barre d\'annonce',
         'description' => 'Une barre d\'annonce simple pour afficher des informations importantes à vos clients.',
         'settings' => [
-            'text_label'      => 'Texte de l\'annonce',
-            'default_text'    => 'Livraison gratuite pour les commandes supérieures à 50 $',
-            'link_label'      => 'Lien',
-            'variant_label'   => 'Variante d\'arrière-plan',
-            'scheme_label'    => 'Palette de couleurs',
-            'scheme_note'     => 'Cela remplace la palette de couleurs globale du thème. Les modifications du thème principal n\'affecteront pas cette section.'
+            'text_label' => 'Texte de l\'annonce',
+            'default_text' => 'Livraison gratuite pour les commandes supérieures à 50 $',
+            'link_label' => 'Lien',
+            'variant_label' => 'Variante d\'arrière-plan',
+            'scheme_label' => 'Palette de couleurs',
+            'scheme_note' => 'Cela remplace la palette de couleurs globale du thème. Les modifications du thème principal n\'affecteront pas cette section.',
         ],
     ],
 
@@ -19,30 +19,30 @@ return [
         'description' => 'Une bannière pleine largeur avec du texte et des boutons d’appel à l’action.',
 
         'settings' => [
-            'scheme_label'           => 'Palette de couleurs',
-            'background_label'       => 'Image de fond',
-            'overlay_label'          => 'Afficher l\'overlay',
-            'overlay_opacity_label'  => 'Opacité de l\'overlay (%)',
-            'height_label'           => 'Hauteur de la bannière',
-            'scheme_note' => 'Cela remplace la palette de couleurs globale du thème. Les modifications du thème principal n\'affecteront pas cette section.'
+            'scheme_label' => 'Palette de couleurs',
+            'background_label' => 'Image de fond',
+            'overlay_label' => 'Afficher l\'overlay',
+            'overlay_opacity_label' => 'Opacité de l\'overlay (%)',
+            'height_label' => 'Hauteur de la bannière',
+            'scheme_note' => 'Cela remplace la palette de couleurs globale du thème. Les modifications du thème principal n\'affecteront pas cette section.',
         ],
         'blocks' => [
             'heading' => [
-                'name'          => 'Titre',
-                'text_label'    => 'Texte du titre',
-                'default_text'  => 'Bienvenue dans notre boutique',
+                'name' => 'Titre',
+                'text_label' => 'Texte du titre',
+                'default_text' => 'Bienvenue dans notre boutique',
             ],
             'subtext' => [
-                'name'          => 'Sous-texte',
-                'text_label'    => 'Sous-texte',
-                'default_text'  => 'Découvrez nos meilleurs produits et offres.',
+                'name' => 'Sous-texte',
+                'text_label' => 'Sous-texte',
+                'default_text' => 'Découvrez nos meilleurs produits et offres.',
             ],
             'button' => [
-                'name'          => 'Bouton',
-                'text_label'    => 'Texte du bouton',
-                'default_text'  => 'Voir les collections',
-                'link_label'    => 'Lien du bouton',
-                'color_label'   => 'Variante'
+                'name' => 'Bouton',
+                'text_label' => 'Texte du bouton',
+                'default_text' => 'Voir les collections',
+                'link_label' => 'Lien du bouton',
+                'color_label' => 'Variante',
             ],
         ],
     ],
@@ -59,15 +59,15 @@ return [
                     'mobile_logo_image_label' => 'Logo mobile',
                     'logo_text_placeholder' => 'Affiché en l\'absence d\'image de logo',
                     'push_to_left' => 'Aligner cet élément à gauche',
-                    'push_to_right' => 'Aligner cet élément à droite'
+                    'push_to_right' => 'Aligner cet élément à droite',
                 ],
             ],
             'nav' => [
                 'name' => 'Navigation',
                 'settings' => [
                     'push_to_left' => 'Aligner cet élément à gauche',
-                    'push_to_right' => 'Aligner cet élément à droite'
-                ]
+                    'push_to_right' => 'Aligner cet élément à droite',
+                ],
             ],
             'currency' => [
                 'name' => 'Sélecteur de devise',
@@ -75,22 +75,22 @@ return [
             'locale' => [
                 'name' => 'Sélecteur de langue',
                 'settings' => [
-                    'icon_label' => 'Icône'
-                ]
+                    'icon_label' => 'Icône',
+                ],
             ],
             'search' => [
                 'name' => 'Formulaire de recherche',
                 'placeholder' => 'Recherchez des produits ici',
                 'settings' => [
                     'search_icon_label' => 'Icône de recherche',
-                    'image_search_icon_label' => 'Icône de recherche par image'
-                ]
+                    'image_search_icon_label' => 'Icône de recherche par image',
+                ],
             ],
             'compare' => [
                 'name' => 'Comparer',
                 'settings' => [
-                    'icon_label' => 'Icône'
-                ]
+                    'icon_label' => 'Icône',
+                ],
             ],
             'user' => [
                 'name' => 'Menu utilisateur',
@@ -102,7 +102,7 @@ return [
                     'guest_description_label' => 'Description pour les invités',
                     'guest_heading_default' => 'Bienvenue invité',
                     'guest_description_default' => 'Gérer le panier, les commandes et la liste de souhaits',
-                ]
+                ],
             ],
             'cart' => [
                 'name' => 'Aperçu du panier',
@@ -110,7 +110,7 @@ return [
                     'heading_label' => 'Titre',
                     'description_label' => 'Description',
                     'description_default' => 'Bénéficiez de jusqu\'à 30% de réduction sur votre 1ère commande',
-                ]
+                ],
             ],
         ],
     ],
@@ -250,7 +250,7 @@ return [
             'description_label' => 'Description',
             'description_default' => 'Utilisez ce texte pour partager des informations sur votre marque avec vos clients. Décrivez un produit, partagez des annonces ou accueillez les clients dans votre boutique.',
             'scheme_label' => 'Palette de couleurs',
-            'scheme_note' => 'Cela remplace la palette de couleurs globale du thème. Les modifications du thème principal n\'affecteront pas cette section.'
+            'scheme_note' => 'Cela remplace la palette de couleurs globale du thème. Les modifications du thème principal n\'affecteront pas cette section.',
         ],
     ],
 
@@ -281,36 +281,36 @@ return [
     ],
 
     'text-with-image' => [
-        'name'        => 'Texte avec Image',
+        'name' => 'Texte avec Image',
         'description' => 'Afficher du contenu textuel accompagné d’une image avec une disposition configurable.',
 
         'settings' => [
-            'image_label'           => 'Image',
-            'image_position_label'  => 'Position de l’image',
-            'left_label'            => 'Image en premier',
-            'right_label'           => 'Image en second',
+            'image_label' => 'Image',
+            'image_position_label' => 'Position de l’image',
+            'left_label' => 'Image en premier',
+            'right_label' => 'Image en second',
 
-            'image_height_label'    => 'Hauteur de l’image',
-            'image_height_auto'     => 'Adapter à l’image',
-            'image_height_sm'       => 'Petite',
-            'image_height_md'       => 'Moyenne',
-            'image_height_lg'       => 'Grande',
+            'image_height_label' => 'Hauteur de l’image',
+            'image_height_auto' => 'Adapter à l’image',
+            'image_height_sm' => 'Petite',
+            'image_height_md' => 'Moyenne',
+            'image_height_lg' => 'Grande',
 
-            'image_width_label'     => 'Largeur de l’image (Bureau)',
-            'width_sm'              => 'Petite',
-            'width_md'              => 'Moyenne',
-            'width_lg'              => 'Grande',
+            'image_width_label' => 'Largeur de l’image (Bureau)',
+            'width_sm' => 'Petite',
+            'width_md' => 'Moyenne',
+            'width_lg' => 'Grande',
 
-            'content_position_label'    => 'Position du contenu (Verticale)',
-            'position_top'              => 'Haut',
-            'position_middle'           => 'Milieu',
-            'position_bottom'           => 'Bas',
+            'content_position_label' => 'Position du contenu (Verticale)',
+            'position_top' => 'Haut',
+            'position_middle' => 'Milieu',
+            'position_bottom' => 'Bas',
 
-            'content_align_label'       => 'Alignement du contenu (Bureau)',
+            'content_align_label' => 'Alignement du contenu (Bureau)',
             'content_align_mobile_label' => 'Alignement du contenu (Mobile)',
-            'align_start'               => 'Début',
-            'align_center'              => 'Centre',
-            'align_end'                 => 'Fin',
+            'align_start' => 'Début',
+            'align_center' => 'Centre',
+            'align_end' => 'Fin',
         ],
 
         'blocks' => [
@@ -318,46 +318,46 @@ return [
                 'label' => 'En-tête',
                 'settings' => [
                     'text_label' => 'Texte de l’en-tête',
-                    'text_default' => 'Image avec texte'
+                    'text_default' => 'Image avec texte',
                 ],
             ],
             'body' => [
                 'label' => 'Texte principal',
                 'settings' => [
                     'content_label' => 'Texte du paragraphe',
-                    'content_default' => 'Associez du texte à une image pour mettre en valeur un produit, une collection ou un article de blog. Ajoutez des détails sur la disponibilité, le style ou même un avis.'
+                    'content_default' => 'Associez du texte à une image pour mettre en valeur un produit, une collection ou un article de blog. Ajoutez des détails sur la disponibilité, le style ou même un avis.',
                 ],
             ],
             'button' => [
                 'label' => 'Bouton',
                 'settings' => [
                     'text_label' => 'Texte du bouton',
-                    'url_label'  => 'URL du bouton',
+                    'url_label' => 'URL du bouton',
                     'text_default' => 'Texte du bouton',
-                    'variant_label'        => 'Variante du bouton',
+                    'variant_label' => 'Variante du bouton',
 
-                    'variant_primary'      => 'Principal',
-                    'variant_secondary'    => 'Secondaire',
-                    'variant_accent'       => 'Accent',
-                    'variant_neutral'      => 'Neutre',
+                    'variant_primary' => 'Principal',
+                    'variant_secondary' => 'Secondaire',
+                    'variant_accent' => 'Accent',
+                    'variant_neutral' => 'Neutre',
 
-                    'style_label'          => 'Style du bouton',
-                    'style_solid'          => 'Plein',
-                    'style_soft'           => 'Doux',
-                    'style_outline'        => 'Contour',
-                    'style_ghost'          => 'Fantôme',
+                    'style_label' => 'Style du bouton',
+                    'style_solid' => 'Plein',
+                    'style_soft' => 'Doux',
+                    'style_outline' => 'Contour',
+                    'style_ghost' => 'Fantôme',
                 ],
             ],
         ],
     ],
 
     'collage' => [
-        'name'        => 'Collage',
+        'name' => 'Collage',
         'description' => 'Mise en page flexible pour mélanger des images, des produits et des catégories.',
 
         'settings' => [
-            'heading_label'        => 'Titre',
-            'heading_size_label'   => 'Taille du titre',
+            'heading_label' => 'Titre',
+            'heading_size_label' => 'Taille du titre',
         ],
 
         'blocks' => [
@@ -376,10 +376,10 @@ return [
             'custom' => [
                 'label' => 'Contenu personnalisé',
                 'settings' => [
-                    'image_label'     => 'Image',
-                    'title_label'     => 'Titre',
-                    'text_label'      => 'Description',
-                    'link_label'      => 'Lien',
+                    'image_label' => 'Image',
+                    'title_label' => 'Titre',
+                    'text_label' => 'Description',
+                    'link_label' => 'Lien',
                     'link_text_label' => 'Texte du lien',
                 ],
             ],
@@ -393,7 +393,7 @@ return [
     ],
 
     'contact-form' => [
-        'name'        => 'Formulaire de Contact',
+        'name' => 'Formulaire de Contact',
         'description' => 'Section simple avec un formulaire de nom, e-mail et message.',
 
         'success_message' => 'Merci ! Votre message a été envoyé.',
@@ -442,29 +442,29 @@ return [
         'description' => 'Afficher une rangée d’icônes avec des titres et de courtes descriptions.',
 
         'settings' => [
-            'heading_label'     => 'Titre de la section',
+            'heading_label' => 'Titre de la section',
             'description_label' => 'Description de la section',
-            'icon_size_label'   => 'Taille des icônes (px)',
-            'columns_label'     => 'Colonnes sur ordinateur',
-            'layout_label'      => 'Disposition',
+            'icon_size_label' => 'Taille des icônes (px)',
+            'columns_label' => 'Colonnes sur ordinateur',
+            'layout_label' => 'Disposition',
             'layout_horizontal' => 'Icône à gauche, texte à droite',
-            'layout_vertical'   => 'Icône en haut, texte en dessous',
+            'layout_vertical' => 'Icône en haut, texte en dessous',
         ],
 
         'blocks' => [
             'feature' => [
                 'label' => 'Fonctionnalité',
                 'settings' => [
-                    'icon_label'  => 'Icône',
+                    'icon_label' => 'Icône',
                     'title_label' => 'Titre',
-                    'text_label'  => 'Description',
+                    'text_label' => 'Description',
                 ],
             ],
         ],
 
         'placeholders' => [
             'title' => 'Titre',
-            'text'  => 'Un texte complémentaire pour développer la fonctionnalité',
+            'text' => 'Un texte complémentaire pour développer la fonctionnalité',
         ],
     ],
 

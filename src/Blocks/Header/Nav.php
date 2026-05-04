@@ -43,13 +43,13 @@ class Nav extends SimpleBlock
 
         $categories = app(CategoryRepository::class)->getVisibleCategoryTree($rootCategoryId);
 
-        return $categories->filter(fn($c) => (bool) $c->slug);
+        return $categories->filter(fn ($c) => (bool) $c->slug);
     }
 
     protected function getViewData(): array
     {
         return [
-            'categories' => $this->getCategories()
+            'categories' => $this->getCategories(),
         ];
     }
 }

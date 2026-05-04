@@ -28,7 +28,7 @@ class Product extends SimpleBlock
     public function share(): array
     {
         return [
-            'product' => $this->block->settings->product ?? $this->context['product'] ?? null
+            'product' => $this->block->settings->product ?? $this->context['product'] ?? null,
         ];
     }
 }

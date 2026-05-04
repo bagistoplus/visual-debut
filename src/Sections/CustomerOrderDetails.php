@@ -10,7 +10,7 @@ class CustomerOrderDetails extends BladeSection
 
     protected static array $enabledOn = [
         'templates' => ['account/order-details'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.customer-order-details';

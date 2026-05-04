@@ -3,8 +3,8 @@
 namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Blocks\BladeSection;
-use BagistoPlus\Visual\Settings\Text;
 use BagistoPlus\Visual\Settings\Link;
+use BagistoPlus\Visual\Settings\Text;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -19,7 +19,7 @@ class AdminTopBar extends BladeSection
     protected static string $category = 'Layout';
 
     protected static array $disabledOn = [
-        'templates' => ['*']
+        'templates' => ['*'],
     ];
 
     public static function name(): string
@@ -46,7 +46,7 @@ class AdminTopBar extends BladeSection
     protected static array $default = [
         'settings' => [
             'text' => 'Go to Admin Panel',
-            'url'  => '/admin',
+            'url' => '/admin',
         ],
     ];
 }

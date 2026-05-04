@@ -34,5 +34,4 @@ class Currency extends SimpleBlock
     {
         return [];
     }
-
 }

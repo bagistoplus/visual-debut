@@ -2,24 +2,23 @@
 
 namespace BagistoPlus\VisualDebut;
 
-use Livewire\Livewire;
-use Illuminate\Support\Facades\Vite;
+use BagistoPlus\Visual\Facades\ThemeEditor;
+use BagistoPlus\Visual\Facades\Visual;
+use BagistoPlus\Visual\Providers\ThemeServiceProvider;
+use BagistoPlus\VisualDebut\Commands\MigrateBasicBlocks;
+use BagistoPlus\VisualDebut\Components\Livewire\AddToCartButton;
+use BagistoPlus\VisualDebut\Components\Livewire\AddToCompareButton;
+use BagistoPlus\VisualDebut\Components\Livewire\AddToWishlistButton;
+use BagistoPlus\VisualDebut\Components\Livewire\CartCouponForm;
+use BagistoPlus\VisualDebut\Components\Livewire\EstimateShipping;
+use BagistoPlus\VisualDebut\LivewireFeatures\AddressDataSynth;
+use BagistoPlus\VisualDebut\LivewireFeatures\InterceptSessionFlash;
+use BagistoPlus\VisualDebut\Settings\Support\RadiusTransformer;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
-use BagistoPlus\Visual\Facades\Visual;
+use Livewire\Livewire;
 use Webkul\Theme\ViewRenderEventManager;
-use BagistoPlus\Visual\Facades\ThemeEditor;
-use BagistoPlus\Visual\Providers\ThemeServiceProvider;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use BagistoPlus\VisualDebut\Commands\MigrateBasicBlocks;
-use BagistoPlus\VisualDebut\LivewireFeatures\AddressDataSynth;
-use BagistoPlus\VisualDebut\Components\Livewire\CartCouponForm;
-use BagistoPlus\VisualDebut\Settings\Support\RadiusTransformer;
-use BagistoPlus\VisualDebut\Components\Livewire\AddToCartButton;
-use BagistoPlus\VisualDebut\Components\Livewire\EstimateShipping;
-use BagistoPlus\VisualDebut\Components\Livewire\AddToCompareButton;
-use BagistoPlus\VisualDebut\LivewireFeatures\InterceptSessionFlash;
-use BagistoPlus\VisualDebut\Components\Livewire\AddToWishlistButton;
 
 class ServiceProvider extends ThemeServiceProvider
 {
@@ -39,7 +38,7 @@ class ServiceProvider extends ThemeServiceProvider
     {
         parent::register();
 
-        $this->mergeConfigFrom($this->getBasePath() . '/config/iconmap.php', 'bagisto_visual_iconmap');
+        $this->mergeConfigFrom($this->getBasePath().'/config/iconmap.php', 'bagisto_visual_iconmap');
     }
 
     public function boot(): void
@@ -64,13 +63,13 @@ class ServiceProvider extends ThemeServiceProvider
         Visual::registerSettingTransformer('radius', new RadiusTransformer);
         Visual::filterLivewireContextUsing(function ($context) {
             return $context->except(['menuItem', 'subMenuItem'])
-                ->filter(fn($value) => !($value instanceof LengthAwarePaginator));
+                ->filter(fn ($value) => ! ($value instanceof LengthAwarePaginator));
         });
     }
 
     protected function bootVendorViews(): void
     {
-        $this->app['view']->prependNamespace('paypal', __DIR__ . '/../resources/views/webkul/paypal');
+        $this->app['view']->prependNamespace('paypal', __DIR__.'/../resources/views/webkul/paypal');
     }
 
     protected function bootBladeComponents()

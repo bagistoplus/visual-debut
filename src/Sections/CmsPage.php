@@ -12,7 +12,7 @@ class CmsPage extends BladeSection
 
     protected static array $enabledOn = [
         'templates' => ['page'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.cms-page';

@@ -5,7 +5,6 @@ namespace BagistoPlus\VisualDebut\Sections;
 use BagistoPlus\Visual\Blocks\BladeSection;
 use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Header;
-use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\VisualDebut\Presets\ClassicFooter;
@@ -26,7 +25,7 @@ class Footer extends BladeSection
     protected static string $category = 'Layout';
 
     protected static array $enabledOn = [
-        'regions' => ['footer']
+        'regions' => ['footer'],
     ];
 
     protected static string $wrapper = 'footer';
@@ -92,7 +91,7 @@ class Footer extends BladeSection
         if ($this->section->settings->has('padding')) {
             $paddingClasses = Tailwind::responsive(
                 $this->section->settings->padding,
-                fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+                fn ($v) => Tailwind::buildSpacingClasses($v, 'p')
             );
         }
 

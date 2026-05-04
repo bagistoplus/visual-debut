@@ -12,7 +12,7 @@ class CheckoutSuccess extends BladeSection
 
     protected static array $enabledOn = [
         'templates' => ['checkout-success'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.checkout-success';

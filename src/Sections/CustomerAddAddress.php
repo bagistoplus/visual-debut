@@ -10,7 +10,7 @@ class CustomerAddAddress extends BladeSection
 
     protected static array $enabledOn = [
         'templates' => ['account/add-address'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.customer-add-address';

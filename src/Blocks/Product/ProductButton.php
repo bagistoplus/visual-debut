@@ -7,6 +7,7 @@ use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Icon;
 use BagistoPlus\Visual\Settings\Product as ProductSetting;
 use BagistoPlus\Visual\Settings\Select;
+use Webkul\Shop\Http\Resources\ProductResource;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -81,7 +82,7 @@ class ProductButton extends SimpleBlock
     {
         $product = $this->block->settings->product ?? $this->context['product'] ?? null;
 
-        if (!$product) {
+        if (! $product) {
             return [
                 'product' => null,
                 'productResource' => null,
@@ -90,7 +91,7 @@ class ProductButton extends SimpleBlock
             ];
         }
 
-        $productResource = (new \Webkul\Shop\Http\Resources\ProductResource($product))->resolve();
+        $productResource = (new ProductResource($product))->resolve();
 
         return [
             'product' => $product,

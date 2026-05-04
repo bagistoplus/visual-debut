@@ -12,7 +12,6 @@ use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Settings\Typography;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
-use BagistoPlus\VisualDebut\Blocks\AccordionRow;
 use BagistoPlus\VisualDebut\Tailwind;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -22,8 +21,11 @@ class Accordion extends BladeBlock
     protected static string $type = '@visual-debut/accordion';
 
     protected static string $view = 'visual-debut::blocks.accordion';
+
     protected static array $accepts = [AccordionRow::class];
+
     protected static string $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="7" x="3" y="3" rx="1"/><path d="M9 10h6"/><rect width="18" height="7" x="3" y="14" rx="1"/><path d="M9 17h6"/></svg>';
+
     protected static string $category = 'Layout';
 
     public static function settings(): array
@@ -100,7 +102,7 @@ class Accordion extends BladeBlock
         if ($this->block->settings->has('padding')) {
             $paddingClasses = Tailwind::responsive(
                 $this->block->settings->padding,
-                fn($v) => Tailwind::buildSpacingClasses($v, 'p')
+                fn ($v) => Tailwind::buildSpacingClasses($v, 'p')
             );
         }
 

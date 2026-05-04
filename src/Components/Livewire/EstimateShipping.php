@@ -46,7 +46,7 @@ class EstimateShipping extends Component
 
     public function render()
     {
-        return view('shop::livewire.estimate-shipping', [
+        return view()->make('shop::livewire.estimate-shipping', [
             'countries' => core()->countries(),
             'states' => core()->groupedStatesByCountries(),
         ]);

@@ -14,16 +14,6 @@
   ],
   "license": "MIT",
   "homepage": "https://github.com/bagistoplus/visual-debut",
-  "repositories": [
-    {
-      "type": "path",
-      "url": "../visual"
-    },
-    {
-      "type": "path",
-      "url": "../blocks"
-    }
-  ],
   "authors": [
     {
       "name": "Eldo Magan",
@@ -33,24 +23,26 @@
   ],
   "require": {
     "php": "^8.2",
-    "illuminate/contracts": "^10.0||^11.0||^12.0",
-    "bagistoplus/visual": "^2.0@dev",
+    "illuminate/contracts": "^11.0||^12.0",
+    "bagistoplus/visual": "^2.0.0-alpha.5",
     "livewire/livewire": "^3.7",
-    "matthieumastadenis/couleur": "^0.1.2",
-    "bagistoplus/basic-blocks": "dev-main"
+    "bagistoplus/couleur": "^0.2.0",
+    "bagistoplus/basic-blocks": "^1.0"
   },
   "require-dev": {
-    "larastan/larastan": "^2.9",
+    "bagisto/bagisto": "^2.3||^2.4",
+    "captainhook/captainhook": "^5.25",
+    "larastan/larastan": "^3.9",
     "laravel/pint": "^1.14",
-    "nunomaduro/collision": "^8.1.1||^7.10.0",
-    "orchestra/testbench": "^9.0.0||^8.22.0",
-    "pestphp/pest": "^2.34",
-    "pestphp/pest-plugin-arch": "^2.7",
-    "pestphp/pest-plugin-laravel": "^2.3",
+    "nunomaduro/collision": "^8.1.1||^9.0",
+    "orchestra/testbench": "^10.0||^9.0",
+    "pestphp/pest": "^2.34||^3.8||^4.3",
+    "pestphp/pest-plugin-arch": "^2.7||^3.0||^4.0",
+    "pestphp/pest-plugin-laravel": "^2.3||^3.0||^4.0",
     "phpstan/extension-installer": "^1.3",
-    "phpstan/phpstan-deprecation-rules": "^1.1",
-    "phpstan/phpstan-phpunit": "^1.3",
-    "bagisto/bagisto": "^2.2"
+    "phpstan/phpstan-deprecation-rules": "^2.0",
+    "phpstan/phpstan-phpunit": "^2.0",
+    "ramsey/conventional-commits": "^1.6"
   },
   "autoload": {
     "psr-4": {
@@ -58,6 +50,22 @@
     },
     "files": [
       "src/helpers.php"
+    ]
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "@composer run prepare",
+      "@composer run captainhook:install"
+    ],
+    "captainhook:install": "@php -r \"if (is_dir('.git') && is_file('vendor/bin/captainhook')) { passthru('vendor/bin/captainhook install -f -s --quiet'); }\"",
+    "prepare": "@php vendor/bin/testbench package:discover --ansi",
+    "analyse": "vendor/bin/phpstan analyse --memory-limit=512M",
+    "test": "vendor/bin/pest",
+    "test-coverage": "vendor/bin/pest --coverage",
+    "format": "vendor/bin/pint",
+    "lint": [
+      "@php vendor/bin/pint --ansi",
+      "@php vendor/bin/phpstan analyse --memory-limit=512M --verbose --ansi"
     ]
   },
   "extra": {

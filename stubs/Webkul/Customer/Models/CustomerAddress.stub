@@ -1,0 +1,5 @@
+<?php
+
+namespace Webkul\Customer\Models;
+
+class CustomerAddress extends \Illuminate\Database\Eloquent\Model {}

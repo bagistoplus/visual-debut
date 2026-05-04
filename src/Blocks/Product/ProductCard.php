@@ -37,14 +37,14 @@ class ProductCard extends SimpleBlock
     public function share(): array
     {
         return [
-            'product' => $this->block->settings->product ?? $this->context['product'] ?? null
+            'product' => $this->block->settings->product ?? $this->context['product'] ?? null,
         ];
     }
 
     protected function getViewData(): array
     {
         return [
-            'product' => $this->block->settings->product
+            'product' => $this->block->settings->product,
         ];
     }
 

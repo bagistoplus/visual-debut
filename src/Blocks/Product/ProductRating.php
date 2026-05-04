@@ -35,7 +35,6 @@ class ProductRating extends SimpleBlock
         ];
     }
 
-
     protected function getViewData(): array
     {
         $reviewHelper = app(Review::class);
@@ -44,7 +43,7 @@ class ProductRating extends SimpleBlock
         return [
             'product' => $product,
             'totalReviews' => $product ? $reviewHelper->getTotalReviews($product) : 0,
-            'averageRating' => $product ? $reviewHelper->getAverageRating($product) : 0
+            'averageRating' => $product ? $reviewHelper->getAverageRating($product) : 0,
         ];
     }
 }

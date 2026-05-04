@@ -58,7 +58,7 @@ class HeroBanner extends Preset
                             '_default' => 'fit',
                             'mobile' => 'full',
                         ],
-                        'alignment' => 'center'
+                        'alignment' => 'center',
                     ]),
 
                 PresetBlock::make(Text::class)

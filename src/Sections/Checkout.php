@@ -7,12 +7,13 @@ use BagistoPlus\Visual\Actions\Checkout\StoreAddresses;
 use BagistoPlus\Visual\Actions\Checkout\StorePaymentMethod;
 use BagistoPlus\Visual\Actions\Checkout\StoreShippingMethod;
 use BagistoPlus\Visual\Blocks\LivewireSection;
-use BagistoPlus\VisualDebut\Data\AddressData;
 use BagistoPlus\Visual\Enums\Events;
+use BagistoPlus\VisualDebut\Data\AddressData;
 use BagistoPlus\VisualDebut\Support\InteractsWithCart;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
+use Webkul\Customer\Models\Customer;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -26,7 +27,7 @@ class Checkout extends LivewireSection
 
     protected static array $enabledOn = [
         'templates' => ['checkout'],
-        'template' => ['main']
+        'template' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.checkout';
@@ -204,15 +205,22 @@ class Checkout extends LivewireSection
             return;
         }
 
-        $this->savedAddresses = Auth::guard('customer')
-            ->user()
+        $customer = Auth::guard('customer')->user();
+
+        if (! ($customer instanceof Customer)) {
+            $this->savedAddresses = collect();
+
+            return;
+        }
+
+        $this->savedAddresses = $customer
             ->addresses
-            ->map(fn($address): AddressData => AddressData::fromArray([...$address->toArray(), 'use_for_shipping' => true]));
+            ->map(fn ($address): AddressData => AddressData::fromArray([...$address->toArray(), 'use_for_shipping' => true]));
     }
 
     protected function applyDefaultAddress(): void
     {
-        $default = $this->savedAddresses->first(fn(AddressData $addr): bool => $addr->default_address);
+        $default = $this->savedAddresses->first(fn (AddressData $addr): bool => $addr->default_address);
 
         if (! ($default instanceof AddressData)) {
             return;

@@ -75,7 +75,7 @@ class ProductCardWithOverlay extends Preset
                                         'variant' => 'solid',
                                         'size' => 'xl',
                                         'color' => 'primary',
-                                        'circle' => true
+                                        'circle' => true,
                                     ]),
 
                                 // Add to Wishlist Button
@@ -86,7 +86,7 @@ class ProductCardWithOverlay extends Preset
                                         'variant' => 'solid',
                                         'size' => 'xl',
                                         'color' => 'secondary',
-                                        'circle' => true
+                                        'circle' => true,
                                     ]),
 
                                 // Add to Compare Button
@@ -97,7 +97,7 @@ class ProductCardWithOverlay extends Preset
                                         'variant' => 'soft',
                                         'size' => 'xl',
                                         'color' => 'primary',
-                                        'circle' => true
+                                        'circle' => true,
                                     ]),
                             ]),
                     ]),

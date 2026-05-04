@@ -6,6 +6,7 @@ use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\Product as ProductSetting;
 use BagistoPlus\Visual\Settings\Select;
 use Webkul\Product\Helpers\ConfigurableOption;
+use Webkul\Product\Helpers\ProductType;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -35,11 +36,10 @@ class ProductVariantPicker extends SimpleBlock
         ];
     }
 
-
     protected function getViewData(): array
     {
         $product = $this->block->settings->product ?? $this->context['product'] ?? null;
-        $hasVariants = $product ? \Webkul\Product\Helpers\ProductType::hasVariants($product->type) : false;
+        $hasVariants = $product ? ProductType::hasVariants($product->type) : false;
 
         $variantData = [
             'variantAttributes' => [],

@@ -12,7 +12,7 @@ return [
 
         'settings' => [
             'text_label' => 'Link Text',
-            'url_label'  => 'Link URL',
+            'url_label' => 'Link URL',
         ],
     ],
 
@@ -20,13 +20,13 @@ return [
         'name' => 'Announcement Bar',
         'description' => 'A simple announcement bar to display important information to your customers.',
         'settings' => [
-            'text_label'      => 'Announcement Text',
-            'default_text'    => 'Free shipping on orders over $50',
-            'link_label'      => 'Link',
-            'variant_label'   => 'Background Variant',
+            'text_label' => 'Announcement Text',
+            'default_text' => 'Free shipping on orders over $50',
+            'link_label' => 'Link',
+            'variant_label' => 'Background Variant',
 
-            'scheme_label'    => 'Color Scheme',
-            'scheme_note'     => 'This overrides the global theme color scheme. Changes to the main theme scheme will not affect this section.'
+            'scheme_label' => 'Color Scheme',
+            'scheme_note' => 'This overrides the global theme color scheme. Changes to the main theme scheme will not affect this section.',
         ],
     ],
 
@@ -55,7 +55,7 @@ return [
             ],
             'nav' => [
                 'name' => 'Navigation',
-                'settings' => []
+                'settings' => [],
             ],
             'currency' => [
                 'name' => 'Currency selector',
@@ -63,22 +63,22 @@ return [
             'locale' => [
                 'name' => 'Language selector',
                 'settings' => [
-                    'icon_label' => 'Icon'
-                ]
+                    'icon_label' => 'Icon',
+                ],
             ],
             'search' => [
                 'name' => 'Search form',
                 'placeholder' => 'Search products here',
                 'settings' => [
                     'search_icon_label' => 'Search icon',
-                    'image_search_icon_label' => 'Image search icon'
-                ]
+                    'image_search_icon_label' => 'Image search icon',
+                ],
             ],
             'compare' => [
                 'name' => 'Compare',
                 'settings' => [
-                    'icon_label' => 'Icon'
-                ]
+                    'icon_label' => 'Icon',
+                ],
             ],
             'user' => [
                 'name' => 'User menu',
@@ -90,15 +90,15 @@ return [
                     'guest_description_label' => 'Description shown to guest users',
                     'guest_heading_default' => 'Welcome Guest',
                     'guest_description_default' => 'Manage Cart, Orders & Wishlist',
-                ]
+                ],
             ],
             'cart' => [
                 'name' => 'Cart preview',
                 'settings' => [
                     'heading_label' => 'Heading',
                     'description_label' => 'Description',
-                    'description_default' => 'Get Up To 30% OFF on your 1st order'
-                ]
+                    'description_default' => 'Get Up To 30% OFF on your 1st order',
+                ],
             ],
         ],
     ],
@@ -216,41 +216,41 @@ return [
         'name' => 'Category List',
         'description' => 'Display categories in a responsive grid or carousel layout.',
         'settings' => [
-            'heading_default'       => 'Shop by category',
+            'heading_default' => 'Shop by category',
 
             'parent_category_label' => 'Parent Category',
-            'parent_category_info'  => 'Select a parent category to display its children. Leave empty to show manually added categories.',
+            'parent_category_info' => 'Select a parent category to display its children. Leave empty to show manually added categories.',
 
-            'layout_header'         => 'Layout',
-            'layout_type_label'     => 'Layout Type',
-            'layout_type_options'   => [
-                'grid'     => 'Grid',
+            'layout_header' => 'Layout',
+            'layout_type_label' => 'Layout Type',
+            'layout_type_options' => [
+                'grid' => 'Grid',
                 'carousel' => 'Carousel',
             ],
-            'columns_label'         => 'Columns',
-            'gap_label'             => 'Gap',
-            'gap_info'              => 'Space between items (0-24, where 4 = 1rem)',
+            'columns_label' => 'Columns',
+            'gap_label' => 'Gap',
+            'gap_info' => 'Space between items (0-24, where 4 = 1rem)',
 
-            'carousel_nav_header'   => 'Carousel Navigation',
-            'nav_style_label'       => 'Navigation Style',
-            'nav_style_options'     => [
-                'arrow'   => 'Arrow',
+            'carousel_nav_header' => 'Carousel Navigation',
+            'nav_style_label' => 'Navigation Style',
+            'nav_style_options' => [
+                'arrow' => 'Arrow',
                 'chevron' => 'Chevron',
-                'none'    => 'None',
+                'none' => 'None',
             ],
-            'nav_shape_label'       => 'Navigation Shape',
-            'nav_shape_options'     => [
-                'none'   => 'None',
+            'nav_shape_label' => 'Navigation Shape',
+            'nav_shape_options' => [
+                'none' => 'None',
                 'circle' => 'Circle',
                 'square' => 'Square',
             ],
 
-            'appearance_header'       => 'Appearance',
+            'appearance_header' => 'Appearance',
 
-            'content_width_label'     => 'Content Width',
-            'content_width_options'   => [
+            'content_width_label' => 'Content Width',
+            'content_width_options' => [
                 'container' => 'Container',
-                'full'      => 'Full Width',
+                'full' => 'Full Width',
             ],
         ],
         'presets' => [
@@ -279,8 +279,8 @@ return [
 
             'product_type_label' => 'Product Type',
             'product_type_info' => 'Only used when no product blocks are added and no parent category is selected',
-            'new_label'             => 'New Products',
-            'featured_label'        => 'Featured Products',
+            'new_label' => 'New Products',
+            'featured_label' => 'Featured Products',
 
             'nb_products_label' => 'Number of Products',
             'nb_products_info' => 'Maximum number of products to display',
@@ -338,7 +338,7 @@ return [
     ],
 
     'newsletter' => [
-        'name'        => 'Newsletter Signup',
+        'name' => 'Newsletter Signup',
         'description' => 'Let customers subscribe for updates and promotions.',
 
         'settings' => [
@@ -348,8 +348,8 @@ return [
             'description_label' => 'Description',
             'description_default' => 'Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.',
 
-            'scheme_label'    => 'Color Scheme',
-            'scheme_note'     => 'This overrides the global theme color scheme. Changes to the main theme scheme will not affect this section.'
+            'scheme_label' => 'Color Scheme',
+            'scheme_note' => 'This overrides the global theme color scheme. Changes to the main theme scheme will not affect this section.',
         ],
     ],
 
@@ -380,36 +380,36 @@ return [
     ],
 
     'category-page' => [
-        'name'        => 'Category Products',
+        'name' => 'Category Products',
         'description' => 'Displays products for the current category with filtering and sorting.',
 
         'settings' => [
-            'heading_label'         => 'Custom Heading (optional)',
-            'columns_label'         => 'Grid Columns (Desktop)',
-            'columns_tablet_label'  => 'Grid Columns (Tablet)',
-            'columns_mobile_label'  => 'Grid Columns (Mobile)',
-            'filters_label'         => 'Show Filters',
-            'sorting_label'         => 'Show Sorting',
-            'banner_label'          => 'Show Category Banner',
+            'heading_label' => 'Custom Heading (optional)',
+            'columns_label' => 'Grid Columns (Desktop)',
+            'columns_tablet_label' => 'Grid Columns (Tablet)',
+            'columns_mobile_label' => 'Grid Columns (Mobile)',
+            'filters_label' => 'Show Filters',
+            'sorting_label' => 'Show Sorting',
+            'banner_label' => 'Show Category Banner',
         ],
     ],
 
     'product-reviews' => [
-        'name'        => 'Product Reviews',
+        'name' => 'Product Reviews',
         'description' => 'Shows recent customer reviews for the current product.',
 
         'settings' => [
             'rating_summary_label' => 'Show Rating Summary',
-            'reviews_label'        => 'Show Individual Reviews',
-            'limit_label'          => 'Number of Reviews to Show',
+            'reviews_label' => 'Show Individual Reviews',
+            'limit_label' => 'Number of Reviews to Show',
         ],
 
         'average_rating' => 'Average Rating',
-        'no_reviews'     => 'No reviews yet.',
+        'no_reviews' => 'No reviews yet.',
     ],
 
     'contact-form' => [
-        'name'        => 'Contact Form',
+        'name' => 'Contact Form',
         'description' => 'Simple section with name, email, and message form.',
 
         'success_message' => 'Thank you! Your message has been sent.',

@@ -19,7 +19,7 @@ class CategoryCard extends SimpleBlock
 
     protected static array $accepts = [
         Group::class,
-        '@basic-blocks/category-*'
+        '@basic-blocks/category-*',
     ];
 
     protected static string $view = 'visual-debut::blocks.category.card';
@@ -31,14 +31,14 @@ class CategoryCard extends SimpleBlock
     public static function settings(): array
     {
         return [
-            Category::make('category', _t('blocks.category-card.settings.category_label'))
+            Category::make('category', _t('blocks.category-card.settings.category_label')),
         ];
     }
 
     public function share(): array
     {
         return [
-            'category' => $this->block->settings->category ?? $this->context['category'] ?? null
+            'category' => $this->block->settings->category ?? $this->context['category'] ?? null,
         ];
     }
 

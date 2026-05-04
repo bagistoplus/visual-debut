@@ -15,7 +15,7 @@ class Compare extends LivewireSection
 
     protected static array $enabledOn = [
         'templates' => ['compare'],
-        'regions' => ['main']
+        'regions' => ['main'],
     ];
 
     protected static string $view = 'shop::sections.compare';

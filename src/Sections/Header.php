@@ -30,7 +30,7 @@ class Header extends BladeSection
     protected static string $category = 'Layout';
 
     protected static array $enabledOn = [
-        'regions' => ['header']
+        'regions' => ['header'],
     ];
 
     protected static string $wrapper = 'header';
@@ -44,7 +44,7 @@ class Header extends BladeSection
         Compare::class,
         User::class,
         Cart::class,
-        Group::class
+        Group::class,
     ];
 
     public static function name(): string
@@ -152,6 +152,6 @@ class Header extends BladeSection
 
         $categories = app(CategoryRepository::class)->getVisibleCategoryTree($rootCategoryId);
 
-        return $categories->filter(fn($c) => (bool) $c->slug);
+        return $categories->filter(fn ($c) => (bool) $c->slug);
     }
 }

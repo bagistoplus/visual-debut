@@ -1,0 +1,9 @@
+<?php
+
+namespace Webkul\Customer\Models;
+
+/**
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Webkul\Customer\Models\CustomerAddress> $addresses
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Webkul\Customer\Models\Wishlist> $wishlist_items
+ */
+class Customer extends \Illuminate\Database\Eloquent\Model {}

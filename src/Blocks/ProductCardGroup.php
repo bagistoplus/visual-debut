@@ -13,7 +13,7 @@ class ProductCardGroup extends Group
 {
     protected static string $type = '@visual-debut/product-card-group';
 
-    protected static bool $private  = true;
+    protected static bool $private = true;
 
     protected static array $accepts = [
         Text::class,

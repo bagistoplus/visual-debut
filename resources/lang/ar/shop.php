@@ -11,7 +11,7 @@ return [
 
     'cart' => [
         'start-shopping' => 'ابدأ التسوق',
-        'continue-shopping' => 'متابعة التسوق'
+        'continue-shopping' => 'متابعة التسوق',
     ],
 
     'product' => [
@@ -27,11 +27,11 @@ return [
     ],
 
     'review' => [
-        'failed-to-upload' => 'فشل تحميل مرفق واحد أو أكثر. الرجاء المحاولة مرة أخرى.'
+        'failed-to-upload' => 'فشل تحميل مرفق واحد أو أكثر. الرجاء المحاولة مرة أخرى.',
     ],
 
     'order' => [
-        'download-invoice' => 'تحميل الفاتورة'
+        'download-invoice' => 'تحميل الفاتورة',
     ],
 
     'profile' => [
@@ -48,6 +48,6 @@ return [
         'buttons' => 'الأزرار',
         'inputs' => 'حقول الإدخال',
         'boxes' => 'الصناديق',
-        'social-links' => 'روابط التواصل الاجتماعي'
-    ]
+        'social-links' => 'روابط التواصل الاجتماعي',
+    ],
 ];
