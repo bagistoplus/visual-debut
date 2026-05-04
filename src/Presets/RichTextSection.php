@@ -2,6 +2,10 @@
 
 namespace BagistoPlus\VisualDebut\Presets;
 
+use BagistoPlus\BasicBlocks\Blocks\Basic\Button;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Text;
+use BagistoPlus\BasicBlocks\Sections\FlexSection;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 
@@ -11,7 +15,7 @@ class RichTextSection extends Preset
 {
     public static function getType(): string
     {
-        return '@visual-debut/flex-section';
+        return FlexSection::class;
     }
 
     protected function build(): void
@@ -21,8 +25,8 @@ class RichTextSection extends Preset
             ->category('Content')
             ->settings([
                 'flex_direction' => 'column',
-                'vertical_justify_content' => 'center',
-                'vertical_align_items' => 'center',
+                'flex_justify' => 'center',
+                'flex_align' => 'center',
                 'flex_gap' => 6,
                 'section_width' => 'container',
                 'section_height' => 'sm',
@@ -34,31 +38,30 @@ class RichTextSection extends Preset
                 ],
             ])
             ->blocks([
-                PresetBlock::make('@visual-debut/heading')
+                PresetBlock::make(Heading::class)
                     ->id('heading')
                     ->settings([
                         'text' => 'New arrivals',
-                        'width' => 'fit-content',
+                        'width' => 'fit',
                         'max_width' => 'normal',
                         'alignment' => 'left',
                         'typography' => 'heading-2',
                     ]),
 
-                PresetBlock::make('@visual-debut/text')
+                PresetBlock::make(Text::class)
                     ->id('text')
                     ->settings([
                         'text' => 'We make things that work better and last longer. Our products solve real problems with clean design and honest materials.',
-                        'width' => 'fit-content',
+                        'width' => 'fit',
                         'max_width' => 'normal',
                         'alignment' => 'center',
                     ]),
 
-                PresetBlock::make('@visual-debut/button')
+                PresetBlock::make(Button::class)
                     ->id('button')
                     ->settings([
-                        'label' => 'Shop now',
-                        'link' => '/collections/all',
-                        'width' => 'fit-content',
+                        'text' => 'Shop now',
+                        'url' => '/collections/all',
                     ]),
             ]);
     }

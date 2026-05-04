@@ -21,10 +21,10 @@ class FooterLink extends BladeBlock
     public static function settings(): array
     {
         return [
-            Text::make('text', _t('blocks.link.settings.text_label'))
-                ->default(_t('blocks.link.settings.text_default')),
+            Text::make('text', _t('blocks.footer-link.text_label'))
+                ->default(_t('blocks.footer-link.text_default')),
 
-            Link::make('link', _t('blocks.link.settings.link_label'))
+            Link::make('link', _t('blocks.footer-link.link_label'))
                 ->default('/'),
         ];
     }

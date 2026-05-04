@@ -2,6 +2,7 @@
 
 namespace BagistoPlus\VisualDebut\Presets;
 
+use BagistoPlus\BasicBlocks\Sections\FlexSection;
 use BagistoPlus\Visual\Support\Preset;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -10,7 +11,7 @@ class CustomSection extends Preset
 {
     public static function getType(): string
     {
-        return '@visual-debut/flex-section';
+        return FlexSection::class;
     }
 
     protected function build(): void

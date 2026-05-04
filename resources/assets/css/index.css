@@ -36,12 +36,6 @@
 @source inline("{mobile:,tablet:,desktop:,}items-{start,end,center}");
 @source inline("{mobile:,tablet:,desktop:,}text-{left,center,right}");
 
-/* Image block - Custom width with CSS variables */
-@source inline("w-(--width)");
-@source inline("mobile:w-(--width-mobile)");
-@source inline("tablet:w-(--width-tablet)");
-@source inline("desktop:w-(--width-desktop)");
-
 /* Image block - Hover effects */
 @source inline("hover:scale-{100,105,110,125,150}");
 @source inline("group-hover:scale-{100,105,110,125,150}");

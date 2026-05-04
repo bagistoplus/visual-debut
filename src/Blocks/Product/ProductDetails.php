@@ -2,6 +2,16 @@
 
 namespace BagistoPlus\VisualDebut\Blocks\Product;
 
+use BagistoPlus\BasicBlocks\Blocks\Basic\Button;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Divider;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Icon;
+use BagistoPlus\BasicBlocks\Blocks\Basic\RichText;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Text;
+use BagistoPlus\BasicBlocks\Blocks\Group;
+use BagistoPlus\BasicBlocks\Blocks\Product\ProductDescription;
+use BagistoPlus\BasicBlocks\Blocks\Product\ProductShortDescription;
+use BagistoPlus\BasicBlocks\Blocks\Product\ProductTitle;
 use BagistoPlus\Visual\Blocks\BladeBlock;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Header;
@@ -20,28 +30,28 @@ class ProductDetails extends BladeBlock
 
     protected static array $accepts = [
         // Product-specific blocks
-        Blocks\Product\ProductTitle::class,
+        ProductTitle::class,
         Blocks\Product\ProductPrice::class,
         Blocks\Product\ProductRating::class,
-        Blocks\Product\ProductShortDescription::class,
+        ProductShortDescription::class,
         Blocks\Product\ProductQuantitySelector::class,
         Blocks\Product\ProductBuyButtons::class,
-        Blocks\Product\ProductDescription::class,
+        ProductDescription::class,
         Blocks\Product\ProductVariantPicker::class,
         Blocks\Product\ProductGroupedOptions::class,
         Blocks\Product\ProductBundleOptions::class,
         Blocks\Product\ProductDownloadableOptions::class,
 
         // Generic layout blocks
-        Blocks\Group::class,
+        Group::class,
         Blocks\Accordion::class,
         Blocks\AccordionRow::class,
-        Blocks\Basic\Divider::class,
-        Blocks\Basic\Heading::class,
-        Blocks\Basic\Text::class,
-        Blocks\Basic\RichText::class,
-        Blocks\Basic\Button::class,
-        Blocks\Basic\Icon::class,
+        Divider::class,
+        Heading::class,
+        Text::class,
+        RichText::class,
+        Button::class,
+        Icon::class,
     ];
 
     protected static string $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>';

@@ -1,15 +1,19 @@
 <?php
 
+use BagistoPlus\BasicBlocks\Blocks\Basic\Divider;
+use BagistoPlus\BasicBlocks\Blocks\Product\{
+    ProductDescription,
+    ProductShortDescription,
+    ProductTitle,
+};
 use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\Visual\Support\TemplateBuilder;
 use BagistoPlus\VisualDebut\Blocks\Accordion;
 use BagistoPlus\VisualDebut\Blocks\AccordionRow;
-use BagistoPlus\VisualDebut\Blocks\Basic\Divider;
 use BagistoPlus\VisualDebut\Blocks\Product\{
     ProductBundleOptions,
     ProductBuyButtons,
     ProductCustomizableOptions,
-    ProductDescription,
     ProductDetails,
     ProductDownloadableOptions,
     ProductGroupedOptions,
@@ -17,8 +21,6 @@ use BagistoPlus\VisualDebut\Blocks\Product\{
     ProductPrice,
     ProductQuantitySelector,
     ProductRating,
-    ProductShortDescription,
-    ProductTitle,
     ProductVariantPicker,
 };
 use BagistoPlus\VisualDebut\Sections\Breadcrumbs;
@@ -61,8 +63,8 @@ return TemplateBuilder::make()
                     PresetBlock::make(ProductTitle::class)
                         ->id('title')
                         ->settings([
-                            'tag' => 'h1',
-                            'size' => ['_default' => '2xl'],
+                            'heading_level' => 'h1',
+                            'typography' => 'heading-1',
                         ]),
                     PresetBlock::make(ProductPrice::class)
                         ->id('price')

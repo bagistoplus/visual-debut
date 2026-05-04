@@ -2,8 +2,12 @@
 
 namespace BagistoPlus\VisualDebut\Presets;
 
+use BagistoPlus\BasicBlocks\Blocks\Basic\Text;
+use BagistoPlus\BasicBlocks\Sections\FlexSection;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
+use BagistoPlus\VisualDebut\Blocks\Accordion;
+use BagistoPlus\VisualDebut\Blocks\AccordionRow;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -11,7 +15,7 @@ class FaqSection extends Preset
 {
     public static function getType(): string
     {
-        return '@visual-debut/flex-section';
+        return FlexSection::class;
     }
 
     protected function build(): void
@@ -21,8 +25,8 @@ class FaqSection extends Preset
             ->category('Content')
             ->settings([
                 'flex_direction' => 'column',
-                'vertical_justify_content' => 'start',
-                'vertical_align_items' => 'center',
+                'flex_justify' => 'start',
+                'flex_align' => 'center',
                 'flex_gap' => 8,
                 'section_width' => 'container',
                 'section_height' => 'auto',
@@ -34,16 +38,16 @@ class FaqSection extends Preset
                 ],
             ])
             ->blocks([
-                PresetBlock::make('@visual-debut/text')
+                PresetBlock::make(Text::class)
                     ->id('heading')
                     ->settings([
                         'text' => 'Frequently asked questions',
-                        'width' => 'fit-content',
+                        'width' => 'fit',
                         'max_width' => 'narrow',
                         'alignment' => 'left',
                     ]),
 
-                PresetBlock::make('@visual-debut/accordion')
+                PresetBlock::make(Accordion::class)
                     ->id('accordion')
                     ->settings([
                         'icon' => 'caret',
@@ -52,11 +56,11 @@ class FaqSection extends Preset
                         'inherit_color_scheme' => true,
                     ])
                     ->blocks([
-                        PresetBlock::make('@visual-debut/accordion-row')
+                        PresetBlock::make(AccordionRow::class)
                             ->id('row-1')
                             ->settings(['heading' => 'What is the return policy?'])
                             ->blocks([
-                                PresetBlock::make('@visual-debut/text')
+                                PresetBlock::make(Text::class)
                                     ->settings([
                                         'text' => 'Our goal is for every customer to be totally satisfied with their purchase. If this isn\'t the case, let us know and we\'ll do our best to work with you to make it right.',
                                         'width' => 'fill',
@@ -65,44 +69,44 @@ class FaqSection extends Preset
                                     ]),
                             ]),
 
-                        PresetBlock::make('@visual-debut/accordion-row')
+                        PresetBlock::make(AccordionRow::class)
                             ->id('row-2')
                             ->settings(['heading' => 'Are any purchases final sale?'])
                             ->blocks([
-                                PresetBlock::make('@visual-debut/text')
+                                PresetBlock::make(Text::class)
                                     ->settings([
                                         'text' => 'We are unable to accept returns on certain items. These will be carefully marked before purchase.',
                                         'width' => 'fill',
                                     ]),
                             ]),
 
-                        PresetBlock::make('@visual-debut/accordion-row')
+                        PresetBlock::make(AccordionRow::class)
                             ->id('row-3')
                             ->settings(['heading' => 'When will I get my order?'])
                             ->blocks([
-                                PresetBlock::make('@visual-debut/text')
+                                PresetBlock::make(Text::class)
                                     ->settings([
                                         'text' => 'We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.',
                                         'width' => 'fill',
                                     ]),
                             ]),
 
-                        PresetBlock::make('@visual-debut/accordion-row')
+                        PresetBlock::make(AccordionRow::class)
                             ->id('row-4')
                             ->settings(['heading' => 'Where are your products manufactured?'])
                             ->blocks([
-                                PresetBlock::make('@visual-debut/text')
+                                PresetBlock::make(Text::class)
                                     ->settings([
                                         'text' => 'Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value.',
                                         'width' => 'fill',
                                     ]),
                             ]),
 
-                        PresetBlock::make('@visual-debut/accordion-row')
+                        PresetBlock::make(AccordionRow::class)
                             ->id('row-5')
                             ->settings(['heading' => 'How much does shipping cost?'])
                             ->blocks([
-                                PresetBlock::make('@visual-debut/text')
+                                PresetBlock::make(Text::class)
                                     ->settings([
                                         'text' => 'Shipping is calculated based on your location and the items in your order. You will always know the shipping price before you purchase.',
                                         'width' => 'fill',

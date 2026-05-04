@@ -2,8 +2,12 @@
 
 namespace BagistoPlus\VisualDebut\Presets;
 
+use BagistoPlus\BasicBlocks\Blocks\Category\CategoryImage;
+use BagistoPlus\BasicBlocks\Blocks\Category\CategoryName;
+use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
+use BagistoPlus\VisualDebut\Blocks\Category\CategoryCard;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -11,7 +15,7 @@ class CategoryCardOverlay extends Preset
 {
     public static function getType(): string
     {
-        return '@visual-debut/category-card';
+        return CategoryCard::class;
     }
 
     protected function build(): void
@@ -21,7 +25,7 @@ class CategoryCardOverlay extends Preset
             ->category('Category')
             ->blocks([
                 // Category Image
-                PresetBlock::make('@visual-debut/category-image')
+                PresetBlock::make(CategoryImage::class)
                     ->settings([
                         'image_source' => 'logo',
                         'aspect_ratio' => 'square',
@@ -31,13 +35,13 @@ class CategoryCardOverlay extends Preset
                     ]),
 
                 // Overlay Container with Category Name
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'row',
                         'flex_wrap' => 'nowrap',
-                        'vertical_justify_content' => 'center',
-                        'vertical_align_items' => 'center',
+                        'flex_justify' => 'center',
+                        'flex_align' => 'center',
                         'flex_gap' => ['_default' => 4],
                         'is_overlay' => true,
                         'overlay_visibility' => 'always',
@@ -46,15 +50,15 @@ class CategoryCardOverlay extends Preset
                         'z_index' => 10,
                     ])
                     ->blocks([
-                        PresetBlock::make('@visual-debut/category-name')
+                        PresetBlock::make(CategoryName::class)
                             ->settings([
-                                'width' => 'fit-content',
+                                'width' => 'fit',
                                 'max_width' => 'normal',
                                 'alignment' => 'center',
                                 'typography' => 'heading-3',
                                 'color' => 'custom',
                                 'text_color' => '#FFFFFFFF',
-                                'tag' => 'h3',
+                                'heading_level' => 'h3',
                             ]),
                     ]),
             ]);

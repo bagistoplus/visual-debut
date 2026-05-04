@@ -1,7 +1,7 @@
 <?php
 
+use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
 use BagistoPlus\Visual\Support\TemplateBuilder;
-use BagistoPlus\VisualDebut\Blocks\Basic\Heading;
 use BagistoPlus\VisualDebut\Presets\CategoryGrid;
 use BagistoPlus\VisualDebut\Presets\HeroBanner;
 use BagistoPlus\VisualDebut\Sections\Newsletter;
@@ -19,7 +19,7 @@ return TemplateBuilder::make()
                 \BagistoPlus\Visual\Support\PresetBlock::make(Heading::class)
                     ->settings([
                         'text' => 'Featured Products',
-                        'tag' => 'h2',
+                        'heading_level' => 'h2',
                         'width' => 'fill',
                         'alignment' => 'center',
                         'typography' => 'heading-2',

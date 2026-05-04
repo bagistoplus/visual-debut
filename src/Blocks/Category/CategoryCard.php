@@ -2,6 +2,9 @@
 
 namespace BagistoPlus\VisualDebut\Blocks\Category;
 
+use BagistoPlus\BasicBlocks\Blocks\Category\CategoryImage;
+use BagistoPlus\BasicBlocks\Blocks\Category\CategoryName;
+use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\Category;
 use BagistoPlus\Visual\Support\Preset;
@@ -14,7 +17,10 @@ class CategoryCard extends SimpleBlock
 {
     protected static string $type = '@visual-debut/category-card';
 
-    protected static array $accepts = ['@visual-debut/group', '@visual-debut/category-*'];
+    protected static array $accepts = [
+        Group::class,
+        '@basic-blocks/category-*'
+    ];
 
     protected static string $view = 'visual-debut::blocks.category.card';
 
@@ -45,7 +51,7 @@ class CategoryCard extends SimpleBlock
             Preset::make(_t('blocks.category-card.presets.vertical_overlay.name'))
                 ->category(_t('blocks.category-card.presets.vertical_overlay.category'))
                 ->blocks([
-                    PresetBlock::make('@visual-debut/group')
+                    PresetBlock::make(Group::class)
                         ->properties([
                             'layout_type' => 'block',
                             'border' => true,
@@ -56,31 +62,31 @@ class CategoryCard extends SimpleBlock
                             'background_color' => 'transparent',
                         ])
                         ->children([
-                            PresetBlock::make('@visual-debut/group')
+                            PresetBlock::make(Group::class)
                                 ->properties([
                                     'layout_type' => 'block',
                                 ])
                                 ->children([
-                                    PresetBlock::make('@visual-debut/category-image')
+                                    PresetBlock::make(CategoryImage::class)
                                         ->properties([
                                             'image_source' => 'banner',
                                             'aspect_ratio' => 'square',
                                             'object_fit' => 'cover',
                                         ]),
-                                    PresetBlock::make('@visual-debut/group')
+                                    PresetBlock::make(Group::class)
                                         ->properties([
                                             'layout_type' => 'flex',
-                                            'justify_content' => 'center',
-                                            'align_items' => 'center',
+                                            'flex_justify' => 'center',
+                                            'flex_align' => 'center',
                                             'is_overlay' => true,
                                             'background_color' => '#000000FF',
                                             'background_opacity' => 35,
                                             'z_index' => 10,
                                         ])
                                         ->children([
-                                            PresetBlock::make('@visual-debut/category-name')
+                                            PresetBlock::make(CategoryName::class)
                                                 ->properties([
-                                                    'tag' => 'h3',
+                                                    'heading_level' => 'h3',
                                                     'alignment' => 'center',
                                                     'text_color' => '#FFFFFFFF',
                                                 ]),
@@ -93,7 +99,7 @@ class CategoryCard extends SimpleBlock
             Preset::make(_t('blocks.category-card.presets.vertical_below.name'))
                 ->category(_t('blocks.category-card.presets.vertical_below.category'))
                 ->blocks([
-                    PresetBlock::make('@visual-debut/group')
+                    PresetBlock::make(Group::class)
                         ->properties([
                             'layout_type' => 'flex',
                             'flex_direction' => ['_default' => 'column'],
@@ -106,18 +112,18 @@ class CategoryCard extends SimpleBlock
                             'background_color' => 'transparent',
                         ])
                         ->children([
-                            PresetBlock::make('@visual-debut/category-image')
+                            PresetBlock::make(CategoryImage::class)
                                 ->properties([
                                     'image_source' => 'banner',
                                     'aspect_ratio' => 'square',
                                     'object_fit' => 'cover',
                                 ]),
-                            PresetBlock::make('@visual-debut/group')
+                            PresetBlock::make(Group::class)
                                 ->properties([
                                     'layout_type' => 'flex',
                                     'flex_direction' => ['_default' => 'column'],
-                                    'vertical_justify_content' => 'center',
-                                    'vertical_align_items' => 'center',
+                                    'flex_justify' => 'center',
+                                    'flex_align' => 'center',
                                     'padding' => [
                                         'top' => 4,
                                         'right' => 4,
@@ -126,9 +132,9 @@ class CategoryCard extends SimpleBlock
                                     ],
                                 ])
                                 ->children([
-                                    PresetBlock::make('@visual-debut/category-name')
+                                    PresetBlock::make(CategoryName::class)
                                         ->properties([
-                                            'tag' => 'h3',
+                                            'heading_level' => 'h3',
                                             'alignment' => 'center',
                                             'text_color' => '#000000FF',
                                         ]),
@@ -140,24 +146,24 @@ class CategoryCard extends SimpleBlock
             Preset::make(_t('blocks.category-card.presets.simple_hover.name'))
                 ->category(_t('blocks.category-card.presets.simple_hover.category'))
                 ->blocks([
-                    PresetBlock::make('@visual-debut/group')
+                    PresetBlock::make(Group::class)
                         ->properties([
                             'layout_type' => 'block',
                             'border_radius' => 'xl',
                             'background_color' => 'transparent',
                         ])
                         ->children([
-                            PresetBlock::make('@visual-debut/category-image')
+                            PresetBlock::make(CategoryImage::class)
                                 ->properties([
                                     'image_source' => 'banner',
                                     'aspect_ratio' => 'landscape',
                                     'object_fit' => 'cover',
                                 ]),
-                            PresetBlock::make('@visual-debut/group')
+                            PresetBlock::make(Group::class)
                                 ->properties([
                                     'layout_type' => 'flex',
-                                    'justify_content' => 'center',
-                                    'align_items' => 'center',
+                                    'flex_justify' => 'center',
+                                    'flex_align' => 'center',
                                     'is_overlay' => true,
                                     'overlay_visibility' => 'hover',
                                     'background_color' => '#000000FF',
@@ -165,9 +171,9 @@ class CategoryCard extends SimpleBlock
                                     'z_index' => 10,
                                 ])
                                 ->children([
-                                    PresetBlock::make('@visual-debut/category-name')
+                                    PresetBlock::make(CategoryName::class)
                                         ->properties([
-                                            'tag' => 'h2',
+                                            'heading_level' => 'h2',
                                             'alignment' => 'center',
                                             'text_color' => '#FFFFFFFF',
                                         ]),

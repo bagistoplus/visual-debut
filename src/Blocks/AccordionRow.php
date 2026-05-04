@@ -48,7 +48,7 @@ class AccordionRow extends BladeBlock
         return [
             Preset::make(_t('blocks.accordion-row.presets.accordion_row.name'))
                 ->blocks([
-                    PresetBlock::make('@visual-debut/text')
+                    PresetBlock::make(Text::class)
                         ->id('text-1')
                         ->settings([
                             'text' => '<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>',

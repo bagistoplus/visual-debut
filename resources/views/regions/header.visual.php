@@ -1,26 +1,37 @@
 <?php
 
+use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\Visual\Support\TemplateBuilder;
+use BagistoPlus\VisualDebut\Blocks\Basic\Logo;
+use BagistoPlus\VisualDebut\Blocks\Header\Cart;
+use BagistoPlus\VisualDebut\Blocks\Header\Compare;
+use BagistoPlus\VisualDebut\Blocks\Header\Currency;
+use BagistoPlus\VisualDebut\Blocks\Header\Locale;
+use BagistoPlus\VisualDebut\Blocks\Header\Nav;
+use BagistoPlus\VisualDebut\Blocks\Header\Search;
+use BagistoPlus\VisualDebut\Blocks\Header\User;
+use BagistoPlus\VisualDebut\Sections\AnnouncementBar;
+use BagistoPlus\VisualDebut\Sections\Header;
 
 return TemplateBuilder::make()
     ->id('header')
     ->name('header')
 
     // Announcement Bar Section
-    ->section('announcement-bar', '@visual-debut/announcement-bar')
+    ->section('announcement-bar', AnnouncementBar::class)
 
     // Main Header Section
     ->section(
         'main-header',
-        '@visual-debut/header',
+        Header::class,
         fn($section) => $section
             ->properties([
                 'content_width' => 'container',
             ])
             ->blocks([
                 // Logo Container
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->id('container-logo')
                     ->name('Logo')
                     ->settings([
@@ -29,49 +40,49 @@ return TemplateBuilder::make()
                         'width' => 'auto',
                     ])
                     ->blocks([
-                        PresetBlock::make('@visual-debut/logo')
+                        PresetBlock::make(Logo::class)
                             ->name('Logo'),
                     ]),
 
                 // Navigation Container
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->id('container-nav')
                     ->name('Navigation')
                     ->settings([
                         'layout_type' => 'flex',
-                        'justify_content' => 'start',
+                        'flex_justify' => 'start',
                         'gap' => ['_default' => 4],
                         'width' => 'full',
                     ])
                     ->blocks([
-                        PresetBlock::make('@visual-debut/header-nav')
+                        PresetBlock::make(Nav::class)
                             ->id('navigation')
                             ->name('Navigation'),
                     ]),
 
                 // Actions Container
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->id('container-actions')
                     ->name('Actions')
                     ->settings([
                         'layout_type' => 'flex',
-                        'justify_content' => 'end',
+                        'flex_justify' => 'end',
                         'gap' => ['_default' => 2],
                         'width' => 'auto',
                     ])
                     ->blocks([
-                        PresetBlock::make('@visual-debut/header-currency')
+                        PresetBlock::make(Currency::class)
                             ->id('currency-selector')
                             ->name('Currency Selector'),
 
-                        PresetBlock::make('@visual-debut/header-locale')
+                        PresetBlock::make(Locale::class)
                             ->id('locale-selector')
                             ->name('Language Selector')
                             ->settings([
                                 'icon' => 'lucide-globe',
                             ]),
 
-                        PresetBlock::make('@visual-debut/header-search')
+                        PresetBlock::make(Search::class)
                             ->id('search')
                             ->name('Search Form')
                             ->settings([
@@ -79,14 +90,14 @@ return TemplateBuilder::make()
                                 'image_search_icon' => 'lucide-camera',
                             ]),
 
-                        PresetBlock::make('@visual-debut/header-compare')
+                        PresetBlock::make(Compare::class)
                             ->id('compare')
                             ->name('Compare')
                             ->settings([
                                 'icon' => 'lucide-arrow-left-right',
                             ]),
 
-                        PresetBlock::make('@visual-debut/header-user')
+                        PresetBlock::make(User::class)
                             ->id('user')
                             ->name('User Menu')
                             ->settings([
@@ -95,7 +106,7 @@ return TemplateBuilder::make()
                                 'guest_description' => 'Manage Cart, Orders & Wishlist',
                             ]),
 
-                        PresetBlock::make('@visual-debut/header-cart')
+                        PresetBlock::make(Cart::class)
                             ->id('cart')
                             ->name('Cart Preview')
                             ->settings([

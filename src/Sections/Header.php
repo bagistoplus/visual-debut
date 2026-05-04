@@ -2,12 +2,12 @@
 
 namespace BagistoPlus\VisualDebut\Sections;
 
+use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\Visual\Blocks\BladeSection;
 use BagistoPlus\Visual\Settings;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\VisualDebut\Blocks\Basic\Logo;
-use BagistoPlus\VisualDebut\Blocks\Group;
 use BagistoPlus\VisualDebut\Blocks\Header\Cart;
 use BagistoPlus\VisualDebut\Blocks\Header\Compare;
 use BagistoPlus\VisualDebut\Blocks\Header\Currency;
@@ -77,53 +77,53 @@ class Header extends BladeSection
                 ->category('Layout')
                 ->blocks([
                     // Logo Group
-                    PresetBlock::make('@visual-debut/group')
+                    PresetBlock::make(Group::class)
                         ->name('Logo')
                         ->settings([
                             'layout_type' => 'flex',
                             'flex_direction' => 'row',
-                            'horizontal_align_items' => 'center',
+                            'flex_align' => 'center',
                             'flex_gap' => 4,
                         ])
                         ->blocks([
-                            PresetBlock::make('@visual-debut/logo'),
+                            PresetBlock::make(Logo::class),
                         ]),
 
                     // Navigation Group
-                    PresetBlock::make('@visual-debut/group')
+                    PresetBlock::make(Group::class)
                         ->name('Navigation')
                         ->settings([
                             'layout_type' => 'flex',
                             'flex_direction' => 'row',
-                            'horizontal_align_items' => 'center',
+                            'flex_align' => 'center',
                             'flex_gap' => 4,
                             'width' => [
                                 '_default' => 'full',
                             ],
                         ])
                         ->blocks([
-                            PresetBlock::make('@visual-debut/header-nav'),
+                            PresetBlock::make(Nav::class),
                         ]),
 
                     // Actions Group
-                    PresetBlock::make('@visual-debut/group')
+                    PresetBlock::make(Group::class)
                         ->name('Actions')
                         ->settings([
                             'layout_type' => 'flex',
                             'flex_direction' => 'row',
-                            'horizontal_justify_content' => 'end',
-                            'align_items' => 'center',
+                            'flex_justify' => 'end',
+                            'flex_align' => 'center',
                             'flex_gap' => [
                                 '_default' => 2,
                             ],
                         ])
                         ->blocks([
-                            PresetBlock::make('@visual-debut/header-currency'),
-                            PresetBlock::make('@visual-debut/header-locale'),
-                            PresetBlock::make('@visual-debut/header-search'),
-                            PresetBlock::make('@visual-debut/header-compare'),
-                            PresetBlock::make('@visual-debut/header-user'),
-                            PresetBlock::make('@visual-debut/header-cart'),
+                            PresetBlock::make(Currency::class),
+                            PresetBlock::make(Locale::class),
+                            PresetBlock::make(Search::class),
+                            PresetBlock::make(Compare::class),
+                            PresetBlock::make(User::class),
+                            PresetBlock::make(Cart::class),
                         ]),
                 ]),
         ];

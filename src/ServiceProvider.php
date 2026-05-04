@@ -11,6 +11,7 @@ use Webkul\Theme\ViewRenderEventManager;
 use BagistoPlus\Visual\Facades\ThemeEditor;
 use BagistoPlus\Visual\Providers\ThemeServiceProvider;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use BagistoPlus\VisualDebut\Commands\MigrateBasicBlocks;
 use BagistoPlus\VisualDebut\LivewireFeatures\AddressDataSynth;
 use BagistoPlus\VisualDebut\Components\Livewire\CartCouponForm;
 use BagistoPlus\VisualDebut\Settings\Support\RadiusTransformer;
@@ -22,6 +23,10 @@ use BagistoPlus\VisualDebut\Components\Livewire\AddToWishlistButton;
 
 class ServiceProvider extends ThemeServiceProvider
 {
+    protected static array $commands = [
+        MigrateBasicBlocks::class,
+    ];
+
     protected static array $livewireComponents = [
         'cart-coupon-form' => CartCouponForm::class,
         'add-to-cart-button' => AddToCartButton::class,

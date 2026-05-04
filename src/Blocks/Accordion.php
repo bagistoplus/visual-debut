@@ -2,6 +2,7 @@
 
 namespace BagistoPlus\VisualDebut\Blocks;
 
+use BagistoPlus\BasicBlocks\Blocks\Basic\Text;
 use BagistoPlus\Visual\Blocks\BladeBlock;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Header;
@@ -11,6 +12,7 @@ use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Settings\Typography;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
+use BagistoPlus\VisualDebut\Blocks\AccordionRow;
 use BagistoPlus\VisualDebut\Tailwind;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -20,7 +22,7 @@ class Accordion extends BladeBlock
     protected static string $type = '@visual-debut/accordion';
 
     protected static string $view = 'visual-debut::blocks.accordion';
-    protected static array $accepts = ['@visual-debut/accordion-row'];
+    protected static array $accepts = [AccordionRow::class];
     protected static string $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="7" x="3" y="3" rx="1"/><path d="M9 10h6"/><rect width="18" height="7" x="3" y="14" rx="1"/><path d="M9 17h6"/></svg>';
     protected static string $category = 'Layout';
 
@@ -113,14 +115,14 @@ class Accordion extends BladeBlock
             Preset::make(_t('blocks.accordion.presets.accordion.name'))
                 ->category(_t('blocks.accordion.presets.accordion.category'))
                 ->blocks([
-                    PresetBlock::make('@visual-debut/accordion-row')
+                    PresetBlock::make(AccordionRow::class)
                         ->id('row-1')
                         ->settings([
                             'open_by_default' => true,
                             'heading' => 'Return policy',
                         ])
                         ->blocks([
-                            PresetBlock::make('@visual-debut/text')
+                            PresetBlock::make(Text::class)
                                 ->id('text-1')
                                 ->settings([
                                     'text' => '<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn\'t the case, let us know and we\'ll do our best to work with you to make it right.</p>',
@@ -128,13 +130,13 @@ class Accordion extends BladeBlock
                                 ]),
                         ]),
 
-                    PresetBlock::make('@visual-debut/accordion-row')
+                    PresetBlock::make(AccordionRow::class)
                         ->id('row-2')
                         ->settings([
                             'heading' => 'Shipping',
                         ])
                         ->blocks([
-                            PresetBlock::make('@visual-debut/text')
+                            PresetBlock::make(Text::class)
                                 ->id('text-1')
                                 ->settings([
                                     'text' => '<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>',
@@ -142,13 +144,13 @@ class Accordion extends BladeBlock
                                 ]),
                         ]),
 
-                    PresetBlock::make('@visual-debut/accordion-row')
+                    PresetBlock::make(AccordionRow::class)
                         ->id('row-3')
                         ->settings([
                             'heading' => 'Manufacturing',
                         ])
                         ->blocks([
-                            PresetBlock::make('@visual-debut/text')
+                            PresetBlock::make(Text::class)
                                 ->id('text-1')
                                 ->settings([
                                     'text' => '<p>Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value.</p>',

@@ -2,8 +2,14 @@
 
 namespace BagistoPlus\VisualDebut\Presets;
 
+use BagistoPlus\BasicBlocks\Blocks\Basic\Divider;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Link;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Text;
+use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
+use BagistoPlus\VisualDebut\Sections\Footer;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -11,7 +17,7 @@ class NewsletterFooter extends Preset
 {
     public static function getType(): string
     {
-        return '@visual-debut/footer';
+        return Footer::class;
     }
 
     protected function build(): void
@@ -29,17 +35,17 @@ class NewsletterFooter extends Preset
                 ],
             ])
             ->blocks([
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->name('Newsletter + Links')
                     ->settings([
                         'layout_type' => 'grid',
                         'grid_columns' => ['_default' => 2, 'mobile' => 1],
                         'gap' => ['_default' => 12],
-                        'width' => 'fill',
+                        'width' => 'full',
                     ])
                     ->blocks([
                         // Newsletter section
-                        PresetBlock::make('@visual-debut/group')
+                        PresetBlock::make(Group::class)
                             ->name('Newsletter')
                             ->settings([
                                 'layout_type' => 'flex',
@@ -47,20 +53,20 @@ class NewsletterFooter extends Preset
                                 'gap' => ['_default' => 4],
                             ])
                             ->blocks([
-                                PresetBlock::make('@visual-debut/heading')
+                                PresetBlock::make(Heading::class)
                                     ->settings([
                                         'text' => _t('sections.footer.presets.newsletter.heading'),
-                                        'tag' => 'h3',
+                                        'heading_level' => 'h3',
                                     ]),
 
-                                PresetBlock::make('@visual-debut/text')
+                                PresetBlock::make(Text::class)
                                     ->settings([
                                         'text' => _t('sections.footer.presets.newsletter.description'),
                                     ]),
                             ]),
 
                         // Links grid
-                        PresetBlock::make('@visual-debut/group')
+                        PresetBlock::make(Group::class)
                             ->name('Links')
                             ->settings([
                                 'layout_type' => 'grid',
@@ -85,7 +91,7 @@ class NewsletterFooter extends Preset
                             ]),
                     ]),
 
-                PresetBlock::make('@visual-debut/divider')
+                PresetBlock::make(Divider::class)
                     ->settings([
                         'padding' => [
                             'top' => 4,
@@ -95,7 +101,7 @@ class NewsletterFooter extends Preset
                         ],
                     ]),
 
-                PresetBlock::make('@visual-debut/text')
+                PresetBlock::make(Text::class)
                     ->settings([
                         'text' => '© ' . date('Y') . ' ' . config('app.name'),
                         'alignment' => 'center',
@@ -106,7 +112,7 @@ class NewsletterFooter extends Preset
     protected function createLinksColumn(string $name, string $title, array $links): PresetBlock
     {
         $linkBlocks = array_map(function ($link) {
-            return PresetBlock::make('@visual-debut/link')
+            return PresetBlock::make(Link::class)
                 ->settings([
                     'text' => $link['label'],
                     'url' => $link['url'],
@@ -120,7 +126,7 @@ class NewsletterFooter extends Preset
                 ]);
         }, $links);
 
-        return PresetBlock::make('@visual-debut/group')
+        return PresetBlock::make(Group::class)
             ->name($name)
             ->settings([
                 'layout_type' => 'flex',
@@ -128,10 +134,10 @@ class NewsletterFooter extends Preset
                 'gap' => ['_default' => 2],
             ])
             ->blocks([
-                PresetBlock::make('@visual-debut/heading')
+                PresetBlock::make(Heading::class)
                     ->settings([
                         'text' => $title,
-                        'tag' => 'h4',
+                        'heading_level' => 'h4',
                     ]),
 
                 ...$linkBlocks,

@@ -1,7 +1,8 @@
 <?php
 
 use BagistoPlus\Visual\Support\TemplateBuilder;
+use BagistoPlus\VisualDebut\Sections\CategoryPage;
 
 return TemplateBuilder::make()
-    ->section('category-page', '@visual-debut/category-page')
+    ->section('category-page', CategoryPage::class)
     ->order(['category-page']);

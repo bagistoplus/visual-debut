@@ -2,6 +2,11 @@
 
 namespace BagistoPlus\VisualDebut\Presets;
 
+use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Icon;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Text;
+use BagistoPlus\BasicBlocks\Blocks\Group;
+use BagistoPlus\BasicBlocks\Sections\FlexSection;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 
@@ -11,7 +16,7 @@ class FeatureIcons extends Preset
 {
     public static function getType(): string
     {
-        return '@visual-debut/flex-section';
+        return FlexSection::class;
     }
 
     protected function build(): void
@@ -21,8 +26,8 @@ class FeatureIcons extends Preset
             ->category('Content')
             ->settings([
                 'flex_direction' => ['_default' => 'column'],
-                'vertical_justify_content' => ['_default' => 'start'],
-                'vertical_align_items' => ['_default' => 'start'],
+                'flex_justify' => ['_default' => 'start'],
+                'flex_align' => ['_default' => 'start'],
                 'flex_gap' => ['_default' => 6],
                 'section_width' => 'container',
                 'section_height' => 'auto',
@@ -35,17 +40,17 @@ class FeatureIcons extends Preset
             ])
             ->blocks([
                 // Section Heading
-                PresetBlock::make('@visual-debut/heading')
+                PresetBlock::make(Heading::class)
                     ->settings([
                         'text' => 'Why Shop With Us?',
-                        'tag' => 'h2',
+                        'heading_level' => 'h2',
                         'typography' => 'heading-2',
                         'width' => 'fill',
                         'alignment' => 'center',
                     ]),
 
                 // Section Description
-                PresetBlock::make('@visual-debut/text')
+                PresetBlock::make(Text::class)
                     ->settings([
                         'text' => 'Explore our customer-focused features',
                         'width' => 'fill',
@@ -53,13 +58,13 @@ class FeatureIcons extends Preset
                     ]),
 
                 // Grid Container for Features
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->name('Features Grid')
                     ->settings([
                         'layout_type' => 'grid',
                         'grid_columns' => ['_default' => 4, 'mobile' => 1],
                         'grid_gap' => ['_default' => 6],
-                        'width' => 'fill',
+                        'width' => 'full',
                     ])
                     ->blocks([
                         // Feature Item 1
@@ -73,21 +78,21 @@ class FeatureIcons extends Preset
 
     protected function createFeatureItem(string $title, string $description, string $icon): PresetBlock
     {
-        return PresetBlock::make('@visual-debut/group')
+        return PresetBlock::make(Group::class)
             ->name('Feature')
             ->settings([
                 'layout_type' => 'flex',
                 'flex_direction' => 'column',
-                'vertical_align_items' => 'center',
+                'flex_align' => 'center',
                 'flex_gap' => ['_default' => 2],
             ])
             ->blocks([
                 // Icon Container (circular border)
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->settings([
                         'layout_type' => 'flex',
-                        'justify_content' => 'center',
-                        'align_items' => 'center',
+                        'flex_justify' => 'center',
+                        'flex_align' => 'center',
                         'width' => '56px',
                         'height' => '56px',
                         'border' => true,
@@ -102,7 +107,7 @@ class FeatureIcons extends Preset
                         ],
                     ])
                     ->blocks([
-                        PresetBlock::make('@visual-debut/icon')
+                        PresetBlock::make(Icon::class)
                             ->settings([
                                 'icon' => $icon,
                                 'size' => ['_default' => '5'],
@@ -110,24 +115,24 @@ class FeatureIcons extends Preset
                     ]),
 
                 // Content
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',
-                        'align_items' => 'center',
+                        'flex_align' => 'center',
                         'flex_gap' => ['_default' => 2]
                     ])
                     ->blocks([
-                        PresetBlock::make('@visual-debut/heading')
+                        PresetBlock::make(Heading::class)
                             ->settings([
                                 'text' => $title,
-                                'tag' => 'h3',
+                                'heading_level' => 'h3',
                                 'width' => 'fill',
                                 'alignment' => 'center',
                                 'typography' => 'heading-6'
                             ]),
 
-                        PresetBlock::make('@visual-debut/text')
+                        PresetBlock::make(Text::class)
                             ->settings([
                                 'text' => $description,
                                 'width' => 'fill',

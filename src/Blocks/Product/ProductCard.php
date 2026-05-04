@@ -5,10 +5,6 @@ namespace BagistoPlus\VisualDebut\Blocks\Product;
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Product;
-use BagistoPlus\Visual\Support\Preset;
-use BagistoPlus\Visual\Support\PresetBlock;
-use BagistoPlus\VisualDebut\Blocks\Basic\Heading;
-use BagistoPlus\VisualDebut\Blocks\Basic\Text;
 use BagistoPlus\VisualDebut\Blocks\ProductCardGroup;
 use BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay;
 
@@ -55,105 +51,6 @@ class ProductCard extends SimpleBlock
     public static function presets(): array
     {
         return [
-            // Vertical Product Card
-            // Preset::make(_t('blocks.product-card.presets.vertical.name'))
-            //     ->category(_t('blocks.product-card.presets.vertical.category'))
-            //     ->blocks([
-            //         PresetBlock::make('@visual-debut/group')
-            //             ->properties([
-            //                 'layout_type' => 'flex',
-            //                 'flex_direction' => ['_default' => 'column'],
-            //                 'flex_gap' => 0,
-            //                 'border' => true,
-            //                 'border_width' => 1,
-            //                 'border_style' => 'solid',
-            //                 'border_color' => '#E5E7EBFF',
-            //                 'border_radius' => 'lg',
-            //                 'background_color' => 'transparent',
-            //             ])
-            //             ->children([
-            //                 PresetBlock::make('@visual-debut/product-image')
-            //                     ->properties([
-            //                         'size' => 'medium',
-            //                         'aspect_ratio' => 'square',
-            //                         'object_fit' => 'cover',
-            //                     ]),
-            //                 PresetBlock::make('@visual-debut/group')
-            //                     ->properties([
-            //                         'layout_type' => 'flex',
-            //                         'flex_direction' => ['_default' => 'column'],
-            //                         'flex_gap' => 2,
-            //                         'padding_top' => ['_default' => 4],
-            //                         'padding_bottom' => ['_default' => 4],
-            //                         'padding_left' => ['_default' => 4],
-            //                         'padding_right' => ['_default' => 4],
-            //                     ])
-            //                     ->children([
-            //                         PresetBlock::make('@visual-debut/product-title')
-            //                             ->properties([
-            //                                 'tag' => 'h3',
-            //                                 'size' => 100,
-            //                             ]),
-            //                         PresetBlock::make('@visual-debut/product-price'),
-            //                     ]),
-            //             ]),
-            //     ]),
-
-            // // Horizontal Product Card
-            // Preset::make(_t('blocks.product-card.presets.horizontal.name'))
-            //     ->category(_t('blocks.product-card.presets.horizontal.category'))
-            //     ->blocks([
-            //         PresetBlock::make('@visual-debut/group')
-            //             ->properties([
-            //                 'layout_type' => 'flex',
-            //                 'flex_direction' => ['_default' => 'row', 'mobile' => 'column'],
-            //                 'flex_gap' => ['_default' => 4],
-            //                 'border' => true,
-            //                 'border_width' => 1,
-            //                 'border_style' => 'solid',
-            //                 'border_color' => '#E5E7EBFF',
-            //                 'border_radius' => 'lg',
-            //                 'background_color' => 'transparent',
-            //             ])
-            //             ->children([
-            //                 PresetBlock::make('@visual-debut/group')
-            //                     ->properties([
-            //                         'layout_type' => 'block',
-            //                         'width' => ['_default' => 'custom'],
-            //                         'custom_width' => 300,
-            //                     ])
-            //                     ->children([
-            //                         PresetBlock::make('@visual-debut/product-image')
-            //                             ->properties([
-            //                                 'size' => 'medium',
-            //                                 'aspect_ratio' => 'square',
-            //                                 'object_fit' => 'cover',
-            //                             ]),
-            //                     ]),
-            //                 PresetBlock::make('@visual-debut/group')
-            //                     ->properties([
-            //                         'layout_type' => 'flex',
-            //                         'flex_direction' => ['_default' => 'column'],
-            //                         'flex_gap' => 3,
-            //                         'padding_top' => ['_default' => 4],
-            //                         'padding_bottom' => ['_default' => 4],
-            //                         'padding_left' => ['_default' => 4],
-            //                         'padding_right' => ['_default' => 4],
-            //                         'justify_content' => 'center',
-            //                     ])
-            //                     ->children([
-            //                         PresetBlock::make('@visual-debut/product-title')
-            //                             ->properties([
-            //                                 'tag' => 'h3',
-            //                                 'size' => 120,
-            //                             ]),
-            //                         PresetBlock::make('@visual-debut/product-short-description'),
-            //                         PresetBlock::make('@visual-debut/product-price'),
-            //                     ]),
-            //             ]),
-            //     ]),
-
-            // Card with Hover Overlay
             ProductCardWithOverlay::class,
         ];
     }

@@ -2,6 +2,10 @@
 
 namespace BagistoPlus\VisualDebut\Presets;
 
+use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Icon;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Text;
+use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 
@@ -11,27 +15,27 @@ class FeatureIcon extends Preset
 {
     public static function getType(): string
     {
-        return '@visual-debut/group';
+        return Group::class;
     }
 
     protected function build(): void
     {
         $this
-            ->name(_t('blocks.group.presets.feature_icon.name'))
+            ->name(_t('blocks.feature-icon.name'))
             ->category('Content')
             ->settings([
                 'layout_type' => 'flex',
                 'flex_direction' => 'column',
-                'align_items' => 'center',
+                'flex_align' => 'center',
                 'flex_gap' => ['_default' => 4],
             ])
             ->blocks([
                 // Icon Container (circular border)
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->settings([
                         'layout_type' => 'flex',
-                        'justify_content' => 'center',
-                        'align_items' => 'center',
+                        'flex_justify' => 'center',
+                        'flex_align' => 'center',
                         'width' => '56px',
                         'height' => '56px',
                         'border' => true,
@@ -46,7 +50,7 @@ class FeatureIcon extends Preset
                         ],
                     ])
                     ->blocks([
-                        PresetBlock::make('@visual-debut/icon')
+                        PresetBlock::make(Icon::class)
                             ->settings([
                                 'icon' => 'lucide-tag',
                                 'size' => ['_default' => '5'],
@@ -54,22 +58,22 @@ class FeatureIcon extends Preset
                     ]),
 
                 // Content Container
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',
-                        'vertical_align_items' => 'center',
+                        'flex_align' => 'center',
                     ])
                     ->blocks([
-                        PresetBlock::make('@visual-debut/heading')
+                        PresetBlock::make(Heading::class)
                             ->settings([
                                 'text' => 'Feature Title',
-                                'tag' => 'h3',
+                                'heading_level' => 'h3',
                                 'width' => 'fill',
                                 'alignment' => 'center',
                             ]),
 
-                        PresetBlock::make('@visual-debut/text')
+                        PresetBlock::make(Text::class)
                             ->settings([
                                 'text' => 'Feature description goes here',
                                 'width' => 'fill',

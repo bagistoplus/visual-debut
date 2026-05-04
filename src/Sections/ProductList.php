@@ -2,6 +2,7 @@
 
 namespace BagistoPlus\VisualDebut\Sections;
 
+use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
 use BagistoPlus\Visual\Blocks\BladeSection;
 use BagistoPlus\Visual\Settings\Category;
 use BagistoPlus\Visual\Settings\ColorScheme;
@@ -11,7 +12,6 @@ use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
-use BagistoPlus\VisualDebut\Blocks\Basic\Heading;
 use BagistoPlus\VisualDebut\Blocks\Product as ProductBlock;
 use BagistoPlus\VisualDebut\Blocks\ProductCardGroup;
 use BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay;
@@ -275,10 +275,10 @@ class ProductList extends BladeSection
                     'nb_products' => 8,
                 ])
                 ->blocks([
-                    PresetBlock::make('@visual-debut/heading')
+                    PresetBlock::make(Heading::class)
                         ->settings([
                             'text' => 'Featured Products',
-                            'tag' => 'h2',
+                            'heading_level' => 'h2',
                             'width' => 'fill',
                             'alignment' => 'center',
                             'padding' => [
@@ -303,10 +303,10 @@ class ProductList extends BladeSection
                     'nb_products' => 8,
                 ])
                 ->blocks([
-                    PresetBlock::make('@visual-debut/heading')
+                    PresetBlock::make(Heading::class)
                         ->settings([
                             'text' => 'New Arrivals',
-                            'tag' => 'h2',
+                            'heading_level' => 'h2',
                             'width' => 'fill',
                             'alignment' => 'center',
                         ]),

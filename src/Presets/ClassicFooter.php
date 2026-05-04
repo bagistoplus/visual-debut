@@ -2,8 +2,16 @@
 
 namespace BagistoPlus\VisualDebut\Presets;
 
+use BagistoPlus\BasicBlocks\Blocks\Basic\Button;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Divider;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Link;
+use BagistoPlus\BasicBlocks\Blocks\Basic\RichText;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Text;
+use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
+use BagistoPlus\VisualDebut\Sections\Footer;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -11,7 +19,7 @@ class ClassicFooter extends Preset
 {
     public static function getType(): string
     {
-        return '@visual-debut/footer';
+        return Footer::class;
     }
 
     protected function build(): void
@@ -30,7 +38,7 @@ class ClassicFooter extends Preset
             ])
             ->blocks([
                 // Main content grid
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->name('Footer Columns')
                     ->settings([
                         'layout_type' => 'grid',
@@ -81,7 +89,7 @@ class ClassicFooter extends Preset
                     ]),
 
                 // Divider
-                PresetBlock::make('@visual-debut/divider')
+                PresetBlock::make(Divider::class)
                     ->settings([
                         'padding' => [
                             'top' => 4,
@@ -92,18 +100,18 @@ class ClassicFooter extends Preset
                     ]),
 
                 // Bottom bar
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->name('Bottom Bar')
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => ['_default' => 'row', 'mobile' => 'column'],
-                        'horizontal_justify_content' => 'between',
-                        'horizontal_align_items' => 'center',
+                        'flex_justify' => 'between',
+                        'flex_align' => 'center',
                         'gap' => ['_default' => 4],
-                        'width' => 'fill',
+                        'width' => 'full',
                     ])
                     ->blocks([
-                        PresetBlock::make('@visual-debut/text')
+                        PresetBlock::make(Text::class)
                             ->settings([
                                 'text' => '© ' . date('Y') . ' ' . config('app.name') . '. All rights reserved.',
                             ]),
@@ -115,7 +123,7 @@ class ClassicFooter extends Preset
 
     protected function createFooterColumn(string $name, string $title, string $description): PresetBlock
     {
-        return PresetBlock::make('@visual-debut/group')
+        return PresetBlock::make(Group::class)
             ->name($name)
             ->settings([
                 'layout_type' => 'flex',
@@ -123,13 +131,13 @@ class ClassicFooter extends Preset
                 'flex_gap' => ['_default' => 2],
             ])
             ->blocks([
-                PresetBlock::make('@visual-debut/heading')
+                PresetBlock::make(Heading::class)
                     ->settings([
                         'text' => $title,
                         'heading_level' => 'h3',
                     ]),
 
-                PresetBlock::make('@visual-debut/richtext')
+                PresetBlock::make(RichText::class)
                     ->settings([
                         'content' => '<p>' . $description . '</p>',
                     ]),
@@ -139,7 +147,7 @@ class ClassicFooter extends Preset
     protected function createLinksColumn(string $name, string $title, array $links): PresetBlock
     {
         $linkBlocks = array_map(function ($link) {
-            return PresetBlock::make('@visual-debut/link')
+            return PresetBlock::make(Link::class)
                 ->settings([
                     'text' => $link['label'],
                     'url' => $link['url'],
@@ -153,7 +161,7 @@ class ClassicFooter extends Preset
                 ]);
         }, $links);
 
-        return PresetBlock::make('@visual-debut/group')
+        return PresetBlock::make(Group::class)
             ->name($name)
             ->settings([
                 'layout_type' => 'flex',
@@ -161,7 +169,7 @@ class ClassicFooter extends Preset
                 'flex_gap' => ['_default' => 2],
             ])
             ->blocks([
-                PresetBlock::make('@visual-debut/heading')
+                PresetBlock::make(Heading::class)
                     ->settings([
                         'text' => $title,
                         'heading_level' => 'h3',
@@ -174,7 +182,7 @@ class ClassicFooter extends Preset
 
     protected function createSocialIcons(): PresetBlock
     {
-        return PresetBlock::make('@visual-debut/group')
+        return PresetBlock::make(Group::class)
             ->name('Social Icons')
             ->settings([
                 'layout_type' => 'flex',
@@ -182,34 +190,37 @@ class ClassicFooter extends Preset
                 'flex_gap' => ['_default' => 2],
             ])
             ->blocks([
-                PresetBlock::make('@visual-debut/button')
+                PresetBlock::make(Button::class)
                     ->settings([
-                        'link' => 'https://web.faceboook.com',
+                        'url' => 'https://web.faceboook.com',
+                        'text' => '',
                         'icon' => 'lucide-facebook',
-                        'circle' => true,
-                        'style_class' => 'outline',
+                        'style' => 'outline',
                         'color' => 'secondary',
                         'size' => 'sm',
+                        'circle' => true,
                     ]),
 
-                PresetBlock::make('@visual-debut/button')
+                PresetBlock::make(Button::class)
                     ->settings([
-                        'link' => 'https://instagram.com',
+                        'url' => 'https://instagram.com',
+                        'text' => '',
                         'icon' => 'lucide-instagram',
-                        'circle' => true,
-                        'style_class' => 'outline',
+                        'style' => 'outline',
                         'color' => 'secondary',
                         'size' => 'sm',
+                        'circle' => true,
                     ]),
 
-                PresetBlock::make('@visual-debut/button')
+                PresetBlock::make(Button::class)
                     ->settings([
-                        'link' => 'https://x.com',
+                        'url' => 'https://x.com',
+                        'text' => '',
                         'icon' => 'ri-twitter-x-line',
-                        'circle' => true,
-                        'style_class' => 'outline',
+                        'style' => 'outline',
                         'color' => 'secondary',
                         'size' => 'sm',
+                        'circle' => true,
                     ]),
             ]);
     }

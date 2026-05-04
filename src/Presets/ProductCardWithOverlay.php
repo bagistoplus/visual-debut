@@ -2,14 +2,21 @@
 
 namespace BagistoPlus\VisualDebut\Presets;
 
+use BagistoPlus\BasicBlocks\Blocks\Product\ProductImage;
+use BagistoPlus\BasicBlocks\Blocks\Product\ProductLabels;
+use BagistoPlus\BasicBlocks\Blocks\Product\ProductTitle;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductButton;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductCard;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductPrice;
+use BagistoPlus\VisualDebut\Blocks\ProductCardGroup;
 
 class ProductCardWithOverlay extends Preset
 {
     public static function getType(): string
     {
-        return '@visual-debut/product-card';
+        return ProductCard::class;
     }
 
     protected function build(): void
@@ -20,7 +27,7 @@ class ProductCardWithOverlay extends Preset
             ->properties(['product' => null])
             ->blocks([
                 // Image Container + Overlay
-                PresetBlock::make('@visual-debut/product-card-group')
+                PresetBlock::make(ProductCardGroup::class)
                     ->name('Container')
                     ->properties([
                         'layout_type' => 'block',
@@ -29,7 +36,7 @@ class ProductCardWithOverlay extends Preset
                     ])
                     ->blocks([
                         // Product Image
-                        PresetBlock::make('@visual-debut/product-image')
+                        PresetBlock::make(ProductImage::class)
                             ->name('Product Image')
                             ->properties([
                                 'size' => 'medium',
@@ -43,14 +50,14 @@ class ProductCardWithOverlay extends Preset
                             ]),
 
                         // Overlay Container with Action Buttons
-                        PresetBlock::make('@visual-debut/product-card-group')
+                        PresetBlock::make(ProductCardGroup::class)
                             ->name('Buttons')
                             ->properties([
                                 'layout_type' => 'flex',
                                 'flex_direction' => 'row',
                                 'flex_wrap' => 'wrap',
-                                'vertical_justify_content' => 'center',
-                                'vertical_align_items' => 'center',
+                                'flex_justify' => 'center',
+                                'flex_align' => 'center',
                                 'flex_gap' => ['_default' => '2'],
                                 'background_type' => 'color',
                                 'background_color' => '#0000004D',
@@ -61,7 +68,7 @@ class ProductCardWithOverlay extends Preset
                             ])
                             ->blocks([
                                 // Add to Cart Button
-                                PresetBlock::make('@visual-debut/product-button')
+                                PresetBlock::make(ProductButton::class)
                                     ->name('Add to cart')
                                     ->properties([
                                         'action' => 'cart',
@@ -72,7 +79,7 @@ class ProductCardWithOverlay extends Preset
                                     ]),
 
                                 // Add to Wishlist Button
-                                PresetBlock::make('@visual-debut/product-button')
+                                PresetBlock::make(ProductButton::class)
                                     ->name('Add to wishlist')
                                     ->properties([
                                         'action' => 'wishlist',
@@ -83,7 +90,7 @@ class ProductCardWithOverlay extends Preset
                                     ]),
 
                                 // Add to Compare Button
-                                PresetBlock::make('@visual-debut/product-button')
+                                PresetBlock::make(ProductButton::class)
                                     ->name('Add to compare')
                                     ->properties([
                                         'action' => 'compare',
@@ -96,7 +103,7 @@ class ProductCardWithOverlay extends Preset
                     ]),
 
                 // Product Info Container
-                PresetBlock::make('@visual-debut/product-card-group')
+                PresetBlock::make(ProductCardGroup::class)
                     ->name('Informations')
                     ->properties([
                         'layout_type' => 'block',
@@ -109,22 +116,22 @@ class ProductCardWithOverlay extends Preset
                     ])
                     ->addBlocks([
                         // Product Title
-                        PresetBlock::make('@visual-debut/product-title')
+                        PresetBlock::make(ProductTitle::class)
                             ->name('Product Title')
                             ->properties([
                                 'heading_level' => 'h3',
-                                'width' => 'fit-content',
+                                'width' => 'fit',
                                 'alignment' => 'left',
                                 'typography' => 'body',
                             ]),
 
                         // Price and Labels Container
-                        PresetBlock::make('@visual-debut/product-card-group')
+                        PresetBlock::make(ProductCardGroup::class)
                             ->name('Price & Labels')
                             ->properties([
                                 'layout_type' => 'flex',
                                 'flex_direction' => 'row',
-                                'horizontal_justify_content' => 'between',
+                                'flex_justify' => 'between',
                                 'flex_gap' => 4,
                                 'margin' => [
                                     'top' => 2,
@@ -135,11 +142,11 @@ class ProductCardWithOverlay extends Preset
                             ])
                             ->addBlocks([
                                 // Product Price
-                                PresetBlock::make('@visual-debut/product-price')
+                                PresetBlock::make(ProductPrice::class)
                                     ->name('Price'),
 
                                 // Product Labels
-                                PresetBlock::make('@visual-debut/product-labels')
+                                PresetBlock::make(ProductLabels::class)
                                     ->name('Labels')
                                     ->properties([
                                         'layout' => 'inline',

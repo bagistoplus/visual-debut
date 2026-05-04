@@ -2,8 +2,14 @@
 
 namespace BagistoPlus\VisualDebut\Presets;
 
+use BagistoPlus\BasicBlocks\Blocks\Basic\Button;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Divider;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Text;
+use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
+use BagistoPlus\VisualDebut\Sections\Footer;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -11,7 +17,7 @@ class MinimalFooter extends Preset
 {
     public static function getType(): string
     {
-        return '@visual-debut/footer';
+        return Footer::class;
     }
 
     protected function build(): void
@@ -29,24 +35,24 @@ class MinimalFooter extends Preset
                 ],
             ])
             ->blocks([
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->name('Centered Content')
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',
-                        'vertical_align_items' => 'center',
+                        'flex_align' => 'center',
                         'gap' => ['_default' => 6],
-                        'width' => 'fill',
+                        'width' => 'full',
                     ])
                     ->blocks([
-                        PresetBlock::make('@visual-debut/heading')
+                        PresetBlock::make(Heading::class)
                             ->settings([
                                 'text' => config('app.name'),
-                                'tag' => 'h2',
+                                'heading_level' => 'h2',
                                 'alignment' => 'center',
                             ]),
 
-                        PresetBlock::make('@visual-debut/text')
+                        PresetBlock::make(Text::class)
                             ->settings([
                                 'text' => _t('sections.footer.presets.minimal.tagline'),
                                 'alignment' => 'center',
@@ -54,7 +60,7 @@ class MinimalFooter extends Preset
 
                         $this->createSocialIcons(),
 
-                        PresetBlock::make('@visual-debut/divider')
+                        PresetBlock::make(Divider::class)
                             ->settings([
                                 'width_percent' => 50,
                                 'alignment' => 'center',
@@ -66,7 +72,7 @@ class MinimalFooter extends Preset
                                 ],
                             ]),
 
-                        PresetBlock::make('@visual-debut/text')
+                        PresetBlock::make(Text::class)
                             ->settings([
                                 'text' => '© ' . date('Y') . ' All rights reserved.',
                                 'alignment' => 'center',
@@ -77,40 +83,40 @@ class MinimalFooter extends Preset
 
     protected function createSocialIcons(): PresetBlock
     {
-        return PresetBlock::make('@visual-debut/group')
+        return PresetBlock::make(Group::class)
             ->name('Social Icons')
             ->settings([
                 'layout_type' => 'flex',
                 'flex_direction' => 'row',
-                'gap' => ['_default' => 4],
+                'flex_gap' => ['_default' => 4],
             ])
             ->blocks([
-                PresetBlock::make('@visual-debut/button')
+                PresetBlock::make(Button::class)
                     ->settings([
-                        'link' => '#',
+                        'url' => '#',
+                        'text' => '',
                         'icon' => 'lucide-facebook',
-                        'circle' => true,
-                        'style_class' => 'outline',
+                        'style' => 'outline',
                         'color' => 'secondary',
                         'size' => 'sm',
                     ]),
 
-                PresetBlock::make('@visual-debut/button')
+                PresetBlock::make(Button::class)
                     ->settings([
-                        'link' => '#',
+                        'url' => '#',
+                        'text' => '',
                         'icon' => 'lucide-instagram',
-                        'circle' => true,
-                        'style_class' => 'outline',
+                        'style' => 'outline',
                         'color' => 'secondary',
                         'size' => 'sm',
                     ]),
 
-                PresetBlock::make('@visual-debut/button')
+                PresetBlock::make(Button::class)
                     ->settings([
-                        'link' => '#',
+                        'url' => '#',
+                        'text' => '',
                         'icon' => 'ri-twitter-x-line',
-                        'circle' => true,
-                        'style_class' => 'outline',
+                        'style' => 'outline',
                         'color' => 'secondary',
                         'size' => 'sm',
                     ]),

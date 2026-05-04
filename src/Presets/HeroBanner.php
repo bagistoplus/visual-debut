@@ -2,6 +2,11 @@
 
 namespace BagistoPlus\VisualDebut\Presets;
 
+use BagistoPlus\BasicBlocks\Blocks\Basic\Button;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Text;
+use BagistoPlus\BasicBlocks\Blocks\Group;
+use BagistoPlus\BasicBlocks\Sections\FlexSection;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 
@@ -11,7 +16,7 @@ class HeroBanner extends Preset
 {
     public static function getType(): string
     {
-        return '@visual-debut/flex-section';
+        return FlexSection::class;
     }
 
     protected function build(): void
@@ -21,8 +26,8 @@ class HeroBanner extends Preset
             ->category('Content')
             ->settings([
                 'flex_direction' => ['_default' => 'column'],
-                'vertical_justify_content' => ['_default' => 'center'],
-                'vertical_align_items' => ['_default' => 'center'],
+                'flex_justify' => ['_default' => 'center'],
+                'flex_align' => ['_default' => 'center'],
                 'flex_gap' => ['_default' => 4],
                 'section_width' => 'container',
                 'section_height' => 'sm',
@@ -42,42 +47,46 @@ class HeroBanner extends Preset
                 ],
             ])
             ->blocks([
-                PresetBlock::make('@visual-debut/heading')
+                PresetBlock::make(Heading::class)
                     ->settings([
                         'text' => 'Welcome to our store',
                         'heading_level' => 'h1',
                         'typography' => 'heading-1',
                         'color' => 'custom',
                         'text_color' => '#EBE6E6FF',
+                        'width' => [
+                            '_default' => 'fit',
+                            'mobile' => 'full',
+                        ],
+                        'alignment' => 'center'
                     ]),
 
-                PresetBlock::make('@visual-debut/text')
+                PresetBlock::make(Text::class)
                     ->settings([
                         'text' => 'Discover our best products and offers.',
-                        'width' => 'fit-content',
+                        'width' => 'fit',
                         'max_width' => 'normal',
                         'alignment' => 'left',
                         'color' => 'custom',
                         'text_color' => '#EBE6E6FF',
                     ]),
 
-                PresetBlock::make('@visual-debut/group')
+                PresetBlock::make(Group::class)
                     ->name('Buttons')
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'row',
-                        'horizontal_justify_content' => 'center',
-                        'horizontal_align_items' => 'center',
+                        'flex_justify' => 'center',
+                        'flex_align' => 'center',
                         'flex_gap' => ['_default' => 4],
                     ])
                     ->blocks([
-                        PresetBlock::make('@visual-debut/button')
+                        PresetBlock::make(Button::class)
                             ->settings([
-                                'label' => 'View collections',
-                                'link' => '/collections',
-                                'style_class' => 'solid',
+                                'text' => 'View collections',
+                                'url' => '/collections',
+                                'style' => 'filled',
                                 'color' => 'primary',
-                                'width' => 'fit-content',
                             ]),
                     ]),
             ]);
