@@ -3,8 +3,10 @@
 namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
+use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Blocks\BladeSection;
 use BagistoPlus\Visual\Settings\Category;
+use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
@@ -12,10 +14,7 @@ use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
-use BagistoPlus\VisualDebut\Blocks\Product as ProductBlock;
-use BagistoPlus\VisualDebut\Blocks\ProductCardGroup;
 use BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay;
-use BagistoPlus\VisualDebut\Tailwind;
 use Webkul\Product\Repositories\ProductFlatRepository;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -42,24 +41,7 @@ class ProductList extends BladeSection
 
     protected static array $accepts = [
         Heading::class,
-        ProductBlock::class,
-        ProductCardGroup::class,
     ];
-
-    protected function hasManualProducts(): bool
-    {
-        return ! empty($this->section->children()) &&
-            collect($this->section->children())
-                ->some(fn ($block) => $block->type === '@visual-debut/product');
-    }
-
-    protected function getManualProducts()
-    {
-        return collect($this->section->children())
-            ->filter(fn ($block) => $block->type === '@visual-debut/product')
-            ->map(fn ($block) => $block->settings->product)
-            ->filter();
-    }
 
     protected function getProductsByCategory($category)
     {
@@ -127,17 +109,10 @@ class ProductList extends BladeSection
 
     public function getProducts()
     {
-        // Priority 1: Manually added products from child blocks
-        if ($this->hasManualProducts()) {
-            return $this->getManualProducts();
-        }
-
-        // Priority 2: Products from parent category
         if ($parentCategory = $this->section->settings->parent_category) {
             return $this->getProductsByCategory($parentCategory);
         }
 
-        // Priority 3: Filter by product type (featured/new)
         return match ($this->section->settings->product_type ?? 'new') {
             'featured' => $this->getFeaturedProducts(),
             'new' => $this->getNewProducts(),
@@ -147,6 +122,55 @@ class ProductList extends BladeSection
 
     public function getViewData(): array
     {
+        $products = $this->getProducts();
+        $navStyle = $this->section->settings->nav_style ?? 'none';
+
+        return [
+            'products' => $products,
+            'widthClass' => $this->computeWidthClass(),
+            'columnClasses' => $this->computeColumnClasses(),
+            'gapClass' => $this->computeGapClass(),
+            'isCarousel' => $this->section->settings->layout_type === 'carousel',
+            'showArrowNavigation' => in_array($navStyle, ['arrow', 'both']),
+            'showDotNavigation' => in_array($navStyle, ['dot', 'both']),
+            'navShapeClass' => $this->computeNavShapeClass(),
+            'useArrowIcon' => ($this->section->settings->nav_icon ?? 'chevron') === 'arrow',
+            'paddingClasses' => $this->computePaddingClasses(),
+            'carouselConfig' => $this->buildCarouselConfig(),
+        ];
+    }
+
+    protected function computeWidthClass(): string
+    {
+        return $this->section->settings->content_width === 'container'
+            ? 'container mx-auto px-4 sm:px-6 lg:px-8'
+            : 'px-4 sm:px-6 lg:px-8';
+    }
+
+    protected function computeColumnClasses(): string
+    {
+        return Tailwind::responsive(
+            $this->section->settings->columns,
+            fn ($v) => "grid-cols-{$v}"
+        );
+    }
+
+    protected function computeGapClass(): string
+    {
+        return 'gap-'.($this->section->settings->gap ?? 4);
+    }
+
+    protected function computeNavShapeClass(): string
+    {
+        return match ($this->section->settings->nav_shape) {
+            'circle' => 'rounded-full',
+            'square' => 'rounded-md',
+            default => '',
+        };
+    }
+
+    protected function computePaddingClasses(): string
+    {
         $paddingClasses = '';
         if ($this->section->settings->has('padding')) {
             $paddingClasses = Tailwind::responsive(
@@ -155,10 +179,54 @@ class ProductList extends BladeSection
             );
         }
 
-        return [
-            'products' => $this->getProducts(),
-            'paddingClasses' => $paddingClasses,
-        ];
+        return $paddingClasses;
+    }
+
+    protected function buildCarouselConfig(): array
+    {
+        $config = [];
+
+        if ($this->section->settings->layout_type !== 'carousel') {
+            return $config;
+        }
+
+        $settings = $this->section->settings;
+        $itemsPerView = Tailwind::toResponsiveValue($settings->columns ?? 4);
+        $gap = $settings->gap ?? 4;
+        $hasResponsive = $itemsPerView->has('mobile') || $itemsPerView->has('tablet');
+
+        if ($hasResponsive) {
+            $config['slidesPerView'] = (int) $itemsPerView->get('mobile', $itemsPerView->value());
+
+            $breakpoints = [];
+
+            if ($itemsPerView->has('tablet')) {
+                $breakpoints['(min-width: 767px)'] = [
+                    'slidesPerView' => (int) $itemsPerView->get('tablet'),
+                ];
+            }
+
+            $breakpoints['(min-width: 1024px)'] = [
+                'slidesPerView' => (int) $itemsPerView->value(),
+            ];
+
+            $config['breakpoints'] = $breakpoints;
+        } else {
+            $config['slidesPerView'] = (int) $itemsPerView->value();
+        }
+
+        $config['spaceBetween'] = $gap * 4;
+        $config['loop'] = (bool) (($settings->loop ?? false) || ($settings->autoplay ?? false));
+
+        if ($settings->autoplay ?? false) {
+            $config['autoplay'] = [
+                'delay' => (int) ($settings->autoplay_delay ?? 3000),
+                'pauseOnHover' => true,
+                'pauseOnFocus' => true,
+            ];
+        }
+
+        return $config;
     }
 
     public static function name(): string
@@ -201,7 +269,7 @@ class ProductList extends BladeSection
 
             Range::make('columns', _t('sections.product-list.settings.columns_label'))
                 ->min(1)->max(6)->step(1)
-                ->default(['_default' => 4, 'mobile' => 2])
+                ->default(['_default' => 4, 'mobile' => 2, 'tablet' => 3])
                 ->responsive(),
 
             Range::make('gap', _t('sections.product-list.settings.gap_label'))
@@ -217,6 +285,22 @@ class ProductList extends BladeSection
                 ->default('container'),
 
             Header::make(_t('sections.product-list.settings.carousel_nav_header')),
+
+            Checkbox::make('loop', _t('sections.product-list.settings.loop_label'))
+                ->default(false)
+                ->asSwitch()
+                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'carousel')),
+
+            Checkbox::make('autoplay', _t('sections.product-list.settings.autoplay_label'))
+                ->default(false)
+                ->asSwitch()
+                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'carousel')),
+
+            Range::make('autoplay_delay', _t('sections.product-list.settings.autoplay_delay_label'))
+                ->min(1000)->max(10000)->step(500)
+                ->default(3000)
+                ->info(_t('sections.product-list.settings.autoplay_delay_info'))
+                ->visibleWhen(fn ($rule) => $rule->when('layout_type', 'carousel')->whenTruthy('autoplay')),
 
             Select::make('nav_style', _t('sections.product-list.settings.nav_style_label'))
                 ->options([

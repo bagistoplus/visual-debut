@@ -278,7 +278,7 @@ return [
             'parent_category_info' => 'Filter products by category. Leave empty to show products from all categories.',
 
             'product_type_label' => 'Product Type',
-            'product_type_info' => 'Only used when no product blocks are added and no parent category is selected',
+            'product_type_info' => 'Only used when no parent category is selected',
             'new_label' => 'New Products',
             'featured_label' => 'Featured Products',
 
@@ -302,7 +302,11 @@ return [
                 'full' => 'Full Width',
             ],
 
-            'carousel_nav_header' => 'Carousel Navigation',
+            'carousel_nav_header' => 'Carousel',
+            'loop_label' => 'Loop',
+            'autoplay_label' => 'Autoplay',
+            'autoplay_delay_label' => 'Autoplay Delay',
+            'autoplay_delay_info' => 'Time between automatic slide changes in milliseconds.',
             'nav_style_label' => 'Navigation Style',
             'nav_style_options' => [
                 'arrow' => 'Arrows',

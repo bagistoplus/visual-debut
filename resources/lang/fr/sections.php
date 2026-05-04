@@ -241,6 +241,78 @@ return [
         ],
     ],
 
+    'product-list' => [
+        'name' => 'Liste de produits',
+        'description' => 'Affiche une liste de produits depuis une catégorie, ou filtre par type de produit.',
+
+        'settings' => [
+            'parent_category_label' => 'Catégorie parente',
+            'parent_category_info' => 'Filtre les produits par catégorie. Laissez vide pour afficher les produits de toutes les catégories.',
+
+            'product_type_label' => 'Type de produit',
+            'product_type_info' => 'Utilisé uniquement si aucune catégorie parente n’est sélectionnée',
+            'new_label' => 'Nouveaux produits',
+            'featured_label' => 'Produits en vedette',
+
+            'nb_products_label' => 'Nombre de produits',
+            'nb_products_info' => 'Nombre maximum de produits à afficher',
+
+            'layout_header' => 'Mise en page',
+            'layout_type_label' => 'Type de mise en page',
+            'layout_type_options' => [
+                'grid' => 'Grille',
+                'carousel' => 'Carrousel',
+            ],
+
+            'columns_label' => 'Colonnes',
+            'gap_label' => 'Espacement',
+            'gap_info' => 'Espace entre les produits',
+
+            'content_width_label' => 'Largeur du contenu',
+            'content_width_options' => [
+                'container' => 'Conteneur',
+                'full' => 'Pleine largeur',
+            ],
+
+            'carousel_nav_header' => 'Carrousel',
+            'loop_label' => 'Boucler',
+            'autoplay_label' => 'Lecture automatique',
+            'autoplay_delay_label' => 'Délai de lecture automatique',
+            'autoplay_delay_info' => 'Temps entre les changements automatiques de diapositive en millisecondes.',
+            'nav_style_label' => 'Style de navigation',
+            'nav_style_options' => [
+                'arrow' => 'Flèches',
+                'dot' => 'Points',
+                'both' => 'Les deux',
+                'none' => 'Aucun',
+            ],
+            'nav_shape_label' => 'Forme de navigation',
+            'nav_shape_options' => [
+                'circle' => 'Cercle',
+                'square' => 'Carré',
+                'none' => 'Aucune',
+            ],
+            'nav_icon_label' => 'Icône de navigation',
+            'nav_icon_options' => [
+                'arrow' => 'Flèche',
+                'chevron' => 'Chevron',
+            ],
+
+            'appearance_header' => 'Apparence',
+            'color_scheme_label' => 'Palette de couleurs',
+        ],
+
+        'blocks' => [
+            'product' => [
+                'name' => 'Produit',
+                'settings' => [
+                    'product_label' => 'Produit',
+                    'product_info' => 'Sélectionnez un produit à afficher',
+                ],
+            ],
+        ],
+    ],
+
     'newsletter' => [
         'name' => 'Inscription à la newsletter',
         'description' => 'Permet aux clients de s\'abonner aux mises à jour et promotions.',

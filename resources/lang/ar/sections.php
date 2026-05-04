@@ -255,6 +255,78 @@ return [
         ],
     ],
 
+    'product-list' => [
+        'name' => 'قائمة المنتجات',
+        'description' => 'عرض قائمة منتجات من فئة، أو التصفية حسب نوع المنتج.',
+
+        'settings' => [
+            'parent_category_label' => 'الفئة الأصلية',
+            'parent_category_info' => 'تصفية المنتجات حسب الفئة. اتركه فارغًا لعرض المنتجات من جميع الفئات.',
+
+            'product_type_label' => 'نوع المنتج',
+            'product_type_info' => 'يُستخدم فقط عند عدم اختيار فئة أصلية',
+            'new_label' => 'منتجات جديدة',
+            'featured_label' => 'منتجات مميزة',
+
+            'nb_products_label' => 'عدد المنتجات',
+            'nb_products_info' => 'الحد الأقصى لعدد المنتجات المعروضة',
+
+            'layout_header' => 'التخطيط',
+            'layout_type_label' => 'نوع التخطيط',
+            'layout_type_options' => [
+                'grid' => 'شبكة',
+                'carousel' => 'دوّار',
+            ],
+
+            'columns_label' => 'الأعمدة',
+            'gap_label' => 'المسافة',
+            'gap_info' => 'المسافة بين المنتجات',
+
+            'content_width_label' => 'عرض المحتوى',
+            'content_width_options' => [
+                'container' => 'حاوية',
+                'full' => 'العرض الكامل',
+            ],
+
+            'carousel_nav_header' => 'دوّار',
+            'loop_label' => 'تكرار',
+            'autoplay_label' => 'تشغيل تلقائي',
+            'autoplay_delay_label' => 'تأخير التشغيل التلقائي',
+            'autoplay_delay_info' => 'الوقت بين تغييرات الشرائح التلقائية بالمللي ثانية.',
+            'nav_style_label' => 'نمط التنقل',
+            'nav_style_options' => [
+                'arrow' => 'أسهم',
+                'dot' => 'نقاط',
+                'both' => 'كلاهما',
+                'none' => 'بدون',
+            ],
+            'nav_shape_label' => 'شكل التنقل',
+            'nav_shape_options' => [
+                'circle' => 'دائرة',
+                'square' => 'مربع',
+                'none' => 'بدون',
+            ],
+            'nav_icon_label' => 'أيقونة التنقل',
+            'nav_icon_options' => [
+                'arrow' => 'سهم',
+                'chevron' => 'شيفرون',
+            ],
+
+            'appearance_header' => 'المظهر',
+            'color_scheme_label' => 'نظام الألوان',
+        ],
+
+        'blocks' => [
+            'product' => [
+                'name' => 'منتج',
+                'settings' => [
+                    'product_label' => 'المنتج',
+                    'product_info' => 'اختر منتجًا لعرضه',
+                ],
+            ],
+        ],
+    ],
+
     'newsletter' => [
         'name' => 'الاشتراك في النشرة البريدية',
         'description' => 'اسمح للعملاء بالاشتراك لتلقي التحديثات والعروض الترويجية.',

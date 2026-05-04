@@ -1,4 +1,5 @@
 import { Livewire, Alpine } from '../../../../vendor/livewire/livewire/dist/livewire.esm';
+import carousel from 'alpine-headless-ui/carousel';
 
 import collapsible from './components/ui/collapsible';
 import accordion from './components/ui/accordion';
@@ -23,7 +24,6 @@ import variantPicker from './features/variant-picker';
 import navigation from './features/navigation';
 import productActions from './features/product-actions';
 import rating from './components/ui/rating';
-import carousel from './components/ui/carousel';
 
 // ui components as plugin
 Alpine.plugin([accordion, collapsible, dropdown, modal, numberInput, slider, tabs, toasts, rating, carousel]);

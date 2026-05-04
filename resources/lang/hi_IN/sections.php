@@ -255,6 +255,78 @@ return [
         ],
     ],
 
+    'product-list' => [
+        'name' => 'उत्पाद सूची',
+        'description' => 'किसी श्रेणी से उत्पादों की सूची दिखाएं, या उत्पाद प्रकार के अनुसार फ़िल्टर करें।',
+
+        'settings' => [
+            'parent_category_label' => 'मूल श्रेणी',
+            'parent_category_info' => 'उत्पादों को श्रेणी के अनुसार फ़िल्टर करें। सभी श्रेणियों के उत्पाद दिखाने के लिए खाली छोड़ें।',
+
+            'product_type_label' => 'उत्पाद प्रकार',
+            'product_type_info' => 'केवल तब उपयोग किया जाता है जब कोई मूल श्रेणी चयनित न हो',
+            'new_label' => 'नए उत्पाद',
+            'featured_label' => 'विशेष उत्पाद',
+
+            'nb_products_label' => 'उत्पादों की संख्या',
+            'nb_products_info' => 'दिखाने के लिए उत्पादों की अधिकतम संख्या',
+
+            'layout_header' => 'लेआउट',
+            'layout_type_label' => 'लेआउट प्रकार',
+            'layout_type_options' => [
+                'grid' => 'ग्रिड',
+                'carousel' => 'कैरोसेल',
+            ],
+
+            'columns_label' => 'कॉलम',
+            'gap_label' => 'अंतर',
+            'gap_info' => 'उत्पादों के बीच की जगह',
+
+            'content_width_label' => 'सामग्री की चौड़ाई',
+            'content_width_options' => [
+                'container' => 'कंटेनर',
+                'full' => 'पूर्ण चौड़ाई',
+            ],
+
+            'carousel_nav_header' => 'कैरोसेल',
+            'loop_label' => 'लूप',
+            'autoplay_label' => 'ऑटोप्ले',
+            'autoplay_delay_label' => 'ऑटोप्ले विलंब',
+            'autoplay_delay_info' => 'स्वचालित स्लाइड बदलावों के बीच का समय मिलीसेकंड में।',
+            'nav_style_label' => 'नेविगेशन शैली',
+            'nav_style_options' => [
+                'arrow' => 'तीर',
+                'dot' => 'डॉट्स',
+                'both' => 'दोनों',
+                'none' => 'कोई नहीं',
+            ],
+            'nav_shape_label' => 'नेविगेशन आकार',
+            'nav_shape_options' => [
+                'circle' => 'वृत्त',
+                'square' => 'वर्ग',
+                'none' => 'कोई नहीं',
+            ],
+            'nav_icon_label' => 'नेविगेशन आइकन',
+            'nav_icon_options' => [
+                'arrow' => 'तीर',
+                'chevron' => 'शेवरॉन',
+            ],
+
+            'appearance_header' => 'रूप',
+            'color_scheme_label' => 'रंग योजना',
+        ],
+
+        'blocks' => [
+            'product' => [
+                'name' => 'उत्पाद',
+                'settings' => [
+                    'product_label' => 'उत्पाद',
+                    'product_info' => 'दिखाने के लिए एक उत्पाद चुनें',
+                ],
+            ],
+        ],
+    ],
+
     'newsletter' => [
         'name' => 'न्यूज़लेटर साइनअप',
         'description' => 'ग्राहकों को अपडेट और प्रमोशन के लिए सदस्यता लेने की अनुमति दें।',

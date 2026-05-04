@@ -27,7 +27,7 @@
     @else
       <x-shop::ui.menu class="hidden sm:block">
         <x-shop::ui.menu.trigger aria-label="currency selector" class="hover:text-primary flex items-center p-2 transition-colors">
-          <span class="ms-1">
+          <span class="ms-1 flex">
             {{ $currentCurrency->symbol }} {{ $currentCurrency->code }}
           </span>
         </x-shop::ui.menu.trigger>
