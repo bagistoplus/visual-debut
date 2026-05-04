@@ -10,9 +10,9 @@
   </button>
   <div x-show="showOptions" class="space-y-2">
     @foreach ($options as $option)
-      <div class="{{ $option->attribute_type === 'file' ? 'truncate' : '' }} text-xs">
+      <div class="{{ isset($option->attribute_type) && $option->attribute_type === 'file' ? 'truncate' : '' }} text-xs">
         <span class="font-bold">{{ $option->attribute_name }}: </span>
-        @if ($option->attribute_type === 'file')
+        @if (isset($option->attribute_type) && $option->attribute_type === 'file')
           <a
             href="{{ $option->file_url }}"
             target="_blank"
