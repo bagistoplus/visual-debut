@@ -76,7 +76,7 @@
                   >
                 </div>
                 <div class="flex-1">
-                  <h3 class="font-medium">{{ $item->name }}</h3>
+                  <h3 class="text-base font-medium">{{ $item->name }}</h3>
                   <p class="text-sm">Quantity: {{ $item->qty_ordered }}</p>
                   <p class="text-primary text-sm">
                     <x-shop::formatted-price :price="$item->total_incl_tax" />

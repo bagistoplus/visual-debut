@@ -3,9 +3,9 @@
 <div {{ $attributes->merge(['class' => 'space-y-6']) }}>
   @if (!$noHeader)
     <div class="flex items-center justify-between">
-      <h3 class="text-on-background font-medium">
+      <h5 class="text-on-background font-medium">
         @lang('shop::app.categories.filters.filters')
-      </h3>
+      </h5>
       <button wire:click="resetFilters" class="text-primary hover:text-primary/80 flex items-center text-sm">
         <x-lucide-rotate-ccw class="mr-1 h-4 w-4" />
         @lang('visual-debut::shop.reset')

@@ -6,7 +6,7 @@
 
 <div {{ $attributes->merge(['class' => 'border-b  last:border-none'])->merge($itemAttr) }}>
   @if ($title)
-    <h3>
+    <h3 class="text-base font-semibold">
       <x-shop::ui.accordion.item-trigger class="w-full">
         {{ $title }}
       </x-shop::ui.accordion.item-trigger>

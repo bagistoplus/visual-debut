@@ -1,7 +1,5 @@
-<section>
-  {{-- <div {{ $section->editor_attributes }} class="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/30">
-    <x-lucide-loader-2 class="h-16 w-16 animate-spin text-white" />
-  </div> --}}
+<section {{ $section->editor_attributes }}>
+  {{-- <x-lucide-loader-2 class="h-16 w-16 animate-spin text-white" /> --}}
   <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8" x-data="{
       init() {
           Livewire.hook('morph', () => {
@@ -56,7 +54,7 @@
                     >
                   </div>
                   <div class="flex-1">
-                    <h3 class="font-medium">{{ $item->name }}</h3>
+                    <h3 class="text-base font-medium">{{ $item->name }}</h3>
                     <p class="text-sm">Quantity: {{ $item->quantity }}</p>
                     <p class="text-primary text-sm">{{ $item->formatted_price }}</p>
                   </div>
