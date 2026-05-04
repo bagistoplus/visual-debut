@@ -3,6 +3,7 @@
 namespace BagistoPlus\VisualDebut\Blocks\Header;
 
 use BagistoPlus\Visual\Blocks\SimpleBlock;
+use BagistoPlus\Visual\Settings\Checkbox;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -32,6 +33,10 @@ class Currency extends SimpleBlock
 
     public static function settings(): array
     {
-        return [];
+        return [
+            Checkbox::make('hide_on_mobile', _t('blocks.common.hide_on_mobile_label'))
+                ->asSwitch()
+                ->default(true),
+        ];
     }
 }

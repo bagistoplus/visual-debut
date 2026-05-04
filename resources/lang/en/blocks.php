@@ -11,6 +11,7 @@ return [
         'padding_header' => 'Padding',
         'padding_label' => 'Padding',
         'margin_label' => 'Margin',
+        'hide_on_mobile_label' => 'Hide on mobile',
     ],
 
     'product' => [

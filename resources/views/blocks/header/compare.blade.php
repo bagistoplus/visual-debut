@@ -1,7 +1,11 @@
 @if (core()->getConfigData('catalog.products.settings.compare_option'))
   <a
     {{ $block->editor_attributes }}
-    class="relative hidden items-center p-2 sm:flex"
+    @class([
+      'relative items-center p-2',
+      'hidden sm:flex' => $block->settings->hide_on_mobile ?? false,
+      'flex' => !($block->settings->hide_on_mobile ?? false),
+    ])
     aria-label="@lang('visual-debut::shop.header.compare')"
     title="@lang('visual-debut::shop.header.compare')"
     href="{{ route('shop.compare.index') }}"

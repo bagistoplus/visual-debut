@@ -11,6 +11,7 @@ return [
         'padding_header' => 'Marge intérieure',
         'padding_label' => 'Marge intérieure',
         'margin_label' => 'Marge extérieure',
+        'hide_on_mobile_label' => 'Masquer sur mobile',
     ],
 
     'product' => [

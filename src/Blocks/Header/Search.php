@@ -3,6 +3,7 @@
 namespace BagistoPlus\VisualDebut\Blocks\Header;
 
 use BagistoPlus\Visual\Blocks\SimpleBlock;
+use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Icon;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -39,6 +40,10 @@ class Search extends SimpleBlock
 
             Icon::make('image_search_icon', _t('blocks.header-search.settings.image_search_icon_label'))
                 ->default('lucide-camera'),
+
+            Checkbox::make('hide_on_mobile', _t('blocks.common.hide_on_mobile_label'))
+                ->asSwitch()
+                ->default(false),
         ];
     }
 }

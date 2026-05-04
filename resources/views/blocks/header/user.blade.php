@@ -3,7 +3,10 @@
   {{ $block->editor_attributes }}
   x-data
   x-dropdown
-  class="relative"
+  @class([
+    'relative',
+    'hidden sm:block' => $block->settings->hide_on_mobile ?? false,
+  ])
   @visual_design_mode
   x-on:visual:block:select:{{ $block->id }}.window="$dropdown.open = true"
   x-on:visual:block:deselect:{{ $block->id }}.window="$dropdown.open = false"

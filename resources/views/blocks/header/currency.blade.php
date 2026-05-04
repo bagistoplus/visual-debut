@@ -5,9 +5,12 @@
 
 @if ($currencies->count() > 1)
   <div {{ $block->editor_attributes }} class="contents">
-    <x-shop::ui.menu class="hidden sm:block">
+    <x-shop::ui.menu @class([
+      'hidden sm:block' => $block->settings->hide_on_mobile ?? false,
+      'block' => !($block->settings->hide_on_mobile ?? false),
+    ])>
       <x-shop::ui.menu.trigger aria-label="currency selector" class="hover:text-primary flex items-center p-2 transition-colors">
-        <span class="ms-1">
+        <span class="ms-1 whitespace-nowrap">
           {{ $currentCurrency->symbol }} {{ $currentCurrency->code }}
         </span>
       </x-shop::ui.menu.trigger>

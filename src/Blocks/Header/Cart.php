@@ -4,6 +4,7 @@ namespace BagistoPlus\VisualDebut\Blocks\Header;
 
 use BagistoPlus\Visual\Blocks\LivewireBlock;
 use BagistoPlus\Visual\Enums\Events;
+use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\RichText;
 use BagistoPlus\Visual\Settings\Text;
 use BagistoPlus\VisualDebut\Support\InteractsWithCart;
@@ -50,6 +51,10 @@ class Cart extends LivewireBlock
 
             RichText::make('description', _t('blocks.header-cart.settings.description_label'))
                 ->default(_t('blocks.header-cart.settings.description_default')),
+
+            Checkbox::make('hide_on_mobile', _t('blocks.common.hide_on_mobile_label'))
+                ->asSwitch()
+                ->default(false),
         ];
     }
 

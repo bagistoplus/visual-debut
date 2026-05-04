@@ -3,6 +3,7 @@
 namespace BagistoPlus\VisualDebut\Blocks\Header;
 
 use BagistoPlus\Visual\Blocks\SimpleBlock;
+use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Icon;
 use BagistoPlus\Visual\Settings\RichText;
 use BagistoPlus\Visual\Settings\Text;
@@ -44,6 +45,10 @@ class User extends SimpleBlock
 
             RichText::make('guest_description', _t('blocks.header-user.settings.guest_description_label'))
                 ->default(_t('blocks.header-user.settings.guest_description_default')),
+
+            Checkbox::make('hide_on_mobile', _t('blocks.common.hide_on_mobile_label'))
+                ->asSwitch()
+                ->default(false),
         ];
     }
 }

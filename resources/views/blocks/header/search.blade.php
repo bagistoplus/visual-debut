@@ -1,4 +1,8 @@
-<div {{ $block->editor_attributes }} id="search-form">
+<div
+  {{ $block->editor_attributes }}
+  id="search-form"
+  @class(['hidden sm:block' => $block->settings->hide_on_mobile ?? false])
+>
   <div x-data="{ showSearch: false }">
     <button
       class="p-2"

@@ -3,6 +3,7 @@
 namespace BagistoPlus\VisualDebut\Blocks\Header;
 
 use BagistoPlus\Visual\Blocks\SimpleBlock;
+use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Icon;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -36,6 +37,10 @@ class Locale extends SimpleBlock
         return [
             Icon::make('icon', _t('blocks.header-locale.settings.icon_label'))
                 ->default('lucide-globe'),
+
+            Checkbox::make('hide_on_mobile', _t('blocks.common.hide_on_mobile_label'))
+                ->asSwitch()
+                ->default(true),
         ];
     }
 }
