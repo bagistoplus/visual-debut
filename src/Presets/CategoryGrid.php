@@ -23,7 +23,7 @@ class CategoryGrid extends Preset
             ->name(_t('sections.category-list.presets.grid.name'))
             ->category('Category')
             ->settings([
-                'layout_type' => ['_default' => 'grid'],
+                'layout_type' => 'grid',
                 'columns' => ['_default' => 4, 'mobile' => 2],
                 'gap' => 4,
                 'content_width' => 'container',

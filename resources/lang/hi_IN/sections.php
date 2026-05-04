@@ -201,18 +201,60 @@ return [
 
     'category-list' => [
         'name' => 'श्रेणी सूची',
-        'description' => 'चयनित श्रेणियों की ग्रिड को छवियों और लिंक के साथ प्रदर्शित करें।',
+        'description' => 'श्रेणियों को responsive grid या carousel layout में दिखाएं।',
         'settings' => [
-            'heading_label' => 'शीर्षक',
             'heading_default' => 'श्रेणी अनुसार खरीदारी करें',
 
-            'heading_size_label' => 'शीर्षक का आकार',
-            'size_small_label' => 'छोटा',
-            'size_medium_label' => 'मध्यम',
-            'size_large_label' => 'बड़ा',
+            'parent_category_label' => 'मूल श्रेणी',
+            'parent_category_info' => 'इसकी child categories दिखाने के लिए parent category चुनें। मैन्युअल रूप से जोड़ी गई categories दिखाने के लिए खाली छोड़ें।',
 
-            'columns_desktop_label' => 'कॉलम (डेस्कटॉप)',
-            'columns_mobile_label' => 'कॉलम (मोबाइल)',
+            'layout_header' => 'लेआउट',
+            'layout_type_label' => 'लेआउट प्रकार',
+            'layout_type_options' => [
+                'grid' => 'ग्रिड',
+                'carousel' => 'कैरोसेल',
+            ],
+            'columns_label' => 'कॉलम',
+            'gap_label' => 'अंतर',
+            'gap_info' => 'items के बीच की जगह (0-24, जहाँ 4 = 1rem)',
+
+            'carousel_nav_header' => 'कैरोसेल',
+            'loop_label' => 'लूप',
+            'autoplay_label' => 'ऑटोप्ले',
+            'autoplay_delay_label' => 'ऑटोप्ले विलंब',
+            'autoplay_delay_info' => 'स्वचालित स्लाइड बदलावों के बीच का समय मिलीसेकंड में।',
+            'nav_style_label' => 'नेविगेशन शैली',
+            'nav_style_options' => [
+                'arrow' => 'तीर',
+                'dot' => 'डॉट्स',
+                'both' => 'दोनों',
+                'none' => 'कोई नहीं',
+            ],
+            'nav_shape_label' => 'नेविगेशन आकार',
+            'nav_shape_options' => [
+                'none' => 'कोई नहीं',
+                'circle' => 'वृत्त',
+                'square' => 'वर्ग',
+            ],
+            'nav_icon_label' => 'नेविगेशन आइकन',
+            'nav_icon_options' => [
+                'arrow' => 'तीर',
+                'chevron' => 'शेवरॉन',
+            ],
+
+            'appearance_header' => 'रूप',
+
+            'content_width_label' => 'सामग्री की चौड़ाई',
+            'content_width_options' => [
+                'container' => 'कंटेनर',
+                'full' => 'पूर्ण चौड़ाई',
+            ],
+        ],
+        'presets' => [
+            'grid' => [
+                'name' => 'श्रेणी ग्रिड',
+                'heading' => 'श्रेणी अनुसार खरीदारी करें',
+            ],
         ],
         'blocks' => [
             'category' => [

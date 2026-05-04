@@ -194,16 +194,60 @@ return [
 
     'category-list' => [
         'name' => 'Liste des catégories',
-        'description' => 'Afficher une grille de catégories sélectionnées avec images et liens.',
+        'description' => 'Afficher les catégories dans une grille responsive ou un carrousel.',
         'settings' => [
-            'heading_label' => 'Titre',
             'heading_default' => 'Acheter par catégorie',
-            'heading_size_label' => 'Taille du titre',
-            'size_small_label' => 'Petite',
-            'size_medium_label' => 'Moyenne',
-            'size_large_label' => 'Grande',
-            'columns_desktop_label' => 'Colonnes (bureau)',
-            'columns_mobile_label' => 'Colonnes (mobile)',
+
+            'parent_category_label' => 'Catégorie parente',
+            'parent_category_info' => 'Sélectionnez une catégorie parente pour afficher ses enfants. Laissez vide pour afficher les catégories ajoutées manuellement.',
+
+            'layout_header' => 'Mise en page',
+            'layout_type_label' => 'Type de mise en page',
+            'layout_type_options' => [
+                'grid' => 'Grille',
+                'carousel' => 'Carrousel',
+            ],
+            'columns_label' => 'Colonnes',
+            'gap_label' => 'Espacement',
+            'gap_info' => 'Espace entre les éléments (0-24, où 4 = 1rem)',
+
+            'carousel_nav_header' => 'Carrousel',
+            'loop_label' => 'Boucler',
+            'autoplay_label' => 'Lecture automatique',
+            'autoplay_delay_label' => 'Délai de lecture automatique',
+            'autoplay_delay_info' => 'Temps entre les changements automatiques de diapositive en millisecondes.',
+            'nav_style_label' => 'Style de navigation',
+            'nav_style_options' => [
+                'arrow' => 'Flèches',
+                'dot' => 'Points',
+                'both' => 'Les deux',
+                'none' => 'Aucun',
+            ],
+            'nav_shape_label' => 'Forme de navigation',
+            'nav_shape_options' => [
+                'none' => 'Aucune',
+                'circle' => 'Cercle',
+                'square' => 'Carré',
+            ],
+            'nav_icon_label' => 'Icône de navigation',
+            'nav_icon_options' => [
+                'arrow' => 'Flèche',
+                'chevron' => 'Chevron',
+            ],
+
+            'appearance_header' => 'Apparence',
+
+            'content_width_label' => 'Largeur du contenu',
+            'content_width_options' => [
+                'container' => 'Conteneur',
+                'full' => 'Pleine largeur',
+            ],
+        ],
+        'presets' => [
+            'grid' => [
+                'name' => 'Grille de catégories',
+                'heading' => 'Acheter par catégorie',
+            ],
         ],
         'blocks' => [
             'category' => [

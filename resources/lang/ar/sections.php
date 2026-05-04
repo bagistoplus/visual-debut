@@ -201,18 +201,60 @@ return [
 
     'category-list' => [
         'name' => 'قائمة الفئات',
-        'description' => 'عرض شبكة من الفئات المحددة مع الصور والروابط.',
+        'description' => 'عرض الفئات في تخطيط شبكة متجاوبة أو دوّار.',
         'settings' => [
-            'heading_label' => 'العنوان',
             'heading_default' => 'تسوق حسب الفئة',
 
-            'heading_size_label' => 'حجم العنوان',
-            'size_small_label' => 'صغير',
-            'size_medium_label' => 'متوسط',
-            'size_large_label' => 'كبير',
+            'parent_category_label' => 'الفئة الأصلية',
+            'parent_category_info' => 'حدد فئة أصلية لعرض فئاتها الفرعية. اتركه فارغًا لعرض الفئات المضافة يدويًا.',
 
-            'columns_desktop_label' => 'عدد الأعمدة (سطح المكتب)',
-            'columns_mobile_label' => 'عدد الأعمدة (الجوال)',
+            'layout_header' => 'التخطيط',
+            'layout_type_label' => 'نوع التخطيط',
+            'layout_type_options' => [
+                'grid' => 'شبكة',
+                'carousel' => 'دوّار',
+            ],
+            'columns_label' => 'الأعمدة',
+            'gap_label' => 'المسافة',
+            'gap_info' => 'المسافة بين العناصر (0-24، حيث 4 = 1rem)',
+
+            'carousel_nav_header' => 'دوّار',
+            'loop_label' => 'تكرار',
+            'autoplay_label' => 'تشغيل تلقائي',
+            'autoplay_delay_label' => 'تأخير التشغيل التلقائي',
+            'autoplay_delay_info' => 'الوقت بين تغييرات الشرائح التلقائية بالمللي ثانية.',
+            'nav_style_label' => 'نمط التنقل',
+            'nav_style_options' => [
+                'arrow' => 'أسهم',
+                'dot' => 'نقاط',
+                'both' => 'كلاهما',
+                'none' => 'بدون',
+            ],
+            'nav_shape_label' => 'شكل التنقل',
+            'nav_shape_options' => [
+                'none' => 'بدون',
+                'circle' => 'دائرة',
+                'square' => 'مربع',
+            ],
+            'nav_icon_label' => 'أيقونة التنقل',
+            'nav_icon_options' => [
+                'arrow' => 'سهم',
+                'chevron' => 'شيفرون',
+            ],
+
+            'appearance_header' => 'المظهر',
+
+            'content_width_label' => 'عرض المحتوى',
+            'content_width_options' => [
+                'container' => 'حاوية',
+                'full' => 'العرض الكامل',
+            ],
+        ],
+        'presets' => [
+            'grid' => [
+                'name' => 'شبكة الفئات',
+                'heading' => 'تسوق حسب الفئة',
+            ],
         ],
         'blocks' => [
             'category' => [

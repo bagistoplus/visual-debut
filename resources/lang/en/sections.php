@@ -231,11 +231,16 @@ return [
             'gap_label' => 'Gap',
             'gap_info' => 'Space between items (0-24, where 4 = 1rem)',
 
-            'carousel_nav_header' => 'Carousel Navigation',
+            'carousel_nav_header' => 'Carousel',
+            'loop_label' => 'Loop',
+            'autoplay_label' => 'Autoplay',
+            'autoplay_delay_label' => 'Autoplay Delay',
+            'autoplay_delay_info' => 'Time between automatic slide changes in milliseconds.',
             'nav_style_label' => 'Navigation Style',
             'nav_style_options' => [
-                'arrow' => 'Arrow',
-                'chevron' => 'Chevron',
+                'arrow' => 'Arrows',
+                'dot' => 'Dots',
+                'both' => 'Both',
                 'none' => 'None',
             ],
             'nav_shape_label' => 'Navigation Shape',
@@ -243,6 +248,11 @@ return [
                 'none' => 'None',
                 'circle' => 'Circle',
                 'square' => 'Square',
+            ],
+            'nav_icon_label' => 'Navigation Icon',
+            'nav_icon_options' => [
+                'arrow' => 'Arrow',
+                'chevron' => 'Chevron',
             ],
 
             'appearance_header' => 'Appearance',
