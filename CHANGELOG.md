@@ -2,6 +2,13 @@
 
 All notable changes to `Bagisto Visual Debut` will be documented in this file.
 
+# [2.0.0-alpha.2](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2026-05-05)
+
+
+### Features
+
+* support image focal point metadata ([be75a7b](https://github.com/bagistoplus/visual-debut/commit/be75a7b65e23a40f591854ec434f11b834a883db))
+
 ## 2.0.0-alpha.1 (2026-05-04)
 
 ### Features
