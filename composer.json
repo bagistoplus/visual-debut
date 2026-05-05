@@ -24,10 +24,10 @@
   "require": {
     "php": "^8.2",
     "illuminate/contracts": "^11.0||^12.0",
-    "bagistoplus/visual": "^2.0.0-alpha.5",
+    "bagistoplus/visual": "^2.0.0-alpha.6",
     "livewire/livewire": "3.7.4",
     "bagistoplus/couleur": "^0.2.0",
-    "bagistoplus/basic-blocks": "^1.0"
+    "bagistoplus/basic-blocks": "^1.1"
   },
   "require-dev": {
     "bagisto/bagisto": "^2.3||^2.4",

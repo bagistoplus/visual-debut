@@ -33,7 +33,6 @@ class HeroBanner extends Preset
                 'section_height' => 'sm',
                 'background_type' => 'image',
                 'background_image' => '/themes/shop/visual-debut/images/hero-banner.avif',
-                'background_position' => 'center',
                 'background_size' => 'cover',
                 'background_repeat' => 'no-repeat',
                 'toggle_overlay' => true,
