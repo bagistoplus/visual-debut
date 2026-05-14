@@ -2,6 +2,13 @@
 
 All notable changes to `Bagisto Visual Debut` will be documented in this file.
 
+# [2.0.0-alpha.3](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2026-05-05)
+
+
+### Features
+
+* support Livewire 4 ([9de8e0f](https://github.com/bagistoplus/visual-debut/commit/9de8e0f4bd9523ebcea3b2b9a30eaad9d3118268))
+
 # [2.0.0-alpha.2](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2026-05-05)
 
 
