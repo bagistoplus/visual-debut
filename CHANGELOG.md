@@ -2,6 +2,13 @@
 
 All notable changes to `Bagisto Visual Debut` will be documented in this file.
 
+# [2.0.0-alpha.4](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2026-05-27)
+
+
+### Bug Fixes
+
+* update visual compatibility ([c77c138](https://github.com/bagistoplus/visual-debut/commit/c77c1388e510c7e6e3a74c6870c9d215c77445ca))
+
 # [2.0.0-alpha.3](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2026-05-05)
 
 
