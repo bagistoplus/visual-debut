@@ -6,7 +6,7 @@ use BagistoPlus\Visual\Contracts\SettingTransformerInterface;
 
 class RadiusTransformer implements SettingTransformerInterface
 {
-    public function transform(mixed $value): string
+    public function transform(mixed $value, array $schema): string
     {
         return match ($value) {
             'xs' => '0.125rem',

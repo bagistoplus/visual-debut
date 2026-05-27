@@ -16,7 +16,7 @@ use BagistoPlus\VisualDebut\Sections\Header;
 
 return TemplateBuilder::make()
     ->id('header')
-    ->name('header')
+    ->name('Header')
 
     // Announcement Bar Section
     ->section('announcement-bar', AnnouncementBar::class)
