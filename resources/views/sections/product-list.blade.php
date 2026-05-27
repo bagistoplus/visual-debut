@@ -1,7 +1,7 @@
 <div
   {{ $section->editor_attributes }}
   {{ $section->settings->color_scheme?->attributes() }}
-  class="{{ $paddingClasses }}"
+  class="{{ $paddingClasses }} relative"
 >
   <div class="{{ $widthClass }}">
     @children
