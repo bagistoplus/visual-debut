@@ -31,7 +31,7 @@
 @source inline("{mobile:,tablet:,desktop:,}z-{0,10,20,30,40,50}");
 @source inline("{mobile:,tablet:,desktop:,}w-{auto,full,fit,screen,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24}");
 @source inline("{mobile:,tablet:,desktop:,}h-{auto,full,fit,screen,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24}");
-@source inline("{mobile:,tablet:,desktop:,}flex-{row,col}");
+@source inline("{mobile:,tablet:,desktop:,}flex-{row,col}{-reverse,}");
 @source inline("{mobile:,tablet:,desktop:,}justify-{start,end,center,between}");
 @source inline("{mobile:,tablet:,desktop:,}items-{start,end,center}");
 @source inline("{mobile:,tablet:,desktop:,}text-{left,center,right}");
