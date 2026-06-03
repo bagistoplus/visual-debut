@@ -2,6 +2,13 @@
 
 All notable changes to `Bagisto Visual Debut` will be documented in this file.
 
+# [2.0.0-alpha.5](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.4...v2.0.0-alpha.5) (2026-06-03)
+
+
+### Features
+
+* safelist flex-{row,col}-reverse with responsive variants ([ed592c0](https://github.com/bagistoplus/visual-debut/commit/ed592c05c38a132987cc47f6a5cbd5e25b0b457f))
+
 # [2.0.0-alpha.4](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2026-05-27)
 
 
