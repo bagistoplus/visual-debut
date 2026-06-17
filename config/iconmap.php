@@ -7,4 +7,5 @@ return [
     'icon-download' => 'lucide-download',
     'icon-star' => 'lucide-star',
     'icon-heart' => 'lucide-heart',
+    'icon-compare-1' => 'lucide-undo-2',
 ];
