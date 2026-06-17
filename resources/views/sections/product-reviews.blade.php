@@ -1,4 +1,8 @@
-<div {{ $section->editor_attributes }} x-data="{ showReviewForm: $wire.entangle('showReviewForm') }" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+<div
+  {{ $section->editor_attributes }}
+  x-data="{ showReviewForm: $wire.entangle('showReviewForm') }"
+  class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
+>
   <div x-show="!showReviewForm">
     @if (count($reviews) > 0)
       <h2 class="mb-8 font-serif text-2xl">
@@ -66,7 +70,7 @@
                     @endif
 
                     <div>
-                      <h3 class="font-medium">{{ $review['name'] }}</h3>
+                      <h3 class="text-base font-medium">{{ $review['name'] }}</h3>
                       <div class="mt-1 flex items-center gap-2">
                         <x-shop::star-rating :rating="$review['rating']" />
                         <span class="text-sm">{{ $review['created_at'] }}</span>
@@ -74,7 +78,7 @@
                     </div>
                   </div>
                 </div>
-                <h4 class="mb-2 font-medium">{{ $review['title'] }}</h4>
+                <h4 class="mb-2 text-base font-medium">{{ $review['title'] }}</h4>
                 <p class="mb-4">
                   {{ $review['comment'] }}
                 </p>
