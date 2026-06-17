@@ -402,6 +402,10 @@ return [
         'settings' => [
             'push_to_left' => 'Push this element to the start',
             'push_to_right' => 'Push this element to the end',
+            'categories_label' => 'Categories',
+            'categories_info' => 'Select categories to show in the header navigation. Leave empty to use root categories.',
+            'category_limit_label' => 'Category Limit',
+            'category_limit_info' => 'Maximum number of categories to show.',
         ],
     ],
 

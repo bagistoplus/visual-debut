@@ -11,7 +11,7 @@
 >
   <div class="relative">
     <ul class="text-on-background group flex flex-1 list-none items-center justify-center space-x-2 rounded-md p-1.5">
-      @foreach ($categories as $category)
+      @foreach ($categoryList as $category)
         <li>
           @if ($category->children->isEmpty())
             <a href="{{ $category->url }}" class="{{ $itemClass }}">
@@ -43,7 +43,7 @@
     x-cloak
   >
     <div class="bg-surface border-on-surface/8 box z-20 flex h-auto w-auto justify-center overflow-hidden shadow">
-      @foreach ($categories as $category)
+      @foreach ($categoryList as $category)
         @if ($category->children->isNotEmpty())
           @php
             $hasImage = $category->logo_url || $category->banner_url;
