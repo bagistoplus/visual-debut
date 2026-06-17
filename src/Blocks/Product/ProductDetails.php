@@ -12,13 +12,13 @@ use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductDescription;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductShortDescription;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductTitle;
+use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Blocks\BladeBlock;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\VisualDebut\Blocks;
-use BagistoPlus\VisualDebut\Tailwind;
 
 use function BagistoPlus\VisualDebut\_t;
 
