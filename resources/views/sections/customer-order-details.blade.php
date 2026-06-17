@@ -154,7 +154,7 @@
                 @foreach ($item->additional['attributes'] as $attribute)
                   <div class="mt-1 text-sm">
                     <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
-                    @if ($attribute['attribute_type'] == 'file')
+                    @if (($attribute['attribute_type'] ?? null) === 'file')
                       <a
                         href="{{ Storage::url($attribute['option_label']) }}"
                         target="_blank"
@@ -347,9 +347,9 @@
                     @if (isset($item->additional['attributes']))
                       <div class="mb-2 mt-1">
                         @foreach ($item->additional['attributes'] as $attribute)
-                          <p class="{{ $attribute['attribute_type'] == 'file' ? 'truncate' : '' }} text-sm">
+                          <p class="{{ ($attribute['attribute_type'] ?? null) === 'file' ? 'truncate' : '' }} text-sm">
                             <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
-                            @if ($attribute['attribute_type'] == 'file')
+                            @if (($attribute['attribute_type'] ?? null) === 'file')
                               <a
                                 href="{{ Storage::url($attribute['option_label']) }}"
                                 target="_blank"
@@ -437,7 +437,7 @@
                               @foreach ($item->additional['attributes'] as $attribute)
                                 <p class="text-sm">
                                   <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
-                                  @if ($attribute['attribute_type'] == 'file')
+                                  @if (($attribute['attribute_type'] ?? null) === 'file')
                                     <a
                                       href="{{ Storage::url($attribute['option_label']) }}"
                                       target="_blank"
@@ -590,9 +590,9 @@
                     @if (isset($item->additional['attributes']))
                       <div class="mb-2 mt-1">
                         @foreach ($item->additional['attributes'] as $attribute)
-                          <p class="{{ $attribute['attribute_type'] == 'file' ? 'truncate' : '' }} text-sm">
+                          <p class="{{ ($attribute['attribute_type'] ?? null) === 'file' ? 'truncate' : '' }} text-sm">
                             <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
-                            @if ($attribute['attribute_type'] == 'file')
+                            @if (($attribute['attribute_type'] ?? null) === 'file')
                               <a
                                 href="{{ Storage::url($attribute['option_label']) }}"
                                 target="_blank"
@@ -661,7 +661,7 @@
                               @foreach ($item->additional['attributes'] as $attribute)
                                 <p class="text-sm">
                                   <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
-                                  @if ($attribute['attribute_type'] == 'file')
+                                  @if (($attribute['attribute_type'] ?? null) === 'file')
                                     <a
                                       href="{{ Storage::url($attribute['option_label']) }}"
                                       target="_blank"
@@ -715,9 +715,9 @@
                     @if (isset($item->additional['attributes']))
                       <div class="mb-2 mt-1">
                         @foreach ($item->additional['attributes'] as $attribute)
-                          <p class="{{ $attribute['attribute_type'] == 'file' ? 'truncate' : '' }} text-sm">
+                          <p class="{{ ($attribute['attribute_type'] ?? null) === 'file' ? 'truncate' : '' }} text-sm">
                             <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
-                            @if ($attribute['attribute_type'] == 'file')
+                            @if (($attribute['attribute_type'] ?? null) === 'file')
                               <a
                                 href="{{ Storage::url($attribute['option_label']) }}"
                                 target="_blank"
@@ -837,7 +837,7 @@
                               @foreach ($item->additional['attributes'] as $attribute)
                                 <p class="text-sm">
                                   <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
-                                  @if ($attribute['attribute_type'] == 'file')
+                                  @if (($attribute['attribute_type'] ?? null) === 'file')
                                     <a
                                       href="{{ Storage::url($attribute['option_label']) }}"
                                       target="_blank"

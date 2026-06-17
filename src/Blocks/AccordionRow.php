@@ -25,6 +25,11 @@ class AccordionRow extends BladeBlock
 
     protected static string $category = 'Layout';
 
+    public static function name(): string
+    {
+        return _t('blocks.accordion-row.name');
+    }
+
     public static function settings(): array
     {
         return [

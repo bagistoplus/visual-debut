@@ -11,6 +11,8 @@ use BagistoPlus\BasicBlocks\Sections\FlexSection;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 
+use function BagistoPlus\VisualDebut\_t;
+
 class TextWithImage extends Preset
 {
     public static function getType(): string
@@ -21,7 +23,7 @@ class TextWithImage extends Preset
     protected function build(): void
     {
         $this
-            ->name('Text with Image')
+            ->name(_t('sections.flex-section.presets.image_with_text.name'))
             ->category('Content')
             ->settings([
                 'flex_direction' => ['_default' => 'row', 'mobile' => 'column'],
@@ -47,7 +49,7 @@ class TextWithImage extends Preset
 
                 // Content Container
                 PresetBlock::make(Group::class)
-                    ->name('Content')
+                    ->name(_t('sections.flex-section.presets.image_with_text.content'))
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',
@@ -59,20 +61,20 @@ class TextWithImage extends Preset
                     ->blocks([
                         PresetBlock::make(Heading::class)
                             ->settings([
-                                'text' => 'Image with text',
+                                'text' => _t('sections.flex-section.presets.image_with_text.heading'),
                                 'heading_level' => 'h2',
                                 'typography' => 'heading-2',
                             ]),
                         PresetBlock::make(Text::class)
                             ->settings([
-                                'text' => 'Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.',
+                                'text' => _t('sections.flex-section.presets.image_with_text.description'),
                                 'width' => ['_default' => 'fit', 'mobile' => 'fill'],
                                 'max_width' => 'narrow',
                                 'alignment' => ['_default' => 'left', 'mobile' => 'center'],
                             ]),
                         PresetBlock::make(Button::class)
                             ->settings([
-                                'text' => 'Shop now',
+                                'text' => _t('sections.flex-section.presets.image_with_text.cta'),
                             ]),
                     ]),
             ]);

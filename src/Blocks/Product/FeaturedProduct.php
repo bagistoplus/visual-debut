@@ -17,6 +17,11 @@ class FeaturedProduct extends BladeBlock
 
     protected static string $category = 'Product';
 
+    public static function name(): string
+    {
+        return _t('blocks.featured-product.name');
+    }
+
     public static function settings(): array
     {
         return [

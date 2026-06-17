@@ -2,15 +2,12 @@
 
 namespace BagistoPlus\VisualDebut\Sections;
 
+use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Blocks\BladeSection;
 use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
-use BagistoPlus\VisualDebut\Presets\ClassicFooter;
-use BagistoPlus\VisualDebut\Presets\MinimalFooter;
-use BagistoPlus\VisualDebut\Presets\NewsletterFooter;
-use BagistoPlus\VisualDebut\Tailwind;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -73,15 +70,6 @@ class Footer extends BladeSection
             ColorScheme::make('color_scheme', _t('sections.footer.settings.color_scheme_label'))
                 ->default(null)
                 ->info(_t('sections.footer.settings.color_scheme_info')),
-        ];
-    }
-
-    public static function presets(): array
-    {
-        return [
-            ClassicFooter::class,
-            MinimalFooter::class,
-            NewsletterFooter::class,
         ];
     }
 

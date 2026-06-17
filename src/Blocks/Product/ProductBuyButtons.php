@@ -21,6 +21,11 @@ class ProductBuyButtons extends SimpleBlock
 
     protected static int $limit = 2;
 
+    public static function name(): string
+    {
+        return _t('blocks.product-buy-buttons.name');
+    }
+
     public static function settings(): array
     {
         return [

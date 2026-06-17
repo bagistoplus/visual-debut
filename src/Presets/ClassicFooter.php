@@ -39,7 +39,7 @@ class ClassicFooter extends Preset
             ->blocks([
                 // Main content grid
                 PresetBlock::make(Group::class)
-                    ->name('Footer Columns')
+                    ->name(_t('sections.footer.presets.classic.footer_columns'))
                     ->settings([
                         'layout_type' => 'grid',
                         'grid_columns' => ['_default' => 4, 'mobile' => 1],
@@ -49,41 +49,41 @@ class ClassicFooter extends Preset
                     ->blocks([
                         // Brand column
                         $this->createFooterColumn(
-                            'Brand',
+                            _t('sections.footer.presets.classic.brand_column'),
                             _t('sections.footer.presets.classic.brand_title'),
                             _t('sections.footer.presets.classic.brand_description')
                         ),
 
                         // Company links
                         $this->createLinksColumn(
-                            'Company',
+                            _t('sections.footer.presets.classic.company_title'),
                             _t('sections.footer.presets.classic.company_title'),
                             [
-                                ['label' => 'About Us', 'url' => '/page/about-us'],
-                                ['label' => 'Contact', 'url' => '/contact'],
-                                ['label' => 'Careers', 'url' => '/page/careers'],
+                                ['label' => _t('sections.footer.presets.classic.links.about_us'), 'url' => '/page/about-us'],
+                                ['label' => _t('sections.footer.presets.classic.links.contact'), 'url' => '/contact'],
+                                ['label' => _t('sections.footer.presets.classic.links.careers'), 'url' => '/page/careers'],
                             ]
                         ),
 
                         // Policy links
                         $this->createLinksColumn(
-                            'Policy',
+                            _t('sections.footer.presets.classic.policy_title'),
                             _t('sections.footer.presets.classic.policy_title'),
                             [
-                                ['label' => 'Privacy Policy', 'url' => '/page/privacy-policy'],
-                                ['label' => 'Terms of Service', 'url' => '/page/terms-of-service'],
-                                ['label' => 'Shipping Policy', 'url' => '/page/shipping-policy'],
+                                ['label' => _t('sections.footer.presets.classic.links.privacy_policy'), 'url' => '/page/privacy-policy'],
+                                ['label' => _t('sections.footer.presets.classic.links.terms_of_service'), 'url' => '/page/terms-of-service'],
+                                ['label' => _t('sections.footer.presets.classic.links.shipping_policy'), 'url' => '/page/shipping-policy'],
                             ]
                         ),
 
                         // Account links
                         $this->createLinksColumn(
-                            'Account',
+                            _t('sections.footer.presets.classic.account_title'),
                             _t('sections.footer.presets.classic.account_title'),
                             [
-                                ['label' => 'Sign In', 'url' => '/customer/login'],
-                                ['label' => 'Register', 'url' => '/customer/register'],
-                                ['label' => 'My Account', 'url' => '/customer/account'],
+                                ['label' => _t('sections.footer.presets.classic.links.sign_in'), 'url' => '/customer/login'],
+                                ['label' => _t('sections.footer.presets.classic.links.register'), 'url' => '/customer/register'],
+                                ['label' => _t('sections.footer.presets.classic.links.my_account'), 'url' => '/customer/account'],
                             ]
                         ),
                     ]),
@@ -101,7 +101,7 @@ class ClassicFooter extends Preset
 
                 // Bottom bar
                 PresetBlock::make(Group::class)
-                    ->name('Bottom Bar')
+                    ->name(_t('sections.footer.presets.classic.bottom_bar'))
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => ['_default' => 'row', 'mobile' => 'column'],
@@ -113,7 +113,10 @@ class ClassicFooter extends Preset
                     ->blocks([
                         PresetBlock::make(Text::class)
                             ->settings([
-                                'text' => '© '.date('Y').' '.config('app.name').'. All rights reserved.',
+                                'text' => _t('sections.footer.presets.classic.copyright', [
+                                    'year' => date('Y'),
+                                    'store' => config('app.name'),
+                                ]),
                             ]),
 
                         $this->createSocialIcons(),
@@ -173,7 +176,7 @@ class ClassicFooter extends Preset
                     ->settings([
                         'text' => $title,
                         'heading_level' => 'h3',
-                        'typography' => 'heading-5',
+                        'typography' => 'heading-6',
                     ]),
 
                 ...$linkBlocks,
@@ -183,7 +186,7 @@ class ClassicFooter extends Preset
     protected function createSocialIcons(): PresetBlock
     {
         return PresetBlock::make(Group::class)
-            ->name('Social Icons')
+            ->name(_t('sections.footer.presets.classic.social_icons'))
             ->settings([
                 'layout_type' => 'flex',
                 'flex_direction' => 'row',

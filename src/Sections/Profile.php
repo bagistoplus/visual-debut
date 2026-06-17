@@ -4,6 +4,8 @@ namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Blocks\BladeSection;
 
+use function BagistoPlus\VisualDebut\_t;
+
 class Profile extends BladeSection
 {
     protected static string $type = '@visual-debut/profile';
@@ -18,4 +20,9 @@ class Profile extends BladeSection
     protected static string $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
 
     protected static string $category = 'Customer';
+
+    public static function name(): string
+    {
+        return _t('sections.profile.name');
+    }
 }

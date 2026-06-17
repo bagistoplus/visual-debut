@@ -2,6 +2,26 @@
 
 All notable changes to `Bagisto Visual Debut` will be documented in this file.
 
+# [2.0.0-alpha.6](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.5...v2.0.0-alpha.6) (2026-06-17)
+
+
+### Bug Fixes
+
+* adjust product review typography ([41ca0eb](https://github.com/bagistoplus/visual-debut/commit/41ca0ebe25c74b8b3b456babbec3f6a84ba174e8))
+* guard missing order attribute type ([8d3eabc](https://github.com/bagistoplus/visual-debut/commit/8d3eabcbcb6bdaa08e823c44a195a3a4b4cb5f36))
+* improve header navigation dropdown ([504a8a8](https://github.com/bagistoplus/visual-debut/commit/504a8a8b0c869aa1bb594c55aa58392739a025e5))
+* refine footer preset styling ([83064dc](https://github.com/bagistoplus/visual-debut/commit/83064dc392078e8a28c9cab4dd9bfb7e04b00aaa))
+* remove accordion typography setting ([2371454](https://github.com/bagistoplus/visual-debut/commit/2371454aa0d28d1ec68cc1319c53d831754201e4))
+* update account sidebar icons ([eb2b745](https://github.com/bagistoplus/visual-debut/commit/eb2b74574146b650b960829133f40357be1a23ea))
+* update list section presets ([3e29b0e](https://github.com/bagistoplus/visual-debut/commit/3e29b0e5cae55adb60869df63e113c5c9b7ce657))
+* use basic blocks tailwind helper ([5aa89d5](https://github.com/bagistoplus/visual-debut/commit/5aa89d5d70bed756edae08a0ecf8816acffc9022))
+
+
+### Features
+
+* add header nav category controls ([0f40168](https://github.com/bagistoplus/visual-debut/commit/0f401683c79eb4a57915a9cc598f12b05e99f0ee))
+* localize visual editor names ([620383d](https://github.com/bagistoplus/visual-debut/commit/620383d541581b11fefb76da313f68209174fe19))
+
 # [2.0.0-alpha.5](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.4...v2.0.0-alpha.5) (2026-06-03)
 
 

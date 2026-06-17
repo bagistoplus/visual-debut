@@ -28,6 +28,11 @@ class CategoryCard extends SimpleBlock
 
     protected static string $category = 'Category';
 
+    public static function name(): string
+    {
+        return _t('blocks.category-card.name');
+    }
+
     public static function settings(): array
     {
         return [
@@ -49,7 +54,7 @@ class CategoryCard extends SimpleBlock
 
             // Vertical Card with Name on Image
             Preset::make(_t('blocks.category-card.presets.vertical_overlay.name'))
-                ->category(_t('blocks.category-card.presets.vertical_overlay.category'))
+                ->category('Category')
                 ->blocks([
                     PresetBlock::make(Group::class)
                         ->properties([
@@ -97,7 +102,7 @@ class CategoryCard extends SimpleBlock
 
             // Vertical Card with Name Below Image
             Preset::make(_t('blocks.category-card.presets.vertical_below.name'))
-                ->category(_t('blocks.category-card.presets.vertical_below.category'))
+                ->category('Category')
                 ->blocks([
                     PresetBlock::make(Group::class)
                         ->properties([
@@ -144,7 +149,7 @@ class CategoryCard extends SimpleBlock
 
             // Simple Card - Image Only with Hover Overlay
             Preset::make(_t('blocks.category-card.presets.simple_hover.name'))
-                ->category(_t('blocks.category-card.presets.simple_hover.category'))
+                ->category('Category')
                 ->blocks([
                     PresetBlock::make(Group::class)
                         ->properties([

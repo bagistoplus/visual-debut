@@ -17,6 +17,11 @@ class Product extends SimpleBlock
 
     protected static bool $private = true;
 
+    public static function name(): string
+    {
+        return _t('blocks.product.name');
+    }
+
     public static function settings(): array
     {
         return [

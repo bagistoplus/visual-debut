@@ -41,7 +41,7 @@ class RichTextSection extends Preset
                 PresetBlock::make(Heading::class)
                     ->id('heading')
                     ->settings([
-                        'text' => 'New arrivals',
+                        'text' => _t('sections.flex-section.presets.rich_text.heading'),
                         'width' => 'fit',
                         'max_width' => 'normal',
                         'alignment' => 'left',
@@ -51,7 +51,7 @@ class RichTextSection extends Preset
                 PresetBlock::make(Text::class)
                     ->id('text')
                     ->settings([
-                        'text' => 'We make things that work better and last longer. Our products solve real problems with clean design and honest materials.',
+                        'text' => _t('sections.flex-section.presets.rich_text.description'),
                         'width' => 'fit',
                         'max_width' => 'normal',
                         'alignment' => 'center',
@@ -60,7 +60,7 @@ class RichTextSection extends Preset
                 PresetBlock::make(Button::class)
                     ->id('button')
                     ->settings([
-                        'text' => 'Shop now',
+                        'text' => _t('sections.flex-section.presets.rich_text.cta'),
                         'url' => '/collections/all',
                     ]),
             ]);

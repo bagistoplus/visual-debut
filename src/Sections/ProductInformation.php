@@ -2,6 +2,7 @@
 
 namespace BagistoPlus\VisualDebut\Sections;
 
+use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Actions\Cart\AddProductToCart;
 use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\Visual\Enums\Events;
@@ -13,7 +14,6 @@ use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductDetails;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductMediaGallery;
-use BagistoPlus\VisualDebut\Tailwind;
 use Illuminate\Http\UploadedFile;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;

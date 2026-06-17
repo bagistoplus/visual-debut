@@ -14,6 +14,8 @@ use BagistoPlus\VisualDebut\Blocks\Header\User;
 use BagistoPlus\VisualDebut\Sections\AnnouncementBar;
 use BagistoPlus\VisualDebut\Sections\Header;
 
+use function BagistoPlus\VisualDebut\_t;
+
 return TemplateBuilder::make()
     ->id('header')
     ->name('Header')
@@ -33,7 +35,7 @@ return TemplateBuilder::make()
                 // Logo Container
                 PresetBlock::make(HeaderGroup::class)
                     ->id('container-logo')
-                    ->name('Logo')
+                    ->name(_t('sections.header.region.logo_group'))
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_gap' => ['_default' => 4],
@@ -41,13 +43,13 @@ return TemplateBuilder::make()
                     ])
                     ->blocks([
                         PresetBlock::make(Logo::class)
-                            ->name('Logo'),
+                            ->name(_t('blocks.logo.name')),
                     ]),
 
                 // Navigation Container
                 PresetBlock::make(HeaderGroup::class)
                     ->id('container-nav')
-                    ->name('Navigation')
+                    ->name(_t('blocks.header-nav.name'))
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_justify' => 'start',
@@ -57,13 +59,13 @@ return TemplateBuilder::make()
                     ->blocks([
                         PresetBlock::make(Nav::class)
                             ->id('navigation')
-                            ->name('Navigation'),
+                            ->name(_t('blocks.header-nav.name')),
                     ]),
 
                 // Actions Container
                 PresetBlock::make(HeaderGroup::class)
                     ->id('container-actions')
-                    ->name('Actions')
+                    ->name(_t('sections.header.region.actions_group'))
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_justify' => 'end',
@@ -73,18 +75,18 @@ return TemplateBuilder::make()
                     ->blocks([
                         PresetBlock::make(Currency::class)
                             ->id('currency-selector')
-                            ->name('Currency Selector'),
+                            ->name(_t('blocks.header-currency.name')),
 
                         PresetBlock::make(Locale::class)
                             ->id('locale-selector')
-                            ->name('Language Selector')
+                            ->name(_t('blocks.header-locale.name'))
                             ->settings([
                                 'icon' => 'lucide-globe',
                             ]),
 
                         PresetBlock::make(Search::class)
                             ->id('search')
-                            ->name('Search Form')
+                            ->name(_t('blocks.header-search.name'))
                             ->settings([
                                 'search_icon' => 'lucide-search',
                                 'image_search_icon' => 'lucide-camera',
@@ -92,26 +94,26 @@ return TemplateBuilder::make()
 
                         PresetBlock::make(Compare::class)
                             ->id('compare')
-                            ->name('Compare')
+                            ->name(_t('blocks.header-compare.name'))
                             ->settings([
                                 'icon' => 'lucide-arrow-left-right',
                             ]),
 
                         PresetBlock::make(User::class)
                             ->id('user')
-                            ->name('User Menu')
+                            ->name(_t('blocks.header-user.name'))
                             ->settings([
                                 'icon' => 'lucide-user',
-                                'guest_heading' => 'Welcome Guest',
-                                'guest_description' => 'Manage Cart, Orders & Wishlist',
+                                'guest_heading' => _t('blocks.header-user.settings.guest_heading_default'),
+                                'guest_description' => _t('blocks.header-user.settings.guest_description_default'),
                             ]),
 
                         PresetBlock::make(Cart::class)
                             ->id('cart')
-                            ->name('Cart Preview')
+                            ->name(_t('blocks.header-cart.name'))
                             ->settings([
-                                'heading' => 'Shopping Cart',
-                                'description' => 'Get Up To 30% OFF on your 1st order',
+                                'heading' => _t('blocks.header-cart.settings.heading_default'),
+                                'description' => _t('blocks.header-cart.settings.description_default'),
                             ]),
                     ]),
             ])

@@ -20,6 +20,11 @@ class ProductMediaGallery extends BladeBlock
 
     protected static string $category = 'Products';
 
+    public static function name(): string
+    {
+        return _t('blocks.product-media-gallery.name');
+    }
+
     protected function getViewData(): array
     {
         $product = $this->context['product'] ?? null;

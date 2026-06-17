@@ -15,6 +15,7 @@ return [
     ],
 
     'product' => [
+        'name' => 'Produit',
         'settings' => [
             'product_info' => 'Sélectionnez un produit à afficher',
         ],
@@ -25,12 +26,14 @@ return [
     ],
 
     'category' => [
+        'name' => 'Catégorie',
         'settings' => [
             'category_label' => 'Catégorie',
         ],
     ],
 
     'category-card' => [
+        'name' => 'Carte de catégorie',
         'settings' => [
             'category_label' => 'Catégorie',
         ],
@@ -40,15 +43,12 @@ return [
             ],
             'vertical_overlay' => [
                 'name' => 'Verticale avec superposition',
-                'category' => 'Catégorie',
             ],
             'vertical_below' => [
                 'name' => 'Verticale avec nom en dessous',
-                'category' => 'Catégorie',
             ],
             'simple_hover' => [
                 'name' => 'Survol simple',
-                'category' => 'Catégorie',
             ],
         ],
     ],
@@ -60,16 +60,19 @@ return [
     ],
 
     'featured-product' => [
+        'name' => 'Produit en vedette',
         'product_label' => 'Produit',
         'product_info' => 'Sélectionnez un produit à afficher',
     ],
 
     'footer-group' => [
+        'name' => 'Groupe du pied de page',
         'title_label' => 'Nom du groupe',
         'title_default' => 'Groupe de liens',
     ],
 
     'footer-link' => [
+        'name' => 'Lien du pied de page',
         'text_label' => 'Texte du lien',
         'text_default' => 'Lien',
         'link_label' => 'URL du lien',
@@ -112,6 +115,7 @@ return [
     ],
 
     'accordion' => [
+        'name' => 'Accordéon',
         'settings' => [
             'icon_label' => 'Style d\'icône',
             'icon_options' => [
@@ -120,9 +124,6 @@ return [
             ],
 
             'dividers_label' => 'Afficher les séparateurs',
-
-            'typography_label' => 'Typographie',
-            'typography_info' => 'Sélectionner le style de typographie',
 
             'inherit_color_scheme_label' => 'Hériter du schéma de couleurs',
             'color_scheme_label' => 'Schéma de couleurs',
@@ -150,12 +151,12 @@ return [
         'presets' => [
             'accordion' => [
                 'name' => 'Accordéon',
-                'category' => 'Disposition',
             ],
         ],
     ],
 
     'accordion-row' => [
+        'name' => 'Ligne d’accordéon',
         'settings' => [
             'heading_label' => 'Titre',
             'open_by_default_label' => 'Ouvert par défaut',
@@ -174,6 +175,7 @@ return [
     ],
 
     'product-media-gallery' => [
+        'name' => 'Galerie média du produit',
         'settings' => [
             'presentation_header' => 'Présentation',
 
@@ -222,6 +224,7 @@ return [
     ],
 
     'product-details' => [
+        'name' => 'Détails du produit',
         'settings' => [
             'layout_header' => 'Disposition',
             'gap_label' => 'Écart',
@@ -239,6 +242,7 @@ return [
     ],
 
     'product-price' => [
+        'name' => 'Prix du produit',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Colonne de droite',
@@ -247,6 +251,7 @@ return [
     ],
 
     'product-rating' => [
+        'name' => 'Évaluation du produit',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Colonne de droite',
@@ -255,6 +260,7 @@ return [
     ],
 
     'product-quantity-selector' => [
+        'name' => 'Sélecteur de quantité',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Colonne de droite',
@@ -263,6 +269,7 @@ return [
     ],
 
     'product-buy-buttons' => [
+        'name' => 'Boutons d’achat',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Colonne de droite',
@@ -273,6 +280,7 @@ return [
     ],
 
     'product-button' => [
+        'name' => 'Bouton produit',
         'settings' => [
             'action_label' => 'Action',
             'action_options' => [
@@ -322,23 +330,36 @@ return [
     ],
 
     'product-card' => [
+        'name' => 'Carte produit',
         'presets' => [
             'vertical' => [
                 'name' => 'Carte verticale',
-                'category' => 'Cartes produit',
             ],
             'horizontal' => [
                 'name' => 'Carte horizontale',
-                'category' => 'Cartes produit',
             ],
             'overlay' => [
                 'name' => 'Carte avec superposition au survol',
-                'category' => 'Cartes produit',
+                'defaults' => [
+                    'product_card' => 'Carte produit',
+                    'container' => 'Conteneur',
+                    'product_image' => 'Image du produit',
+                    'buttons' => 'Boutons',
+                    'add_to_cart' => 'Ajouter au panier',
+                    'add_to_wishlist' => 'Ajouter aux favoris',
+                    'add_to_compare' => 'Ajouter à la comparaison',
+                    'information' => 'Informations',
+                    'product_title' => 'Titre du produit',
+                    'price_and_labels' => 'Prix et étiquettes',
+                    'price' => 'Prix',
+                    'labels' => 'Étiquettes',
+                ],
             ],
         ],
     ],
 
     'product-variant-picker' => [
+        'name' => 'Sélecteur de variantes',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Colonne de droite',
@@ -347,6 +368,7 @@ return [
     ],
 
     'product-grouped-options' => [
+        'name' => 'Options groupées',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Colonne de droite',
@@ -355,6 +377,7 @@ return [
     ],
 
     'product-bundle-options' => [
+        'name' => 'Options de bundle',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Colonne de droite',
@@ -363,6 +386,7 @@ return [
     ],
 
     'product-downloadable-options' => [
+        'name' => 'Options téléchargeables',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Colonne de droite',
@@ -391,6 +415,10 @@ return [
         'settings' => [
             'push_to_left' => 'Pousser cet élément au début',
             'push_to_right' => 'Pousser cet élément à la fin',
+            'categories_label' => 'Catégories',
+            'categories_info' => 'Sélectionnez les catégories à afficher dans la navigation de l\'en-tête. Laissez vide pour utiliser les catégories racines.',
+            'category_limit_label' => 'Limite de catégories',
+            'category_limit_info' => 'Nombre maximal de catégories à afficher.',
         ],
     ],
 
@@ -445,6 +473,7 @@ return [
         'description' => 'Icône du panier avec aperçu du mini panier',
         'settings' => [
             'heading_label' => 'Titre',
+            'heading_default' => 'Panier',
             'description_label' => 'Description',
             'description_default' => 'Obtenez jusqu\'à 30% de réduction sur votre 1ère commande',
         ],
@@ -452,6 +481,10 @@ return [
 
     'feature-icon' => [
         'name' => 'Icône de fonctionnalité',
+        'defaults' => [
+            'title' => 'Titre de la fonctionnalité',
+            'description' => 'La description de la fonctionnalité va ici',
+        ],
     ],
 
 ];

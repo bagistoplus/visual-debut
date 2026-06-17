@@ -24,6 +24,16 @@ class AnnouncementBar extends BladeSection
         'regions' => ['header'],
     ];
 
+    public static function name(): string
+    {
+        return _t('sections.announcement-bar.name');
+    }
+
+    public static function description(): string
+    {
+        return _t('sections.announcement-bar.description');
+    }
+
     public static function settings(): array
     {
         return [
@@ -34,10 +44,10 @@ class AnnouncementBar extends BladeSection
 
             Select::make('variant', _t('sections.announcement-bar.settings.variant_label'))
                 ->options([
-                    'primary' => 'Primary',
-                    'secondary' => 'Secondary',
-                    'accent' => 'Accent',
-                    'neutral' => 'Neutral',
+                    'primary' => _t('sections.announcement-bar.settings.variant_options.primary'),
+                    'secondary' => _t('sections.announcement-bar.settings.variant_options.secondary'),
+                    'accent' => _t('sections.announcement-bar.settings.variant_options.accent'),
+                    'neutral' => _t('sections.announcement-bar.settings.variant_options.neutral'),
                 ])->default('primary'),
 
             ColorScheme::make('scheme', _t('sections.announcement-bar.settings.scheme_label'))

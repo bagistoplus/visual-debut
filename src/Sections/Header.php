@@ -78,7 +78,7 @@ class Header extends BladeSection
                 ->blocks([
                     // Logo Group
                     PresetBlock::make(HeaderGroup::class)
-                        ->name('Logo')
+                        ->name(_t('sections.header.region.logo_group'))
                         ->settings([
                             'layout_type' => 'flex',
                             'flex_direction' => 'row',
@@ -86,12 +86,13 @@ class Header extends BladeSection
                             'flex_gap' => 4,
                         ])
                         ->blocks([
-                            PresetBlock::make(Logo::class),
+                            PresetBlock::make(Logo::class)
+                                ->name(_t('blocks.logo.name')),
                         ]),
 
                     // Navigation Group
                     PresetBlock::make(HeaderGroup::class)
-                        ->name('Navigation')
+                        ->name(_t('blocks.header-nav.name'))
                         ->settings([
                             'layout_type' => 'flex',
                             'flex_direction' => 'row',
@@ -102,12 +103,13 @@ class Header extends BladeSection
                             ],
                         ])
                         ->blocks([
-                            PresetBlock::make(Nav::class),
+                            PresetBlock::make(Nav::class)
+                                ->name(_t('blocks.header-nav.name')),
                         ]),
 
                     // Actions Group
                     PresetBlock::make(HeaderGroup::class)
-                        ->name('Actions')
+                        ->name(_t('sections.header.region.actions_group'))
                         ->settings([
                             'layout_type' => 'flex',
                             'flex_direction' => 'row',
@@ -118,12 +120,18 @@ class Header extends BladeSection
                             ],
                         ])
                         ->blocks([
-                            PresetBlock::make(Currency::class),
-                            PresetBlock::make(Locale::class),
-                            PresetBlock::make(Search::class),
-                            PresetBlock::make(Compare::class),
-                            PresetBlock::make(User::class),
-                            PresetBlock::make(Cart::class),
+                            PresetBlock::make(Currency::class)
+                                ->name(_t('blocks.header-currency.name')),
+                            PresetBlock::make(Locale::class)
+                                ->name(_t('blocks.header-locale.name')),
+                            PresetBlock::make(Search::class)
+                                ->name(_t('blocks.header-search.name')),
+                            PresetBlock::make(Compare::class)
+                                ->name(_t('blocks.header-compare.name')),
+                            PresetBlock::make(User::class)
+                                ->name(_t('blocks.header-user.name')),
+                            PresetBlock::make(Cart::class)
+                                ->name(_t('blocks.header-cart.name')),
                         ]),
                 ]),
         ];

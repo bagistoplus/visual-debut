@@ -40,6 +40,8 @@ return [
     ],
 
     'settings' => [
+        'logo-favicon' => 'Logo et favicon',
+
         'colors' => 'Couleurs',
 
         'typography' => 'Typographie',
@@ -49,5 +51,15 @@ return [
         'inputs' => 'Champs',
         'boxes' => 'Cadres',
         'social-links' => 'Liens vers les réseaux sociaux',
+        'general' => 'Général',
+    ],
+
+    'header' => [
+        'profile' => 'Profil',
+        'orders' => 'Commandes',
+        'wishlist' => 'Liste de souhaits',
+        'logout' => 'Déconnexion',
+        'sign-in' => 'Connexion',
+        'compare' => 'Comparer',
     ],
 ];

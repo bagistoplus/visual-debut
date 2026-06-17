@@ -12,6 +12,8 @@ use BagistoPlus\VisualDebut\Blocks\Product\ProductCard;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductPrice;
 use BagistoPlus\VisualDebut\Blocks\ProductCardGroup;
 
+use function BagistoPlus\VisualDebut\_t;
+
 class ProductCardWithOverlay extends Preset
 {
     public static function getType(): string
@@ -22,13 +24,13 @@ class ProductCardWithOverlay extends Preset
     protected function build(): void
     {
         $this
-            ->name('Product Card')
+            ->name(_t('blocks.product-card.presets.overlay.defaults.product_card'))
             ->category('Product')
             ->properties(['product' => null])
             ->blocks([
                 // Image Container + Overlay
                 PresetBlock::make(ProductCardGroup::class)
-                    ->name('Container')
+                    ->name(_t('blocks.product-card.presets.overlay.defaults.container'))
                     ->properties([
                         'layout_type' => 'block',
                         'position' => 'relative',
@@ -37,7 +39,7 @@ class ProductCardWithOverlay extends Preset
                     ->blocks([
                         // Product Image
                         PresetBlock::make(ProductImage::class)
-                            ->name('Product Image')
+                            ->name(_t('blocks.product-card.presets.overlay.defaults.product_image'))
                             ->properties([
                                 'size' => 'medium',
                                 'aspect_ratio' => 'adapt',
@@ -51,7 +53,7 @@ class ProductCardWithOverlay extends Preset
 
                         // Overlay Container with Action Buttons
                         PresetBlock::make(ProductCardGroup::class)
-                            ->name('Buttons')
+                            ->name(_t('blocks.product-card.presets.overlay.defaults.buttons'))
                             ->properties([
                                 'layout_type' => 'flex',
                                 'flex_direction' => 'row',
@@ -69,7 +71,7 @@ class ProductCardWithOverlay extends Preset
                             ->blocks([
                                 // Add to Cart Button
                                 PresetBlock::make(ProductButton::class)
-                                    ->name('Add to cart')
+                                    ->name(_t('blocks.product-card.presets.overlay.defaults.add_to_cart'))
                                     ->properties([
                                         'action' => 'cart',
                                         'variant' => 'solid',
@@ -80,7 +82,7 @@ class ProductCardWithOverlay extends Preset
 
                                 // Add to Wishlist Button
                                 PresetBlock::make(ProductButton::class)
-                                    ->name('Add to wishlist')
+                                    ->name(_t('blocks.product-card.presets.overlay.defaults.add_to_wishlist'))
                                     ->properties([
                                         'action' => 'wishlist',
                                         'variant' => 'solid',
@@ -91,7 +93,7 @@ class ProductCardWithOverlay extends Preset
 
                                 // Add to Compare Button
                                 PresetBlock::make(ProductButton::class)
-                                    ->name('Add to compare')
+                                    ->name(_t('blocks.product-card.presets.overlay.defaults.add_to_compare'))
                                     ->properties([
                                         'action' => 'compare',
                                         'variant' => 'soft',
@@ -104,7 +106,7 @@ class ProductCardWithOverlay extends Preset
 
                 // Product Info Container
                 PresetBlock::make(ProductCardGroup::class)
-                    ->name('Informations')
+                    ->name(_t('blocks.product-card.presets.overlay.defaults.information'))
                     ->properties([
                         'layout_type' => 'block',
                         'padding' => [
@@ -117,7 +119,7 @@ class ProductCardWithOverlay extends Preset
                     ->addBlocks([
                         // Product Title
                         PresetBlock::make(ProductTitle::class)
-                            ->name('Product Title')
+                            ->name(_t('blocks.product-card.presets.overlay.defaults.product_title'))
                             ->properties([
                                 'heading_level' => 'h3',
                                 'width' => 'fit',
@@ -127,7 +129,7 @@ class ProductCardWithOverlay extends Preset
 
                         // Price and Labels Container
                         PresetBlock::make(ProductCardGroup::class)
-                            ->name('Price & Labels')
+                            ->name(_t('blocks.product-card.presets.overlay.defaults.price_and_labels'))
                             ->properties([
                                 'layout_type' => 'flex',
                                 'flex_direction' => 'row',
@@ -143,11 +145,11 @@ class ProductCardWithOverlay extends Preset
                             ->addBlocks([
                                 // Product Price
                                 PresetBlock::make(ProductPrice::class)
-                                    ->name('Price'),
+                                    ->name(_t('blocks.product-card.presets.overlay.defaults.price')),
 
                                 // Product Labels
                                 PresetBlock::make(ProductLabels::class)
-                                    ->name('Labels')
+                                    ->name(_t('blocks.product-card.presets.overlay.defaults.labels'))
                                     ->properties([
                                         'layout' => 'inline',
                                         'gap' => 2,

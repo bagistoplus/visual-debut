@@ -3,6 +3,8 @@
 namespace BagistoPlus\VisualDebut\Blocks\Header;
 
 use BagistoPlus\Visual\Blocks\SimpleBlock;
+use BagistoPlus\Visual\Settings\CategoryList;
+use BagistoPlus\Visual\Settings\Range;
 use Webkul\Category\Repositories\CategoryRepository;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -33,23 +35,45 @@ class Nav extends SimpleBlock
 
     public static function settings(): array
     {
-        return [];
+        return [
+            CategoryList::make('categories', _t('blocks.header-nav.settings.categories_label'))
+                ->info(_t('blocks.header-nav.settings.categories_info')),
+
+            Range::make('category_limit', _t('blocks.header-nav.settings.category_limit_label'))
+                ->min(1)
+                ->max(12)
+                ->step(1)
+                ->default(6)
+                ->info(_t('blocks.header-nav.settings.category_limit_info')),
+        ];
     }
 
     public function getCategories()
     {
+        $selectedCategories = collect($this->block->settings->categories ?? []);
+        $categories = $selectedCategories->isNotEmpty()
+            ? $selectedCategories
+            : $this->getRootCategories();
+
+        $limit = max(1, (int) ($this->block->settings->category_limit ?? 6));
+
+        return $categories
+            ->filter(fn ($category) => (bool) $category->slug)
+            ->take($limit);
+    }
+
+    protected function getRootCategories()
+    {
         // @phpstan-ignore-next-line
         $rootCategoryId = core()->getCurrentChannel()->root_category_id;
 
-        $categories = app(CategoryRepository::class)->getVisibleCategoryTree($rootCategoryId);
-
-        return $categories->filter(fn ($c) => (bool) $c->slug);
+        return app(CategoryRepository::class)->getVisibleCategoryTree($rootCategoryId);
     }
 
     protected function getViewData(): array
     {
         return [
-            'categories' => $this->getCategories(),
+            'categoryList' => $this->getCategories(),
         ];
     }
 }

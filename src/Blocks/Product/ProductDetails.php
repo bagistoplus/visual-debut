@@ -12,13 +12,13 @@ use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductDescription;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductShortDescription;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductTitle;
+use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Blocks\BladeBlock;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\VisualDebut\Blocks;
-use BagistoPlus\VisualDebut\Tailwind;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -57,6 +57,11 @@ class ProductDetails extends BladeBlock
     protected static string $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>';
 
     protected static string $category = 'Products';
+
+    public static function name(): string
+    {
+        return _t('blocks.product-details.name');
+    }
 
     public static function settings(): array
     {

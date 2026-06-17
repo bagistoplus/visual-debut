@@ -20,6 +20,11 @@ class ProductBundleOptions extends SimpleBlock
 
     protected static int $limit = 1;
 
+    public static function name(): string
+    {
+        return _t('blocks.product-bundle-options.name');
+    }
+
     public static function settings(): array
     {
         return [

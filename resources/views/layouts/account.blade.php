@@ -6,10 +6,10 @@
 
     <div class="mx-auto max-w-7xl px-4 sm:px-6 sm:py-8 lg:px-8">
       <div class="flex flex-col gap-8 lg:flex-row">
-        <div class="lg:w-[300px] lg:flex-shrink-0" x-data="{
+        <div class="lg:w-[310px] lg:flex-shrink-0" x-data="{
             menuOpen: false,
             activeMenu: '',
-
+        
             init() {
                 this.activeMenu = this.$el.querySelector('.active-menu').textContent.trim().replace(/\s+/g, ' ');
             }
@@ -39,7 +39,7 @@
                   </div>
                 @endif
                 <div>
-                  <h3 class="font-medium">
+                  <h3 class="text-base font-medium">
                     {{ $customer->first_name }}
                     {{ $customer->last_name }}
                   </h3>
@@ -67,7 +67,7 @@
                         href="{{ $subMenuItem->getUrl() }}"
                       >
                         <div class="flex items-center gap-3">
-                          <x-dynamic-component :component="$subMenuItem->getIcon()" class="h-5 w-5" />
+                          @svg($subMenuItem->getIcon(), ['class' => 'h-5 w-5'])
                           <span>{{ $subMenuItem->getName() }}</span>
                         </div>
                         <x-lucide-chevron-right class="h-5 w-5 opacity-0 group-hover:opacity-100" />

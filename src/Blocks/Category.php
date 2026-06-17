@@ -19,6 +19,11 @@ class Category extends BladeBlock
 
     protected static bool $private = true;
 
+    public static function name(): string
+    {
+        return _t('blocks.category.name');
+    }
+
     public static function settings(): array
     {
         return [

@@ -20,7 +20,6 @@ use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
-use BagistoPlus\VisualDebut\Presets\CategoryGrid;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -283,13 +282,6 @@ class CategoryList extends BladeSection
                     'bottom' => 12,
                     'left' => 0,
                 ]),
-        ];
-    }
-
-    public static function presets(): array
-    {
-        return [
-            CategoryGrid::class,
         ];
     }
 }

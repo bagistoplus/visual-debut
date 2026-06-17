@@ -1,7 +1,7 @@
 @props(['block', 'tag' => null, 'additionalAttributes' => ''])
 
 @php
-  use BagistoPlus\VisualDebut\Tailwind;
+  use BagistoPlus\BasicBlocks\Tailwind;
   // Width
   $widthClass = Tailwind::responsive(
       $block->settings->width ?? 'fit',

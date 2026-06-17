@@ -19,6 +19,11 @@ class ProductButton extends SimpleBlock
 
     protected static string $category = 'Product';
 
+    public static function name(): string
+    {
+        return _t('blocks.product-button.name');
+    }
+
     public static function settings(): array
     {
         return [

@@ -36,7 +36,7 @@ class NewsletterFooter extends Preset
             ])
             ->blocks([
                 PresetBlock::make(Group::class)
-                    ->name('Newsletter + Links')
+                    ->name(_t('sections.footer.presets.newsletter.container'))
                     ->settings([
                         'layout_type' => 'grid',
                         'grid_columns' => ['_default' => 2, 'mobile' => 1],
@@ -46,7 +46,7 @@ class NewsletterFooter extends Preset
                     ->blocks([
                         // Newsletter section
                         PresetBlock::make(Group::class)
-                            ->name('Newsletter')
+                            ->name(_t('sections.footer.presets.newsletter.newsletter'))
                             ->settings([
                                 'layout_type' => 'flex',
                                 'flex_direction' => 'column',
@@ -67,26 +67,26 @@ class NewsletterFooter extends Preset
 
                         // Links grid
                         PresetBlock::make(Group::class)
-                            ->name('Links')
+                            ->name(_t('sections.footer.presets.newsletter.links'))
                             ->settings([
                                 'layout_type' => 'grid',
                                 'grid_columns' => ['_default' => 3, 'mobile' => 1],
                                 'gap' => ['_default' => 6],
                             ])
                             ->blocks([
-                                $this->createLinksColumn('Quick Links', 'Quick Links', [
-                                    ['label' => 'Shop', 'url' => '/'],
-                                    ['label' => 'About', 'url' => '/page/about-us'],
-                                    ['label' => 'Contact', 'url' => '/contact'],
+                                $this->createLinksColumn(_t('sections.footer.presets.newsletter.columns.quick_links'), _t('sections.footer.presets.newsletter.columns.quick_links'), [
+                                    ['label' => _t('sections.footer.presets.newsletter.links_items.shop'), 'url' => '/'],
+                                    ['label' => _t('sections.footer.presets.newsletter.links_items.about'), 'url' => '/page/about-us'],
+                                    ['label' => _t('sections.footer.presets.newsletter.links_items.contact'), 'url' => '/contact'],
                                 ]),
-                                $this->createLinksColumn('Help', 'Help', [
-                                    ['label' => 'FAQ', 'url' => '/page/faq'],
-                                    ['label' => 'Shipping', 'url' => '/page/shipping-policy'],
-                                    ['label' => 'Returns', 'url' => '/page/return-policy'],
+                                $this->createLinksColumn(_t('sections.footer.presets.newsletter.columns.help'), _t('sections.footer.presets.newsletter.columns.help'), [
+                                    ['label' => _t('sections.footer.presets.newsletter.links_items.faq'), 'url' => '/page/faq'],
+                                    ['label' => _t('sections.footer.presets.newsletter.links_items.shipping'), 'url' => '/page/shipping-policy'],
+                                    ['label' => _t('sections.footer.presets.newsletter.links_items.returns'), 'url' => '/page/return-policy'],
                                 ]),
-                                $this->createLinksColumn('Account', 'Account', [
-                                    ['label' => 'Sign In', 'url' => '/customer/login'],
-                                    ['label' => 'Register', 'url' => '/customer/register'],
+                                $this->createLinksColumn(_t('sections.footer.presets.newsletter.columns.account'), _t('sections.footer.presets.newsletter.columns.account'), [
+                                    ['label' => _t('sections.footer.presets.newsletter.links_items.sign_in'), 'url' => '/customer/login'],
+                                    ['label' => _t('sections.footer.presets.newsletter.links_items.register'), 'url' => '/customer/register'],
                                 ]),
                             ]),
                     ]),
@@ -103,7 +103,10 @@ class NewsletterFooter extends Preset
 
                 PresetBlock::make(Text::class)
                     ->settings([
-                        'text' => '© '.date('Y').' '.config('app.name'),
+                        'text' => _t('sections.footer.presets.newsletter.copyright', [
+                            'year' => date('Y'),
+                            'store' => config('app.name'),
+                        ]),
                         'alignment' => 'center',
                     ]),
             ]);
@@ -138,6 +141,7 @@ class NewsletterFooter extends Preset
                     ->settings([
                         'text' => $title,
                         'heading_level' => 'h4',
+                        'typography' => 'heading-6',
                     ]),
 
                 ...$linkBlocks,

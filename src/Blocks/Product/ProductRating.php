@@ -21,6 +21,11 @@ class ProductRating extends SimpleBlock
 
     protected static int $limit = 1;
 
+    public static function name(): string
+    {
+        return _t('blocks.product-rating.name');
+    }
+
     public static function settings(): array
     {
         return [
