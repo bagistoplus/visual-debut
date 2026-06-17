@@ -393,6 +393,12 @@ class ProductList extends BladeSection
                             'heading_level' => 'h2',
                             'width' => 'fill',
                             'alignment' => 'center',
+                            'padding' => [
+                                'top' => 4,
+                                'right' => 0,
+                                'bottom' => 4,
+                                'left' => 0,
+                            ],
                         ]),
 
                     ProductCardWithOverlay::asChild()
