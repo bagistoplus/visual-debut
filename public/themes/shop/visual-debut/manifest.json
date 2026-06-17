@@ -1,11 +1,15 @@
 {
   "resources/assets/css/index.css": {
-    "file": "assets/index-BTMgQStB.css",
+    "file": "assets/index-CDE6BVOO.css",
+    "name": "index",
+    "names": [
+      "index.css"
+    ],
     "src": "resources/assets/css/index.css",
     "isEntry": true
   },
   "resources/assets/ts/shop/index.ts": {
-    "file": "assets/index-CshBDH2l.js",
+    "file": "assets/index-CDa3ddZd.js",
     "name": "index",
     "src": "resources/assets/ts/shop/index.ts",
     "isEntry": true

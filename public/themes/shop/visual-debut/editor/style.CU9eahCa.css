@@ -1,0 +1,2 @@
+.wrapper{flex-wrap:wrap;gap:.5rem;display:flex}.wrapper>div{background-color:#f3f4f6;border:2px solid #f3f4f6;padding:.25rem}.wrapper>div.active{border-color:#6b7280}.radius{cursor:pointer;border-width:2px;border-color:#ccc;width:1.6rem;height:1.6rem}.radius.xs{border-radius:.125rem}.radius.sm{border-radius:.25rem}.radius.md{border-radius:.375rem}.radius.lg{border-radius:.5rem}.radius.xl{border-radius:.75rem}.radius.full{border-radius:3.40282e38px}
+/*$vite$:1*/
