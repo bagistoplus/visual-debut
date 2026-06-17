@@ -42,7 +42,7 @@ class FeatureIcons extends Preset
                 // Section Heading
                 PresetBlock::make(Heading::class)
                     ->settings([
-                        'text' => 'Why Shop With Us?',
+                        'text' => _t('sections.flex-section.presets.feature_icons.heading'),
                         'heading_level' => 'h2',
                         'typography' => 'heading-2',
                         'width' => 'fill',
@@ -52,14 +52,14 @@ class FeatureIcons extends Preset
                 // Section Description
                 PresetBlock::make(Text::class)
                     ->settings([
-                        'text' => 'Explore our customer-focused features',
+                        'text' => _t('sections.flex-section.presets.feature_icons.description'),
                         'width' => 'fill',
                         'alignment' => 'center',
                     ]),
 
                 // Grid Container for Features
                 PresetBlock::make(Group::class)
-                    ->name('Features Grid')
+                    ->name(_t('sections.flex-section.presets.feature_icons.grid'))
                     ->settings([
                         'layout_type' => 'grid',
                         'grid_columns' => ['_default' => 4, 'mobile' => 1],
@@ -68,10 +68,26 @@ class FeatureIcons extends Preset
                     ])
                     ->blocks([
                         // Feature Item 1
-                        $this->createFeatureItem('Free Shipping', 'Free shipping on orders over $50', 'lucide-truck'),
-                        $this->createFeatureItem('24/7 Support', 'Contact us anytime, anywhere', 'lucide-headphones'),
-                        $this->createFeatureItem('Secure Payment', '100% secure payment guaranteed', 'lucide-shield-check'),
-                        $this->createFeatureItem('Easy Returns', '30-day return policy', 'lucide-package-check'),
+                        $this->createFeatureItem(
+                            _t('sections.flex-section.presets.feature_icons.items.free_shipping.title'),
+                            _t('sections.flex-section.presets.feature_icons.items.free_shipping.description'),
+                            'lucide-truck'
+                        ),
+                        $this->createFeatureItem(
+                            _t('sections.flex-section.presets.feature_icons.items.support.title'),
+                            _t('sections.flex-section.presets.feature_icons.items.support.description'),
+                            'lucide-headphones'
+                        ),
+                        $this->createFeatureItem(
+                            _t('sections.flex-section.presets.feature_icons.items.secure_payment.title'),
+                            _t('sections.flex-section.presets.feature_icons.items.secure_payment.description'),
+                            'lucide-shield-check'
+                        ),
+                        $this->createFeatureItem(
+                            _t('sections.flex-section.presets.feature_icons.items.easy_returns.title'),
+                            _t('sections.flex-section.presets.feature_icons.items.easy_returns.description'),
+                            'lucide-package-check'
+                        ),
                     ]),
             ]);
     }
@@ -79,7 +95,7 @@ class FeatureIcons extends Preset
     protected function createFeatureItem(string $title, string $description, string $icon): PresetBlock
     {
         return PresetBlock::make(Group::class)
-            ->name('Feature')
+            ->name(_t('sections.flex-section.presets.feature_icons.feature'))
             ->settings([
                 'layout_type' => 'flex',
                 'flex_direction' => 'column',

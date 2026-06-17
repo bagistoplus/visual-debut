@@ -25,6 +25,11 @@ class ProductCard extends SimpleBlock
         '@visual-debut/product-*',
     ];
 
+    public static function name(): string
+    {
+        return _t('blocks.product-card.name');
+    }
+
     public static function settings(): array
     {
         return [

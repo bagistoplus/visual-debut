@@ -40,6 +40,8 @@ return [
     ],
 
     'settings' => [
+        'logo-favicon' => 'लोगो और फ़ेविकॉन',
+
         'colors' => 'रंग',
 
         'typography' => 'टाइपोग्राफ़ी',
@@ -49,5 +51,15 @@ return [
         'inputs' => 'इनपुट',
         'boxes' => 'बॉक्स',
         'social-links' => 'सोशल मीडिया लिंक',
+        'general' => 'सामान्य',
+    ],
+
+    'header' => [
+        'profile' => 'प्रोफ़ाइल',
+        'orders' => 'ऑर्डर',
+        'wishlist' => 'विशलिस्ट',
+        'logout' => 'लॉग आउट',
+        'sign-in' => 'साइन इन',
+        'compare' => 'तुलना करें',
     ],
 ];

@@ -58,6 +58,11 @@ class ProductDetails extends BladeBlock
 
     protected static string $category = 'Products';
 
+    public static function name(): string
+    {
+        return _t('blocks.product-details.name');
+    }
+
     public static function settings(): array
     {
         return [

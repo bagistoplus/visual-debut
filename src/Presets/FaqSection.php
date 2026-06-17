@@ -41,7 +41,7 @@ class FaqSection extends Preset
                 PresetBlock::make(Text::class)
                     ->id('heading')
                     ->settings([
-                        'text' => 'Frequently asked questions',
+                        'text' => _t('sections.flex-section.presets.faq.heading'),
                         'width' => 'fit',
                         'max_width' => 'narrow',
                         'alignment' => 'left',
@@ -58,11 +58,11 @@ class FaqSection extends Preset
                     ->blocks([
                         PresetBlock::make(AccordionRow::class)
                             ->id('row-1')
-                            ->settings(['heading' => 'What is the return policy?'])
+                            ->settings(['heading' => _t('sections.flex-section.presets.faq.items.return_policy.question')])
                             ->blocks([
                                 PresetBlock::make(Text::class)
                                     ->settings([
-                                        'text' => 'Our goal is for every customer to be totally satisfied with their purchase. If this isn\'t the case, let us know and we\'ll do our best to work with you to make it right.',
+                                        'text' => _t('sections.flex-section.presets.faq.items.return_policy.answer'),
                                         'width' => 'fill',
                                         'max_width' => 'normal',
                                         'alignment' => 'left',
@@ -71,44 +71,44 @@ class FaqSection extends Preset
 
                         PresetBlock::make(AccordionRow::class)
                             ->id('row-2')
-                            ->settings(['heading' => 'Are any purchases final sale?'])
+                            ->settings(['heading' => _t('sections.flex-section.presets.faq.items.final_sale.question')])
                             ->blocks([
                                 PresetBlock::make(Text::class)
                                     ->settings([
-                                        'text' => 'We are unable to accept returns on certain items. These will be carefully marked before purchase.',
+                                        'text' => _t('sections.flex-section.presets.faq.items.final_sale.answer'),
                                         'width' => 'fill',
                                     ]),
                             ]),
 
                         PresetBlock::make(AccordionRow::class)
                             ->id('row-3')
-                            ->settings(['heading' => 'When will I get my order?'])
+                            ->settings(['heading' => _t('sections.flex-section.presets.faq.items.order_delivery.question')])
                             ->blocks([
                                 PresetBlock::make(Text::class)
                                     ->settings([
-                                        'text' => 'We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.',
+                                        'text' => _t('sections.flex-section.presets.faq.items.order_delivery.answer'),
                                         'width' => 'fill',
                                     ]),
                             ]),
 
                         PresetBlock::make(AccordionRow::class)
                             ->id('row-4')
-                            ->settings(['heading' => 'Where are your products manufactured?'])
+                            ->settings(['heading' => _t('sections.flex-section.presets.faq.items.manufacturing.question')])
                             ->blocks([
                                 PresetBlock::make(Text::class)
                                     ->settings([
-                                        'text' => 'Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value.',
+                                        'text' => _t('sections.flex-section.presets.faq.items.manufacturing.answer'),
                                         'width' => 'fill',
                                     ]),
                             ]),
 
                         PresetBlock::make(AccordionRow::class)
                             ->id('row-5')
-                            ->settings(['heading' => 'How much does shipping cost?'])
+                            ->settings(['heading' => _t('sections.flex-section.presets.faq.items.shipping_cost.question')])
                             ->blocks([
                                 PresetBlock::make(Text::class)
                                     ->settings([
-                                        'text' => 'Shipping is calculated based on your location and the items in your order. You will always know the shipping price before you purchase.',
+                                        'text' => _t('sections.flex-section.presets.faq.items.shipping_cost.answer'),
                                         'width' => 'fill',
                                     ]),
                             ]),

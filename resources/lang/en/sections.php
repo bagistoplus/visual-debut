@@ -24,6 +24,12 @@ return [
             'default_text' => 'Free shipping on orders over $50',
             'link_label' => 'Link',
             'variant_label' => 'Background Variant',
+            'variant_options' => [
+                'primary' => 'Primary',
+                'secondary' => 'Secondary',
+                'accent' => 'Accent',
+                'neutral' => 'Neutral',
+            ],
 
             'scheme_label' => 'Color Scheme',
             'scheme_note' => 'This overrides the global theme color scheme. Changes to the main theme scheme will not affect this section.',
@@ -37,6 +43,10 @@ return [
             'content_width_label' => 'Content Width',
             'content_width_container' => 'Container',
             'content_width_fullwidth' => 'Full Width',
+        ],
+        'region' => [
+            'logo_group' => 'Logo',
+            'actions_group' => 'Actions',
         ],
         'presets' => [
             'default' => [
@@ -128,20 +138,58 @@ return [
                 'name' => 'Classic Footer',
                 'brand_title' => 'My Store',
                 'brand_description' => 'Add a description of your store here. Tell your customers about your mission, values, and what makes your products special.',
+                'brand_column' => 'Brand',
+                'footer_columns' => 'Footer Columns',
                 'company_title' => 'Company',
                 'policy_title' => 'Policy',
                 'account_title' => 'Account',
+                'bottom_bar' => 'Bottom Bar',
+                'social_icons' => 'Social Icons',
+                'copyright' => '© :year :store. All rights reserved.',
+                'links' => [
+                    'about_us' => 'About Us',
+                    'contact' => 'Contact',
+                    'careers' => 'Careers',
+                    'privacy_policy' => 'Privacy Policy',
+                    'terms_of_service' => 'Terms of Service',
+                    'shipping_policy' => 'Shipping Policy',
+                    'sign_in' => 'Sign In',
+                    'register' => 'Register',
+                    'my_account' => 'My Account',
+                ],
             ],
 
             'minimal' => [
                 'name' => 'Minimal Centered Footer',
                 'tagline' => 'Your trusted e-commerce partner',
+                'centered_content' => 'Centered Content',
+                'social_icons' => 'Social Icons',
+                'copyright' => '© :year All rights reserved.',
             ],
 
             'newsletter' => [
                 'name' => 'Newsletter Footer',
                 'heading' => 'Stay in the loop',
                 'description' => 'Subscribe to our newsletter for exclusive offers and updates.',
+                'copyright' => '© :year :store',
+                'container' => 'Newsletter + Links',
+                'newsletter' => 'Newsletter',
+                'links' => 'Links',
+                'columns' => [
+                    'quick_links' => 'Quick Links',
+                    'help' => 'Help',
+                    'account' => 'Account',
+                ],
+                'links_items' => [
+                    'shop' => 'Shop',
+                    'about' => 'About',
+                    'contact' => 'Contact',
+                    'faq' => 'FAQ',
+                    'shipping' => 'Shipping',
+                    'returns' => 'Returns',
+                    'sign_in' => 'Sign In',
+                    'register' => 'Register',
+                ],
             ],
         ],
 
@@ -267,6 +315,7 @@ return [
             'grid' => [
                 'name' => 'Category Grid',
                 'heading' => 'Shop by Category',
+                'category_card' => 'Category Card',
             ],
         ],
         'blocks' => [
@@ -347,6 +396,15 @@ return [
                     'product_label' => 'Product',
                     'product_info' => 'Select a product to display',
                 ],
+            ],
+        ],
+
+        'presets' => [
+            'featured' => [
+                'name' => 'Featured Products',
+            ],
+            'new' => [
+                'name' => 'New Arrivals',
             ],
         ],
     ],
@@ -467,6 +525,50 @@ return [
         'description' => 'Displays the customer\'s saved wishlist items with options to add to cart or remove.',
     ],
 
+    'customer-edit-address' => [
+        'name' => 'Edit Address',
+    ],
+
+    'customer-add-address' => [
+        'name' => 'Add Address',
+    ],
+
+    'customer-addresses' => [
+        'name' => 'Addresses',
+    ],
+
+    'customer-orders' => [
+        'name' => 'Orders',
+    ],
+
+    'customer-order-details' => [
+        'name' => 'Order Details',
+    ],
+
+    'customer-reviews' => [
+        'name' => 'Reviews',
+    ],
+
+    'downloadables' => [
+        'name' => 'Downloadables',
+    ],
+
+    'login-form' => [
+        'name' => 'Login Form',
+    ],
+
+    'register-form' => [
+        'name' => 'Register Form',
+    ],
+
+    'profile' => [
+        'name' => 'Profile',
+    ],
+
+    'profile-form' => [
+        'name' => 'Profile Form',
+    ],
+
     'cms-page' => [
         'name' => 'CMS Page',
         'description' => 'Renders the content of a CMS page, allowing static or dynamic text and media to be displayed within a section layout.',
@@ -486,26 +588,77 @@ return [
         'presets' => [
             'custom_section' => [
                 'name' => 'Custom Section',
-                'category' => 'Layout',
             ],
             'rich_text' => [
                 'name' => 'Rich Text Section',
-                'category' => 'Content',
+                'heading' => 'New arrivals',
+                'description' => 'We make things that work better and last longer. Our products solve real problems with clean design and honest materials.',
+                'cta' => 'Shop now',
             ],
             'faq' => [
                 'name' => 'FAQ Section',
-                'category' => 'Content',
+                'heading' => 'Frequently asked questions',
+                'items' => [
+                    'return_policy' => [
+                        'question' => 'What is the return policy?',
+                        'answer' => 'Our goal is for every customer to be totally satisfied with their purchase. If this isn\'t the case, let us know and we\'ll do our best to work with you to make it right.',
+                    ],
+                    'final_sale' => [
+                        'question' => 'Are any purchases final sale?',
+                        'answer' => 'We are unable to accept returns on certain items. These will be carefully marked before purchase.',
+                    ],
+                    'order_delivery' => [
+                        'question' => 'When will I get my order?',
+                        'answer' => 'We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.',
+                    ],
+                    'manufacturing' => [
+                        'question' => 'Where are your products manufactured?',
+                        'answer' => 'Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value.',
+                    ],
+                    'shipping_cost' => [
+                        'question' => 'How much does shipping cost?',
+                        'answer' => 'Shipping is calculated based on your location and the items in your order. You will always know the shipping price before you purchase.',
+                    ],
+                ],
             ],
             'image_with_text' => [
                 'name' => 'Image with Text',
-                'category' => 'Content',
+                'content' => 'Content',
+                'heading' => 'Image with text',
+                'description' => 'Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.',
+                'cta' => 'Shop now',
             ],
             'hero_banner' => [
                 'name' => 'Hero Banner',
-                'category' => 'Content',
+                'heading' => 'Welcome to our store',
+                'description' => 'Discover our best products and offers.',
+                'buttons' => 'Buttons',
+                'cta' => 'View collections',
             ],
             'feature_icons' => [
                 'name' => 'Feature Icons',
+                'heading' => 'Why Shop With Us?',
+                'description' => 'Explore our customer-focused features',
+                'grid' => 'Features Grid',
+                'feature' => 'Feature',
+                'items' => [
+                    'free_shipping' => [
+                        'title' => 'Free Shipping',
+                        'description' => 'Free shipping on orders over $50',
+                    ],
+                    'support' => [
+                        'title' => '24/7 Support',
+                        'description' => 'Contact us anytime, anywhere',
+                    ],
+                    'secure_payment' => [
+                        'title' => 'Secure Payment',
+                        'description' => '100% secure payment guaranteed',
+                    ],
+                    'easy_returns' => [
+                        'title' => 'Easy Returns',
+                        'description' => '30-day return policy',
+                    ],
+                ],
             ],
         ],
 

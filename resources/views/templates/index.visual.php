@@ -9,6 +9,8 @@ use BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay;
 use BagistoPlus\VisualDebut\Sections\Newsletter;
 use BagistoPlus\VisualDebut\Sections\ProductList;
 
+use function BagistoPlus\VisualDebut\_t;
+
 return TemplateBuilder::make()
     ->section('hero-banner', HeroBanner::class)
     ->section('category-list', CategoryGrid::class)
@@ -20,7 +22,7 @@ return TemplateBuilder::make()
             ->blocks([
                 PresetBlock::make(Heading::class)
                     ->settings([
-                        'text' => 'Featured Products',
+                        'text' => _t('sections.product-list.settings.featured_label'),
                         'heading_level' => 'h2',
                         'width' => 'fill',
                         'alignment' => 'center',

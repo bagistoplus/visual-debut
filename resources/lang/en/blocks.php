@@ -15,6 +15,7 @@ return [
     ],
 
     'product' => [
+        'name' => 'Product',
         'settings' => [
             'product_info' => 'Select a product to display',
         ],
@@ -25,12 +26,14 @@ return [
     ],
 
     'category' => [
+        'name' => 'Category',
         'settings' => [
             'category_label' => 'Category',
         ],
     ],
 
     'category-card' => [
+        'name' => 'Category Card',
         'settings' => [
             'category_label' => 'Category',
         ],
@@ -40,15 +43,12 @@ return [
             ],
             'vertical_overlay' => [
                 'name' => 'Vertical with Overlay',
-                'category' => 'Category',
             ],
             'vertical_below' => [
                 'name' => 'Vertical with Name Below',
-                'category' => 'Category',
             ],
             'simple_hover' => [
                 'name' => 'Simple Hover',
-                'category' => 'Category',
             ],
         ],
     ],
@@ -60,16 +60,19 @@ return [
     ],
 
     'featured-product' => [
+        'name' => 'Featured Product',
         'product_label' => 'Product',
         'product_info' => 'Select a product to display',
     ],
 
     'footer-group' => [
+        'name' => 'Footer Group',
         'title_label' => 'Group Name',
         'title_default' => 'Links Group',
     ],
 
     'footer-link' => [
+        'name' => 'Footer Link',
         'text_label' => 'Link Text',
         'text_default' => 'Link',
         'link_label' => 'Link URL',
@@ -112,6 +115,7 @@ return [
     ],
 
     'accordion' => [
+        'name' => 'Accordion',
         'settings' => [
             'icon_label' => 'Icon Style',
             'icon_options' => [
@@ -143,12 +147,12 @@ return [
         'presets' => [
             'accordion' => [
                 'name' => 'Accordion',
-                'category' => 'Layout',
             ],
         ],
     ],
 
     'accordion-row' => [
+        'name' => 'Accordion Row',
         'settings' => [
             'heading_label' => 'Heading',
             'open_by_default_label' => 'Open by Default',
@@ -167,6 +171,7 @@ return [
     ],
 
     'product-media-gallery' => [
+        'name' => 'Product Media Gallery',
         'settings' => [
             'presentation_header' => 'Presentation',
 
@@ -215,6 +220,7 @@ return [
     ],
 
     'product-details' => [
+        'name' => 'Product Details',
         'settings' => [
             'layout_header' => 'Layout',
             'gap_label' => 'Gap',
@@ -226,6 +232,7 @@ return [
     ],
 
     'product-price' => [
+        'name' => 'Product Price',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Right Column',
@@ -234,6 +241,7 @@ return [
     ],
 
     'product-rating' => [
+        'name' => 'Product Rating',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Right Column',
@@ -242,6 +250,7 @@ return [
     ],
 
     'product-quantity-selector' => [
+        'name' => 'Quantity Selector',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Right Column',
@@ -250,6 +259,7 @@ return [
     ],
 
     'product-buy-buttons' => [
+        'name' => 'Buy Buttons',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Right Column',
@@ -260,6 +270,7 @@ return [
     ],
 
     'product-button' => [
+        'name' => 'Product Button',
         'settings' => [
             'action_label' => 'Action',
             'action_options' => [
@@ -309,23 +320,36 @@ return [
     ],
 
     'product-card' => [
+        'name' => 'Product Card',
         'presets' => [
             'vertical' => [
                 'name' => 'Vertical Card',
-                'category' => 'Product Cards',
             ],
             'horizontal' => [
                 'name' => 'Horizontal Card',
-                'category' => 'Product Cards',
             ],
             'overlay' => [
                 'name' => 'Card with Hover Overlay',
-                'category' => 'Product Cards',
+                'defaults' => [
+                    'product_card' => 'Product Card',
+                    'container' => 'Container',
+                    'product_image' => 'Product Image',
+                    'buttons' => 'Buttons',
+                    'add_to_cart' => 'Add to cart',
+                    'add_to_wishlist' => 'Add to wishlist',
+                    'add_to_compare' => 'Add to compare',
+                    'information' => 'Informations',
+                    'product_title' => 'Product Title',
+                    'price_and_labels' => 'Price & Labels',
+                    'price' => 'Price',
+                    'labels' => 'Labels',
+                ],
             ],
         ],
     ],
 
     'product-variant-picker' => [
+        'name' => 'Variant Picker',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Right Column',
@@ -334,6 +358,7 @@ return [
     ],
 
     'product-grouped-options' => [
+        'name' => 'Grouped Options',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Right Column',
@@ -342,6 +367,7 @@ return [
     ],
 
     'product-bundle-options' => [
+        'name' => 'Bundle Options',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Right Column',
@@ -350,6 +376,7 @@ return [
     ],
 
     'product-downloadable-options' => [
+        'name' => 'Downloadable Options',
         'settings' => [
             'position_label' => 'Position',
             'position_right' => 'Right Column',
@@ -432,6 +459,7 @@ return [
         'description' => 'Shopping cart icon with mini cart preview',
         'settings' => [
             'heading_label' => 'Heading',
+            'heading_default' => 'Shopping Cart',
             'description_label' => 'Description',
             'description_default' => 'Get Up To 30% OFF on your 1st order',
         ],
@@ -439,6 +467,10 @@ return [
 
     'feature-icon' => [
         'name' => 'Feature Icon',
+        'defaults' => [
+            'title' => 'Feature Title',
+            'description' => 'Feature description goes here',
+        ],
     ],
 
 ];

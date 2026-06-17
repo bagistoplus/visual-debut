@@ -58,18 +58,18 @@ class CategoryGrid extends Preset
                     ->id('static-category-card')
                     ->static()
                     ->repeated()
-                    ->name('Category Card'),
+                    ->name(_t('sections.category-list.presets.grid.category_card')),
 
                 // Ghost category examples
                 PresetBlock::make(Category::class)
                     ->id('category-1')
-                    ->name('Category')
+                    ->name(_t('sections.category-list.blocks.category.name'))
                     ->ghost()
                     ->settings(['category' => 2]),
 
                 PresetBlock::make(Category::class)
                     ->id('category-2')
-                    ->name('Category')
+                    ->name(_t('sections.category-list.blocks.category.name'))
                     ->ghost()
                     ->settings(['category' => 3]),
             ]);

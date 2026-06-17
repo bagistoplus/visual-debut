@@ -20,6 +20,11 @@ class ProductGroupedOptions extends SimpleBlock
 
     protected static int $limit = 1;
 
+    public static function name(): string
+    {
+        return _t('blocks.product-grouped-options.name');
+    }
+
     public static function settings(): array
     {
         return [

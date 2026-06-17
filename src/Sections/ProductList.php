@@ -352,7 +352,7 @@ class ProductList extends BladeSection
     public static function presets(): array
     {
         return [
-            Preset::make('Featured Products')
+            Preset::make(_t('sections.product-list.presets.featured.name'))
                 ->category('Product')
                 ->settings([
                     'product_type' => 'featured',
@@ -361,7 +361,7 @@ class ProductList extends BladeSection
                 ->blocks([
                     PresetBlock::make(Heading::class)
                         ->settings([
-                            'text' => 'Featured Products',
+                            'text' => _t('sections.product-list.settings.featured_label'),
                             'heading_level' => 'h2',
                             'width' => 'fill',
                             'alignment' => 'center',
@@ -380,7 +380,7 @@ class ProductList extends BladeSection
                         ->repeated(),
                 ]),
 
-            Preset::make('New Arrivals')
+            Preset::make(_t('sections.product-list.presets.new.name'))
                 ->category('Product')
                 ->settings([
                     'product_type' => 'new',
@@ -389,7 +389,7 @@ class ProductList extends BladeSection
                 ->blocks([
                     PresetBlock::make(Heading::class)
                         ->settings([
-                            'text' => 'New Arrivals',
+                            'text' => _t('sections.product-list.settings.new_label'),
                             'heading_level' => 'h2',
                             'width' => 'fill',
                             'alignment' => 'center',

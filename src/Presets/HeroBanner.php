@@ -48,7 +48,7 @@ class HeroBanner extends Preset
             ->blocks([
                 PresetBlock::make(Heading::class)
                     ->settings([
-                        'text' => 'Welcome to our store',
+                        'text' => _t('sections.flex-section.presets.hero_banner.heading'),
                         'heading_level' => 'h1',
                         'typography' => 'heading-1',
                         'color' => 'custom',
@@ -62,7 +62,7 @@ class HeroBanner extends Preset
 
                 PresetBlock::make(Text::class)
                     ->settings([
-                        'text' => 'Discover our best products and offers.',
+                        'text' => _t('sections.flex-section.presets.hero_banner.description'),
                         'width' => 'fit',
                         'max_width' => 'normal',
                         'alignment' => 'left',
@@ -71,7 +71,7 @@ class HeroBanner extends Preset
                     ]),
 
                 PresetBlock::make(Group::class)
-                    ->name('Buttons')
+                    ->name(_t('sections.flex-section.presets.hero_banner.buttons'))
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'row',
@@ -82,7 +82,7 @@ class HeroBanner extends Preset
                     ->blocks([
                         PresetBlock::make(Button::class)
                             ->settings([
-                                'text' => 'View collections',
+                                'text' => _t('sections.flex-section.presets.hero_banner.cta'),
                                 'url' => '/collections',
                                 'style' => 'filled',
                                 'color' => 'primary',

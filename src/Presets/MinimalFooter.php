@@ -36,7 +36,7 @@ class MinimalFooter extends Preset
             ])
             ->blocks([
                 PresetBlock::make(Group::class)
-                    ->name('Centered Content')
+                    ->name(_t('sections.footer.presets.minimal.centered_content'))
                     ->settings([
                         'layout_type' => 'flex',
                         'flex_direction' => 'column',
@@ -74,7 +74,7 @@ class MinimalFooter extends Preset
 
                         PresetBlock::make(Text::class)
                             ->settings([
-                                'text' => '© '.date('Y').' All rights reserved.',
+                                'text' => _t('sections.footer.presets.minimal.copyright', ['year' => date('Y')]),
                                 'alignment' => 'center',
                             ]),
                     ]),
@@ -84,7 +84,7 @@ class MinimalFooter extends Preset
     protected function createSocialIcons(): PresetBlock
     {
         return PresetBlock::make(Group::class)
-            ->name('Social Icons')
+            ->name(_t('sections.footer.presets.minimal.social_icons'))
             ->settings([
                 'layout_type' => 'flex',
                 'flex_direction' => 'row',

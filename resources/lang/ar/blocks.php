@@ -11,9 +11,11 @@ return [
         'padding_header' => 'الحشوة',
         'padding_label' => 'الحشوة',
         'margin_label' => 'الهامش',
+        'hide_on_mobile_label' => 'إخفاء على الجوال',
     ],
 
     'product' => [
+        'name' => 'منتج',
         'settings' => [
             'product_info' => 'اختر منتجاً لعرضه',
         ],
@@ -24,12 +26,14 @@ return [
     ],
 
     'category' => [
+        'name' => 'فئة',
         'settings' => [
             'category_label' => 'الفئة',
         ],
     ],
 
     'category-card' => [
+        'name' => 'بطاقة الفئة',
         'settings' => [
             'category_label' => 'الفئة',
         ],
@@ -39,15 +43,12 @@ return [
             ],
             'vertical_overlay' => [
                 'name' => 'عمودي مع تراكب',
-                'category' => 'الفئة',
             ],
             'vertical_below' => [
                 'name' => 'عمودي مع الاسم أدناه',
-                'category' => 'الفئة',
             ],
             'simple_hover' => [
                 'name' => 'تمرير بسيط',
-                'category' => 'الفئة',
             ],
         ],
     ],
@@ -59,16 +60,19 @@ return [
     ],
 
     'featured-product' => [
+        'name' => 'منتج مميز',
         'product_label' => 'المنتج',
         'product_info' => 'اختر منتجاً لعرضه',
     ],
 
     'footer-group' => [
+        'name' => 'مجموعة التذييل',
         'title_label' => 'اسم المجموعة',
         'title_default' => 'مجموعة روابط',
     ],
 
     'footer-link' => [
+        'name' => 'رابط التذييل',
         'text_label' => 'نص الرابط',
         'text_default' => 'رابط',
         'link_label' => 'رابط URL',
@@ -111,6 +115,7 @@ return [
     ],
 
     'accordion' => [
+        'name' => 'أكورديون',
         'settings' => [
             'icon_label' => 'نمط الأيقونة',
             'icon_options' => [
@@ -149,12 +154,12 @@ return [
         'presets' => [
             'accordion' => [
                 'name' => 'أكورديون',
-                'category' => 'التخطيط',
             ],
         ],
     ],
 
     'accordion-row' => [
+        'name' => 'صف الأكورديون',
         'settings' => [
             'heading_label' => 'العنوان',
             'open_by_default_label' => 'فتح افتراضياً',
@@ -173,6 +178,7 @@ return [
     ],
 
     'product-media-gallery' => [
+        'name' => 'معرض وسائط المنتج',
         'settings' => [
             'presentation_header' => 'العرض',
 
@@ -221,6 +227,7 @@ return [
     ],
 
     'product-details' => [
+        'name' => 'تفاصيل المنتج',
         'settings' => [
             'layout_header' => 'التخطيط',
             'gap_label' => 'الفجوة',
@@ -238,6 +245,7 @@ return [
     ],
 
     'product-price' => [
+        'name' => 'سعر المنتج',
         'settings' => [
             'position_label' => 'الموضع',
             'position_right' => 'العمود الأيمن',
@@ -246,6 +254,7 @@ return [
     ],
 
     'product-rating' => [
+        'name' => 'تقييم المنتج',
         'settings' => [
             'position_label' => 'الموضع',
             'position_right' => 'العمود الأيمن',
@@ -254,6 +263,7 @@ return [
     ],
 
     'product-quantity-selector' => [
+        'name' => 'محدد الكمية',
         'settings' => [
             'position_label' => 'الموضع',
             'position_right' => 'العمود الأيمن',
@@ -262,6 +272,7 @@ return [
     ],
 
     'product-buy-buttons' => [
+        'name' => 'أزرار الشراء',
         'settings' => [
             'position_label' => 'الموضع',
             'position_right' => 'العمود الأيمن',
@@ -272,6 +283,7 @@ return [
     ],
 
     'product-button' => [
+        'name' => 'زر المنتج',
         'settings' => [
             'action_label' => 'الإجراء',
             'action_options' => [
@@ -321,23 +333,36 @@ return [
     ],
 
     'product-card' => [
+        'name' => 'بطاقة المنتج',
         'presets' => [
             'vertical' => [
                 'name' => 'بطاقة عمودية',
-                'category' => 'بطاقات المنتج',
             ],
             'horizontal' => [
                 'name' => 'بطاقة أفقية',
-                'category' => 'بطاقات المنتج',
             ],
             'overlay' => [
                 'name' => 'بطاقة مع تراكب عند التمرير',
-                'category' => 'بطاقات المنتج',
+                'defaults' => [
+                    'product_card' => 'بطاقة المنتج',
+                    'container' => 'الحاوية',
+                    'product_image' => 'صورة المنتج',
+                    'buttons' => 'الأزرار',
+                    'add_to_cart' => 'أضف إلى السلة',
+                    'add_to_wishlist' => 'أضف إلى المفضلة',
+                    'add_to_compare' => 'أضف للمقارنة',
+                    'information' => 'المعلومات',
+                    'product_title' => 'عنوان المنتج',
+                    'price_and_labels' => 'السعر والتسميات',
+                    'price' => 'السعر',
+                    'labels' => 'التسميات',
+                ],
             ],
         ],
     ],
 
     'product-variant-picker' => [
+        'name' => 'محدد المتغيرات',
         'settings' => [
             'position_label' => 'الموضع',
             'position_right' => 'العمود الأيمن',
@@ -346,6 +371,7 @@ return [
     ],
 
     'product-grouped-options' => [
+        'name' => 'خيارات المنتج المجمع',
         'settings' => [
             'position_label' => 'الموضع',
             'position_right' => 'العمود الأيمن',
@@ -354,6 +380,7 @@ return [
     ],
 
     'product-bundle-options' => [
+        'name' => 'خيارات الحزمة',
         'settings' => [
             'position_label' => 'الموضع',
             'position_right' => 'العمود الأيمن',
@@ -362,6 +389,7 @@ return [
     ],
 
     'product-downloadable-options' => [
+        'name' => 'خيارات التنزيل',
         'settings' => [
             'position_label' => 'الموضع',
             'position_right' => 'العمود الأيمن',
@@ -391,6 +419,10 @@ return [
             'push_to_left' => 'دفع هذا العنصر إلى البداية',
             'push_to_right' => 'دفع هذا العنصر إلى النهاية',
         ],
+    ],
+
+    'header-group' => [
+        'name' => 'مجموعة الرأس',
     ],
 
     'header-currency' => [
@@ -440,6 +472,7 @@ return [
         'description' => 'أيقونة سلة التسوق مع معاينة السلة المصغرة',
         'settings' => [
             'heading_label' => 'العنوان',
+            'heading_default' => 'سلة التسوق',
             'description_label' => 'الوصف',
             'description_default' => 'احصل على خصم يصل إلى 30% على طلبك الأول',
         ],
@@ -447,6 +480,10 @@ return [
 
     'feature-icon' => [
         'name' => 'أيقونة الميزة',
+        'defaults' => [
+            'title' => 'عنوان الميزة',
+            'description' => 'يوضع وصف الميزة هنا',
+        ],
     ],
 
 ];

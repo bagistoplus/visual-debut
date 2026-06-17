@@ -28,6 +28,11 @@ class Accordion extends BladeBlock
 
     protected static string $category = 'Layout';
 
+    public static function name(): string
+    {
+        return _t('blocks.accordion.name');
+    }
+
     public static function settings(): array
     {
         return [
@@ -115,7 +120,7 @@ class Accordion extends BladeBlock
     {
         return [
             Preset::make(_t('blocks.accordion.presets.accordion.name'))
-                ->category(_t('blocks.accordion.presets.accordion.category'))
+                ->category('Layout')
                 ->blocks([
                     PresetBlock::make(AccordionRow::class)
                         ->id('row-1')

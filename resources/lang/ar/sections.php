@@ -1,6 +1,21 @@
 <?php
 
 return [
+    'common' => [
+        'color_scheme_label' => 'نظام الألوان',
+        'color_scheme_info' => 'تجاوز نظام ألوان القالب العام لهذا القسم',
+    ],
+
+    'admin-topbar' => [
+        'name' => 'الشريط العلوي للإدارة',
+        'description' => 'يعرض شريطًا علويًا يحتوي على رابط إلى لوحة الإدارة. مفيد للواجهات التي يمكن للمسؤولين الوصول إليها.',
+
+        'settings' => [
+            'text_label' => 'نص الرابط',
+            'url_label' => 'رابط URL',
+        ],
+    ],
+
     'announcement-bar' => [
         'name' => 'شريط الإعلان',
         'description' => 'شريط إعلان بسيط لعرض معلومات مهمة لعملائك.',
@@ -9,6 +24,12 @@ return [
             'default_text' => 'شحن مجاني للطلبات التي تزيد عن 50 دولارًا',
             'link_label' => 'الرابط',
             'variant_label' => 'نوع الخلفية',
+            'variant_options' => [
+                'primary' => 'أساسي',
+                'secondary' => 'ثانوي',
+                'accent' => 'تمييز',
+                'neutral' => 'محايد',
+            ],
 
             'scheme_label' => 'نظام الألوان',
             'scheme_note' => 'يتجاوز هذا إعداد نظام ألوان القالب العام. التغييرات في نظام القالب الرئيسي لن تؤثر على هذا القسم.',
@@ -52,6 +73,20 @@ return [
     'header' => [
         'name' => 'رأس الصفحة',
         'description' => '',
+        'settings' => [
+            'content_width_label' => 'عرض المحتوى',
+            'content_width_container' => 'حاوية',
+            'content_width_fullwidth' => 'عرض كامل',
+        ],
+        'region' => [
+            'logo_group' => 'الشعار',
+            'actions_group' => 'الإجراءات',
+        ],
+        'presets' => [
+            'default' => [
+                'name' => 'رأس الصفحة',
+            ],
+        ],
         'blocks' => [
             'logo' => [
                 'name' => 'الاسم/الشعار',
@@ -122,6 +157,16 @@ return [
         'description' => 'الجزء السفلي من موقعك مع الروابط والعلامة التجارية.',
 
         'settings' => [
+            'layout_header' => 'التخطيط',
+            'content_width_label' => 'عرض المحتوى',
+            'content_width_options' => [
+                'full' => 'عرض كامل',
+                'container' => 'حاوية',
+            ],
+            'content_width_info' => 'اختر ما إذا كان محتوى التذييل محدودًا داخل حاوية أو ممتدًا بعرض كامل',
+            'appearance_header' => 'المظهر',
+            'color_scheme_label' => 'نظام الألوان',
+            'color_scheme_info' => 'تجاوز نظام ألوان القالب العام لهذا القسم',
             'heading_label' => 'العنوان',
             'heading_default' => 'متجري',
 
@@ -130,6 +175,66 @@ return [
 
             'show_social_links_label' => 'عرض روابط التواصل الاجتماعي',
             'show_social_links_info' => 'يمكنك إعداد الروابط من إعدادات القالب',
+        ],
+
+        'presets' => [
+            'classic' => [
+                'name' => 'تذييل كلاسيكي',
+                'brand_title' => 'متجري',
+                'brand_description' => 'أضف وصفًا لمتجرك هنا. أخبر عملاءك عن رسالتك وقيمك وما الذي يجعل منتجاتك مميزة.',
+                'brand_column' => 'العلامة التجارية',
+                'footer_columns' => 'أعمدة التذييل',
+                'company_title' => 'الشركة',
+                'policy_title' => 'السياسة',
+                'account_title' => 'الحساب',
+                'bottom_bar' => 'الشريط السفلي',
+                'social_icons' => 'أيقونات التواصل الاجتماعي',
+                'copyright' => '© :year :store. جميع الحقوق محفوظة.',
+                'links' => [
+                    'about_us' => 'من نحن',
+                    'contact' => 'اتصل بنا',
+                    'careers' => 'الوظائف',
+                    'privacy_policy' => 'سياسة الخصوصية',
+                    'terms_of_service' => 'شروط الخدمة',
+                    'shipping_policy' => 'سياسة الشحن',
+                    'sign_in' => 'تسجيل الدخول',
+                    'register' => 'إنشاء حساب',
+                    'my_account' => 'حسابي',
+                ],
+            ],
+
+            'minimal' => [
+                'name' => 'تذييل بسيط في الوسط',
+                'tagline' => 'شريكك الموثوق في التجارة الإلكترونية',
+                'centered_content' => 'محتوى مركزي',
+                'social_icons' => 'أيقونات التواصل الاجتماعي',
+                'copyright' => '© :year جميع الحقوق محفوظة.',
+            ],
+
+            'newsletter' => [
+                'name' => 'تذييل النشرة البريدية',
+                'heading' => 'ابقَ على اطلاع',
+                'description' => 'اشترك في نشرتنا البريدية للحصول على عروض حصرية وتحديثات.',
+                'copyright' => '© :year :store',
+                'container' => 'النشرة البريدية + الروابط',
+                'newsletter' => 'النشرة البريدية',
+                'links' => 'الروابط',
+                'columns' => [
+                    'quick_links' => 'روابط سريعة',
+                    'help' => 'المساعدة',
+                    'account' => 'الحساب',
+                ],
+                'links_items' => [
+                    'shop' => 'المتجر',
+                    'about' => 'من نحن',
+                    'contact' => 'اتصل بنا',
+                    'faq' => 'الأسئلة الشائعة',
+                    'shipping' => 'الشحن',
+                    'returns' => 'الإرجاع',
+                    'sign_in' => 'تسجيل الدخول',
+                    'register' => 'إنشاء حساب',
+                ],
+            ],
         ],
 
         'blocks' => [
@@ -254,6 +359,7 @@ return [
             'grid' => [
                 'name' => 'شبكة الفئات',
                 'heading' => 'تسوق حسب الفئة',
+                'category_card' => 'بطاقة الفئة',
             ],
         ],
         'blocks' => [
@@ -293,6 +399,15 @@ return [
                     'product_label' => 'المنتج',
                     'product_info' => 'اختر منتجًا لعرضه',
                 ],
+            ],
+        ],
+
+        'presets' => [
+            'featured' => [
+                'name' => 'المنتجات المميزة',
+            ],
+            'new' => [
+                'name' => 'وصل حديثًا',
             ],
         ],
     ],
@@ -367,6 +482,15 @@ return [
                 ],
             ],
         ],
+
+        'presets' => [
+            'featured' => [
+                'name' => 'المنتجات المميزة',
+            ],
+            'new' => [
+                'name' => 'وصل حديثًا',
+            ],
+        ],
     ],
 
     'newsletter' => [
@@ -382,6 +506,32 @@ return [
 
             'scheme_label' => 'نظام الألوان',
             'scheme_note' => 'يتجاوز هذا إعداد نظام ألوان القالب العام. التغييرات في نظام القالب الرئيسي لن تؤثر على هذا القسم.',
+        ],
+    ],
+
+    'product-information' => [
+        'name' => 'معلومات المنتج',
+        'description' => 'يعرض معرض وسائط المنتج وتفاصيله في تخطيط شبكة مرن.',
+
+        'settings' => [
+            'section_width_label' => 'عرض القسم',
+            'section_width_options' => [
+                'container' => 'حاوية',
+                'full_width' => 'عرض كامل',
+            ],
+
+            'layout_header' => 'التخطيط',
+            'media_position_label' => 'موضع الوسائط',
+            'media_position_options' => [
+                'left' => 'يسار',
+                'right' => 'يمين',
+            ],
+            'equal_columns_label' => 'أعمدة متساوية',
+            'equal_columns_info' => 'اجعل عمودي الوسائط والتفاصيل بعرض متساوٍ (50/50 بدلًا من نسبة 2:1)',
+            'gap_label' => 'الفجوة',
+            'gap_info' => 'المسافة بين عمودي الوسائط والتفاصيل',
+
+            'appearance_header' => 'المظهر',
         ],
     ],
 
@@ -561,6 +711,60 @@ return [
         'description' => 'يعرض المنتجات أو المحتوى الذي يطابق استعلام بحث المستخدم، مع دعم التصفية والتقسيم إلى صفحات.',
     ],
 
+    'compare' => [
+        'name' => 'مقارنة المنتجات',
+        'description' => 'يعرض جدول مقارنة للمنتجات المحددة مع سماتها وميزاتها.',
+    ],
+
+    'wishlist' => [
+        'name' => 'قائمة الرغبات',
+        'description' => 'يعرض عناصر قائمة رغبات العميل المحفوظة مع خيارات لإضافتها إلى السلة أو إزالتها.',
+    ],
+
+    'customer-edit-address' => [
+        'name' => 'تعديل العنوان',
+    ],
+
+    'customer-add-address' => [
+        'name' => 'إضافة عنوان',
+    ],
+
+    'customer-addresses' => [
+        'name' => 'العناوين',
+    ],
+
+    'customer-orders' => [
+        'name' => 'الطلبات',
+    ],
+
+    'customer-order-details' => [
+        'name' => 'تفاصيل الطلب',
+    ],
+
+    'customer-reviews' => [
+        'name' => 'المراجعات',
+    ],
+
+    'downloadables' => [
+        'name' => 'التنزيلات',
+    ],
+
+    'login-form' => [
+        'name' => 'نموذج تسجيل الدخول',
+    ],
+
+    'register-form' => [
+        'name' => 'نموذج التسجيل',
+    ],
+
+    'profile' => [
+        'name' => 'الملف الشخصي',
+    ],
+
+    'profile-form' => [
+        'name' => 'نموذج الملف الشخصي',
+    ],
+
     'cms-page' => [
         'name' => 'صفحة إدارة المحتوى',
         'description' => 'يعرض محتوى صفحة إدارة المحتوى (CMS)، مما يتيح عرض النصوص أو الوسائط الثابتة أو الديناميكية ضمن تخطيط مقطع.',
@@ -569,6 +773,194 @@ return [
     'error-page' => [
         'name' => 'صفحة الخطأ',
         'description' => 'يعرض رسالة خطأ بتصميم خاص (مثل 404 أو 500) مع روابط تنقل اختيارية أو خيار بحث لمساعدة المستخدمين على المتابعة.',
+    ],
+
+    'flex-section' => [
+        'name' => 'قسم مرن',
+        'description' => 'قسم عام يقبل أي نوع من البلوكات مع عناصر تحكم شاملة في التخطيط والحجم والتنسيق.',
+
+        'empty_state' => 'أضف بلوكات للبدء',
+
+        'presets' => [
+            'custom_section' => [
+                'name' => 'قسم مخصص',
+            ],
+            'rich_text' => [
+                'name' => 'قسم نص منسق',
+                'heading' => 'وصل حديثًا',
+                'description' => 'نصنع أشياء تعمل بشكل أفضل وتدوم لفترة أطول. تحل منتجاتنا مشكلات حقيقية بتصميم نظيف ومواد صادقة.',
+                'cta' => 'تسوق الآن',
+            ],
+            'faq' => [
+                'name' => 'قسم الأسئلة الشائعة',
+                'heading' => 'الأسئلة الشائعة',
+                'items' => [
+                    'return_policy' => [
+                        'question' => 'ما هي سياسة الإرجاع؟',
+                        'answer' => 'هدفنا أن يكون كل عميل راضيًا تمامًا عن مشترياته. إذا لم يكن الأمر كذلك، فأخبرنا وسنبذل قصارى جهدنا للعمل معك لإيجاد حل مناسب.',
+                    ],
+                    'final_sale' => [
+                        'question' => 'هل هناك مشتريات نهائية؟',
+                        'answer' => 'لا يمكننا قبول إرجاع بعض العناصر. سيتم توضيح ذلك بعناية قبل الشراء.',
+                    ],
+                    'order_delivery' => [
+                        'question' => 'متى سأستلم طلبي؟',
+                        'answer' => 'سنعمل بسرعة لشحن طلبك في أقرب وقت ممكن. بعد شحن طلبك، ستتلقى بريدًا إلكترونيًا يحتوي على مزيد من المعلومات. تختلف أوقات التسليم حسب موقعك.',
+                    ],
+                    'manufacturing' => [
+                        'question' => 'أين تُصنع منتجاتكم؟',
+                        'answer' => 'تُصنع منتجاتنا محليًا وعالميًا. نختار شركاء التصنيع بعناية لضمان أن تكون منتجاتنا عالية الجودة وذات قيمة عادلة.',
+                    ],
+                    'shipping_cost' => [
+                        'question' => 'كم تكلفة الشحن؟',
+                        'answer' => 'يتم احتساب الشحن بناءً على موقعك والعناصر الموجودة في طلبك. ستعرف دائمًا سعر الشحن قبل إتمام الشراء.',
+                    ],
+                ],
+            ],
+            'image_with_text' => [
+                'name' => 'صورة مع نص',
+                'content' => 'المحتوى',
+                'heading' => 'صورة مع نص',
+                'description' => 'ادمج نصًا مع صورة لتسليط الضوء على منتجك أو مجموعتك أو مقالة مدونتك. أضف تفاصيل حول التوفر أو النمط أو حتى مراجعة.',
+                'cta' => 'تسوق الآن',
+            ],
+            'hero_banner' => [
+                'name' => 'لافتة البطل',
+                'heading' => 'مرحبًا بك في متجرنا',
+                'description' => 'اكتشف أفضل منتجاتنا وعروضنا.',
+                'buttons' => 'الأزرار',
+                'cta' => 'عرض المجموعات',
+            ],
+            'feature_icons' => [
+                'name' => 'رموز الميزات',
+                'heading' => 'لماذا تتسوق معنا؟',
+                'description' => 'استكشف ميزاتنا المصممة لخدمة العملاء',
+                'grid' => 'شبكة الميزات',
+                'feature' => 'ميزة',
+                'items' => [
+                    'free_shipping' => [
+                        'title' => 'شحن مجاني',
+                        'description' => 'شحن مجاني للطلبات التي تزيد عن 50 دولارًا',
+                    ],
+                    'support' => [
+                        'title' => 'دعم على مدار الساعة',
+                        'description' => 'تواصل معنا في أي وقت ومن أي مكان',
+                    ],
+                    'secure_payment' => [
+                        'title' => 'دفع آمن',
+                        'description' => 'دفع آمن بنسبة 100% مضمون',
+                    ],
+                    'easy_returns' => [
+                        'title' => 'إرجاع سهل',
+                        'description' => 'سياسة إرجاع خلال 30 يومًا',
+                    ],
+                ],
+            ],
+        ],
+
+        'settings' => [
+            'layout_header' => 'التخطيط',
+
+            'direction_label' => 'الاتجاه',
+            'direction_options' => [
+                'horizontal' => 'أفقي',
+                'vertical' => 'عمودي',
+            ],
+            'gap_label' => 'الفجوة بين العناصر',
+            'gap_info' => 'المسافة بين البلوكات الفرعية',
+
+            'size_header' => 'الحجم',
+
+            'section_width_label' => 'عرض المحتوى',
+            'section_width_options' => [
+                'full' => 'عرض كامل',
+                'container' => 'حاوية',
+            ],
+            'section_width_info' => 'تقيّد الحاوية العرض الأقصى وتوسّط المحتوى',
+
+            'section_height_label' => 'ارتفاع القسم',
+            'section_height_options' => [
+                'auto' => 'تلقائي',
+                'xs' => 'صغير جدًا',
+                'sm' => 'صغير',
+                'md' => 'متوسط',
+                'lg' => 'كبير',
+                'screen' => 'ملء الشاشة',
+                'custom' => 'مخصص',
+            ],
+
+            'section_height_custom_label' => 'ارتفاع مخصص',
+
+            'appearance_header' => 'المظهر',
+
+            'color_scheme_label' => 'نظام الألوان',
+
+            'background_type_label' => 'نوع الخلفية',
+            'background_type_options' => [
+                'none' => 'لا شيء',
+                'color' => 'لون',
+                'gradient' => 'تدرج',
+                'image' => 'صورة',
+            ],
+
+            'background_color_label' => 'لون الخلفية',
+            'background_gradient_label' => 'تدرج الخلفية',
+            'background_image_label' => 'صورة الخلفية',
+
+            'background_position_label' => 'موضع الخلفية',
+            'background_position_options' => [
+                'center' => 'الوسط',
+                'top' => 'أعلى',
+                'bottom' => 'أسفل',
+                'left' => 'يسار',
+                'right' => 'يمين',
+            ],
+
+            'background_size_label' => 'حجم الخلفية',
+            'background_size_options' => [
+                'cover' => 'تغطية',
+                'contain' => 'احتواء',
+                'auto' => 'تلقائي',
+            ],
+
+            'background_repeat_label' => 'تكرار الخلفية',
+            'background_repeat_options' => [
+                'no_repeat' => 'بدون تكرار',
+                'repeat' => 'تكرار',
+                'repeat_x' => 'تكرار أفقي',
+                'repeat_y' => 'تكرار عمودي',
+            ],
+
+            'border_label' => 'إظهار الحد',
+            'border_width_label' => 'عرض الحد',
+            'border_opacity_label' => 'شفافية الحد',
+            'border_radius_label' => 'نصف قطر الحد',
+            'border_radius_options' => [
+                'none' => 'لا شيء',
+                'sm' => 'صغير',
+                'md' => 'متوسط',
+                'lg' => 'كبير',
+                'xl' => 'كبير جدًا',
+                'full' => 'كامل',
+            ],
+
+            'toggle_overlay_label' => 'إظهار التراكب',
+            'toggle_overlay_info' => 'أضف تراكبًا فوق وسائط الخلفية',
+
+            'overlay_color_label' => 'لون التراكب',
+            'overlay_color_options' => [
+                'black' => 'أسود',
+                'white' => 'أبيض',
+            ],
+
+            'overlay_style_label' => 'نمط التراكب',
+            'overlay_style_options' => [
+                'solid' => 'مصمت',
+                'gradient' => 'تدرج',
+            ],
+
+            'overlay_gradient_label' => 'تدرج التراكب',
+        ],
     ],
 
     'feature-icons' => [

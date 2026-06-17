@@ -18,6 +18,11 @@ class FooterLink extends BladeBlock
 
     protected static string $category = 'Navigation';
 
+    public static function name(): string
+    {
+        return _t('blocks.footer-link.name');
+    }
+
     public static function settings(): array
     {
         return [

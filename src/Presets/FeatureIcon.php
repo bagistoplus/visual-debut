@@ -67,7 +67,7 @@ class FeatureIcon extends Preset
                     ->blocks([
                         PresetBlock::make(Heading::class)
                             ->settings([
-                                'text' => 'Feature Title',
+                                'text' => _t('blocks.feature-icon.defaults.title'),
                                 'heading_level' => 'h3',
                                 'width' => 'fill',
                                 'alignment' => 'center',
@@ -75,7 +75,7 @@ class FeatureIcon extends Preset
 
                         PresetBlock::make(Text::class)
                             ->settings([
-                                'text' => 'Feature description goes here',
+                                'text' => _t('blocks.feature-icon.defaults.description'),
                                 'width' => 'fill',
                                 'alignment' => 'center',
                             ]),

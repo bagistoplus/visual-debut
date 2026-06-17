@@ -1,6 +1,21 @@
 <?php
 
 return [
+    'common' => [
+        'color_scheme_label' => 'Palette de couleurs',
+        'color_scheme_info' => 'Remplace la palette de couleurs globale du thème pour cette section',
+    ],
+
+    'admin-topbar' => [
+        'name' => 'Barre supérieure d’administration',
+        'description' => 'Affiche une barre supérieure avec un lien vers le panneau d’administration. Utile pour les vitrines accessibles aux administrateurs.',
+
+        'settings' => [
+            'text_label' => 'Texte du lien',
+            'url_label' => 'URL du lien',
+        ],
+    ],
+
     'announcement-bar' => [
         'name' => 'Barre d\'annonce',
         'description' => 'Une barre d\'annonce simple pour afficher des informations importantes à vos clients.',
@@ -9,6 +24,12 @@ return [
             'default_text' => 'Livraison gratuite pour les commandes supérieures à 50 $',
             'link_label' => 'Lien',
             'variant_label' => 'Variante d\'arrière-plan',
+            'variant_options' => [
+                'primary' => 'Principal',
+                'secondary' => 'Secondaire',
+                'accent' => 'Accent',
+                'neutral' => 'Neutre',
+            ],
             'scheme_label' => 'Palette de couleurs',
             'scheme_note' => 'Cela remplace la palette de couleurs globale du thème. Les modifications du thème principal n\'affecteront pas cette section.',
         ],
@@ -50,6 +71,20 @@ return [
     'header' => [
         'name' => 'En-tête',
         'description' => '',
+        'settings' => [
+            'content_width_label' => 'Largeur du contenu',
+            'content_width_container' => 'Conteneur',
+            'content_width_fullwidth' => 'Pleine largeur',
+        ],
+        'region' => [
+            'logo_group' => 'Logo',
+            'actions_group' => 'Actions',
+        ],
+        'presets' => [
+            'default' => [
+                'name' => 'En-tête',
+            ],
+        ],
         'blocks' => [
             'logo' => [
                 'name' => 'Nom/Logo',
@@ -119,12 +154,81 @@ return [
         'name' => 'Pied de page',
         'description' => 'Section inférieure de votre site avec des liens et du branding.',
         'settings' => [
+            'layout_header' => 'Mise en page',
+            'content_width_label' => 'Largeur du contenu',
+            'content_width_options' => [
+                'full' => 'Pleine largeur',
+                'container' => 'Conteneur',
+            ],
+            'content_width_info' => 'Choisissez si le contenu du pied de page doit être limité à un conteneur ou s’étendre sur toute la largeur',
+            'appearance_header' => 'Apparence',
+            'color_scheme_label' => 'Palette de couleurs',
+            'color_scheme_info' => 'Remplace la palette de couleurs globale du thème pour cette section',
             'heading_label' => 'Titre',
             'heading_default' => 'Ma boutique',
             'description_label' => 'Description',
             'description_default' => 'Ajoutez ici une description de votre boutique',
             'show_social_links_label' => 'Afficher les liens sociaux',
             'show_social_links_info' => 'Vous pouvez configurer les liens dans les paramètres du thème',
+        ],
+        'presets' => [
+            'classic' => [
+                'name' => 'Pied de page classique',
+                'brand_title' => 'Ma boutique',
+                'brand_description' => 'Ajoutez ici une description de votre boutique. Parlez à vos clients de votre mission, de vos valeurs et de ce qui rend vos produits spéciaux.',
+                'brand_column' => 'Marque',
+                'footer_columns' => 'Colonnes du pied de page',
+                'company_title' => 'Entreprise',
+                'policy_title' => 'Politique',
+                'account_title' => 'Compte',
+                'bottom_bar' => 'Barre inférieure',
+                'social_icons' => 'Icônes sociales',
+                'copyright' => '© :year :store. Tous droits réservés.',
+                'links' => [
+                    'about_us' => 'À propos',
+                    'contact' => 'Contact',
+                    'careers' => 'Carrières',
+                    'privacy_policy' => 'Politique de confidentialité',
+                    'terms_of_service' => 'Conditions d’utilisation',
+                    'shipping_policy' => 'Politique d’expédition',
+                    'sign_in' => 'Connexion',
+                    'register' => 'Inscription',
+                    'my_account' => 'Mon compte',
+                ],
+            ],
+
+            'minimal' => [
+                'name' => 'Pied de page minimal centré',
+                'tagline' => 'Votre partenaire e-commerce de confiance',
+                'centered_content' => 'Contenu centré',
+                'social_icons' => 'Icônes sociales',
+                'copyright' => '© :year Tous droits réservés.',
+            ],
+
+            'newsletter' => [
+                'name' => 'Pied de page newsletter',
+                'heading' => 'Restez informé',
+                'description' => 'Abonnez-vous à notre newsletter pour recevoir des offres exclusives et des mises à jour.',
+                'copyright' => '© :year :store',
+                'container' => 'Newsletter + liens',
+                'newsletter' => 'Newsletter',
+                'links' => 'Liens',
+                'columns' => [
+                    'quick_links' => 'Liens rapides',
+                    'help' => 'Aide',
+                    'account' => 'Compte',
+                ],
+                'links_items' => [
+                    'shop' => 'Boutique',
+                    'about' => 'À propos',
+                    'contact' => 'Contact',
+                    'faq' => 'FAQ',
+                    'shipping' => 'Expédition',
+                    'returns' => 'Retours',
+                    'sign_in' => 'Connexion',
+                    'register' => 'Inscription',
+                ],
+            ],
         ],
         'blocks' => [
             'group' => [
@@ -247,6 +351,7 @@ return [
             'grid' => [
                 'name' => 'Grille de catégories',
                 'heading' => 'Acheter par catégorie',
+                'category_card' => 'Carte de catégorie',
             ],
         ],
         'blocks' => [
@@ -281,6 +386,15 @@ return [
                     'product_label' => 'Produit',
                     'product_info' => 'Sélectionnez un produit à afficher',
                 ],
+            ],
+        ],
+
+        'presets' => [
+            'featured' => [
+                'name' => 'Produits en vedette',
+            ],
+            'new' => [
+                'name' => 'Nouveautés',
             ],
         ],
     ],
@@ -355,6 +469,15 @@ return [
                 ],
             ],
         ],
+
+        'presets' => [
+            'featured' => [
+                'name' => 'Produits en vedette',
+            ],
+            'new' => [
+                'name' => 'Nouveautés',
+            ],
+        ],
     ],
 
     'newsletter' => [
@@ -367,6 +490,32 @@ return [
             'description_default' => 'Utilisez ce texte pour partager des informations sur votre marque avec vos clients. Décrivez un produit, partagez des annonces ou accueillez les clients dans votre boutique.',
             'scheme_label' => 'Palette de couleurs',
             'scheme_note' => 'Cela remplace la palette de couleurs globale du thème. Les modifications du thème principal n\'affecteront pas cette section.',
+        ],
+    ],
+
+    'product-information' => [
+        'name' => 'Informations produit',
+        'description' => 'Affiche la galerie média et les détails du produit dans une mise en page en grille flexible.',
+
+        'settings' => [
+            'section_width_label' => 'Largeur de la section',
+            'section_width_options' => [
+                'container' => 'Conteneur',
+                'full_width' => 'Pleine largeur',
+            ],
+
+            'layout_header' => 'Mise en page',
+            'media_position_label' => 'Position des médias',
+            'media_position_options' => [
+                'left' => 'Gauche',
+                'right' => 'Droite',
+            ],
+            'equal_columns_label' => 'Colonnes égales',
+            'equal_columns_info' => 'Donne la même largeur aux colonnes médias et détails (50/50 au lieu d’un ratio 2:1)',
+            'gap_label' => 'Espacement',
+            'gap_info' => 'Espace entre les colonnes médias et détails',
+
+            'appearance_header' => 'Apparence',
         ],
     ],
 
@@ -543,6 +692,60 @@ return [
         'description' => 'Affiche les produits ou contenus correspondant à la requête de recherche de l’utilisateur, avec prise en charge du filtrage et de la pagination.',
     ],
 
+    'compare' => [
+        'name' => 'Comparer les produits',
+        'description' => 'Affiche un tableau comparatif des produits sélectionnés avec leurs attributs et fonctionnalités.',
+    ],
+
+    'wishlist' => [
+        'name' => 'Liste de souhaits',
+        'description' => 'Affiche les articles enregistrés dans la liste de souhaits du client avec des options pour les ajouter au panier ou les supprimer.',
+    ],
+
+    'customer-edit-address' => [
+        'name' => 'Modifier l’adresse',
+    ],
+
+    'customer-add-address' => [
+        'name' => 'Ajouter une adresse',
+    ],
+
+    'customer-addresses' => [
+        'name' => 'Adresses',
+    ],
+
+    'customer-orders' => [
+        'name' => 'Commandes',
+    ],
+
+    'customer-order-details' => [
+        'name' => 'Détails de la commande',
+    ],
+
+    'customer-reviews' => [
+        'name' => 'Avis',
+    ],
+
+    'downloadables' => [
+        'name' => 'Téléchargements',
+    ],
+
+    'login-form' => [
+        'name' => 'Formulaire de connexion',
+    ],
+
+    'register-form' => [
+        'name' => 'Formulaire d’inscription',
+    ],
+
+    'profile' => [
+        'name' => 'Profil',
+    ],
+
+    'profile-form' => [
+        'name' => 'Formulaire de profil',
+    ],
+
     'cms-page' => [
         'name' => 'Page CMS',
         'description' => 'Affiche le contenu d’une page CMS, permettant l’affichage de texte et de médias statiques ou dynamiques dans une mise en page sectionnée.',
@@ -551,6 +754,196 @@ return [
     'error-page' => [
         'name' => 'Page d’erreur',
         'description' => 'Affiche un message d’erreur stylisé (par exemple 404 ou 500) avec des liens de navigation ou une recherche en option pour aider les utilisateurs à se repérer.',
+    ],
+
+    'flex-section' => [
+        'name' => 'Section flexible',
+        'description' => 'Une section universelle qui accepte tout type de bloc avec des contrôles complets de mise en page, de taille et de style.',
+
+        'empty_state' => 'Ajoutez des blocs pour commencer',
+
+        'presets' => [
+            'custom_section' => [
+                'name' => 'Section personnalisée',
+            ],
+            'rich_text' => [
+                'name' => 'Section texte enrichi',
+                'heading' => 'Nouveautés',
+                'description' => 'Nous concevons des objets qui fonctionnent mieux et durent plus longtemps. Nos produits résolvent de vrais problèmes avec un design épuré et des matériaux honnêtes.',
+                'cta' => 'Acheter maintenant',
+            ],
+            'faq' => [
+                'name' => 'Section FAQ',
+                'heading' => 'Questions fréquentes',
+                'items' => [
+                    'return_policy' => [
+                        'question' => 'Quelle est la politique de retour ?',
+                        'answer' => 'Notre objectif est que chaque client soit entièrement satisfait de son achat. Si ce n’est pas le cas, contactez-nous et nous ferons de notre mieux pour trouver une solution.',
+                    ],
+                    'final_sale' => [
+                        'question' => 'Certains achats sont-ils définitifs ?',
+                        'answer' => 'Nous ne pouvons pas accepter les retours sur certains articles. Ceux-ci seront clairement indiqués avant l’achat.',
+                    ],
+                    'order_delivery' => [
+                        'question' => 'Quand recevrai-je ma commande ?',
+                        'answer' => 'Nous expédierons votre commande aussi rapidement que possible. Une fois expédiée, vous recevrez un e-mail avec plus d’informations. Les délais de livraison varient selon votre emplacement.',
+                    ],
+                    'manufacturing' => [
+                        'question' => 'Où vos produits sont-ils fabriqués ?',
+                        'answer' => 'Nos produits sont fabriqués localement et dans le monde entier. Nous sélectionnons soigneusement nos partenaires de fabrication afin de garantir des produits de qualité et à juste prix.',
+                    ],
+                    'shipping_cost' => [
+                        'question' => 'Combien coûte la livraison ?',
+                        'answer' => 'Les frais de livraison sont calculés selon votre emplacement et les articles de votre commande. Vous connaîtrez toujours le prix de livraison avant l’achat.',
+                    ],
+                ],
+            ],
+            'image_with_text' => [
+                'name' => 'Image avec texte',
+                'content' => 'Contenu',
+                'heading' => 'Image avec texte',
+                'description' => 'Associez du texte à une image pour mettre en valeur un produit, une collection ou un article de blog. Ajoutez des détails sur la disponibilité, le style ou même un avis.',
+                'cta' => 'Acheter maintenant',
+            ],
+            'hero_banner' => [
+                'name' => 'Bannière Hero',
+                'heading' => 'Bienvenue dans notre boutique',
+                'description' => 'Découvrez nos meilleurs produits et offres.',
+                'buttons' => 'Boutons',
+                'cta' => 'Voir les collections',
+            ],
+            'feature_icons' => [
+                'name' => 'Icônes de fonctionnalité',
+                'heading' => 'Pourquoi acheter chez nous ?',
+                'description' => 'Découvrez nos services pensés pour nos clients',
+                'grid' => 'Grille des fonctionnalités',
+                'feature' => 'Fonctionnalité',
+                'items' => [
+                    'free_shipping' => [
+                        'title' => 'Livraison gratuite',
+                        'description' => 'Livraison gratuite pour les commandes de plus de 50 $',
+                    ],
+                    'support' => [
+                        'title' => 'Assistance 24/7',
+                        'description' => 'Contactez-nous à tout moment, où que vous soyez',
+                    ],
+                    'secure_payment' => [
+                        'title' => 'Paiement sécurisé',
+                        'description' => 'Paiement 100 % sécurisé garanti',
+                    ],
+                    'easy_returns' => [
+                        'title' => 'Retours faciles',
+                        'description' => 'Politique de retour sous 30 jours',
+                    ],
+                ],
+            ],
+        ],
+
+        'settings' => [
+            'layout_header' => 'Mise en page',
+
+            'direction_label' => 'Direction',
+            'direction_options' => [
+                'horizontal' => 'Horizontale',
+                'vertical' => 'Verticale',
+            ],
+            'gap_label' => 'Espacement entre les éléments',
+            'gap_info' => 'Espace entre les blocs enfants',
+
+            'size_header' => 'Taille',
+
+            'section_width_label' => 'Largeur du contenu',
+            'section_width_options' => [
+                'full' => 'Pleine largeur',
+                'container' => 'Conteneur',
+            ],
+            'section_width_info' => 'Le conteneur limite la largeur maximale et centre le contenu',
+
+            'section_height_label' => 'Hauteur de la section',
+            'section_height_options' => [
+                'auto' => 'Automatique',
+                'xs' => 'Très petite',
+                'sm' => 'Petite',
+                'md' => 'Moyenne',
+                'lg' => 'Grande',
+                'screen' => 'Plein écran',
+                'custom' => 'Personnalisée',
+            ],
+
+            'section_height_custom_label' => 'Hauteur personnalisée',
+
+            'appearance_header' => 'Apparence',
+
+            'color_scheme_label' => 'Palette de couleurs',
+
+            'background_type_label' => 'Type d’arrière-plan',
+            'background_type_options' => [
+                'none' => 'Aucun',
+                'color' => 'Couleur',
+                'gradient' => 'Dégradé',
+                'image' => 'Image',
+            ],
+
+            'background_color_label' => 'Couleur d’arrière-plan',
+
+            'background_gradient_label' => 'Dégradé d’arrière-plan',
+
+            'background_image_label' => 'Image d’arrière-plan',
+
+            'background_position_label' => 'Position de l’arrière-plan',
+            'background_position_options' => [
+                'center' => 'Centre',
+                'top' => 'Haut',
+                'bottom' => 'Bas',
+                'left' => 'Gauche',
+                'right' => 'Droite',
+            ],
+
+            'background_size_label' => 'Taille de l’arrière-plan',
+            'background_size_options' => [
+                'cover' => 'Couvrir',
+                'contain' => 'Contenir',
+                'auto' => 'Automatique',
+            ],
+
+            'background_repeat_label' => 'Répétition de l’arrière-plan',
+            'background_repeat_options' => [
+                'no_repeat' => 'Ne pas répéter',
+                'repeat' => 'Répéter',
+                'repeat_x' => 'Répéter horizontalement',
+                'repeat_y' => 'Répéter verticalement',
+            ],
+
+            'border_label' => 'Afficher la bordure',
+            'border_width_label' => 'Largeur de la bordure',
+            'border_opacity_label' => 'Opacité de la bordure',
+            'border_radius_label' => 'Rayon de la bordure',
+            'border_radius_options' => [
+                'none' => 'Aucun',
+                'sm' => 'Petit',
+                'md' => 'Moyen',
+                'lg' => 'Grand',
+                'xl' => 'Très grand',
+                'full' => 'Complet',
+            ],
+
+            'toggle_overlay_label' => 'Afficher l’overlay',
+            'toggle_overlay_info' => 'Ajoute un overlay au-dessus du média d’arrière-plan',
+
+            'overlay_color_label' => 'Couleur de l’overlay',
+            'overlay_color_options' => [
+                'black' => 'Noir',
+                'white' => 'Blanc',
+            ],
+
+            'overlay_style_label' => 'Style de l’overlay',
+            'overlay_style_options' => [
+                'solid' => 'Uni',
+                'gradient' => 'Dégradé',
+            ],
+
+            'overlay_gradient_label' => 'Dégradé de l’overlay',
+        ],
     ],
 
     'feature-icons' => [
