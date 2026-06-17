@@ -9,7 +9,6 @@ use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
-use BagistoPlus\Visual\Settings\Typography;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\VisualDebut\Tailwind;
@@ -45,9 +44,6 @@ class Accordion extends BladeBlock
 
             Checkbox::make('dividers', _t('blocks.accordion.settings.dividers_label'))
                 ->default(true),
-
-            Typography::make('typography', _t('blocks.accordion.settings.typography_label'))
-                ->info(_t('blocks.accordion.settings.typography_info')),
 
             Checkbox::make('inherit_color_scheme', _t('blocks.accordion.settings.inherit_color_scheme_label'))
                 ->default(true),

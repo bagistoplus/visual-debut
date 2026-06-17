@@ -18,7 +18,6 @@
 
 <div
   {{ $block->editor_attributes }}
-  {{ $block->settings->typography?->attributes() }}
   x-accordion="{ value: @js($openByDefault), multiple: true }"
   class="accordion {{ $dividersClass }} {{ $colorClass }} w-full {{ $paddingClasses }}"
   style="{{ $style }}"

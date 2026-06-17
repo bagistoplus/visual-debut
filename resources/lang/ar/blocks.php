@@ -125,9 +125,6 @@ return [
 
             'dividers_label' => 'إظهار الفواصل',
 
-            'typography_label' => 'الطباعة',
-            'typography_info' => 'اختر نمط الطباعة',
-
             'inherit_color_scheme_label' => 'وراثة نظام الألوان',
             'color_scheme_label' => 'نظام الألوان',
 

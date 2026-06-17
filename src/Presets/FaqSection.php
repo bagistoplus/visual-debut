@@ -52,7 +52,6 @@ class FaqSection extends Preset
                     ->settings([
                         'icon' => 'caret',
                         'dividers' => true,
-                        'typography' => 'heading-5',
                         'inherit_color_scheme' => true,
                     ])
                     ->blocks([

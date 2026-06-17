@@ -125,9 +125,6 @@ return [
 
             'dividers_label' => 'विभाजक दिखाएं',
 
-            'typography_label' => 'टाइपोग्राफी',
-            'typography_info' => 'टाइपोग्राफी शैली चुनें',
-
             'inherit_color_scheme_label' => 'रंग योजना विरासत में लें',
             'color_scheme_label' => 'रंग योजना',
 

@@ -125,9 +125,6 @@ return [
 
             'dividers_label' => 'Show Dividers',
 
-            'typography_label' => 'Typography',
-            'typography_info' => 'Select typography style',
-
             'inherit_color_scheme_label' => 'Inherit Color Scheme',
             'color_scheme_label' => 'Color Scheme',
 

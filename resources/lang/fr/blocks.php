@@ -125,9 +125,6 @@ return [
 
             'dividers_label' => 'Afficher les séparateurs',
 
-            'typography_label' => 'Typographie',
-            'typography_info' => 'Sélectionner le style de typographie',
-
             'inherit_color_scheme_label' => 'Hériter du schéma de couleurs',
             'color_scheme_label' => 'Schéma de couleurs',
 
