@@ -141,6 +141,7 @@ class NewsletterFooter extends Preset
                     ->settings([
                         'text' => $title,
                         'heading_level' => 'h4',
+                        'typography' => 'heading-6',
                     ]),
 
                 ...$linkBlocks,

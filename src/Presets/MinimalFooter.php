@@ -99,6 +99,7 @@ class MinimalFooter extends Preset
                         'style' => 'outline',
                         'color' => 'secondary',
                         'size' => 'sm',
+                        'circle' => true,
                     ]),
 
                 PresetBlock::make(Button::class)
@@ -109,6 +110,7 @@ class MinimalFooter extends Preset
                         'style' => 'outline',
                         'color' => 'secondary',
                         'size' => 'sm',
+                        'circle' => true,
                     ]),
 
                 PresetBlock::make(Button::class)
@@ -119,6 +121,7 @@ class MinimalFooter extends Preset
                         'style' => 'outline',
                         'color' => 'secondary',
                         'size' => 'sm',
+                        'circle' => true,
                     ]),
             ]);
     }

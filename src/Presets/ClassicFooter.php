@@ -176,7 +176,7 @@ class ClassicFooter extends Preset
                     ->settings([
                         'text' => $title,
                         'heading_level' => 'h3',
-                        'typography' => 'heading-5',
+                        'typography' => 'heading-6',
                     ]),
 
                 ...$linkBlocks,
