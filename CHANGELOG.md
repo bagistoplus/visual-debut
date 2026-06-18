@@ -2,6 +2,13 @@
 
 All notable changes to `Bagisto Visual Debut` will be documented in this file.
 
+# [2.0.0-alpha.8](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.7...v2.0.0-alpha.8) (2026-06-18)
+
+
+### Bug Fixes
+
+* translate production view strings ([ba63644](https://github.com/bagistoplus/visual-debut/commit/ba636446a0cd941bba3c3e82e924b7e2f630203f))
+
 # [2.0.0-alpha.7](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.6...v2.0.0-alpha.7) (2026-06-17)
 
 
