@@ -7,9 +7,9 @@
 <div {{ $section->editor_attributes }} class="bg-surface text-on-surface border-on-surface/8 sticky top-0 z-20 w-full border-b">
   <div class="{{ $containerClass }}">
     <div class="flex h-16 items-center justify-between gap-x-4">
-      <x-shop::ui.drawer placement="start" title="Menu">
+      <x-shop::ui.drawer placement="start" :title="trans('visual-debut::shop.menu')">
         <x-slot:trigger>
-          <button class="-ml-2 p-2 transition-colors sm:hidden" aria-label="Open menu">
+          <button class="-ml-2 p-2 transition-colors sm:hidden" aria-label="{{ trans('visual-debut::shop.open-menu') }}">
             <x-lucide-menu class="h-6 w-6" />
           </button>
         </x-slot:trigger>

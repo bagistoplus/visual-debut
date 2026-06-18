@@ -226,6 +226,9 @@ return [
             'sticky_label' => 'Sticky',
             'sticky_info' => 'Keep product details visible while scrolling',
         ],
+        'placeholder' => [
+            'empty' => 'Add product information blocks',
+        ],
     ],
 
     'product-price' => [
@@ -352,6 +355,10 @@ return [
             'position_right' => 'Right Column',
             'position_under_gallery' => 'Under Gallery',
         ],
+        'placeholder' => [
+            'size' => 'Size',
+            'color' => 'Color',
+        ],
     ],
 
     'product-grouped-options' => [
@@ -360,6 +367,11 @@ return [
             'position_label' => 'Position',
             'position_right' => 'Right Column',
             'position_under_gallery' => 'Under Gallery',
+        ],
+        'placeholder' => [
+            'product-item' => 'Product Item',
+            'sample-product' => 'Sample Product + :price',
+            'another-product' => 'Another Product + :price',
         ],
     ],
 
@@ -370,6 +382,15 @@ return [
             'position_right' => 'Right Column',
             'position_under_gallery' => 'Under Gallery',
         ],
+        'placeholder' => [
+            'choose-processor' => 'Choose a Processor',
+            'processor-i5' => 'Intel Core i5 + :price',
+            'processor-i7' => 'Intel Core i7 + :price',
+            'choose-memory' => 'Choose Memory',
+            'memory-8gb' => '8GB RAM + :price',
+            'memory-16gb' => '16GB RAM + :price',
+            'total-amount' => 'Total Amount',
+        ],
     ],
 
     'product-downloadable-options' => [
@@ -379,11 +400,21 @@ return [
             'position_right' => 'Right Column',
             'position_under_gallery' => 'Under Gallery',
         ],
+        'placeholder' => [
+            'samples' => 'Samples',
+            'download-sample' => 'Download Sample :index',
+            'links' => 'Links',
+            'download-link' => 'Download Link :index + :price',
+        ],
     ],
 
     'product-customizable-options' => [
         'name' => 'Product Customizable Options',
         'description' => 'Display customizable product options with price adjustments',
+        'placeholder' => [
+            'customizable-option' => 'Customizable Option',
+            'enter-value' => 'Enter value',
+        ],
     ],
 
     'logo' => [

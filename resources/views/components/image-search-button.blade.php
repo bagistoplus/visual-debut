@@ -33,7 +33,7 @@
   <img
     x-image-search:preview
     class="hidden"
-    alt="uploaded image url"
+    alt="{{ trans('visual-debut::shop.review.uploaded-image') }}"
     width="20"
     height="20"
   />

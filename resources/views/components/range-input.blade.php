@@ -43,7 +43,7 @@
         <span class="absolute left-2 top-1/2 -translate-y-1/2 transform">{{ core()->getCurrentCurrency()->symbol }}</span>
         <input
           x-slider:input="0"
-          aria-label="Min value"
+          aria-label="{{ trans('visual-debut::shop.range.min-value') }}"
           class="input-sm w-24 rounded border py-1 pl-6 pr-2 text-right text-sm"
         >
       </div>
@@ -52,7 +52,7 @@
         <span class="absolute left-2 top-1/2 -translate-y-1/2 transform">{{ core()->getCurrentCurrency()->symbol }}</span>
         <input
           x-slider:input="1"
-          aria-label="Max value"
+          aria-label="{{ trans('visual-debut::shop.range.max-value') }}"
           class="input-sm w-24 rounded border py-1 pl-6 pr-2 text-right text-sm"
         >
       </div>

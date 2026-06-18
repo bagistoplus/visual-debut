@@ -9,7 +9,7 @@
       'hidden sm:block' => $block->settings->hide_on_mobile ?? false,
       'block' => !($block->settings->hide_on_mobile ?? false),
     ])>
-      <x-shop::ui.menu.trigger aria-label="currency selector" class="hover:text-primary flex items-center p-2 transition-colors">
+      <x-shop::ui.menu.trigger aria-label="{{ trans('visual-debut::shop.currency') }}" class="hover:text-primary flex items-center p-2 transition-colors">
         <span class="ms-1 whitespace-nowrap">
           {{ $currentCurrency->symbol }} {{ $currentCurrency->code }}
         </span>

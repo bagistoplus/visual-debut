@@ -11,7 +11,7 @@
         size="sm"
         href="{{ route('shop.customers.account.profile.index') }}"
       >
-        Back
+        @lang('visual-debut::shop.back')
       </x-shop::ui.button>
     </div>
   </div>
@@ -44,7 +44,7 @@
           <template x-if="avatar">
             <img
               x-bind:src="avatar"
-              alt="Profile"
+              alt="{{ trans('visual-debut::shop.profile.alt') }}"
               class="h-full w-full object-cover"
             />
           </template>
@@ -69,7 +69,7 @@
     <div class="space-y-8">
       <div>
         <h2 class="text-on-background mb-4 text-lg font-medium">
-          Personal Information
+          @lang('visual-debut::shop.profile.personal-information')
         </h2>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           <x-shop::ui.form.input
@@ -110,7 +110,7 @@
             :label="trans('shop::app.customers.account.profile.edit.gender')"
             :value="old('gender') ?? $customer->gender"
           >
-            <option disabled value="">Select gender</option>
+            <option disabled value="">@lang('visual-debut::shop.profile.select-gender')</option>
 
             <option value="Male">
               @lang('shop::app.customers.account.profile.edit.male')

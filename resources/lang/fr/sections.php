@@ -362,6 +362,9 @@ return [
                 ],
             ],
         ],
+        'placeholder' => [
+            'category' => 'Catégorie :index',
+        ],
     ],
 
     'featured-products' => [
@@ -388,7 +391,6 @@ return [
                 ],
             ],
         ],
-
         'presets' => [
             'featured' => [
                 'name' => 'Produits en vedette',
@@ -468,6 +470,9 @@ return [
                     'product_info' => 'Sélectionnez un produit à afficher',
                 ],
             ],
+        ],
+        'placeholder' => [
+            'product' => 'Produit :index',
         ],
 
         'presets' => [

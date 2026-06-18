@@ -1,5 +1,5 @@
 <x-shop::ui.accordion {{ $attributes }}>
-  <x-shop::ui.accordion.item title="Estimate shipping" class="bg-surface border-on-surface-alt/10 box !border !border-solid !py-1 px-3">
+  <x-shop::ui.accordion.item :title="trans('shop::app.checkout.cart.summary.estimate-shipping.title')" class="bg-surface border-on-surface-alt/10 box !border !border-solid !py-1 px-3">
     <form class="pb-2">
       @csrf
       <p class="mb-4 text-sm">

@@ -49,13 +49,13 @@
                   <div class="box h-20 w-20 flex-shrink-0 overflow-hidden border-none">
                     <img
                       src="{{ $item->base_image->small_image_url }}"
-                      alt="Rose Quartz Face Serum"
+                      alt="{{ $item->name }}"
                       class="h-full w-full object-cover"
                     >
                   </div>
                   <div class="flex-1">
                     <h3 class="text-base font-medium">{{ $item->name }}</h3>
-                    <p class="text-sm">Quantity: {{ $item->quantity }}</p>
+                    <p class="text-sm">@lang('visual-debut::shop.order.quantity'): {{ $item->quantity }}</p>
                     <p class="text-primary text-sm">{{ $item->formatted_price }}</p>
                   </div>
                 </div>

@@ -370,6 +370,9 @@ return [
                 ],
             ],
         ],
+        'placeholder' => [
+            'category' => 'الفئة :index',
+        ],
     ],
 
     'featured-products' => [
@@ -401,7 +404,6 @@ return [
                 ],
             ],
         ],
-
         'presets' => [
             'featured' => [
                 'name' => 'المنتجات المميزة',
@@ -481,6 +483,9 @@ return [
                     'product_info' => 'اختر منتجًا لعرضه',
                 ],
             ],
+        ],
+        'placeholder' => [
+            'product' => 'المنتج :index',
         ],
 
         'presets' => [

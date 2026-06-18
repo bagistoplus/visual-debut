@@ -326,6 +326,9 @@ return [
                 ],
             ],
         ],
+        'placeholder' => [
+            'category' => 'Category :index',
+        ],
     ],
 
     'product-list' => [
@@ -397,6 +400,9 @@ return [
                     'product_info' => 'Select a product to display',
                 ],
             ],
+        ],
+        'placeholder' => [
+            'product' => 'Product :index',
         ],
 
         'presets' => [

@@ -160,26 +160,26 @@
     <div class="grid gap-2">
       <div class="grid gap-4 border-b pb-3">
         <label>
-          <span class="text-sm font-semibold">Choose a Processor</span>
+          <span class="text-sm font-semibold">@lang('visual-debut::blocks.product-bundle-options.placeholder.choose-processor')</span>
           <select class="mt-1 w-full" disabled>
-            <option>Intel Core i5 + $100.00</option>
-            <option>Intel Core i7 + $150.00</option>
+            <option>@lang('visual-debut::blocks.product-bundle-options.placeholder.processor-i5', ['price' => '$100.00'])</option>
+            <option>@lang('visual-debut::blocks.product-bundle-options.placeholder.processor-i7', ['price' => '$150.00'])</option>
           </select>
         </label>
       </div>
       <div class="grid gap-4 border-b pb-3">
         <label>
-          <span class="text-sm font-semibold">Choose Memory</span>
+          <span class="text-sm font-semibold">@lang('visual-debut::blocks.product-bundle-options.placeholder.choose-memory')</span>
           <select class="mt-1 w-full" disabled>
-            <option>8GB RAM + $50.00</option>
-            <option>16GB RAM + $100.00</option>
+            <option>@lang('visual-debut::blocks.product-bundle-options.placeholder.memory-8gb', ['price' => '$50.00'])</option>
+            <option>@lang('visual-debut::blocks.product-bundle-options.placeholder.memory-16gb', ['price' => '$100.00'])</option>
           </select>
         </label>
       </div>
     </div>
     <hr class="my-4">
     <div class="flex items-center justify-between">
-      <label>Total Amount</label>
+      <label>@lang('visual-debut::blocks.product-bundle-options.placeholder.total-amount')</label>
       <div class="text-primary text-xl font-medium">$150.00</div>
     </div>
   </div>

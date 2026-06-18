@@ -21,7 +21,7 @@
           type="email"
           name="email"
           autocomplete="on"
-          placeholder="Enter your email"
+          placeholder="{{ trans('visual-debut::shop.enter-your-email') }}"
         >
         <x-shop::ui.button type="submit" color="primary">
           @lang('shop::app.components.layouts.footer.subscribe')

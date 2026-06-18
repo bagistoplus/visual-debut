@@ -246,7 +246,7 @@
             x-on:click="$refs.fileInput.click()"
           >
             <x-lucide-camera class="h-5 w-5" />
-            Add media
+            @lang('visual-debut::shop.add-media')
           </button>
         </div>
 

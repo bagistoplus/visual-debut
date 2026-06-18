@@ -15,7 +15,7 @@
   <button
     x-dropdown:trigger
     class="relative p-2"
-    aria-label="user menu"
+    aria-label="{{ trans('visual-debut::shop.user-menu') }}"
   >
     @svg($block->settings->icon ?? 'lucide-user', ['class' => 'hover:text-primary h-5 w-5 transition-colors'])
   </button>

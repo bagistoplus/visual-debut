@@ -6,7 +6,7 @@
       <select
         class="sorting w-auto"
         name="sort"
-        aria-label="Sort by"
+        aria-label="{{ trans('visual-debut::shop.sort-by') }}"
         wire:model.live="sort"
       >
         @foreach ($availableSortOptions as $option)
@@ -21,7 +21,7 @@
       <select
         class="w-auto"
         name="limit"
-        aria-label="Items per page"
+        aria-label="{{ trans('visual-debut::shop.items-per-page') }}"
         wire:model.live="limit"
       >
         @foreach ($availablePaginationLimits as $limit)
@@ -36,7 +36,7 @@
   <div class="flex gap-2">
     @foreach (['grid' => 'lucide-layout-grid', 'list' => 'lucide-layout-list'] as $mode => $icon)
       <button
-        aria-label="Show as {{ $mode }}"
+        aria-label="{{ trans('visual-debut::shop.show-as', ['mode' => $mode]) }}"
         wire:click="$set('displayMode', '{{ $mode }}')"
         @class([
             'focus:ring-primary inline-flex h-10 w-10 items-center justify-center rounded-lg focus:ring-2 focus:ring-offset-2',

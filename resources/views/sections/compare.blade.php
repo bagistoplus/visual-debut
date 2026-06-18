@@ -41,7 +41,7 @@
           <div class="min-w-max">
             <div class="border-on-surface/8 flex border-b">
               <div class="text-on-background border-on-surface/8 w-[200px] flex-shrink-0 border-r p-4">
-                <span class="font-medium">Product Details</span>
+                <span class="font-medium">@lang('visual-debut::shop.product-details')</span>
               </div>
               @foreach ($items as $item)
                 <div class="w-[250px] flex-shrink-0 p-4">

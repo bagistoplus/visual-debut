@@ -95,7 +95,7 @@
                 </div>
                 <button
                   class="text-on-background hover:text-on-background"
-                  title="Remove item"
+                  title="{{ trans('visual-debut::shop.remove-item') }}"
                   x-on:click="$confirm(() => $wire.removeItem({{ $item->id }}))"
                 >
                   <x-lucide-trash-2 class="h-5 w-5" />

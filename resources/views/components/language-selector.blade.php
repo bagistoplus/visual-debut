@@ -8,7 +8,7 @@
 @if ($locales->count() > 1)
   <div class="contents">
     @isset($mobile)
-      <label for="mobile-locale" class="mb-2 block text-sm font-medium">Language</label>
+      <label for="mobile-locale" class="mb-2 block text-sm font-medium">@lang('visual-debut::shop.language')</label>
       <select
         id="mobile-locale"
         x-data
@@ -26,7 +26,7 @@
       </select>
     @else
       <x-shop::ui.menu class="hidden sm:block">
-        <x-shop::ui.menu.trigger class="hover:text-primary flex items-center p-2 transition-colors" aria-label="locale selector">
+        <x-shop::ui.menu.trigger class="hover:text-primary flex items-center p-2 transition-colors" aria-label="{{ trans('visual-debut::shop.language') }}">
           @svg($icon, ['class' => 'h-5 w-5'])
           <span class="ms-1 uppercase">{{ $currentLocale->code }}</span>
         </x-shop::ui.menu.trigger>

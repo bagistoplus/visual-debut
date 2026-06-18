@@ -21,7 +21,7 @@
       <div class="border-on-surface/8 border-b p-6">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p class="mb-1 text-sm">Order number</p>
+            <p class="mb-1 text-sm">@lang('visual-debut::shop.order.order-number')</p>
             <p class="font-medium">#{{ $order->increment_id }}</p>
           </div>
 
@@ -36,7 +36,7 @@
           <div>
             <div class="mb-1 flex items-center gap-2">
               <x-lucide-calendar class="h-5 w-5" />
-              Order Date
+              @lang('visual-debut::shop.order.order-date')
             </div>
             <p class="text-on-surface/70">
               {{ $order->created_at->format('F j, Y') }}
@@ -45,7 +45,7 @@
           <div>
             <div class="mb-1 flex items-center gap-2">
               <x-lucide-clock class="h-5 w-5" />
-              Order Time
+              @lang('visual-debut::shop.order.order-time')
             </div>
             <p class="text-on-surface/70">
               {{ $order->created_at->format('h:i A') }}
@@ -55,7 +55,7 @@
         <div>
           <div class="mb-1 flex items-center gap-2">
             <x-lucide-truck class="h-5 w-5" />
-            Confirmation sent to
+            @lang('visual-debut::shop.order.confirmation-sent-to')
           </div>
           <p class="text-on-surface/70">
             {{ $order->customer_email }}
@@ -68,7 +68,7 @@
           <div class="grid gap-4">
             @foreach ($order->items as $item)
               <div class="flex gap-4">
-                <div class="bg-surface-alt box h-20 w-20 flex-shrink-0 overflow-hidden border-none">
+                <div class="bg-surface-alt box h-20 w-20 shrink-0 overflow-hidden border-none">
                   <img
                     src="{{ $item->product->base_image_url }}"
                     alt="{{ $item->name }}"
@@ -77,7 +77,7 @@
                 </div>
                 <div class="flex-1">
                   <h3 class="text-base font-medium">{{ $item->name }}</h3>
-                  <p class="text-sm">Quantity: {{ $item->qty_ordered }}</p>
+                  <p class="text-sm">@lang('visual-debut::shop.order.quantity'): {{ $item->qty_ordered }}</p>
                   <p class="text-primary text-sm">
                     <x-shop::formatted-price :price="$item->total_incl_tax" />
                   </p>
@@ -89,15 +89,15 @@
           <div class="border-on-surface/8 border-t pt-4">
             <div class="space-y-2">
               <div class="flex justify-between">
-                <span>Subtotal</span>
+                <span>@lang('visual-debut::shop.order.subtotal')</span>
                 <span><x-shop::formatted-price :price="$order->sub_total_incl_tax" /></span>
               </div>
               <div class="flex justify-between">
-                <span>Shipping</span>
+                <span>@lang('visual-debut::shop.order.shipping')</span>
                 <span><x-shop::formatted-price :price="$order->shipping_amount_incl_tax" /></span>
               </div>
               <div class="border-surface/70 flex justify-between border-t pt-2 text-lg font-medium">
-                <span>Total</span>
+                <span>@lang('visual-debut::shop.order.total')</span>
                 <span class="text-primary">
                   <x-shop::formatted-price :price="$order->grand_total" />
                 </span>
@@ -109,7 +109,7 @@
 
       <div class="border-on-surface/8 flex flex-col justify-center gap-4 border-t py-6 lg:flex-row">
         <x-shop::ui.button icon="lucide-arrow-right" href="{{ route('shop.home.index') }}">
-          Continue Shopping
+          @lang('visual-debut::shop.cart.continue-shopping')
         </x-shop::ui.button>
 
         @auth('customer')
@@ -118,7 +118,7 @@
             icon="lucide-arrow-right"
             href="{{ route('shop.customers.account.orders.view', $order->id) }}"
           >
-            View Order
+            @lang('visual-debut::shop.order.view-order')
           </x-shop::ui.button>
         @endauth
       </div>

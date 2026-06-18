@@ -32,7 +32,7 @@
 
   <button
     class="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:opacity-75 rtl:left-2 rtl:right-auto"
-    aria-label="Close"
+    aria-label="{{ trans('visual-debut::shop.close') }}"
     x-on:click="show = false"
   >
     <x-lucide-x class="h-4 w-4" />

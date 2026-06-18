@@ -7,7 +7,7 @@
   <div x-data="{ showSearch: false }">
     <button
       class="p-2"
-      aria-label="Search"
+      aria-label="{{ trans('visual-debut::shop.search') }}"
       x-on:click="showSearch = !showSearch"
     >
       @svg($searchIcon, ['class' => 'hover:text-primary h-5 w-5 transition-colors'])

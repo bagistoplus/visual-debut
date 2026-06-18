@@ -239,6 +239,9 @@ return [
             'padding_left_label' => 'Marge intérieure gauche',
             'padding_right_label' => 'Marge intérieure droite',
         ],
+        'placeholder' => [
+            'empty' => 'Ajoutez des blocs d’informations produit',
+        ],
     ],
 
     'product-price' => [
@@ -365,6 +368,10 @@ return [
             'position_right' => 'Colonne de droite',
             'position_under_gallery' => 'Sous la galerie',
         ],
+        'placeholder' => [
+            'size' => 'Taille',
+            'color' => 'Couleur',
+        ],
     ],
 
     'product-grouped-options' => [
@@ -373,6 +380,11 @@ return [
             'position_label' => 'Position',
             'position_right' => 'Colonne de droite',
             'position_under_gallery' => 'Sous la galerie',
+        ],
+        'placeholder' => [
+            'product-item' => 'Article produit',
+            'sample-product' => 'Produit exemple + :price',
+            'another-product' => 'Autre produit + :price',
         ],
     ],
 
@@ -383,6 +395,15 @@ return [
             'position_right' => 'Colonne de droite',
             'position_under_gallery' => 'Sous la galerie',
         ],
+        'placeholder' => [
+            'choose-processor' => 'Choisir un processeur',
+            'processor-i5' => 'Intel Core i5 + :price',
+            'processor-i7' => 'Intel Core i7 + :price',
+            'choose-memory' => 'Choisir la mémoire',
+            'memory-8gb' => '8 Go RAM + :price',
+            'memory-16gb' => '16 Go RAM + :price',
+            'total-amount' => 'Montant total',
+        ],
     ],
 
     'product-downloadable-options' => [
@@ -392,11 +413,21 @@ return [
             'position_right' => 'Colonne de droite',
             'position_under_gallery' => 'Sous la galerie',
         ],
+        'placeholder' => [
+            'samples' => 'Échantillons',
+            'download-sample' => 'Télécharger l’échantillon :index',
+            'links' => 'Liens',
+            'download-link' => 'Lien de téléchargement :index + :price',
+        ],
     ],
 
     'product-customizable-options' => [
         'name' => 'Options personnalisables du produit',
         'description' => 'Afficher les options personnalisables du produit avec ajustements de prix',
+        'placeholder' => [
+            'customizable-option' => 'Option personnalisable',
+            'enter-value' => 'Saisir une valeur',
+        ],
     ],
 
     'logo' => [

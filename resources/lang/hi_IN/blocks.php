@@ -239,6 +239,9 @@ return [
             'padding_left_label' => 'पैडिंग बाएं',
             'padding_right_label' => 'पैडिंग दाएं',
         ],
+        'placeholder' => [
+            'empty' => 'उत्पाद जानकारी ब्लॉक जोड़ें',
+        ],
     ],
 
     'product-price' => [
@@ -365,6 +368,10 @@ return [
             'position_right' => 'दाएं स्तंभ',
             'position_under_gallery' => 'गैलरी के नीचे',
         ],
+        'placeholder' => [
+            'size' => 'आकार',
+            'color' => 'रंग',
+        ],
     ],
 
     'product-grouped-options' => [
@@ -373,6 +380,11 @@ return [
             'position_label' => 'स्थिति',
             'position_right' => 'दाएं स्तंभ',
             'position_under_gallery' => 'गैलरी के नीचे',
+        ],
+        'placeholder' => [
+            'product-item' => 'उत्पाद आइटम',
+            'sample-product' => 'नमूना उत्पाद + :price',
+            'another-product' => 'अन्य उत्पाद + :price',
         ],
     ],
 
@@ -383,6 +395,15 @@ return [
             'position_right' => 'दाएं स्तंभ',
             'position_under_gallery' => 'गैलरी के नीचे',
         ],
+        'placeholder' => [
+            'choose-processor' => 'प्रोसेसर चुनें',
+            'processor-i5' => 'Intel Core i5 + :price',
+            'processor-i7' => 'Intel Core i7 + :price',
+            'choose-memory' => 'मेमोरी चुनें',
+            'memory-8gb' => '8GB RAM + :price',
+            'memory-16gb' => '16GB RAM + :price',
+            'total-amount' => 'कुल राशि',
+        ],
     ],
 
     'product-downloadable-options' => [
@@ -392,11 +413,21 @@ return [
             'position_right' => 'दाएं स्तंभ',
             'position_under_gallery' => 'गैलरी के नीचे',
         ],
+        'placeholder' => [
+            'samples' => 'नमूने',
+            'download-sample' => 'नमूना :index डाउनलोड करें',
+            'links' => 'लिंक',
+            'download-link' => 'डाउनलोड लिंक :index + :price',
+        ],
     ],
 
     'product-customizable-options' => [
         'name' => 'उत्पाद अनुकूलन विकल्प',
         'description' => 'मूल्य समायोजन के साथ अनुकूलन योग्य उत्पाद विकल्प प्रदर्शित करें',
+        'placeholder' => [
+            'customizable-option' => 'अनुकूलन योग्य विकल्प',
+            'enter-value' => 'मान दर्ज करें',
+        ],
     ],
 
     'logo' => [

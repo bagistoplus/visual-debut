@@ -17,7 +17,7 @@
   <button
     x-dropdown:trigger
     class="relative p-2"
-    aria-label="cart preview"
+    aria-label="{{ trans('visual-debut::shop.cart.preview') }}"
   >
     <x-lucide-shopping-cart class="hover:text-primary h-5 w-5 transition-colors" />
     @if (!$this->isCartEmpty() && $initialized)

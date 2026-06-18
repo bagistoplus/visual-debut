@@ -69,7 +69,7 @@
       <template x-if="selectedMedia.type !== 'videos'">
         <img
           :src="selectedMedia.large_image_url"
-          alt="Rose Quartz Face Serum"
+          x-bind:alt="selectedMedia.large_image_url"
           class="aspect-square h-full w-full rounded-lg object-cover object-center"
         >
       </template>

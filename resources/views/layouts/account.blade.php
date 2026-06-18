@@ -18,7 +18,7 @@
             <button x-on:click="menuOpen = !menuOpen" class="flex w-full items-center justify-between px-6 py-4">
               <div class="flex items-center gap-3">
                 <x-lucide-menu class="text-primary h-5 w-5" />
-                <span class="font-medium" x-text="activeMenu">Menu</span>
+                <span class="font-medium" x-text="activeMenu">@lang('visual-debut::shop.menu')</span>
               </div>
               <x-lucide-chevron-down class="lucide-chevron-down h-5 w-5 transition-transform duration-200" x-bind:class="{ 'rotate-180': menuOpen }" />
             </button>
@@ -30,7 +30,7 @@
                 @if ($customer->image_url)
                   <img
                     src="{{ $customer->image_url }}"
-                    alt="Profile"
+                    alt="{{ trans('visual-debut::shop.profile.alt') }}"
                     class="h-10 w-10 overflow-hidden rounded-full object-cover"
                   />
                 @else

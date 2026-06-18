@@ -9,7 +9,7 @@
       'hidden sm:block' => $block->settings->hide_on_mobile ?? false,
       'block' => !($block->settings->hide_on_mobile ?? false),
     ])>
-      <x-shop::ui.menu.trigger class="hover:text-primary flex items-center whitespace-nowrap p-2 transition-colors" aria-label="locale selector">
+      <x-shop::ui.menu.trigger class="hover:text-primary flex items-center whitespace-nowrap p-2 transition-colors" aria-label="{{ trans('visual-debut::shop.language') }}">
         @svg($block->settings->icon ?? 'lucide-globe', ['class' => 'h-5 w-5'])
         <span class="ms-1 uppercase">{{ $currentLocale->code }}</span>
       </x-shop::ui.menu.trigger>

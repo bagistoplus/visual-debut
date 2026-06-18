@@ -28,7 +28,7 @@
           <input
             id="coupon"
             type="text"
-            placeholder="Enter code"
+            placeholder="{{ trans('visual-debut::shop.enter-code') }}"
             class="pl-10 focus:ring-2"
             wire:model="couponCode"
           >

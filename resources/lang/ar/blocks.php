@@ -239,6 +239,9 @@ return [
             'padding_left_label' => 'حشوة يسار',
             'padding_right_label' => 'حشوة يمين',
         ],
+        'placeholder' => [
+            'empty' => 'أضف بلوكات معلومات المنتج',
+        ],
     ],
 
     'product-price' => [
@@ -365,6 +368,10 @@ return [
             'position_right' => 'العمود الأيمن',
             'position_under_gallery' => 'تحت المعرض',
         ],
+        'placeholder' => [
+            'size' => 'المقاس',
+            'color' => 'اللون',
+        ],
     ],
 
     'product-grouped-options' => [
@@ -373,6 +380,11 @@ return [
             'position_label' => 'الموضع',
             'position_right' => 'العمود الأيمن',
             'position_under_gallery' => 'تحت المعرض',
+        ],
+        'placeholder' => [
+            'product-item' => 'عنصر منتج',
+            'sample-product' => 'منتج تجريبي + :price',
+            'another-product' => 'منتج آخر + :price',
         ],
     ],
 
@@ -383,6 +395,15 @@ return [
             'position_right' => 'العمود الأيمن',
             'position_under_gallery' => 'تحت المعرض',
         ],
+        'placeholder' => [
+            'choose-processor' => 'اختر المعالج',
+            'processor-i5' => 'Intel Core i5 + :price',
+            'processor-i7' => 'Intel Core i7 + :price',
+            'choose-memory' => 'اختر الذاكرة',
+            'memory-8gb' => 'ذاكرة RAM 8GB + :price',
+            'memory-16gb' => 'ذاكرة RAM 16GB + :price',
+            'total-amount' => 'المبلغ الإجمالي',
+        ],
     ],
 
     'product-downloadable-options' => [
@@ -392,11 +413,21 @@ return [
             'position_right' => 'العمود الأيمن',
             'position_under_gallery' => 'تحت المعرض',
         ],
+        'placeholder' => [
+            'samples' => 'نماذج',
+            'download-sample' => 'تنزيل النموذج :index',
+            'links' => 'روابط',
+            'download-link' => 'رابط التنزيل :index + :price',
+        ],
     ],
 
     'product-customizable-options' => [
         'name' => 'خيارات المنتج القابلة للتخصيص',
         'description' => 'عرض خيارات المنتج القابلة للتخصيص مع تعديلات السعر',
+        'placeholder' => [
+            'customizable-option' => 'خيار قابل للتخصيص',
+            'enter-value' => 'أدخل القيمة',
+        ],
     ],
 
     'logo' => [

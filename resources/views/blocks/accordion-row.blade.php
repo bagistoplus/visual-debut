@@ -19,7 +19,7 @@
       </span>
     </span>
 
-    <span x-accordion:item-indicator class="ml-4 flex-shrink-0 transition-transform duration-200 data-[state=open]:rotate-180">
+    <span x-accordion:item-indicator class="ml-4 shrink-0 transition-transform duration-200 data-[state=open]:rotate-180">
       @if (($accordionIconType ?? 'caret') === 'caret')
         <x-lucide-chevron-down class="h-5 w-5" />
       @else

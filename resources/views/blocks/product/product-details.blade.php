@@ -14,7 +14,7 @@
   @if (empty($block->childrenIds))
     @visual_design_mode
     <div class="visual-placeholder">
-      <p>Add product information blocks</p>
+      <p>@lang('visual-debut::blocks.product-details.placeholder.empty')</p>
     </div>
     @end_visual_design_mode
   @endif

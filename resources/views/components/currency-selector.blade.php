@@ -8,7 +8,7 @@
 @if ($currencies->count() > 1)
   <div class="contents">
     @isset($mobile)
-      <label for="mobile-currency" class="mb-2 block text-sm font-medium">Currency</label>
+      <label for="mobile-currency" class="mb-2 block text-sm font-medium">@lang('visual-debut::shop.currency')</label>
       <select
         id="mobile-currency"
         x-data
@@ -26,7 +26,7 @@
       </select>
     @else
       <x-shop::ui.menu class="hidden sm:block">
-        <x-shop::ui.menu.trigger aria-label="currency selector" class="hover:text-primary flex items-center p-2 transition-colors">
+        <x-shop::ui.menu.trigger aria-label="{{ trans('visual-debut::shop.currency') }}" class="hover:text-primary flex items-center p-2 transition-colors">
           <span class="ms-1 flex">
             {{ $currentCurrency->symbol }} {{ $currentCurrency->code }}
           </span>

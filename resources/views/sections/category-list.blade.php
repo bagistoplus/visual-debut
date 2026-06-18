@@ -25,11 +25,11 @@
                   <div class="bg-surface-alt group relative aspect-square cursor-pointer overflow-hidden rounded-md">
                     <img
                       src="https://placehold.co/400x400?text=Category+{{ $i }}"
-                      alt="Category {{ $i }}"
+                      alt="{{ trans('visual-debut::sections.category-list.placeholder.category', ['index' => $i]) }}"
                       class="h-full w-full object-cover object-center brightness-75 transition-all group-hover:brightness-90"
                     />
                     <div class="absolute inset-0 flex items-center justify-center">
-                      <h3 class="text-center text-xl font-bold text-white">Category {{ $i }}</h3>
+                      <h3 class="text-center text-xl font-bold text-white">@lang('visual-debut::sections.category-list.placeholder.category', ['index' => $i])</h3>
                     </div>
                   </div>
                 </div>
@@ -43,7 +43,7 @@
           <button
             x-carousel:prev-button
             class="bg-surface text-on-surface hover:bg-surface-alt {{ $navShapeClass }} absolute left-4 top-1/2 z-10 -translate-y-1/2 cursor-pointer p-2 shadow-md transition-colors disabled:cursor-not-allowed disabled:opacity-10"
-            aria-label="Previous"
+            aria-label="{{ trans('visual-debut::shop.previous') }}"
           >
             @if ($useArrowIcon)
               <x-lucide-arrow-left class="h-6 w-6" />
@@ -54,7 +54,7 @@
           <button
             x-carousel:next-button
             class="bg-surface text-on-surface hover:bg-surface-alt {{ $navShapeClass }} absolute right-4 top-1/2 z-10 -translate-y-1/2 cursor-pointer p-2 shadow-md transition-colors disabled:cursor-not-allowed disabled:opacity-30"
-            aria-label="Next"
+            aria-label="{{ trans('visual-debut::shop.next') }}"
           >
             @if ($useArrowIcon)
               <x-lucide-arrow-right class="h-6 w-6" />
@@ -86,11 +86,11 @@
             <div class="bg-surface-alt group relative aspect-square cursor-pointer overflow-hidden rounded-md">
               <img
                 src="https://placehold.co/400x400?text=Category+{{ $i }}"
-                alt="Category {{ $i }}"
+                alt="{{ trans('visual-debut::sections.category-list.placeholder.category', ['index' => $i]) }}"
                 class="h-full w-full object-cover object-center brightness-75 transition-all group-hover:brightness-90"
               />
               <div class="absolute inset-0 flex items-center justify-center">
-                <h3 class="text-center text-xl font-bold text-white">Category {{ $i }}</h3>
+                <h3 class="text-center text-xl font-bold text-white">@lang('visual-debut::sections.category-list.placeholder.category', ['index' => $i])</h3>
               </div>
             </div>
           @endfor

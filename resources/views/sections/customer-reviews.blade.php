@@ -14,7 +14,7 @@
           <!-- Image -->
           <img
             src="{{ $review->product->base_image_url }}"
-            alt="Review Image"
+            alt="{{ trans('visual-debut::shop.review-image') }}"
             class="h-20 w-20 rounded-md object-cover md:h-32 md:w-32"
           >
 

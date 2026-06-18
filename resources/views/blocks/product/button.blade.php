@@ -76,7 +76,7 @@
         :additionalAttributes="$editorAttrs"
       >
         @if (!$circle && !$square)
-          {{ __('blocks.product-button.wishlist_disabled') }}
+          {{ __('visual-debut::blocks.product-button.wishlist_disabled') }}
         @endif
       </x-shop::ui.button>
       @end_visual_design_mode
@@ -109,7 +109,7 @@
         :additionalAttributes="$editorAttrs"
       >
         @if (!$circle && !$square)
-          {{ __('blocks.product-button.compare_disabled') }}
+          {{ __('visual-debut::blocks.product-button.compare_disabled') }}
         @endif
       </x-shop::ui.button>
       @end_visual_design_mode

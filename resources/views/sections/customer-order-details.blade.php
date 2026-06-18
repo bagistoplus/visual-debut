@@ -119,7 +119,7 @@
             <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center">
               <img
                 src="{{ $image['small_image_url'] }}"
-                alt="Product 2"
+                alt="{{ $item->name }}"
                 class="h-16 w-16 flex-none rounded object-cover"
               >
               <div class="flex-1">
@@ -220,7 +220,7 @@
 
       <!-- Order Summary -->
       <div class="bg-background rounded-lg p-6 shadow">
-        <h2 class="text-on-background mb-5 text-lg font-semibold">Order Summary</h2>
+        <h2 class="text-on-background mb-5 text-lg font-semibold">@lang('visual-debut::shop.order.summary')</h2>
         <div class="flex flex-col gap-3">
           <!-- subtotal -->
           <div class="text-on-background flex justify-between">
@@ -500,7 +500,7 @@
 
             <div class="mt-4 sm:mt-6">
               <div class="bg-surface text-on-surface border-y px-4 py-2">
-                @lang('Order Summary')
+                @lang('visual-debut::shop.order.summary')
               </div>
               <div class="px-4 py-2 text-sm">
                 <!-- subtotal -->

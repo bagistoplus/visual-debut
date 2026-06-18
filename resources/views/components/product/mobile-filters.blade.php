@@ -1,6 +1,6 @@
 @props(['maxPrice', 'sortOptions', 'paginationLimits'])
 
-<x-shop::ui.drawer title="Sort & Filter" class="md:hidden">
+<x-shop::ui.drawer :title="trans('visual-debut::shop.sort-and-filter')" class="md:hidden">
   <x-slot:trigger>
     <x-shop::ui.button
       class="w-full"
@@ -34,7 +34,7 @@
 
     @if ($sortOptions->isNotEmpty())
       <label class="block">
-        <span class="text-on-background">Sort by</span>
+        <span class="text-on-background">@lang('visual-debut::shop.sort-by')</span>
         <select
           class="mt-1 w-full"
           name="sort"
@@ -51,7 +51,7 @@
 
     @if ($paginationLimits->isNotEmpty())
       <label class="block">
-        <span class="text-on-background">Items per page</span>
+        <span class="text-on-background">@lang('visual-debut::shop.items-per-page')</span>
         <select
           class="mt-1 w-full"
           name="sort"

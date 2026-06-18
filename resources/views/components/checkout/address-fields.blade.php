@@ -28,7 +28,7 @@
         class="hover:text-primary flex items-center gap-1 text-xs transition-colors"
       >
         <x-lucide-chevron-left class="h-4 w-4" />
-        <span>Back</span>
+        <span>@lang('visual-debut::shop.back')</span>
       </button>
     @endif
   </div>
@@ -65,10 +65,10 @@
                   class="hover:text-primary transition-colors"
                   x-address-form:address-edit
                 >
-                  Edit
+                  @lang('visual-debut::shop.edit')
                 </button>
                 @if ($address->default_address)
-                  <span class="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs">Default</span>
+                  <span class="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs">@lang('visual-debut::shop.default')</span>
                 @endif
               </div>
             </div>

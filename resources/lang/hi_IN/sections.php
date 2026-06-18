@@ -370,6 +370,9 @@ return [
                 ],
             ],
         ],
+        'placeholder' => [
+            'category' => 'श्रेणी :index',
+        ],
     ],
 
     'featured-products' => [
@@ -472,6 +475,9 @@ return [
                     'product_info' => 'दिखाने के लिए एक उत्पाद चुनें',
                 ],
             ],
+        ],
+        'placeholder' => [
+            'product' => 'उत्पाद :index',
         ],
 
         'presets' => [
