@@ -5,10 +5,7 @@
   $positionClass = $sticky ? 'sticky top-4 self-start' : '';
 @endphp
 
-<div
-  {{ $block->editor_attributes }}
-  class="flex flex-col gap-{{ $gap }} {{ $paddingClasses }} {{ $positionClass }}"
->
+<div {{ $block->editor_attributes }} class="gap-{{ $gap }} {{ $paddingClasses }} {{ $positionClass }} flex flex-col">
   @children
 
   @if (empty($block->childrenIds))

@@ -22,7 +22,7 @@
             @lang('shop::app.customers.signup-form.first-name')
           </label>
           <div class="relative mt-1">
-            <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+            <div class="inset-s-0 pointer-events-none absolute inset-y-0 flex items-center ps-3">
               <x-lucide-user class="h-5 w-5" />
             </div>
             <input
@@ -46,7 +46,7 @@
             @lang('shop::app.customers.signup-form.last-name')
           </label>
           <div class="relative mt-1">
-            <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+            <div class="inset-s-0 pointer-events-none absolute inset-y-0 flex items-center ps-3">
               <x-lucide-user class="h-5 w-5" />
             </div>
             <input
@@ -70,7 +70,7 @@
             @lang('shop::app.customers.signup-form.email')
           </label>
           <div class="relative mt-1">
-            <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+            <div class="inset-s-0 pointer-events-none absolute inset-y-0 flex items-center ps-3">
               <x-lucide-mail class="h-5 w-5" />
             </div>
             <input
@@ -94,7 +94,7 @@
             @lang('shop::app.customers.signup-form.password')
           </label>
           <div class="relative mt-1">
-            <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+            <div class="inset-s-0 pointer-events-none absolute inset-y-0 flex items-center ps-3">
               <x-lucide-lock class="h-5 w-5" />
             </div>
             <input
@@ -109,7 +109,7 @@
             >
             <button
               type="button"
-              class="absolute inset-y-0 end-0 flex items-center pe-3"
+              class="inset-e-0 absolute inset-y-0 flex items-center pe-3"
               x-on:click="passwordType = passwordType === 'password' ? 'text' : 'password'"
             >
               <x-lucide-eye x-show="passwordType === 'password'" class="h-5 w-5" />
@@ -126,7 +126,7 @@
             @lang('shop::app.customers.signup-form.confirm-pass')
           </label>
           <div class="relative mt-1">
-            <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+            <div class="inset-s-0 pointer-events-none absolute inset-y-0 flex items-center ps-3">
               <x-lucide-lock class="h-5 w-5" />
             </div>
             <input
@@ -141,7 +141,7 @@
             >
             <button
               type="button"
-              class="absolute inset-y-0 end-0 flex items-center pe-3"
+              class="inset-e-0 absolute inset-y-0 flex items-center pe-3"
               x-on:click="confirmType = confirmType === 'password' ? 'text' : 'password'"
             >
               <x-lucide-eye x-show="confirmType === 'password'" class="h-5 w-5" />

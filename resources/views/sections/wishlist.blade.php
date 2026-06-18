@@ -1,4 +1,8 @@
-<div {{ $section->editor_attributes }} class="bg-background box border-none shadow-sm" x-data>
+<div
+  {{ $section->editor_attributes }}
+  class="bg-background box border-none shadow-sm"
+  x-data
+>
   <div class="border-b p-4">
     <div class="flex items-center justify-between">
       <h1 class="text-on-background text-2xl">
@@ -23,7 +27,7 @@
     @forelse($wishlistItems as $item)
       <div class="border-b pb-4 last:border-b-0" x-data="{ quantity: 1 }">
         <div class="flex gap-6 pb-4">
-          <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg">
+          <div class="h-24 w-24 shrink-0 overflow-hidden rounded-lg">
             <img
               src="{{ $item->product->base_image->small_image_url }}"
               alt="{{ $item->product->name }}"

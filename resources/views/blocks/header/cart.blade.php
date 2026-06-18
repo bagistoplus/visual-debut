@@ -4,8 +4,8 @@
   x-dropdown="{ open: $wire.entangle('open') }"
   wire:init="initCart"
   @class([
-    'relative',
-    'hidden sm:block' => $block->settings->hide_on_mobile ?? false,
+      'relative',
+      'hidden sm:block' => $block->settings->hide_on_mobile ?? false,
   ])
   @visual_design_mode
   x-on:visual:block:select:{{ $block->id }}.window="$dropdown.open = true"
@@ -31,7 +31,7 @@
   <div
     x-cloak
     x-dropdown:content
-    class="bg-surface text-on-surface border-on-surface/8 box absolute end-0 mt-2 w-80 py-4 shadow-lg"
+    class="bg-surface text-on-surface border-on-surface/8 box inset-e-0 absolute mt-2 w-80 py-4 shadow-lg"
   >
     <!-- Header -->
     <div class="px-4">
@@ -50,7 +50,7 @@
           <div class="hover:bg-surface-alt not-l px-4 py-2">
             <div class="flex items-start gap-3">
               <!-- Item Image -->
-              <div class="flex-shrink-0 overflow-hidden rounded">
+              <div class="shrink-0 overflow-hidden rounded">
                 <a class="block h-12 w-12" href="{{ url($item->product_url_key) }}">
                   <img
                     src="{{ $item->base_image->small_image_url }}"
@@ -84,7 +84,7 @@
                       <x-lucide-minus class="h-3 w-3" />
                     </button>
 
-                    <span class="text-secondary min-w-[20px] text-center text-xs">
+                    <span class="text-secondary min-w-5 text-center text-xs">
                       {{ $item->quantity }}
                     </span>
 

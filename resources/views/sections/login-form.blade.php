@@ -21,7 +21,7 @@
             @lang('shop::app.customers.login-form.email')
           </label>
           <div class="relative mt-1">
-            <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+            <div class="inset-s-0 pointer-events-none absolute inset-y-0 flex items-center ps-3">
               <x-lucide-mail class="h-5 w-5" />
             </div>
             <input
@@ -43,7 +43,7 @@
             @lang('shop::app.customers.login-form.password')
           </label>
           <div class="relative mt-1">
-            <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+            <div class="inset-s-0 pointer-events-none absolute inset-y-0 flex items-center ps-3">
               <x-lucide-lock class="h-5 w-5" />
             </div>
             <input
@@ -56,7 +56,7 @@
             >
             <button
               type="button"
-              class="absolute inset-y-0 end-0 flex items-center pe-3"
+              class="inset-e-0 absolute inset-y-0 flex items-center pe-3"
               x-on:click="passwordType = passwordType === 'password' ? 'text' : 'password'"
             >
               <x-lucide-eye x-show="passwordType === 'password'" class="h-5 w-5" />

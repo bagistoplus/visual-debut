@@ -1,6 +1,10 @@
 @isset($product)
   @if ($product->type === 'downloadable')
-    <div {{ $block->editor_attributes }} x-data="VisualDownloadableOptions" class="space-y-4">
+    <div
+      {{ $block->editor_attributes }}
+      x-data="VisualDownloadableOptions"
+      class="space-y-4"
+    >
       @if ($product->downloadable_samples->isNotEmpty())
         <div class="">
           <h3 class="text-on-background mb-2 text-base font-semibold">@lang('shop::app.products.view.type.downloadable.samples')</h3>
@@ -64,7 +68,7 @@
   @endif
 @else
   @visual_design_mode
-  <div {{ $block->editor_attributes }} class="space-y-4 text-muted">
+  <div {{ $block->editor_attributes }} class="text-muted space-y-4">
     <div>
       <h3 class="text-on-background mb-2 text-base font-semibold">@lang('visual-debut::blocks.product-downloadable-options.placeholder.samples')</h3>
       <ul>
@@ -76,11 +80,19 @@
       <h3 class="text-on-background mb-2 text-base font-semibold">@lang('visual-debut::blocks.product-downloadable-options.placeholder.links')</h3>
       <div class="grid gap-2">
         <label class="flex items-center gap-x-2">
-          <input type="checkbox" disabled class="text-primary">
+          <input
+            type="checkbox"
+            disabled
+            class="text-primary"
+          >
           <span>@lang('visual-debut::blocks.product-downloadable-options.placeholder.download-link', ['index' => 1, 'price' => '$5.00'])</span>
         </label>
         <label class="flex items-center gap-x-2">
-          <input type="checkbox" disabled class="text-primary">
+          <input
+            type="checkbox"
+            disabled
+            class="text-primary"
+          >
           <span>@lang('visual-debut::blocks.product-downloadable-options.placeholder.download-link', ['index' => 2, 'price' => '$3.00'])</span>
         </label>
       </div>

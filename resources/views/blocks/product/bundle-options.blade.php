@@ -149,10 +149,6 @@
         </template>
       </ul>
     </div>
-  @else
-    <div {{ $block->editor_attributes }}>
-      This product does not support bundle
-    </div>
   @endif
 @else
   @visual_design_mode

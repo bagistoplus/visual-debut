@@ -4,8 +4,8 @@
   x-data
   x-dropdown
   @class([
-    'relative',
-    'hidden sm:block' => $block->settings->hide_on_mobile ?? false,
+      'relative',
+      'hidden sm:block' => $block->settings->hide_on_mobile ?? false,
   ])
   @visual_design_mode
   x-on:visual:block:select:{{ $block->id }}.window="$dropdown.open = true"
@@ -22,7 +22,7 @@
   <div
     x-cloak
     x-dropdown:content
-    class="bg-surface border-on-surface/8 text-on-surface box absolute end-0 mt-2 border py-2 shadow-lg"
+    class="bg-surface border-on-surface/8 text-on-surface box inset-e-0 absolute mt-2 border py-2 shadow-lg"
   >
     @guest('customer')
       <div class="w-max">

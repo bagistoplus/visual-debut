@@ -45,7 +45,7 @@
                       'w-8 h-8 border rounded-full flex items-center justify-center relative',
                       selections[attribute.id] === option.id ? 'ring-2 ring-offset-2 ring-primary' :
                       'hover:ring-2 hover:ring-offset-2 hover:ring-neutral-200',
-                      !option.isAvailable ? 'cursor-not-allowed !ring-primary-300' : ''
+                      !option.isAvailable ? 'cursor-not-allowed ring-primary-300!' : ''
                   ]"
                   x-bind:style="{ backgroundColor: option.swatch_value }"
                   x-bind:title="option.label + (!option.isAvailable ? ' (' + @js(trans('visual-debut::shop.unavailable')) + ')' : '')"
@@ -104,10 +104,6 @@
           </template>
         </div>
       </template>
-    </div>
-  @else
-    <div {{ $block->editor_attributes }} class="text-muted">
-      This product does not have any variants.
     </div>
   @endif
 @else

@@ -53,7 +53,7 @@
           @endphp
           <div x-navigation:section="{{ $category->id }}" class="{{ $hasImage ? 'max-w-3xl' : 'max-w-xl' }} flex w-full items-stretch justify-center gap-x-3 p-4">
             @if ($hasImage)
-              <div class="text-surface-200 box relative flex h-full min-h-64 w-40 flex-shrink-0 items-end overflow-hidden border-none p-4">
+              <div class="text-surface-200 box relative flex h-full min-h-64 w-40 shrink-0 items-end overflow-hidden border-none p-4">
                 <img src="{{ $category->logo_url ?? $category->banner_url }}" class="absolute inset-0 h-full object-cover brightness-50">
                 <div class="relative space-y-1.5">
                   <span class="block text-lg font-bold">{{ $category->name }}</span>

@@ -40,11 +40,11 @@
         <div class="bg-surface text-on-surface shadow-xs box overflow-x-auto border-none">
           <div class="min-w-max">
             <div class="border-on-surface/8 flex border-b">
-              <div class="text-on-background border-on-surface/8 w-[200px] flex-shrink-0 border-r p-4">
+              <div class="text-on-background border-on-surface/8 w-50 shrink-0 border-r p-4">
                 <span class="font-medium">@lang('visual-debut::shop.product-details')</span>
               </div>
               @foreach ($items as $item)
-                <div class="w-[250px] flex-shrink-0 p-4">
+                <div class="w-62.5 shrink-0 p-4">
                   <div class="relative">
                     <x-shop::product.card :product="$item" no-compare />
                     <button class="hover:text-primary bg-background z-5 absolute -right-2 -top-2 rounded-full border p-1 transition-colors"
@@ -59,11 +59,11 @@
 
             @foreach ($comparableAttributes as $attribute)
               <div class="not-last:border-b border-on-surface/8 flex">
-                <div class="border-on-surface/8 w-[200px] flex-shrink-0 border-r p-4">
+                <div class="border-on-surface/8 w-50 shrink-0 border-r p-4">
                   <span class="text-on-background font-medium">{{ $attribute->admin_name }}</span>
                 </div>
                 @foreach ($items as $item)
-                  <div class="w-[250px] flex-shrink-0 p-4">
+                  <div class="w-62.5 shrink-0 p-4">
                     <div class="prose prose-sm">
                       {!! visual_clear_inline_styles($item->{$attribute->code}) !!}
                     </div>

@@ -57,7 +57,7 @@
               x-model.number="selected"
               @change="allSelected = (selected.length === items.length)"
             >
-            <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg">
+            <div class="h-24 w-24 shrink-0 overflow-hidden rounded-lg">
               <img
                 src="{{ $item->base_image->small_image_url }}"
                 alt="{{ $item->name }}"

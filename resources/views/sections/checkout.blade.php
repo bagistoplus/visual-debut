@@ -46,7 +46,7 @@
             <div class="mb-6 space-y-4">
               @foreach ($cart->items as $item)
                 <div class="flex gap-4">
-                  <div class="box h-20 w-20 flex-shrink-0 overflow-hidden border-none">
+                  <div class="box h-20 w-20 shrink-0 overflow-hidden border-none">
                     <img
                       src="{{ $item->base_image->small_image_url }}"
                       alt="{{ $item->name }}"

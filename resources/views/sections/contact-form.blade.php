@@ -98,7 +98,7 @@
             id="message"
             name="message"
             required
-            class="mt-1 min-h-[150px] w-full"
+            class="min-h-37.5 mt-1 w-full"
             placeholder="{{ trans('shop::app.home.contact.describe-here') }}"
           ></textarea>
 

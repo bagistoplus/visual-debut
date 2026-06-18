@@ -9,8 +9,8 @@
   $isEnd = $thumbnailPosition === 'end';
 
   $thumbsClasses = $isEnd
-    ? 'order-last flex flex-row gap-4 overflow-y-hidden md:absolute md:inset-y-0 md:end-0 md:order-last md:flex-col'
-    : 'order-last flex flex-row gap-4 overflow-y-hidden md:absolute md:inset-y-0 md:start-0 md:order-first md:flex-col';
+      ? 'order-last flex flex-row gap-4 overflow-y-hidden md:absolute md:inset-y-0 md:end-0 md:order-last md:flex-col'
+      : 'order-last flex flex-row gap-4 overflow-y-hidden md:absolute md:inset-y-0 md:start-0 md:order-first md:flex-col';
 
   $scrollButtonPosition = $isEnd ? 'end-7' : 'start-7';
 
@@ -18,20 +18,21 @@
 @endphp
 
 <div {{ $block->editor_attributes }} class="{{ $positionClass }}">
-
   <div
     x-data
     x-media-gallery="{ medias: @js($medias) }"
-    class="relative flex flex-col md:flex-row gap-4"
+    class="relative flex flex-col gap-4 md:flex-row"
   >
 
     <!-- Scroll Up Button -->
-    <button x-media-gallery:scroll-up-trigger class="absolute {{ $scrollButtonPosition }} top-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-black/70 text-white">
+    <button x-media-gallery:scroll-up-trigger class="{{ $scrollButtonPosition }} absolute top-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-black/70 text-white">
       <x-lucide-chevron-up class="h-4 w-4" />
     </button>
 
     <!-- Scroll Down Button -->
-    <button x-media-gallery:scroll-down-trigger class="absolute bottom-2 {{ $scrollButtonPosition }} z-10 flex h-6 w-6 items-center justify-center rounded-full bg-black/70 text-white">
+    <button x-media-gallery:scroll-down-trigger
+      class="{{ $scrollButtonPosition }} absolute bottom-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-black/70 text-white"
+    >
       <x-lucide-chevron-down class="h-4 w-4" />
     </button>
 
@@ -39,7 +40,7 @@
       <template x-for="(media, index) in medias" :key="index">
         <button
           x-media-gallery:thumb="index"
-          class="aspect-square w-20 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-100 focus:outline-none"
+          class="aspect-square w-20 shrink-0 overflow-hidden rounded-lg bg-neutral-100 focus:outline-none"
           x-bind:class="{ 'border-2 border-primary': $thumb.isSelected }"
         >
           <template x-if="media.type !== 'videos'">
@@ -65,7 +66,7 @@
       </template>
     </div>
 
-    <div class="flex aspect-square h-auto flex-1 items-center justify-center overflow-hidden {{ $mainImageMargin }}">
+    <div class="{{ $mainImageMargin }} flex aspect-square h-auto flex-1 items-center justify-center overflow-hidden">
       <template x-if="selectedMedia.type !== 'videos'">
         <img
           :src="selectedMedia.large_image_url"
@@ -85,5 +86,4 @@
       </template>
     </div>
   </div>
-
 </div>
