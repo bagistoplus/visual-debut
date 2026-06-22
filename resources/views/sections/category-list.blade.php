@@ -42,24 +42,28 @@
         @if ($showArrowNavigation)
           <button
             x-carousel:prev-button
-            class="bg-surface text-on-surface hover:bg-surface-alt {{ $navShapeClass }} absolute left-4 top-1/2 z-10 -translate-y-1/2 cursor-pointer p-2 shadow-md transition-colors disabled:cursor-not-allowed disabled:opacity-10"
+            class="bg-surface text-on-surface hover:bg-surface-alt {{ $navShapeClass }} inset-s-4 absolute top-1/2 z-10 -translate-y-1/2 cursor-pointer p-2 shadow-md transition-colors disabled:cursor-not-allowed disabled:opacity-10"
             aria-label="{{ trans('visual-debut::shop.previous') }}"
           >
             @if ($useArrowIcon)
-              <x-lucide-arrow-left class="h-6 w-6" />
+              <x-lucide-arrow-left class="inline h-6 w-6 rtl:hidden" />
+              <x-lucide-arrow-right class="hidden h-6 w-6 rtl:inline" />
             @else
-              <x-lucide-chevron-left class="h-6 w-6" />
+              <x-lucide-chevron-left class="inline h-6 w-6 rtl:hidden" />
+              <x-lucide-chevron-right class="hidden h-6 w-6 rtl:inline" />
             @endif
           </button>
           <button
             x-carousel:next-button
-            class="bg-surface text-on-surface hover:bg-surface-alt {{ $navShapeClass }} absolute right-4 top-1/2 z-10 -translate-y-1/2 cursor-pointer p-2 shadow-md transition-colors disabled:cursor-not-allowed disabled:opacity-30"
+            class="bg-surface text-on-surface hover:bg-surface-alt {{ $navShapeClass }} inset-e-4 absolute top-1/2 z-10 -translate-y-1/2 cursor-pointer p-2 shadow-md transition-colors disabled:cursor-not-allowed disabled:opacity-30"
             aria-label="{{ trans('visual-debut::shop.next') }}"
           >
             @if ($useArrowIcon)
-              <x-lucide-arrow-right class="h-6 w-6" />
+              <x-lucide-arrow-right class="inline h-6 w-6 rtl:hidden" />
+              <x-lucide-arrow-left class="hidden h-6 w-6 rtl:inline" />
             @else
-              <x-lucide-chevron-right class="h-6 w-6" />
+              <x-lucide-chevron-right class="inline h-6 w-6 rtl:hidden" />
+              <x-lucide-chevron-left class="hidden h-6 w-6 rtl:inline" />
             @endif
           </button>
         @endif
