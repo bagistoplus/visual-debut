@@ -189,7 +189,7 @@ return [
                 'account_title' => 'खाता',
                 'bottom_bar' => 'निचला बार',
                 'social_icons' => 'सोशल आइकन',
-                'copyright' => '© :year :store. सर्वाधिकार सुरक्षित।',
+                'copyright' => sprintf('© %s %s. सर्वाधिकार सुरक्षित।', date('Y'), config('app.name')),
                 'links' => [
                     'about_us' => 'हमारे बारे में',
                     'contact' => 'संपर्क',
@@ -208,14 +208,14 @@ return [
                 'tagline' => 'आपका विश्वसनीय ई-कॉमर्स पार्टनर',
                 'centered_content' => 'केंद्रित सामग्री',
                 'social_icons' => 'सोशल आइकन',
-                'copyright' => '© :year सर्वाधिकार सुरक्षित।',
+                'copyright' => sprintf('© %s सर्वाधिकार सुरक्षित।', date('Y')),
             ],
 
             'newsletter' => [
                 'name' => 'न्यूज़लेटर फुटर',
                 'heading' => 'जुड़े रहें',
                 'description' => 'विशेष ऑफ़र और अपडेट के लिए हमारे न्यूज़लेटर की सदस्यता लें।',
-                'copyright' => '© :year :store',
+                'copyright' => sprintf('© %s %s', date('Y'), config('app.name')),
                 'container' => 'न्यूज़लेटर + लिंक',
                 'newsletter' => 'न्यूज़लेटर',
                 'links' => 'लिंक',

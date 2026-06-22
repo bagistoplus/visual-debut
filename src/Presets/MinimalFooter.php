@@ -74,7 +74,7 @@ class MinimalFooter extends Preset
 
                         PresetBlock::make(Text::class)
                             ->settings([
-                                'text' => _t('sections.footer.presets.minimal.copyright', ['year' => date('Y')]),
+                                'text' => _t('sections.footer.presets.minimal.copyright'),
                                 'alignment' => 'center',
                             ]),
                     ]),

@@ -145,7 +145,7 @@ return [
                 'account_title' => 'Account',
                 'bottom_bar' => 'Bottom Bar',
                 'social_icons' => 'Social Icons',
-                'copyright' => '© :year :store. All rights reserved.',
+                'copyright' => sprintf('© %s %s. All rights reserved.', date('Y'), config('app.name')),
                 'links' => [
                     'about_us' => 'About Us',
                     'contact' => 'Contact',
@@ -164,14 +164,14 @@ return [
                 'tagline' => 'Your trusted e-commerce partner',
                 'centered_content' => 'Centered Content',
                 'social_icons' => 'Social Icons',
-                'copyright' => '© :year All rights reserved.',
+                'copyright' => sprintf('© %s All rights reserved.', date('Y')),
             ],
 
             'newsletter' => [
                 'name' => 'Newsletter Footer',
                 'heading' => 'Stay in the loop',
                 'description' => 'Subscribe to our newsletter for exclusive offers and updates.',
-                'copyright' => '© :year :store',
+                'copyright' => sprintf('© %s %s', date('Y'), config('app.name')),
                 'container' => 'Newsletter + Links',
                 'newsletter' => 'Newsletter',
                 'links' => 'Links',

@@ -183,7 +183,7 @@ return [
                 'account_title' => 'Compte',
                 'bottom_bar' => 'Barre inférieure',
                 'social_icons' => 'Icônes sociales',
-                'copyright' => '© :year :store. Tous droits réservés.',
+                'copyright' => sprintf('© %s %s. Tous droits réservés.', date('Y'), config('app.name')),
                 'links' => [
                     'about_us' => 'À propos',
                     'contact' => 'Contact',
@@ -202,14 +202,14 @@ return [
                 'tagline' => 'Votre partenaire e-commerce de confiance',
                 'centered_content' => 'Contenu centré',
                 'social_icons' => 'Icônes sociales',
-                'copyright' => '© :year Tous droits réservés.',
+                'copyright' => sprintf('© %s Tous droits réservés.', date('Y')),
             ],
 
             'newsletter' => [
                 'name' => 'Pied de page newsletter',
                 'heading' => 'Restez informé',
                 'description' => 'Abonnez-vous à notre newsletter pour recevoir des offres exclusives et des mises à jour.',
-                'copyright' => '© :year :store',
+                'copyright' => sprintf('© %s %s', date('Y'), config('app.name')),
                 'container' => 'Newsletter + liens',
                 'newsletter' => 'Newsletter',
                 'links' => 'Liens',

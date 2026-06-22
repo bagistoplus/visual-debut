@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Facade;
@@ -7,7 +8,9 @@ use Illuminate\Support\Facades\File;
 
 it('keeps supported locales aligned with the English translation keys', function () {
     $container = new Container;
+    $container->instance('config', new Repository(['app.name' => 'My Store']));
     $container->instance('files', new Filesystem);
+    Container::setInstance($container);
     Facade::setFacadeApplication($container);
 
     $langPath = dirname(__DIR__).'/resources/lang';

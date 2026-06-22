@@ -103,10 +103,7 @@ class NewsletterFooter extends Preset
 
                 PresetBlock::make(Text::class)
                     ->settings([
-                        'text' => _t('sections.footer.presets.newsletter.copyright', [
-                            'year' => date('Y'),
-                            'store' => config('app.name'),
-                        ]),
+                        'text' => _t('sections.footer.presets.newsletter.copyright'),
                         'alignment' => 'center',
                     ]),
             ]);

@@ -189,7 +189,7 @@ return [
                 'account_title' => 'الحساب',
                 'bottom_bar' => 'الشريط السفلي',
                 'social_icons' => 'أيقونات التواصل الاجتماعي',
-                'copyright' => '© :year :store. جميع الحقوق محفوظة.',
+                'copyright' => sprintf('© %s %s. جميع الحقوق محفوظة.', date('Y'), config('app.name')),
                 'links' => [
                     'about_us' => 'من نحن',
                     'contact' => 'اتصل بنا',
@@ -208,14 +208,14 @@ return [
                 'tagline' => 'شريكك الموثوق في التجارة الإلكترونية',
                 'centered_content' => 'محتوى مركزي',
                 'social_icons' => 'أيقونات التواصل الاجتماعي',
-                'copyright' => '© :year جميع الحقوق محفوظة.',
+                'copyright' => sprintf('© %s جميع الحقوق محفوظة.', date('Y')),
             ],
 
             'newsletter' => [
                 'name' => 'تذييل النشرة البريدية',
                 'heading' => 'ابقَ على اطلاع',
                 'description' => 'اشترك في نشرتنا البريدية للحصول على عروض حصرية وتحديثات.',
-                'copyright' => '© :year :store',
+                'copyright' => sprintf('© %s %s', date('Y'), config('app.name')),
                 'container' => 'النشرة البريدية + الروابط',
                 'newsletter' => 'النشرة البريدية',
                 'links' => 'الروابط',

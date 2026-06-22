@@ -113,10 +113,7 @@ class ClassicFooter extends Preset
                     ->blocks([
                         PresetBlock::make(Text::class)
                             ->settings([
-                                'text' => _t('sections.footer.presets.classic.copyright', [
-                                    'year' => date('Y'),
-                                    'store' => config('app.name'),
-                                ]),
+                                'text' => _t('sections.footer.presets.classic.copyright'),
                             ]),
 
                         $this->createSocialIcons(),
@@ -142,7 +139,7 @@ class ClassicFooter extends Preset
 
                 PresetBlock::make(RichText::class)
                     ->settings([
-                        'content' => '<p>'.$description.'</p>',
+                        'content' => $description,
                     ]),
             ]);
     }
