@@ -47,7 +47,7 @@
 >
   @if ($icon)
     <span @if ($loading) {!! $wireTarget !!} wire:loading.class="opacity-0" @endif
-      class="inline-flex h-5 w-5 items-center justify-center transition-opacity duration-200"
+      class="pointer-events-none inline-flex h-5 w-5 items-center justify-center transition-opacity duration-200"
     >
       @svg($icon, ['class' => 'size-[1.2em]'])
     </span>
