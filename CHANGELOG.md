@@ -2,6 +2,13 @@
 
 All notable changes to `Bagisto Visual Debut` will be documented in this file.
 
+# [2.0.0-alpha.10](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.9...v2.0.0-alpha.10) (2026-06-22)
+
+
+### Bug Fixes
+
+* add blade remix icons dependency ([74b6cb1](https://github.com/bagistoplus/visual-debut/commit/74b6cb115aa0ee7a3c6d9a8ab667e5be6cfb8b16))
+
 # [2.0.0-alpha.9](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.8...v2.0.0-alpha.9) (2026-06-22)
 
 
