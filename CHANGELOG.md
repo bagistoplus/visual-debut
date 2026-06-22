@@ -2,6 +2,15 @@
 
 All notable changes to `Bagisto Visual Debut` will be documented in this file.
 
+# [2.0.0-alpha.9](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.8...v2.0.0-alpha.9) (2026-06-22)
+
+
+### Bug Fixes
+
+* allow icon button clicks through ([71ecdf6](https://github.com/bagistoplus/visual-debut/commit/71ecdf6c8be6ce2925abec82e2bc06d3f39e4a30))
+* support rtl carousel controls ([e7bf0c0](https://github.com/bagistoplus/visual-debut/commit/e7bf0c03f303bd00ebdfbeac68ac4bf19dfbb648))
+* use visual translation helper ([b9cea94](https://github.com/bagistoplus/visual-debut/commit/b9cea944ebf3a569b48fdc7ffab1fa4a58f8e160))
+
 # [2.0.0-alpha.8](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.7...v2.0.0-alpha.8) (2026-06-18)
 
 
