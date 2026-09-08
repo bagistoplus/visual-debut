@@ -51,8 +51,6 @@ class FaqSection extends Preset
                     ->id('accordion')
                     ->settings([
                         'icon' => 'caret',
-                        'dividers' => true,
-                        'inherit_color_scheme' => true,
                     ])
                     ->blocks([
                         PresetBlock::make(AccordionRow::class)

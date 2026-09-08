@@ -131,30 +131,6 @@ return [
                 'caret' => 'سهم',
                 'plus' => 'زائد',
             ],
-
-            'dividers_label' => 'إظهار الفواصل',
-
-            'inherit_color_scheme_label' => 'وراثة نظام الألوان',
-            'color_scheme_label' => 'نظام الألوان',
-
-            'borders_header' => 'الحدود',
-
-            'border_label' => 'نمط الحدود',
-            'border_options' => [
-                'none' => 'بدون',
-                'solid' => 'صلب',
-            ],
-
-            'border_width_label' => 'سماكة الحدود',
-            'border_opacity_label' => 'شفافية الحدود',
-            'border_radius_label' => 'نصف قطر الحدود',
-
-            'padding_header' => 'الحشوة',
-
-            'padding_top_label' => 'أعلى',
-            'padding_bottom_label' => 'أسفل',
-            'padding_left_label' => 'يسار',
-            'padding_right_label' => 'يمين',
         ],
 
         'presets' => [

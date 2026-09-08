@@ -131,30 +131,6 @@ return [
                 'caret' => 'Flèche',
                 'plus' => 'Plus',
             ],
-
-            'dividers_label' => 'Afficher les séparateurs',
-
-            'inherit_color_scheme_label' => 'Hériter du schéma de couleurs',
-            'color_scheme_label' => 'Schéma de couleurs',
-
-            'borders_header' => 'Bordures',
-
-            'border_label' => 'Style de bordure',
-            'border_options' => [
-                'none' => 'Aucune',
-                'solid' => 'Pleine',
-            ],
-
-            'border_width_label' => 'Épaisseur de bordure',
-            'border_opacity_label' => 'Opacité de bordure',
-            'border_radius_label' => 'Rayon de bordure',
-
-            'padding_header' => 'Marge intérieure',
-
-            'padding_top_label' => 'Haut',
-            'padding_bottom_label' => 'Bas',
-            'padding_left_label' => 'Gauche',
-            'padding_right_label' => 'Droite',
         ],
 
         'presets' => [

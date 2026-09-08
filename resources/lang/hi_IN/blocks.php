@@ -131,30 +131,6 @@ return [
                 'caret' => 'कैरेट',
                 'plus' => 'प्लस',
             ],
-
-            'dividers_label' => 'विभाजक दिखाएं',
-
-            'inherit_color_scheme_label' => 'रंग योजना विरासत में लें',
-            'color_scheme_label' => 'रंग योजना',
-
-            'borders_header' => 'बॉर्डर',
-
-            'border_label' => 'बॉर्डर शैली',
-            'border_options' => [
-                'none' => 'कोई नहीं',
-                'solid' => 'ठोस',
-            ],
-
-            'border_width_label' => 'बॉर्डर मोटाई',
-            'border_opacity_label' => 'बॉर्डर अपारदर्शिता',
-            'border_radius_label' => 'बॉर्डर त्रिज्या',
-
-            'padding_header' => 'पैडिंग',
-
-            'padding_top_label' => 'शीर्ष',
-            'padding_bottom_label' => 'तल',
-            'padding_left_label' => 'बाएं',
-            'padding_right_label' => 'दाएं',
         ],
 
         'presets' => [

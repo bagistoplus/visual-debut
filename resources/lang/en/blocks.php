@@ -131,23 +131,6 @@ return [
                 'caret' => 'Caret',
                 'plus' => 'Plus',
             ],
-
-            'dividers_label' => 'Show Dividers',
-
-            'inherit_color_scheme_label' => 'Inherit Color Scheme',
-            'color_scheme_label' => 'Color Scheme',
-
-            'borders_header' => 'Borders',
-
-            'border_label' => 'Border Style',
-            'border_options' => [
-                'none' => 'None',
-                'solid' => 'Solid',
-            ],
-
-            'border_width_label' => 'Border Thickness',
-            'border_opacity_label' => 'Border Opacity',
-            'border_radius_label' => 'Border Radius',
         ],
 
         'presets' => [
