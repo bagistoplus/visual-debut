@@ -2,7 +2,6 @@
 
 namespace BagistoPlus\VisualDebut;
 
-use BagistoPlus\Visual\Facades\ThemeEditor;
 use BagistoPlus\Visual\Facades\Visual;
 use BagistoPlus\Visual\Providers\ThemeServiceProvider;
 use BagistoPlus\VisualDebut\Commands\MigrateBasicBlocks;
@@ -13,7 +12,6 @@ use BagistoPlus\VisualDebut\Components\Livewire\CartCouponForm;
 use BagistoPlus\VisualDebut\Components\Livewire\EstimateShipping;
 use BagistoPlus\VisualDebut\LivewireFeatures\AddressDataSynth;
 use BagistoPlus\VisualDebut\LivewireFeatures\InterceptSessionFlash;
-use BagistoPlus\VisualDebut\Settings\Support\RadiusTransformer;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
@@ -56,11 +54,6 @@ class ServiceProvider extends ThemeServiceProvider
             $this->bootVendorViews();
         });
 
-        ThemeEditor::serving(function () {
-            ThemeEditor::assets('themes/shop/visual-debut/editor');
-        });
-
-        Visual::registerSettingTransformer('radius', new RadiusTransformer);
         Visual::filterLivewireContextUsing(function ($context) {
             return $context->except(['menuItem', 'subMenuItem'])
                 ->filter(fn ($value) => ! ($value instanceof LengthAwarePaginator));

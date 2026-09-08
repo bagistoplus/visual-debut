@@ -7,7 +7,6 @@ on:
       - 'resources/assets/**'
       - 'resources/views/**'
       - 'vite.config.ts'
-      - 'vite.editor.config.ts'
       - 'package.json'
       - 'package-lock.json'
   workflow_dispatch:
@@ -40,9 +39,6 @@ jobs:
 
       - name: Build assets
         run: npm run build
-
-      - name: Build editor assets
-        run: npm run editor:build
 
       - name: Import GPG key
         id: import-gpg

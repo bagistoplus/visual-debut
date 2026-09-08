@@ -2,7 +2,7 @@
 
 use BagistoPlus\BasicBlocks\Settings\ButtonSettingsSchema;
 use BagistoPlus\Visual\Settings;
-use BagistoPlus\VisualDebut\Settings\Radius;
+use BagistoPlus\Visual\Settings\Radius;
 
 return [
     [
