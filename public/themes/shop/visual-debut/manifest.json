@@ -1,6 +1,6 @@
 {
   "resources/assets/css/index.css": {
-    "file": "assets/index-B-LJu0My.css",
+    "file": "assets/index-D2xQnYlz.css",
     "name": "index",
     "names": [
       "index.css"
@@ -9,7 +9,7 @@
     "isEntry": true
   },
   "resources/assets/ts/shop/index.ts": {
-    "file": "assets/index-CDa3ddZd.js",
+    "file": "assets/index-CYd2QYV9.js",
     "name": "index",
     "src": "resources/assets/ts/shop/index.ts",
     "isEntry": true
