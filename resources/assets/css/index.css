@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
-@config "../../../tailwind.config.js";
 
 @custom-variant parent-hover (*:hover > &);
 @custom-variant mobile (@media (max-width: 639px));
@@ -156,4 +155,30 @@
 
 @utility scroll-snap-y-proximity {
   scroll-snap-type: y proximity;
+}
+
+/* Prose color tokens mapped onto the theme color scheme.
+   CSS-first replacement for the legacy tailwind.config.js typography block.
+   Kept in the utilities layer, after the plugin's own .prose rule, so the
+   plugin's prose-invert / prose-<color> modifiers can still override these. */
+@layer utilities {
+  .prose {
+    --tw-prose-body: var(--color-on-background);
+    --tw-prose-headings: var(--color-on-background);
+    --tw-prose-lead: var(--color-on-background);
+    --tw-prose-links: var(--color-primary);
+    --tw-prose-bold: currentColor;
+    --tw-prose-bullets: var(--color-neutral-300);
+    --tw-prose-hr: var(--color-neutral-200);
+    --tw-prose-quotes: var(--color-on-background);
+    --tw-prose-quote-borders: var(--color-neutral-200);
+    --tw-prose-captions: var(--color-neutral-500);
+    --tw-prose-kbd: var(--color-neutral-900);
+    --tw-prose-kbd-shadows: var(--color-neutral-900);
+    --tw-prose-code: var(--color-neutral-900);
+    --tw-prose-pre-code: var(--color-neutral-200);
+    --tw-prose-pre-bg: var(--color-neutral-800);
+    --tw-prose-th-borders: var(--color-neutral-300);
+    --tw-prose-td-borders: var(--color-neutral-200);
+  }
 }

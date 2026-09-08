@@ -53,8 +53,12 @@
   </div>
 
   <!-- Table (hidden on mobile if mobile slot provided) -->
-  <div class="@isset($mobile)hidden lg:block @endisset overflow-x-auto max-sm:p-2">
-    <x-shop::datagrid.table />
+  <div class="@isset($mobile) hidden lg:block @endisset overflow-x-auto max-sm:p-2">
+    @if ($slot->isNotEmpty())
+      {{ $slot }}
+    @else
+      <x-shop::datagrid.table />
+    @endif
   </div>
 
   <!-- Mobile View -->

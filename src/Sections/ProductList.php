@@ -58,7 +58,9 @@ class ProductList extends BladeSection
                     ->where('product_flat.visible_individually', 1)
                     ->where('product_categories.category_id', $category->id)
                     ->where('product_flat.channel', $channel)
-                    ->where('product_flat.locale', $locale);
+                    ->where('product_flat.locale', $locale)
+                    ->orderBy('product_flat.created_at', 'desc')
+                    ->orderBy('product_flat.product_id', 'desc');
             })
             ->take($this->section->settings->nb_products)
             ->get()
@@ -79,7 +81,9 @@ class ProductList extends BladeSection
                     ->where('product_flat.visible_individually', 1)
                     ->where('product_flat.featured', 1)
                     ->where('product_flat.channel', $channel)
-                    ->where('product_flat.locale', $locale);
+                    ->where('product_flat.locale', $locale)
+                    ->orderBy('product_flat.created_at', 'desc')
+                    ->orderBy('product_flat.product_id', 'desc');
             })
             ->take($this->section->settings->nb_products)
             ->get()
@@ -100,7 +104,9 @@ class ProductList extends BladeSection
                     ->where('product_flat.visible_individually', 1)
                     ->where('product_flat.new', 1)
                     ->where('product_flat.channel', $channel)
-                    ->where('product_flat.locale', $locale);
+                    ->where('product_flat.locale', $locale)
+                    ->orderBy('product_flat.created_at', 'desc')
+                    ->orderBy('product_flat.product_id', 'desc');
             })
             ->take($this->section->settings->nb_products)
             ->get()
