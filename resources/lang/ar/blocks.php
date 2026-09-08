@@ -334,6 +334,17 @@ return [
 
     'product-card' => [
         'name' => 'بطاقة المنتج',
+        'settings' => [
+            'wrap_in_card_label' => 'تغليف في بطاقة',
+            'shadow_label' => 'الظل',
+            'shadow_options' => [
+                'none' => 'بدون',
+                'xs' => 'صغير جداً',
+                'sm' => 'صغير',
+                'md' => 'متوسط',
+                'lg' => 'كبير',
+            ],
+        ],
         'presets' => [
             'vertical' => [
                 'name' => 'بطاقة عمودية',

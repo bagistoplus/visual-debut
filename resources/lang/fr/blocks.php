@@ -334,6 +334,17 @@ return [
 
     'product-card' => [
         'name' => 'Carte produit',
+        'settings' => [
+            'wrap_in_card_label' => 'Encadrer dans une carte',
+            'shadow_label' => 'Ombre',
+            'shadow_options' => [
+                'none' => 'Aucune',
+                'xs' => 'Très petite',
+                'sm' => 'Petite',
+                'md' => 'Moyenne',
+                'lg' => 'Grande',
+            ],
+        ],
         'presets' => [
             'vertical' => [
                 'name' => 'Carte verticale',

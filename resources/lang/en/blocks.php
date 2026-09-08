@@ -321,6 +321,17 @@ return [
 
     'product-card' => [
         'name' => 'Product Card',
+        'settings' => [
+            'wrap_in_card_label' => 'Wrap in card',
+            'shadow_label' => 'Shadow',
+            'shadow_options' => [
+                'none' => 'None',
+                'xs' => 'Extra small',
+                'sm' => 'Small',
+                'md' => 'Medium',
+                'lg' => 'Large',
+            ],
+        ],
         'presets' => [
             'vertical' => [
                 'name' => 'Vertical Card',

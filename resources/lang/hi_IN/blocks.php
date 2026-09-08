@@ -334,6 +334,17 @@ return [
 
     'product-card' => [
         'name' => 'उत्पाद कार्ड',
+        'settings' => [
+            'wrap_in_card_label' => 'कार्ड में रैप करें',
+            'shadow_label' => 'छाया',
+            'shadow_options' => [
+                'none' => 'कोई नहीं',
+                'xs' => 'बहुत छोटी',
+                'sm' => 'छोटी',
+                'md' => 'मध्यम',
+                'lg' => 'बड़ी',
+            ],
+        ],
         'presets' => [
             'vertical' => [
                 'name' => 'लंबवत कार्ड',

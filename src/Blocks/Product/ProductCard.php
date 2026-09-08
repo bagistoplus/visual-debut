@@ -3,8 +3,10 @@
 namespace BagistoPlus\VisualDebut\Blocks\Product;
 
 use BagistoPlus\Visual\Blocks\SimpleBlock;
+use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\ColorScheme;
 use BagistoPlus\Visual\Settings\Product;
+use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\VisualDebut\Blocks\ProductCardGroup;
 use BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay;
 
@@ -36,6 +38,19 @@ class ProductCard extends SimpleBlock
             Product::make('product', _t('blocks.common.product_label')),
             ColorScheme::make('color_scheme', _t('blocks.common.color_scheme_label'))
                 ->default('inherit'),
+            Checkbox::make('wrap_in_card', _t('blocks.product-card.settings.wrap_in_card_label'))
+                ->asSwitch()
+                ->default(true),
+            Select::make('shadow', _t('blocks.product-card.settings.shadow_label'))
+                ->options([
+                    'none' => _t('blocks.product-card.settings.shadow_options.none'),
+                    'xs' => _t('blocks.product-card.settings.shadow_options.xs'),
+                    'sm' => _t('blocks.product-card.settings.shadow_options.sm'),
+                    'md' => _t('blocks.product-card.settings.shadow_options.md'),
+                    'lg' => _t('blocks.product-card.settings.shadow_options.lg'),
+                ])
+                ->default('sm')
+                ->visibleWhen(fn ($rule) => $rule->whenTruthy('wrap_in_card')),
         ];
     }
 
@@ -50,7 +65,20 @@ class ProductCard extends SimpleBlock
     {
         return [
             'product' => $this->block->settings->product,
+            'wrapInCard' => (bool) ($this->block->settings->wrap_in_card ?? true),
+            'shadowClass' => $this->getShadowClass(),
         ];
+    }
+
+    protected function getShadowClass(): string
+    {
+        return match ((string) ($this->block->settings->shadow ?? 'sm')) {
+            'none' => '',
+            'xs' => 'border-none shadow-xs',
+            'md' => 'border-none shadow-md',
+            'lg' => 'border-none shadow-lg',
+            default => 'border-none shadow-sm',
+        };
     }
 
     public static function presets(): array

@@ -1,7 +1,11 @@
 <div
   {{ $block->editor_attributes }}
   {{ $block->settings->color_scheme?->attributes() }}
-  class="group/product-card relative overflow-hidden rounded shadow-sm"
+  @class([
+      'group/product-card relative overflow-hidden',
+      'box' => $wrapInCard,
+      $shadowClass => $wrapInCard && $shadowClass !== '',
+  ])
 >
   @children
   @if ($product)
