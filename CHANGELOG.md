@@ -2,6 +2,24 @@
 
 All notable changes to `Bagisto Visual Debut` will be documented in this file.
 
+# [2.0.0-alpha.11](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.10...v2.0.0-alpha.11) (2026-09-08)
+
+
+### Bug Fixes
+
+* guard category and product card links against missing url ([6a9f13f](https://github.com/bagistoplus/visual-debut/commit/6a9f13ffc372a1efe4ac364569ad1c581128c17a))
+* handle Bagisto image search upload response object ([23e45de](https://github.com/bagistoplus/visual-debut/commit/23e45de4872db7187c2923598934e64ea1baa875))
+* move section padding inside container wrapper ([75bb5b2](https://github.com/bagistoplus/visual-debut/commit/75bb5b2cc7484fb5ae24e47837e8823df3e9af2f))
+* order carousels, render datagrid slot, drop legacy tailwind config ([6d7e9ed](https://github.com/bagistoplus/visual-debut/commit/6d7e9ed6ee1ed80e1a7cb475fbf9f734fa4bb851))
+* skip category card link when url_key is missing ([7e43c80](https://github.com/bagistoplus/visual-debut/commit/7e43c8024c7208b19a907b05c2f8e8320dd6294e))
+
+
+### Features
+
+* add wrap in card and shadow settings to category card ([4bb162f](https://github.com/bagistoplus/visual-debut/commit/4bb162f9c7cd2d44fece4aaa7fab4ba9e7d9a97b))
+* add wrap in card and shadow settings to product card ([57dc5d5](https://github.com/bagistoplus/visual-debut/commit/57dc5d5a216b3892dfad9eddabcf8bb2b37de28e))
+* support Bagisto 2.5 and Laravel 13 ([e6cd897](https://github.com/bagistoplus/visual-debut/commit/e6cd8971529587b80f4dfc66b1c5f50ff915dba6))
+
 # [2.0.0-alpha.10](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.9...v2.0.0-alpha.10) (2026-06-22)
 
 
