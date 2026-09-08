@@ -1,6 +1,7 @@
 import { defineComponent, setup } from 'alpine-define-component';
 
 interface Props {
+  uploadUrl?: string;
   searchUrl?: string;
   messages?: {
     invalidFileType?: string;
@@ -11,19 +12,30 @@ interface Props {
   };
 }
 
+/**
+ * Bagisto's upload endpoint changed shape in 2.4.8. Earlier versions answer with
+ * the image URL as a plain string, 2.4.8+ answers with this object. `engine` is
+ * `ai` when Magic AI already classified the image server side, `tensorflow`
+ * when the classification is left to the browser.
+ */
+interface UploadResponse {
+  image_url?: string;
+  keywords?: string;
+  engine?: string;
+}
+
 // Constants
-const MAX_IMAGE_SIZE = 2_000_000; // 2MB
+const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
 const LIBRARIES = {
-  tensorflow:
-    'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js',
-  mobilenet:
-    'https://cdn.jsdelivr.net/npm/tensorflow-models-mobilenet-patch@2.1.1/dist/mobilenet.min.js',
+  tensorflow: 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js',
+  mobilenet: 'https://cdn.jsdelivr.net/npm/tensorflow-models-mobilenet-patch@2.1.1/dist/mobilenet.min.js',
 };
 
 export default defineComponent({
   name: 'image-search',
 
   setup: setup((props: Props) => ({
+    uploadUrl: props.uploadUrl || '/search/upload',
     searchUrl: props.searchUrl || '/search',
     messages: {
       invalidFileType: 'Only image files are allowed.',
@@ -37,7 +49,7 @@ export default defineComponent({
     isSearching: false,
     uploadedImageUrl: null as string | null,
 
-    handleImageSelection(event: Event) {
+    async handleImageSelection(event: Event) {
       const image = (event.target as HTMLInputElement).files?.[0];
 
       if (!image || !this.validateImage(image)) {
@@ -45,11 +57,23 @@ export default defineComponent({
       }
 
       this.isSearching = true;
-      this.uploadImage(image);
 
-      if (!this.librariesLoaded) {
-        this.loadLibraries();
+      const data = await this.uploadImage(image);
+
+      if (!data) {
+        return;
       }
+
+      this.uploadedImageUrl = data.image_url as string;
+
+      const terms = data.engine === 'ai' ? this.parseTerms(data.keywords ?? '') : [];
+
+      if (terms.length) {
+        this.completeSearch(terms);
+        return;
+      }
+
+      await this.analyzeImage();
     },
 
     validateImage(image: File) {
@@ -68,46 +92,98 @@ export default defineComponent({
       return true;
     },
 
-    async uploadImage(image: File) {
+    async uploadImage(image: File): Promise<UploadResponse | null> {
       const formData = new FormData();
       formData.append('image', image);
 
+      let response: string | UploadResponse;
+
       try {
-        const response = await this.$request(
-          '/search/upload',
-          'POST',
-          formData,
-          { credentials: 'include' }
-        );
-
-        this.uploadedImageUrl = response;
-
-        if (this.librariesLoaded) {
-          await this.analyzeImage();
-        }
+        response = await this.$request(this.uploadUrl, 'POST', formData, {
+          credentials: 'include',
+        });
       } catch (error) {
         this.$toaster.error(this.messages.uploadFailed);
         this.resetSearch();
+        return null;
       }
+
+      const data: UploadResponse = typeof response === 'string' ? { image_url: response } : response || {};
+
+      if (!data.image_url) {
+        this.$toaster.error(this.messages.uploadFailed);
+        this.resetSearch();
+        return null;
+      }
+
+      return data;
     },
 
     async analyzeImage() {
+      if (!this.librariesLoaded && !(await this.loadLibraries())) {
+        return;
+      }
+
       try {
+        const image = await this.waitForPreview();
         const net = await (window as any).mobilenet.load();
-        const results = await net.classify(
-          document.getElementById('uploaded-image')
-        );
+        const results = await net.classify(image);
 
-        const terms = results.flatMap((r: any) =>
-          r.className.split(',').map((t: string) => t.trim())
-        );
+        const terms = results.flatMap((r: any) => this.parseTerms(r.className));
 
-        this.storeSearchResults(terms);
-        this.redirectToSearchResults(terms);
+        if (!terms.length) {
+          throw new Error('Image classification returned no terms.');
+        }
+
+        this.completeSearch(terms);
       } catch (error) {
         this.$toaster.error(this.messages.analysisFailed);
         this.resetSearch();
       }
+    },
+
+    /**
+     * MobileNet reads the preview element's pixels, so it can only run once the
+     * browser has the image. `x-bind:src` flushes on Alpine's next tick, hence
+     * the wait before the element is inspected.
+     */
+    async waitForPreview(): Promise<HTMLImageElement> {
+      await this.$nextTick();
+
+      const image = this.$refs.preview as HTMLImageElement | undefined;
+
+      if (!image) {
+        throw new Error('Image search preview element is missing.');
+      }
+
+      // An `<img>` with no `src` reports `complete`, so the binding has to be
+      // checked separately or the load below would never resolve.
+      if (!image.getAttribute('src')) {
+        throw new Error('Image search preview never received a src.');
+      }
+
+      if (image.complete && image.naturalWidth > 0) {
+        return image;
+      }
+
+      return new Promise<HTMLImageElement>((resolve, reject) => {
+        image.addEventListener('load', () => resolve(image), { once: true });
+        image.addEventListener('error', () => reject(new Error('Image search preview failed to load.')), {
+          once: true,
+        });
+      });
+    },
+
+    parseTerms(value: string) {
+      return value
+        .split(',')
+        .map((term) => term.trim())
+        .filter(Boolean);
+    },
+
+    completeSearch(terms: string[]) {
+      this.storeSearchResults(terms);
+      this.redirectToSearchResults(terms);
     },
 
     storeSearchResults(terms: string[]) {
@@ -116,11 +192,10 @@ export default defineComponent({
     },
 
     redirectToSearchResults(terms: string[]) {
-      const q = terms[0].replace(/\s+/g, '+');
       const url = new URL(this.searchUrl, window.location.origin);
-      url.searchParams.append('query', q);
-      url.searchParams.append('image-search', '1');
-      window.location.href = url.toString().replace(/%2B/g, ' ');
+      url.searchParams.set('query', terms[0]);
+      url.searchParams.set('image-search', '1');
+      window.location.href = url.toString();
     },
 
     async loadLibraries() {
@@ -128,11 +203,16 @@ export default defineComponent({
         await this.loadScript(LIBRARIES.tensorflow);
         await this.loadScript(LIBRARIES.mobilenet);
 
+        if (!(window as any).mobilenet) {
+          throw new Error('MobileNet is unavailable after loading.');
+        }
+
         this.librariesLoaded = true;
-        if (this.uploadedImageUrl) await this.analyzeImage();
+        return true;
       } catch (error) {
         this.$toaster.error(this.messages.libraryLoadFailed);
         this.resetSearch();
+        return false;
       }
     },
 
@@ -146,7 +226,7 @@ export default defineComponent({
         const script = document.createElement('script');
         script.src = src;
         script.onload = () => resolve();
-        script.onerror = reject;
+        script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
         document.head.appendChild(script);
       });
     },
@@ -180,7 +260,7 @@ export default defineComponent({
 
     preview(api) {
       return {
-        id: 'uploaded-image',
+        'x-ref': 'preview',
         'x-bind:src': () => api.uploadedImageUrl,
       };
     },

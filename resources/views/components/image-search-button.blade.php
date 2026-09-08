@@ -2,6 +2,7 @@
 
 @php
   $props = [
+      'uploadUrl' => route('shop.search.upload'),
       'searchUrl' => route('shop.search.index'),
       'messages' => [
           'invalidFileType' => trans('shop::app.search.images.index.only-images-allowed'),
