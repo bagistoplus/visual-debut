@@ -1,6 +1,6 @@
 @unless ($breadcrumbs->isEmpty())
   <div {{ $section->editor_attributes }} class="bg-surface border-on-surface/8 border-b">
-    <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+    <div class="container py-4">
       <nav class="flex items-center text-sm" aria-label="{{ trans('visual-debut::shop.breadcrumbs') }}">
         @foreach ($breadcrumbs as $breadcrumb)
           @if ($breadcrumb->url && !$loop->last)

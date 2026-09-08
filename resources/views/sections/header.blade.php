@@ -1,7 +1,7 @@
 @php
   $categories = $getCategories();
   $contentWidth = $section->settings->content_width ?? 'container';
-  $containerClass = $contentWidth === 'container' ? 'mx-auto container' : 'px-4 sm:px-6 lg:px-8';
+  $containerClass = $contentWidth === 'container' ? 'container' : 'container-fluid';
 @endphp
 
 <div {{ $section->editor_attributes }} class="bg-surface text-on-surface border-on-surface/8 sticky top-0 z-20 w-full border-b">

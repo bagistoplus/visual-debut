@@ -1,6 +1,6 @@
 <section {{ $section->editor_attributes }}>
   {{-- <x-lucide-loader-2 class="h-16 w-16 animate-spin text-white" /> --}}
-  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8" x-data="{
+  <div class="container py-8" x-data="{
       init() {
           Livewire.hook('morph', () => {
               this.$nextTick(() => {

@@ -13,7 +13,7 @@
   class="py-12"
 >
   <div {{ $section->editor_attributes }} class="py-12">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="container">
       @if ($items->isEmpty())
         <div class="text-center">
           <h1 class="text-secondary-700 mb-4 text-3xl font-medium">

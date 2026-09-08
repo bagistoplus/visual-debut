@@ -143,8 +143,8 @@ class ProductList extends BladeSection
     protected function computeWidthClass(): string
     {
         return $this->section->settings->content_width === 'container'
-            ? 'container mx-auto px-4 sm:px-6 lg:px-8'
-            : 'px-4 sm:px-6 lg:px-8';
+            ? 'container'
+            : 'container-fluid';
     }
 
     protected function computeColumnClasses(): string

@@ -4,7 +4,7 @@
   $equalColumns = $section->settings->equal_columns ?? false;
   $gap = $section->settings->gap ?? 12;
 
-  $containerClass = $sectionWidth === 'container' ? 'container mx-auto px-4 sm:px-6 lg:px-8' : 'px-4 sm:px-6 lg:px-8';
+  $containerClass = $sectionWidth === 'container' ? 'container' : 'container-fluid';
 
   // Grid column classes
   $gridCols = $equalColumns ? 'md:grid-cols-2' : 'md:grid-cols-3';
@@ -20,16 +20,19 @@
 <div
   {{ $section->editor_attributes }}
   {{ $section->settings->color_scheme?->attributes() }}
-  class="{{ $containerClass }} {{ $paddingClasses }}"
 >
-  <form x-on:submit.prevent>
-    <div class="grid grid-cols-1 {{ $gridCols }} gap-{{ $gap }}">
-      <div class="{{ $mediaSpan }} {{ $mediaOrder }}">
-        @visualBlock('@visual-debut/product-media-gallery', 'static-product-media')
-      </div>
-      <div class="{{ $detailsOrder }}">
-        @visualBlock('@visual-debut/product-details', 'static-product-details')
-      </div>
+  <div class="{{ $containerClass }}">
+    <div class="{{ $paddingClasses }}">
+      <form x-on:submit.prevent>
+        <div class="grid grid-cols-1 {{ $gridCols }} gap-{{ $gap }}">
+          <div class="{{ $mediaSpan }} {{ $mediaOrder }}">
+            @visualBlock('@visual-debut/product-media-gallery', 'static-product-media')
+          </div>
+          <div class="{{ $detailsOrder }}">
+            @visualBlock('@visual-debut/product-details', 'static-product-details')
+          </div>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 </div>

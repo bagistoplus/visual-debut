@@ -8,7 +8,7 @@
           class="brightness-60 absolute inset-0 h-full w-full object-cover object-center"
         >
       @endif
-      <div class="{{ $category->banner_url ? 'text-white/80' : '' }} relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="{{ $category->banner_url ? 'text-white/80' : '' }} relative container">
         <h1 class="text-3xl font-semibold">
           {{ $category->name }}
         </h1>
@@ -25,7 +25,7 @@
     </h2>
   @endif
 
-  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+  <div class="container py-8">
     <div class="flex flex-col gap-8 md:flex-row">
       @if ($section->settings->show_filters)
         <div class="filters contents">

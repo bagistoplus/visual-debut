@@ -1,7 +1,7 @@
 <div
   {{ $section->editor_attributes }}
   x-data="{ showReviewForm: $wire.entangle('showReviewForm') }"
-  class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
+  class="container py-16"
 >
   <div x-show="!showReviewForm">
     @if (count($reviews) > 0)

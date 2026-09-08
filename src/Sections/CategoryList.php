@@ -83,8 +83,8 @@ class CategoryList extends BladeSection
     protected function computeWidthClass(): string
     {
         return $this->section->settings->content_width === 'container'
-            ? 'container mx-auto'
-            : '';
+            ? 'container'
+            : 'container-fluid';
     }
 
     protected function computeColumnClasses(): string
