@@ -4,7 +4,7 @@
 
 <div {{ $block->editor_attributes }} class="group relative overflow-hidden rounded-md">
   @children
-  @if ($category)
+  @if ($category && $category->url_key)
     <a
       href="{{ $category->url }}"
       class="before:absolute before:inset-0 before:z-10"
