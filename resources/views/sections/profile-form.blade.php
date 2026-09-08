@@ -1,3 +1,13 @@
+@php
+  /**
+   * Bagisto 2.5 casts date_of_birth to a Carbon date, which stringifies with a time
+   * component. Format it explicitly so this works on 2.3, 2.4 and 2.5 alike.
+   */
+  $dateOfBirth = $customer->date_of_birth
+    ? \Illuminate\Support\Carbon::parse($customer->date_of_birth)->format('Y-m-d')
+    : null;
+@endphp
+
 <div {{ $section->editor_attributes }} class="bg-background box border-none shadow-sm">
   <div class="border-b p-4">
     <div class="flex items-center justify-between">
@@ -130,7 +140,7 @@
             name="date_of_birth"
             prepend-icon="lucide-calendar"
             :label="trans('shop::app.customers.account.profile.edit.dob')"
-            :value="old('date_of_birth') ?? $customer->date_of_birth"
+            :value="old('date_of_birth') ?? $dateOfBirth"
           />
         </div>
       </div>

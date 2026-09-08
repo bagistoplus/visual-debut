@@ -5,12 +5,12 @@
         <x-lucide-file-question class="text-danger h-10 w-10" />
       </div>
       <h1 class="text-secondary mb-4 text-4xl">
-        @lang("admin::app.errors.{$errorCode}.title")
+        @lang("shop::app.errors.{$errorCode}.title")
       </h1>
       <p class="text-secondary mb-2">
         {{ $errorCode === 503 && core()->getCurrentChannel()->maintenance_mode_text != ''
             ? core()->getCurrentChannel()->maintenance_mode_text
-            : trans("admin::app.errors.{$errorCode}.description") }}
+            : trans("shop::app.errors.{$errorCode}.description") }}
       </p>
     </div>
     <div class="flex flex-col justify-center gap-4 sm:flex-row">

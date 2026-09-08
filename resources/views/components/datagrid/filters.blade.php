@@ -162,7 +162,7 @@
         x-on:click="$modal.hide()"
         x-datagrid:apply-filters=""
       >
-        @lang('admin::app.components.datagrid.toolbar.filter.apply-filters-btn')
+        @lang('shop::app.components.datagrid.toolbar.filter.apply-filter')
       </x-shop::ui.button>
     </div>
   </div>
