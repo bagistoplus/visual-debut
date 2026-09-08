@@ -2,7 +2,14 @@
   $category = $block->settings->category ?? ($category ?? null);
 @endphp
 
-<div {{ $block->editor_attributes }} class="group relative overflow-hidden rounded-md">
+<div
+  {{ $block->editor_attributes }}
+  @class([
+      'group relative overflow-hidden',
+      'box' => $wrapInCard,
+      $shadowClass => $wrapInCard && $shadowClass !== '',
+  ])
+>
   @children
   @if ($category && $category->url_key)
     <a

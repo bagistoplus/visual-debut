@@ -36,6 +36,15 @@ return [
         'name' => 'श्रेणी कार्ड',
         'settings' => [
             'category_label' => 'श्रेणी',
+            'wrap_in_card_label' => 'कार्ड में रैप करें',
+            'shadow_label' => 'छाया',
+            'shadow_options' => [
+                'none' => 'कोई नहीं',
+                'xs' => 'बहुत छोटी',
+                'sm' => 'छोटी',
+                'md' => 'मध्यम',
+                'lg' => 'बड़ी',
+            ],
         ],
         'presets' => [
             'overlay' => [

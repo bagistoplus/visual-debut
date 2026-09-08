@@ -36,6 +36,15 @@ return [
         'name' => 'Category Card',
         'settings' => [
             'category_label' => 'Category',
+            'wrap_in_card_label' => 'Wrap in card',
+            'shadow_label' => 'Shadow',
+            'shadow_options' => [
+                'none' => 'None',
+                'xs' => 'Extra small',
+                'sm' => 'Small',
+                'md' => 'Medium',
+                'lg' => 'Large',
+            ],
         ],
         'presets' => [
             'overlay' => [

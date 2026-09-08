@@ -36,6 +36,15 @@ return [
         'name' => 'Carte de catégorie',
         'settings' => [
             'category_label' => 'Catégorie',
+            'wrap_in_card_label' => 'Encadrer dans une carte',
+            'shadow_label' => 'Ombre',
+            'shadow_options' => [
+                'none' => 'Aucune',
+                'xs' => 'Très petite',
+                'sm' => 'Petite',
+                'md' => 'Moyenne',
+                'lg' => 'Grande',
+            ],
         ],
         'presets' => [
             'overlay' => [
