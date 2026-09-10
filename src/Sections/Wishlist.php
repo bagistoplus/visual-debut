@@ -8,11 +8,14 @@ use BagistoPlus\Visual\Actions\GetWishlistItems;
 use BagistoPlus\Visual\Actions\RemoveItemFromWishlist;
 use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\Visual\Enums\Events;
+use BagistoPlus\VisualDebut\Support\InteractsWithWishlist;
 
 use function BagistoPlus\VisualDebut\_t;
 
 class Wishlist extends LivewireSection
 {
+    use InteractsWithWishlist;
+
     protected static string $type = '@visual-debut/wishlist';
 
     protected static array $enabledOn = [
@@ -44,12 +47,16 @@ class Wishlist extends LivewireSection
     {
         $response = app(ClearWishlist::class)->execute();
 
+        $this->dispatch(Events::WISHLIST_UPDATED, count: $this->getWishlistItemsCount());
+
         session()->flash('info', $response['message']);
     }
 
     public function removeItem($id)
     {
         $response = app(RemoveItemFromWishlist::class)->execute($id);
+
+        $this->dispatch(Events::WISHLIST_UPDATED, count: $this->getWishlistItemsCount());
 
         session()->flash('info', $response['message']);
     }
@@ -65,6 +72,8 @@ class Wishlist extends LivewireSection
         }
 
         $this->dispatch(Events::CART_UPDATED);
+        $this->dispatch(Events::WISHLIST_UPDATED, count: $this->getWishlistItemsCount());
+
         session()->flash('success', $response['message']);
     }
 

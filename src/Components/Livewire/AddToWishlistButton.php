@@ -3,12 +3,16 @@
 namespace BagistoPlus\VisualDebut\Components\Livewire;
 
 use BagistoPlus\Visual\Actions\Cart\AddProductToWishlist;
+use BagistoPlus\Visual\Enums\Events;
+use BagistoPlus\VisualDebut\Support\InteractsWithWishlist;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 use Webkul\Customer\Models\Customer;
 
 class AddToWishlistButton extends Component
 {
+    use InteractsWithWishlist;
+
     #[Locked]
     public $productId;
 
@@ -44,6 +48,8 @@ class AddToWishlistButton extends Component
             ->where('channel_id', data_get(core()->getCurrentChannel(), 'id'))
             ->where('product_id', $this->productId)
             ->count();
+
+        $this->dispatch(Events::WISHLIST_UPDATED, count: $this->getWishlistItemsCount());
     }
 
     public function render()
