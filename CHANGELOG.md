@@ -2,6 +2,20 @@
 
 All notable changes to `Bagisto Visual Debut` will be documented in this file.
 
+# [2.0.0-alpha.12](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.11...v2.0.0-alpha.12) (2026-09-10)
+
+
+### Bug Fixes
+
+* keep header cart and flashes per shopper under the full page cache ([731d301](https://github.com/bagistoplus/visual-debut/commit/731d30128cdebed9568576bacb14cc39782ad305))
+* listen for the correct cart updated event in the variant picker ([4bcf139](https://github.com/bagistoplus/visual-debut/commit/4bcf139ec64cf0982993f59a284d44b1eeb52f38))
+
+
+### Features
+
+* dispatch a compare updated event on compare changes ([d1e38b0](https://github.com/bagistoplus/visual-debut/commit/d1e38b065fad6a67bab3dfa3fbc36a370bc08597))
+* dispatch a wishlist updated event on wishlist changes ([9c7d429](https://github.com/bagistoplus/visual-debut/commit/9c7d42957f330ff942804581937bd8b500ea7ab2))
+
 # [2.0.0-alpha.11](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.10...v2.0.0-alpha.11) (2026-09-08)
 
 
