@@ -36,6 +36,7 @@ return [
         'start-shopping' => 'ابدأ التسوق',
         'continue-shopping' => 'متابعة التسوق',
         'preview' => 'معاينة السلة',
+        'loading' => 'جارٍ تحميل سلتك',
     ],
 
     'product' => [

@@ -4,6 +4,7 @@ namespace BagistoPlus\VisualDebut\Blocks\Header;
 
 use BagistoPlus\Visual\Blocks\LivewireBlock;
 use BagistoPlus\Visual\Enums\Events;
+use BagistoPlus\Visual\Facades\ThemeEditor;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\RichText;
 use BagistoPlus\Visual\Settings\Text;
@@ -31,8 +32,6 @@ class Cart extends LivewireBlock
 
     public $open = false;
 
-    public $initialized = false;
-
     public static function name(): string
     {
         return _t('blocks.header-cart.name');
@@ -58,9 +57,35 @@ class Cart extends LivewireBlock
         ];
     }
 
-    public function initCart()
+    /**
+     * Whether the cart islands should be deferred to a Livewire round trip.
+     */
+    public function shouldDeferCartBody(): bool
     {
-        $this->initialized = true;
+        return ! ThemeEditor::inDesignMode();
+    }
+
+    /**
+     * Everything the cart panel renders.
+     */
+    public function cartBodyData(): array
+    {
+        $cart = $this->getCartResource();
+
+        $items = $cart->items ?? [];
+
+        $isEmpty = empty($items);
+
+        return [
+            'isEmpty' => $isEmpty,
+            'items' => $items,
+            'displayPricesIncludingTax' => $this->shouldDisplayCartPricesIncludingTax(),
+            'displayBothPrices' => $this->shouldDisplayCartBothPrices(),
+            'displaySubtotalIncludingTax' => $this->shouldDisplayCartSubtotalIncludingTax(),
+            'displayBothSubtotals' => $this->shouldDisplayCartBothSubtotals(),
+            'subtotal' => $isEmpty ? null : $this->getFormattedCartSubtotal(),
+            'subtotalWithTax' => $isEmpty ? null : $this->getFormattedCartSubtotalWithTax(),
+        ];
     }
 
     public function updateItemQuantity($itemId, $quantity)

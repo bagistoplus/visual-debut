@@ -36,6 +36,7 @@ return [
         'start-shopping' => 'Start Shopping',
         'continue-shopping' => 'Continue Shopping',
         'preview' => 'Cart preview',
+        'loading' => 'Loading your cart',
     ],
 
     'product' => [

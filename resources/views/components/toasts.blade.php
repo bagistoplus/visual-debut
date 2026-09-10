@@ -1,14 +1,40 @@
 @pushOnce('scripts')
+  @php
+    $flashes = [];
+
+    foreach (['success', 'warning', 'error', 'info'] as $flashType) {
+        if (session()->has($flashType)) {
+            $flashes[] = ['type' => $flashType, 'message' => session($flashType)];
+        }
+    }
+  @endphp
+
+  {{--
+    On a page Bagisto's Full Page Cache will store, emit the marker Webkul\FPC\Replacers\
+    FlashMessagesReplacer swaps for the current visitor's messages on every cache hit. The
+    surrounding quotes are part of what it matches. The visitor who primes the cache receives
+    the marker unreplaced, which the typeof guard turns into a no-op.
+  --}}
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      @foreach (session()->only(['success', 'error', 'warning', 'info']) as $type => $message)
+      @if (\BagistoPlus\VisualDebut\Support\FullPageCache::willCache(request()))
+        let flashes = '<bagisto-response-cache-session-flashes>';
+      @else
+        let flashes = @json($flashes);
+      @endif
+
+      if (typeof flashes === 'string') {
+        return;
+      }
+
+      flashes.forEach((flash) => {
         window.dispatchEvent(new CustomEvent('toasts:create', {
           detail: {
-            type: '{{ $type }}',
-            title: '{{ $message }}'
+            type: flash.type,
+            title: flash.message
           }
         }));
-      @endforeach
+      });
     });
   </script>
 @endpushOnce

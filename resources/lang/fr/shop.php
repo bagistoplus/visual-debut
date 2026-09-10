@@ -36,6 +36,7 @@ return [
         'start-shopping' => 'Commencer vos achats',
         'continue-shopping' => 'Continuer vos achats',
         'preview' => 'Aperçu du panier',
+        'loading' => 'Chargement de votre panier',
     ],
 
     'product' => [

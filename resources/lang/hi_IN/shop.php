@@ -36,6 +36,7 @@ return [
         'start-shopping' => 'खरीदारी शुरू करें',
         'continue-shopping' => 'खरीदारी जारी रखें',
         'preview' => 'कार्ट पूर्वावलोकन',
+        'loading' => 'आपका कार्ट लोड हो रहा है',
     ],
 
     'product' => [
