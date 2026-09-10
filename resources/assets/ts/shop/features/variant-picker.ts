@@ -1,4 +1,5 @@
 import { defineScope, defineComponent, setup } from 'alpine-define-component';
+import { VisualEvents } from '@visual/shop/events';
 import { ProductForm } from './product-form';
 
 interface VariantAttribute {
@@ -194,7 +195,7 @@ export default defineComponent({
           this.$wire.set('selectedVariant', this.selectedVariant, false);
         }
 
-        document.addEventListener('cart_updated', () => {
+        document.addEventListener(VisualEvents.CART_UPDATED, () => {
           this.$nextTick(() => {
             this.dispatchChange();
           });

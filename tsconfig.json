@@ -8,6 +8,9 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    "paths": {
+      "@visual/*": ["vendor/bagistoplus/visual/resources/assets/*"]
+    },
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,

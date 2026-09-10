@@ -37,6 +37,11 @@ const symlinkImages = ({ imagesPath }: { imagesPath: string }) => ({
 });
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@visual': path.resolve(__dirname, 'vendor/bagistoplus/visual/resources/assets'),
+    },
+  },
   plugins: [
     tailwindcss(),
     laravel({
