@@ -3,11 +3,15 @@
 namespace BagistoPlus\VisualDebut\Components\Livewire;
 
 use BagistoPlus\Visual\Actions\Cart\AddProductToCompare;
+use BagistoPlus\Visual\Enums\Events;
+use BagistoPlus\VisualDebut\Support\InteractsWithCompare;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 class AddToCompareButton extends Component
 {
+    use InteractsWithCompare;
+
     #[Locked]
     public $productId;
 
@@ -32,6 +36,8 @@ class AddToCompareButton extends Component
         if (isset($response['message'])) {
             session()->flash('success', $response['message']);
         }
+
+        $this->dispatch(Events::COMPARE_UPDATED, count: $this->getCompareItemsCount());
     }
 
     public function render()

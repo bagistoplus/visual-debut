@@ -6,11 +6,15 @@ use BagistoPlus\Visual\Actions\ClearCompareList;
 use BagistoPlus\Visual\Actions\GetCompareItems;
 use BagistoPlus\Visual\Actions\RemoveItemFromCompareList;
 use BagistoPlus\Visual\Blocks\LivewireSection;
+use BagistoPlus\Visual\Enums\Events;
+use BagistoPlus\VisualDebut\Support\InteractsWithCompare;
 
 use function BagistoPlus\VisualDebut\_t;
 
 class Compare extends LivewireSection
 {
+    use InteractsWithCompare;
+
     protected static string $type = '@visual-debut/compare';
 
     protected static array $enabledOn = [
@@ -51,6 +55,8 @@ class Compare extends LivewireSection
         if (isset($response['message'])) {
             session()->flash('success', $response['message']);
         }
+
+        $this->dispatch(Events::COMPARE_UPDATED, count: $this->getCompareItemsCount());
     }
 
     public function removeItem($id)
@@ -61,6 +67,8 @@ class Compare extends LivewireSection
         if (isset($response['message'])) {
             session()->flash('success', $response['message']);
         }
+
+        $this->dispatch(Events::COMPARE_UPDATED, count: $this->getCompareItemsCount());
     }
 
     public function getViewData(): array
