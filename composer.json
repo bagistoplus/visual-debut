@@ -27,7 +27,7 @@
     "bagistoplus/visual": "^2.0.0-alpha.31",
     "livewire/livewire": "^4.3",
     "bagistoplus/couleur": "^0.2.0",
-    "bagistoplus/basic-blocks": "^1.5.1",
+    "bagistoplus/basic-blocks": "^1.6.0",
     "andreiio/blade-remix-icon": "^3.9"
   },
   "require-dev": {
