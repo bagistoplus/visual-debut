@@ -4,6 +4,7 @@ namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
 use BagistoPlus\BasicBlocks\Tailwind;
+use BagistoPlus\Visual\Actions\GetProducts;
 use BagistoPlus\Visual\Blocks\BladeSection;
 use BagistoPlus\Visual\Settings\Category;
 use BagistoPlus\Visual\Settings\Checkbox;
@@ -15,7 +16,9 @@ use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay;
-use Webkul\Product\Repositories\ProductFlatRepository;
+use Illuminate\Pagination\AbstractPaginator;
+use Illuminate\Support\Collection;
+use Webkul\Product\Helpers\Toolbar;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -43,87 +46,57 @@ class ProductList extends BladeSection
         Heading::class,
     ];
 
-    protected function getProductsByCategory($category)
+    /**
+     * @return Collection<int, mixed>
+     */
+    public function getProducts(): Collection
     {
-        return app(ProductFlatRepository::class)
-            ->with(['product'])
-            ->scopeQuery(function ($query) use ($category) {
-                $channel = core()->getRequestedChannelCode();
-                $locale = core()->getRequestedLocaleCode();
+        $params = [
+            'sort' => 'created_at-desc',
+            'limit' => $this->queryLimit(),
+        ];
 
-                return $query->distinct()
-                    ->addSelect('product_flat.*')
-                    ->leftJoin('product_categories', 'product_flat.product_id', '=', 'product_categories.product_id')
-                    ->where('product_flat.status', 1)
-                    ->where('product_flat.visible_individually', 1)
-                    ->where('product_categories.category_id', $category->id)
-                    ->where('product_flat.channel', $channel)
-                    ->where('product_flat.locale', $locale)
-                    ->orderBy('product_flat.created_at', 'desc')
-                    ->orderBy('product_flat.product_id', 'desc');
-            })
-            ->take($this->section->settings->nb_products)
-            ->get()
-            ->map->product;
-    }
-
-    protected function getFeaturedProducts()
-    {
-        return app(ProductFlatRepository::class)
-            ->with(['product'])
-            ->scopeQuery(function ($query) {
-                $channel = core()->getRequestedChannelCode();
-                $locale = core()->getRequestedLocaleCode();
-
-                return $query->distinct()
-                    ->addSelect('product_flat.*')
-                    ->where('product_flat.status', 1)
-                    ->where('product_flat.visible_individually', 1)
-                    ->where('product_flat.featured', 1)
-                    ->where('product_flat.channel', $channel)
-                    ->where('product_flat.locale', $locale)
-                    ->orderBy('product_flat.created_at', 'desc')
-                    ->orderBy('product_flat.product_id', 'desc');
-            })
-            ->take($this->section->settings->nb_products)
-            ->get()
-            ->map->product;
-    }
-
-    protected function getNewProducts()
-    {
-        return app(ProductFlatRepository::class)
-            ->with(['product'])
-            ->scopeQuery(function ($query) {
-                $channel = core()->getRequestedChannelCode();
-                $locale = core()->getRequestedLocaleCode();
-
-                return $query->distinct()
-                    ->addSelect('product_flat.*')
-                    ->where('product_flat.status', 1)
-                    ->where('product_flat.visible_individually', 1)
-                    ->where('product_flat.new', 1)
-                    ->where('product_flat.channel', $channel)
-                    ->where('product_flat.locale', $locale)
-                    ->orderBy('product_flat.created_at', 'desc')
-                    ->orderBy('product_flat.product_id', 'desc');
-            })
-            ->take($this->section->settings->nb_products)
-            ->get()
-            ->map->product;
-    }
-
-    public function getProducts()
-    {
-        if ($parentCategory = $this->section->settings->parent_category) {
-            return $this->getProductsByCategory($parentCategory);
+        if ($category = $this->section->settings->parent_category) {
+            $params['category_id'] = $category->id;
+        } else {
+            $type = $this->section->settings->product_type ?? 'new';
+            $params[$type] = 1;
         }
 
-        return match ($this->section->settings->product_type ?? 'new') {
-            'featured' => $this->getFeaturedProducts(),
-            'new' => $this->getNewProducts(),
-            default => collect(),
-        };
+        $products = app(GetProducts::class)->execute($params, false);
+
+        if (! $products instanceof AbstractPaginator) {
+            return collect();
+        }
+
+        return $products->getCollection()
+            ->take($this->limit())
+            ->values();
+    }
+
+    private function limit(): int
+    {
+        return max(1, (int) ($this->section->settings->nb_products ?? 4));
+    }
+
+    /**
+     * A listing page size the merchant did not configure is refused, so ask for
+     * the smallest one that covers what the section shows.
+     */
+    private function queryLimit(): int
+    {
+        $limit = $this->limit();
+        $toolbar = app(Toolbar::class);
+        $availableLimits = $toolbar
+            ->getAvailableLimits()
+            ->map(fn (mixed $availableLimit): int => (int) $availableLimit)
+            ->filter(fn (int $availableLimit): bool => $availableLimit > 0)
+            ->sort()
+            ->values();
+
+        return $availableLimits->first(fn (int $availableLimit): bool => $availableLimit >= $limit)
+            ?? $availableLimits->last()
+            ?? $toolbar->getDefaultLimit();
     }
 
     public function getViewData(): array
