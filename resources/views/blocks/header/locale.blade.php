@@ -1,5 +1,5 @@
 @php
-  $locales = once(fn() => core()->getCurrentChannel()->locales()->orderBy('name')->get());
+  $locales = core()->getCurrentChannel()->locales->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->values();
   $currentLocale = core()->getCurrentLocale();
 @endphp
 
