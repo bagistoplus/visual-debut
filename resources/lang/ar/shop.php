@@ -23,6 +23,7 @@ return [
     'open-menu' => 'فتح القائمة',
     'user-menu' => 'قائمة المستخدم',
     'search' => 'بحث',
+    'no-matching-options' => 'لا توجد خيارات مطابقة',
     'previous' => 'السابق',
     'next' => 'التالي',
     'show-as' => 'عرض كـ :mode',

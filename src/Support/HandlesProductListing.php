@@ -57,23 +57,21 @@ trait HandlesProductListing
     }
 
     /**
-     * Tick or untick one option of one facet.
+     * The checkboxes write a facet's option ids straight into `filters`, so
+     * whatever the client sends is checked against the facet before the query
+     * sees it.
      */
-    public function toggleFilter(string $code, string $value): void
+    public function updatedFilters(mixed $value, string $code): void
     {
         $filter = $this->availableFilters()->first(fn ($candidate): bool => $candidate->code === $code);
 
-        if (! $filter || $filter->type === 'price' || ! $filter->options->contains('id', (int) $value)) {
+        if (! $filter) {
+            unset($this->filters[$code]);
+
             return;
         }
 
-        $applied = $this->appliedIds($code);
-
-        $selected = in_array($value, $applied, true)
-            ? array_values(array_diff($applied, [$value]))
-            : [...$applied, $value];
-
-        $this->filters[$code] = $this->validValue($filter, implode(',', $selected));
+        $this->filters[$code] = $this->validValue($filter, is_string($value) ? $value : '');
 
         $this->resetPage();
     }
@@ -273,7 +271,7 @@ trait HandlesProductListing
     public function resultsTargets(): string
     {
         return implode(',', [
-            'toggleFilter', 'applyPriceRange', 'resetFilters',
+            'filters', 'applyPriceRange', 'resetFilters',
             'sort', 'limit', 'displayMode',
             'gotoPage', 'nextPage', 'previousPage', 'setPage',
         ]);

@@ -23,6 +23,7 @@ return [
     'open-menu' => 'Open menu',
     'user-menu' => 'User menu',
     'search' => 'Search',
+    'no-matching-options' => 'No matching options',
     'previous' => 'Previous',
     'next' => 'Next',
     'show-as' => 'Show as :mode',

@@ -23,6 +23,7 @@ return [
     'open-menu' => 'मेनू खोलें',
     'user-menu' => 'उपयोगकर्ता मेनू',
     'search' => 'खोजें',
+    'no-matching-options' => 'कोई मेल खाता विकल्प नहीं',
     'previous' => 'पिछला',
     'next' => 'अगला',
     'show-as' => ':mode के रूप में दिखाएं',

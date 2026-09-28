@@ -26,20 +26,60 @@
             />
           </div>
         @else
-          <div class="space-y-2 py-3">
-            @php $applied = $this->appliedOptions($filter->code); @endphp
-            @foreach ($filter->options as $option)
-              <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  name="{{ $filter->code }}"
-                  value="{{ $option->id }}"
-                  @checked(in_array((string) $option->id, $applied, true))
-                  wire:click="toggleFilter('{{ $filter->code }}', '{{ $option->id }}')"
-                >
-                <span class="ms-3">{{ $option->label ?? $option->admin_name }}</span>
-              </label>
-            @endforeach
+          @php
+            $applied = $this->appliedOptions($filter->code);
+            $labels = $filter->options->map(fn($option) => $option->label ?? $option->admin_name);
+          @endphp
+          <div class="space-y-3 py-3" x-data="{
+              code: @js($filter->code),
+              labels: @js($labels->values()),
+              query: '',
+              ids() {
+                  const value = $wire.filters[this.code] ?? '';
+                  return value === '' ? [] : value.split(',');
+              },
+              toggle(id) {
+                  const ids = this.ids();
+                  const next = ids.includes(id) ? ids.filter((other) => other !== id) : [...ids, id];
+                  $wire.$set('filters.' + this.code, next.join(','), false);
+                  this.commit();
+              },
+              commit: Alpine.debounce(() => $wire.$commit(), 250),
+              matches(label) {
+                  return label.toLowerCase().includes(this.query.trim().toLowerCase());
+              },
+          }">
+            @if ($labels->count() > 8)
+              <input
+                type="search"
+                x-model="query"
+                class="input-sm w-full"
+                placeholder="@lang('visual-debut::shop.search') {{ $filter->name }}"
+                aria-label="@lang('visual-debut::shop.search') {{ $filter->name }}"
+              >
+            @endif
+            <div class="max-h-64 space-y-2 overflow-y-auto pe-1">
+              @foreach ($filter->options as $option)
+                <label class="flex items-center" x-show="matches(@js($labels[$loop->index]))">
+                  <input
+                    type="checkbox"
+                    name="{{ $filter->code }}"
+                    value="{{ $option->id }}"
+                    @checked(in_array((string) $option->id, $applied, true))
+                    x-bind:checked="ids().includes('{{ $option->id }}')"
+                    x-on:change="toggle('{{ $option->id }}')"
+                  >
+                  <span class="ms-3">{{ $labels[$loop->index] }}</span>
+                </label>
+              @endforeach
+              <p
+                class="text-sm opacity-70"
+                x-show="!labels.some((label) => matches(label))"
+                x-cloak
+              >
+                @lang('visual-debut::shop.no-matching-options')
+              </p>
+            </div>
           </div>
         @endif
       </x-shop::ui.accordion.item>

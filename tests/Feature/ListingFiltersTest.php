@@ -73,17 +73,19 @@ it('normalises a price to two ordered numbers inside the span, and drops one tha
         ->and(listing(['price' => 'a,b'])->filters['price'])->toBe('');
 });
 
-it('ticks and unticks one option, resetting the page each time', function (): void {
+it('checks what the client writes into a facet, resetting the page each time', function (): void {
     $listing = listing(['color' => '1']);
 
-    $listing->toggleFilter('color', '3');
-    $listing->toggleFilter('color', '1');
-    $listing->toggleFilter('color', '9');
-    $listing->toggleFilter('price', '1');
-    $listing->toggleFilter('nope', '1');
+    $listing->updatedFilters('1,3,9', 'color');
 
-    expect($listing->filters['color'])->toBe('3')
-        ->and($listing->pageResets)->toBe(2);
+    expect($listing->filters['color'])->toBe('1,3');
+
+    $listing->updatedFilters('3', 'color');
+    $listing->updatedFilters('90,10', 'price');
+    $listing->updatedFilters(['1'], 'brand');
+
+    expect($listing->filters)->toBe(['color' => '3', 'price' => '10,90'])
+        ->and($listing->pageResets)->toBe(3);
 });
 
 it('sends the catalog only the applied facets, under Bagisto\'s own names', function (): void {
