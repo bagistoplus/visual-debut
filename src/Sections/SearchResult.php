@@ -2,10 +2,10 @@
 
 namespace BagistoPlus\VisualDebut\Sections;
 
-use BagistoPlus\Visual\Actions\GetProducts;
 use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\VisualDebut\Support\HandlesProductListing;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 use Webkul\Attribute\Repositories\AttributeRepository;
 
@@ -31,6 +31,13 @@ class SearchResult extends LivewireSection
 
     protected static string $previewImageUrl = 'themes/shop/visual-debut/images/sections/search-result.png';
 
+    /**
+     * The term, bound to the URL so it survives a Livewire round trip: the
+     * request query is empty on an update, and the snapshot keeps only the path.
+     */
+    #[Url(except: '')]
+    public string $query = '';
+
     public static function name(): string
     {
         return _t('sections.search-result.name');
@@ -51,7 +58,7 @@ class SearchResult extends LivewireSection
         return 'shop::pagination.default';
     }
 
-    #[Computed(persist: true)]
+    #[Computed]
     public function availableFilters()
     {
         $filterableAttributes = app(AttributeRepository::class)->getFilterableAttributes();
@@ -70,8 +77,9 @@ class SearchResult extends LivewireSection
     public function getViewData(): array
     {
         return [
-            'products' => app(GetProducts::class)->execute(
-                $this->buildProductParams()
+            'products' => $this->fetchProducts(
+                ['query' => $this->query],
+                trackSearch: $this->query !== '',
             ),
         ];
     }

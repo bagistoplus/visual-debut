@@ -53,6 +53,11 @@
       "src/helpers.php"
     ]
   },
+  "autoload-dev": {
+    "psr-4": {
+      "BagistoPlus\\VisualDebut\\Tests\\": "tests/"
+    }
+  },
   "scripts": {
     "post-autoload-dump": [
       "@composer run prepare",

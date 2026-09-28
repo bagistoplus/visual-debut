@@ -7,7 +7,7 @@ use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Icon;
 use BagistoPlus\Visual\Settings\Product as ProductSetting;
 use BagistoPlus\Visual\Settings\Select;
-use Webkul\Shop\Http\Resources\ProductResource;
+use Webkul\Customer\Models\Customer;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -90,17 +90,23 @@ class ProductButton extends SimpleBlock
         if (! $product) {
             return [
                 'product' => null,
-                'productResource' => null,
+                'productId' => null,
+                'inWishlist' => false,
                 'canShowWishlist' => false,
                 'canShowCompare' => false,
             ];
         }
 
-        $productResource = (new ProductResource($product))->resolve();
+        /** @var Customer|null $customer */
+        $customer = auth('customer')->user();
 
         return [
             'product' => $product,
-            'productResource' => $productResource,
+            'productId' => $product->id,
+            'inWishlist' => (bool) $customer?->wishlist_items
+                ->where('channel_id', data_get(core()->getCurrentChannel(), 'id'))
+                ->where('product_id', $product->id)
+                ->count(),
             'canShowWishlist' => auth('customer')->check() && core()->getConfigData('customer.settings.wishlist.wishlist_option'),
             'canShowCompare' => core()->getConfigData('catalog.products.settings.compare_option'),
         ];

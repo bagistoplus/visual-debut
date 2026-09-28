@@ -5,11 +5,9 @@ namespace BagistoPlus\VisualDebut;
 use BagistoPlus\Visual\Facades\Visual;
 use BagistoPlus\Visual\Providers\ThemeServiceProvider;
 use BagistoPlus\VisualDebut\Commands\MigrateBasicBlocks;
-use BagistoPlus\VisualDebut\Components\Livewire\AddToCartButton;
-use BagistoPlus\VisualDebut\Components\Livewire\AddToCompareButton;
-use BagistoPlus\VisualDebut\Components\Livewire\AddToWishlistButton;
 use BagistoPlus\VisualDebut\Components\Livewire\CartCouponForm;
 use BagistoPlus\VisualDebut\Components\Livewire\EstimateShipping;
+use BagistoPlus\VisualDebut\Listeners\FlushCatalogCache;
 use BagistoPlus\VisualDebut\LivewireFeatures\AddressDataSynth;
 use BagistoPlus\VisualDebut\LivewireFeatures\InterceptSessionFlash;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -26,9 +24,6 @@ class ServiceProvider extends ThemeServiceProvider
 
     protected static array $livewireComponents = [
         'cart-coupon-form' => CartCouponForm::class,
-        'add-to-cart-button' => AddToCartButton::class,
-        'add-to-wishlist-button' => AddToWishlistButton::class,
-        'add-to-compare-button' => AddToCompareButton::class,
         'estimate-shipping' => EstimateShipping::class,
     ];
 
@@ -49,6 +44,7 @@ class ServiceProvider extends ThemeServiceProvider
         $this->bootViewEventListeners();
         $this->bootLivewireFeatures();
         $this->bootValidationTranslations();
+        $this->bootCatalogCache();
 
         $this->whenActive(function () {
             $this->bootVendorViews();
@@ -91,6 +87,11 @@ class ServiceProvider extends ThemeServiceProvider
                 $event->addTemplate('paypal::checkout.onepage.payment-button');
             });
         });
+    }
+
+    protected function bootCatalogCache(): void
+    {
+        Event::listen(FlushCatalogCache::EVENTS, FlushCatalogCache::class);
     }
 
     protected function bootValidationTranslations(): void

@@ -162,12 +162,19 @@ export default function (Alpine: AlpineType) {
         const response = await fetch(url, options);
 
         if (!response.ok) {
+          let errorData: unknown;
+
           try {
-            const errorData = await response.json();
-            throw errorData;
+            errorData = await response.json();
           } catch {
             throw new Error(`Request failed with status ${response.status}: ${response.statusText}`);
           }
+
+          if (errorData && typeof errorData === 'object' && !Array.isArray(errorData)) {
+            throw Object.assign(errorData, { status: response.status });
+          }
+
+          throw errorData;
         }
 
         const contentType = response.headers.get('content-type');

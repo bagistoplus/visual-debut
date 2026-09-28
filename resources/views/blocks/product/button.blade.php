@@ -2,6 +2,7 @@
   $action = $block->settings->action ?? 'cart';
   $size = $block->settings->size ?? 'md';
   $variant = $block->settings->variant ?? 'solid';
+  $variant = $variant === 'solid' ? 'filled' : $variant;
   $color = $block->settings->color ?? 'primary';
   $icon = $block->settings->icon;
   $circle = $block->settings->circle ?? false;
@@ -10,10 +11,12 @@
   $editorAttrs = $block->editor_attributes->toHtml();
 @endphp
 
-@if (!$productResource)
+@if (!$productId)
   @visual_design_mode
   {{-- Placeholder when no product is selected (design mode only) --}}
-  <x-shop::ui.button
+  <x-basic-blocks::button
+    tag="button"
+    type="button"
     :variant="$variant"
     :color="$color"
     :size="$size"
@@ -21,7 +24,7 @@
     :circle="$circle"
     :square="$square"
     :block="$blockWidth"
-    :additionalAttributes="$editorAttrs"
+    :rawAttributes="$editorAttrs"
   >
     @if (!$circle && !$square)
       <span class="text-muted">
@@ -32,13 +35,13 @@
         } }}
       </span>
     @endif
-  </x-shop::ui.button>
+  </x-basic-blocks::button>
   @end_visual_design_mode
 @else
   @if ($action === 'cart')
-    <livewire:add-to-cart-button
-      :key="'product-button-cart-' . $productResource['id'] . '-' . str()->random(8)"
-      :product-id="$productResource['id']"
+    <x-shop::product.action-button
+      action="cart"
+      :product-id="$productId"
       :size="$size"
       :variant="$variant"
       :color="$color"
@@ -50,10 +53,10 @@
     />
   @elseif ($action === 'wishlist')
     @if ($canShowWishlist)
-      <livewire:add-to-wishlist-button
-        :key="'product-button-wishlist-' . $productResource['id'] . '-' . str()->random(8)"
-        :product-id="$productResource['id']"
-        :in-user-wishlist="$productResource['is_wishlist']"
+      <x-shop::product.action-button
+        action="wishlist"
+        :product-id="$productId"
+        :in-wishlist="$inWishlist"
         :size="$size"
         :variant="$variant"
         :color="$color"
@@ -65,7 +68,9 @@
       />
     @else
       @visual_design_mode
-      <x-shop::ui.button
+      <x-basic-blocks::button
+        tag="button"
+        type="button"
         :variant="$variant"
         :color="$color"
         :size="$size"
@@ -73,19 +78,19 @@
         :circle="$circle"
         :square="$square"
         :block="$blockWidth"
-        :additionalAttributes="$editorAttrs"
+        :rawAttributes="$editorAttrs"
       >
         @if (!$circle && !$square)
           {{ __('visual-debut::blocks.product-button.wishlist_disabled') }}
         @endif
-      </x-shop::ui.button>
+      </x-basic-blocks::button>
       @end_visual_design_mode
     @endif
   @elseif ($action === 'compare')
     @if ($canShowCompare)
-      <livewire:add-to-compare-button
-        :key="'product-button-compare-' . $productResource['id'] . '-' . str()->random(8)"
-        :product-id="$productResource['id']"
+      <x-shop::product.action-button
+        action="compare"
+        :product-id="$productId"
         :size="$size"
         :variant="$variant"
         :color="$color"
@@ -98,7 +103,9 @@
     @else
       @visual_design_mode
       {{-- Compare disabled fallback (design mode only) --}}
-      <x-shop::ui.button
+      <x-basic-blocks::button
+        tag="button"
+        type="button"
         :variant="$variant"
         :color="$color"
         :size="$size"
@@ -106,12 +113,12 @@
         :circle="$circle"
         :square="$square"
         :block="$blockWidth"
-        :additionalAttributes="$editorAttrs"
+        :rawAttributes="$editorAttrs"
       >
         @if (!$circle && !$square)
           {{ __('visual-debut::blocks.product-button.compare_disabled') }}
         @endif
-      </x-shop::ui.button>
+      </x-basic-blocks::button>
       @end_visual_design_mode
     @endif
   @endif

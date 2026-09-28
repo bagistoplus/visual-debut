@@ -21,19 +21,21 @@
             <x-shop::range-input
               :gap="16"
               :max="intval($maxPrice)"
-              :value="$this->filters['price']"
-              x-on:change.debounce="$wire.setFilter('{{ $filter->code }}', $event.detail)"
+              :value="$this->priceBounds($filter->code)"
+              x-on:change.debounce="$wire.applyPriceRange('{{ $filter->code }}', $event.detail.join(','))"
             />
           </div>
         @else
           <div class="space-y-2 py-3">
+            @php $applied = $this->appliedOptions($filter->code); @endphp
             @foreach ($filter->options as $option)
               <label class="flex items-center">
                 <input
-                  wire:model.live="filters.{{ $filter->code }}"
                   type="checkbox"
                   name="{{ $filter->code }}"
                   value="{{ $option->id }}"
+                  @checked(in_array((string) $option->id, $applied, true))
+                  wire:click="toggleFilter('{{ $filter->code }}', '{{ $option->id }}')"
                 >
                 <span class="ms-3">{{ $option->label ?? $option->admin_name }}</span>
               </label>

@@ -8,7 +8,7 @@
           class="brightness-60 absolute inset-0 h-full w-full object-cover object-center"
         >
       @endif
-      <div class="{{ $category->banner_url ? 'text-white/80' : '' }} relative container">
+      <div class="{{ $category->banner_url ? 'text-white/80' : '' }} container relative">
         <h1 class="text-3xl font-semibold">
           {{ $category->name }}
         </h1>
@@ -48,53 +48,62 @@
           :showSorting="$section->settings->show_sorting"
         />
 
-        <!-- Products grid view -->
-        @if ($displayMode === 'grid')
-          @php
-            $mobileClass = ['1' => 'grid-cols-1', '2' => 'grid-cols-2'][$section->settings->columns_mobile] ?? 'grid-cols-1';
-            $tabletClass =
-                [
-                    '1' => 'lg:grid-cols-1',
-                    '2' => 'lg:grid-cols-2',
-                    '3' => 'lg:grid-cols-3',
-                    '4' => 'lg:grid-cols-4',
-                ][$section->settings->columns_tablet] ?? 'lg:grid-cols-3';
+        @include('shop::partials.results-status')
 
-            $desktopClass =
-                [
-                    '1' => 'xl:grid-cols-1',
-                    '2' => 'xl:grid-cols-2',
-                    '3' => 'xl:grid-cols-3',
-                    '4' => 'xl:grid-cols-4',
-                    '5' => 'xl:grid-cols-5',
-                    '6' => 'xl:grid-cols-6',
-                ][$section->settings->columns] ?? 'xl:grid-cols-3';
-          @endphp
+        <div
+          class="transition-opacity duration-200"
+          wire:loading.class="opacity-60"
+          wire:loading.attr="aria-busy"
+          wire:target="{{ $this->resultsTargets() }}"
+        >
+          <!-- Products grid view -->
+          @if ($displayMode === 'grid')
+            @php
+              $mobileClass = ['1' => 'grid-cols-1', '2' => 'grid-cols-2'][$section->settings->columns_mobile] ?? 'grid-cols-1';
+              $tabletClass =
+                  [
+                      '1' => 'lg:grid-cols-1',
+                      '2' => 'lg:grid-cols-2',
+                      '3' => 'lg:grid-cols-3',
+                      '4' => 'lg:grid-cols-4',
+                  ][$section->settings->columns_tablet] ?? 'lg:grid-cols-3';
 
-          <div class="{{ $mobileClass }} {{ $tabletClass }} {{ $desktopClass }} grid gap-6">
-            @foreach ($products as $product)
-              <x-shop::product.card
-                wire:key="{{ 'product-' . $product->id }}"
-                mode="grid"
-                :product="$product"
-              />
-            @endforeach
+              $desktopClass =
+                  [
+                      '1' => 'xl:grid-cols-1',
+                      '2' => 'xl:grid-cols-2',
+                      '3' => 'xl:grid-cols-3',
+                      '4' => 'xl:grid-cols-4',
+                      '5' => 'xl:grid-cols-5',
+                      '6' => 'xl:grid-cols-6',
+                  ][$section->settings->columns] ?? 'xl:grid-cols-3';
+            @endphp
+
+            <div class="{{ $mobileClass }} {{ $tabletClass }} {{ $desktopClass }} grid gap-6">
+              @foreach ($products as $product)
+                <x-shop::product.card
+                  wire:key="{{ 'product-' . $product->id }}"
+                  mode="grid"
+                  :product="$product"
+                />
+              @endforeach
+            </div>
+          @else
+            <!-- Products list view -->
+            <div class="grid grid-cols-1 gap-6">
+              @foreach ($products as $product)
+                <x-shop::product.card
+                  mode="list"
+                  wire:key="{{ 'product-' . $product->id }}"
+                  :product="$product"
+                />
+              @endforeach
+            </div>
+          @endif
+
+          <div class="mt-4">
+            {{ $products->links() }}
           </div>
-        @else
-          <!-- Products list view -->
-          <div class="grid grid-cols-1 gap-6">
-            @foreach ($products as $product)
-              <x-shop::product.card
-                mode="list"
-                wire:key="{{ 'product-' . $product->id }}"
-                :product="$product"
-              />
-            @endforeach
-          </div>
-        @endif
-
-        <div class="mt-4">
-          {{ $products->links() }}
         </div>
       </div>
     </div>

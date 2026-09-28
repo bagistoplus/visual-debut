@@ -51,32 +51,41 @@
           :displayMode="$displayMode"
         />
 
-        <!-- Products grid view -->
-        @if ($displayMode === 'grid')
-          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            @foreach ($products as $product)
-              <x-shop::product.card
-                :key="$product->id"
-                :product="$product"
-                mode="grid"
-              />
-            @endforeach
-          </div>
-        @else
-          <!-- Products list view -->
-          <div class="grid grid-cols-1 gap-6">
-            @foreach ($products as $product)
-              <x-shop::product.card
-                :key="$product->id"
-                :product="$product"
-                mode="list"
-              />
-            @endforeach
-          </div>
-        @endif
+        @include('shop::partials.results-status')
 
-        <div class="mt-4">
-          {{ $products->links() }}
+        <div
+          class="transition-opacity duration-200"
+          wire:loading.class="opacity-60"
+          wire:loading.attr="aria-busy"
+          wire:target="{{ $this->resultsTargets() }}"
+        >
+          <!-- Products grid view -->
+          @if ($displayMode === 'grid')
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              @foreach ($products as $product)
+                <x-shop::product.card
+                  :key="$product->id"
+                  :product="$product"
+                  mode="grid"
+                />
+              @endforeach
+            </div>
+          @else
+            <!-- Products list view -->
+            <div class="grid grid-cols-1 gap-6">
+              @foreach ($products as $product)
+                <x-shop::product.card
+                  :key="$product->id"
+                  :product="$product"
+                  mode="list"
+                />
+              @endforeach
+            </div>
+          @endif
+
+          <div class="mt-4">
+            {{ $products->links() }}
+          </div>
         </div>
       </div>
     </div>

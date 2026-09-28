@@ -2,7 +2,6 @@
 
 namespace BagistoPlus\VisualDebut\Sections;
 
-use BagistoPlus\Visual\Actions\GetProducts;
 use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Range;
@@ -79,7 +78,7 @@ class CategoryPage extends LivewireSection
         return 'shop::pagination.default';
     }
 
-    #[Computed(persist: true)]
+    #[Computed]
     public function availableFilters()
     {
         if (empty($filterableAttributes = $this->context['category']->filterableAttributes)) {
@@ -100,9 +99,7 @@ class CategoryPage extends LivewireSection
     public function getViewData(): array
     {
         return [
-            'products' => app(GetProducts::class)->execute(
-                $this->buildProductParams(['category_id' => $this->context['category']->id])
-            ),
+            'products' => $this->fetchProducts(['category_id' => $this->context('category')->id]),
         ];
     }
 }
