@@ -10,20 +10,23 @@ use BagistoPlus\VisualDebut\Support\CatalogCache;
 class FlushCatalogCache
 {
     /**
-     * The events every supported Bagisto dispatches for a catalog change.
+     * The events every supported Bagisto dispatches for a catalog change, from
+     * the admin and from an import.
      *
      * @var array<int, string>
      */
     public const EVENTS = [
         'catalog.product.create.after',
         'catalog.product.update.after',
-        'catalog.product.delete.before',
+        'catalog.product.delete.after',
         'catalog.category.create.after',
         'catalog.category.update.after',
-        'catalog.category.delete.before',
+        'catalog.category.delete.after',
         'catalog.attribute.create.after',
         'catalog.attribute.update.after',
-        'catalog.attribute.delete.before',
+        'catalog.attribute.delete.after',
+        'data_transfer.imports.batch.import.after',
+        'data_transfer.imports.batch.indexing.after',
     ];
 
     public function __construct(private readonly CatalogCache $cache) {}

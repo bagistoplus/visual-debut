@@ -160,17 +160,23 @@ it('keeps each customer group apart', function (): void {
     expect($fake->paramsPerCall)->toHaveCount(2);
 });
 
-it('searches again once the catalog changes', function (): void {
+it('searches again once the catalog changes', function (string $event): void {
     $fake = recordSearches();
 
     catalogCache()->products(['category_id' => 7]);
 
-    Event::dispatch('catalog.product.update.after', (object) ['id' => 11]);
+    Event::dispatch($event, (object) ['id' => 11]);
 
     catalogCache()->products(['category_id' => 7]);
 
     expect($fake->paramsPerCall)->toHaveCount(2);
-});
+})->with([
+    'a product edit' => 'catalog.product.update.after',
+    'a product delete' => 'catalog.product.delete.after',
+    'a category delete' => 'catalog.category.delete.after',
+    'an import batch' => 'data_transfer.imports.batch.import.after',
+    'an import reindex' => 'data_transfer.imports.batch.indexing.after',
+]);
 
 // Elasticsearch already resolves ids without the join this avoids, so a store
 // on it goes straight through and pays nothing for staleness.
