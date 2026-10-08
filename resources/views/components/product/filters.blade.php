@@ -13,7 +13,11 @@
     </div>
   @endif
 
-  <x-shop::ui.accordion :id="$accordionId" :value="$this->availableFilters->pluck('id')" multiple>
+  <x-shop::ui.accordion
+    :id="$accordionId"
+    :value="$this->availableFilters->pluck('id')"
+    multiple
+  >
     @foreach ($this->availableFilters as $filter)
       <x-shop::ui.accordion.item :value="$filter->id" :title="$filter->name">
         @if ($filter->type === 'price')
@@ -58,7 +62,7 @@
                 aria-label="@lang('visual-debut::shop.search') {{ $filter->name }}"
               >
             @endif
-            <div class="max-h-64 space-y-2 overflow-y-auto pe-1">
+            <div class="-m-1 max-h-64 space-y-2 overflow-y-auto p-1 pe-2">
               @foreach ($filter->options as $option)
                 <label class="flex items-center" x-show="matches(@js($labels[$loop->index]))">
                   <input
