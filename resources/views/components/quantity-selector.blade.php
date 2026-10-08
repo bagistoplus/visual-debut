@@ -19,7 +19,14 @@
   x-data="{
       last: {{ intval($value) }},
       emit(value) {
-          if (!Number.isNaN(value) && value !== this.last) {
+          // An emptied or decimal field puts the last quantity back; Zag's blur clamp skips an empty field
+          if (!Number.isInteger(value)) {
+              this.$nextTick(() => this.$root.api?.setValue(this.last));
+
+              return;
+          }
+
+          if (value !== this.last) {
               this.last = value;
               this.$dispatch('change', value);
           }
