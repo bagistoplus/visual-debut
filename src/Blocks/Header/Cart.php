@@ -90,7 +90,12 @@ class Cart extends LivewireBlock
 
     public function updateItemQuantity($itemId, $quantity)
     {
+        // A quantity of 0 removes the item, so this can empty the cart like removeItem()
         $this->updateCartItemQuantity($itemId, $quantity);
+
+        $this->open = $this->getItemsCount() > 0;
+
+        $this->dispatch(Events::CART_UPDATED);
     }
 
     public function removeItem($itemId)
