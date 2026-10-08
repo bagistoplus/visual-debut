@@ -9,6 +9,11 @@ export interface TriggerOptions {
   onCancel: () => void;
 }
 
+type DialogElement = HTMLElement & { show(): void; hide(): void };
+
+// rendered once by components/confirm-modal.blade.php
+const confirmDialog = () => document.getElementById('confirm-modal') as DialogElement | null;
+
 export default function (Alpine: AlpineType): void {
   const confirmStore = {
     title: '',
@@ -38,12 +43,12 @@ export default function (Alpine: AlpineType): void {
       this.onConfirm = options.onConfirm || (() => {});
       this.onCancel = options.onCancel || (() => {});
 
-      window.dispatchEvent(new CustomEvent('modal:open', { detail: 'confirm' }));
+      confirmDialog()?.show();
     },
 
     confirm() {
       this.onConfirm();
-      window.dispatchEvent(new CustomEvent('modal:close', { detail: 'confirm' }));
+      confirmDialog()?.hide();
     },
   };
 

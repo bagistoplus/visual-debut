@@ -11,7 +11,7 @@
   </script>
 @endpushOnce
 
-<x-shop::ui.modal name="confirm">
+<x-shop::ui.modal id="confirm-modal" x-data>
   <x-shop::ui.modal.title x-text="$store.confirm.title" />
 
   <div class="mt-4">

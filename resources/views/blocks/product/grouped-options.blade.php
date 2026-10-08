@@ -19,6 +19,7 @@
                 </p>
               </div>
               <x-shop::quantity-selector
+                :id="'grouped-qty-' . $groupedProduct->associated_product->id"
                 :min="1"
                 :value="$groupedProduct->qty"
                 x-on:change="$wire.set('groupedProductQuantities.{{ $groupedProduct->associated_product->id }}', $event.detail, false)"
@@ -39,6 +40,7 @@
         <p class="mt-1">@lang('visual-debut::blocks.product-grouped-options.placeholder.sample-product', ['price' => '$25.00'])</p>
       </div>
       <x-shop::quantity-selector
+        id="grouped-qty-placeholder-1"
         :min="1"
         :value="1"
         disabled
@@ -50,6 +52,7 @@
         <p class="mt-1">@lang('visual-debut::blocks.product-grouped-options.placeholder.another-product', ['price' => '$15.00'])</p>
       </div>
       <x-shop::quantity-selector
+        id="grouped-qty-placeholder-2"
         :min="1"
         :value="1"
         disabled

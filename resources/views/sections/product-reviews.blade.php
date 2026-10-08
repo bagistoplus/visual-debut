@@ -156,25 +156,12 @@
       wire:submit="storeReview"
     >
       <div>
-        <label for="review">
-          @lang('shop::app.products.view.reviews.rating')
-        </label>
-        <div
-          x-rating="{value: 5}"
-          class="flex gap-1"
+        <x-shop::ui.rating
+          id="review-rating"
+          :label="trans('shop::app.products.view.reviews.rating')"
+          :value="5"
           x-on:change="$wire.set('reviewForm.rating', $event.detail, false);"
-        >
-          <template x-for="i in 5" :key="i">
-            <button x-rating:star="i" type="button">
-              <x-lucide-star class="h-5 w-5"
-                x-bind:class="{
-                    'stroke-on-background': !$star.isActive,
-                    'stroke-accent fill-accent': $star.isActive
-                }"
-              />
-            </button>
-          </template>
-        </div>
+        />
 
         @error('reviewForm.rating')
           <p class="text-danger text-xs">{{ $message }}</p>

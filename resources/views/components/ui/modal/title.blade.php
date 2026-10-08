@@ -1,3 +1,9 @@
-<h2 x-modal:title {{ $attributes->merge(['class' => 'text-lg font-semibold text-on-background']) }}>
+@aware(['id' => null])
+
+<ui-dialog-title
+  @if ($id) id="{{ $id }}-title" @endif
+  wire:ignore.self
+  {{ $attributes->merge(['class' => 'block text-lg font-semibold text-on-background']) }}
+>
   {{ $slot }}
-</h2>
+</ui-dialog-title>

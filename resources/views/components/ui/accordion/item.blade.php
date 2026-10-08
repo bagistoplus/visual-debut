@@ -1,10 +1,12 @@
-@props(['id' => null, 'title' => null])
+@props(['value', 'title' => null])
+@aware(['id' => null])
 
-@php
-  $itemAttr = $id ? ['x-accordion:item' => Js::from($id)] : ['x-accordion:item' => ''];
-@endphp
-
-<div {{ $attributes->merge(['class' => 'border-b  last:border-none'])->merge($itemAttr) }}>
+<ui-accordion-item
+  value="{{ $value }}"
+  @if ($id) id="{{ $id }}-item-{{ $value }}" @endif
+  wire:ignore.self
+  {{ $attributes->merge(['class' => 'block border-b last:border-none']) }}
+>
   @if ($title)
     <h3 class="text-base font-semibold">
       <x-shop::ui.accordion.item-trigger class="w-full">
@@ -17,4 +19,4 @@
   @else
     {{ $slot }}
   @endif
-</div>
+</ui-accordion-item>

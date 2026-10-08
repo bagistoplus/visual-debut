@@ -114,6 +114,7 @@
             @endphp
             @if (in_array($option['type'], ['select', 'radio']))
               <x-shop::quantity-selector
+                :id="'bundle-option-qty-' . $option['id']"
                 :min="1"
                 :value="$defaultProduct ? $defaultProduct['qty'] : 0"
                 x-on:change="onQuantityChange({{ $option['id'] }}, $event.detail)"

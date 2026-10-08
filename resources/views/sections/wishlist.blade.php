@@ -64,7 +64,12 @@
             </div>
 
             <div class="mt-2 hidden items-center gap-4 sm:flex">
-              <x-shop::quantity-selector :min="1" x-on:change="quantity = $event.detail" />
+              <x-shop::quantity-selector
+                :id="'wishlist-qty-' . $item->id"
+                :min="1"
+                size="sm"
+                x-on:change="quantity = $event.detail"
+              />
               @if (core()->getConfigData('sales.checkout.shopping_cart.cart_page'))
                 <x-shop::wishlist.move-to-cart-btn :id="$item->id" :product-id="$item->product->id" />
               @endif
@@ -72,7 +77,12 @@
           </div>
         </div>
         <div class="mt flex items-center gap-4 sm:hidden">
-          <x-shop::quantity-selector :min="1" x-on:change="quantity = $event.detail" />
+          <x-shop::quantity-selector
+            :id="'wishlist-qty-mobile-' . $item->id"
+            :min="1"
+            size="sm"
+            x-on:change="quantity = $event.detail"
+          />
           @if (core()->getConfigData('sales.checkout.shopping_cart.cart_page'))
             <x-shop::wishlist.move-to-cart-btn :id="$item->id" :product-id="$item->product->id" />
           @endif

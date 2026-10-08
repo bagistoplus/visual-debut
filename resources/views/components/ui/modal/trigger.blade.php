@@ -1,3 +1,3 @@
-<div class="contents" x-modal:trigger>
+<ui-dialog-trigger delegate wire:ignore.self>
   {{ $slot }}
-</div>
+</ui-dialog-trigger>

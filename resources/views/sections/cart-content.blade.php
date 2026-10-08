@@ -108,6 +108,7 @@
 
               <div class="mt-2 flex items-center">
                 <x-shop::quantity-selector
+                  :id="'cart-item-qty-' . $item->id"
                   :min="1"
                   value="{{ $item->quantity }}"
                   x-on:change="$wire.updateItemQuantity({{ $item->id }}, $event.detail)"

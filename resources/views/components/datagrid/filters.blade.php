@@ -1,4 +1,4 @@
-<x-shop::ui.drawer {{ $attributes }} :title="trans('shop::app.components.datagrid.toolbar.filter.apply-filter')">
+<x-shop::ui.drawer id="datagrid-filters-drawer" {{ $attributes }} :title="trans('shop::app.components.datagrid.toolbar.filter.apply-filter')">
   <x-slot:trigger>
     <x-shop::ui.button
       icon="lucide-filter"
@@ -157,13 +157,14 @@
     </template>
 
     <div>
-      <x-shop::ui.button
-        class="w-full"
-        x-on:click="$modal.hide()"
-        x-datagrid:apply-filters=""
-      >
-        @lang('shop::app.components.datagrid.toolbar.filter.apply-filter')
-      </x-shop::ui.button>
+      <x-shop::ui.modal.close>
+        <x-shop::ui.button
+          class="w-full"
+          x-datagrid:apply-filters=""
+        >
+          @lang('shop::app.components.datagrid.toolbar.filter.apply-filter')
+        </x-shop::ui.button>
+      </x-shop::ui.modal.close>
     </div>
   </div>
 </x-shop::ui.drawer>

@@ -1,4 +1,4 @@
-@props(['maxPrice', 'noHeader' => false])
+@props(['maxPrice', 'noHeader' => false, 'accordionId' => 'product-filters'])
 
 <div {{ $attributes->merge(['class' => 'space-y-6']) }}>
   @if (!$noHeader)
@@ -13,9 +13,9 @@
     </div>
   @endif
 
-  <x-shop::ui.accordion :value="$this->availableFilters->pluck('id')" multiple>
+  <x-shop::ui.accordion :id="$accordionId" :value="$this->availableFilters->pluck('id')" multiple>
     @foreach ($this->availableFilters as $filter)
-      <x-shop::ui.accordion.item :id="$filter->id" :title="$filter->name">
+      <x-shop::ui.accordion.item :value="$filter->id" :title="$filter->name">
         @if ($filter->type === 'price')
           <div wire:ignore class="py-3 pr-3">
             <x-shop::range-input

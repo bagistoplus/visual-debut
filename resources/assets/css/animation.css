@@ -4,6 +4,142 @@
   --animate-slide-out-up: slideOutUp 0.3s ease-in forwards;
   --animate-slide-in-up: slideInUp 0.3s ease-out forwards;
   --animate-slide-out-down: slideOutDown 0.3s ease-in forwards;
+  --animate-accordion-open: accordionOpen 200ms ease-out;
+  --animate-accordion-close: accordionClose 200ms ease-out forwards;
+  --animate-collapsible-down: collapsibleDown 200ms ease-out;
+  --animate-collapsible-up: collapsibleUp 200ms ease-out forwards;
+  --animate-fade-in: fadeIn 200ms ease-out;
+  --animate-fade-out: fadeOut 150ms ease-in forwards;
+  --animate-popover-in: popoverIn 150ms ease-out;
+  --animate-popover-out: popoverOut 75ms ease-in forwards;
+  --animate-drawer-in-start: drawerInStart 300ms ease-in-out;
+  --animate-drawer-out-start: drawerOutStart 300ms ease-in-out forwards;
+  --animate-drawer-in-end: drawerInEnd 300ms ease-in-out;
+  --animate-drawer-out-end: drawerOutEnd 300ms ease-in-out forwards;
+  --animate-drawer-in-top: drawerInTop 300ms ease-in-out;
+  --animate-drawer-out-top: drawerOutTop 300ms ease-in-out forwards;
+  --animate-drawer-in-bottom: drawerInBottom 300ms ease-in-out;
+  --animate-drawer-out-bottom: drawerOutBottom 300ms ease-in-out forwards;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  }
+
+  /* Alpine's default x-transition, scaled from the side the panel opens on */
+  @keyframes popoverIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+
+  @keyframes popoverOut {
+    to {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes drawerInStart {
+    from {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes drawerOutStart {
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes drawerInEnd {
+    from {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes drawerOutEnd {
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes drawerInTop {
+    from {
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes drawerOutTop {
+    to {
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes drawerInBottom {
+    from {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes drawerOutBottom {
+    to {
+      transform: translateY(100%);
+    }
+  }
+
+  /* overflow is clipped only while these run, so focus rings and slider thumbs show at rest */
+  @keyframes accordionOpen {
+    from {
+      grid-template-rows: 0fr;
+      overflow: hidden;
+    }
+    to {
+      grid-template-rows: 1fr;
+      overflow: hidden;
+    }
+  }
+
+  @keyframes accordionClose {
+    from {
+      grid-template-rows: 1fr;
+      overflow: hidden;
+    }
+    to {
+      grid-template-rows: 0fr;
+      overflow: hidden;
+    }
+  }
+
+  @keyframes collapsibleDown {
+    from {
+      height: 0;
+      overflow: hidden;
+    }
+    to {
+      height: var(--height);
+      overflow: hidden;
+    }
+  }
+
+  @keyframes collapsibleUp {
+    from {
+      height: var(--height);
+      overflow: hidden;
+    }
+    to {
+      height: 0;
+      overflow: hidden;
+    }
+  }
 
   @keyframes slideInDown {
     from {

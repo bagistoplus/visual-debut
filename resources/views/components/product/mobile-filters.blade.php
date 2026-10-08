@@ -1,8 +1,10 @@
 @props(['maxPrice', 'sortOptions', 'paginationLimits'])
 
-<x-shop::ui.drawer :title="trans('visual-debut::shop.sort-and-filter')" class="md:hidden">
+<x-shop::ui.drawer id="mobile-filters-drawer" :title="trans('visual-debut::shop.sort-and-filter')" class="md:hidden">
   <x-slot:trigger>
     <x-shop::ui.button
+      id="mobile-filters-drawer-trigger"
+      wire:ignore.self
       class="w-full"
       variant="outline"
       color="neutral"
@@ -30,7 +32,7 @@
   </x-slot:footer>
 
   <div class="flex-1 space-y-6 border-t p-4">
-    <x-shop::product.filters no-header :maxPrice="$maxPrice" />
+    <x-shop::product.filters no-header accordion-id="mobile-product-filters" :maxPrice="$maxPrice" />
 
     @if ($sortOptions->isNotEmpty())
       <label class="block">

@@ -9,22 +9,24 @@
         </a>
       </li>
     @else
-      <li x-collapsible>
-        <button
-          type="button"
-          class="text-on-background flex w-full items-center justify-between rounded px-3 py-2 text-sm font-medium hover:bg-neutral-100"
-          x-collapsible:trigger
-        >
-          <span>{{ $category->name }}</span>
-          <x-lucide-chevron-right x-collapsible:indicator class="h-4 w-4 transform transition-transform data-[state=open]:rotate-90" />
-        </button>
-        <div x-collapsible:content class="space-y-2 p-3">
-          @foreach ($category->children as $subCategory)
-            <a href="{{ $subCategory->url }}" class="text-on-background block text-sm hover:underline">
-              {{ $subCategory->name }}
-            </a>
-          @endforeach
-        </div>
+      <li>
+        <x-shop::ui.collapsible :id="'mobile-menu-category-' . $category->id">
+          <x-shop::ui.collapsible.trigger class="text-on-background flex w-full items-center justify-between rounded px-3 py-2 text-sm font-medium hover:bg-neutral-100">
+            <span>{{ $category->name }}</span>
+            <x-shop::ui.collapsible.indicator class="transition-transform data-[state=open]:rotate-90">
+              <x-lucide-chevron-right class="h-4 w-4" />
+            </x-shop::ui.collapsible.indicator>
+          </x-shop::ui.collapsible.trigger>
+          <x-shop::ui.collapsible.content>
+            <div class="space-y-2 p-3">
+              @foreach ($category->children as $subCategory)
+                <a href="{{ $subCategory->url }}" class="text-on-background block text-sm hover:underline">
+                  {{ $subCategory->name }}
+                </a>
+              @endforeach
+            </div>
+          </x-shop::ui.collapsible.content>
+        </x-shop::ui.collapsible>
       </li>
     @endif
   @endforeach

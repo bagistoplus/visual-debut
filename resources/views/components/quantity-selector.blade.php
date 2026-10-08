@@ -1,33 +1,63 @@
 @props([
+    'id',
     'label' => null,
     'value' => 1,
     'min' => 0,
+    'size' => 'md',
 ])
 
 @php
-  $props = ['value' => intval($value), 'min' => $min];
+  $size = in_array($size, ['xs', 'sm', 'md', 'lg'], true) ? $size : 'md';
 @endphp
 
-<div
-  x-data
-  x-number-input="@js($props)"
-  {{ $attributes->merge(['class' => 'flex items-center space-x-4']) }}
+{{-- Dispatches `change` with the new number when a button is pressed or a typed value is committed --}}
+<ui-number-input
+  id="{{ $id }}"
+  default-value="{{ intval($value) }}"
+  min="{{ $min }}"
+  wire:ignore.self
+  x-data="{
+      last: {{ intval($value) }},
+      emit(value) {
+          if (!Number.isNaN(value) && value !== this.last) {
+              this.last = value;
+              this.$dispatch('change', value);
+          }
+      },
+  }"
+  x-on:ui-number-input:value-commit="emit($event.detail.valueAsNumber)"
+  x-on:click="$event.target.closest('button') && emit($el.api.valueAsNumber)"
+  {{ $attributes->merge(['class' => 'flex items-center gap-4']) }}
 >
   @if ($label)
-    <labe x-input-number:label class="text-sm font-medium">
-      {{ $label }}
-    </labe>
+    <ui-number-input-label delegate>
+      <label id="{{ $id }}-label" wire:ignore.self class="text-sm font-medium">
+        {{ $label }}
+      </label>
+    </ui-number-input-label>
   @endif
-  <div class="focus-within:ring-primary flex items-center rounded-[--input-radius] border focus-within:ring-2">
-    <button x-number-input:decrement-trigger class="hover:text-primary disabled:hover:text-neutral cursor-pointer p-1 transition-colors disabled:cursor-default">
-      <x-lucide-minus class="h-4 w-4" />
-      </svg>
-    </button>
+  <ui-number-input-control wire:ignore.self class="qty qty-{{ $size }}">
+    <ui-number-input-decrement-trigger delegate>
+      <button id="{{ $id }}-decrement" type="button" wire:ignore.self class="qty-btn">
+        @svg('lucide-minus')
+      </button>
+    </ui-number-input-decrement-trigger>
 
-    <input x-number-input:input class="input-sm w-16 appearance-none rounded-none border-none py-0.5 text-center text-sm focus:ring-0">
+    <ui-number-input-input delegate>
+      {{-- The native change event would reach the caller's x-on:change without a number --}}
+      <input
+        id="{{ $id }}-input"
+        value="{{ intval($value) }}"
+        wire:ignore.self
+        x-on:change.stop=""
+        class="qty-input"
+      >
+    </ui-number-input-input>
 
-    <button x-number-input:increment-trigger class="hover:text-primary disabled:hover:text-neutral disable:cursor-default p-1 transition-colors">
-      <x-lucide-plus class="h-4 w-4" />
-    </button>
-  </div>
-</div>
+    <ui-number-input-increment-trigger delegate>
+      <button id="{{ $id }}-increment" type="button" wire:ignore.self class="qty-btn">
+        @svg('lucide-plus')
+      </button>
+    </ui-number-input-increment-trigger>
+  </ui-number-input-control>
+</ui-number-input>

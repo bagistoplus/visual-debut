@@ -4,35 +4,32 @@
 
 <div
   {{ $block->editor_attributes }}
-  x-accordion:item="'{{ $block->id }}'"
   class="accordion-row border-b last:border-none"
 >
-  <button x-accordion:item-trigger class="flex w-full cursor-pointer items-center justify-between py-2">
-    <span class="flex items-center gap-2">
-      @if ($block->settings->icon)
-        <span style="width: {{ $iconWidth }};">
-          @svg($block->settings->icon, ['class' => 'size-full'])
+  <x-shop::ui.accordion.item :value="$block->id">
+    <x-shop::ui.accordion.item-trigger class="cursor-pointer justify-between gap-4">
+      <span class="flex items-center gap-2">
+        @if ($block->settings->icon)
+          <span style="width: {{ $iconWidth }};">
+            @svg($block->settings->icon, ['class' => 'size-full'])
+          </span>
+        @endif
+        <span class="font-medium" {{ $block->liveUpdate()->text('heading') }}>
+          {{ $block->settings->heading }}
         </span>
-      @endif
-      <span class="font-medium" {{ $block->liveUpdate()->text('heading') }}>
-        {{ $block->settings->heading }}
       </span>
-    </span>
 
-    <span x-accordion:item-indicator class="ml-4 shrink-0 transition-transform duration-200 data-[state=open]:rotate-180">
-      @if (($accordionIconType ?? 'caret') === 'caret')
-        <x-lucide-chevron-down class="h-5 w-5" />
-      @else
-        <x-lucide-plus class="h-5 w-5" />
-      @endif
-    </span>
-  </button>
+      <x-slot:indicator>
+        @if (($accordionIconType ?? 'caret') === 'caret')
+          <x-lucide-chevron-down class="h-5 w-5" />
+        @else
+          <x-lucide-plus class="h-5 w-5" />
+        @endif
+      </x-slot:indicator>
+    </x-shop::ui.accordion.item-trigger>
 
-  <div
-    x-accordion:item-content
-    x-collapse
-    class="pb-4"
-  >
-    @children
-  </div>
+    <x-shop::ui.accordion.item-content class="pb-4">
+      @children
+    </x-shop::ui.accordion.item-content>
+  </x-shop::ui.accordion.item>
 </div>

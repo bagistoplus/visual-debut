@@ -1,11 +1,12 @@
-@props(['value' => [], 'multiple' => false])
+@props(['id', 'value' => [], 'multiple' => false])
 
-@php
-  $props = [
-      'value' => $value,
-      'multiple' => $multiple,
-  ];
-@endphp
-<div x-accordion='@json($props)' {{ $attributes }}>
+<ui-accordion
+  id="{{ $id }}"
+  collapsible
+  presence
+  @if ($multiple) multiple @endif
+  default-value="{{ collect($value)->implode(',') }}"
+  {{ $attributes }}
+>
   {{ $slot }}
-</div>
+</ui-accordion>

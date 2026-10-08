@@ -4,8 +4,9 @@
 
 <div
   {{ $block->editor_attributes }}
-  x-accordion="{ value: @js($openByDefault), multiple: true }"
   class="accordion w-full {{ $paddingClasses }}"
 >
-  @children
+  <x-shop::ui.accordion :id="'accordion-' . $block->id" :value="$openByDefault" multiple>
+    @children
+  </x-shop::ui.accordion>
 </div>

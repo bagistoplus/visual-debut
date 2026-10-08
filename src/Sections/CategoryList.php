@@ -133,40 +133,28 @@ class CategoryList extends BladeSection
         $settings = $this->section->settings;
         $itemsPerView = Tailwind::toResponsiveValue($settings->columns ?? 4);
         $gap = $settings->gap ?? 4;
-        $hasResponsive = $itemsPerView->has('mobile') || $itemsPerView->has('tablet');
 
-        if ($hasResponsive) {
-            $config['slidesPerView'] = (int) $itemsPerView->get('mobile', $itemsPerView->value());
+        // Desktop first, like the grid layout's mobile:/tablet: classes: tablet falls back to
+        // the default, mobile to tablet. The tiers use the same widths as those variants.
+        $perPage = (int) $itemsPerView->value();
+        $perPageTablet = $itemsPerView->has('tablet') ? (int) $itemsPerView->get('tablet') : null;
+        $perPageMobile = $itemsPerView->has('mobile') ? (int) $itemsPerView->get('mobile') : null;
 
-            $breakpoints = [];
+        $tablet = $perPageTablet ?? $perPage;
+        $mobile = $perPageMobile ?? $tablet;
 
-            if ($itemsPerView->has('tablet')) {
-                $breakpoints['(min-width: 767px)'] = [
-                    'slidesPerView' => (int) $itemsPerView->get('tablet'),
-                ];
-            }
+        $autoplay = (bool) ($settings->autoplay ?? false);
 
-            $breakpoints['(min-width: 1024px)'] = [
-                'slidesPerView' => (int) $itemsPerView->value(),
-            ];
-
-            $config['breakpoints'] = $breakpoints;
-        } else {
-            $config['slidesPerView'] = (int) $itemsPerView->value();
-        }
-
-        $config['spaceBetween'] = $gap * 4;
-        $config['loop'] = (bool) (($settings->loop ?? false) || ($settings->autoplay ?? false));
-
-        if ($settings->autoplay ?? false) {
-            $config['autoplay'] = [
-                'delay' => (int) ($settings->autoplay_delay ?? 3000),
-                'pauseOnHover' => true,
-                'pauseOnFocus' => true,
-            ];
-        }
-
-        return $config;
+        return [
+            'slides-per-page' => "{$mobile} 640:{$tablet} 1024:{$perPage}",
+            'per-page' => $perPage,
+            'per-page-tablet' => $perPageTablet,
+            'per-page-mobile' => $perPageMobile,
+            'spacing' => ($gap * 4).'px',
+            'loop' => $autoplay || (bool) ($settings->loop ?? false),
+            'autoplay' => $autoplay,
+            'autoplay-delay' => (int) ($settings->autoplay_delay ?? 3000),
+        ];
     }
 
     protected function getCategories()

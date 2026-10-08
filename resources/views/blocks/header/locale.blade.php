@@ -5,7 +5,7 @@
 
 @if ($locales->count() > 1)
   <div {{ $block->editor_attributes }} class="contents">
-    <x-shop::ui.menu @class([
+    <x-shop::ui.menu :id="'header-locale-' . $block->id" @class([
       'hidden sm:block' => $block->settings->hide_on_mobile ?? false,
       'block' => !($block->settings->hide_on_mobile ?? false),
     ])>

@@ -25,7 +25,7 @@
         @endforeach
       </select>
     @else
-      <x-shop::ui.menu class="hidden sm:block">
+      <x-shop::ui.menu id="language-selector-menu" class="hidden sm:block">
         <x-shop::ui.menu.trigger class="hover:text-primary flex items-center p-2 transition-colors" aria-label="{{ trans('visual-debut::shop.language') }}">
           @svg($icon, ['class' => 'h-5 w-5'])
           <span class="ms-1 uppercase">{{ $currentLocale->code }}</span>

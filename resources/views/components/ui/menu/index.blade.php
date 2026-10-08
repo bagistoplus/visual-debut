@@ -1,13 +1,9 @@
-@props(['placement' => 'end'])
+@props(['id', 'placement' => 'end'])
 
-@php
-  $props = ['placement' => $placement];
-@endphp
-
-<div
-  x-data
-  x-dropdown="@js($props)"
-  {{ $attributes->merge(['class' => 'relative']) }}
+<ui-popover
+  id="{{ $id }}"
+  positioning-placement="{{ $placement === 'start' ? 'bottom-start' : 'bottom-end' }}"
+  {{ $attributes }}
 >
   {{ $slot }}
-</div>
+</ui-popover>

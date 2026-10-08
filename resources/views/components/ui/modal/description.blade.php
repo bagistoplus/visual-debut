@@ -1,3 +1,9 @@
-<p x-modal:description {{ $attributes }}>
+@aware(['id' => null])
+
+<ui-dialog-description
+  @if ($id) id="{{ $id }}-description" @endif
+  wire:ignore.self
+  {{ $attributes->merge(['class' => 'block']) }}
+>
   {{ $slot }}
-</p>
+</ui-dialog-description>

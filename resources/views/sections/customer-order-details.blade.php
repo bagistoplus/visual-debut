@@ -54,14 +54,40 @@
         ['name' => 'shipments', 'title' => trans('shop::app.customers.account.orders.view.shipments.shipments'), 'enabled' => $order->shipments->isNotEmpty()],
         ['name' => 'refunds', 'title' => trans('shop::app.customers.account.orders.view.refunds.refunds'), 'enabled' => $order->refunds->isNotEmpty()],
     ];
+
+    $tabs = collect($tabs)->where('enabled', true)->values();
   @endphp
-  <div class="mb-8" x-tabs>
-    <div x-tabs:tablist class="border-on-background/10 mb-6 flex border-b-2 max-sm:overflow-x-auto">
-      @foreach (collect($tabs)->where('enabled', true) as $tab)
+  <div
+    class="mb-8"
+    x-data="{
+        selected: 'information',
+        names: @js($tabs->pluck('name')),
+        select(name) {
+            this.selected = name;
+            document.getElementById('order-tab-' + name).focus();
+        },
+        move(step) {
+            const index = this.names.indexOf(this.selected);
+            this.select(this.names[(index + step + this.names.length) % this.names.length]);
+        },
+    }"
+  >
+    <div role="tablist" class="border-on-background/10 mb-6 flex border-b-2 max-sm:overflow-x-auto">
+      @foreach ($tabs as $tab)
         <button
-          x-tabs:tab="'{{ $tab['name'] }}'"
+          id="order-tab-{{ $tab['name'] }}"
+          type="button"
+          role="tab"
+          aria-controls="order-panel-{{ $tab['name'] }}"
+          x-bind:aria-selected="selected === '{{ $tab['name'] }}'"
+          x-bind:tabindex="selected === '{{ $tab['name'] }}' ? 0 : -1"
+          x-on:click="select('{{ $tab['name'] }}')"
+          x-on:keydown.arrow-right.prevent="move(1)"
+          x-on:keydown.arrow-left.prevent="move(-1)"
+          x-on:keydown.home.prevent="select(names[0])"
+          x-on:keydown.end.prevent="select(names.at(-1))"
           class="hover:text-primary cursor-pointer px-5 py-3 font-medium focus:outline-none"
-          x-bind:class="{ 'border-b-4 border-primary text-primary -mb-px font-semibold': $tab.isSelected }"
+          x-bind:class="{ 'border-b-4 border-primary text-primary -mb-px font-semibold': selected === '{{ $tab['name'] }}' }"
         >
           {{ $tab['title'] }}
         </button>
@@ -69,7 +95,12 @@
     </div>
 
     <!-- Information Tab -->
-    <div x-tabs:panel="'information'">
+    <div
+      id="order-panel-information"
+      role="tabpanel"
+      aria-labelledby="order-tab-information"
+      x-show="selected === 'information'"
+    >
       <div class="my-4 flex gap-4 sm:hidden">
         @if ($order->canReorder() && core()->getConfigData('sales.order_settings.reorder.shop'))
           <x-shop::ui.button
@@ -317,7 +348,12 @@
 
     <!-- Invoices Tab -->
     @if ($order->invoices->count())
-      <div x-tabs:panel="'invoices'">
+      <div
+        id="order-panel-invoices"
+        role="tabpanel"
+        aria-labelledby="order-tab-invoices"
+        x-show="selected === 'invoices'"
+      >
         @foreach ($order->invoices as $invoice)
           <div class="bg-background mb-6 overflow-hidden rounded-lg shadow">
             <div class="flex items-center justify-between gap-4 border-b px-4 py-3">
@@ -564,7 +600,12 @@
 
     <!-- Shipments Tab -->
     @if ($order->shipments->count())
-      <div x-tabs:panel="'shipments'">
+      <div
+        id="order-panel-shipments"
+        role="tabpanel"
+        aria-labelledby="order-tab-shipments"
+        x-show="selected === 'shipments'"
+      >
         @foreach ($order->shipments as $shipment)
           <div class="bg-background mb-6 overflow-hidden rounded-lg shadow">
             <div class="flex items-center justify-between gap-4 border-b px-4 py-3">
@@ -694,7 +735,12 @@
 
     <!-- Refunds Tab -->
     @if ($order->refunds->count())
-      <div x-tabs:panel="'refunds'">
+      <div
+        id="order-panel-refunds"
+        role="tabpanel"
+        aria-labelledby="order-tab-refunds"
+        x-show="selected === 'refunds'"
+      >
         @foreach ($order->refunds as $refund)
           <div class="bg-background mb-6 overflow-hidden rounded-lg shadow">
             <div class="flex items-center justify-between gap-4 border-b px-4 py-3">

@@ -1,24 +1,21 @@
 @props([
-    // Allowed values: bottom-start, bottom-end, top-start, or top-end (default: bottom-start)
+    'id',
+    // Any floating-ui placement, e.g. bottom-start, bottom-end, top-start, top-end
     'placement' => 'bottom-start',
 ])
 
-<div
-  x-data
-  x-dropdown
-  class="relative"
->
-  <!-- Trigger slot -->
-  <div x-dropdown:trigger class="contents">
+<ui-popover id="{{ $id }}" positioning-placement="{{ $placement }}" {{ $attributes }}>
+  <ui-popover-trigger delegate wire:ignore.self>
     {{ $trigger }}
-  </div>
+  </ui-popover-trigger>
 
-  <!-- Dropdown content slot -->
-  <div
-    x-dropdown:content
-    x-cloak
-    class="bg-surface border-on-surface/8 absolute"
-  >
-    {{ $slot }}
-  </div>
-</div>
+  <ui-popover-positioner id="{{ $id }}-positioner" wire:ignore.self>
+    <ui-popover-content
+      id="{{ $id }}-content"
+      wire:ignore.self
+      class="z-50 origin-(--transform-origin) data-[state=open]:animate-popover-in data-[state=closed]:animate-popover-out"
+    >
+      {{ $slot }}
+    </ui-popover-content>
+  </ui-popover-positioner>
+</ui-popover>

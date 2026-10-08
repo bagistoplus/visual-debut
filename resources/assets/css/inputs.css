@@ -154,3 +154,94 @@ label[required]:after {
     }
   }
 }
+
+/* Quantity selector (components/quantity-selector.blade.php), same look as BlocksPro's */
+.qty {
+  display: inline-flex;
+  align-items: center;
+  border: var(--input-border-width, 1px) solid
+    var(--input-color, color-mix(in oklab, var(--color-on-background) 20%, transparent));
+  border-radius: var(--input-radius, 0.375rem);
+
+  &:focus-within {
+    border-color: transparent;
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-primary);
+  }
+}
+
+.qty-btn {
+  flex-shrink: 0;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: color 150ms;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+
+  &:disabled,
+  &[data-disabled] {
+    cursor: default;
+    opacity: 0.4;
+  }
+
+  & svg {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+/* Also undoes the global text input rule above: size, padding, border, background, shadow and focus ring */
+.qty-input {
+  width: 3rem;
+  height: 100%;
+  padding: 0;
+  appearance: none;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.qty-xs {
+  height: calc(var(--input-size-base, 0.25rem) * 6);
+  font-size: 0.6875rem;
+
+  & .qty-btn {
+    padding: 0.125rem 0.25rem;
+  }
+}
+
+.qty-sm {
+  height: calc(var(--input-size-base, 0.25rem) * 8);
+  font-size: 0.75rem;
+
+  & .qty-btn {
+    padding: 0.25rem 0.375rem;
+  }
+}
+
+.qty-md {
+  height: calc(var(--input-size-base, 0.25rem) * 10);
+  font-size: 0.875rem;
+
+  & .qty-btn {
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+.qty-lg {
+  height: calc(var(--input-size-base, 0.25rem) * 12);
+  font-size: 1.125rem;
+
+  & .qty-btn {
+    padding: 0.25rem 0.75rem;
+  }
+}
