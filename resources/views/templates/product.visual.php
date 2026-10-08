@@ -60,7 +60,7 @@ return TemplateBuilder::make()
                         ->id('title')
                         ->settings([
                             'heading_level' => 'h1',
-                            'typography' => 'heading-1',
+                            'typography' => 'heading-2',
                         ]),
                     PresetBlock::make(ProductPrice::class)
                         ->id('price')
