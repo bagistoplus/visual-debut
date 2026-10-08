@@ -43,7 +43,6 @@ class ServiceProvider extends ThemeServiceProvider
         $this->bootLivewireComponents();
         $this->bootViewEventListeners();
         $this->bootLivewireFeatures();
-        $this->bootValidationTranslations();
         $this->bootCatalogCache();
 
         $this->whenActive(function () {
@@ -92,12 +91,5 @@ class ServiceProvider extends ThemeServiceProvider
     protected function bootCatalogCache(): void
     {
         Event::listen(FlushCatalogCache::EVENTS, FlushCatalogCache::class);
-    }
-
-    protected function bootValidationTranslations(): void
-    {
-        app('translator')->addLines([
-            'validation.uploaded' => trans('visual-debut::validation.uploaded'),
-        ], app()->getLocale());
     }
 }
