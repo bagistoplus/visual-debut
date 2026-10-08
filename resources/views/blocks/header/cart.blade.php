@@ -1,7 +1,11 @@
 <div
   id="cart-preview"
-  x-data
-  x-effect="$el.querySelector('ui-popover')?.api?.setOpen($wire.open)"
+  x-data="{
+      syncPanel(open) {
+          this.$root.querySelector('ui-popover')?.api?.setOpen(open);
+      },
+  }"
+  x-effect="syncPanel($wire.open)"
   x-on:ui-popover:open-change="$wire.open = $event.detail.open"
   @class([
       'relative',
@@ -16,10 +20,7 @@
   <x-shop::ui.dropdown id="cart-preview-popover" placement="bottom-end">
     <x-slot:trigger>
       <!-- Cart Button -->
-      <button
-        class="relative p-2"
-        aria-label="{{ trans('visual-debut::shop.cart.preview') }}"
-      >
+      <button class="relative p-2" aria-label="{{ trans('visual-debut::shop.cart.preview') }}">
         <x-lucide-shopping-cart class="hover:text-primary h-5 w-5 transition-colors" />
 
         @island(name: 'cart-badge', defer: $this->shouldDeferCartBody(), always: true)
