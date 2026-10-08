@@ -82,11 +82,11 @@
           </template>
 
           <template x-if="attribute.swatch_type === 'text'">
-            <div class="grid grid-cols-5 gap-2">
+            <div class="flex flex-wrap gap-2">
               <template x-for="option in attribute.options" :key="option.id">
                 <button
                   :class="[
-                      'py-2 px-3 text-sm font-medium rounded-md relative',
+                      'min-w-12 py-2 px-3 text-sm font-medium whitespace-nowrap rounded-md relative',
                       selections[attribute.id] === option.id ? 'bg-primary text-on-primary' :
                       'bg-background text-on-background/90 border hover:bg-surface-alt',
                       !option.isAvailable ? 'cursor-not-allowed text-on-background' : ''
@@ -111,11 +111,11 @@
   <div {{ $block->editor_attributes }} class="space-y-4">
     <div class="mb-4 max-w-72">
       <label class="text-muted mb-1 block font-medium">@lang('visual-debut::blocks.product-variant-picker.placeholder.size')</label>
-      <div class="grid grid-cols-5 gap-2">
-        <button class="bg-primary text-on-primary rounded-md px-3 py-2 text-sm font-medium">S</button>
-        <button class="bg-background text-on-background/90 rounded-md border px-3 py-2 text-sm font-medium">M</button>
-        <button class="bg-background text-on-background/90 rounded-md border px-3 py-2 text-sm font-medium">L</button>
-        <button class="bg-background text-on-background/90 rounded-md border px-3 py-2 text-sm font-medium">XL</button>
+      <div class="flex flex-wrap gap-2">
+        <button class="bg-primary text-on-primary min-w-12 rounded-md px-3 py-2 text-sm font-medium">S</button>
+        <button class="bg-background text-on-background/90 min-w-12 rounded-md border px-3 py-2 text-sm font-medium">M</button>
+        <button class="bg-background text-on-background/90 min-w-12 rounded-md border px-3 py-2 text-sm font-medium">L</button>
+        <button class="bg-background text-on-background/90 min-w-12 rounded-md border px-3 py-2 text-sm font-medium">XL</button>
       </div>
     </div>
     <div class="mb-4 max-w-72">
