@@ -343,7 +343,11 @@ class ProductInformation extends LivewireSection
             }
         } else {
             session()->flash('error', $result['message']);
-            $this->redirect($result['redirect_url']);
+
+            // Bagisto sends no redirect for some failures, such as insufficient stock; the error then shows in place
+            if (! empty($result['redirect_url'])) {
+                $this->redirect($result['redirect_url']);
+            }
         }
     }
 
