@@ -1,4 +1,4 @@
-import { defineScope, defineComponent, setup } from 'alpine-define-component';
+import type { Alpine as AlpineType } from 'alpinejs';
 
 interface Product {
   id: number;
@@ -20,22 +20,8 @@ interface Props {
   options?: BundleOption[];
 }
 
-interface ProductBundleOptionScope {
-  option: BundleOption;
-  isSelected(productId: number): boolean;
-  updateSelection(value: any): void;
-}
-
-interface ProductBundleSummaryItemScope {
-  label: string;
-  products: Product[];
-  isSelected(productId: number): boolean;
-}
-
-export default defineComponent({
-  name: 'product-bundle',
-
-  setup: setup((props: Props) => {
+export default function (Alpine: AlpineType) {
+  Alpine.data('VisualProductBundle', (props: Props) => {
     return {
       options: props.options ?? [],
       selectedProducts: {} as Record<number, any>,
@@ -85,6 +71,10 @@ export default defineComponent({
         });
       },
 
+      optionHasSelection(option: BundleOption) {
+        return option.products.some((product: Product) => this.productIsSelected(option.id, product.id));
+      },
+
       productIsSelected(optionId: number, productId: number) {
         const selected = this.selectedProducts[optionId];
         return Array.isArray(selected) ? selected.includes(productId) : selected === productId;
@@ -103,7 +93,7 @@ export default defineComponent({
         this.$wire.set('bundleProductQuantities', this.quantities, false);
       },
 
-      onSelectionChange(optionId: number, _value: any) {
+      onSelectionChange(optionId: number) {
         const option = this.options.find((opt: BundleOption) => opt.id === optionId);
 
         if (option?.type === 'checkbox') {
@@ -111,52 +101,5 @@ export default defineComponent({
         }
       },
     };
-  }),
-
-  parts: {
-    option: defineScope({
-      name: 'option',
-      setup(api, el, { value }) {
-        const option = api.options.find((o: BundleOption) => o.id === Number(value))!;
-
-        return {
-          option,
-
-          isSelected(productId: number) {
-            return api.productIsSelected(option.id, productId);
-          },
-
-          updateSelection(value: any) {
-            api.onSelectionChange(option.id, value);
-          },
-        };
-      },
-
-      bindings(api, scope) {
-        return {
-          'x-model.number': `selectedProducts[${scope.option.id}]`,
-          'x-on:change': (event: Event) => scope.updateSelection((event.target as HTMLInputElement).value),
-        };
-      },
-    }),
-
-    summaryItem: defineScope({
-      name: 'summaryItem',
-      setup(api, _, ctx) {
-        const option = api.options.find((o: BundleOption) => o.id === Number(ctx.value))!;
-        return {
-          label: option.label,
-          products: option.products,
-          isSelected(productId: number) {
-            return api.productIsSelected(option.id, productId);
-          },
-        };
-      },
-      bindings(_, scope) {
-        return {
-          'x-show': () => scope.products.some((p) => scope.isSelected(p.id)),
-        };
-      },
-    }),
-  },
-});
+  });
+}

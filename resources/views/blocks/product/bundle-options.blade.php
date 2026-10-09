@@ -6,8 +6,7 @@
 
     <div
       {{ $block->editor_attributes }}
-      x-data
-      x-product-bundle="@js(['options' => $config['options']])"
+      x-data="VisualProductBundle(@js(['options' => $config['options']]))"
     >
       <div class="grid gap-2">
         @foreach ($config['options'] as $option)
@@ -17,7 +16,8 @@
                 <span class="text-sm font-semibold">{{ $option['label'] }}</span>
                 <select
                   class="mt-1 w-full"
-                  x-product-bundle:option="{{ $option['id'] }}"
+                  x-model.number="selectedProducts[{{ $option['id'] }}]"
+                  x-on:change="onSelectionChange({{ $option['id'] }})"
                   wire:model.number="bundleProductOptions.{{ $option['id'] }}"
                 >
                   @if (!$option['is_required'])
@@ -39,7 +39,8 @@
                 <select
                   multiple
                   class="mt-1 w-full"
-                  x-product-bundle:option="{{ $option['id'] }}"
+                  x-model.number="selectedProducts[{{ $option['id'] }}]"
+                  x-on:change="onSelectionChange({{ $option['id'] }})"
                   wire:model.number="bundleProductOptions.{{ $option['id'] }}"
                 >
                   @if (!$option['is_required'])
@@ -77,7 +78,8 @@
                       type="radio"
                       name="bundle_options[{{ $option['id'] }}][]"
                       value="{{ $product['id'] }}"
-                      x-product-bundle:option="{{ $option['id'] }}"
+                      x-model.number="selectedProducts[{{ $option['id'] }}]"
+                      x-on:change="onSelectionChange({{ $option['id'] }})"
                       wire:model.number="bundleProductOptions.{{ $option['id'] }}"
                     >
                     <span>{{ $product['name'] }} + {{ $product['price']['final']['formatted_price'] }}</span>
@@ -94,7 +96,8 @@
                       type="checkbox"
                       name="bundle_options[{{ $option['id'] }}][]"
                       value="{{ $product['id'] }}"
-                      x-product-bundle:option="{{ $option['id'] }}"
+                      x-model.number="selectedProducts[{{ $option['id'] }}]"
+                      x-on:change="onSelectionChange({{ $option['id'] }})"
                       wire:model.number="bundleProductOptions.{{ $option['id'] }}"
                     >
                     <span>{{ $product['name'] }} + {{ $product['price']['final']['formatted_price'] }}</span>
@@ -133,11 +136,11 @@
 
       <ul class="mt-2 space-y-3">
         <template x-for="(option) in options" x-bind:key="option.id">
-          <li x-product-bundle:summary-item="option.id">
+          <li x-show="optionHasSelection(option)">
             <span x-text="option.label" class="text-on-background font-semibold"></span>
             <div>
               <template x-for="product in option.products" x-bind:key="product.id">
-                <template x-if="$summaryItem.isSelected(product.id)">
+                <template x-if="productIsSelected(option.id, product.id)">
                   <div>
                     <span x-text="product.qty"></span>
                     x
