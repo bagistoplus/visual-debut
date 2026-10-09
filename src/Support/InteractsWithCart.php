@@ -72,6 +72,11 @@ trait InteractsWithCart
     public function removeCartItem($itemId)
     {
         Cart::removeItem($itemId);
+
+        // removeItem() leaves the cart's loaded items stale, so collectTotals() would not see the
+        // cart is now empty and would keep it instead of removing it
+        // @phpstan-ignore-next-line
+        Cart::refreshCart();
         Cart::collectTotals();
 
         session()->flash('success', __('shop::app.checkout.cart.success-remove'));

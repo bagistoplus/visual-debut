@@ -8,6 +8,7 @@ use BagistoPlus\Visual\Actions\Checkout\StorePaymentMethod;
 use BagistoPlus\Visual\Actions\Checkout\StoreShippingMethod;
 use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\Visual\Enums\Events;
+use BagistoPlus\Visual\Facades\ThemeEditor;
 use BagistoPlus\VisualDebut\Data\AddressData;
 use BagistoPlus\VisualDebut\Support\InteractsWithCart;
 use Illuminate\Support\Collection;
@@ -73,6 +74,16 @@ class Checkout extends LivewireSection
     {
         $this->loadSavedAddresses();
         $this->initializeAddresses();
+    }
+
+    /**
+     * Bagisto's checkout only turns away a missing cart, and an emptied cart can stay active.
+     */
+    public function mount()
+    {
+        if (! ThemeEditor::inDesignMode() && ! $this->getCart()?->items->count()) {
+            return $this->redirectRoute('shop.checkout.cart.index');
+        }
     }
 
     /**
@@ -187,11 +198,11 @@ class Checkout extends LivewireSection
         $this->shippingAddress = AddressData::empty();
         $cart = $this->getCart();
 
-        if ($cart->billing_address) {
+        if ($cart?->billing_address) {
             $this->billingAddress = $this->addressFromCart($cart->billing_address->toArray());
         }
 
-        if ($cart->shipping_address) {
+        if ($cart?->shipping_address) {
             // With use_for_shipping, the shipping row is a second copy of billing, already listed
             $this->shippingAddress = $this->addressFromCart(
                 $cart->shipping_address->toArray(),
