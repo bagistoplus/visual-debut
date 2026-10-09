@@ -11,19 +11,23 @@
 
     <div
       {{ $block->editor_attributes }}
-      x-data
-      x-variant-picker="@js($props)"
+      x-data="VisualVariantPicker(@js($props))"
     >
       <template x-for="attribute in variantAttributes" x-bind:key="attribute.id">
-        <div x-variant-picker:attribute="attribute" class="mb-4 max-w-72">
+        <div
+          x-bind:data-attribute-id="attribute.id"
+          x-bind:data-swatch-type="attribute.swatch_type"
+          x-bind:data-selected="selections[attribute.id]"
+          class="mb-4 max-w-72"
+        >
           <label class="mb-1 block font-medium" x-text="attribute.label">
           </label>
 
-          <template x-if="$attribute.isDropdown">
+          <template x-if="isDropdownSwatch(attribute.swatch_type)">
             <select
               x-bind:id="attribute.id"
               class="py-1"
-              x-on:change="$attribute.select(event.target.value)"
+              x-on:change="onOptionSelected(attribute.id, $event.target.value)"
             >
               <option x-text="@js(trans('visual-debut::shop.select-option', ['option' => '__OPTION__'])).replace('__OPTION__', attribute.label)"></option>
               <template x-for="option in attribute.options" x-bind:key="option.id">
@@ -49,7 +53,7 @@
                   ]"
                   x-bind:style="{ backgroundColor: option.swatch_value }"
                   x-bind:title="option.label + (!option.isAvailable ? ' (' + @js(trans('visual-debut::shop.unavailable')) + ')' : '')"
-                  x-on:click="$attribute.select(option.id)"
+                  x-on:click="onOptionSelected(attribute.id, option.id)"
                 >
                   <template x-if="!option.isAvailable">
                     <div class="absolute inset-0 rounded-full bg-black/20"></div>
@@ -70,7 +74,7 @@
                       !option.isAvailable ? 'cursor-not-allowed' : ''
                   ]"
                   x-bind:title="option.label + (!option.isAvailable ? ' (' + @js(trans('visual-debut::shop.unavailable')) + ')' : '')"
-                  x-on:click="$attribute.select(option.id)"
+                  x-on:click="onOptionSelected(attribute.id, option.id)"
                 >
                   <img x-bind:src="option.swatch_value" class="h-full w-full rounded-lg">
                   <template x-if="!option.isAvailable">
@@ -92,7 +96,7 @@
                       !option.isAvailable ? 'cursor-not-allowed text-on-background' : ''
                   ]"
                   :title="option.label + (!option.isAvailable ? ' (' + @js(trans('visual-debut::shop.unavailable')) + ')' : '')"
-                  x-on:click="$attribute.select(option.id)"
+                  x-on:click="onOptionSelected(attribute.id, option.id)"
                 >
                   <span x-text="option.label"></span>
                   <template x-if="!option.isAvailable">

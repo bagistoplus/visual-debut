@@ -1,4 +1,4 @@
-import { defineScope, defineComponent, setup } from 'alpine-define-component';
+import type { Alpine as AlpineType } from 'alpinejs';
 import { VisualEvents } from '@visual/shop/events';
 import { ProductForm } from './product-form';
 
@@ -24,20 +24,8 @@ interface Props {
   variantVideos?: Record<number, string[]>;
 }
 
-interface AttributeScope extends VariantAttribute {
-  selectedOptionId: number | undefined;
-  isDropdown: boolean;
-  select(value: number): void;
-  getOptionState(optionId: number): {
-    isSelected: boolean;
-    isAvailable: boolean;
-  };
-}
-
-export default defineComponent({
-  name: 'variant-picker',
-
-  setup: setup((props: Props) => {
+export default function (Alpine: AlpineType) {
+  Alpine.data('VisualVariantPicker', (props: Props) => {
     const variantAttributes = props.variantAttributes ?? [];
     const variantPrices = props.variantPrices ?? {};
     const variantImages = props.variantImages ?? {};
@@ -59,6 +47,8 @@ export default defineComponent({
 
     const selections = defaultSelections;
     const matchingProducts = new Set<number>();
+
+    let onCartUpdated: () => void;
 
     return {
       variantAttributes,
@@ -158,20 +148,28 @@ export default defineComponent({
         this.dispatchChange();
       },
 
+      /**
+       * Dispatches from the root. Called from an option's handler, `this.$dispatch` would fire on
+       * that option instead, and a `change` from the select would re-enter its own handler.
+       */
+      emit(name: string, detail: unknown) {
+        this.$root.dispatchEvent(new CustomEvent(name, { detail, bubbles: true, composed: true, cancelable: true }));
+      },
+
       dispatchChange() {
         const [variantId] = this.matchingProducts;
 
-        this.$dispatch('change', {
+        this.emit('change', {
           selections: { ...this.selections },
           matchingProducts: Array.from(this.matchingProducts),
         });
 
-        this.$dispatch('variant-medias-change', {
+        this.emit('variant-medias-change', {
           images: variantId ? this.variantImages[variantId] : [],
           videos: variantId ? this.variantVideos[variantId] : [],
         });
 
-        this.$dispatch('product-variant-change', {
+        this.emit('product-variant-change', {
           variant: this.selectedVariant,
           ...(this.selectedVariant && {
             prices: this.variantPrices[this.selectedVariant],
@@ -195,51 +193,18 @@ export default defineComponent({
           this.$wire.set('selectedVariant', this.selectedVariant, false);
         }
 
-        document.addEventListener(VisualEvents.CART_UPDATED, () => {
+        onCartUpdated = () => {
           this.$nextTick(() => {
             this.dispatchChange();
           });
-        });
+        };
+
+        document.addEventListener(VisualEvents.CART_UPDATED, onCartUpdated);
+      },
+
+      destroy() {
+        document.removeEventListener(VisualEvents.CART_UPDATED, onCartUpdated);
       },
     };
-  }),
-
-  parts: {
-    attribute: defineScope({
-      name: 'attribute',
-      setup(api, el, { value: attribute }: { value: VariantAttribute }) {
-        return {
-          ...attribute,
-
-          get selectedOptionId() {
-            return api.selections[attribute.id];
-          },
-
-          get isDropdown() {
-            return api.isDropdownSwatch(attribute.swatch_type);
-          },
-
-          select(value: number) {
-            api.onOptionSelected(attribute.id, value);
-          },
-
-          getOptionState(optionId: number) {
-            const isSelected = api.selections[attribute.id] === optionId;
-            const option = attribute.options.find((o) => o.id === optionId);
-            return {
-              isSelected,
-              isAvailable: option?.isAvailable ?? true,
-            };
-          },
-        };
-      },
-      bindings(api, scope) {
-        return {
-          'x-bind:data-attribute-id': () => scope.id,
-          'x-bind:data-swatch-type': () => scope.swatch_type,
-          'x-bind:data-selected': () => scope.selectedOptionId,
-        };
-      },
-    }),
-  },
-});
+  });
+}
