@@ -1,4 +1,4 @@
-import { defineComponent, setup } from 'alpine-define-component';
+import type { Alpine as AlpineType } from 'alpinejs';
 
 interface Props {
   isUserLoggedIn?: boolean;
@@ -8,12 +8,10 @@ interface Props {
   };
 }
 
-export default defineComponent({
-  name: 'products-compare',
-
-  setup: setup((props: Props) => {
+export default function (Alpine: AlpineType) {
+  Alpine.data('VisualProductsCompare', (props: Props) => {
     const stored = localStorage.getItem('compare_items');
-    const productIds = stored ? JSON.parse(stored) : [];
+    const productIds: number[] = stored ? JSON.parse(stored) : [];
 
     return {
       productIds,
@@ -36,7 +34,7 @@ export default defineComponent({
           return;
         }
 
-        this.productIds = this.productIds.filter((pid: number) => pid !== id);
+        this.productIds = this.productIds.filter((pid) => pid !== id);
         localStorage.setItem('compare_items', JSON.stringify(this.productIds));
         this.$wire.loadItems(this.productIds);
 
@@ -56,19 +54,5 @@ export default defineComponent({
         this.$toaster.success(this.messages.removeAll);
       },
     };
-  }),
-
-  parts: {
-    remove(api, _, { value }) {
-      return {
-        'x-on:click.stop': () => api.removeItem(Number(value)),
-      };
-    },
-
-    removeAll(api) {
-      return {
-        'x-on:click': () => api.removeAllItems(),
-      };
-    },
-  },
-});
+  });
+}

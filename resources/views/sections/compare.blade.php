@@ -8,8 +8,7 @@
   ];
 @endphp
 <div
-  x-data
-  x-products-compare="@js($props)"
+  x-data="VisualProductsCompare(@js($props))"
   class="py-12"
 >
   <div {{ $section->editor_attributes }} class="py-12">
@@ -33,7 +32,7 @@
           <h1 class="text-secondary-700 mb-4 text-3xl font-medium">
             @lang('shop::app.compare.title')
           </h1>
-          <button class="hover:text-primary transition-colors" x-products-compare:remove-all>
+          <button class="hover:text-primary transition-colors" x-on:click="removeAllItems()">
             @lang('shop::app.compare.delete-all')
           </button>
         </div>
@@ -47,8 +46,8 @@
                 <div class="w-62.5 shrink-0 p-4">
                   <div class="relative">
                     <x-shop::product.card :product="$item" no-compare />
-                    <button class="hover:text-primary bg-background z-5 absolute -right-2 -top-2 rounded-full border p-1 transition-colors"
-                      x-products-compare:remove="{{ $item->id }}"
+                    <button class="hover:text-primary bg-background absolute -right-2 -top-2 z-20 rounded-full border p-1 transition-colors"
+                      x-on:click.stop="removeItem({{ $item->id }})"
                     >
                       <x-lucide-x class="h-4 w-4" />
                     </button>
