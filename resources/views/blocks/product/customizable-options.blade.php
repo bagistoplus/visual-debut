@@ -10,8 +10,7 @@
     @if ($options->isNotEmpty())
       <div
         {{ $block->editor_attributes }}
-        x-data
-        x-product-customizable="@js(['options' => $options, 'basePrice' => $product->getTypeInstance()->getMinimalPrice()])"
+        x-data="VisualProductCustomizable(@js(['options' => $options, 'basePrice' => $product->getTypeInstance()->getMinimalPrice()]))"
       >
         <div class="space-y-4">
           @foreach ($options as $option)

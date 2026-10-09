@@ -1,4 +1,4 @@
-import { defineComponent, setup } from 'alpine-define-component';
+import type { Alpine as AlpineType } from 'alpinejs';
 
 interface CustomizableOptionPrice {
   id: number;
@@ -25,10 +25,8 @@ interface Props {
   basePrice?: number;
 }
 
-export default defineComponent({
-  name: 'product-customizable',
-
-  setup: setup((props: Props) => {
+export default function (Alpine: AlpineType) {
+  Alpine.data('VisualProductCustomizable', (props: Props) => {
     return {
       options: props.options ?? [],
       selectedOptions: {} as Record<number, any>,
@@ -168,5 +166,5 @@ export default defineComponent({
         return price;
       },
     };
-  }),
-});
+  });
+}
