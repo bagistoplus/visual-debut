@@ -15,6 +15,12 @@ class InterceptSessionFlash extends ComponentHook
             return;
         }
 
+        // The browser follows the redirect before it handles a dispatch, so the flash is left
+        // in the session for the next page to show
+        if ($this->storeHas('redirect')) {
+            return;
+        }
+
         $flashTypes = ['info', 'warning', 'error', 'success'];
 
         $alreadyDispatched = request()->attributes->get(self::DISPATCHED_FLASH_KEY, []);
