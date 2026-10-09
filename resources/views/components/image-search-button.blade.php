@@ -15,24 +15,32 @@
 @endphp
 
 <div
-  x-data
-  x-image-search="@js($props)"
+  x-data="VisualImageSearch(@js($props))"
   {{ $attributes->merge(['class' => 'flex items-center']) }}
 >
   <button
-    x-image-search:trigger
+    type="button"
+    x-bind:disabled="isSearching"
+    x-on:click="$refs.fileInput.click()"
     aria-label="@lang('shop::app.search.images.index.search')"
     class="hover:text-primary transition-colors"
-    x-bind:class="{ 'cursor-not-allowed': $imageSearch.isSearching }"
+    x-bind:class="{ 'cursor-not-allowed': isSearching }"
   >
-    @svg($icon, ['x-show' => '!$imageSearch.isSearching', 'class' => 'h-5 w-5'])
-    <x-lucide-loader-2 x-show="$imageSearch.isSearching" class="h-5 w-5 animate-spin" />
+    @svg($icon, ['x-show' => '!isSearching', 'class' => 'h-5 w-5'])
+    <x-lucide-loader-2 x-show="isSearching" class="h-5 w-5 animate-spin" />
   </button>
 
-  <input class="hidden" x-image-search:file-input />
+  <input
+    type="file"
+    accept="image/*"
+    class="hidden"
+    x-ref="fileInput"
+    x-on:change="handleImageSelection($event)"
+  />
 
   <img
-    x-image-search:preview
+    x-ref="preview"
+    x-bind:src="uploadedImageUrl"
     class="hidden"
     alt="{{ trans('visual-debut::shop.review.uploaded-image') }}"
     width="20"

@@ -1,4 +1,4 @@
-import { defineComponent, setup } from 'alpine-define-component';
+import type { Alpine as AlpineType } from 'alpinejs';
 
 interface Props {
   uploadUrl?: string;
@@ -31,10 +31,8 @@ const LIBRARIES = {
   mobilenet: 'https://cdn.jsdelivr.net/npm/tensorflow-models-mobilenet-patch@2.1.1/dist/mobilenet.min.js',
 };
 
-export default defineComponent({
-  name: 'image-search',
-
-  setup: setup((props: Props) => ({
+export default function (Alpine: AlpineType) {
+  Alpine.data('VisualImageSearch', (props: Props) => ({
     uploadUrl: props.uploadUrl || '/search/upload',
     searchUrl: props.searchUrl || '/search',
     messages: {
@@ -238,31 +236,5 @@ export default defineComponent({
         (this.$refs.fileInput as HTMLInputElement).value = '';
       }
     },
-  })),
-
-  parts: {
-    trigger(api) {
-      return {
-        type: 'button',
-        'x-bind:disabled': () => api.isSearching,
-        'x-on:click': () => api.$refs.fileInput?.click?.(),
-      };
-    },
-
-    fileInput(api) {
-      return {
-        type: 'file',
-        accept: 'image/*',
-        'x-ref': 'fileInput',
-        'x-on:change': (e: Event) => api.handleImageSelection(e),
-      };
-    },
-
-    preview(api) {
-      return {
-        'x-ref': 'preview',
-        'x-bind:src': () => api.uploadedImageUrl,
-      };
-    },
-  },
-});
+  }));
+}
