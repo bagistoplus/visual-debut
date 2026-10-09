@@ -1,4 +1,4 @@
-import { defineComponent, defineScope, setup } from 'alpine-define-component';
+import type { Alpine as AlpineType } from 'alpinejs';
 
 interface Column {
   index: string;
@@ -56,85 +56,13 @@ interface Messages {
   results: string;
 }
 
-interface TableHeaderScope {
-  column: Column;
-  isSorted: boolean;
-  sortOrder: 'asc' | 'desc' | null;
-  sort(): void;
-}
-
-interface FilterScope {
-  column: Column;
-  appliedValues: any[];
-  hasValues: boolean;
-  addValue(value: any, options?: any): void;
-  addQuickOptionValue(option: NonNullable<Column['filterable_options']>[number]): void;
-  addDateRangeValue(value: any, rangeName: string): void;
-  removeValue(value: any): void;
-  removeAllValues(): void;
-  getValueLabel(value: any): any;
-}
-
-interface TableRowScope {
-  record: Record<string, any>;
-  primaryKey: string;
-  isSelected: boolean;
-  toggleSelection(): void;
-}
-
-interface MassActionScope {
-  action: MassAction;
-  hasOptions: boolean;
-  performAction(option?: any): void;
-}
-
-interface PaginationControlScope {
-  currentPage: number;
-  totalPages: number;
-  isFirstPage: boolean;
-  isLastPage: boolean;
-  goToPage(page: number): void;
-  goToPreviousPage(): void;
-  goToNextPage(): void;
-}
-
-interface SearchInputScope {
-  value: string;
-  updateSearch(value: string): void;
-}
-
-interface PageSizeSelectorScope {
-  value: number;
-  options: number[];
-  change(value: string): void;
-}
-
-interface FilterValueScope {
-  value: any;
-  label: any;
-  remove(): void;
-}
-
-type DataGridScopes = {
-  $filter: FilterScope;
-  $filterValue: FilterValueScope;
-  $searchInput: SearchInputScope;
-  $massAction: MassActionScope;
-  $pagination: PaginationControlScope;
-  $pageSizeSelector: PageSizeSelectorScope;
-  $tableHeader: TableHeaderScope;
-  $tableRow: TableRowScope;
-};
-
 interface Props {
   src?: string;
   messages?: Partial<Messages>;
 }
 
-export default defineComponent({
-  name: 'datagrid',
-
-  setup: setup((props: Props) => {
+export default function (Alpine: AlpineType) {
+  Alpine.data('VisualDatagrid', (props: Props) => {
     return {
       src: props.src || '',
       isLoading: false,
@@ -193,6 +121,30 @@ export default defineComponent({
 
       get haveSelection() {
         return this.applied.massActions.indices.length > 0;
+      },
+
+      get totalResultsText() {
+        return this.messages.results.replace(':total', (this.available.meta.total ?? 0).toString());
+      },
+
+      get searchValue() {
+        return this.findAppliedColumn('all')?.value?.[0] ?? '';
+      },
+
+      get pageSizeOptions() {
+        return this.available.meta.per_page_options || [10, 25, 50, 100];
+      },
+
+      get currentPage() {
+        return this.applied.pagination.page;
+      },
+
+      get isFirstPage() {
+        return this.currentPage <= 1;
+      },
+
+      get isLastPage() {
+        return this.currentPage >= (this.available.meta.last_page ?? 0);
       },
 
       get paginationText() {
@@ -355,6 +307,14 @@ export default defineComponent({
 
         this.applied.pagination.page = 1;
         this.fetchData();
+      },
+
+      addQuickFilter(column: Column, option: NonNullable<Column['filterable_options']>[number]) {
+        this.addFilter(option.name, column, { quickFilter: option });
+      },
+
+      addDateRangeFilter(column: Column, value: any, rangeName: 'from' | 'to') {
+        this.addFilter(value, column, { range: { name: rangeName } });
       },
 
       addFilter(value: any, column: Column | null = null, additional: any = {}) {
@@ -528,6 +488,21 @@ export default defineComponent({
       },
 
       // Mass actions (bulk operations)
+      recordKey(record: ItemRecord) {
+        return record[this.available.meta.primary_column];
+      },
+
+      isRecordSelected(record: ItemRecord) {
+        return this.applied.massActions.indices.includes(this.recordKey(record));
+      },
+
+      toggleRecordSelection(record: ItemRecord) {
+        const id = this.recordKey(record);
+        const indices = this.applied.massActions.indices;
+
+        this.applied.massActions.indices = indices.includes(id) ? indices.filter((i) => i !== id) : [...indices, id];
+      },
+
       toggleSelectAll() {
         const primaryColumn = this.available.meta.primary_column!;
         const currentMode = this.applied.massActions.meta.mode;
@@ -684,284 +659,5 @@ export default defineComponent({
         );
       },
     };
-  }),
-
-  parts: ({ withScopes }) =>
-    withScopes<DataGridScopes>({
-      totalResults: (api) => ({
-        'x-text': () => api.messages.results.replace(':total', (api.available.meta.total ?? 0).toString()),
-      }),
-
-      searchInput: defineScope({
-        name: 'searchInput',
-        setup(api) {
-          return {
-            get value() {
-              const searchColumn = api.findAppliedColumn('all');
-              return searchColumn?.value ?? [];
-            },
-
-            updateSearch(value: string) {
-              api.updateGlobalSearch(value.trim());
-            },
-          };
-        },
-        bindings(_, scope) {
-          return {
-            'x-bind:value': () => scope.value,
-            'x-on:input.debounce.500ms': ($event: Event) =>
-              scope.updateSearch(($event.target as HTMLInputElement)?.value || ''),
-            'x-on:keyup.enter.prevent': ($event: Event) =>
-              scope.updateSearch(($event.target as HTMLInputElement)?.value || ''),
-          };
-        },
-      }),
-
-      // Select All Checkbox
-      selectAll: (api) => ({
-        'x-bind:checked': () => ['all'].includes(api.applied.massActions.meta.mode),
-        '@change': () => api.toggleSelectAll(),
-      }),
-
-      // Pagination Controls
-      pagination: defineScope({
-        name: 'pagination',
-        setup(api) {
-          return {
-            get currentPage() {
-              return api.applied.pagination.page;
-            },
-
-            get totalPages() {
-              return api.available.meta.last_page ?? 0;
-            },
-
-            get isFirstPage() {
-              return this.currentPage <= 1;
-            },
-
-            get isLastPage() {
-              return this.currentPage >= this.totalPages;
-            },
-
-            goToPage(page: number) {
-              api.changePage(page);
-            },
-
-            goToPreviousPage() {
-              api.changePage(this.currentPage - 1);
-            },
-
-            goToNextPage() {
-              api.changePage(this.currentPage + 1);
-            },
-          };
-        },
-      }),
-
-      // Pagination Per Page Select
-      pageSizeSelector: defineScope({
-        name: 'pageSizeSelector',
-        setup(api) {
-          return {
-            get value() {
-              return api.applied.pagination.perPage;
-            },
-
-            get options() {
-              return api.available.meta.per_page_options || [10, 25, 50, 100];
-            },
-
-            change(value: string) {
-              api.changePagination(parseInt(value, 10));
-            },
-          };
-        },
-        bindings(api, scope) {
-          return {
-            'x-bind:value': () => scope.value,
-            'x-on:change': ($event: Event) => scope.change(($event.target as HTMLSelectElement).value),
-          };
-        },
-      }),
-
-      // Mass Action
-      massAction: defineScope({
-        name: 'massAction',
-        setup(api, el, { value }) {
-          const actionIndex = parseInt(value);
-          const action = api.available.massActions[actionIndex];
-
-          return {
-            action,
-
-            performAction(option: any = null) {
-              api.handleMassAction(action, option);
-            },
-
-            get hasOptions() {
-              return action.options?.length! > 0;
-            },
-          };
-        },
-      }),
-
-      // Mass Action Option
-      massActionOption(api, el, { value }) {
-        const optionIndex = parseInt(value);
-        const option = api.$massAction.action.options![optionIndex];
-
-        return {
-          'x-on:click': () => api.$massAction.performAction(option),
-        };
-      },
-
-      // Table Header
-      tableHeader: defineScope({
-        name: 'tableHeader',
-        setup(api, el, { value }) {
-          const column = api.available.columns.find((col) => col.index === value) as Column;
-
-          return {
-            column,
-
-            get isSorted() {
-              return api.applied.sort.column === column.index;
-            },
-
-            get sortOrder() {
-              return this.isSorted ? api.applied.sort.order : null;
-            },
-
-            sort() {
-              api.changeSort(column);
-            },
-          };
-        },
-
-        bindings(api, scope) {
-          return {
-            'x-bind:class': () => (scope.column.sortable ? 'cursor-pointer' : ''),
-            'x-on:click': () => scope.column.sortable && scope.sort(),
-          };
-        },
-      }),
-
-      // Table Row
-      tableRow: defineScope({
-        name: 'tableRow',
-        setup(api, el, { value: record }) {
-          const primaryKey = api.available.meta.primary_column as string;
-
-          return {
-            record,
-            primaryKey,
-
-            get isSelected() {
-              return api.applied.massActions.indices.includes(record[primaryKey]);
-            },
-
-            toggleSelection() {
-              const currentIndices = api.applied.massActions.indices;
-              const id = record[primaryKey];
-
-              if (currentIndices.includes(id)) {
-                api.applied.massActions.indices = currentIndices.filter((i) => i !== id);
-              } else {
-                api.applied.massActions.indices = [...currentIndices, id];
-              }
-            },
-          };
-        },
-
-        bindings(_, scope) {
-          return {
-            'x-bind:data-selected': () => (scope.isSelected ? 'true' : 'false'),
-          };
-        },
-      }),
-
-      // Row Checkbox
-      tableRowCheckbox: (api) => ({
-        'x-bind:checked': () => api.$tableRow.isSelected,
-        'x-bind:value': () => api.$tableRow.record[api.$tableRow.primaryKey],
-        'x-on:change': () => api.$tableRow.toggleSelection(),
-      }),
-
-      // Filter
-      filter: defineScope({
-        name: 'filter',
-        setup(api, el, { value }) {
-          const columnIndex = value;
-          const column = api.available.columns.find((col) => col.index === columnIndex) as Column;
-
-          return {
-            column,
-
-            get appliedValues() {
-              return api.getAppliedColumnValues(columnIndex);
-            },
-
-            get hasValues() {
-              return api.hasAnyAppliedColumnValues(columnIndex);
-            },
-
-            addValue(value: any, options: any = {}) {
-              api.addFilter(value, column, options);
-            },
-
-            addQuickOptionValue(option: any) {
-              this.addValue(option.name, { quickFilter: option });
-            },
-
-            addDateRangeValue(value: any, rangeName: string) {
-              this.addValue(value, { range: { name: rangeName } });
-            },
-
-            removeValue(value: any) {
-              api.removeAppliedColumnValue(columnIndex, value);
-            },
-
-            removeAllValues() {
-              api.removeAppliedColumnAllValues(columnIndex);
-            },
-
-            getValueLabel(value: any) {
-              return api.getColumnValueLabel(column, value);
-            },
-          };
-        },
-      }),
-
-      clearFilter: (api) => ({
-        'x-show': () => api.$filter.hasValues,
-        'x-on:click': () => api.$filter.removeAllValues(),
-      }),
-
-      // Filter Tag
-      filterValue: defineScope({
-        name: 'filterValue',
-        setup(api, el, { value }) {
-          const tagValue = value;
-
-          return {
-            value: tagValue,
-
-            get label() {
-              return api.$filter.getValueLabel(tagValue);
-            },
-
-            remove() {
-              api.$filter.removeValue(tagValue);
-            },
-          };
-        },
-      }),
-
-      // Filter Apply Button
-      applyFilters: (api) => ({
-        'x-bind:disabled': () => !api.isFilterDirty,
-        'x-on:click': () => api.applyFilters(),
-      }),
-    }),
-});
+  });
+}

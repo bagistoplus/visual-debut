@@ -13,17 +13,17 @@
   </x-slot>
   <div class="bg-background mt-1 w-40 rounded-lg border p-1">
     <template x-for="(massAction, index) in available.massActions">
-      <div class="contents" x-datagrid:mass-action="index">
-        <template x-if="!$massAction.hasOptions">
+      <div class="contents">
+        <template x-if="!massAction.options?.length">
           <a
             href="#"
             class="relative flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none transition-colors hover:bg-neutral-100"
-            x-on:click.prevent="$el.closest('ui-popover').api.setOpen(false); $massAction.performAction();"
+            x-on:click.prevent="$el.closest('ui-popover').api.setOpen(false); handleMassAction(massAction)"
           >
             <span x-text="massAction.title"></span>
           </a>
         </template>
-        <template x-if="$massAction.hasOptions">
+        <template x-if="massAction.options?.length">
           <div class="group relative">
             <div class="flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none transition-colors hover:bg-neutral-100">
               <span x-text="massAction.title"></span>
@@ -37,8 +37,7 @@
                   <a
                     href="#"
                     class="relative flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none transition-colors hover:bg-neutral-100"
-                    x-on:click.prevent="$el.closest('ui-popover').api.setOpen(false)"
-                    x-datagrid:mass-action-option="optionIndex"
+                    x-on:click.prevent="$el.closest('ui-popover').api.setOpen(false); handleMassAction(massAction, option)"
                   >
                     <span x-text="option.label"></span>
                   </a>

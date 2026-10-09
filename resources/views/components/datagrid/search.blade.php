@@ -3,5 +3,7 @@
   type="search"
   prepend-icon="lucide-search"
   :placeholder="trans('shop::app.components.datagrid.toolbar.search.title')"
-  x-datagrid:search-input=""
+  x-bind:value="searchValue"
+  x-on:input.debounce.500ms="updateGlobalSearch($event.target.value.trim())"
+  x-on:keyup.enter.prevent="updateGlobalSearch($event.target.value.trim())"
 />

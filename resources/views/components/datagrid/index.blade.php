@@ -14,7 +14,7 @@
   ];
 @endphp
 
-<div x-data x-datagrid="@js($alpineProps)">
+<div x-data="VisualDatagrid(@js($alpineProps))">
   <!-- Toolbar -->
   <div class="border-b p-3">
     <div class="flex flex-col gap-4 md:flex-row">
@@ -29,7 +29,7 @@
           <x-shop::datagrid.search />
         </template>
 
-        <p class="hidden md:block" x-datagrid:total-results></p>
+        <p class="hidden md:block" x-text="totalResultsText"></p>
 
         <!-- Filter Drawer -->
         <x-shop::datagrid.filters class="ml-auto" />
@@ -40,14 +40,15 @@
         <x-shop::ui.form.select
           size="sm"
           class="min-w-16"
-          x-datagrid:page-size-selector=""
+          x-bind:value="applied.pagination.perPage"
+          x-on:change="changePagination(parseInt($event.target.value, 10))"
         >
-          <template x-for="option in $pageSizeSelector.options">
+          <template x-for="option in pageSizeOptions">
             <option x-bind:value="option" x-text="option"></option>
           </template>
         </x-shop::ui.form.select>
 
-        <div class="md:hidden" x-datagrid:total-results></div>
+        <div class="md:hidden" x-text="totalResultsText"></div>
       </div>
     </div>
   </div>
