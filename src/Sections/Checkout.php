@@ -185,16 +185,49 @@ class Checkout extends LivewireSection
         $cart = $this->getCart();
 
         if ($cart->billing_address) {
-            $this->billingAddress = AddressData::fromArray($cart->billing_address->toArray());
-            $this->savedAddresses->prepend($this->billingAddress);
+            $this->billingAddress = $this->addressFromCart($cart->billing_address->toArray());
         }
 
         if ($cart->shipping_address) {
-            $this->shippingAddress = AddressData::fromArray($cart->shipping_address->toArray());
-            $this->savedAddresses->prepend($this->shippingAddress);
+            // With use_for_shipping, the shipping row is a second copy of billing, already listed
+            $this->shippingAddress = $this->addressFromCart(
+                $cart->shipping_address->toArray(),
+                list: ! $cart->billing_address?->use_for_shipping
+            );
         }
 
         $this->applyDefaultAddress();
+    }
+
+    /**
+     * Picking a saved address copies it into the cart, so on reload the saved address it came
+     * from is reused instead of listing the copy next to it. A copy edited without being saved
+     * no longer matches, and is listed on its own so the edit is kept.
+     */
+    protected function addressFromCart(array $cartAddress, bool $list = true): AddressData
+    {
+        $address = AddressData::fromArray($cartAddress);
+
+        $saved = $this->savedAddresses->first(
+            fn (AddressData $savedAddress): bool => $savedAddress->id === (int) ($cartAddress['parent_address_id'] ?? 0)
+        );
+
+        if ($saved instanceof AddressData && $this->sameAddress($saved, $address)) {
+            return AddressData::fromArray([...$saved->toArray(), 'use_for_shipping' => $address->use_for_shipping]);
+        }
+
+        if ($list) {
+            $this->savedAddresses->prepend($address);
+        }
+
+        return $address;
+    }
+
+    protected function sameAddress(AddressData $a, AddressData $b): bool
+    {
+        $fields = ['company_name', 'email', 'first_name', 'last_name', 'address', 'country', 'state', 'city', 'postcode', 'phone'];
+
+        return array_intersect_key($a->toArray(), array_flip($fields)) == array_intersect_key($b->toArray(), array_flip($fields));
     }
 
     protected function loadSavedAddresses(): void
