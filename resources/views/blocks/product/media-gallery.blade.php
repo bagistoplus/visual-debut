@@ -19,29 +19,46 @@
 
 <div {{ $block->editor_attributes }} class="{{ $positionClass }}">
   <div
-    x-data
-    x-media-gallery="{ medias: @js($medias) }"
+    x-data="VisualMediaGallery({ medias: @js($medias) })"
     class="relative flex flex-col gap-4 md:flex-row"
   >
 
     <!-- Scroll Up Button -->
-    <button x-media-gallery:scroll-up-trigger class="{{ $scrollButtonPosition }} absolute top-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-black/70 text-white">
+    <button
+      type="button"
+      x-show="hasOverflowAbove"
+      x-on:click="scrollThumbs('up')"
+      class="{{ $scrollButtonPosition }} absolute top-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-black/70 text-white"
+    >
       <x-lucide-chevron-up class="h-4 w-4" />
     </button>
 
     <!-- Scroll Down Button -->
-    <button x-media-gallery:scroll-down-trigger
+    <button
+      type="button"
+      x-show="hasOverflowBelow"
+      x-on:click="scrollThumbs('down')"
       class="{{ $scrollButtonPosition }} absolute bottom-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-black/70 text-white"
     >
       <x-lucide-chevron-down class="h-4 w-4" />
     </button>
 
-    <div x-media-gallery:thumbs class="{{ $thumbsClasses }}">
+    <div
+      x-ref="thumbs"
+      x-on:scroll="checkOverflow()"
+      class="{{ $thumbsClasses }}"
+    >
       <template x-for="(media, index) in medias" :key="index">
         <button
-          x-media-gallery:thumb="index"
+          type="button"
+          data-thumb
+          x-on:click="select(index)"
+          x-on:keydown="onThumbKeydown($event)"
+          x-bind:tabindex="isSelected(index) ? 0 : -1"
+          x-bind:aria-current="isSelected(index) ? 'true' : null"
+          x-bind:data-selected="isSelected(index) ? 'true' : null"
           class="aspect-square w-20 shrink-0 overflow-hidden rounded-lg bg-neutral-100 focus:outline-none"
-          x-bind:class="{ 'border-2 border-primary': $thumb.isSelected }"
+          x-bind:class="{ 'border-2 border-primary': isSelected(index) }"
         >
           <template x-if="media.type !== 'videos'">
             <img

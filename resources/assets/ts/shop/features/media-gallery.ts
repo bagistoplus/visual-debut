@@ -1,27 +1,13 @@
-import { defineScope, defineComponent, setup } from 'alpine-define-component';
+import type { Alpine as AlpineType } from 'alpinejs';
 
 interface Props {
   medias?: any[];
   scrollAmount?: number;
 }
 
-interface ThumbsScope {
-  checkOverflow(): void;
-}
-
-interface ThumbScope {
-  index: number;
-  isSelected: boolean;
-  tabIndex: number;
-  select(): void;
-  onKeydown(event: KeyboardEvent): void;
-}
-
-export default defineComponent({
-  name: 'media-gallery',
-
-  setup: setup((props: Props) => {
-    let thumbsEl: HTMLElement | null = null;
+export default function (Alpine: AlpineType) {
+  Alpine.data('VisualMediaGallery', (props: Props) => {
+    let onMediasChanged: (event: Event) => void;
 
     return {
       medias: [] as any[],
@@ -36,145 +22,70 @@ export default defineComponent({
         return this.medias[this.selectedIndex] ?? null;
       },
 
-      scrollThumbs(direction: 'up' | 'down') {
-        if (!thumbsEl) return;
+      isSelected(index: number) {
+        return this.selectedIndex === index;
+      },
 
-        thumbsEl.scrollBy({
+      select(index: number) {
+        this.selectedIndex = index;
+      },
+
+      checkOverflow() {
+        const thumbs = this.$refs.thumbs as HTMLElement | undefined;
+
+        if (!thumbs) return;
+
+        this.hasOverflowAbove = thumbs.scrollTop > 0;
+        this.hasOverflowBelow = thumbs.scrollTop + thumbs.clientHeight < thumbs.scrollHeight;
+      },
+
+      scrollThumbs(direction: 'up' | 'down') {
+        (this.$refs.thumbs as HTMLElement | undefined)?.scrollBy({
           top: direction === 'up' ? -this.scrollAmount : this.scrollAmount,
           behavior: 'smooth',
         });
       },
 
-      onMediasChanged(event: CustomEvent) {
-        const images = event.detail?.images || [];
-        const videos = event.detail?.videos || [];
+      onThumbKeydown(event: KeyboardEvent) {
+        const keys = ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp'];
+        if (!keys.includes(event.key)) return;
 
-        this.medias = images.length || videos.length ? [...images, ...videos] : [...this.defaultMedias];
+        event.preventDefault();
 
-        this.selectedIndex = 0;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+          this.selectedIndex = (this.selectedIndex + 1) % this.medias.length;
+        }
+
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+          this.selectedIndex = (this.selectedIndex - 1 + this.medias.length) % this.medias.length;
+        }
+
+        const thumbs = (this.$refs.thumbs as HTMLElement).querySelectorAll<HTMLElement>('[data-thumb]');
+        thumbs[this.selectedIndex]?.focus();
       },
 
       init() {
         this.medias = props.medias || [];
         this.defaultMedias = [...this.medias];
 
-        thumbsEl = this.$el.querySelector('[x-media-gallery\\:thumbs]') as HTMLElement;
+        onMediasChanged = (event: Event) => {
+          const images = (event as CustomEvent).detail?.images || [];
+          const videos = (event as CustomEvent).detail?.videos || [];
 
-        window.addEventListener('variant-medias-change', this.onMediasChanged.bind(this) as EventListener);
+          this.medias = images.length || videos.length ? [...images, ...videos] : [...this.defaultMedias];
+          this.selectedIndex = 0;
+
+          this.$nextTick(() => this.checkOverflow());
+        };
+
+        window.addEventListener('variant-medias-change', onMediasChanged);
+
+        this.$nextTick(() => this.checkOverflow());
       },
 
       destroy() {
-        window.removeEventListener('variant-medias-change', this.onMediasChanged as EventListener);
+        window.removeEventListener('variant-medias-change', onMediasChanged);
       },
     };
-  }),
-
-  parts: {
-    thumbs: defineScope({
-      name: 'thumbs',
-
-      setup(api, el) {
-        return {
-          checkOverflow() {
-            api.hasOverflowAbove = el.scrollTop > 0;
-            api.hasOverflowBelow = el.scrollTop + el.clientHeight < el.scrollHeight;
-          },
-        };
-      },
-
-      bindings(_, scope) {
-        return {
-          'x-on:scroll': () => scope.checkOverflow(),
-          'x-init'() {
-            this.$nextTick(() => {
-              scope.checkOverflow();
-            });
-          },
-        };
-      },
-    }),
-
-    scrollUpTrigger(api) {
-      return {
-        'x-show': () => api.hasOverflowAbove,
-        'x-on:click': () => api.scrollThumbs('up'),
-      };
-    },
-
-    scrollDownTrigger(api) {
-      return {
-        'x-show': () => api.hasOverflowBelow,
-        'x-on:click': () => api.scrollThumbs('down'),
-      };
-    },
-
-    thumb: defineScope({
-      name: 'thumb',
-
-      setup(api, el, ctx) {
-        const index = Number(ctx.value);
-        let thumbEls: NodeListOf<HTMLElement> | null = null;
-
-        const getAllThumbs = () => {
-          if (!thumbEls) {
-            const root = el.closest('[x-media-gallery]');
-            thumbEls =
-              root?.querySelectorAll('[x-media-gallery\\:thumb]') ?? ([] as unknown as NodeListOf<HTMLElement>);
-          }
-
-          return thumbEls;
-        };
-
-        return {
-          index,
-
-          get isSelected() {
-            return api.selectedIndex === index;
-          },
-
-          select() {
-            api.selectedIndex = index;
-          },
-
-          get tabIndex() {
-            return this.isSelected ? 0 : -1;
-          },
-
-          onKeydown(event: KeyboardEvent) {
-            const keys = ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp'];
-            if (!keys.includes(event.key)) return;
-
-            event.preventDefault();
-
-            let nextIndex = api.selectedIndex;
-
-            if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
-              nextIndex = (api.selectedIndex + 1) % api.medias.length;
-            }
-
-            if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
-              nextIndex = (api.selectedIndex - 1 + api.medias.length) % api.medias.length;
-            }
-
-            api.selectedIndex = nextIndex;
-
-            const thumbs = getAllThumbs();
-            const next = thumbs[nextIndex];
-            next?.focus();
-          },
-        };
-      },
-
-      bindings(_, scope) {
-        return {
-          'x-on:click': () => scope.select(),
-          'x-on:keydown': (e: KeyboardEvent) => scope.onKeydown(e),
-          'x-bind:data-selected': () => (scope.isSelected ? 'true' : null),
-          'x-bind:tabindex': () => scope.tabIndex,
-          'x-bind:aria-current': () => (scope.isSelected ? 'true' : null),
-          'x-bind:role': () => 'button',
-        };
-      },
-    }),
-  },
-});
+  });
+}
