@@ -1,4 +1,4 @@
-import { defineComponent, defineScope, setup } from 'alpine-define-component';
+import type { Alpine as AlpineType } from 'alpinejs';
 
 type StatesByCountry = Record<string, { code: string; default_name: string }[]>;
 
@@ -28,16 +28,8 @@ interface Props {
   showAddressFields?: boolean;
 }
 
-interface AddressScope {
-  address: Address;
-  select(): void;
-  edit(): void;
-}
-
-export default defineComponent({
-  name: 'address-form',
-
-  setup: setup((props: Props) => ({
+export default function (Alpine: AlpineType) {
+  Alpine.data('VisualAddressForm', (props: Props) => ({
     selectedCountry: props.selectedCountry ?? '',
     statesByCountry: props.statesByCountry ?? {},
 
@@ -81,61 +73,15 @@ export default defineComponent({
       this.fillAddressFields(address);
       this.showAddressFields = true;
     },
-  })),
 
-  parts: {
-    country() {
-      return {
-        'x-model': 'selectedCountry',
-      };
+    addAddress() {
+      this.showAddressFields = true;
+      this.clearAddressFields();
     },
 
-    address: defineScope({
-      name: 'address',
-      setup: (api, _, { value }) => ({
-        address: value,
-
-        select() {
-          api.fillAddressFields(this.address);
-        },
-
-        edit() {
-          api.editAddress(this.address);
-        },
-      }),
-    }),
-
-    addressRadio(api) {
-      return {
-        'x-on:click': () => api.$address.select(),
-      };
+    cancelAddressFields() {
+      this.showAddressFields = false;
+      this.resetInitialAddress();
     },
-
-    addressEdit(api) {
-      return {
-        'x-on:click': () => {
-          api.$address.edit();
-        },
-      };
-    },
-
-    addTrigger(api) {
-      return {
-        'x-on:click': () => {
-          api.showAddressFields = true;
-          api.clearAddressFields();
-        },
-      };
-    },
-
-    cancelTrigger(api) {
-      return {
-        'x-show': () => api.showAddressFields,
-        'x-on:click': () => {
-          api.showAddressFields = false;
-          api.resetInitialAddress();
-        },
-      };
-    },
-  },
-});
+  }));
+}

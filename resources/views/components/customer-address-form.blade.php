@@ -9,8 +9,7 @@
 <form
   {{ $attributes }}
   method="POST"
-  x-data
-  x-address-form="@js($props)"
+  x-data="VisualAddressForm(@js($props))"
 >
   @csrf
   @isset($address)
@@ -97,7 +96,7 @@
       name="country"
       :required="core()->isCountryRequired()"
       :label="trans('shop::app.customers.account.addresses.create.country')"
-      x-address-form:country=""
+      x-model="selectedCountry"
     >
       <option
         value=""
@@ -114,20 +113,20 @@
       @endforeach
     </x-shop::ui.form.select>
 
-    <template x-if="$addressForm.haveStates">
+    <template x-if="haveStates">
       <x-shop::ui.form.select
         name="state"
         :required="core()->isCountryRequired()"
         :value="$state"
         :label="trans('shop::app.customers.account.addresses.create.state')"
       >
-        <template x-for="(state, index) in $addressForm.states">
+        <template x-for="(state, index) in states">
           <option x-bind:value="state.code" x-text="state.default_name"></option>
         </template>
       </x-shop::ui.form.select>
     </template>
 
-    <template x-if="!$addressForm.haveStates">
+    <template x-if="!haveStates">
       <x-shop::ui.form.input
         required
         type="text"

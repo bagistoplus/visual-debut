@@ -15,7 +15,7 @@
   ];
 @endphp
 
-<div x-data x-address-form="@js($alpineProps)">
+<div x-data="VisualAddressForm(@js($alpineProps))">
   <!-- Header section -->
   <div class="flex items-center justify-between">
     <h3 class="text-on-background text-base font-medium md:text-xl">
@@ -23,8 +23,9 @@
     </h3>
     @if (count($savedAddresses) > 0)
       <button
-        x-address-form:cancel-trigger
         type="button"
+        x-show="showAddressFields"
+        x-on:click="cancelAddressFields()"
         class="hover:text-primary flex items-center gap-1 text-xs transition-colors"
       >
         <x-lucide-chevron-left class="h-4 w-4" />
@@ -41,9 +42,7 @@
     <template x-if="!showAddressFields">
       <div class="text-on-background/80 space-y-4">
         @foreach ($savedAddresses as $address)
-          <div x-address-form:address="@js($address)"
-            class="has-[:checked]:border-primary has-[:checked]:bg-primary/10 border-on-background/8 hover:border-on-background/12 box p-4 transition-colors"
-          >
+          <div class="has-[:checked]:border-primary has-[:checked]:bg-primary/10 border-on-background/8 hover:border-on-background/12 box p-4 transition-colors">
             <div class="mb-2 flex items-center justify-between">
               <div class="flex items-center">
                 <input
@@ -52,7 +51,7 @@
                   name="{{ $name }}[id]"
                   wire:model.number="{{ $addressName }}.id"
                   value="{{ $address->id }}"
-                  x-address-form:address-radio
+                  x-on:click="fillAddressFields(@js($address))"
                 >
                 <label for="{{ $name }}[id][{{ $address->id }}]" class="ms-2 font-medium">
                   {{ $address->first_name }} {{ $address->last_name }}
@@ -63,7 +62,7 @@
                 <button
                   type="button"
                   class="hover:text-primary transition-colors"
-                  x-address-form:address-edit
+                  x-on:click="editAddress(@js($address))"
                 >
                   @lang('visual-debut::shop.edit')
                 </button>
@@ -91,7 +90,7 @@
         <button
           type="button"
           class="hover:bg-surface hover:border-on-surface/10 flex w-full cursor-pointer items-center gap-2 rounded-lg border-2 border-dashed p-4 transition-colors"
-          x-address-form:add-trigger
+          x-on:click="addAddress()"
         >
           <x-lucide-plus class="h-5 w-5" />
           @lang('shop::app.checkout.onepage.address.add-new-address')
@@ -99,7 +98,7 @@
       </div>
     </template>
 
-    <template x-if="$addressForm.showAddressFields">
+    <template x-if="showAddressFields">
       <div class="space-y-4">
         <x-shop::ui.form.input
           type="text"
@@ -166,7 +165,7 @@
             :required="core()->isCountryRequired()"
             :label="trans('shop::app.checkout.onepage.address.country')"
             :placeholder="trans('shop::app.checkout.onepage.address.country')"
-            x-address-form:country=""
+            x-model="selectedCountry"
           >
             <option value="" @disabled(core()->isCountryRequired())>
               @lang('shop::app.checkout.onepage.address.select-country')
@@ -178,7 +177,7 @@
             @endforeach
           </x-shop::ui.form.select>
 
-          <template x-if="$addressForm.haveStates">
+          <template x-if="haveStates">
             <x-shop::ui.form.select
               name="{{ $name }}.state"
               wire:model="{{ $addressName }}.state"
@@ -188,12 +187,12 @@
               <option value="" @disabled(core()->isStateRequired())>
                 @lang('shop::app.checkout.onepage.address.select-state')
               </option>
-              <template x-for="(state, index) in $addressForm.states">
+              <template x-for="(state, index) in states">
                 <option x-bind:value="state.code" x-text="state.default_name"></option>
               </template>
             </x-shop::ui.form.select>
           </template>
-          <template x-if="!$addressForm.haveStates">
+          <template x-if="!haveStates">
             <x-shop::ui.form.input
               type="text"
               name="{{ $name }}.state"
