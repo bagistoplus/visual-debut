@@ -312,7 +312,11 @@ class ProductInformation extends LivewireSection
         // Add bundle product options and quantities if present
         if (! empty($this->bundleProductOptions) && ! empty($this->bundleProductQuantities)) {
             $cartParams = array_merge($cartParams, [
-                'bundle_options' => collect($this->bundleProductOptions)->filter()->all(),
+                // A radio or select binds a bare id, but Bagisto expects a list of ids per option
+                'bundle_options' => collect($this->bundleProductOptions)
+                    ->map(fn ($ids) => array_values(array_filter((array) $ids, fn ($id) => $id !== '' && $id !== null)))
+                    ->filter()
+                    ->all(),
                 'bundle_option_qty' => $this->bundleProductQuantities,
             ]);
         }
