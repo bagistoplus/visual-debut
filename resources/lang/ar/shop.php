@@ -22,6 +22,8 @@ return [
     'menu' => 'القائمة',
     'open-menu' => 'فتح القائمة',
     'user-menu' => 'قائمة المستخدم',
+    'main-navigation' => 'التنقل الرئيسي',
+    'view-all' => 'عرض كل :name',
     'search' => 'بحث',
     'no-matching-options' => 'لا توجد خيارات مطابقة',
     'previous' => 'السابق',

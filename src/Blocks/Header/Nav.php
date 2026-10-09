@@ -4,6 +4,7 @@ namespace BagistoPlus\VisualDebut\Blocks\Header;
 
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\CategoryList;
+use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Range;
 use Webkul\Category\Repositories\CategoryRepository;
 
@@ -45,6 +46,10 @@ class Nav extends SimpleBlock
                 ->step(1)
                 ->default(6)
                 ->info(_t('blocks.header-nav.settings.category_limit_info')),
+
+            Checkbox::make('show_chevron', _t('blocks.header-nav.settings.show_chevron_label'))
+                ->asSwitch()
+                ->default(false),
         ];
     }
 

@@ -22,6 +22,8 @@ return [
     'menu' => 'मेनू',
     'open-menu' => 'मेनू खोलें',
     'user-menu' => 'उपयोगकर्ता मेनू',
+    'main-navigation' => 'मुख्य नेविगेशन',
+    'view-all' => 'सभी :name देखें',
     'search' => 'खोजें',
     'no-matching-options' => 'कोई मेल खाता विकल्प नहीं',
     'previous' => 'पिछला',

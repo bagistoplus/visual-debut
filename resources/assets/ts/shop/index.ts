@@ -3,6 +3,7 @@ import '@bagistoplus/ui/accordion';
 import '@bagistoplus/ui/carousel';
 import '@bagistoplus/ui/collapsible';
 import '@bagistoplus/ui/dialog';
+import '@bagistoplus/ui/navigation-menu';
 import '@bagistoplus/ui/number-input';
 import '@bagistoplus/ui/popover';
 import '@bagistoplus/ui/rating';
@@ -20,7 +21,6 @@ import productBundle from './features/product-bundle';
 import productCustomizable from './features/product-customizable';
 import productForm from './features/product-form';
 import variantPicker from './features/variant-picker';
-import navigation from './features/navigation';
 import productActions from './features/product-actions';
 
 // ui components as plugin
@@ -35,7 +35,6 @@ Alpine.plugin([
   datagrid,
   imageSearch,
   mediaGallery,
-  navigation,
   productForm,
   productActions,
   productBundle,

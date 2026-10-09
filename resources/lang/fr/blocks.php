@@ -446,6 +446,7 @@ return [
             'categories_info' => 'Sélectionnez les catégories à afficher dans la navigation de l\'en-tête. Laissez vide pour utiliser les catégories racines.',
             'category_limit_label' => 'Limite de catégories',
             'category_limit_info' => 'Nombre maximal de catégories à afficher.',
+            'show_chevron_label' => 'Afficher la flèche du menu',
         ],
     ],
 

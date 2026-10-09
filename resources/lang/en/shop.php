@@ -22,6 +22,8 @@ return [
     'menu' => 'Menu',
     'open-menu' => 'Open menu',
     'user-menu' => 'User menu',
+    'main-navigation' => 'Main navigation',
+    'view-all' => 'View all :name',
     'search' => 'Search',
     'no-matching-options' => 'No matching options',
     'previous' => 'Previous',

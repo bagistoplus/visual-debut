@@ -22,6 +22,8 @@ return [
     'menu' => 'Menu',
     'open-menu' => 'Ouvrir le menu',
     'user-menu' => 'Menu utilisateur',
+    'main-navigation' => 'Navigation principale',
+    'view-all' => 'Voir tout :name',
     'search' => 'Rechercher',
     'no-matching-options' => 'Aucune option correspondante',
     'previous' => 'Précédent',

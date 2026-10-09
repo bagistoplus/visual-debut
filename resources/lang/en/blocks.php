@@ -440,6 +440,7 @@ return [
             'categories_info' => 'Select categories to show in the header navigation. Leave empty to use root categories.',
             'category_limit_label' => 'Category Limit',
             'category_limit_info' => 'Maximum number of categories to show.',
+            'show_chevron_label' => 'Show dropdown arrow',
         ],
     ],
 
