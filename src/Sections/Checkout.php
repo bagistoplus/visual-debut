@@ -13,6 +13,7 @@ use BagistoPlus\VisualDebut\Support\InteractsWithCart;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
+use Webkul\Checkout\Facades\Cart;
 use Webkul\Customer\Models\Customer;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -79,10 +80,10 @@ class Checkout extends LivewireSection
      */
     public function handleAddressForm(StoreAddresses $storeAddresses)
     {
-        $data = ['billing' => $this->billingAddress->toArray()];
+        $data = ['billing' => $this->addressForSubmission($this->billingAddress)];
 
         if (! $this->billingAddress->use_for_shipping) {
-            $data['shipping'] = $this->shippingAddress->toArray();
+            $data['shipping'] = $this->addressForSubmission($this->shippingAddress);
         }
 
         $response = $storeAddresses->execute($data);
@@ -90,6 +91,8 @@ class Checkout extends LivewireSection
         if (isset($response['redirect_url'])) {
             return $this->redirect($response['redirect_url']);
         }
+
+        $this->refreshAddresses();
 
         return $this->cartHaveStockableItems()
             ? $this->moveToShippingStep($response['data']['shippingMethods'])
@@ -197,6 +200,42 @@ class Checkout extends LivewireSection
         }
 
         $this->applyDefaultAddress();
+    }
+
+    /**
+     * boot() built the address list before this request stored the addresses, so it is rebuilt
+     * from the saved addresses and the cart as they are now.
+     */
+    protected function refreshAddresses(): void
+    {
+        $customer = Auth::guard('customer')->user();
+
+        if ($customer instanceof Customer) {
+            $customer->unsetRelation('addresses');
+        }
+
+        // @phpstan-ignore-next-line
+        Cart::refreshCart();
+
+        $this->loadSavedAddresses();
+        $this->initializeAddresses();
+    }
+
+    /**
+     * A cart copy listed among the saved addresses carries its cart row id, which Bagisto's
+     * customer address update cannot find. It goes in as a new address instead, so saving it
+     * creates a saved address and leaving it unsaved only updates the cart.
+     */
+    protected function addressForSubmission(AddressData $address): array
+    {
+        $data = $address->toArray();
+
+        if ($data['id'] && $data['address_type'] !== 'customer') {
+            $data['id'] = null;
+            $data['address_type'] = '';
+        }
+
+        return $data;
     }
 
     /**

@@ -24,17 +24,21 @@
       title="{{ trans('shop::app.checkout.onepage.address.billing-address') }}"
     />
 
-    <template x-if="!useBillingAddressForShipping">
-      <div>
-        <hr class="my-4">
-        <x-shop::checkout.address-fields
-          name="shipping"
-          :saved-addresses="$savedAddresses->whereNotIn('address_type', 'cart_billing')"
-          :address="$shippingAddress"
-          title="{{ trans('shop::app.checkout.onepage.address.shipping-address') }}"
-        />
-      </div>
-    </template>
+    {{-- Kept in the DOM so Livewire can update it; disabled while hidden so its required fields don't block the submit --}}
+    <fieldset
+      x-show="!useBillingAddressForShipping"
+      x-bind:disabled="useBillingAddressForShipping"
+      @if ($billingAddress->use_for_shipping) x-cloak @endif
+      class="min-w-0"
+    >
+      <hr class="my-4">
+      <x-shop::checkout.address-fields
+        name="shipping"
+        :saved-addresses="$savedAddresses->whereNotIn('address_type', 'cart_billing')"
+        :address="$shippingAddress"
+        title="{{ trans('shop::app.checkout.onepage.address.shipping-address') }}"
+      />
+    </fieldset>
 
     <div class="mt-4 text-right">
       <x-shop::ui.button wire:target="handleAddressForm" type="submit">

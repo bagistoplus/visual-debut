@@ -39,64 +39,67 @@
       {{ $heading }}
     @endif
 
-    <template x-if="!showAddressFields">
-      <div class="text-on-background/80 space-y-4">
-        @foreach ($savedAddresses as $address)
-          <div class="has-[:checked]:border-primary has-[:checked]:bg-primary/10 border-on-background/8 hover:border-on-background/12 box p-4 transition-colors">
-            <div class="mb-2 flex items-center justify-between">
-              <div class="flex items-center">
-                <input
-                  id="{{ $name }}[id][{{ $address->id }}]"
-                  type="radio"
-                  name="{{ $name }}[id]"
-                  wire:model.number="{{ $addressName }}.id"
-                  value="{{ $address->id }}"
-                  x-on:click="fillAddressFields(@js($address))"
-                >
-                <label for="{{ $name }}[id][{{ $address->id }}]" class="ms-2 font-medium">
-                  {{ $address->first_name }} {{ $address->last_name }}
-                </label>
-              </div>
-
-              <div class="flex items-center gap-2">
-                <button
-                  type="button"
-                  class="hover:text-primary transition-colors"
-                  x-on:click="editAddress(@js($address))"
-                >
-                  @lang('visual-debut::shop.edit')
-                </button>
-                @if ($address->default_address)
-                  <span class="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs">@lang('visual-debut::shop.default')</span>
-                @endif
-              </div>
+    {{-- x-show, not x-if: Livewire's morph cannot patch a template's content, so the list would stay stale after a proceed --}}
+    <div
+      x-show="!showAddressFields"
+      @if (count($savedAddresses) === 0) x-cloak @endif
+      class="text-on-background/80 space-y-4"
+    >
+      @foreach ($savedAddresses as $address)
+        <div class="has-[:checked]:border-primary has-[:checked]:bg-primary/10 border-on-background/8 hover:border-on-background/12 box p-4 transition-colors">
+          <div class="mb-2 flex items-center justify-between">
+            <div class="flex items-center">
+              <input
+                id="{{ $name }}[id][{{ $address->id }}]"
+                type="radio"
+                name="{{ $name }}[id]"
+                wire:model.number="{{ $addressName }}.id"
+                value="{{ $address->id }}"
+                x-on:click="fillAddressFields(@js($address))"
+              >
+              <label for="{{ $name }}[id][{{ $address->id }}]" class="ms-2 font-medium">
+                {{ $address->first_name }} {{ $address->last_name }}
+              </label>
             </div>
 
-            <div class="ml-6">
-              @if ($address->company_name)
-                <p>{{ $address->company_name }}</p>
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                class="hover:text-primary transition-colors"
+                x-on:click="editAddress(@js($address))"
+              >
+                @lang('visual-debut::shop.edit')
+              </button>
+              @if ($address->default_address)
+                <span class="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs">@lang('visual-debut::shop.default')</span>
               @endif
-              @if ($address->address)
-                <p>{{ implode(',', $address->address) }}</p>
-              @endif
-              <p>{{ $address->city }}</p>
-              <p>{{ $address->state }}, {{ $address->country }}</p>
-              <p>{{ $address->postcode }}</p>
-              <p class="mt-1 text-sm">{{ $address->phone }}</p>
             </div>
           </div>
-        @endforeach
 
-        <button
-          type="button"
-          class="hover:bg-surface hover:border-on-surface/10 flex w-full cursor-pointer items-center gap-2 rounded-lg border-2 border-dashed p-4 transition-colors"
-          x-on:click="addAddress()"
-        >
-          <x-lucide-plus class="h-5 w-5" />
-          @lang('shop::app.checkout.onepage.address.add-new-address')
-        </button>
-      </div>
-    </template>
+          <div class="ml-6">
+            @if ($address->company_name)
+              <p>{{ $address->company_name }}</p>
+            @endif
+            @if ($address->address)
+              <p>{{ implode(',', $address->address) }}</p>
+            @endif
+            <p>{{ $address->city }}</p>
+            <p>{{ $address->state }}, {{ $address->country }}</p>
+            <p>{{ $address->postcode }}</p>
+            <p class="mt-1 text-sm">{{ $address->phone }}</p>
+          </div>
+        </div>
+      @endforeach
+
+      <button
+        type="button"
+        class="hover:bg-surface hover:border-on-surface/10 flex w-full cursor-pointer items-center gap-2 rounded-lg border-2 border-dashed p-4 transition-colors"
+        x-on:click="addAddress()"
+      >
+        <x-lucide-plus class="h-5 w-5" />
+        @lang('shop::app.checkout.onepage.address.add-new-address')
+      </button>
+    </div>
 
     <template x-if="showAddressFields">
       <div class="space-y-4">
