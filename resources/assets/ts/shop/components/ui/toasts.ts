@@ -1,5 +1,4 @@
 import type { Alpine as AlpineType } from 'alpinejs';
-import { defineComponent, defineScope, setup, withScopes } from 'alpine-define-component';
 
 declare namespace Alpine {
   interface Magics<T> {
@@ -22,118 +21,86 @@ export interface Toast {
   placement?: Placement;
   type?: 'info' | 'success' | 'warning' | 'error';
   duration?: number;
-}
-
-interface GroupScope {
-  placement: string;
-  toasts(): Toast[];
-}
-
-interface ToastScope {
   dismissed?: boolean;
-  dismiss(): void;
 }
 
 interface Props {
   placement?: Placement;
 }
 
-export default defineComponent({
-  name: 'toasts',
+let nextId = 0;
 
-  setup: setup((props: Props) => ({
-    placement: props.placement || 'top-end',
-    store: [] as Toast[],
+export default function (Alpine: AlpineType) {
+  Alpine.data('VisualToasts', (props: Props) => {
+    let onCreate: (e: Event) => void;
 
-    get placements() {
-      return Array.from(new Set(this.store.map((t: Toast) => t.placement))) as Placement[];
-    },
+    return {
+      placement: props.placement || 'top-end',
+      store: [] as Toast[],
 
-    init() {
-      window.addEventListener('toasts:create', (e: Event) => {
-        this.create((e as CustomEvent).detail);
-      });
-    },
-
-    create(toast: Partial<Toast>) {
-      const newToast: Toast = {
-        id: String(Date.now()),
-        type: toast.type || 'info',
-        title: toast.title || '',
-        description: toast.description || '',
-        placement: toast.placement || this.placement,
-        duration: toast.duration || 3000,
-      };
-
-      this.store.push(newToast);
-
-      if (newToast.duration && newToast.duration > 0) {
-        setTimeout(() => {
-          this.dismiss(newToast.id);
-        }, newToast.duration);
-      }
-    },
-
-    dismiss(id: string) {
-      setTimeout(() => {
-        this.store = this.store.filter((t: Toast) => t.id !== id);
-      }, 300);
-    },
-  })),
-
-  parts: ({ withScopes }) =>
-    withScopes<{ $toast: ToastScope }>({
-      group: defineScope({
-        name: 'group',
-
-        setup: (api, _, { value: placement }) => ({
-          placement,
-          toasts: () => api.store.filter((t: Toast) => t.placement === placement),
-        }),
-
-        bindings: (_, scope) => {
-          const [side, align] = scope.placement?.split('-') as string[];
-          return {
-            role: 'region',
-            'data-placement': scope.placement,
-            'data-side': side,
-            'data-align': align,
-          };
-        },
-      }),
-
-      toast: defineScope({
-        name: 'toast',
-
-        setup: (api, _, { value: toast }) => ({
-          ...toast,
-          dismissed: false,
-          dismiss() {
-            this.dismissed = true;
-            api.dismiss(this.id);
-          },
-        }),
-
-        bindings: (_, scope) => {
-          const [side, align] = scope.placement?.split('-') as string[];
-          return {
-            'data-type': scope.type,
-            'data-placement': scope.placement,
-            'data-side': side,
-            'data-align': align,
-            'x-bind:data-state': () => (scope.dismissed ? 'closed' : 'open'),
-          };
-        },
-      }),
-
-      toastCloseTrigger(api) {
-        return {
-          type: 'button',
-          'x-on:click': () => api.$toast.dismiss(),
-        };
+      get placements() {
+        return Array.from(new Set(this.store.map((t: Toast) => t.placement))) as Placement[];
       },
-    }),
-});
+
+      init() {
+        onCreate = (e: Event) => this.create((e as CustomEvent).detail);
+        window.addEventListener('toasts:create', onCreate);
+      },
+
+      destroy() {
+        window.removeEventListener('toasts:create', onCreate);
+      },
+
+      toastsFor(placement: Placement) {
+        return this.store.filter((t: Toast) => t.placement === placement);
+      },
+
+      side(placement?: Placement) {
+        return placement?.split('-')[0];
+      },
+
+      align(placement?: Placement) {
+        return placement?.split('-')[1];
+      },
+
+      create(toast: Partial<Toast>) {
+        const newToast: Toast = {
+          // Flash messages arrive in the same millisecond, so the time alone would repeat x-for keys
+          id: `${Date.now()}-${nextId++}`,
+          type: toast.type || 'info',
+          title: toast.title || '',
+          description: toast.description || '',
+          placement: toast.placement || this.placement,
+          duration: toast.duration || 3000,
+          dismissed: false,
+        };
+
+        this.store.push(newToast);
+
+        if (newToast.duration && newToast.duration > 0) {
+          setTimeout(() => {
+            this.dismiss(newToast.id);
+          }, newToast.duration);
+        }
+      },
+
+      dismiss(id: string) {
+        const toast = this.store.find((t: Toast) => t.id === id);
+
+        if (!toast || toast.dismissed) {
+          return;
+        }
+
+        // Plays the closed animation before the toast leaves the store
+        toast.dismissed = true;
+
+        setTimeout(() => {
+          this.store = this.store.filter((t: Toast) => t.id !== id);
+        }, 300);
+      },
+    };
+  });
+}
 
 export function toaster(Alpine: AlpineType) {
   const create = (toast: Partial<Toast>) => {
