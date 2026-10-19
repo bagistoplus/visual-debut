@@ -49,6 +49,7 @@
   :appendIcon="$appendIcon"
   :required="$attributes->has('required')"
 >
+  {{-- The slot stays on the tag's line: whitespace around it would become the field's value and satisfy `required` --}}
   <textarea
     id="{{ $fieldId }}"
     name="{{ $name }}"
@@ -57,7 +58,5 @@
     {{ $attributes->merge([
         'class' => trim("$baseInputClass $extraPadding w-full"),
     ]) }}
-  >
-    {{ $slot }}
-  </textarea>
+  >{{ $slot }}</textarea>
 </x-shop::ui.form.field>
