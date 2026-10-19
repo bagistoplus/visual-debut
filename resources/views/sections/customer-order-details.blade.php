@@ -182,7 +182,7 @@
                   @endif
                 </p>
 
-                @foreach ($item->additional['attributes'] as $attribute)
+                @foreach ($item->additional['attributes'] ?? [] as $attribute)
                   <div class="mt-1 text-sm">
                     <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
                     @if (($attribute['attribute_type'] ?? null) === 'file')
@@ -382,7 +382,7 @@
 
                     @if (isset($item->additional['attributes']))
                       <div class="mb-2 mt-1">
-                        @foreach ($item->additional['attributes'] as $attribute)
+                        @foreach ($item->additional['attributes'] ?? [] as $attribute)
                           <p class="{{ ($attribute['attribute_type'] ?? null) === 'file' ? 'truncate' : '' }} text-sm">
                             <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
                             @if (($attribute['attribute_type'] ?? null) === 'file')
@@ -470,7 +470,7 @@
                           {{ $item->name }}
                           @if (isset($item->additional['attributes']))
                             <div class="mt-1">
-                              @foreach ($item->additional['attributes'] as $attribute)
+                              @foreach ($item->additional['attributes'] ?? [] as $attribute)
                                 <p class="text-sm">
                                   <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
                                   @if (($attribute['attribute_type'] ?? null) === 'file')
@@ -630,7 +630,7 @@
 
                     @if (isset($item->additional['attributes']))
                       <div class="mb-2 mt-1">
-                        @foreach ($item->additional['attributes'] as $attribute)
+                        @foreach ($item->additional['attributes'] ?? [] as $attribute)
                           <p class="{{ ($attribute['attribute_type'] ?? null) === 'file' ? 'truncate' : '' }} text-sm">
                             <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
                             @if (($attribute['attribute_type'] ?? null) === 'file')
@@ -699,7 +699,7 @@
                           {{ $item->name }}
                           @if (isset($item->additional['attributes']))
                             <div class="mt-1">
-                              @foreach ($item->additional['attributes'] as $attribute)
+                              @foreach ($item->additional['attributes'] ?? [] as $attribute)
                                 <p class="text-sm">
                                   <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
                                   @if (($attribute['attribute_type'] ?? null) === 'file')
@@ -760,7 +760,7 @@
 
                     @if (isset($item->additional['attributes']))
                       <div class="mb-2 mt-1">
-                        @foreach ($item->additional['attributes'] as $attribute)
+                        @foreach ($item->additional['attributes'] ?? [] as $attribute)
                           <p class="{{ ($attribute['attribute_type'] ?? null) === 'file' ? 'truncate' : '' }} text-sm">
                             <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
                             @if (($attribute['attribute_type'] ?? null) === 'file')
@@ -880,7 +880,7 @@
 
                           @if (isset($item->additional['attributes']))
                             <div class="mt-1">
-                              @foreach ($item->additional['attributes'] as $attribute)
+                              @foreach ($item->additional['attributes'] ?? [] as $attribute)
                                 <p class="text-sm">
                                   <span class="font-bold">{{ $attribute['attribute_name'] }}: </span>
                                   @if (($attribute['attribute_type'] ?? null) === 'file')
