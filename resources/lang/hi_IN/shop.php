@@ -117,5 +117,9 @@ return [
     'rma' => [
         'mark-solved' => 'हल के रूप में चिह्नित करें',
         'load-older-messages' => 'पुराने संदेश देखें',
+        'choose-order' => 'एक ऑर्डर चुनें',
+        'choose-item' => 'एक आइटम चुनें',
+        'no-eligible-orders' => 'आपके किसी भी ऑर्डर को अभी लौटाया नहीं जा सकता।',
+        'return-policy' => 'वापसी नीति',
     ],
 ];

@@ -117,5 +117,9 @@ return [
     'rma' => [
         'mark-solved' => 'تحديد كمحلول',
         'load-older-messages' => 'عرض الرسائل الأقدم',
+        'choose-order' => 'اختر طلبًا',
+        'choose-item' => 'اختر منتجًا',
+        'no-eligible-orders' => 'لا يمكن إرجاع أي من طلباتك حاليًا.',
+        'return-policy' => 'سياسة الإرجاع',
     ],
 ];

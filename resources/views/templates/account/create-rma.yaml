@@ -1,0 +1,6 @@
+sections:
+  create-rma:
+    type: '@visual-debut/customer-create-rma'
+
+order:
+  - create-rma

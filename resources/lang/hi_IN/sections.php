@@ -742,6 +742,10 @@ return [
         'name' => 'रिटर्न विवरण',
     ],
 
+    'customer-create-rma' => [
+        'name' => 'नई वापसी',
+    ],
+
     'customer-order-details' => [
         'name' => 'ऑर्डर विवरण',
     ],

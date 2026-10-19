@@ -117,5 +117,9 @@ return [
     'rma' => [
         'mark-solved' => 'Marquer comme résolu',
         'load-older-messages' => 'Afficher les messages précédents',
+        'choose-order' => 'Choisissez une commande',
+        'choose-item' => 'Choisissez un article',
+        'no-eligible-orders' => 'Aucune de vos commandes ne peut être retournée pour le moment.',
+        'return-policy' => 'Politique de retour',
     ],
 ];

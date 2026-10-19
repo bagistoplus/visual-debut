@@ -731,6 +731,10 @@ return [
         'name' => 'Détails du retour',
     ],
 
+    'customer-create-rma' => [
+        'name' => 'Nouveau retour',
+    ],
+
     'customer-order-details' => [
         'name' => 'Détails de la commande',
     ],

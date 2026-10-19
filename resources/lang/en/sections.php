@@ -555,6 +555,10 @@ return [
         'name' => 'Return Details',
     ],
 
+    'customer-create-rma' => [
+        'name' => 'New Return',
+    ],
+
     'customer-order-details' => [
         'name' => 'Order Details',
     ],

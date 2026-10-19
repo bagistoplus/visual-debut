@@ -40,7 +40,67 @@ interface ConversationProps {
   };
 }
 
+interface OrderRow {
+  id: number;
+  increment_id: string;
+  status: string;
+  grand_total: string;
+  created_at: string;
+  order_currency_code: string;
+}
+
+interface ItemAttribute {
+  attribute_name: string;
+  option_label: string;
+}
+
+interface OrderItem {
+  order_item_id: number;
+  name: string;
+  sku: string;
+  price: string | number;
+  qty_ordered: number;
+  qty_invoiced: number;
+  qty_refunded: number;
+  qty_canceled: number | null;
+  currentQuantity: number;
+  forReturnQuantity: number;
+  forCancelQuantity: number;
+  rma_return_period: number;
+  created_at: string;
+  base_image: string | null;
+  base_image_url?: string | null;
+  attributes: ItemAttribute[] | Record<string, ItemAttribute> | string | null;
+}
+
+interface Reason {
+  id: number;
+  title: string;
+}
+
+interface CreateProps {
+  ordersUrl: string;
+  itemsUrl: string;
+  reasonsUrl: string;
+  storeUrl: string;
+  storageUrl: string;
+  preselectedOrder: number | null;
+  allowedTypes: string[];
+  requiredGroups: Record<string, string>;
+  labels: {
+    invalidType: string;
+  };
+}
+
 const PAGE_SIZE = 5;
+
+// Enough for every order still inside a return window
+const ORDERS_PAGE_SIZE = 100;
+
+const firstErrors = (errors: Record<string, string[]>) =>
+  Object.fromEntries(
+    Object.entries(errors).map(([field, messages]) => [field.replace(/^images\.\d+$/, 'images'), messages[0]])
+  );
 
 export default function (Alpine: AlpineType) {
   /**
@@ -192,15 +252,223 @@ export default function (Alpine: AlpineType) {
         })
         .catch((error) => {
           if (error.errors) {
-            this.errors = Object.fromEntries(
-              Object.entries(error.errors as Record<string, string[]>).map(([field, messages]) => [field, messages[0]])
-            );
+            this.errors = firstErrors(error.errors);
           } else {
             this.$toaster.error(error.message);
           }
         })
         .finally(() => {
           this.sending = false;
+        });
+    },
+  }));
+
+  /**
+   * A new return request, on one page: an order, then one of its items and
+   * what to do with it, then the details. Bagisto takes one item per request.
+   */
+  Alpine.data('VisualRmaCreate', (props: CreateProps) => ({
+    allowedTypes: props.allowedTypes,
+    orders: [] as OrderRow[],
+    ordersLoaded: false,
+    orderId: null as number | null,
+    currency: 'USD',
+    items: [] as OrderItem[],
+    itemId: null as number | null,
+    resolution: '',
+    reasons: [] as Reason[],
+    reasonId: '',
+    quantity: 1,
+    images: [] as File[],
+    errors: {} as Record<string, string>,
+    submitting: false,
+
+    init() {
+      this.$watch('resolution', () => this.loadReasons());
+
+      this.$request(props.ordersUrl, 'GET', { pagination: { page: 1, per_page: ORDERS_PAGE_SIZE } })
+        .then((data) => {
+          this.orders = data.records;
+
+          const preselected = this.orders.find((order: OrderRow) => order.id === props.preselectedOrder);
+
+          if (preselected) {
+            this.selectOrder(preselected);
+          }
+        })
+        .finally(() => {
+          this.ordersLoaded = true;
+        });
+    },
+
+    get item(): OrderItem | null {
+      return this.items.find((item) => item.order_item_id === this.itemId) ?? null;
+    },
+
+    get maxQuantity() {
+      const item = this.item;
+
+      if (!item) {
+        return 1;
+      }
+
+      const forResolution = { return: item.forReturnQuantity, cancel_items: item.forCancelQuantity }[this.resolution];
+
+      return Math.max(1, Math.min(forResolution ?? item.currentQuantity, item.currentQuantity));
+    },
+
+    selectOrder(order: OrderRow) {
+      this.orderId = order.id;
+      this.currency = order.order_currency_code;
+      this.items = [];
+      this.itemId = null;
+      this.resolution = '';
+
+      this.$request(props.itemsUrl.replace('__order__', String(order.id))).then((items: OrderItem[]) => {
+        this.items = items;
+
+        const available = items.filter((item) => this.available(item));
+
+        if (available.length === 1) {
+          this.selectItem(available[0]);
+        }
+      });
+    },
+
+    selectItem(item: OrderItem) {
+      this.itemId = item.order_item_id;
+      this.quantity = 1;
+      this.resolution = '';
+
+      // A choice of one is made for the customer, once its select exists
+      const resolutions = [this.canReturn(item) && 'return', this.canCancel(item) && 'cancel_items'].filter(Boolean);
+
+      if (resolutions.length === 1) {
+        this.$nextTick(() => (this.resolution = resolutions[0] as string));
+      }
+    },
+
+    loadReasons() {
+      this.reasons = [];
+      this.reasonId = '';
+
+      if (!this.resolution) {
+        return;
+      }
+
+      this.$request(props.reasonsUrl.replace('__type__', this.resolution)).then((reasons: Reason[]) => {
+        this.reasons = reasons;
+      });
+    },
+
+    available(item: OrderItem) {
+      return Number(item.currentQuantity) > 0;
+    },
+
+    canReturn(item: OrderItem) {
+      return Number(item.qty_invoiced) > Number(item.qty_refunded);
+    },
+
+    canCancel(item: OrderItem) {
+      return Number(item.qty_ordered) - Number(item.qty_invoiced) - Number(item.qty_canceled ?? 0) > 0;
+    },
+
+    // 2.4.11 added base_image_url; before it the image sits on the public disk
+    imageUrl(item: OrderItem) {
+      return item.base_image_url ?? (item.base_image ? props.storageUrl + item.base_image : null);
+    },
+
+    attributes(item: OrderItem): ItemAttribute[] {
+      if (!item.attributes || typeof item.attributes === 'string') {
+        return [];
+      }
+
+      return Object.values(item.attributes).filter((attribute) => attribute?.attribute_name);
+    },
+
+    returnWindow(item: OrderItem) {
+      const until = new Date(item.created_at);
+      until.setDate(until.getDate() + Number(item.rma_return_period));
+
+      return new Intl.DateTimeFormat(document.documentElement.lang || undefined, { dateStyle: 'medium' }).format(until);
+    },
+
+    price(value: string | number) {
+      return new Intl.NumberFormat(document.documentElement.lang || undefined, {
+        style: 'currency',
+        currency: this.currency,
+      }).format(Number(value));
+    },
+
+    // Bagisto's grid sends its cells as markup
+    text(html: string) {
+      return new DOMParser().parseFromString(html, 'text/html').body.textContent?.trim() ?? '';
+    },
+
+    pickImages(event: Event) {
+      const input = event.target as HTMLInputElement;
+      const files = Array.from(input.files ?? []);
+      const allowed = files.filter((file) => !this.allowedTypes.length || this.allowedTypes.includes(file.type));
+
+      if (allowed.length < files.length) {
+        const extensions = this.allowedTypes.map((type) => type.split('/').pop()).join(', ');
+
+        this.$toaster.warning(`${props.labels.invalidType}: ${extensions}`);
+      }
+
+      this.images = [...this.images, ...allowed];
+      input.value = '';
+    },
+
+    removeImage(index: number) {
+      this.images = this.images.filter((_, position) => position !== index);
+    },
+
+    submit(form: HTMLFormElement) {
+      this.errors = {};
+
+      if (!form.reportValidity()) {
+        return;
+      }
+
+      // A required group of checkboxes needs one ticked, which the browser cannot check
+      for (const [id, message] of Object.entries(props.requiredGroups)) {
+        if (!form.querySelector(`[name="customAttributes[${id}][]"]:checked`)) {
+          this.errors[`customAttributes.${id}`] = message;
+        }
+      }
+
+      if (Object.keys(this.errors).length) {
+        return;
+      }
+
+      const data = new FormData(form);
+
+      // As Bagisto's own form does: its admin renders this as HTML before 2.4.10
+      data.set('information', String(data.get('information') ?? '').replace(/[<>]/g, ''));
+
+      this.images.forEach((image) => data.append('images[]', image));
+
+      this.submitting = true;
+
+      this.$request(props.storeUrl, 'POST', data)
+        .then((response) => {
+          // 2.4 answers with the message; 2.5 flashes it for the next page
+          if (response.messages) {
+            this.$toaster.success(response.messages);
+            setTimeout(() => (window.location.href = response.redirect), 1000);
+          } else {
+            window.location.href = response.redirect;
+          }
+        })
+        .catch((error) => {
+          if (error.errors) {
+            this.errors = firstErrors(error.errors);
+          } else {
+            this.$toaster.error(error.message);
+          }
+
+          this.submitting = false;
         });
     },
   }));

@@ -750,6 +750,10 @@ return [
         'name' => 'تفاصيل المرتجع',
     ],
 
+    'customer-create-rma' => [
+        'name' => 'مرتجع جديد',
+    ],
+
     'customer-order-details' => [
         'name' => 'تفاصيل الطلب',
     ],

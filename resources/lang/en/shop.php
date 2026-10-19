@@ -117,5 +117,9 @@ return [
     'rma' => [
         'mark-solved' => 'Mark as solved',
         'load-older-messages' => 'Load older messages',
+        'choose-order' => 'Choose an order',
+        'choose-item' => 'Choose an item',
+        'no-eligible-orders' => 'None of your orders can be returned right now.',
+        'return-policy' => 'Return policy',
     ],
 ];

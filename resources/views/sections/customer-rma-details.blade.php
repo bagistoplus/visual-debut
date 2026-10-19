@@ -74,7 +74,7 @@ $conversation = [
           </a>
         </dd>
 
-        @foreach ($rma->additionalFields as $field)
+        @foreach ($rma->additionalFields->filter(fn($field) => filled($field->value)) as $field)
           <dt class="text-on-background/70">{{ $field->customField?->label }}</dt>
           <dd class="wrap-break-word">{{ $field->value }}</dd>
         @endforeach
