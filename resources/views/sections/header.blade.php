@@ -9,7 +9,7 @@
     <div class="flex h-16 items-center justify-between gap-x-4">
       <x-shop::ui.drawer id="mobile-menu-drawer" placement="start" :title="trans('visual-debut::shop.menu')">
         <x-slot:trigger>
-          <button class="-ml-2 p-2 transition-colors sm:hidden" aria-label="{{ trans('visual-debut::shop.open-menu') }}">
+          <button class="-ml-2 p-2 transition-colors lg:hidden" aria-label="{{ trans('visual-debut::shop.open-menu') }}">
             <x-lucide-menu class="h-6 w-6" />
           </button>
         </x-slot:trigger>

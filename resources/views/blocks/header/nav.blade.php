@@ -1,13 +1,13 @@
 @php
   $menuId = 'nav-' . $block->id;
-  $itemClass = 'group inline-flex h-10 w-max items-center justify-center gap-1 box border-none px-4 py-2 text-sm font-medium transition-colors hover:bg-surface-alt data-[state=open]:bg-surface-alt focus:outline-none';
+  $itemClass = 'group inline-flex h-10 w-max items-center justify-center gap-1 box border-none px-3 py-2 text-sm font-medium xl:px-4 transition-colors hover:bg-surface-alt data-[state=open]:bg-surface-alt focus:outline-none';
   $parents = $categoryList->filter(fn ($category) => $category->children->isNotEmpty());
 @endphp
 
 <nav
   {{ $block->editor_attributes }}
   aria-label="@lang('visual-debut::shop.main-navigation')"
-  class="hidden h-full items-center sm:flex"
+  class="hidden h-full items-center lg:flex"
 >
   <ui-navigation-menu id="{{ $menuId }}" class="relative">
     <ui-navigation-menu-list id="{{ $menuId }}-list">
