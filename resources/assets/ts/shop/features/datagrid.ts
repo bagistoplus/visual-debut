@@ -487,6 +487,10 @@ export default function (Alpine: AlpineType) {
         return params;
       },
 
+      rowActions(record: ItemRecord) {
+        return record.actions ?? [];
+      },
+
       // Mass actions (bulk operations)
       recordKey(record: ItemRecord) {
         return record[this.available.meta.primary_column];

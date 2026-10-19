@@ -723,6 +723,10 @@ return [
         'name' => 'Commandes',
     ],
 
+    'customer-rma' => [
+        'name' => 'Retours',
+    ],
+
     'customer-order-details' => [
         'name' => 'Détails de la commande',
     ],

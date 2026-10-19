@@ -1,0 +1,6 @@
+sections:
+  rma:
+    type: '@visual-debut/customer-rma'
+
+order:
+  - rma

@@ -547,6 +547,10 @@ return [
         'name' => 'Orders',
     ],
 
+    'customer-rma' => [
+        'name' => 'Returns',
+    ],
+
     'customer-order-details' => [
         'name' => 'Order Details',
     ],

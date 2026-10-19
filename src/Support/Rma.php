@@ -89,8 +89,17 @@ class Rma
             return false;
         }
 
-        $status = DefaultRMAStatusEnum::tryFrom((int) $rma->rma_status_id);
+        return ! in_array((int) $rma->rma_status_id, self::uncancelableStatusIds(), true);
+    }
 
-        return ! in_array($status, self::UNCANCELABLE_STATUSES, true);
+    /**
+     * The same rule for the returns list, which sees rows rather than models:
+     * before 2.4.10 Bagisto offers Cancel on every row.
+     *
+     * @return array<int, int>
+     */
+    public static function uncancelableStatusIds(): array
+    {
+        return array_map(fn (DefaultRMAStatusEnum $status) => $status->value, self::UNCANCELABLE_STATUSES);
     }
 }

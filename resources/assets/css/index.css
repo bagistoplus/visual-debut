@@ -21,6 +21,7 @@
 /* bagisto utilities */
 @source inline("label-{processing,active,canceled,closed,pending}");
 @source inline("icon-eye");
+@source inline("icon-cancel");
 @source inline("line-through");
 @source inline("max-sm:leading-4");
 

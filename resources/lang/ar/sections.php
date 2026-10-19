@@ -742,6 +742,10 @@ return [
         'name' => 'الطلبات',
     ],
 
+    'customer-rma' => [
+        'name' => 'المرتجعات',
+    ],
+
     'customer-order-details' => [
         'name' => 'تفاصيل الطلب',
     ],

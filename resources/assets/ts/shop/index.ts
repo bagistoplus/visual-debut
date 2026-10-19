@@ -22,6 +22,7 @@ import productCustomizable from './features/product-customizable';
 import productForm from './features/product-form';
 import variantPicker from './features/variant-picker';
 import productActions from './features/product-actions';
+import rma from './features/rma';
 
 // ui components as plugin
 Alpine.plugin([toasts]);
@@ -40,6 +41,7 @@ Alpine.plugin([
   productBundle,
   productCustomizable,
   productsCompare,
+  rma,
   variantPicker,
 ]);
 

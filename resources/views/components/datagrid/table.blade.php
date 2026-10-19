@@ -66,7 +66,7 @@
               data-label="@lang('shop::app.components.datagrid.table.actions')"
             >
               <div class="flex justify-center gap-2">
-                <template x-for="action in record.actions">
+                <template x-for="action in rowActions(record)">
                   <x-shop::ui.button
                     size="xs"
                     variant="ghost"
