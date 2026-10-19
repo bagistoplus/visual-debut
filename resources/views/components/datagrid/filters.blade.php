@@ -1,13 +1,15 @@
-<x-shop::ui.drawer id="datagrid-filters-drawer" {{ $attributes }} :title="trans('shop::app.components.datagrid.toolbar.filter.apply-filter')">
+<x-shop::ui.drawer
+  id="datagrid-filters-drawer"
+  {{ $attributes }}
+  :title="trans('shop::app.components.datagrid.toolbar.filter.apply-filter')"
+>
   <x-slot:trigger>
-    <x-shop::ui.button
-      icon="lucide-filter"
-      color="secondary"
-      variant="outline"
-      size="sm"
+    <button type="button"
+      class="bg-background text-on-background border-on-background/20 hover:bg-surface focus-visible:ring-primary rounded-(--input-radius) border-(length:--input-border-width) inline-flex h-10 items-center gap-2 px-3 text-sm outline-none focus-visible:ring-2"
     >
+      <x-lucide-filter class="h-4 w-4" />
       @lang('shop::app.components.datagrid.toolbar.filter.title')
-    </x-shop::ui.button>
+    </button>
   </x-slot:trigger>
 
   <div class="h-full space-y-4 overflow-y-auto border-t p-4">
