@@ -37,6 +37,61 @@
         >
           @lang('shop::app.customers.account.gdpr.index.html')
         </x-shop::ui.button>
+
+        {{-- A real POST: before 2.3.17 and in 2.4.0-2.4.1 Bagisto only redirects, and validates from 2.4.9 by redirecting back, which reopens this --}}
+        <x-shop::ui.modal
+          id="gdpr-request"
+          :title="trans('shop::app.customers.account.gdpr.index.modal.title')"
+          :default-open="$errors->hasAny(['type', 'message'])"
+        >
+          <x-slot:trigger>
+            <x-shop::ui.button
+              color="primary"
+              variant="soft"
+              icon="lucide-plus"
+              size="sm"
+            >
+              @lang('shop::app.customers.account.gdpr.index.create-btn')
+            </x-shop::ui.button>
+          </x-slot:trigger>
+
+          <form
+            method="POST"
+            action="{{ Gdpr::route('store') }}"
+            class="md:w-md mt-4 grid gap-4"
+          >
+            @csrf
+
+            <x-shop::ui.form.select
+              name="type"
+              :label="trans('shop::app.customers.account.gdpr.index.modal.type.title')"
+              required
+            >
+              <option
+                value=""
+                disabled
+                @selected(!in_array(old('type'), ['update', 'delete'], true))
+              >@lang('shop::app.customers.account.gdpr.index.modal.type.choose')</option>
+              <option value="update" @selected(old('type') === 'update')>@lang('shop::app.customers.account.gdpr.index.modal.type.update')</option>
+              <option value="delete" @selected(old('type') === 'delete')>@lang('shop::app.customers.account.gdpr.index.modal.type.delete')</option>
+            </x-shop::ui.form.select>
+
+            {{-- Bagisto stores at most 500 characters, and before 2.4.9 does not check --}}
+            <x-shop::ui.form.textarea
+              name="message"
+              :label="trans('shop::app.customers.account.gdpr.index.modal.message')"
+              rows="4"
+              maxlength="500"
+              required
+            >{{ old('message') }}</x-shop::ui.form.textarea>
+
+            <div class="flex justify-end">
+              <x-shop::ui.button type="submit">
+                @lang('shop::app.customers.account.gdpr.index.modal.save')
+              </x-shop::ui.button>
+            </div>
+          </form>
+        </x-shop::ui.modal>
       </div>
     </div>
   </div>
