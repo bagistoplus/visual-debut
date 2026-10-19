@@ -4,6 +4,7 @@
     'id' => null,
     'size' => 'md',
     'errorName' => '',
+    'wireModel' => null,
     'prepend' => null,
     'append' => null,
     'prependIcon' => null,
@@ -52,5 +53,15 @@
     @endif
   </div>
 
-  <x-shop::ui.form.error id="{{ $fieldId }}" name="{{ $errorName ?: $name }}" />
+  @if ($wireModel)
+    {{-- Read from Livewire's error bag on the client, so the message also shows when Alpine renders the field from a template, which Livewire's morph never updates --}}
+    <p
+      x-cloak
+      x-show="$wire.$errors.has(@js($wireModel))"
+      x-text="$wire.$errors.first(@js($wireModel))"
+      class="text-danger mt-1 text-sm"
+    ></p>
+  @else
+    <x-shop::ui.form.error id="{{ $fieldId }}" name="{{ $errorName ?: $name }}" />
+  @endif
 </div>

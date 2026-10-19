@@ -8,14 +8,14 @@
 
   $alpineProps = [
       'name' => $addressName,
-      'selectedCountry' => '',
+      'selectedCountry' => data_get($address, 'country', ''),
       'statesByCountry' => $states,
       'initialAddress' => $address,
       'showAddressFields' => count($savedAddresses) === 0,
   ];
 @endphp
 
-<div x-data="VisualAddressForm(@js($alpineProps))">
+<div x-data="VisualAddressForm(@js($alpineProps))" x-on:checkout-address-invalid.window="$event.detail.addresses.includes(@js($name)) && (showAddressFields = true)">
   <!-- Header section -->
   <div class="flex items-center justify-between">
     <h3 class="text-on-background text-base font-medium md:text-xl">
@@ -46,7 +46,7 @@
       class="text-on-background/80 space-y-4"
     >
       @foreach ($savedAddresses as $address)
-        <div class="has-[:checked]:border-primary has-[:checked]:bg-primary/10 border-on-background/8 hover:border-on-background/12 box p-4 transition-colors">
+        <div class="has-checked:border-primary has-checked:bg-primary/10 border-on-background/8 hover:border-on-background/12 box p-4 transition-colors">
           <div class="mb-2 flex items-center justify-between">
             <div class="flex items-center">
               <input

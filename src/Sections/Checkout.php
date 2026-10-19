@@ -13,6 +13,7 @@ use BagistoPlus\VisualDebut\Data\AddressData;
 use BagistoPlus\VisualDebut\Support\InteractsWithCart;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Customer\Models\Customer;
@@ -57,6 +58,10 @@ class Checkout extends LivewireSection
     /** @var Collection<int, AddressData> */
     protected Collection $savedAddresses;
 
+    protected ?AddressData $cartBillingAddress = null;
+
+    protected ?AddressData $cartShippingAddress = null;
+
     public static function name(): string
     {
         return _t('sections.checkout.name');
@@ -73,7 +78,7 @@ class Checkout extends LivewireSection
     public function boot()
     {
         $this->loadSavedAddresses();
-        $this->initializeAddresses();
+        $this->loadCartAddresses();
     }
 
     /**
@@ -84,6 +89,8 @@ class Checkout extends LivewireSection
         if (! ThemeEditor::inDesignMode() && ! $this->getCart()?->items->count()) {
             return $this->redirectRoute('shop.checkout.cart.index');
         }
+
+        $this->initializeAddresses();
     }
 
     /**
@@ -97,12 +104,27 @@ class Checkout extends LivewireSection
             $data['shipping'] = $this->addressForSubmission($this->shippingAddress);
         }
 
-        $response = $storeAddresses->execute($data);
+        try {
+            $response = $storeAddresses->execute($data);
+        } catch (ValidationException $e) {
+            $this->revealInvalidAddresses($e);
+
+            // Bagisto keys errors by billing.* and shipping.*, but Livewire only keeps errors keyed by
+            // a component property, so they are moved onto the properties the fields are bound to
+            throw ValidationException::withMessages(
+                collect($e->validator->errors()->messages())
+                    ->mapWithKeys(fn (array $messages, string $key): array => [
+                        preg_replace('/^(billing|shipping)\./', '$1Address.', $key) => $messages,
+                    ])
+                    ->all()
+            );
+        }
 
         if (isset($response['redirect_url'])) {
             return $this->redirect($response['redirect_url']);
         }
 
+        $this->resetErrorBag();
         $this->refreshAddresses();
 
         return $this->cartHaveStockableItems()
@@ -194,23 +216,44 @@ class Checkout extends LivewireSection
      */
     protected function initializeAddresses(): void
     {
-        $this->billingAddress = AddressData::empty();
-        $this->shippingAddress = AddressData::empty();
-        $cart = $this->getCart();
-
-        if ($cart?->billing_address) {
-            $this->billingAddress = $this->addressFromCart($cart->billing_address->toArray());
-        }
-
-        if ($cart?->shipping_address) {
-            // With use_for_shipping, the shipping row is a second copy of billing, already listed
-            $this->shippingAddress = $this->addressFromCart(
-                $cart->shipping_address->toArray(),
-                list: ! $cart->billing_address?->use_for_shipping
-            );
-        }
+        $this->billingAddress = $this->cartBillingAddress ?? AddressData::empty();
+        $this->shippingAddress = $this->cartShippingAddress ?? AddressData::empty();
 
         $this->applyDefaultAddress();
+    }
+
+    /**
+     * Reads the cart's addresses, listing them among the saved ones where needed.
+     */
+    protected function loadCartAddresses(): void
+    {
+        $cart = $this->getCart();
+
+        $this->cartBillingAddress = $cart?->billing_address
+            ? $this->addressFromCart($cart->billing_address->toArray())
+            : null;
+
+        // With use_for_shipping, the shipping row is a second copy of billing, already listed
+        $this->cartShippingAddress = $cart?->shipping_address
+            ? $this->addressFromCart($cart->shipping_address->toArray(), list: ! $cart->billing_address?->use_for_shipping)
+            : null;
+    }
+
+    /**
+     * A saved address picked from the list keeps its fields hidden, so a field error on it would
+     * go unseen. The failing address forms are told to show their fields, and the first error
+     * is toasted in case those fields sit below the fold.
+     */
+    protected function revealInvalidAddresses(ValidationException $e): void
+    {
+        $addresses = collect($e->validator->errors()->keys())
+            ->map(fn (string $key): string => explode('.', $key)[0])
+            ->unique()
+            ->values()
+            ->all();
+
+        $this->dispatch('checkout-address-invalid', addresses: $addresses);
+        $this->dispatch('toasts:create', type: 'error', title: $e->validator->errors()->first());
     }
 
     /**
@@ -229,6 +272,7 @@ class Checkout extends LivewireSection
         Cart::refreshCart();
 
         $this->loadSavedAddresses();
+        $this->loadCartAddresses();
         $this->initializeAddresses();
     }
 

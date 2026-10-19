@@ -42,6 +42,7 @@
   :id="$fieldId"
   :size="$size"
   :errorName="$errorName"
+  :wireModel="$errorName ? null : $attributes->wire('model')->value()"
   :prepend="$prepend"
   :append="$append"
   :prependIcon="$prependIcon"
