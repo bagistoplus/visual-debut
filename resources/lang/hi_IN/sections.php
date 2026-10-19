@@ -735,11 +735,11 @@ return [
     ],
 
     'customer-rma' => [
-        'name' => 'रिटर्न',
+        'name' => 'वापसी',
     ],
 
     'customer-rma-details' => [
-        'name' => 'रिटर्न विवरण',
+        'name' => 'वापसी विवरण',
     ],
 
     'customer-create-rma' => [
