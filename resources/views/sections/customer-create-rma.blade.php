@@ -37,7 +37,7 @@
         color="secondary"
         icon="lucide-arrow-left"
         size="sm"
-        href="{{ Rma::route('index') }}"
+        :href="Rma::route('index')"
       >
         @lang('shop::app.checkout.onepage.address.back')
       </x-shop::ui.button>

@@ -121,5 +121,6 @@ return [
         'choose-item' => 'Choisissez un article',
         'no-eligible-orders' => 'Aucune de vos commandes ne peut être retournée pour le moment.',
         'return-policy' => 'Politique de retour',
+        'request-return' => 'Demander un retour',
     ],
 ];

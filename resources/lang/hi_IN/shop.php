@@ -121,5 +121,6 @@ return [
         'choose-item' => 'एक आइटम चुनें',
         'no-eligible-orders' => 'आपके किसी भी ऑर्डर को अभी लौटाया नहीं जा सकता।',
         'return-policy' => 'वापसी नीति',
+        'request-return' => 'वापसी का अनुरोध करें',
     ],
 ];

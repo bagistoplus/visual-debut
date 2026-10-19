@@ -1,3 +1,9 @@
+@php
+  use BagistoPlus\VisualDebut\Support\Rma;
+
+  $canRequestReturn = Rma::canRequestReturn($order);
+@endphp
+
 <div
   {{ $section->editor_attributes }}
   class=""
@@ -22,6 +28,17 @@
           href="{{ route('shop.customers.account.orders.reorder', $order->id) }}"
         >
           @lang('shop::app.customers.account.orders.view.reorder-btn-title')
+        </x-shop::ui.button>
+      @endif
+
+      @if ($canRequestReturn)
+        <x-shop::ui.button
+          variant="outline"
+          color="primary"
+          size="sm"
+          :href="Rma::route('create', ['order' => $order->id])"
+        >
+          @lang('visual-debut::shop.rma.request-return')
         </x-shop::ui.button>
       @endif
 
@@ -101,21 +118,34 @@
       aria-labelledby="order-tab-information"
       x-show="selected === 'information'"
     >
-      <div class="my-4 flex gap-4 sm:hidden">
+      <div class="my-4 flex flex-wrap gap-2 lg:hidden">
         @if ($order->canReorder() && core()->getConfigData('sales.order_settings.reorder.shop'))
           <x-shop::ui.button
             variant="outline"
             color="primary"
             size="sm"
             href="{{ route('shop.customers.account.orders.reorder', $order->id) }}"
-            class="flex-1"
+            class="flex-1 whitespace-nowrap"
           >
             @lang('shop::app.customers.account.orders.view.reorder-btn-title')
           </x-shop::ui.button>
         @endif
 
+        @if ($canRequestReturn)
+          <x-shop::ui.button
+            variant="outline"
+            color="primary"
+            size="sm"
+            :href="Rma::route('create', ['order' => $order->id])"
+            class="flex-1 whitespace-nowrap"
+          >
+            @lang('visual-debut::shop.rma.request-return')
+          </x-shop::ui.button>
+        @endif
+
         @if ($order->canCancel())
           <form
+            class="flex flex-1"
             x-ref="cancelForm"
             method="post"
             action="{{ route('shop.customers.account.orders.cancel', $order->id) }}"
@@ -126,7 +156,7 @@
               variant="outline"
               color="danger"
               type="submit"
-              class="flex-1"
+              class="flex-1 whitespace-nowrap"
               x-on:click.prevent="$confirm(() => $refs.cancelForm.submit())"
             >
               @lang('shop::app.customers.account.orders.view.cancel-btn-title')

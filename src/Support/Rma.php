@@ -5,7 +5,9 @@ namespace BagistoPlus\VisualDebut\Support;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Webkul\RMA\Enums\DefaultRMAStatusEnum;
+use Webkul\RMA\Helpers\Helper;
 use Webkul\RMA\Repositories\RMARepository;
+use Webkul\Sales\Models\Order;
 
 /**
  * What the customer returns pages need to know about the Bagisto they run on.
@@ -30,6 +32,17 @@ class Rma
         DefaultRMAStatusEnum::DECLINED,
         DefaultRMAStatusEnum::ITEM_CANCELED,
         DefaultRMAStatusEnum::CANCELED,
+    ];
+
+    /**
+     * Orders Bagisto never offers for a return, as its own list of eligible
+     * orders leaves them out.
+     */
+    private const UNRETURNABLE_ORDER_STATUSES = [
+        Order::STATUS_CANCELED,
+        Order::STATUS_CLOSED,
+        Order::STATUS_FRAUD,
+        Order::STATUS_PENDING_PAYMENT,
     ];
 
     /**
@@ -58,6 +71,23 @@ class Rma
     public static function route(string $name, mixed $parameters = []): string
     {
         return route(self::routeName($name), $parameters);
+    }
+
+    /**
+     * Whether the customer can still ask to return or cancel something from
+     * the order: one of its items is inside its return window with quantity
+     * left that no earlier request has taken.
+     */
+    public static function canRequestReturn(object $order): bool
+    {
+        if (! self::available() || in_array($order->status, self::UNRETURNABLE_ORDER_STATUSES, true)) {
+            return false;
+        }
+
+        return app(Helper::class)
+            ->getOrderItems($order->id)
+            ->pluck('currentQuantity')
+            ->contains(fn ($left) => $left > 0);
     }
 
     /**

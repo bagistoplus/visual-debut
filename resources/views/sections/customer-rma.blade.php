@@ -13,7 +13,7 @@
         variant="soft"
         icon="lucide-plus"
         size="sm"
-        href="{{ Rma::route('create') }}"
+        :href="Rma::route('create')"
       >
         @lang('shop::app.rma.customer.create.heading')
       </x-shop::ui.button>

@@ -121,5 +121,6 @@ return [
         'choose-item' => 'اختر منتجًا',
         'no-eligible-orders' => 'لا يمكن إرجاع أي من طلباتك حاليًا.',
         'return-policy' => 'سياسة الإرجاع',
+        'request-return' => 'طلب إرجاع',
     ],
 ];

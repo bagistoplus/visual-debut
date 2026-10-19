@@ -1,7 +1,9 @@
 <?php
 
 use BagistoPlus\VisualDebut\Support\Rma;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
+use Webkul\RMA\Helpers\Helper;
 use Webkul\RMA\Repositories\RMARepository;
 
 /**
@@ -44,6 +46,52 @@ it('keeps single word route names as they are', function () {
 
     expect(Rma::routeName('view'))->toBe('shop.customers.account.rma.view')
         ->and(Rma::route('view', ['id' => 3]))->toEndWith('/rma/view/3');
+});
+
+/**
+ * Bagisto's RMA helper, answering with the given quantity left per item.
+ */
+function fakeOrderItems(int ...$quantitiesLeft): void
+{
+    app()->instance(Helper::class, new class($quantitiesLeft)
+    {
+        public function __construct(private readonly array $quantitiesLeft) {}
+
+        public function getOrderItems(int $orderId): Collection
+        {
+            return collect($this->quantitiesLeft)->map(fn ($left) => (object) ['currentQuantity' => $left]);
+        }
+    });
+}
+
+it('offers a return while an item has quantity left', function () {
+    rmaRoutes('index');
+    fakeOrderItems(0, 1);
+
+    expect(Rma::canRequestReturn((object) ['id' => 1, 'status' => 'processing']))->toBeTrue();
+});
+
+it('offers no return once every item is taken or out of its window', function (int ...$quantitiesLeft) {
+    rmaRoutes('index');
+    fakeOrderItems(...$quantitiesLeft);
+
+    expect(Rma::canRequestReturn((object) ['id' => 1, 'status' => 'completed']))->toBeFalse();
+})->with([
+    'all requested' => [0, 0],
+    'none in window' => [],
+]);
+
+it('offers no return on an order Bagisto leaves out', function (string $status) {
+    rmaRoutes('index');
+    fakeOrderItems(1);
+
+    expect(Rma::canRequestReturn((object) ['id' => 1, 'status' => $status]))->toBeFalse();
+})->with(['canceled', 'closed', 'fraud', 'pending_payment']);
+
+it('offers no return on a store without returns', function () {
+    fakeOrderItems(1);
+
+    expect(Rma::canRequestReturn((object) ['id' => 1, 'status' => 'processing']))->toBeFalse();
 });
 
 it('shows photos through the image route on Bagisto 2.5', function () {

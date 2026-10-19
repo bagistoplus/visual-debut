@@ -121,5 +121,6 @@ return [
         'choose-item' => 'Choose an item',
         'no-eligible-orders' => 'None of your orders can be returned right now.',
         'return-policy' => 'Return policy',
+        'request-return' => 'Request a return',
     ],
 ];
