@@ -487,6 +487,15 @@ export default function (Alpine: AlpineType) {
         return params;
       },
 
+      // A list's own x-data can override these to hide a column or add row actions
+      columnVisible(column: Column) {
+        return column.visibility;
+      },
+
+      hasRowActions() {
+        return this.available.actions.length > 0;
+      },
+
       rowActions(record: ItemRecord) {
         return record.actions ?? [];
       },

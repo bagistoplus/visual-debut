@@ -1,5 +1,14 @@
 @php
   use BagistoPlus\VisualDebut\Support\Gdpr;
+
+  $listProps = [
+      'revokeUrl' => Gdpr::route('revoke', '__id__'),
+      'revokeMethod' => Gdpr::revokeMethod(),
+      'csrfToken' => csrf_token(),
+      'labels' => [
+          'revoke' => trans('shop::app.customers.account.gdpr.index.datagrid.revoke-btn'),
+      ],
+  ];
 @endphp
 
 <div {{ $section->editor_attributes }} class="bg-background text-on-background box border-none shadow-sm">
@@ -33,6 +42,8 @@
   </div>
 
   <x-shop::datagrid :src="Gdpr::route('index')">
-    <x-shop::datagrid.table />
+    <div x-data="VisualGdprList(@js($listProps))">
+      <x-shop::datagrid.table />
+    </div>
   </x-shop::datagrid>
 </div>

@@ -12,7 +12,7 @@
       </template>
 
       <template x-for="column in available.columns" x-bind:key="column.index">
-        <template x-if="column.visibility">
+        <template x-if="columnVisible(column)">
           <th
             x-bind:class="column.sortable ? 'cursor-pointer' : ''"
             x-on:click="changeSort(column)"
@@ -26,7 +26,7 @@
         </template>
       </template>
 
-      <template x-if="available.actions.length > 0">
+      <template x-if="hasRowActions()">
         <th class="text-on-background px-6 py-4 align-middle text-sm font-medium">
           @lang('shop::app.components.datagrid.table.actions')
         </th>
@@ -50,7 +50,7 @@
           </template>
 
           <template x-for="column in available.columns" x-bind:key="column.index">
-            <template x-if="column.visibility">
+            <template x-if="columnVisible(column)">
               <td
                 class="max-sm:before:text-on-background px-2 py-1 max-sm:flex max-sm:justify-between max-sm:before:pr-2 max-sm:before:text-sm max-sm:before:font-semibold max-sm:before:content-[attr(data-label)] sm:px-6 sm:py-4"
                 x-bind:data-label="column.label"
@@ -60,7 +60,7 @@
             </template>
           </template>
 
-          <template x-if="available.actions.length > 0">
+          <template x-if="hasRowActions()">
             <td
               class="max-sm:before:text-on-background px-2 py-1 max-sm:flex max-sm:justify-between max-sm:before:text-sm max-sm:before:font-semibold max-sm:before:content-[attr(data-label)] sm:px-6 sm:py-4"
               data-label="@lang('shop::app.components.datagrid.table.actions')"

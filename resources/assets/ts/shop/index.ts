@@ -15,6 +15,7 @@ import helpers from './plugins/helpers';
 import addressForm from './features/address-form';
 import imageSearch from './features/image-search';
 import datagrid from './features/datagrid';
+import gdpr from './features/gdpr';
 import mediaGallery from './features/media-gallery';
 import productsCompare from './features/products-compare';
 import productBundle from './features/product-bundle';
@@ -34,6 +35,7 @@ Alpine.plugin([confirm, helpers, toaster]);
 Alpine.plugin([
   addressForm,
   datagrid,
+  gdpr,
   imageSearch,
   mediaGallery,
   productForm,
