@@ -727,6 +727,10 @@ return [
         'name' => 'Retours',
     ],
 
+    'customer-gdpr' => [
+        'name' => 'Demandes RGPD',
+    ],
+
     'customer-rma-details' => [
         'name' => 'Détails du retour',
     ],

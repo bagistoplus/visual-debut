@@ -551,6 +551,10 @@ return [
         'name' => 'Returns',
     ],
 
+    'customer-gdpr' => [
+        'name' => 'GDPR Requests',
+    ],
+
     'customer-rma-details' => [
         'name' => 'Return Details',
     ],

@@ -1,0 +1,6 @@
+sections:
+  gdpr:
+    type: '@visual-debut/customer-gdpr'
+
+order:
+  - gdpr

@@ -746,6 +746,10 @@ return [
         'name' => 'المرتجعات',
     ],
 
+    'customer-gdpr' => [
+        'name' => 'طلبات GDPR',
+    ],
+
     'customer-rma-details' => [
         'name' => 'تفاصيل المرتجع',
     ],

@@ -738,6 +738,10 @@ return [
         'name' => 'वापसी',
     ],
 
+    'customer-gdpr' => [
+        'name' => 'जीडीपीआर अनुरोध',
+    ],
+
     'customer-rma-details' => [
         'name' => 'वापसी विवरण',
     ],
