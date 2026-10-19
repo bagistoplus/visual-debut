@@ -106,9 +106,9 @@
         @lang('shop::app.customers.account.addresses.create.select-country')
       </option>
 
-      @foreach (core()->countries() as $country)
-        <option value="{{ $country->code }}" @selected($country === $country->code)>
-          {{ $country->name }}
+      @foreach (core()->countries() as $countryOption)
+        <option value="{{ $countryOption->code }}" @selected($country === $countryOption->code)>
+          {{ $countryOption->name }}
         </option>
       @endforeach
     </x-shop::ui.form.select>
@@ -120,8 +120,13 @@
         :value="$state"
         :label="trans('shop::app.customers.account.addresses.create.state')"
       >
+        {{-- The select's value is set before x-for adds the options, so each option selects itself --}}
         <template x-for="(state, index) in states">
-          <option x-bind:value="state.code" x-text="state.default_name"></option>
+          <option
+            x-bind:value="state.code"
+            x-bind:selected="state.code === @js($state)"
+            x-text="state.default_name"
+          ></option>
         </template>
       </x-shop::ui.form.select>
     </template>
