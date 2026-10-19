@@ -79,9 +79,31 @@ class ProductReviews extends LivewireSection
 
     public function storeReview()
     {
+        $rules = [
+            'reviewForm.rating' => 'required|integer|min:1|max:5',
+            'reviewForm.title' => 'required|string',
+            'reviewForm.comment' => 'required|string',
+        ];
+
+        if ($this->showReviewNameInput()) {
+            $rules['reviewForm.name'] = 'required|string';
+        }
+
+        $this->validate($rules, [], [
+            'reviewForm.rating' => trans('shop::app.products.view.reviews.rating'),
+            'reviewForm.title' => trans('shop::app.products.view.reviews.title'),
+            'reviewForm.comment' => trans('shop::app.products.view.reviews.comment'),
+            'reviewForm.name' => trans('shop::app.products.view.reviews.name'),
+        ]);
+
         app(StoreProductReview::class)->execute(
             $this->context['product']->id,
-            $this->reviewForm
+            [
+                ...$this->reviewForm,
+                'name' => trim($this->reviewForm['name']),
+                'title' => trim($this->reviewForm['title']),
+                'comment' => trim($this->reviewForm['comment']),
+            ]
         );
 
         session()->flash('success', trans('shop::app.products.view.reviews.success'));
