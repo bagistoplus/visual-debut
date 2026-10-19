@@ -2,11 +2,11 @@
 
 namespace BagistoPlus\VisualDebut\Sections;
 
-use BagistoPlus\Visual\Blocks\BladeSection;
+use BagistoPlus\Visual\Blocks\SimpleSection;
 
 use function BagistoPlus\VisualDebut\_t;
 
-class CustomerRma extends BladeSection
+class CustomerRma extends SimpleSection
 {
     protected static string $type = '@visual-debut/customer-rma';
 

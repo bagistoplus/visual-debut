@@ -113,4 +113,9 @@ return [
         'sign-in' => 'تسجيل الدخول',
         'compare' => 'المقارنة',
     ],
+
+    'rma' => [
+        'mark-solved' => 'تحديد كمحلول',
+        'load-older-messages' => 'عرض الرسائل الأقدم',
+    ],
 ];

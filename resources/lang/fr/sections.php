@@ -727,6 +727,10 @@ return [
         'name' => 'Retours',
     ],
 
+    'customer-rma-details' => [
+        'name' => 'Détails du retour',
+    ],
+
     'customer-order-details' => [
         'name' => 'Détails de la commande',
     ],

@@ -746,6 +746,10 @@ return [
         'name' => 'المرتجعات',
     ],
 
+    'customer-rma-details' => [
+        'name' => 'تفاصيل المرتجع',
+    ],
+
     'customer-order-details' => [
         'name' => 'تفاصيل الطلب',
     ],

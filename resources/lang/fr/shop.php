@@ -113,4 +113,9 @@ return [
         'sign-in' => 'Connexion',
         'compare' => 'Comparer',
     ],
+
+    'rma' => [
+        'mark-solved' => 'Marquer comme résolu',
+        'load-older-messages' => 'Afficher les messages précédents',
+    ],
 ];

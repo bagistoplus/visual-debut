@@ -738,6 +738,10 @@ return [
         'name' => 'रिटर्न',
     ],
 
+    'customer-rma-details' => [
+        'name' => 'रिटर्न विवरण',
+    ],
+
     'customer-order-details' => [
         'name' => 'ऑर्डर विवरण',
     ],

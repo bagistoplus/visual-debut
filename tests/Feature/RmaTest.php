@@ -61,6 +61,13 @@ it('shows photos from the public disk on Bagisto 2.4', function () {
         ->toBe('http://shop.test/storage/rma/1/a.png');
 });
 
+it('points 2.4 attachments at the public disk', function () {
+    config()->set('filesystems.disks.public.url', 'http://shop.test/storage');
+    config()->set('filesystems.default', 'public');
+
+    expect(Rma::storageUrl())->toBe('http://shop.test/storage/');
+});
+
 it('asks Bagisto whether a request can be canceled when it knows', function () {
     app()->instance(RMARepository::class, new class
     {

@@ -74,6 +74,15 @@ class Rma
     }
 
     /**
+     * Where 2.4 serves conversation attachments from: the public disk, by the
+     * message's `attachment_path`. 2.5 sends each message's `attachment_url`.
+     */
+    public static function storageUrl(): string
+    {
+        return rtrim(Storage::url(''), '/').'/';
+    }
+
+    /**
      * Whether the customer may still cancel the request. Before 2.4.10 Bagisto
      * cancels from any status, so the same rule is applied here instead.
      */
