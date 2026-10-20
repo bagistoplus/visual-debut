@@ -6,6 +6,7 @@ return [
     'back' => 'Back',
     'edit' => 'Edit',
     'filters' => 'Filters',
+    'please-wait' => 'Please wait',
     'sort-and-filter' => 'Sort & Filter',
     'sort-by' => 'Sort by',
     'items-per-page' => 'Items per page',

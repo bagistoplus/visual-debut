@@ -6,6 +6,7 @@ return [
     'back' => 'رجوع',
     'edit' => 'تعديل',
     'filters' => 'الفلاتر',
+    'please-wait' => 'يرجى الانتظار',
     'sort-and-filter' => 'الفرز والتصفية',
     'sort-by' => 'الفرز حسب',
     'items-per-page' => 'العناصر لكل صفحة',

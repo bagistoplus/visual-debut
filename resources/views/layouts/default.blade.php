@@ -18,6 +18,8 @@
 
     <x-shop::toasts />
 
+    <x-shop::page-loader />
+
     <x-shop::confirm-modal />
 
     @if (core()->getConfigData('general.gdpr.settings.enabled') && core()->getConfigData('general.gdpr.cookie.enabled') && !\BagistoPlus\VisualDebut\Support\CookieConsent::isPreferencesPage())

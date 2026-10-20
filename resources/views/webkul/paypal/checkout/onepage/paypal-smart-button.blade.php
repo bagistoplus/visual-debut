@@ -61,7 +61,9 @@
             },
 
             onApprove: async function(data, actions) {
-              // Optionally, show a loader here
+              // The capture takes several seconds, during which the PayPal buttons are back on screen
+              window.dispatchEvent(new CustomEvent('page-loader:show'));
+
               try {
                 const response = await fetch("{{ \BagistoPlus\VisualDebut\Support\Routes::url('paypal.smart_button.capture_order') }}", {
                   method: 'POST',
@@ -79,9 +81,13 @@
                 if (jsonResponse.success) {
                   window.location.href = jsonResponse.redirect_url ||
                     "{{ route('shop.checkout.onepage.success') }}";
+
+                  return;
                 }
 
-                // Optionally, hide the PayPal loader here
+                window.dispatchEvent(new CustomEvent('page-loader:hide'));
+
+                paypalOptions.alertBox(messages.authorizationError, 'error');
               } catch (error) {
                 window.location.href = "{{ route('shop.checkout.cart.index') }}";
               }
