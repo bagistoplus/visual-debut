@@ -357,6 +357,11 @@ return [
         ],
     ],
 
+    'product-options' => [
+        'name' => 'خيارات المنتج',
+        'no-options' => 'لا توجد خيارات لهذا المنتج.',
+    ],
+
     'product-variant-picker' => [
         'name' => 'محدد المتغيرات',
         'settings' => [

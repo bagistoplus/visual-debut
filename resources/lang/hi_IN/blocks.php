@@ -357,6 +357,11 @@ return [
         ],
     ],
 
+    'product-options' => [
+        'name' => 'उत्पाद विकल्प',
+        'no-options' => 'इस उत्पाद में चुनने के लिए कोई विकल्प नहीं है।',
+    ],
+
     'product-variant-picker' => [
         'name' => 'वेरिएंट चयनकर्ता',
         'settings' => [

@@ -5,11 +5,13 @@ namespace BagistoPlus\VisualDebut\Blocks\Product;
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\Product as ProductSetting;
 use BagistoPlus\Visual\Settings\Select;
-use Webkul\Product\Helpers\ConfigurableOption;
-use Webkul\Product\Helpers\ProductType;
 
 use function BagistoPlus\VisualDebut\_t;
 
+/**
+ * Kept so templates saved before {@see ProductOptions} still render. Private
+ * and accepted by no parent, so the editor no longer offers it.
+ */
 class ProductVariantPicker extends SimpleBlock
 {
     protected static string $view = 'visual-debut::blocks.product.variant-picker';
@@ -21,6 +23,8 @@ class ProductVariantPicker extends SimpleBlock
     protected static string $category = 'Product';
 
     protected static int $limit = 1;
+
+    protected static bool $private = true;
 
     public static function name(): string
     {
@@ -44,30 +48,7 @@ class ProductVariantPicker extends SimpleBlock
     protected function getViewData(): array
     {
         $product = $this->block->settings->product ?? $this->context['product'] ?? null;
-        $hasVariants = $product ? ProductType::hasVariants($product->type) : false;
 
-        $variantData = [
-            'variantAttributes' => [],
-            'variantPrices' => [],
-            'variantImages' => [],
-            'variantVideos' => [],
-        ];
-
-        if ($product && $hasVariants) {
-            $variantHelper = app(ConfigurableOption::class);
-            $variantConfig = $variantHelper->getConfigurationConfig($product);
-
-            $variantData = [
-                'variantAttributes' => $variantConfig['attributes'] ?? [],
-                'variantPrices' => $variantConfig['variant_prices'] ?? [],
-                'variantImages' => $variantConfig['variant_images'] ?? [],
-                'variantVideos' => $variantConfig['variant_videos'] ?? [],
-            ];
-        }
-
-        return array_merge([
-            'product' => $product,
-            'hasVariants' => $hasVariants,
-        ], $variantData);
+        return array_merge(['product' => $product], ProductOptions::variantData($product));
     }
 }

@@ -351,6 +351,11 @@ return [
         ],
     ],
 
+    'product-options' => [
+        'name' => 'Product Options',
+        'no-options' => 'This product has no options to choose.',
+    ],
+
     'product-variant-picker' => [
         'name' => 'Variant Picker',
         'settings' => [

@@ -8,17 +8,13 @@ use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\Visual\Support\TemplateBuilder;
 use BagistoPlus\VisualDebut\Blocks\Accordion;
 use BagistoPlus\VisualDebut\Blocks\AccordionRow;
-use BagistoPlus\VisualDebut\Blocks\Product\ProductBundleOptions;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductBuyButtons;
-use BagistoPlus\VisualDebut\Blocks\Product\ProductCustomizableOptions;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductDetails;
-use BagistoPlus\VisualDebut\Blocks\Product\ProductDownloadableOptions;
-use BagistoPlus\VisualDebut\Blocks\Product\ProductGroupedOptions;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductMediaGallery;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductOptions;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductPrice;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductQuantitySelector;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductRating;
-use BagistoPlus\VisualDebut\Blocks\Product\ProductVariantPicker;
 use BagistoPlus\VisualDebut\Sections\Breadcrumbs;
 use BagistoPlus\VisualDebut\Sections\ProductInformation;
 use BagistoPlus\VisualDebut\Sections\ProductReviews;
@@ -70,11 +66,7 @@ return TemplateBuilder::make()
                     PresetBlock::make(ProductRating::class)->id('rating'),
                     PresetBlock::make(Divider::class)->id('separator-1'),
                     PresetBlock::make(ProductShortDescription::class)->id('short-description'),
-                    PresetBlock::make(ProductVariantPicker::class)->id('variants'),
-                    PresetBlock::make(ProductGroupedOptions::class)->id('grouped-options'),
-                    PresetBlock::make(ProductBundleOptions::class)->id('bundle-options'),
-                    PresetBlock::make(ProductDownloadableOptions::class)->id('downloadable-options'),
-                    PresetBlock::make(ProductCustomizableOptions::class)->id('customizable-options'),
+                    PresetBlock::make(ProductOptions::class)->id('options'),
                     PresetBlock::make(ProductQuantitySelector::class)->id('quantity-selector'),
                     PresetBlock::make(ProductBuyButtons::class)->id('buy-buttons'),
                     PresetBlock::make(Divider::class)->id('separator-2'),

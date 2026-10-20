@@ -37,10 +37,7 @@ class ProductDetails extends BladeBlock
         ProductQuantitySelector::class,
         ProductBuyButtons::class,
         ProductDescription::class,
-        ProductVariantPicker::class,
-        ProductGroupedOptions::class,
-        ProductBundleOptions::class,
-        ProductDownloadableOptions::class,
+        ProductOptions::class,
 
         // Generic layout blocks
         Group::class,

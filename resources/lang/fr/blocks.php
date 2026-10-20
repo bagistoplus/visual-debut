@@ -357,6 +357,11 @@ return [
         ],
     ],
 
+    'product-options' => [
+        'name' => 'Options du produit',
+        'no-options' => 'Ce produit n\'a aucune option à choisir.',
+    ],
+
     'product-variant-picker' => [
         'name' => 'Sélecteur de variantes',
         'settings' => [
