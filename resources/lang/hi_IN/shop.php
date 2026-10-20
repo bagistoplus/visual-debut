@@ -28,6 +28,8 @@ return [
     'no-matching-options' => 'कोई मेल खाता विकल्प नहीं',
     'previous' => 'पिछला',
     'next' => 'अगला',
+    'show-more' => 'और दिखाएँ',
+    'show-less' => 'कम दिखाएँ',
     'show-as' => ':mode के रूप में दिखाएं',
     'select-option' => ':option चुनें',
     'remove-item' => 'आइटम हटाएं',

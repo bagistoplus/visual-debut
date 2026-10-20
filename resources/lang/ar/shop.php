@@ -28,6 +28,8 @@ return [
     'no-matching-options' => 'لا توجد خيارات مطابقة',
     'previous' => 'السابق',
     'next' => 'التالي',
+    'show-more' => 'عرض المزيد',
+    'show-less' => 'عرض أقل',
     'show-as' => 'عرض كـ :mode',
     'select-option' => 'اختر :option',
     'remove-item' => 'إزالة العنصر',

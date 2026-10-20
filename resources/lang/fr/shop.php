@@ -28,6 +28,8 @@ return [
     'no-matching-options' => 'Aucune option correspondante',
     'previous' => 'Précédent',
     'next' => 'Suivant',
+    'show-more' => 'Afficher plus',
+    'show-less' => 'Afficher moins',
     'show-as' => 'Afficher en :mode',
     'select-option' => 'Sélectionner :option',
     'remove-item' => 'Supprimer l\'article',

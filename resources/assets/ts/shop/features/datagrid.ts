@@ -496,6 +496,10 @@ export default function (Alpine: AlpineType) {
         return this.available.actions.length > 0;
       },
 
+      clampColumn(_column: Column) {
+        return false;
+      },
+
       rowActions(record: ItemRecord) {
         return record.actions ?? [];
       },

@@ -55,7 +55,29 @@
                 class="max-sm:before:text-on-background px-2 py-1 max-sm:flex max-sm:justify-between max-sm:before:pr-2 max-sm:before:text-sm max-sm:before:font-semibold max-sm:before:content-[attr(data-label)] sm:px-6 sm:py-4"
                 x-bind:data-label="column.label"
               >
-                <span x-html="record[column.index]"></span>
+                <template x-if="!clampColumn(column)">
+                  <span x-html="record[column.index]"></span>
+                </template>
+
+                {{-- Long text keeps two lines until asked; the toggle shows only when something is cut --}}
+                <template x-if="clampColumn(column)">
+                  <div
+                    x-data="{ expanded: false, overflowing: false }"
+                    x-init="$nextTick(() => (overflowing = $refs.text.scrollHeight > $refs.text.clientHeight))"
+                    class="sm:max-w-xs"
+                  >
+                    <span x-ref="text" x-html="record[column.index]" x-bind:class="{ 'line-clamp-2': !expanded }"></span>
+                    <button
+                      type="button"
+                      x-show="overflowing"
+                      x-on:click="expanded = !expanded"
+                      class="text-primary mt-1 block cursor-pointer text-xs hover:underline"
+                    >
+                      <span x-show="!expanded">@lang('visual-debut::shop.show-more')</span>
+                      <span x-show="expanded" x-cloak>@lang('visual-debut::shop.show-less')</span>
+                    </button>
+                  </div>
+                </template>
               </td>
             </template>
           </template>

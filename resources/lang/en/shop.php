@@ -28,6 +28,8 @@ return [
     'no-matching-options' => 'No matching options',
     'previous' => 'Previous',
     'next' => 'Next',
+    'show-more' => 'Show more',
+    'show-less' => 'Show less',
     'show-as' => 'Show as :mode',
     'select-option' => 'Select :option',
     'remove-item' => 'Remove item',

@@ -58,6 +58,11 @@ export default function (Alpine: AlpineType) {
       return column.visibility && column.index !== 'revoke';
     },
 
+    // A message runs up to 500 characters
+    clampColumn(column: Column) {
+      return column.index === 'message';
+    },
+
     hasRowActions(this: ListScope) {
       return this.available.records.some(isPending);
     },
