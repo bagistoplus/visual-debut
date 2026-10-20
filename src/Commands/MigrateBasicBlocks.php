@@ -2,11 +2,14 @@
 
 namespace BagistoPlus\VisualDebut\Commands;
 
+use BagistoPlus\VisualDebut\Commands\Concerns\FindsThemeData;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
 class MigrateBasicBlocks extends Command
 {
+    use FindsThemeData;
+
     protected $signature = 'visual-debut:migrate-basic-blocks
         {--path=* : Custom JSON file or directory path to migrate}
         {--dry-run : Report changed files without writing them}';
@@ -50,9 +53,8 @@ class MigrateBasicBlocks extends Command
             }
 
             $migrated = $this->migrateNode($data);
-            $encoded = json_encode($migrated, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
-            if ($encoded === false || $encoded.PHP_EOL === $original || $encoded === $original) {
+            if ($migrated === $data) {
                 continue;
             }
 
@@ -60,50 +62,13 @@ class MigrateBasicBlocks extends Command
             $this->line(($dryRun ? 'Would update ' : 'Updated ').$path);
 
             if (! $dryRun) {
-                File::put($path, $encoded.PHP_EOL);
+                File::put($path, $this->encode($migrated, $original));
             }
         }
 
         $this->info(($dryRun ? 'Files needing migration: ' : 'Migrated files: ').$changed);
 
         return self::SUCCESS;
-    }
-
-    private function defaultPaths(): array
-    {
-        $dataPath = config('bagisto-visual.data_path', storage_path('bagisto-visual'));
-        $base = rtrim($dataPath, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.'themes'.DIRECTORY_SEPARATOR.'visual-debut';
-
-        return [
-            $base.DIRECTORY_SEPARATOR.'editor',
-            $base.DIRECTORY_SEPARATOR.'live',
-            $base.DIRECTORY_SEPARATOR.'versions',
-        ];
-    }
-
-    private function jsonFiles(array $paths): array
-    {
-        $files = [];
-
-        foreach ($paths as $path) {
-            if (File::isFile($path) && str_ends_with($path, '.json')) {
-                $files[] = $path;
-
-                continue;
-            }
-
-            if (! File::isDirectory($path)) {
-                continue;
-            }
-
-            foreach (File::allFiles($path) as $file) {
-                if ($file->getExtension() === 'json') {
-                    $files[] = $file->getPathname();
-                }
-            }
-        }
-
-        return $files;
     }
 
     private function migrateNode(mixed $node): mixed

@@ -5,6 +5,7 @@ namespace BagistoPlus\VisualDebut;
 use BagistoPlus\Visual\Facades\Visual;
 use BagistoPlus\Visual\Providers\ThemeServiceProvider;
 use BagistoPlus\VisualDebut\Commands\MigrateBasicBlocks;
+use BagistoPlus\VisualDebut\Commands\MigrateProductOptions;
 use BagistoPlus\VisualDebut\Components\Livewire\CartCouponForm;
 use BagistoPlus\VisualDebut\Components\Livewire\EstimateShipping;
 use BagistoPlus\VisualDebut\Listeners\FlushCatalogCache;
@@ -20,6 +21,7 @@ class ServiceProvider extends ThemeServiceProvider
 {
     protected static array $commands = [
         MigrateBasicBlocks::class,
+        MigrateProductOptions::class,
     ];
 
     protected static array $livewireComponents = [
