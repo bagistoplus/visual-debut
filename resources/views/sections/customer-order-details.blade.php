@@ -1,4 +1,5 @@
 @php
+  use BagistoPlus\VisualDebut\Support\Booking;
   use BagistoPlus\VisualDebut\Support\Rma;
 
   $canRequestReturn = Rma::canRequestReturn($order);
@@ -67,6 +68,25 @@
       @endif
     </div>
   </div>
+
+  @if (Booking::warnsAboutCancellation($order))
+    <div
+      role="note"
+      class="bg-warning-100 border-warning text-warning-900 my-4 flex items-start gap-3 rounded-lg border p-4"
+    >
+      @svg('lucide-triangle-alert', ['class' => 'mt-0.5 h-5 w-5 shrink-0', 'aria-hidden' => true])
+
+      <div>
+        <p class="text-sm font-semibold">
+          @lang('shop::app.customers.account.orders.view.booking-cancellation-not-allowed.title')
+        </p>
+
+        <p class="mt-1 text-sm">
+          @lang('shop::app.customers.account.orders.view.booking-cancellation-not-allowed.description')
+        </p>
+      </div>
+    </div>
+  @endif
 
   <!-- Tabs -->
   @php
