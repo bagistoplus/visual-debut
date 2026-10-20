@@ -55,6 +55,11 @@
                   </div>
                   <div class="flex-1">
                     <h3 class="text-base font-medium">{{ $item->name }}</h3>
+
+                    @if (!empty($item->options))
+                      <x-shop::cart.customizable-items :options="$item->options" />
+                    @endif
+
                     <p class="text-sm">@lang('visual-debut::shop.order.quantity'): {{ $item->quantity }}</p>
                     <p class="text-primary text-sm">{{ $item->formatted_price }}</p>
                   </div>
