@@ -13,6 +13,7 @@ import toasts, { toaster } from './components/ui/toasts';
 import confirm from './plugins/confirm';
 import helpers from './plugins/helpers';
 import addressForm from './features/address-form';
+import cookieConsent from './features/cookie-consent';
 import imageSearch from './features/image-search';
 import datagrid from './features/datagrid';
 import gdpr from './features/gdpr';
@@ -34,6 +35,7 @@ Alpine.plugin([confirm, helpers, toaster]);
 // feature components as plugin
 Alpine.plugin([
   addressForm,
+  cookieConsent,
   datagrid,
   gdpr,
   imageSearch,

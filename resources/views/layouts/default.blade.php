@@ -20,6 +20,10 @@
 
     <x-shop::confirm-modal />
 
+    @if (core()->getConfigData('general.gdpr.settings.enabled') && core()->getConfigData('general.gdpr.cookie.enabled'))
+      <x-shop::cookie-consent />
+    @endif
+
     {!! view_render_event('bagisto.shop.layout.content.before') !!}
 
     <main role="main" tabindex="-1">
