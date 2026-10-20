@@ -14,14 +14,28 @@
 <div {{ $section->editor_attributes }} class="bg-background text-on-background box border-none shadow-sm">
   <div class="border-b p-4">
     <div class="flex flex-wrap items-center justify-between gap-4">
-      <h1 class="text-2xl">
-        @lang('shop::app.customers.account.gdpr.index.title')
-      </h1>
-      <div class="flex gap-2">
+      <div>
+        <h1 class="text-2xl">
+          @lang('shop::app.customers.account.gdpr.index.title')
+        </h1>
+
+        {{-- The banner opens its own dialog, so this is the way back to a choice once made --}}
+        @if (core()->getConfigData('general.gdpr.cookie.enabled'))
+          <a
+            href="{{ \BagistoPlus\VisualDebut\Support\CookieConsent::preferencesUrl() }}"
+            class="text-on-background/70 hover:text-primary mt-1 inline-flex items-center gap-1 text-sm"
+          >
+            @lang('shop::app.components.layouts.cookie.consent.your-cookie-consent-preferences')
+            <x-lucide-arrow-right class="h-4 w-4 rtl:rotate-180" />
+          </a>
+        @endif
+      </div>
+      <div class="flex flex-wrap gap-2">
         <x-shop::ui.button
           color="secondary"
           variant="soft"
           icon="lucide-download"
+          class="whitespace-nowrap"
           size="sm"
           :href="Gdpr::route('pdf_view')"
         >
@@ -31,6 +45,7 @@
           color="secondary"
           variant="soft"
           icon="lucide-external-link"
+          class="whitespace-nowrap"
           size="sm"
           :href="Gdpr::route('html_view')"
           target="_blank"
@@ -49,6 +64,7 @@
               color="primary"
               variant="soft"
               icon="lucide-plus"
+              class="whitespace-nowrap"
               size="sm"
             >
               @lang('shop::app.customers.account.gdpr.index.create-btn')

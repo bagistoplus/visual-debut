@@ -1,9 +1,7 @@
 @php
-  $cookie = [
-      'domain' => config('session.domain'),
-      'secure' => (bool) config('session.secure'),
-      'sameSite' => config('session.same_site'),
-  ];
+  use BagistoPlus\VisualDebut\Support\CookieConsent;
+
+  $cookie = CookieConsent::cookieOptions();
 
   // Fixed on phones, the admin's corner (or the centre) from the sm breakpoint
   $positions = [

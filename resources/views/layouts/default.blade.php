@@ -20,7 +20,7 @@
 
     <x-shop::confirm-modal />
 
-    @if (core()->getConfigData('general.gdpr.settings.enabled') && core()->getConfigData('general.gdpr.cookie.enabled'))
+    @if (core()->getConfigData('general.gdpr.settings.enabled') && core()->getConfigData('general.gdpr.cookie.enabled') && !\BagistoPlus\VisualDebut\Support\CookieConsent::isPreferencesPage())
       <x-shop::cookie-consent />
     @endif
 
