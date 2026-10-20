@@ -1,3 +1,11 @@
+@if ($booking['duration'])
+  <p class="text-sm">@lang('visual-debut::shop.booking.duration', ['minutes' => $booking['duration']])</p>
+@endif
+
+@if (!empty($booking['openingHours']))
+  @include('visual-debut::blocks.product.options.booking.opening-hours')
+@endif
+
 <div>
   <label for="booking-date-{{ $block->id }}" class="text-sm font-semibold">
     @lang('visual-debut::shop.booking.date')

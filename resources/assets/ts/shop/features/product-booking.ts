@@ -9,6 +9,24 @@ interface BookingSlot {
 
 type SlotsStatus = 'idle' | 'loading' | 'ready' | 'empty' | 'failed';
 
+interface EventTicket {
+  id: number;
+  name: string;
+  price: number;
+}
+
+interface BookingEventProps {
+  tickets: EventTicket[];
+  basePrice: number;
+  messages: { ticketLine: string; feeLine: string };
+}
+
+interface SummaryLine {
+  id: number;
+  label: string;
+  amount: string;
+}
+
 interface BookingSlotsProps {
   slotsUrl: string;
   availableFrom: string | null;
@@ -24,6 +42,13 @@ function isoDate(date: Date): string {
   const day = String(date.getDate()).padStart(2, '0');
 
   return `${date.getFullYear()}-${month}-${day}`;
+}
+
+/**
+ * Fills a translated line such as ':name × :count'.
+ */
+function fill(template: string, values: Record<string, string | number>): string {
+  return Object.entries(values).reduce((text, [key, value]) => text.replace(`:${key}`, String(value)), template);
 }
 
 export default function (Alpine: AlpineType) {
@@ -109,6 +134,69 @@ export default function (Alpine: AlpineType) {
 
     validate(): boolean {
       this.showErrors = !this.date || !this.slot;
+
+      return !this.showErrors;
+    },
+  }));
+
+  /**
+   * An event: tickets bought by the number. Bagisto charges each ticket its
+   * own price plus the product's, so the total counts the product once per
+   * ticket. Prices arrive in the shop's currency.
+   */
+  Alpine.data('VisualBookingEvent', (props: BookingEventProps) => ({
+    quantities: {} as Record<number, number>,
+    showErrors: false,
+
+    get count(): number {
+      return Object.values(this.quantities).reduce((sum, quantity) => sum + quantity, 0);
+    },
+
+    get lines(): SummaryLine[] {
+      return props.tickets
+        .filter((ticket) => (this.quantities[ticket.id] ?? 0) > 0)
+        .map((ticket) => ({
+          id: ticket.id,
+          label: fill(props.messages.ticketLine, { name: ticket.name, count: this.quantities[ticket.id] }),
+          amount: this.$formatPrice(ticket.price * this.quantities[ticket.id]),
+        }));
+    },
+
+    get fee(): SummaryLine | null {
+      if (props.basePrice <= 0 || this.count === 0) return null;
+
+      return {
+        id: 0,
+        label: fill(props.messages.feeLine, { count: this.count }),
+        amount: this.$formatPrice(props.basePrice * this.count),
+      };
+    },
+
+    get total(): string {
+      const tickets = props.tickets.reduce(
+        (sum, ticket) => sum + ticket.price * (this.quantities[ticket.id] ?? 0),
+        0
+      );
+
+      return this.$formatPrice(tickets + props.basePrice * this.count);
+    },
+
+    init() {
+      (this.$store.productForm as ProductForm).addValidator(() => this.validate());
+    },
+
+    setQuantity(ticketId: number, quantity: number) {
+      this.quantities = { ...this.quantities, [ticketId]: quantity };
+
+      this.$wire.set('booking', this.count ? { qty: this.quantities } : [], false);
+
+      if (this.showErrors) {
+        this.validate();
+      }
+    },
+
+    validate(): boolean {
+      this.showErrors = this.count === 0;
 
       return !this.showErrors;
     },

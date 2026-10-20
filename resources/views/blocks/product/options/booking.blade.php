@@ -1,9 +1,17 @@
 @php
+  // Each kind of booking has its own form and Alpine component; the location and notice are shared
+  $form = match ($booking['type']) {
+      'event' => ['partial' => 'event', 'component' => 'VisualBookingEvent', 'incomplete' => 'choose-tickets'],
+      default => ['partial' => 'slots', 'component' => 'VisualBookingSlots', 'incomplete' => 'incomplete'],
+  };
+
   $props = array_merge($booking, [
       'messages' => [
           'loading' => trans('visual-debut::shop.booking.slots-loading'),
           'empty' => trans('visual-debut::shop.booking.no-slots'),
           'failed' => trans('visual-debut::shop.booking.slots-failed'),
+          'ticketLine' => trans('visual-debut::shop.booking.ticket-line'),
+          'feeLine' => trans('visual-debut::shop.booking.fee-line'),
       ],
   ]);
 @endphp
@@ -11,7 +19,7 @@
 {{-- Livewire leaves the form alone: its state lives in Alpine and reaches the section through $wire --}}
 <div
   {{ $block->editor_attributes }}
-  x-data="VisualBookingSlots(@js($props))"
+  x-data="{{ $form['component'] }}(@js($props))"
   wire:ignore
   class="space-y-4"
 >
@@ -49,21 +57,13 @@
     </div>
   @endunless
 
-  @if ($booking['duration'])
-    <p class="text-sm">@lang('visual-debut::shop.booking.duration', ['minutes' => $booking['duration']])</p>
-  @endif
-
-  @if (!empty($booking['openingHours']))
-    @include('visual-debut::blocks.product.options.booking.opening-hours')
-  @endif
-
-  @include('visual-debut::blocks.product.options.booking.slots')
+  @include('visual-debut::blocks.product.options.booking.' . $form['partial'])
 
   <p
     x-show="showErrors"
     x-cloak
     class="text-danger text-sm italic"
   >
-    @lang('visual-debut::shop.booking.incomplete')
+    @lang('visual-debut::shop.booking.' . $form['incomplete'])
   </p>
 </div>

@@ -5,6 +5,7 @@ namespace BagistoPlus\VisualDebut\Support;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
 use Webkul\BookingProduct\Helpers\Booking as BookingHelper;
+use Webkul\Core\Core;
 
 /**
  * What the product page needs to book a booking product, read from the
@@ -18,7 +19,13 @@ class BookingOptions
     /**
      * The booking types the product page can book.
      */
-    public const SUPPORTED = ['default', 'appointment'];
+    public const SUPPORTED = ['default', 'appointment', 'event'];
+
+    /**
+     * The booking types whose form sets the quantity, so the page hides its
+     * quantity selector for them.
+     */
+    public const OWN_QUANTITY = ['event'];
 
     /**
      * The form settings for a booking product, or null when the product is
@@ -26,16 +33,52 @@ class BookingOptions
      */
     public static function for(object $product): ?array
     {
-        if ($product->type !== 'booking') {
-            return null;
-        }
-
-        $bookingProduct = $product->getTypeInstance()->getBookingProduct($product->id);
+        $bookingProduct = self::bookingProduct($product);
 
         if (! $bookingProduct || ! in_array($bookingProduct->type, self::SUPPORTED, true)) {
             return null;
         }
 
+        $settings = $bookingProduct->type === 'event'
+            ? self::event($product, $bookingProduct)
+            : self::slots($bookingProduct);
+
+        if ($settings === null) {
+            return null;
+        }
+
+        return array_merge([
+            'type' => $bookingProduct->type,
+            'location' => $bookingProduct->location ?: null,
+            'cancellable' => $bookingProduct->allow_cancellation ?? true,
+        ], $settings);
+    }
+
+    /**
+     * Whether the booking form sets the quantity instead of the page's
+     * quantity selector.
+     */
+    public static function ownsQuantity(object $product): bool
+    {
+        $bookingProduct = self::bookingProduct($product);
+
+        return $bookingProduct !== null && in_array($bookingProduct->type, self::OWN_QUANTITY, true);
+    }
+
+    private static function bookingProduct(object $product): ?object
+    {
+        if ($product->type !== 'booking') {
+            return null;
+        }
+
+        return $product->getTypeInstance()->getBookingProduct($product->id) ?: null;
+    }
+
+    /**
+     * A default or appointment booking: one slot on one day.
+     */
+    private static function slots(object $bookingProduct): ?array
+    {
         $slot = self::slotSettings($bookingProduct);
 
         if (! $slot) {
@@ -47,15 +90,73 @@ class BookingOptions
         $everyWeek = (bool) $bookingProduct->available_every_week;
 
         return [
-            'type' => $bookingProduct->type,
             'slotsUrl' => route(self::slotsRouteName(), $bookingProduct->id),
             'availableFrom' => $everyWeek ? null : self::date($bookingProduct->available_from),
             'availableTo' => $everyWeek ? null : self::date($bookingProduct->available_to),
             'duration' => $repeatsWeekly && $slot->duration ? (int) $slot->duration : null,
             'openingHours' => $repeatsWeekly ? self::openingHours($bookingProduct) : self::periods($slot),
-            'location' => $bookingProduct->location ?: null,
-            'cancellable' => $bookingProduct->allow_cancellation ?? true,
         ];
+    }
+
+    /**
+     * An event: tickets bought by the number, each charged its own price on
+     * top of the product's. Prices are in the shop's currency.
+     */
+    private static function event(object $product, object $bookingProduct): array
+    {
+        return [
+            'startsAt' => self::moment($bookingProduct->available_from),
+            'endsAt' => self::moment($bookingProduct->available_to),
+            'basePrice' => self::converted((float) $product->getTypeInstance()->getFinalPrice()),
+            'tickets' => collect($bookingProduct->event_tickets ?? [])
+                ->map(function (object $ticket) {
+                    $special = self::specialPrice($ticket);
+
+                    return [
+                        'id' => (int) $ticket->id,
+                        'name' => (string) $ticket->name,
+                        'description' => (string) ($ticket->description ?? ''),
+                        'price' => self::converted($special ?? (float) $ticket->price),
+                        'regularPrice' => $special === null ? null : self::converted((float) $ticket->price),
+                    ];
+                })
+                ->values()
+                ->all(),
+        ];
+    }
+
+    /**
+     * A ticket's sale price while it runs, as Bagisto's `isInSale()` reads it.
+     */
+    private static function specialPrice(object $ticket): ?float
+    {
+        $special = (float) ($ticket->special_price ?? 0);
+
+        if ($special <= 0) {
+            return null;
+        }
+
+        $now = Carbon::now();
+        $from = self::saleDate($ticket->special_price_from ?? null);
+        $to = self::saleDate($ticket->special_price_to ?? null);
+
+        if (($from && $from > $now) || ($to && $to <= $now)) {
+            return null;
+        }
+
+        return $special;
+    }
+
+    /**
+     * Bagisto stores a missing sale date as null or as a zero date.
+     */
+    private static function saleDate(mixed $value): ?Carbon
+    {
+        if (! $value || $value === '0000-00-00 00:00:00') {
+            return null;
+        }
+
+        return Carbon::parse($value);
     }
 
     /**
@@ -127,6 +228,19 @@ class BookingOptions
     private static function time(string $time): string
     {
         return Carbon::createFromFormat('H:i', $time)->translatedFormat('h:i A');
+    }
+
+    /**
+     * A price in the base currency, in the shop's current currency.
+     */
+    private static function converted(float $price): float
+    {
+        return (float) app(Core::class)->convertPrice($price);
+    }
+
+    private static function moment(mixed $value): ?string
+    {
+        return $value ? Carbon::parse($value)->translatedFormat('d M Y, h:i A') : null;
     }
 
     private static function date(mixed $value): ?string

@@ -139,6 +139,13 @@ return [
         'opening-hours' => 'Opening hours',
         'closed' => 'Closed',
         'incomplete' => 'Choose a date and a time slot.',
+        'when' => 'When',
+        'tickets' => 'Tickets',
+        'summary' => 'Your booking',
+        'ticket-line' => ':name × :count',
+        'fee-line' => 'Booking fee × :count',
+        'total' => 'Total',
+        'choose-tickets' => 'Choose at least one ticket.',
         'not-cancellable' => [
             'title' => 'This booking cannot be canceled',
             'description' => 'Once ordered, this booking cannot be canceled from your account. Contact us if your plans change.',

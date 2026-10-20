@@ -139,6 +139,13 @@ return [
         'opening-hours' => 'ساعات العمل',
         'closed' => 'مغلق',
         'incomplete' => 'اختر تاريخًا وموعدًا.',
+        'when' => 'الموعد',
+        'tickets' => 'التذاكر',
+        'summary' => 'حجزك',
+        'ticket-line' => ':name × :count',
+        'fee-line' => 'رسوم الحجز × :count',
+        'total' => 'الإجمالي',
+        'choose-tickets' => 'اختر تذكرة واحدة على الأقل.',
         'not-cancellable' => [
             'title' => 'لا يمكن إلغاء هذا الحجز',
             'description' => 'بعد الطلب، لا يمكن إلغاء هذا الحجز من حسابك. تواصل معنا إذا تغيّرت خططك.',

@@ -5,6 +5,7 @@ namespace BagistoPlus\VisualDebut\Blocks\Product;
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\Product as ProductSetting;
 use BagistoPlus\Visual\Settings\Select;
+use BagistoPlus\VisualDebut\Support\BookingOptions;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -45,7 +46,9 @@ class ProductQuantitySelector extends SimpleBlock
 
         return [
             'product' => $product,
-            'showQuantitySelector' => $product ? $product->getTypeInstance()->showQuantityBox() : false,
+            'showQuantitySelector' => $product
+                && $product->getTypeInstance()->showQuantityBox()
+                && ! BookingOptions::ownsQuantity($product),
         ];
     }
 }

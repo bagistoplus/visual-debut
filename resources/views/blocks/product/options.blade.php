@@ -1,6 +1,8 @@
 @isset($product)
   @if ($optionsType)
-    @include('visual-debut::blocks.product.options.' . $optionsType)
+    <div class="w-full max-w-sm">
+      @include('visual-debut::blocks.product.options.' . $optionsType)
+    </div>
   @else
     @visual_design_mode
     <p {{ $block->editor_attributes }} class="text-on-background/60 text-sm">

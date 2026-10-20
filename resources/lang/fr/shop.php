@@ -139,6 +139,13 @@ return [
         'opening-hours' => 'Horaires d\'ouverture',
         'closed' => 'Fermé',
         'incomplete' => 'Choisissez une date et un créneau.',
+        'when' => 'Quand',
+        'tickets' => 'Billets',
+        'summary' => 'Votre réservation',
+        'ticket-line' => ':name × :count',
+        'fee-line' => 'Frais de réservation × :count',
+        'total' => 'Total',
+        'choose-tickets' => 'Choisissez au moins un billet.',
         'not-cancellable' => [
             'title' => 'Cette réservation ne peut pas être annulée',
             'description' => 'Une fois commandée, cette réservation ne peut pas être annulée depuis votre compte. Contactez-nous si vos projets changent.',

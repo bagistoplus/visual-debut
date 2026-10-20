@@ -3,6 +3,7 @@
 use BagistoPlus\VisualDebut\Support\BookingOptions;
 use Illuminate\Support\Facades\Route;
 use Webkul\BookingProduct\Helpers\Booking as BookingHelper;
+use Webkul\Core\Core;
 
 /**
  * Registers the booking slots route under the given name, as a Bagisto
@@ -17,23 +18,28 @@ function slotsRoute(string $name): void
 /**
  * A booking product page with the given booking product behind it.
  */
-function bookingPage(?object $bookingProduct, string $type = 'booking'): object
+function bookingPage(?object $bookingProduct, string $type = 'booking', float $price = 0): object
 {
-    return new class($bookingProduct, $type)
+    return new class($bookingProduct, $type, $price)
     {
         public int $id = 7;
 
-        public function __construct(private readonly ?object $bookingProduct, public string $type) {}
+        public function __construct(private readonly ?object $bookingProduct, public string $type, private readonly float $price) {}
 
         public function getTypeInstance(): object
         {
-            return new class($this->bookingProduct)
+            return new class($this->bookingProduct, $this->price)
             {
-                public function __construct(private readonly ?object $bookingProduct) {}
+                public function __construct(private readonly ?object $bookingProduct, private readonly float $price) {}
 
                 public function getBookingProduct(int $id): ?object
                 {
                     return $this->bookingProduct;
+                }
+
+                public function getFinalPrice(): float
+                {
+                    return $this->price;
                 }
             };
         }
@@ -54,6 +60,15 @@ function appointment(array $overrides = []): object
 }
 
 beforeEach(function () {
+    // The shop's currency is worth twice the base currency
+    app()->instance(Core::class, new class
+    {
+        public function convertPrice($amount): float
+        {
+            return $amount * 2;
+        }
+    });
+
     app()->instance(BookingHelper::class, new class
     {
         public function getWeekSlotDurations($bookingProduct): array
@@ -70,7 +85,7 @@ it('has nothing for a product that is not bookable here', function (object $prod
 })->with([
     'not a booking product' => fn () => bookingPage(appointment(), 'simple'),
     'no booking product' => fn () => bookingPage(null),
-    'a type the page cannot book yet' => fn () => bookingPage(appointment(['type' => 'event'])),
+    'a type the page cannot book yet' => fn () => bookingPage(appointment(['type' => 'rental'])),
 ]);
 
 it('books an appointment through the 2.5 slots route', function () {
@@ -128,4 +143,33 @@ it('says when Bagisto 2.5 forbids canceling the booking', function () {
     slotsRoute('shop.booking_product.slots.index');
 
     expect(BookingOptions::for(bookingPage(appointment(['allow_cancellation' => false])))['cancellable'])->toBeFalse();
+});
+
+it('sells event tickets at their price in the shop currency', function () {
+    $event = appointment([
+        'type' => 'event',
+        'available_from' => '2026-12-31 20:00:00',
+        'available_to' => '2027-01-01 02:00:00',
+        'event_tickets' => [
+            (object) ['id' => 1, 'name' => 'Standing', 'description' => null, 'price' => 20, 'special_price' => null],
+            (object) ['id' => 2, 'name' => 'Seated', 'description' => 'Row A', 'price' => 50, 'special_price' => 40, 'special_price_from' => '0000-00-00 00:00:00', 'special_price_to' => null],
+            (object) ['id' => 3, 'name' => 'VIP', 'description' => null, 'price' => 90, 'special_price' => 60, 'special_price_from' => null, 'special_price_to' => '2000-01-01 00:00:00'],
+        ],
+    ]);
+
+    $options = BookingOptions::for(bookingPage($event, price: 5));
+
+    expect($options['basePrice'])->toBe(10.0)
+        ->and($options['startsAt'])->toBe('31 Dec 2026, 08:00 PM')
+        ->and($options['tickets'])->toBe([
+            ['id' => 1, 'name' => 'Standing', 'description' => '', 'price' => 40.0, 'regularPrice' => null],
+            ['id' => 2, 'name' => 'Seated', 'description' => 'Row A', 'price' => 80.0, 'regularPrice' => 100.0],
+            ['id' => 3, 'name' => 'VIP', 'description' => '', 'price' => 180.0, 'regularPrice' => null],
+        ]);
+});
+
+it('lets the event form set the quantity', function () {
+    expect(BookingOptions::ownsQuantity(bookingPage(appointment(['type' => 'event']))))->toBeTrue()
+        ->and(BookingOptions::ownsQuantity(bookingPage(appointment())))->toBeFalse()
+        ->and(BookingOptions::ownsQuantity(bookingPage(appointment(['type' => 'event']), 'simple')))->toBeFalse();
 });
