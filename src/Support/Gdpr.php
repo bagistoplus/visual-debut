@@ -32,13 +32,7 @@ class Gdpr
      */
     public static function routeName(string $name): string
     {
-        $current = self::ROUTE_PREFIX.$name;
-
-        if (Route::has($current)) {
-            return $current;
-        }
-
-        return self::ROUTE_PREFIX.str_replace('_', '-', $name);
+        return Routes::name(self::ROUTE_PREFIX.$name);
     }
 
     public static function route(string $name, mixed $parameters = []): string

@@ -2,8 +2,6 @@
 
 namespace BagistoPlus\VisualDebut\Support;
 
-use Illuminate\Support\Facades\Route;
-
 /**
  * Where the cookie consent banner and preferences store a visitor's choice.
  */
@@ -32,7 +30,7 @@ class CookieConsent
      */
     public static function preferencesRouteName(): string
     {
-        return Route::has(self::PREFERENCES_ROUTE) ? self::PREFERENCES_ROUTE : 'shop.customers.gdpr.cookie-consent';
+        return Routes::name(self::PREFERENCES_ROUTE);
     }
 
     public static function preferencesUrl(): string

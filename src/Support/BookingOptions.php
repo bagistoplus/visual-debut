@@ -3,7 +3,6 @@
 namespace BagistoPlus\VisualDebut\Support;
 
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Route;
 use Webkul\BookingProduct\Helpers\Booking as BookingHelper;
 use Webkul\Core\Core;
 
@@ -93,7 +92,7 @@ class BookingOptions
         $everyWeek = (bool) $bookingProduct->available_every_week;
 
         return [
-            'slotsUrl' => route(self::slotsRouteName(), $bookingProduct->id),
+            'slotsUrl' => Routes::url('shop.booking_product.slots.index', $bookingProduct->id),
             'availableFrom' => $everyWeek ? null : self::date($bookingProduct->available_from),
             'availableTo' => $everyWeek ? null : self::date($bookingProduct->available_to),
             'duration' => $repeatsWeekly && $slot->duration ? (int) $slot->duration : null,
@@ -167,7 +166,7 @@ class BookingOptions
 
         return [
             'rentingType' => $rental->renting_type ?: 'daily',
-            'slotsUrl' => route(self::slotsRouteName(), $bookingProduct->id),
+            'slotsUrl' => Routes::url('shop.booking_product.slots.index', $bookingProduct->id),
             'availableFrom' => $everyWeek ? null : self::date($bookingProduct->available_from),
             'availableTo' => $everyWeek ? null : self::date($bookingProduct->available_to),
             'basePrice' => self::converted((float) $product->getTypeInstance()->getFinalPrice()),
@@ -210,16 +209,6 @@ class BookingOptions
         }
 
         return Carbon::parse($value);
-    }
-
-    /**
-     * Bagisto 2.5 renamed the slots route to snake case.
-     */
-    public static function slotsRouteName(): string
-    {
-        return Route::has('shop.booking_product.slots.index')
-            ? 'shop.booking_product.slots.index'
-            : 'shop.booking-product.slots.index';
     }
 
     private static function slotSettings(object $bookingProduct): ?object

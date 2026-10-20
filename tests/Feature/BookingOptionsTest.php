@@ -107,7 +107,7 @@ it('books an appointment through the 2.5 slots route', function () {
 it('falls back to the kebab case slots route before 2.5', function () {
     slotsRoute('shop.booking-product.slots.index');
 
-    expect(BookingOptions::slotsRouteName())->toBe('shop.booking-product.slots.index');
+    expect(BookingOptions::for(bookingPage(appointment()))['slotsUrl'])->toEndWith('/booking-slots/3');
 });
 
 it('bounds a booking to its dates unless it repeats every week', function () {
