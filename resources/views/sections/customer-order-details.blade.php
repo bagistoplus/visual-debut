@@ -448,6 +448,15 @@
 
                     <div class="flex justify-between">
                       <p class="text-on-background text-sm">
+                        @lang('shop::app.customers.account.orders.view.invoices.qty'):
+                      </p>
+                      <p class="text-right text-sm">
+                        {{ $item->qty }}
+                      </p>
+                    </div>
+
+                    <div class="flex justify-between">
+                      <p class="text-on-background text-sm">
                         @lang('shop::app.customers.account.orders.view.invoices.price'):
                       </p>
                       <p class="text-right text-sm">
