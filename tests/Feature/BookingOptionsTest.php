@@ -173,3 +173,23 @@ it('lets the event form set the quantity', function () {
         ->and(BookingOptions::ownsQuantity(bookingPage(appointment())))->toBeFalse()
         ->and(BookingOptions::ownsQuantity(bookingPage(appointment(['type' => 'event']), 'simple')))->toBeFalse();
 });
+
+it('books a table for a party, a set number of days ahead', function () {
+    slotsRoute('shop.booking_product.slots.index');
+
+    $table = appointment([
+        'type' => 'table',
+        'table_slot' => (object) ['duration' => 120, 'price_type' => 'table', 'guest_limit' => 4, 'prevent_scheduling_before' => 2],
+    ]);
+
+    $options = BookingOptions::for(bookingPage($table, price: 15));
+
+    expect($options)->toMatchArray([
+        'type' => 'table',
+        'duration' => 120,
+        'preventDays' => 2,
+        'perTable' => true,
+        'guestLimit' => 4,
+        'price' => 30.0,
+    ])->and(BookingOptions::ownsQuantity(bookingPage($table)))->toBeTrue();
+});

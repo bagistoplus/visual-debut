@@ -2,6 +2,7 @@
   // Each kind of booking has its own form and Alpine component; the location and notice are shared
   $form = match ($booking['type']) {
       'event' => ['partial' => 'event', 'component' => 'VisualBookingEvent', 'incomplete' => 'choose-tickets'],
+      'table' => ['partial' => 'table', 'component' => 'VisualBookingSlots', 'incomplete' => 'incomplete'],
       default => ['partial' => 'slots', 'component' => 'VisualBookingSlots', 'incomplete' => 'incomplete'],
   };
 
@@ -12,6 +13,8 @@
           'failed' => trans('visual-debut::shop.booking.slots-failed'),
           'ticketLine' => trans('visual-debut::shop.booking.ticket-line'),
           'feeLine' => trans('visual-debut::shop.booking.fee-line'),
+          'guestLine' => trans('visual-debut::shop.booking.guest-line'),
+          'tableLine' => trans('visual-debut::shop.booking.table-line'),
       ],
   ]);
 @endphp

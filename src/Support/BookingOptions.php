@@ -19,13 +19,13 @@ class BookingOptions
     /**
      * The booking types the product page can book.
      */
-    public const SUPPORTED = ['default', 'appointment', 'event'];
+    public const SUPPORTED = ['default', 'appointment', 'event', 'table'];
 
     /**
      * The booking types whose form sets the quantity, so the page hides its
      * quantity selector for them.
      */
-    public const OWN_QUANTITY = ['event'];
+    public const OWN_QUANTITY = ['event', 'table'];
 
     /**
      * The form settings for a booking product, or null when the product is
@@ -39,9 +39,11 @@ class BookingOptions
             return null;
         }
 
-        $settings = $bookingProduct->type === 'event'
-            ? self::event($product, $bookingProduct)
-            : self::slots($bookingProduct);
+        $settings = match ($bookingProduct->type) {
+            'event' => self::event($product, $bookingProduct),
+            'table' => self::table($product, $bookingProduct),
+            default => self::slots($bookingProduct),
+        };
 
         if ($settings === null) {
             return null;
@@ -86,7 +88,7 @@ class BookingOptions
         }
 
         // A default booking for many days is one slot; without it the slots repeat every week
-        $repeatsWeekly = $bookingProduct->type === 'appointment' || $slot->booking_type === 'many';
+        $repeatsWeekly = $bookingProduct->type !== 'default' || $slot->booking_type === 'many';
         $everyWeek = (bool) $bookingProduct->available_every_week;
 
         return [
@@ -95,7 +97,29 @@ class BookingOptions
             'availableTo' => $everyWeek ? null : self::date($bookingProduct->available_to),
             'duration' => $repeatsWeekly && $slot->duration ? (int) $slot->duration : null,
             'openingHours' => $repeatsWeekly ? self::openingHours($bookingProduct) : self::periods($slot),
+            'preventDays' => 0,
         ];
+    }
+
+    /**
+     * A table: a slot on one day for a party, charged per guest or per table
+     * of up to a number of guests. Bagisto takes the party as the quantity.
+     */
+    private static function table(object $product, object $bookingProduct): ?array
+    {
+        $settings = self::slots($bookingProduct);
+        $table = $bookingProduct->table_slot;
+
+        if ($settings === null) {
+            return null;
+        }
+
+        return array_merge($settings, [
+            'preventDays' => (int) ($table->prevent_scheduling_before ?? 0),
+            'perTable' => $table->price_type === 'table',
+            'guestLimit' => (int) ($table->guest_limit ?? 0),
+            'price' => self::converted((float) $product->getTypeInstance()->getFinalPrice()),
+        ]);
     }
 
     /**
@@ -174,6 +198,7 @@ class BookingOptions
         return match ($bookingProduct->type) {
             'default' => $bookingProduct->default_slot,
             'appointment' => $bookingProduct->appointment_slot,
+            'table' => $bookingProduct->table_slot,
             default => null,
         };
     }

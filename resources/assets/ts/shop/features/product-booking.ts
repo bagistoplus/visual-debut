@@ -28,10 +28,14 @@ interface SummaryLine {
 }
 
 interface BookingSlotsProps {
+  type: string;
   slotsUrl: string;
   availableFrom: string | null;
   availableTo: string | null;
-  messages: { loading: string; empty: string; failed: string };
+  preventDays: number;
+  perTable?: boolean;
+  price?: number;
+  messages: { loading: string; empty: string; failed: string; guestLine: string; tableLine: string };
 }
 
 /**
@@ -53,8 +57,9 @@ function fill(template: string, values: Record<string, string | number>): string
 
 export default function (Alpine: AlpineType) {
   /**
-   * A booking taken as one slot on one day: default and appointment booking
-   * products. Bagisto lists the free slots of a day on request.
+   * A booking taken as one slot on one day: default, appointment and table
+   * booking products. Bagisto lists the free slots of a day on request. A
+   * table also takes a party, which Bagisto reads as the quantity, and a note.
    */
   Alpine.data('VisualBookingSlots', (props: BookingSlotsProps) => ({
     date: '',
@@ -63,12 +68,17 @@ export default function (Alpine: AlpineType) {
     status: 'idle' as SlotsStatus,
     showErrors: false,
     request: 0,
+    party: 1,
+    note: '',
 
     // Worked out here rather than on the server, which may serve a cached page
     get minDate(): string {
-      const today = isoDate(new Date());
+      const earliest = new Date();
+      earliest.setDate(earliest.getDate() + props.preventDays);
 
-      return props.availableFrom && props.availableFrom > today ? props.availableFrom : today;
+      const first = isoDate(earliest);
+
+      return props.availableFrom && props.availableFrom > first ? props.availableFrom : first;
     },
 
     get maxDate(): string {
@@ -88,6 +98,16 @@ export default function (Alpine: AlpineType) {
       }
     },
 
+    get partyLine(): SummaryLine {
+      const line = props.perTable ? props.messages.tableLine : props.messages.guestLine;
+
+      return {
+        id: 0,
+        label: fill(line, { count: this.party }),
+        amount: this.$formatPrice((props.price ?? 0) * this.party),
+      };
+    },
+
     init() {
       (this.$store.productForm as ProductForm).addValidator(() => this.validate());
 
@@ -98,6 +118,13 @@ export default function (Alpine: AlpineType) {
           this.validate();
         }
       });
+
+      this.$watch('note', () => this.sync());
+    },
+
+    setParty(party: number) {
+      this.party = party;
+      this.sync();
     },
 
     async loadSlots() {
@@ -129,7 +156,15 @@ export default function (Alpine: AlpineType) {
     },
 
     sync() {
-      this.$wire.set('booking', this.slot ? { date: this.date, slot: this.slot } : [], false);
+      if (props.type !== 'table') {
+        this.$wire.set('booking', this.slot ? { date: this.date, slot: this.slot } : [], false);
+
+        return;
+      }
+
+      // Bagisto 2.3 and 2.4 read the note without checking it is there
+      this.$wire.set('booking', this.slot ? { date: this.date, slot: this.slot, note: this.note } : [], false);
+      this.$wire.set('quantity', this.party, false);
     },
 
     validate(): boolean {

@@ -146,6 +146,11 @@ return [
         'fee-line' => 'Frais de réservation × :count',
         'total' => 'Total',
         'choose-tickets' => 'Choisissez au moins un billet.',
+        'guests' => 'Personnes',
+        'tables' => 'Tables (jusqu\'à :count personnes chacune)',
+        'note' => 'Demande particulière (facultatif)',
+        'guest-line' => 'Personnes × :count',
+        'table-line' => 'Tables × :count',
         'not-cancellable' => [
             'title' => 'Cette réservation ne peut pas être annulée',
             'description' => 'Une fois commandée, cette réservation ne peut pas être annulée depuis votre compte. Contactez-nous si vos projets changent.',

@@ -146,6 +146,11 @@ return [
         'fee-line' => 'Booking fee × :count',
         'total' => 'Total',
         'choose-tickets' => 'Choose at least one ticket.',
+        'guests' => 'Guests',
+        'tables' => 'Tables (up to :count guests each)',
+        'note' => 'Special request (optional)',
+        'guest-line' => 'Guests × :count',
+        'table-line' => 'Tables × :count',
         'not-cancellable' => [
             'title' => 'This booking cannot be canceled',
             'description' => 'Once ordered, this booking cannot be canceled from your account. Contact us if your plans change.',
