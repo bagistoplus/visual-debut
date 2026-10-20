@@ -125,4 +125,23 @@ return [
         'return-policy' => 'Politique de retour',
         'request-return' => 'Demander un retour',
     ],
+
+    'booking' => [
+        'location' => 'Lieu',
+        'view-on-map' => 'Voir sur la carte',
+        'date' => 'Date',
+        'slot' => 'Créneau',
+        'choose-slot' => 'Choisissez un créneau',
+        'slots-loading' => 'Chargement des créneaux disponibles…',
+        'no-slots' => 'Aucun créneau n\'est disponible ce jour-là.',
+        'slots-failed' => 'Impossible de charger les créneaux disponibles. Veuillez réessayer.',
+        'duration' => 'Chaque réservation dure :minutes minutes.',
+        'opening-hours' => 'Horaires d\'ouverture',
+        'closed' => 'Fermé',
+        'incomplete' => 'Choisissez une date et un créneau.',
+        'not-cancellable' => [
+            'title' => 'Cette réservation ne peut pas être annulée',
+            'description' => 'Une fois commandée, cette réservation ne peut pas être annulée depuis votre compte. Contactez-nous si vos projets changent.',
+        ],
+    ],
 ];

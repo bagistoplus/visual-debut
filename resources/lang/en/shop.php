@@ -125,4 +125,23 @@ return [
         'return-policy' => 'Return policy',
         'request-return' => 'Request a return',
     ],
+
+    'booking' => [
+        'location' => 'Location',
+        'view-on-map' => 'View on map',
+        'date' => 'Date',
+        'slot' => 'Time slot',
+        'choose-slot' => 'Choose a time slot',
+        'slots-loading' => 'Loading available times…',
+        'no-slots' => 'No times are available on this day.',
+        'slots-failed' => 'Couldn\'t load the available times. Please try again.',
+        'duration' => 'Each booking lasts :minutes minutes.',
+        'opening-hours' => 'Opening hours',
+        'closed' => 'Closed',
+        'incomplete' => 'Choose a date and a time slot.',
+        'not-cancellable' => [
+            'title' => 'This booking cannot be canceled',
+            'description' => 'Once ordered, this booking cannot be canceled from your account. Contact us if your plans change.',
+        ],
+    ],
 ];

@@ -62,6 +62,8 @@ class ProductInformation extends LivewireSection
 
     public array $customizableOptions = [];
 
+    public array $booking = [];
+
     public static function name(): string
     {
         return _t('sections.product-information.name');
@@ -330,6 +332,11 @@ class ProductInformation extends LivewireSection
         if (! empty($this->customizableOptions)) {
             $transformedOptions = $this->transformCustomizableOptions($this->customizableOptions);
             $cartParams = array_merge($cartParams, ['customizable_options' => $transformedOptions]);
+        }
+
+        // Add the booking chosen for a booking product
+        if (! empty($this->booking)) {
+            $cartParams = array_merge($cartParams, ['booking' => $this->booking]);
         }
 
         $result = app(AddProductToCart::class)->execute($cartParams);

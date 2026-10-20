@@ -4,6 +4,7 @@ namespace BagistoPlus\VisualDebut\Blocks\Product;
 
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\Product as ProductSetting;
+use BagistoPlus\VisualDebut\Support\BookingOptions;
 use Webkul\Product\Helpers\ConfigurableOption;
 use Webkul\Product\Helpers\ProductType;
 
@@ -46,9 +47,12 @@ class ProductOptions extends SimpleBlock
     {
         $product = $this->block->settings->product ?? $this->context['product'] ?? null;
 
+        $optionsType = $product ? static::optionsType($product) : null;
+
         return array_merge([
             'product' => $product,
-            'optionsType' => $product ? static::optionsType($product) : null,
+            'optionsType' => $optionsType,
+            'booking' => $optionsType === 'booking' ? BookingOptions::for($product) : null,
         ], static::variantData($product));
     }
 
@@ -61,6 +65,7 @@ class ProductOptions extends SimpleBlock
         return match (true) {
             ProductType::hasVariants($product->type) => 'configurable',
             in_array($product->type, ['grouped', 'bundle', 'downloadable'], true) => $product->type,
+            $product->type === 'booking' => BookingOptions::for($product) ? 'booking' : null,
             (bool) $product->getTypeInstance()->isCustomizable() => 'customizable',
             default => null,
         };

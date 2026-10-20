@@ -19,6 +19,7 @@ import datagrid from './features/datagrid';
 import gdpr from './features/gdpr';
 import mediaGallery from './features/media-gallery';
 import productsCompare from './features/products-compare';
+import productBooking from './features/product-booking';
 import productBundle from './features/product-bundle';
 import productCustomizable from './features/product-customizable';
 import productForm from './features/product-form';
@@ -42,6 +43,7 @@ Alpine.plugin([
   mediaGallery,
   productForm,
   productActions,
+  productBooking,
   productBundle,
   productCustomizable,
   productsCompare,
