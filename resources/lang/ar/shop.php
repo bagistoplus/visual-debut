@@ -85,6 +85,7 @@ return [
         'total' => 'الإجمالي',
         'view-order' => 'عرض الطلب',
         'summary' => 'ملخص الطلب',
+        'carrier' => 'شركة الشحن',
     ],
 
     'profile' => [

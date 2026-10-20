@@ -85,6 +85,7 @@ return [
         'total' => 'Total',
         'view-order' => 'View Order',
         'summary' => 'Order Summary',
+        'carrier' => 'Carrier',
     ],
 
     'profile' => [

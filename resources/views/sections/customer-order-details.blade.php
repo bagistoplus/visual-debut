@@ -669,10 +669,18 @@
         @foreach ($order->shipments as $shipment)
           <div class="bg-background mb-6 overflow-hidden rounded-lg shadow">
             <div class="flex items-center justify-between gap-4 border-b px-4 py-3">
-              <h3 class="text-on-background text-base font-semibold">
-                @lang('shop::app.customers.account.orders.view.shipments.tracking-number'):
-                {{ $shipment->track_number }}
-              </h3>
+              <div>
+                <h3 class="text-on-background text-base font-semibold">
+                  @lang('shop::app.customers.account.orders.view.shipments.tracking-number'):
+                  {{ $shipment->track_number }}
+                </h3>
+
+                @if ($shipment->carrier_title)
+                  <p class="text-sm">
+                    @lang('visual-debut::shop.order.carrier'): {{ $shipment->carrier_title }}
+                  </p>
+                @endif
+              </div>
 
               <span>
                 @lang('shop::app.customers.account.orders.view.shipments.individual-shipment', ['shipment_id' => $shipment->id])

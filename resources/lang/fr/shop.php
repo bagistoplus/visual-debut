@@ -85,6 +85,7 @@ return [
         'total' => 'Total',
         'view-order' => 'Voir la commande',
         'summary' => 'Résumé de la commande',
+        'carrier' => 'Transporteur',
     ],
 
     'profile' => [

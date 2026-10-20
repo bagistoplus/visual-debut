@@ -85,6 +85,7 @@ return [
         'total' => 'कुल',
         'view-order' => 'ऑर्डर देखें',
         'summary' => 'ऑर्डर सारांश',
+        'carrier' => 'वाहक',
     ],
 
     'profile' => [
