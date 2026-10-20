@@ -43,7 +43,7 @@
 
             createOrder: async function(data, actions) {
               try {
-                const response = await fetch("{{ route('paypal.smart-button.create-order') }}", {
+                const response = await fetch("{{ \BagistoPlus\VisualDebut\Support\Routes::url('paypal.smart_button.create_order') }}", {
                   credentials: 'include'
                 });
 
@@ -61,7 +61,7 @@
             onApprove: async function(data, actions) {
               // Optionally, show a loader here
               try {
-                const response = await fetch("{{ route('paypal.smart-button.capture-order') }}", {
+                const response = await fetch("{{ \BagistoPlus\VisualDebut\Support\Routes::url('paypal.smart_button.capture_order') }}", {
                   method: 'POST',
                   credentials: 'include',
                   headers: {
