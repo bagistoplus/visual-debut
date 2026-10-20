@@ -3,6 +3,7 @@
   $form = match ($booking['type']) {
       'event' => ['partial' => 'event', 'component' => 'VisualBookingEvent', 'incomplete' => 'choose-tickets'],
       'table' => ['partial' => 'table', 'component' => 'VisualBookingSlots', 'incomplete' => 'incomplete'],
+      'rental' => ['partial' => 'rental', 'component' => 'VisualBookingRental', 'incomplete' => 'choose-rental'],
       default => ['partial' => 'slots', 'component' => 'VisualBookingSlots', 'incomplete' => 'incomplete'],
   };
 
@@ -15,6 +16,10 @@
           'feeLine' => trans('visual-debut::shop.booking.fee-line'),
           'guestLine' => trans('visual-debut::shop.booking.guest-line'),
           'tableLine' => trans('visual-debut::shop.booking.table-line'),
+          'baseLine' => trans('visual-debut::shop.booking.base-line'),
+          'daysLine' => trans('visual-debut::shop.booking.days-line'),
+          'hoursLine' => trans('visual-debut::shop.booking.hours-line'),
+          'quantityLine' => trans('visual-debut::shop.booking.quantity-line'),
       ],
   ]);
 @endphp

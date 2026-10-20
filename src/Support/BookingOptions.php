@@ -19,7 +19,7 @@ class BookingOptions
     /**
      * The booking types the product page can book.
      */
-    public const SUPPORTED = ['default', 'appointment', 'event', 'table'];
+    public const SUPPORTED = ['default', 'appointment', 'event', 'table', 'rental'];
 
     /**
      * The booking types whose form sets the quantity, so the page hides its
@@ -42,6 +42,7 @@ class BookingOptions
         $settings = match ($bookingProduct->type) {
             'event' => self::event($product, $bookingProduct),
             'table' => self::table($product, $bookingProduct),
+            'rental' => self::rental($product, $bookingProduct),
             default => self::slots($bookingProduct),
         };
 
@@ -146,6 +147,34 @@ class BookingOptions
                 })
                 ->values()
                 ->all(),
+        ];
+    }
+
+    /**
+     * A rental: by the day between two dates, or by the hour on one day, as
+     * the merchant allows. Bagisto adds the rate for each unit to the
+     * product's price. Before 2.5 it takes one hour at a time only.
+     */
+    private static function rental(object $product, object $bookingProduct): ?array
+    {
+        $rental = $bookingProduct->rental_slot;
+
+        if (! $rental) {
+            return null;
+        }
+
+        $everyWeek = (bool) $bookingProduct->available_every_week;
+
+        return [
+            'rentingType' => $rental->renting_type ?: 'daily',
+            'slotsUrl' => route(self::slotsRouteName(), $bookingProduct->id),
+            'availableFrom' => $everyWeek ? null : self::date($bookingProduct->available_from),
+            'availableTo' => $everyWeek ? null : self::date($bookingProduct->available_to),
+            'basePrice' => self::converted((float) $product->getTypeInstance()->getFinalPrice()),
+            'dailyPrice' => self::converted((float) $rental->daily_price),
+            'hourlyPrice' => self::converted((float) $rental->hourly_price),
+            // Only 2.5 has calendar availability, and only 2.5 takes more than one hour
+            'oneHourOnly' => ! method_exists(app(BookingHelper::class), 'getCalendarAvailability'),
         ];
     }
 

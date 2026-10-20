@@ -85,7 +85,7 @@ it('has nothing for a product that is not bookable here', function (object $prod
 })->with([
     'not a booking product' => fn () => bookingPage(appointment(), 'simple'),
     'no booking product' => fn () => bookingPage(null),
-    'a type the page cannot book yet' => fn () => bookingPage(appointment(['type' => 'rental'])),
+    'a type the page does not know' => fn () => bookingPage(appointment(['type' => 'cruise'])),
 ]);
 
 it('books an appointment through the 2.5 slots route', function () {
@@ -192,4 +192,46 @@ it('books a table for a party, a set number of days ahead', function () {
         'guestLimit' => 4,
         'price' => 30.0,
     ])->and(BookingOptions::ownsQuantity(bookingPage($table)))->toBeTrue();
+});
+
+it('rents by the day or the hour at rates in the shop currency', function () {
+    slotsRoute('shop.booking_product.slots.index');
+
+    $rental = appointment([
+        'type' => 'rental',
+        'rental_slot' => (object) ['renting_type' => 'daily_hourly', 'daily_price' => 100, 'hourly_price' => 12.5],
+    ]);
+
+    $options = BookingOptions::for(bookingPage($rental, price: 20));
+
+    expect($options)->toMatchArray([
+        'type' => 'rental',
+        'rentingType' => 'daily_hourly',
+        'basePrice' => 40.0,
+        'dailyPrice' => 200.0,
+        'hourlyPrice' => 25.0,
+    ])->and($options['slotsUrl'])->toEndWith('/booking-slots/3')
+        ->and(BookingOptions::ownsQuantity(bookingPage($rental)))->toBeFalse();
+});
+
+it('rents one hour at a time before Bagisto 2.5', function () {
+    slotsRoute('shop.booking_product.slots.index');
+
+    $rental = bookingPage(appointment([
+        'type' => 'rental',
+        'rental_slot' => (object) ['renting_type' => 'hourly', 'daily_price' => 0, 'hourly_price' => 10],
+    ]));
+
+    expect(BookingOptions::for($rental)['oneHourOnly'])->toBeTrue();
+
+    // Bagisto 2.5's helper also answers calendar availability
+    app()->instance(BookingHelper::class, new class
+    {
+        public function getCalendarAvailability($bookingProduct): array
+        {
+            return [];
+        }
+    });
+
+    expect(BookingOptions::for($rental)['oneHourOnly'])->toBeFalse();
 });
