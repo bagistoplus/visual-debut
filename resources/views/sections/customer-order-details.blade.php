@@ -346,7 +346,7 @@
                 @endif
               </span>
               <span class="text-on-background font-medium">
-                {{ core()->formatPrice($order->discount_amount, $order->order_currency_code) }}
+                -{{ core()->formatPrice($order->discount_amount, $order->order_currency_code) }}
               </span>
             </div>
           @endif
@@ -628,7 +628,7 @@
                       @lang('shop::app.customers.account.orders.view.invoices.discount')
                     </span>
                     <span class="text-on-background font-medium">
-                      {{ core()->formatPrice($invoice->discount_amount, $order->order_currency_code) }}
+                      -{{ core()->formatPrice($invoice->discount_amount, $order->order_currency_code) }}
                     </span>
                   </div>
                 @endif
@@ -1045,7 +1045,7 @@
                       @lang('shop::app.customers.account.orders.view.refunds.discount')
                     </span>
                     <span class="text-on-background font-medium">
-                      {{ core()->formatPrice($order->discount_amount, $order->order_currency_code) }}
+                      -{{ core()->formatPrice($refund->discount_amount, $order->order_currency_code) }}
                     </span>
                   </div>
                 @endif
@@ -1088,7 +1088,7 @@
                     @lang('shop::app.customers.account.orders.view.refunds.grand-total')
                   </span>
                   <span>
-                    {{ core()->formatPrice($invoice->grand_total, $order->order_currency_code) }}
+                    {{ core()->formatPrice($refund->grand_total, $order->order_currency_code) }}
                   </span>
                 </div>
               </div>
