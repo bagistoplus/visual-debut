@@ -67,7 +67,7 @@
             }"
           >
             <div class="flex items-start justify-between">
-              <div>
+              <div class="pe-6">
                 <h3 class="text-sm font-semibold" x-text="toast.title"></h3>
                 <template x-if="toast.description">
                   <p class="mt-1 text-sm" x-text="toast.description"></p>
