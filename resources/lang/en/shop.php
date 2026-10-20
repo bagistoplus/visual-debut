@@ -48,6 +48,10 @@ return [
         'loading' => 'Loading your cart',
     ],
 
+    'checkout' => [
+        'phone' => 'Phone',
+    ],
+
     'product' => [
         'links-required' => 'The links are required.',
         'option-required' => 'The :option is required.',

@@ -48,6 +48,10 @@ return [
         'loading' => 'आपका कार्ट लोड हो रहा है',
     ],
 
+    'checkout' => [
+        'phone' => 'फ़ोन',
+    ],
+
     'product' => [
         'links-required' => 'लिंक आवश्यक हैं।',
         'option-required' => ':option आवश्यक है।',

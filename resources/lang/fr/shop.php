@@ -48,6 +48,10 @@ return [
         'loading' => 'Chargement de votre panier',
     ],
 
+    'checkout' => [
+        'phone' => 'Téléphone',
+    ],
+
     'product' => [
         'links-required' => 'Les liens sont obligatoires.',
         'option-required' => 'Le :option est obligatoire.',

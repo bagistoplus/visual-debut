@@ -48,6 +48,10 @@ return [
         'loading' => 'جارٍ تحميل سلتك',
     ],
 
+    'checkout' => [
+        'phone' => 'الهاتف',
+    ],
+
     'product' => [
         'links-required' => 'الروابط مطلوبة.',
         'option-required' => ':option مطلوب.',

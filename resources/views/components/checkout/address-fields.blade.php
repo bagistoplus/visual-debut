@@ -232,8 +232,8 @@
           required
           name="{{ $name }}.phone"
           wire:model="{{ $addressName }}.phone"
-          :label="trans('shop::app.checkout.onepage.address.telephone')"
-          :placeholder="trans('shop::app.checkout.onepage.address.telephone')"
+          :label="trans('visual-debut::shop.checkout.phone')"
+          :placeholder="trans('visual-debut::shop.checkout.phone')"
         />
 
         @auth('customer')
