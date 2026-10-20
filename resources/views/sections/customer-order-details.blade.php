@@ -2,6 +2,11 @@
   use BagistoPlus\VisualDebut\Support\Rma;
 
   $canRequestReturn = Rma::canRequestReturn($order);
+
+  // Bagisto 2.5 renamed the route to snake case
+  $printInvoiceRoute = Route::has('shop.customers.account.orders.print_invoice')
+      ? 'shop.customers.account.orders.print_invoice'
+      : 'shop.customers.account.orders.print-invoice';
 @endphp
 
 <div
@@ -395,7 +400,7 @@
                 size="xs"
                 color="secondary"
                 icon="lucide-download"
-                href="{{ route('shop.customers.account.orders.print-invoice', $invoice->id) }}"
+                href="{{ route($printInvoiceRoute, $invoice->id) }}"
               >
                 @lang('shop::app.customers.account.orders.view.invoices.print')
               </x-shop::ui.button>
