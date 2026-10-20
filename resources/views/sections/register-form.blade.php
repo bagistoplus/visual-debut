@@ -167,6 +167,38 @@
         </label>
       @endif
 
+      {{-- Required in the browser only, as in Bagisto: its registration request does not validate it --}}
+      @if (core()->getConfigData('general.gdpr.settings.enabled') && core()->getConfigData('general.gdpr.agreement.enabled'))
+        <div class="flex flex-wrap items-center gap-x-1 text-sm">
+          <label class="flex items-center">
+            <input
+              name="agreement"
+              type="checkbox"
+              value="1"
+              class="h-4 w-4"
+              required
+              @checked(old('agreement'))
+            >
+            <span class="ms-2">{{ core()->getConfigData('general.gdpr.agreement.agreement_label') }}</span>
+          </label>
+
+          @if ($agreementContent = core()->getConfigData('general.gdpr.agreement.agreement_content'))
+            <x-shop::ui.modal
+              id="signup-terms"
+              :title="trim(trans('shop::app.customers.signup-form.terms-conditions'))"
+            >
+              <x-slot:trigger>
+                <button type="button" class="text-primary cursor-pointer hover:opacity-80">
+                  @lang('shop::app.customers.signup-form.click-here')
+                </button>
+              </x-slot:trigger>
+
+              <div class="prose mt-4 max-h-[60vh] max-w-2xl overflow-y-auto text-sm">{!! $agreementContent !!}</div>
+            </x-shop::ui.modal>
+          @endif
+        </div>
+      @endif
+
       <!-- Captcha -->
       @if (core()->getConfigData('customer.captcha.credentials.status'))
         <div class="[&_.control-error]:text-danger mt-4 flex flex-col items-center gap-2 [&_.control-error]:text-xs">
