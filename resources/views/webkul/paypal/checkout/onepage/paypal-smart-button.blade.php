@@ -14,7 +14,7 @@
         authorizationError: "@lang('paypal::app.errors.something-went-wrong')"
       };
 
-      window.addEventListener('checkout:payment_method_set', event => {
+      window.addEventListener(@json(\BagistoPlus\Visual\Enums\Events::PAYMENT_METHOD_SET), event => {
         if (event.detail.paymentMethod !== 'paypal_smart_button') {
           return;
         }
@@ -35,9 +35,11 @@
             enableStandardCardFields: false,
 
             alertBox(message, type = 'info') {
-              window.dispatchEvent(new CustomEvent('show-toast', {
-                type,
-                message
+              window.dispatchEvent(new CustomEvent('toasts:create', {
+                detail: {
+                  type,
+                  title: message
+                }
               }));
             },
 
