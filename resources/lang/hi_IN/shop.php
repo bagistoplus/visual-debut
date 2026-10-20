@@ -75,7 +75,6 @@ return [
     ],
 
     'order' => [
-        'download-invoice' => 'इनवॉइस डाउनलोड करें',
         'order-number' => 'ऑर्डर नंबर',
         'order-date' => 'ऑर्डर की तारीख',
         'order-time' => 'ऑर्डर का समय',

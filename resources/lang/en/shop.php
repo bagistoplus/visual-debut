@@ -75,7 +75,6 @@ return [
     ],
 
     'order' => [
-        'download-invoice' => 'Download Invoice',
         'order-number' => 'Order number',
         'order-date' => 'Order Date',
         'order-time' => 'Order Time',

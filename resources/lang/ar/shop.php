@@ -75,7 +75,6 @@ return [
     ],
 
     'order' => [
-        'download-invoice' => 'تحميل الفاتورة',
         'order-number' => 'رقم الطلب',
         'order-date' => 'تاريخ الطلب',
         'order-time' => 'وقت الطلب',

@@ -75,7 +75,6 @@ return [
     ],
 
     'order' => [
-        'download-invoice' => 'Télécharger la facture',
         'order-number' => 'Numéro de commande',
         'order-date' => 'Date de commande',
         'order-time' => 'Heure de commande',
