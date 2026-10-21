@@ -7,12 +7,14 @@ use BagistoPlus\Visual\Actions\GetCompareItems;
 use BagistoPlus\Visual\Actions\RemoveItemFromCompareList;
 use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\Visual\Enums\Events;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 use BagistoPlus\VisualDebut\Support\InteractsWithCompare;
 
 use function BagistoPlus\VisualDebut\_t;
 
 class Compare extends LivewireSection
 {
+    use HasColorSchemeSetting;
     use InteractsWithCompare;
 
     protected static string $type = '@visual-debut/compare';
@@ -40,6 +42,13 @@ class Compare extends LivewireSection
     public static function description(): string
     {
         return _t('sections.compare.description');
+    }
+
+    public static function settings(): array
+    {
+        return [
+            static::colorSchemeSetting(),
+        ];
     }
 
     public function loadItems($productIds)

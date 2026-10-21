@@ -3,11 +3,14 @@
 namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Blocks\BladeSection;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 
 use function BagistoPlus\VisualDebut\_t;
 
 class ErrorPage extends BladeSection
 {
+    use HasColorSchemeSetting;
+
     protected static string $type = '@visual-debut/error-page';
 
     protected static array $enabledOn = [
@@ -29,5 +32,12 @@ class ErrorPage extends BladeSection
     public static function description(): string
     {
         return _t('sections.error-page.description');
+    }
+
+    public static function settings(): array
+    {
+        return [
+            static::colorSchemeSetting(),
+        ];
     }
 }

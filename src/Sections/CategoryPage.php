@@ -7,6 +7,7 @@ use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Text;
 use BagistoPlus\VisualDebut\Support\HandlesProductListing;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
 use Webkul\Attribute\Repositories\AttributeRepository;
@@ -15,6 +16,8 @@ use function BagistoPlus\VisualDebut\_t;
 
 class CategoryPage extends LivewireSection
 {
+    use HasColorSchemeSetting;
+
     protected static string $type = '@visual-debut/category-page';
 
     use HandlesProductListing;
@@ -65,6 +68,8 @@ class CategoryPage extends LivewireSection
 
             Checkbox::make('show_category_banner', _t('sections.category-page.settings.banner_label'))
                 ->default(true),
+
+            static::colorSchemeSetting(),
         ];
     }
 

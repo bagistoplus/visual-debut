@@ -3,11 +3,14 @@
 namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Blocks\BladeSection;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 
 use function BagistoPlus\VisualDebut\_t;
 
 class ProfileForm extends BladeSection
 {
+    use HasColorSchemeSetting;
+
     protected static string $type = '@visual-debut/profile-form';
 
     protected static array $enabledOn = [
@@ -24,5 +27,12 @@ class ProfileForm extends BladeSection
     public static function name(): string
     {
         return _t('sections.profile-form.name');
+    }
+
+    public static function settings(): array
+    {
+        return [
+            static::colorSchemeSetting(),
+        ];
     }
 }

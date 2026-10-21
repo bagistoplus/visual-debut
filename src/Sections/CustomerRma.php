@@ -3,11 +3,14 @@
 namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Blocks\SimpleSection;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 
 use function BagistoPlus\VisualDebut\_t;
 
 class CustomerRma extends SimpleSection
 {
+    use HasColorSchemeSetting;
+
     protected static string $type = '@visual-debut/customer-rma';
 
     protected static array $enabledOn = [
@@ -24,5 +27,12 @@ class CustomerRma extends SimpleSection
     public static function name(): string
     {
         return _t('sections.customer-rma.name');
+    }
+
+    public static function settings(): array
+    {
+        return [
+            static::colorSchemeSetting(),
+        ];
     }
 }

@@ -15,12 +15,15 @@ use BagistoPlus\VisualDebut\Blocks\Header\Locale;
 use BagistoPlus\VisualDebut\Blocks\Header\Nav;
 use BagistoPlus\VisualDebut\Blocks\Header\Search;
 use BagistoPlus\VisualDebut\Blocks\Header\User;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 use Webkul\Category\Repositories\CategoryRepository;
 
 use function BagistoPlus\VisualDebut\_t;
 
 class Header extends BladeSection
 {
+    use HasColorSchemeSetting;
+
     protected static string $type = '@visual-debut/header';
 
     protected static string $view = 'shop::sections.header';
@@ -67,6 +70,8 @@ class Header extends BladeSection
                 ])
                 ->asSegment()
                 ->default('container'),
+
+            static::colorSchemeSetting(),
         ];
     }
 

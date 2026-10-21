@@ -3,11 +3,14 @@
 namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Blocks\BladeSection;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 
 use function BagistoPlus\VisualDebut\_t;
 
 class ContactForm extends BladeSection
 {
+    use HasColorSchemeSetting;
+
     protected static string $type = '@visual-debut/contact-form';
 
     protected static string $view = 'shop::sections.contact-form';
@@ -30,5 +33,12 @@ class ContactForm extends BladeSection
     public static function description(): string
     {
         return _t('sections.contact-form.description');
+    }
+
+    public static function settings(): array
+    {
+        return [
+            static::colorSchemeSetting(),
+        ];
     }
 }

@@ -3,11 +3,14 @@
 namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Blocks\BladeSection;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 
 use function BagistoPlus\VisualDebut\_t;
 
 class CmsPage extends BladeSection
 {
+    use HasColorSchemeSetting;
+
     protected static string $type = '@visual-debut/cms-page';
 
     protected static array $enabledOn = [
@@ -29,5 +32,12 @@ class CmsPage extends BladeSection
     public static function description(): string
     {
         return _t('sections.cms-page.description');
+    }
+
+    public static function settings(): array
+    {
+        return [
+            static::colorSchemeSetting(),
+        ];
     }
 }

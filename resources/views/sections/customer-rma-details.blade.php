@@ -28,6 +28,7 @@ $conversation = [
 
 <div
   {{ $section->editor_attributes }}
+  {{ $section->settings->color_scheme?->attributes() }}
   class="space-y-6"
   x-data="VisualRmaRequest(@js(['cancelUrl' => Rma::route('cancel', $rma->id)]))"
 >

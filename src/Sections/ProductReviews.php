@@ -7,6 +7,7 @@ use BagistoPlus\Visual\Actions\StoreProductReview;
 use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Range;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 use Livewire\Attributes\Computed;
 use Livewire\WithFileUploads;
 use Webkul\Product\Helpers\Review;
@@ -15,6 +16,8 @@ use function BagistoPlus\VisualDebut\_t;
 
 class ProductReviews extends LivewireSection
 {
+    use HasColorSchemeSetting;
+
     protected static string $type = '@visual-debut/product-reviews';
 
     use WithFileUploads;
@@ -172,6 +175,8 @@ class ProductReviews extends LivewireSection
             Range::make('limit', _t('sections.product-reviews.settings.limit_label'))
                 ->min(1)->max(20)->step(1)
                 ->default(5),
+
+            static::colorSchemeSetting(),
         ];
     }
 

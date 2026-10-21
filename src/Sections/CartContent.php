@@ -4,6 +4,7 @@ namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\Visual\Enums\Events;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 use BagistoPlus\VisualDebut\Support\InteractsWithCart;
 use Livewire\Attributes\On;
 
@@ -15,6 +16,8 @@ use function BagistoPlus\VisualDebut\_t;
 #[On(Events::CART_UPDATED)]
 class CartContent extends LivewireSection
 {
+    use HasColorSchemeSetting;
+
     protected static string $type = '@visual-debut/cart-content';
 
     use InteractsWithCart;
@@ -42,6 +45,13 @@ class CartContent extends LivewireSection
     public static function description(): string
     {
         return _t('sections.cart-content.description');
+    }
+
+    public static function settings(): array
+    {
+        return [
+            static::colorSchemeSetting(),
+        ];
     }
 
     public function updateItemQuantity($itemId, $quantity)

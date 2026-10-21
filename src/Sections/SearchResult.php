@@ -4,6 +4,7 @@ namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\VisualDebut\Support\HandlesProductListing;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
@@ -13,6 +14,8 @@ use function BagistoPlus\VisualDebut\_t;
 
 class SearchResult extends LivewireSection
 {
+    use HasColorSchemeSetting;
+
     protected static string $type = '@visual-debut/search-result';
 
     use HandlesProductListing;
@@ -46,6 +49,13 @@ class SearchResult extends LivewireSection
     public static function description(): string
     {
         return _t('sections.search-result.description');
+    }
+
+    public static function settings(): array
+    {
+        return [
+            static::colorSchemeSetting(),
+        ];
     }
 
     public function paginationView()

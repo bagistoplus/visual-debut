@@ -1,4 +1,8 @@
-<div {{ $section->editor_attributes }} class="flex items-center justify-center px-4 py-12">
+<div
+  {{ $section->editor_attributes }}
+  {{ $section->settings->color_scheme?->attributes() }}
+  class="flex items-center justify-center px-4 py-12"
+>
   <div class="bg-surface text-on-surface box w-full max-w-lg space-y-8 border-0 p-8">
     <div class="text-center">
       <h2 class="text-3xl font-semibold">

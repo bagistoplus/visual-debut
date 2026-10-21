@@ -1,5 +1,6 @@
 <div
   {{ $section->editor_attributes }}
+  {{ $section->settings->color_scheme?->attributes() }}
   class="bg-background box border-none shadow-sm"
   x-data
 >

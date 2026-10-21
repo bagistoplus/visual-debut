@@ -1,5 +1,5 @@
 @unless ($breadcrumbs->isEmpty())
-  <div {{ $section->editor_attributes }} class="bg-surface text-on-surface border-on-surface/8 border-b">
+  <div {{ $section->editor_attributes }} {{ $section->settings->color_scheme?->attributes() }} class="border-b">
     <div class="container py-4">
       <nav class="flex items-center text-sm" aria-label="{{ trans('visual-debut::shop.breadcrumbs') }}">
         @foreach ($breadcrumbs as $breadcrumb)

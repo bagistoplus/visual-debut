@@ -11,7 +11,11 @@
   ];
 @endphp
 
-<div {{ $section->editor_attributes }} class="bg-background text-on-background box border-none shadow-sm">
+<div
+  {{ $section->editor_attributes }}
+  {{ $section->settings->color_scheme?->attributes() }}
+  class="bg-background text-on-background box border-none shadow-sm"
+>
   <div class="border-b p-4">
     <div class="flex flex-wrap items-center justify-between gap-4">
       <div>
@@ -21,8 +25,7 @@
 
         {{-- The banner opens its own dialog, so this is the way back to a choice once made --}}
         @if (core()->getConfigData('general.gdpr.cookie.enabled'))
-          <a
-            href="{{ \BagistoPlus\VisualDebut\Support\CookieConsent::preferencesUrl() }}"
+          <a href="{{ \BagistoPlus\VisualDebut\Support\CookieConsent::preferencesUrl() }}"
             class="text-on-background/70 hover:text-primary mt-1 inline-flex items-center gap-1 text-sm"
           >
             @lang('shop::app.components.layouts.cookie.consent.your-cookie-consent-preferences')

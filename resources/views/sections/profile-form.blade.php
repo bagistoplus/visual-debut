@@ -3,12 +3,14 @@
    * Bagisto 2.5 casts date_of_birth to a Carbon date, which stringifies with a time
    * component. Format it explicitly so this works on 2.3, 2.4 and 2.5 alike.
    */
-  $dateOfBirth = $customer->date_of_birth
-    ? \Illuminate\Support\Carbon::parse($customer->date_of_birth)->format('Y-m-d')
-    : null;
+  $dateOfBirth = $customer->date_of_birth ? \Illuminate\Support\Carbon::parse($customer->date_of_birth)->format('Y-m-d') : null;
 @endphp
 
-<div {{ $section->editor_attributes }} class="bg-background box border-none shadow-sm">
+<div
+  {{ $section->editor_attributes }}
+  {{ $section->settings->color_scheme?->attributes() }}
+  class="bg-background box border-none shadow-sm"
+>
   <div class="border-b p-4">
     <div class="flex items-center justify-between">
       <h1 class="text-on-background text-2xl">
@@ -59,11 +61,11 @@
             />
           </template>
           <div x-show="!avatar" class="flex h-full w-full items-center justify-center">
-            <x-lucide-user class="h-16 w-16 text-neutral" />
+            <x-lucide-user class="text-neutral h-16 w-16" />
           </div>
         </div>
 
-        <label class="bg-primary absolute bottom-0 right-0 cursor-pointer rounded-full p-2 text-on-primary hover:opacity-90">
+        <label class="bg-primary text-on-primary absolute bottom-0 right-0 cursor-pointer rounded-full p-2 hover:opacity-90">
           <x-lucide-camera class="h-5 w-5" />
           <input
             type="file"

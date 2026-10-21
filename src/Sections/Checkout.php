@@ -10,6 +10,7 @@ use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\Visual\Enums\Events;
 use BagistoPlus\Visual\Facades\ThemeEditor;
 use BagistoPlus\VisualDebut\Data\AddressData;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 use BagistoPlus\VisualDebut\Support\InteractsWithCart;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +25,8 @@ use function BagistoPlus\VisualDebut\_t;
 #[On(Events::COUPON_REMOVED)]
 class Checkout extends LivewireSection
 {
+    use HasColorSchemeSetting;
+
     protected static string $type = '@visual-debut/checkout';
 
     use InteractsWithCart;
@@ -70,6 +73,13 @@ class Checkout extends LivewireSection
     public static function description(): string
     {
         return _t('sections.checkout.description');
+    }
+
+    public static function settings(): array
+    {
+        return [
+            static::colorSchemeSetting(),
+        ];
     }
 
     /**

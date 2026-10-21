@@ -3,6 +3,7 @@
 namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Blocks\BladeSection;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 use Diglactic\Breadcrumbs\Breadcrumbs as BreadcrumbsBreadcrumbs;
 use Illuminate\Support\Facades\Route;
 
@@ -10,6 +11,8 @@ use function BagistoPlus\VisualDebut\_t;
 
 class Breadcrumbs extends BladeSection
 {
+    use HasColorSchemeSetting;
+
     protected static string $type = '@visual-debut/breadcrumbs';
 
     protected static string $view = 'shop::sections.breadcrumbs';
@@ -36,6 +39,13 @@ class Breadcrumbs extends BladeSection
     public static function description(): string
     {
         return _t('sections.breadcrumbs.description');
+    }
+
+    public static function settings(): array
+    {
+        return [
+            static::colorSchemeSetting(),
+        ];
     }
 
     public function getViewData(): array

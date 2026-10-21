@@ -8,12 +8,14 @@ use BagistoPlus\Visual\Actions\GetWishlistItems;
 use BagistoPlus\Visual\Actions\RemoveItemFromWishlist;
 use BagistoPlus\Visual\Blocks\LivewireSection;
 use BagistoPlus\Visual\Enums\Events;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 use BagistoPlus\VisualDebut\Support\InteractsWithWishlist;
 
 use function BagistoPlus\VisualDebut\_t;
 
 class Wishlist extends LivewireSection
 {
+    use HasColorSchemeSetting;
     use InteractsWithWishlist;
 
     protected static string $type = '@visual-debut/wishlist';
@@ -39,6 +41,13 @@ class Wishlist extends LivewireSection
     public static function description(): string
     {
         return _t('sections.wishlist.description');
+    }
+
+    public static function settings(): array
+    {
+        return [
+            static::colorSchemeSetting(),
+        ];
     }
 
     public function loader($id) {}

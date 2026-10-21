@@ -16,7 +16,7 @@
       'requiredGroups' => $customFields
           ->where('is_required', 1)
           ->where('type', 'checkbox')
-          ->mapWithKeys(fn ($field) => [$field->id => trans('validation.required', ['attribute' => $field->label])]),
+          ->mapWithKeys(fn($field) => [$field->id => trans('validation.required', ['attribute' => $field->label])]),
       'labels' => [
           'invalidType' => trans('shop::app.customers.account.rma.view.allowed-file-types'),
       ],
@@ -25,6 +25,7 @@
 
 <div
   {{ $section->editor_attributes }}
+  {{ $section->settings->color_scheme?->attributes() }}
   class="bg-background text-on-background box border-none shadow-sm"
 >
   <div class="border-b p-4">
@@ -60,7 +61,9 @@
 
       <div class="grid gap-2">
         <template x-for="order in orders" x-bind:key="order.id">
-          <label class="has-checked:border-primary has-checked:bg-primary/5 border-on-background/15 flex cursor-pointer flex-wrap items-center gap-x-4 gap-y-1 rounded-lg border p-3 text-sm">
+          <label
+            class="has-checked:border-primary has-checked:bg-primary/5 border-on-background/15 flex cursor-pointer flex-wrap items-center gap-x-4 gap-y-1 rounded-lg border p-3 text-sm"
+          >
             <input
               type="radio"
               name="order_id"
@@ -75,7 +78,12 @@
           </label>
         </template>
       </div>
-      <p class="text-danger text-sm" x-show="errors.order_id" x-text="errors.order_id" x-cloak></p>
+      <p
+        class="text-danger text-sm"
+        x-show="errors.order_id"
+        x-text="errors.order_id"
+        x-cloak
+      ></p>
     </fieldset>
 
     <!-- Item -->
@@ -85,8 +93,7 @@
 
         <div class="grid gap-2">
           <template x-for="item in items" x-bind:key="item.order_item_id">
-            <label
-              class="has-checked:border-primary has-checked:bg-primary/5 border-on-background/15 flex items-start gap-3 rounded-lg border p-3 text-sm"
+            <label class="has-checked:border-primary has-checked:bg-primary/5 border-on-background/15 flex items-start gap-3 rounded-lg border p-3 text-sm"
               x-bind:class="available(item) ? 'cursor-pointer' : 'opacity-60'"
             >
               <input
@@ -99,7 +106,11 @@
                 x-on:change="selectItem(item)"
               >
               <template x-if="imageUrl(item)">
-                <img x-bind:src="imageUrl(item)" alt="" class="h-14 w-14 flex-none rounded object-cover">
+                <img
+                  x-bind:src="imageUrl(item)"
+                  alt=""
+                  class="h-14 w-14 flex-none rounded object-cover"
+                >
               </template>
               <template x-if="!imageUrl(item)">
                 <span class="bg-surface h-14 w-14 flex-none rounded"></span>
@@ -123,7 +134,12 @@
             </label>
           </template>
         </div>
-        <p class="text-danger text-sm" x-show="errors.order_item_id" x-text="errors.order_item_id" x-cloak></p>
+        <p
+          class="text-danger text-sm"
+          x-show="errors.order_item_id"
+          x-text="errors.order_item_id"
+          x-cloak
+        ></p>
 
         <template x-if="item">
           <div class="grid gap-4 pt-2 sm:grid-cols-2">
@@ -142,7 +158,12 @@
                   <option value="cancel_items">@lang('shop::app.customers.account.rma.create.cancel-items')</option>
                 </template>
               </x-shop::ui.form.select>
-              <p class="text-danger mt-1 text-sm" x-show="errors.resolution_type" x-text="errors.resolution_type" x-cloak></p>
+              <p
+                class="text-danger mt-1 text-sm"
+                x-show="errors.resolution_type"
+                x-text="errors.resolution_type"
+                x-cloak
+              ></p>
             </div>
 
             <div>
@@ -158,7 +179,12 @@
                   <option x-bind:value="reason.id" x-text="reason.title"></option>
                 </template>
               </x-shop::ui.form.select>
-              <p class="text-danger mt-1 text-sm" x-show="errors.rma_reason_id" x-text="errors.rma_reason_id" x-cloak></p>
+              <p
+                class="text-danger mt-1 text-sm"
+                x-show="errors.rma_reason_id"
+                x-text="errors.rma_reason_id"
+                x-cloak
+              ></p>
             </div>
 
             <div>
@@ -171,15 +197,17 @@
                 x-model="quantity"
                 x-bind:max="maxQuantity"
               />
-              <p class="text-danger mt-1 text-sm" x-show="errors.rma_qty" x-text="errors.rma_qty" x-cloak></p>
+              <p
+                class="text-danger mt-1 text-sm"
+                x-show="errors.rma_qty"
+                x-text="errors.rma_qty"
+                x-cloak
+              ></p>
             </div>
 
             <template x-if="resolution === 'return'">
               <div>
-                <x-shop::ui.form.select
-                  name="package_condition"
-                  :label="trans('shop::app.customers.account.rma.create.package-condition')"
-                >
+                <x-shop::ui.form.select name="package_condition" :label="trans('shop::app.customers.account.rma.create.package-condition')">
                   <option value="">@lang('shop::app.customers.account.rma.create.select')</option>
                   <option value="open">@lang('shop::app.customers.account.rma.create.open')</option>
                   <option value="packed">@lang('shop::app.customers.account.rma.create.packed')</option>
@@ -234,10 +262,7 @@
               </div>
             </fieldset>
           @else
-            <x-shop::ui.form.label
-              :for="$fieldId"
-              :required="$required"
-            >
+            <x-shop::ui.form.label :for="$fieldId" :required="$required">
               {{ $field->label }}
             </x-shop::ui.form.label>
 
@@ -274,7 +299,12 @@
               >
             @endif
           @endif
-          <p class="text-danger mt-1 text-sm" x-show="errors['customAttributes.{{ $field->id }}']" x-text="errors['customAttributes.{{ $field->id }}']" x-cloak></p>
+          <p
+            class="text-danger mt-1 text-sm"
+            x-show="errors['customAttributes.{{ $field->id }}']"
+            x-text="errors['customAttributes.{{ $field->id }}']"
+            x-cloak
+          ></p>
         </div>
       @endforeach
 
@@ -285,7 +315,12 @@
           rows="3"
           maxlength="250"
         />
-        <p class="text-danger mt-1 text-sm" x-show="errors.information" x-text="errors.information" x-cloak></p>
+        <p
+          class="text-danger mt-1 text-sm"
+          x-show="errors.information"
+          x-text="errors.information"
+          x-cloak
+        ></p>
       </div>
 
       <div>
@@ -316,7 +351,12 @@
             </span>
           </template>
         </div>
-        <p class="text-danger mt-1 text-sm" x-show="errors.images" x-text="errors.images" x-cloak></p>
+        <p
+          class="text-danger mt-1 text-sm"
+          x-show="errors.images"
+          x-text="errors.images"
+          x-cloak
+        ></p>
       </div>
 
       <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
@@ -331,15 +371,9 @@
         </label>
 
         @if ($returnPolicy)
-          <x-shop::ui.modal
-            id="rma-return-policy"
-            :title="trans('visual-debut::shop.rma.return-policy')"
-          >
+          <x-shop::ui.modal id="rma-return-policy" :title="trans('visual-debut::shop.rma.return-policy')">
             <x-slot:trigger>
-              <button
-                type="button"
-                class="text-primary hover:underline"
-              >
+              <button type="button" class="text-primary hover:underline">
                 @lang('shop::app.customers.account.rma.terms.read')
               </button>
             </x-slot:trigger>
@@ -348,7 +382,12 @@
           </x-shop::ui.modal>
         @endif
       </div>
-      <p class="text-danger text-sm" x-show="errors.agreement" x-text="errors.agreement" x-cloak></p>
+      <p
+        class="text-danger text-sm"
+        x-show="errors.agreement"
+        x-text="errors.agreement"
+        x-cloak
+      ></p>
 
       <div class="flex justify-end">
         <x-shop::ui.button

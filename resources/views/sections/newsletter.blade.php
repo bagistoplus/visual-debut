@@ -1,13 +1,13 @@
 <div
   {{ $section->editor_attributes }}
   {{ $section->settings->scheme?->attributes() }}
-  class="bg-surface text-on-surface py-16"
+  class="py-16"
 >
   <div class="container">
     <h2 class="heading mb-4 text-center text-3xl" {{ $section->liveUpdate()->text('heading') }}>
       {{ $section->settings->heading }}
     </h2>
-    <div class="description text-on-surface/70 prose mx-auto mb-8 max-w-2xl text-center" {{ $section->liveUpdate()->html('description') }}>
+    <div class="description text-on-background/70 prose mx-auto mb-8 max-w-2xl text-center" {{ $section->liveUpdate()->html('description') }}>
       {!! $section->settings->description !!}
     </div>
     <form

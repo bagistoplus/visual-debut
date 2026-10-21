@@ -1,4 +1,4 @@
-<div>
+<div {{ $section->settings->color_scheme?->attributes() }}>
   <div {{ $section->editor_attributes }} class="container py-8">
     @if (request()->has('image-search'))
       <div class="bg-surface text-on-surface border-on-surface-alt/8 box flex p-5" x-data="{

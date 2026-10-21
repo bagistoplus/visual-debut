@@ -1,4 +1,4 @@
-<section {{ $section->editor_attributes }}>
+<section {{ $section->editor_attributes }} {{ $section->settings->color_scheme?->attributes() }}>
   {{-- <x-lucide-loader-2 class="h-16 w-16 animate-spin text-white" /> --}}
   <div class="container py-8" x-data="{
       init() {

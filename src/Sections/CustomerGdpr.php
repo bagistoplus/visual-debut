@@ -3,11 +3,14 @@
 namespace BagistoPlus\VisualDebut\Sections;
 
 use BagistoPlus\Visual\Blocks\SimpleSection;
+use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 
 use function BagistoPlus\VisualDebut\_t;
 
 class CustomerGdpr extends SimpleSection
 {
+    use HasColorSchemeSetting;
+
     protected static string $type = '@visual-debut/customer-gdpr';
 
     protected static array $enabledOn = [
@@ -24,5 +27,12 @@ class CustomerGdpr extends SimpleSection
     public static function name(): string
     {
         return _t('sections.customer-gdpr.name');
+    }
+
+    public static function settings(): array
+    {
+        return [
+            static::colorSchemeSetting(),
+        ];
     }
 }

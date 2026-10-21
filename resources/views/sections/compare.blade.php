@@ -7,7 +7,7 @@
       ],
   ];
 @endphp
-<div x-data="VisualProductsCompare(@js($props))" class="py-12">
+<div {{ $section->settings->color_scheme?->attributes() }} x-data="VisualProductsCompare(@js($props))" class="py-12">
   <div {{ $section->editor_attributes }} class="py-12">
     <div class="container">
       @if ($items->isEmpty())

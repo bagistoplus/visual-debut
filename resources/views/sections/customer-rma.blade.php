@@ -2,7 +2,11 @@
   use BagistoPlus\VisualDebut\Support\Rma;
 @endphp
 
-<div {{ $section->editor_attributes }} class="bg-background text-on-background box border-none shadow-sm">
+<div
+  {{ $section->editor_attributes }}
+  {{ $section->settings->color_scheme?->attributes() }}
+  class="bg-background text-on-background box border-none shadow-sm"
+>
   <div class="border-b p-4">
     <div class="flex items-center justify-between gap-4">
       <h1 class="text-2xl">

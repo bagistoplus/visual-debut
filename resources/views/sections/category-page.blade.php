@@ -1,6 +1,6 @@
-<div {{ $section->editor_attributes }}>
+<div {{ $section->editor_attributes }} {{ $section->settings->color_scheme?->attributes() }}>
   @if ($section->settings->show_category_banner)
-    <div class="banner bg-surface-alt text-on-surface-alt relative py-8">
+    <div class="banner bg-surface text-on-surface relative py-8">
       @if ($category->banner_url)
         <img
           src="{{ $category->banner_url }}"

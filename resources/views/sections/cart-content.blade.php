@@ -1,4 +1,4 @@
-<div {{ $section->editor_attributes }} class="container py-16">
+<div {{ $section->editor_attributes }} {{ $section->settings->color_scheme?->attributes() }} class="container py-16">
   @if ($this->isCartEmpty())
     <div class="flex flex-col items-center justify-center py-16 text-center">
       <p>@lang('shop::app.checkout.cart.index.empty-product')</p>

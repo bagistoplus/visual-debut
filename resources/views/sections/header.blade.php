@@ -4,10 +4,18 @@
   $containerClass = $contentWidth === 'container' ? 'container' : 'container-fluid';
 @endphp
 
-<div {{ $section->editor_attributes }} class="bg-surface text-on-surface border-on-surface/8 sticky top-0 z-20 w-full border-b">
+<div
+  {{ $section->editor_attributes }}
+  {{ $theme->settings->default_scheme?->attributes() }}
+  class="sticky top-0 z-20 w-full border-b"
+>
   <div class="{{ $containerClass }}">
     <div class="flex h-16 items-center justify-between gap-x-4">
-      <x-shop::ui.drawer id="mobile-menu-drawer" placement="start" :title="trans('visual-debut::shop.menu')">
+      <x-shop::ui.drawer
+        id="mobile-menu-drawer"
+        placement="start"
+        :title="trans('visual-debut::shop.menu')"
+      >
         <x-slot:trigger>
           <button class="-ml-2 p-2 transition-colors lg:hidden" aria-label="{{ trans('visual-debut::shop.open-menu') }}">
             <x-lucide-menu class="h-6 w-6" />

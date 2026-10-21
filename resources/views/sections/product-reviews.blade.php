@@ -1,5 +1,6 @@
 <div
   {{ $section->editor_attributes }}
+  {{ $section->settings->color_scheme?->attributes() }}
   x-data="{ showReviewForm: $wire.entangle('showReviewForm') }"
   class="container py-16"
 >

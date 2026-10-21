@@ -8,6 +8,7 @@
 
 <div
   {{ $section->editor_attributes }}
+  {{ $section->settings->color_scheme?->attributes() }}
   class=""
   x-data
 >
@@ -66,10 +67,7 @@
   </div>
 
   @if (Booking::warnsAboutCancellation($order))
-    <div
-      role="note"
-      class="bg-warning-100 border-warning text-warning-900 my-4 flex items-start gap-3 rounded-lg border p-4"
-    >
+    <div role="note" class="bg-warning-100 border-warning text-warning-900 my-4 flex items-start gap-3 rounded-lg border p-4">
       @svg('lucide-triangle-alert', ['class' => 'mt-0.5 h-5 w-5 shrink-0', 'aria-hidden' => true])
 
       <div>
@@ -95,21 +93,18 @@
 
     $tabs = collect($tabs)->where('enabled', true)->values();
   @endphp
-  <div
-    class="mb-8"
-    x-data="{
-        selected: 'information',
-        names: @js($tabs->pluck('name')),
-        select(name) {
-            this.selected = name;
-            document.getElementById('order-tab-' + name).focus();
-        },
-        move(step) {
-            const index = this.names.indexOf(this.selected);
-            this.select(this.names[(index + step + this.names.length) % this.names.length]);
-        },
-    }"
-  >
+  <div class="mb-8" x-data="{
+      selected: 'information',
+      names: @js($tabs->pluck('name')),
+      select(name) {
+          this.selected = name;
+          document.getElementById('order-tab-' + name).focus();
+      },
+      move(step) {
+          const index = this.names.indexOf(this.selected);
+          this.select(this.names[(index + step + this.names.length) % this.names.length]);
+      },
+  }">
     <div role="tablist" class="border-on-background/10 mb-6 flex border-b-2 max-sm:overflow-x-auto">
       @foreach ($tabs as $tab)
         <button
