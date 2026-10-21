@@ -6,16 +6,6 @@ return [
         'color_scheme_info' => 'Override the global theme color scheme for this section',
     ],
 
-    'admin-topbar' => [
-        'name' => 'Admin Top Bar',
-        'description' => 'Displays a topbar with a link to the admin panel. Useful for admin-accessible storefronts.',
-
-        'settings' => [
-            'text_label' => 'Link Text',
-            'url_label' => 'Link URL',
-        ],
-    ],
-
     'announcement-bar' => [
         'name' => 'Announcement Bar',
         'description' => 'A simple announcement bar to display important information to your customers.',

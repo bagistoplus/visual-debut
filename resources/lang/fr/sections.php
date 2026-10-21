@@ -6,16 +6,6 @@ return [
         'color_scheme_info' => 'Remplace la palette de couleurs globale du thème pour cette section',
     ],
 
-    'admin-topbar' => [
-        'name' => 'Barre supérieure d’administration',
-        'description' => 'Affiche une barre supérieure avec un lien vers le panneau d’administration. Utile pour les vitrines accessibles aux administrateurs.',
-
-        'settings' => [
-            'text_label' => 'Texte du lien',
-            'url_label' => 'URL du lien',
-        ],
-    ],
-
     'announcement-bar' => [
         'name' => 'Barre d\'annonce',
         'description' => 'Une barre d\'annonce simple pour afficher des informations importantes à vos clients.',

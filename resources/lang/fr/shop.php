@@ -109,7 +109,6 @@ return [
         'inputs' => 'Champs',
         'boxes' => 'Cadres',
         'social-links' => 'Liens vers les réseaux sociaux',
-        'general' => 'Général',
     ],
 
     'header' => [

@@ -109,7 +109,6 @@ return [
         'inputs' => 'इनपुट',
         'boxes' => 'बॉक्स',
         'social-links' => 'सोशल मीडिया लिंक',
-        'general' => 'सामान्य',
     ],
 
     'header' => [

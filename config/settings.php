@@ -155,11 +155,4 @@ return [
             Settings\Text::make('snapchat_url', 'Snapchat')->default('https://www.snapchat.com'),
         ],
     ],
-    [
-        'name' => 'visual-debut::shop.settings.general',
-        'settings' => [
-            Settings\Checkbox::make('enable_admin_bar', 'Enable Admin Bar')
-                ->default(false),
-        ],
-    ],
 ];

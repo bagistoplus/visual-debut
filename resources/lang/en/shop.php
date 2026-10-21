@@ -109,7 +109,6 @@ return [
         'inputs' => 'Inputs',
         'boxes' => 'Boxes',
         'social-links' => 'Social Media Links',
-        'general' => 'General',
     ],
 
     'header' => [
