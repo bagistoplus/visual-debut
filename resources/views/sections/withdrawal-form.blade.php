@@ -96,7 +96,7 @@
         </div>
       </div>
 
-      <div class="flex flex-wrap items-center justify-end gap-3">
+      <div class="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-end">
         <x-shop::ui.button variant="outline" :href="$backUrl">
           @lang('shop::app.eu-withdrawal.form.cancel')
         </x-shop::ui.button>

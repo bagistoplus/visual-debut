@@ -17,7 +17,7 @@
       {{ mb_strtoupper(mb_substr($customer->first_name, 0, 1) . mb_substr($customer->last_name, 0, 1)) }}
     </div>
 
-    <div class="min-w-0 flex-1">
+    <div class="min-w-0 flex-1 basis-52">
       <h1 class="text-2xl">
         @lang('visual-debut::shop.account-dashboard.hello', ['name' => $customer->first_name])
       </h1>

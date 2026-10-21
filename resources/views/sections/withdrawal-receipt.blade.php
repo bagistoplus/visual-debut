@@ -36,7 +36,7 @@
         @svg($status === 'declined' ? 'lucide-x' : 'lucide-check', ['class' => 'h-5 w-5', 'aria-hidden' => true])
       </span>
 
-      <div class="min-w-0 flex-1">
+      <div class="min-w-0 flex-1 basis-56">
         <h1 class="text-2xl">
           @lang('shop::app.eu-withdrawal.confirmation.heading-' . $status)
         </h1>
