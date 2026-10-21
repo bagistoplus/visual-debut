@@ -118,7 +118,12 @@ return [
         ],
     ],
 
-    ButtonSettingsSchema::flat(),
+    // Flat buttons, with the theme's rounder corners
+    tap(ButtonSettingsSchema::flat(), function (array $group) {
+        collect($group['settings'])
+            ->first(fn ($setting) => ($setting->id ?? null) === 'btn_radius')
+            ?->default('xl');
+    }),
 
     [
         'name' => 'visual-debut::shop.settings.inputs',
@@ -126,7 +131,7 @@ return [
             // Settings\Header::make('Borders'),
             Settings\Range::make('input_height', 'Height')->min(8)->max(24)->step(2)->unit('px')->default(10),
             Settings\Range::make('input_border_width', 'Border width')->min(0)->max(4)->step(0.5)->unit('px')->default(1),
-            Radius::make('input_border_radius', 'Border radius'),
+            Radius::make('input_border_radius', 'Border radius')->default('xl'),
         ],
     ],
 
@@ -135,7 +140,7 @@ return [
         'settings' => [
             // Settings\Header::make('Borders'),
             Settings\Range::make('box_border_width', 'Border width')->min(0)->max(4)->step(0.5)->unit('px')->default(1),
-            Radius::make('box_border_radius', 'Border radius'),
+            Radius::make('box_border_radius', 'Border radius')->default('xl'),
         ],
     ],
 
