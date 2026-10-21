@@ -1,37 +1,36 @@
 <?php
 
 return [
-    'background' => '#1d232a',
-    'on-background' => '#ecf9ff',
+    'background' => '#171412',
+    'on-background' => '#f3efea',
 
-    'surface' => '#191e24',
-    'on-surface' => '#ecf9ff',
+    'surface' => '#211d1a',
+    'on-surface' => '#f3efea',
 
-    'surface-alt' => '#15191e',
-    'on-surface-alt' => '#ecf9ff',
+    'surface-alt' => '#2c2724',
+    'on-surface-alt' => '#f3efea',
 
-    'primary' => '#605dff',
-    'on-primary' => '#edf1fe',
+    'primary' => '#d98b52',
+    'on-primary' => '#171412',
 
-    'secondary' => '#f43098',
-    'on-secondary' => '#f9e4f0',
+    'secondary' => '#d6cec6',
+    'on-secondary' => '#171412',
 
-    'accent' => '#00d3bb',
-    'on-accent' => '#084d49',
+    'accent' => '#e0b04a',
+    'on-accent' => '#171412',
 
-    'neutral' => '#09090b',
-    'on-neutral' => '#e4e4e7',
+    'neutral' => '#a39b94',
+    'on-neutral' => '#171412',
 
-    'info' => '#00bafe',
-    'on-info' => '#042e49',
+    'info' => '#7fb0f0',
+    'on-info' => '#171412',
 
-    'success' => '#00d390',
-    'on-success' => '#004c39',
+    'success' => '#6fcf8f',
+    'on-success' => '#171412',
 
-    'warning' => '#fcb700',
-    'on-warning' => '#793205',
+    'warning' => '#f7b267',
+    'on-warning' => '#171412',
 
-    'danger' => '#ff637d',
-    'on-danger' => '#4d0218',
-
+    'danger' => '#f08a7e',
+    'on-danger' => '#171412',
 ];

@@ -68,7 +68,7 @@ class Footer extends BladeSection
             Header::make(_t('sections.footer.settings.appearance_header')),
 
             ColorScheme::make('color_scheme', _t('sections.footer.settings.color_scheme_label'))
-                ->default(null)
+                ->default('dark')
                 ->info(_t('sections.footer.settings.color_scheme_info')),
         ];
     }
