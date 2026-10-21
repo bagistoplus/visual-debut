@@ -565,6 +565,18 @@ return [
         'name' => 'New Return',
     ],
 
+    'withdrawal-lookup' => [
+        'name' => 'Withdrawal Lookup',
+    ],
+
+    'withdrawal-form' => [
+        'name' => 'Withdrawal Form',
+    ],
+
+    'withdrawal-receipt' => [
+        'name' => 'Withdrawal Receipt',
+    ],
+
     'customer-order-details' => [
         'name' => 'Order Details',
     ],

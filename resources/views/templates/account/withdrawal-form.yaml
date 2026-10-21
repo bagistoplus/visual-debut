@@ -1,0 +1,6 @@
+sections:
+  withdrawal-form:
+    type: '@visual-debut/withdrawal-form'
+
+order:
+  - withdrawal-form

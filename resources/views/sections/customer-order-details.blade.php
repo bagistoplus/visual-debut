@@ -1,9 +1,16 @@
 @php
   use BagistoPlus\VisualDebut\Support\Booking;
+  use BagistoPlus\VisualDebut\Support\EuWithdrawal;
   use BagistoPlus\VisualDebut\Support\Rma;
   use BagistoPlus\VisualDebut\Support\Routes;
 
   $canRequestReturn = Rma::canRequestReturn($order);
+  $canWithdraw = EuWithdrawal::canWithdraw($order);
+
+  if ($canWithdraw) {
+      $withdrawal = EuWithdrawal::existingFor($order);
+      $withdrawalUrl = $withdrawal ? route('shop.customers.account.eu_withdrawal.show', $withdrawal->uuid) : route('shop.customers.account.eu_withdrawal.create', $order->id);
+  }
 @endphp
 
 <div
@@ -45,6 +52,17 @@
         </x-shop::ui.button>
       @endif
 
+      @if ($canWithdraw)
+        <x-shop::ui.button
+          variant="outline"
+          color="primary"
+          size="sm"
+          :href="$withdrawalUrl"
+        >
+          @lang('shop::app.eu-withdrawal.button.' . ($withdrawal ? 'view-existing' : 'withdraw'))
+        </x-shop::ui.button>
+      @endif
+
       @if ($order->canCancel())
         <form
           x-ref="cancelForm"
@@ -67,7 +85,7 @@
   </div>
 
   @if (Booking::warnsAboutCancellation($order))
-    <div role="note" class="bg-warning-100 border-warning text-warning-900 my-4 flex items-start gap-3 rounded-(--box-radius) border p-4">
+    <div role="note" class="bg-warning-100 border-warning text-warning-900 rounded-(--box-radius) my-4 flex items-start gap-3 border p-4">
       @svg('lucide-triangle-alert', ['class' => 'mt-0.5 h-5 w-5 shrink-0', 'aria-hidden' => true])
 
       <div>
@@ -159,6 +177,18 @@
           </x-shop::ui.button>
         @endif
 
+        @if ($canWithdraw)
+          <x-shop::ui.button
+            variant="outline"
+            color="primary"
+            size="sm"
+            :href="$withdrawalUrl"
+            class="flex-1 whitespace-nowrap"
+          >
+            @lang('shop::app.eu-withdrawal.button.' . ($withdrawal ? 'view-existing' : 'withdraw'))
+          </x-shop::ui.button>
+        @endif
+
         @if ($order->canCancel())
           <form
             class="flex flex-1"
@@ -181,7 +211,7 @@
         @endif
       </div>
 
-      <div class="mb-6 rounded-(--box-radius) p-6 shadow">
+      <div class="rounded-(--box-radius) mb-6 p-6 shadow">
         <h2 class="mb-5 text-lg font-semibold">
           @lang('shop::app.customers.account.orders.view.information.placed-on')
           {{ core()->formatDate($order->created_at, 'd M Y') }}
@@ -197,7 +227,7 @@
               <img
                 src="{{ $image['small_image_url'] }}"
                 alt="{{ $item->name }}"
-                class="h-16 w-16 flex-none rounded-(--box-radius) object-cover"
+                class="rounded-(--box-radius) h-16 w-16 flex-none object-cover"
               >
               <div class="flex-1">
                 <h4 class="text-on-background text-base font-medium">
@@ -401,7 +431,7 @@
         x-show="selected === 'invoices'"
       >
         @foreach ($order->invoices as $invoice)
-          <div class="bg-background mb-6 overflow-hidden rounded-(--box-radius) shadow">
+          <div class="bg-background rounded-(--box-radius) mb-6 overflow-hidden shadow">
             <div class="flex items-center justify-between gap-4 border-b px-4 py-3">
               <h3 class="text-on-background text-base font-semibold">
                 @lang('shop::app.customers.account.orders.view.invoices.individual-invoice', ['invoice_id' => $invoice->increment_id ?? $invoice->id])
@@ -662,7 +692,7 @@
         x-show="selected === 'shipments'"
       >
         @foreach ($order->shipments as $shipment)
-          <div class="bg-background mb-6 overflow-hidden rounded-(--box-radius) shadow">
+          <div class="bg-background rounded-(--box-radius) mb-6 overflow-hidden shadow">
             <div class="flex items-center justify-between gap-4 border-b px-4 py-3">
               <div>
                 <h3 class="text-on-background text-base font-semibold">
@@ -805,7 +835,7 @@
         x-show="selected === 'refunds'"
       >
         @foreach ($order->refunds as $refund)
-          <div class="bg-background mb-6 overflow-hidden rounded-(--box-radius) shadow">
+          <div class="bg-background rounded-(--box-radius) mb-6 overflow-hidden shadow">
             <div class="flex items-center justify-between gap-4 border-b px-4 py-3">
               <h3 class="text-on-background text-base font-semibold">
                 @lang('shop::app.customers.account.orders.view.refunds.individual-refund', ['refund_id' => $refund->id])
@@ -1095,11 +1125,11 @@
   </div>
 
   <!-- Shipping Address and Payment methods -->
-  <div class="bg-background mt-6 rounded-(--box-radius) p-4 shadow">
+  <div class="bg-background rounded-(--box-radius) mt-6 p-4 shadow">
     <div class="flex flex-wrap gap-6">
       <!-- Billing Address -->
       @if ($order->billing_address)
-        <div class="bg-surface text-on-surface w-full rounded-(--box-radius) p-4 shadow sm:max-w-64">
+        <div class="bg-surface text-on-surface rounded-(--box-radius) w-full p-4 shadow sm:max-w-64">
           <div class="mb-3 font-semibold">@lang('shop::app.customers.account.orders.view.billing-address')</div>
           <div class="leading-relaxed">
             <x-shop::order.address :address="$order->billing_address" />
@@ -1109,7 +1139,7 @@
 
       <!-- Shipping Address -->
       @if ($order->shipping_address)
-        <div class="bg-surface text-on-surface w-full rounded-(--box-radius) p-4 shadow sm:max-w-64">
+        <div class="bg-surface text-on-surface rounded-(--box-radius) w-full p-4 shadow sm:max-w-64">
           <div class="mb-3 font-semibold">@lang('shop::app.customers.account.orders.view.shipping-address')</div>
           <div class="leading-relaxed">
             <x-shop::order.address :address="$order->shipping_address" />

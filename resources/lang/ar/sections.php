@@ -760,6 +760,18 @@ return [
         'name' => 'مرتجع جديد',
     ],
 
+    'withdrawal-lookup' => [
+        'name' => 'البحث عن طلب الانسحاب',
+    ],
+
+    'withdrawal-form' => [
+        'name' => 'نموذج الانسحاب',
+    ],
+
+    'withdrawal-receipt' => [
+        'name' => 'إيصال الانسحاب',
+    ],
+
     'customer-order-details' => [
         'name' => 'تفاصيل الطلب',
     ],

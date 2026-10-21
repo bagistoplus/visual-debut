@@ -26,6 +26,7 @@ import productForm from './features/product-form';
 import variantPicker from './features/variant-picker';
 import productActions from './features/product-actions';
 import rma from './features/rma';
+import withdrawal from './features/withdrawal';
 
 // ui components as plugin
 Alpine.plugin([toasts]);
@@ -49,6 +50,7 @@ Alpine.plugin([
   productsCompare,
   rma,
   variantPicker,
+  withdrawal,
 ]);
 
 Livewire.start();

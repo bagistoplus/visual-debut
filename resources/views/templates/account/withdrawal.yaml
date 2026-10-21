@@ -1,0 +1,6 @@
+sections:
+  withdrawal-receipt:
+    type: '@visual-debut/withdrawal-receipt'
+
+order:
+  - withdrawal-receipt

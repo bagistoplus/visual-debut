@@ -741,6 +741,18 @@ return [
         'name' => 'Nouveau retour',
     ],
 
+    'withdrawal-lookup' => [
+        'name' => 'Recherche de rétractation',
+    ],
+
+    'withdrawal-form' => [
+        'name' => 'Formulaire de rétractation',
+    ],
+
+    'withdrawal-receipt' => [
+        'name' => 'Justificatif de rétractation',
+    ],
+
     'customer-order-details' => [
         'name' => 'Détails de la commande',
     ],

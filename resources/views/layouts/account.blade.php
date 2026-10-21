@@ -63,7 +63,12 @@
                 @if ($menuItem->haveChildren())
                   <nav class="space-y-1">
                     @foreach ($menuItem->getChildren() as $subMenuItem)
-                      <a class="{{ visual_is_menu_active($subMenuItem) ? 'active-menu bg-primary text-on-primary' : 'hover:bg-surface-600' }} group flex items-center justify-between rounded-lg px-4 py-3 transition-colors"
+                      @php
+                        // A withdrawal receipt lives outside the orders URL but belongs to an order
+                        $isActive =
+                            visual_is_menu_active($subMenuItem) || ($subMenuItem->getKey() === 'account.orders' && request()->routeIs('shop.customers.account.eu_withdrawal.*'));
+                      @endphp
+                      <a class="{{ $isActive ? 'active-menu bg-primary text-on-primary' : 'hover:bg-surface-600' }} group flex items-center justify-between rounded-lg px-4 py-3 transition-colors"
                         href="{{ $subMenuItem->getUrl() }}"
                       >
                         <div class="flex items-center gap-3">
@@ -86,7 +91,7 @@
               @csrf
               @method('DELETE')
               <button type="submit"
-                class="border-danger text-danger hover:bg-danger hover:text-on-danger flex w-full items-center justify-center gap-2 rounded-(--btn-radius) border-2 px-4 py-3 transition-colors"
+                class="border-danger text-danger hover:bg-danger hover:text-on-danger rounded-(--btn-radius) flex w-full items-center justify-center gap-2 border-2 px-4 py-3 transition-colors"
               >
                 <x-lucide-log-out class="h-5 w-5" />
                 @lang('visual-debut::shop.header.logout')

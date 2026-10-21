@@ -752,6 +752,18 @@ return [
         'name' => 'नई वापसी',
     ],
 
+    'withdrawal-lookup' => [
+        'name' => 'प्रत्याहरण खोज',
+    ],
+
+    'withdrawal-form' => [
+        'name' => 'प्रत्याहरण फ़ॉर्म',
+    ],
+
+    'withdrawal-receipt' => [
+        'name' => 'प्रत्याहरण रसीद',
+    ],
+
     'customer-order-details' => [
         'name' => 'ऑर्डर विवरण',
     ],

@@ -13,10 +13,7 @@
 >
   <x-shop::ui.dropdown id="user-menu-popover" placement="bottom-end">
     <x-slot:trigger>
-      <button
-        class="relative p-2"
-        aria-label="{{ trans('visual-debut::shop.user-menu') }}"
-      >
+      <button class="relative p-2" aria-label="{{ trans('visual-debut::shop.user-menu') }}">
         @svg($block->settings->icon ?? 'lucide-user', ['class' => 'hover:text-primary h-5 w-5 transition-colors'])
       </button>
     </x-slot:trigger>
@@ -44,6 +41,12 @@
                 @lang('visual-debut::sections.header.blocks.user.sign-up')
               </x-shop::ui.button>
             </div>
+
+            @if (\BagistoPlus\VisualDebut\Support\EuWithdrawal::available())
+              <a href="{{ route('shop.eu_withdrawal.guest.lookup') }}" class="text-primary mt-4 inline-block text-xs font-medium hover:underline">
+                @lang('shop::app.eu-withdrawal.guest-dropdown.link')
+              </a>
+            @endif
           </div>
         </div>
       @endguest

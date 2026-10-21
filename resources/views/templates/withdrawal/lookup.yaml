@@ -1,0 +1,6 @@
+sections:
+  withdrawal-lookup:
+    type: '@visual-debut/withdrawal-lookup'
+
+order:
+  - withdrawal-lookup

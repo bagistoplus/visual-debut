@@ -66,6 +66,8 @@ class Breadcrumbs extends BladeSection
 
             'shop.customers.account.orders.index' => ['name' => 'orders'],
             'shop.customers.account.orders.view' => ['name' => 'orders.view', 'entity' => $this->context['order']],
+            'shop.customers.account.eu_withdrawal.create' => ['name' => 'account.eu-withdrawal.create'],
+            'shop.customers.account.eu_withdrawal.show' => ['name' => 'account.eu-withdrawal.show'],
 
             'shop.customers.account.reviews.index' => ['name' => 'reviews'],
             'shop.customers.account.downloadable_products.index' => ['name' => 'downloadable-products'],
