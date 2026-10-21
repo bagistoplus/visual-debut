@@ -34,6 +34,7 @@ class Newsletter extends BladeSection
     {
         return [
             ColorScheme::make('scheme', _t('sections.newsletter.settings.scheme_label'))
+                ->default('light')
                 ->info(_t('sections.newsletter.settings.scheme_note')),
 
             Settings\Text::make('heading', _t('sections.newsletter.settings.heading_label'))
