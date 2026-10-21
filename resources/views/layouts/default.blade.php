@@ -22,7 +22,9 @@
 
     <x-shop::confirm-modal />
 
-    @if (core()->getConfigData('general.gdpr.settings.enabled') && core()->getConfigData('general.gdpr.cookie.enabled') && !\BagistoPlus\VisualDebut\Support\CookieConsent::isPreferencesPage())
+    @if (core()->getConfigData('general.gdpr.settings.enabled') &&
+            core()->getConfigData('general.gdpr.cookie.enabled') &&
+            !\BagistoPlus\VisualDebut\Support\CookieConsent::isPreferencesPage())
       <x-shop::cookie-consent />
     @endif
 
@@ -41,6 +43,14 @@
     {!! view_render_event('bagisto.shop.layout.content.after') !!}
 
     {!! view_render_event('bagisto.shop.layout.body.after') !!}
+
+    {{-- WebMCP tools for AI agents, Bagisto 2.4.8 on. Included rather than <x-shop::layouts.webmcp />, which fails to compile on a Bagisto without the view --}}
+    @if (Route::has('shop.webmcp.product'))
+      <div class="hidden">
+        @includeIf('shop::components.layouts.webmcp')
+        @include('shop::partials.webmcp-tools')
+      </div>
+    @endif
 
     @stack('scripts')
     @livewireScriptConfig
