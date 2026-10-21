@@ -121,6 +121,17 @@ return [
         'compare' => 'المقارنة',
     ],
 
+    'account-dashboard' => [
+        'hello' => 'مرحبًا، :name',
+        'member-since' => 'عضو منذ :date',
+        'orders-count' => '{0} لا طلبات|{1} طلب واحد|{2} طلبان|[3,10] :count طلبات|[11,*] :count طلبًا',
+        'recent-orders' => 'الطلبات الأخيرة',
+        'view-all' => 'عرض الكل',
+        'manage' => 'إدارة',
+        'no-orders' => 'لم تقم بأي طلب بعد.',
+        'no-default-address' => 'ليس لديك عنوان افتراضي بعد.',
+    ],
+
     'rma' => [
         'mark-solved' => 'تحديد كمحلول',
         'load-older-messages' => 'عرض الرسائل الأقدم',

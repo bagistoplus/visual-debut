@@ -121,6 +121,17 @@ return [
         'compare' => 'तुलना करें',
     ],
 
+    'account-dashboard' => [
+        'hello' => 'नमस्ते, :name',
+        'member-since' => ':date से सदस्य',
+        'orders-count' => ':count ऑर्डर|:count ऑर्डर',
+        'recent-orders' => 'हाल के ऑर्डर',
+        'view-all' => 'सभी देखें',
+        'manage' => 'प्रबंधित करें',
+        'no-orders' => 'आपने अभी तक कोई ऑर्डर नहीं दिया है।',
+        'no-default-address' => 'आपका अभी तक कोई डिफ़ॉल्ट पता नहीं है।',
+    ],
+
     'rma' => [
         'mark-solved' => 'हल के रूप में चिह्नित करें',
         'load-older-messages' => 'पुराने संदेश देखें',

@@ -741,6 +741,10 @@ return [
         'name' => 'Nouveau retour',
     ],
 
+    'customer-dashboard' => [
+        'name' => 'Aperçu du compte',
+    ],
+
     'withdrawal-lookup' => [
         'name' => 'Recherche de rétractation',
     ],

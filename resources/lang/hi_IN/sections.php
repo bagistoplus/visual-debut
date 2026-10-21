@@ -752,6 +752,10 @@ return [
         'name' => 'नई वापसी',
     ],
 
+    'customer-dashboard' => [
+        'name' => 'खाता सारांश',
+    ],
+
     'withdrawal-lookup' => [
         'name' => 'प्रत्याहरण खोज',
     ],

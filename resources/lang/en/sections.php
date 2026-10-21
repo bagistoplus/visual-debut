@@ -565,6 +565,10 @@ return [
         'name' => 'New Return',
     ],
 
+    'customer-dashboard' => [
+        'name' => 'Account Overview',
+    ],
+
     'withdrawal-lookup' => [
         'name' => 'Withdrawal Lookup',
     ],

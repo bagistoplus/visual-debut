@@ -121,6 +121,17 @@ return [
         'compare' => 'Comparer',
     ],
 
+    'account-dashboard' => [
+        'hello' => 'Bonjour, :name',
+        'member-since' => 'Client depuis :date',
+        'orders-count' => ':count commande|:count commandes',
+        'recent-orders' => 'Commandes récentes',
+        'view-all' => 'Tout voir',
+        'manage' => 'Gérer',
+        'no-orders' => 'Vous n\'avez pas encore passé de commande.',
+        'no-default-address' => 'Vous n\'avez pas encore d\'adresse par défaut.',
+    ],
+
     'rma' => [
         'mark-solved' => 'Marquer comme résolu',
         'load-older-messages' => 'Afficher les messages précédents',

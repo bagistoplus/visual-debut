@@ -121,6 +121,17 @@ return [
         'compare' => 'Compare',
     ],
 
+    'account-dashboard' => [
+        'hello' => 'Hello, :name',
+        'member-since' => 'Member since :date',
+        'orders-count' => ':count order|:count orders',
+        'recent-orders' => 'Recent orders',
+        'view-all' => 'View all',
+        'manage' => 'Manage',
+        'no-orders' => 'You have not placed an order yet.',
+        'no-default-address' => 'You have no default address yet.',
+    ],
+
     'rma' => [
         'mark-solved' => 'Mark as solved',
         'load-older-messages' => 'Load older messages',

@@ -8,10 +8,11 @@
       <div class="flex flex-col gap-8 lg:flex-row">
         <div class="lg:w-77.5 lg:shrink-0" x-data="{
             menuOpen: false,
-            activeMenu: '',
+            activeMenu: @js(trans('visual-debut::shop.menu')),
 
             init() {
-                this.activeMenu = this.$el.querySelector('.active-menu').textContent.trim().replace(/\s+/g, ' ');
+                {{-- The account overview has no menu item of its own --}}
+                this.activeMenu = this.$el.querySelector('.active-menu')?.textContent.trim().replace(/\s+/g, ' ') ?? this.activeMenu;
             }
         }">
           <div class="box my-4 md:hidden">

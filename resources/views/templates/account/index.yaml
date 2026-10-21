@@ -1,0 +1,6 @@
+sections:
+  dashboard:
+    type: '@visual-debut/customer-dashboard'
+
+order:
+  - dashboard

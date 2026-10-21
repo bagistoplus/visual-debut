@@ -760,6 +760,10 @@ return [
         'name' => 'مرتجع جديد',
     ],
 
+    'customer-dashboard' => [
+        'name' => 'نظرة عامة على الحساب',
+    ],
+
     'withdrawal-lookup' => [
         'name' => 'البحث عن طلب الانسحاب',
     ],

@@ -57,6 +57,7 @@ class Breadcrumbs extends BladeSection
             'shop.compare.index' => ['name' => 'compare'],
 
             // Account pages
+            'shop.customers.account.index' => ['name' => 'account'],
             'shop.customers.account.profile.index' => ['name' => 'profile'],
             'shop.customers.account.profile.edit' => ['name' => 'profile.edit'],
 
