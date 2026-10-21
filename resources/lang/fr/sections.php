@@ -75,6 +75,8 @@ return [
             'content_width_label' => 'Largeur du contenu',
             'content_width_container' => 'Conteneur',
             'content_width_fullwidth' => 'Pleine largeur',
+            'sticky_label' => 'En-tête fixe',
+            'sticky_info' => 'Garder l\'en-tête visible en haut de la page pendant le défilement.',
         ],
         'region' => [
             'logo_group' => 'Logo',

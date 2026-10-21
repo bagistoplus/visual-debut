@@ -43,6 +43,8 @@ return [
             'content_width_label' => 'Content Width',
             'content_width_container' => 'Container',
             'content_width_fullwidth' => 'Full Width',
+            'sticky_label' => 'Sticky header',
+            'sticky_info' => 'Keep the header visible at the top of the page while shoppers scroll.',
         ],
         'region' => [
             'logo_group' => 'Logo',

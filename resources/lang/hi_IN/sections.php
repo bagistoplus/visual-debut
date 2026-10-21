@@ -77,6 +77,8 @@ return [
             'content_width_label' => 'सामग्री की चौड़ाई',
             'content_width_container' => 'कंटेनर',
             'content_width_fullwidth' => 'पूर्ण चौड़ाई',
+            'sticky_label' => 'स्टिकी हेडर',
+            'sticky_info' => 'स्क्रॉल करते समय हेडर को पेज के ऊपर दिखाई देता रखें।',
         ],
         'region' => [
             'logo_group' => 'लोगो',

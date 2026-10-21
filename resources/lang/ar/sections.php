@@ -77,6 +77,8 @@ return [
             'content_width_label' => 'عرض المحتوى',
             'content_width_container' => 'حاوية',
             'content_width_fullwidth' => 'عرض كامل',
+            'sticky_label' => 'رأس ثابت',
+            'sticky_info' => 'إبقاء الرأس ظاهرًا أعلى الصفحة أثناء التمرير.',
         ],
         'region' => [
             'logo_group' => 'الشعار',

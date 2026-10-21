@@ -71,6 +71,10 @@ class Header extends BladeSection
                 ->asSegment()
                 ->default('container'),
 
+            Settings\Checkbox::make('sticky', _t('sections.header.settings.sticky_label'))
+                ->default(true)
+                ->info(_t('sections.header.settings.sticky_info')),
+
             static::colorSchemeSetting(),
         ];
     }

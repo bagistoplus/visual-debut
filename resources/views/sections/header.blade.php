@@ -7,7 +7,8 @@
 <div
   {{ $section->editor_attributes }}
   {{ $theme->settings->default_scheme?->attributes() }}
-  class="sticky top-0 z-20 w-full border-b"
+  @if ($section->settings->sticky) data-sticky @endif
+  class="w-full border-b"
 >
   <div class="{{ $containerClass }}">
     <div class="flex h-16 items-center justify-between gap-x-4">
