@@ -28,7 +28,7 @@
     @forelse($wishlistItems as $item)
       <div class="border-b pb-4 last:border-b-0" x-data="{ quantity: 1 }">
         <div class="flex gap-6 pb-4">
-          <div class="h-24 w-24 shrink-0 overflow-hidden rounded-lg">
+          <div class="h-24 w-24 shrink-0 overflow-hidden rounded-(--box-radius)">
             <img
               src="{{ $item->product->base_image->small_image_url }}"
               alt="{{ $item->product->name }}"

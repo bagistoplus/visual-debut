@@ -58,7 +58,7 @@ $conversation = [
   </div>
 
   <!-- Request -->
-  <div class="bg-background rounded-lg shadow">
+  <div class="bg-background rounded-(--box-radius) shadow">
     <div class="p-6">
       <h2 class="mb-5 text-lg font-semibold">
         @lang('shop::app.rma.view-customer-rma.heading')
@@ -97,7 +97,7 @@ $conversation = [
                 <img
                   src="{{ Rma::imageUrl($rmaImage) }}"
                   alt=""
-                  class="h-20 w-20 rounded border object-cover"
+                  class="h-20 w-20 rounded-(--box-radius) border object-cover"
                 >
               </a>
             @endforeach
@@ -140,7 +140,7 @@ $conversation = [
 
   <!-- Item -->
   @if ($item && $orderItem)
-    <div class="bg-background rounded-lg p-6 shadow">
+    <div class="bg-background rounded-(--box-radius) p-6 shadow">
       <h2 class="mb-5 text-lg font-semibold">
         @lang('shop::app.rma.view-customer-rma.items-request')
       </h2>
@@ -150,10 +150,10 @@ $conversation = [
           <img
             src="{{ $image['small_image_url'] }}"
             alt="{{ $orderItem->name }}"
-            class="h-16 w-16 flex-none rounded object-cover"
+            class="h-16 w-16 flex-none rounded-(--box-radius) object-cover"
           >
         @else
-          <div class="bg-surface h-16 w-16 flex-none rounded"></div>
+          <div class="bg-surface h-16 w-16 flex-none rounded-(--box-radius)"></div>
         @endif
 
         <div class="flex-1 space-y-1 text-sm">
@@ -198,7 +198,7 @@ $conversation = [
   @endif
 
   <!-- Conversation -->
-  <div class="bg-background rounded-lg p-6 shadow" x-data="VisualRmaConversation(@js($conversation))">
+  <div class="bg-background rounded-(--box-radius) p-6 shadow" x-data="VisualRmaConversation(@js($conversation))">
     <h2 class="mb-5 text-lg font-semibold">
       @lang('shop::app.rma.view-customer-rma.conversations')
     </h2>
@@ -221,7 +221,7 @@ $conversation = [
 
       <template x-for="message in thread" x-bind:key="message.id">
         <div class="flex" x-bind:class="isAdmin(message) ? 'justify-start' : 'justify-end'">
-          <div class="max-w-[85%] rounded-lg px-4 py-3 text-sm sm:max-w-[70%]" x-bind:class="isAdmin(message) ? 'bg-surface text-on-surface' : 'bg-primary/10'">
+          <div class="max-w-[85%] rounded-(--box-radius) px-4 py-3 text-sm sm:max-w-[70%]" x-bind:class="isAdmin(message) ? 'bg-surface text-on-surface' : 'bg-primary/10'">
             <p class="text-on-background/70 mb-1 text-xs">
               <span class="font-semibold" x-text="author(message)"></span>
               <span x-text="'· ' + date(message.created_at)"></span>

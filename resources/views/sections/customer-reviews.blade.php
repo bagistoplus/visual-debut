@@ -19,7 +19,7 @@
           <img
             src="{{ $review->product->base_image_url }}"
             alt="{{ trans('visual-debut::shop.review-image') }}"
-            class="h-20 w-20 rounded-md object-cover md:h-32 md:w-32"
+            class="h-20 w-20 rounded-(--box-radius) object-cover md:h-32 md:w-32"
           >
 
           <!-- Content -->

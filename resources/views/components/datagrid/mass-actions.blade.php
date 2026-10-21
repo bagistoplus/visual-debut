@@ -11,7 +11,7 @@
       </span>
     </x-shop::ui.button>
   </x-slot>
-  <div class="bg-background mt-1 w-40 rounded-lg border p-1">
+  <div class="bg-background mt-1 w-40 rounded-(--box-radius) border p-1">
     <template x-for="(massAction, index) in available.massActions">
       <div class="contents">
         <template x-if="!massAction.options?.length">
@@ -32,7 +32,7 @@
             <div data-submenu
               class="invisible absolute right-0 top-0 mr-1 translate-x-full opacity-0 duration-200 ease-out group-hover:visible group-hover:mr-0 group-hover:opacity-100"
             >
-              <div class="bg-background z-50 w-40 min-w-32 overflow-hidden rounded-md border p-1 shadow-md">
+              <div class="bg-background z-50 w-40 min-w-32 overflow-hidden rounded-(--box-radius) border p-1 shadow-md">
                 <template x-for="(option, optionIndex) in massAction.options">
                   <a
                     href="#"

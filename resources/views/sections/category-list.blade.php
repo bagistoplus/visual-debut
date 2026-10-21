@@ -27,7 +27,7 @@
             @visual_design_mode
             @for ($i = 1; $i <= 4; $i++)
               <x-shop::ui.carousel.item>
-                <div class="bg-surface-alt group relative aspect-square cursor-pointer overflow-hidden rounded-md">
+                <div class="bg-surface-alt group relative aspect-square cursor-pointer overflow-hidden rounded-(--box-radius)">
                   <img
                     src="https://placehold.co/400x400?text=Category+{{ $i }}"
                     alt="{{ trans('visual-debut::sections.category-list.placeholder.category', ['index' => $i]) }}"
@@ -53,7 +53,7 @@
           @if ($categoryItems->isEmpty())
             @visual_design_mode
             @for ($i = 1; $i <= 4; $i++)
-              <div class="bg-surface-alt group relative aspect-square cursor-pointer overflow-hidden rounded-md">
+              <div class="bg-surface-alt group relative aspect-square cursor-pointer overflow-hidden rounded-(--box-radius)">
                 <img
                   src="https://placehold.co/400x400?text=Category+{{ $i }}"
                   alt="{{ trans('visual-debut::sections.category-list.placeholder.category', ['index' => $i]) }}"

@@ -214,7 +214,7 @@
 <div
   x-show="units > 0"
   x-cloak
-  class="space-y-1 rounded-lg border p-4 text-sm"
+  class="space-y-1 rounded-(--box-radius) border p-4 text-sm"
 >
   <p class="font-semibold">@lang('visual-debut::shop.booking.summary')</p>
 

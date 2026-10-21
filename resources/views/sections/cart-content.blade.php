@@ -4,7 +4,7 @@
       <p>@lang('shop::app.checkout.cart.index.empty-product')</p>
 
       <p class="py-10">
-        <a href="{{ route('shop.home.index') }}" class="bg-primary text-on-primary rounded-lg px-6 py-4 hover:opacity-90">
+        <a href="{{ route('shop.home.index') }}" class="bg-primary text-on-primary rounded-(--btn-radius) px-6 py-4 hover:opacity-90">
           {{ __('shop::app.checkout.cart.index.continue-shopping') }}
         </a>
       </p>
@@ -57,7 +57,7 @@
               x-model.number="selected"
               @change="allSelected = (selected.length === items.length)"
             >
-            <div class="h-24 w-24 shrink-0 overflow-hidden rounded-lg">
+            <div class="h-24 w-24 shrink-0 overflow-hidden rounded-(--box-radius)">
               <img
                 src="{{ $item->base_image->small_image_url }}"
                 alt="{{ $item->name }}"

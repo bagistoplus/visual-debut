@@ -85,7 +85,7 @@ class Testimonials extends Preset
                 'border' => true,
                 'border_width' => 1,
                 'border_color' => '#2723221A',
-                'border_radius' => 'lg',
+                'border_radius' => 'xl',
                 'padding' => [
                     'top' => 6,
                     'right' => 6,

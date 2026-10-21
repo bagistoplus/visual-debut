@@ -57,7 +57,7 @@
           x-bind:tabindex="isSelected(index) ? 0 : -1"
           x-bind:aria-current="isSelected(index) ? 'true' : null"
           x-bind:data-selected="isSelected(index) ? 'true' : null"
-          class="aspect-square w-20 shrink-0 overflow-hidden rounded-lg bg-neutral-100 focus:outline-none"
+          class="aspect-square w-20 shrink-0 overflow-hidden rounded-(--box-radius) bg-neutral-100 focus:outline-none"
           x-bind:class="{ 'border-2 border-primary': isSelected(index) }"
         >
           <template x-if="media.type !== 'videos'">
@@ -88,7 +88,7 @@
         <img
           :src="selectedMedia.large_image_url"
           x-bind:alt="selectedMedia.large_image_url"
-          class="aspect-square h-full w-full rounded-lg object-cover object-center"
+          class="aspect-square h-full w-full rounded-(--box-radius) object-cover object-center"
         >
       </template>
       <template x-if="selectedMedia.type === 'videos'">

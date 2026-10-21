@@ -52,7 +52,7 @@
 
             <!-- Account Navigation Menus -->
             @foreach (menu()->getItems('customer') as $menuItem)
-              <div class="bg-surface text-on-surface rounded-lg p-4 shadow-sm">
+              <div class="bg-surface text-on-surface rounded-(--box-radius) p-4 shadow-sm">
                 <div class="pb-5">
                   <p class="text-xl font-medium max-md:text-lg">
                     {{ $menuItem->getName() }}
@@ -86,7 +86,7 @@
               @csrf
               @method('DELETE')
               <button type="submit"
-                class="border-danger text-danger hover:bg-danger hover:text-on-danger flex w-full items-center justify-center gap-2 rounded-lg border-2 px-4 py-3 transition-colors"
+                class="border-danger text-danger hover:bg-danger hover:text-on-danger flex w-full items-center justify-center gap-2 rounded-(--btn-radius) border-2 px-4 py-3 transition-colors"
               >
                 <x-lucide-log-out class="h-5 w-5" />
                 @lang('visual-debut::shop.header.logout')

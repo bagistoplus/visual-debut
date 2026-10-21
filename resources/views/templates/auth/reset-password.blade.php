@@ -120,7 +120,7 @@
       </div>
 
       <button type="submit"
-        class="bg-primary focus:ring-primary text-on-primary w-full rounded-lg border border-transparent px-4 py-3 shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
+        class="bg-primary focus:ring-primary text-on-primary w-full rounded-(--btn-radius) border border-transparent px-4 py-3 shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
       >
         <span>
           @lang('shop::app.customers.reset-password.submit-btn-title')

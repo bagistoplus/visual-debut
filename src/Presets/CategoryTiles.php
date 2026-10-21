@@ -64,7 +64,8 @@ class CategoryTiles extends Preset
                     ->repeated()
                     ->name(_t('sections.category-list.presets.tiles.category_card'))
                     ->settings([
-                        'wrap_in_card' => false,
+                        'wrap_in_card' => true,
+                        'shadow' => 'none',
                     ])
                     ->blocks([
                         PresetBlock::make(CategoryImage::class)
@@ -74,7 +75,6 @@ class CategoryTiles extends Preset
                                 'object_fit' => 'cover',
                                 'hover_zoom' => true,
                                 'hover_zoom_scale' => 105,
-                                'border_radius' => 'sm',
                             ]),
 
                         PresetBlock::make(Group::class)
@@ -89,7 +89,6 @@ class CategoryTiles extends Preset
                                 'overlay_visibility' => 'always',
                                 'background_type' => 'gradient',
                                 'background_gradient' => 'linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 60%)',
-                                'border_radius' => 'sm',
                                 'z_index' => 10,
                                 'padding' => [
                                     'top' => 4,

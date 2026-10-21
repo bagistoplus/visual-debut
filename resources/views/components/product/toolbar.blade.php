@@ -39,7 +39,7 @@
         aria-label="{{ trans('visual-debut::shop.show-as', ['mode' => $mode]) }}"
         wire:click="$set('displayMode', '{{ $mode }}')"
         @class([
-            'focus:ring-primary inline-flex h-10 w-10 items-center justify-center rounded-lg focus:ring-2 focus:ring-offset-2',
+            'focus:ring-primary inline-flex h-10 w-10 items-center justify-center rounded-(--btn-radius) focus:ring-2 focus:ring-offset-2',
             'bg-primary text-on-primary' => $displayMode === $mode,
             'bg-surface-alt-600 text-on-surface-alt' => $displayMode !== $mode,
         ])

@@ -66,7 +66,7 @@
           <template x-for="option in attribute.options">
             <button
               x-bind:class="[
-                  'w-10 h-10 rounded-lg relative overflow-hidden',
+                  'w-10 h-10 rounded-(--btn-radius) relative overflow-hidden',
                   selections[attribute.id] === option.id ? 'ring-2 ring-offset-2 ring-primary' :
                   'hover:ring-2 hover:ring-offset-2 hover:ring-neutral-200',
                   !option.isAvailable ? 'cursor-not-allowed' : ''
@@ -74,9 +74,9 @@
               x-bind:title="option.label + (!option.isAvailable ? ' (' + @js(trans('visual-debut::shop.unavailable')) + ')' : '')"
               x-on:click="onOptionSelected(attribute.id, option.id)"
             >
-              <img x-bind:src="option.swatch_value" class="h-full w-full rounded-lg">
+              <img x-bind:src="option.swatch_value" class="h-full w-full rounded-(--btn-radius)">
               <template x-if="!option.isAvailable">
-                <div class="absolute inset-0 rounded-lg bg-black/30"></div>
+                <div class="absolute inset-0 rounded-(--btn-radius) bg-black/30"></div>
               </template>
             </button>
           </template>
@@ -88,7 +88,7 @@
           <template x-for="option in attribute.options" :key="option.id">
             <button
               :class="[
-                  'min-w-12 py-2 px-3 text-sm font-medium whitespace-nowrap rounded-md relative',
+                  'min-w-12 py-2 px-3 text-sm font-medium whitespace-nowrap rounded-(--btn-radius) relative',
                   selections[attribute.id] === option.id ? 'bg-primary text-on-primary' :
                   'bg-background text-on-background/90 border hover:bg-surface-alt',
                   !option.isAvailable ? 'cursor-not-allowed text-on-background' : ''
@@ -98,7 +98,7 @@
             >
               <span x-text="option.label"></span>
               <template x-if="!option.isAvailable">
-                <div class="absolute inset-0 rounded-md bg-black/30"></div>
+                <div class="absolute inset-0 rounded-(--btn-radius) bg-black/30"></div>
               </template>
             </button>
           </template>

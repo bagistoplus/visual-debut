@@ -25,7 +25,7 @@
     <ui-dialog-content
       id="{{ $id }}-content"
       wire:ignore.self
-      class="bg-background data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out relative min-w-96 overflow-hidden rounded-lg p-4 shadow-lg md:p-6"
+      class="bg-background data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out relative min-w-96 overflow-hidden rounded-(--box-radius) p-4 shadow-lg md:p-6"
     >
       <ui-dialog-close-trigger delegate>
         <x-shop::ui.button

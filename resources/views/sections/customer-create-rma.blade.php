@@ -62,7 +62,7 @@
       <div class="grid gap-2">
         <template x-for="order in orders" x-bind:key="order.id">
           <label
-            class="has-checked:border-primary has-checked:bg-primary/5 border-on-background/15 flex cursor-pointer flex-wrap items-center gap-x-4 gap-y-1 rounded-lg border p-3 text-sm"
+            class="has-checked:border-primary has-checked:bg-primary/5 border-on-background/15 flex cursor-pointer flex-wrap items-center gap-x-4 gap-y-1 rounded-(--box-radius) border p-3 text-sm"
           >
             <input
               type="radio"
@@ -93,7 +93,7 @@
 
         <div class="grid gap-2">
           <template x-for="item in items" x-bind:key="item.order_item_id">
-            <label class="has-checked:border-primary has-checked:bg-primary/5 border-on-background/15 flex items-start gap-3 rounded-lg border p-3 text-sm"
+            <label class="has-checked:border-primary has-checked:bg-primary/5 border-on-background/15 flex items-start gap-3 rounded-(--box-radius) border p-3 text-sm"
               x-bind:class="available(item) ? 'cursor-pointer' : 'opacity-60'"
             >
               <input
@@ -109,11 +109,11 @@
                 <img
                   x-bind:src="imageUrl(item)"
                   alt=""
-                  class="h-14 w-14 flex-none rounded object-cover"
+                  class="h-14 w-14 flex-none rounded-(--box-radius) object-cover"
                 >
               </template>
               <template x-if="!imageUrl(item)">
-                <span class="bg-surface h-14 w-14 flex-none rounded"></span>
+                <span class="bg-surface h-14 w-14 flex-none rounded-(--box-radius)"></span>
               </template>
               <span class="flex-1 space-y-0.5">
                 <span class="block font-medium" x-text="item.name"></span>

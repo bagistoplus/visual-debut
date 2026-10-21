@@ -9,7 +9,7 @@
 @php
   $value = array_values($value);
   $thumbClass = 'bg-primary border-primary block h-4 w-4 cursor-pointer rounded-full border';
-  $fieldClass = 'input-sm w-24 rounded border py-1 pl-6 pr-2 text-right text-sm';
+  $fieldClass = 'input-sm w-24 py-1 pl-6 pr-2 text-right text-sm';
 @endphp
 
 {{-- Dispatches `change` with [min, max] on every move of a thumb or a committed field --}}

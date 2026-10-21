@@ -10,7 +10,7 @@
       <div class="hover:bg-surface-alt not-l px-4 py-2">
         <div class="flex items-start gap-3">
           <!-- Item Image -->
-          <div class="shrink-0 overflow-hidden rounded">
+          <div class="shrink-0 overflow-hidden rounded-(--box-radius)">
             <a class="block h-12 w-12" href="{{ url($item->product_url_key) }}">
               <img
                 src="{{ $item->base_image->small_image_url }}"
@@ -39,7 +39,7 @@
 
             <div class="mt-1 flex items-start justify-between">
               <!-- Quantity Controls -->
-              <div class="flex items-center gap-2 rounded border">
+              <div class="flex items-center gap-2 rounded-(--input-radius) border">
                 <button class="hover:bg-surface-alt rounded-full p-1 transition-colors" wire:click="updateItemQuantity({{ $item->id }}, {{ $item->quantity - 1 }})">
                   <x-lucide-minus class="h-3 w-3" />
                 </button>

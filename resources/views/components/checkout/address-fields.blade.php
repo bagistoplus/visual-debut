@@ -93,7 +93,7 @@
 
       <button
         type="button"
-        class="hover:bg-surface hover:border-on-surface/10 flex w-full cursor-pointer items-center gap-2 rounded-lg border-2 border-dashed p-4 transition-colors"
+        class="hover:bg-surface hover:border-on-surface/10 flex w-full cursor-pointer items-center gap-2 rounded-(--box-radius) border-2 border-dashed p-4 transition-colors"
         x-on:click="addAddress()"
       >
         <x-lucide-plus class="h-5 w-5" />

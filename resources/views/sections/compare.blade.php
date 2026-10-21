@@ -19,7 +19,7 @@
             @lang('shop::app.compare.empty-text')
           </p>
 
-          <a class="bg-primary text-on-primary inline-flex items-center rounded-full px-6 py-3 transition-opacity hover:opacity-90" href="{{ route('shop.search.index') }}">
+          <a class="bg-primary text-on-primary inline-flex items-center rounded-(--btn-radius) px-6 py-3 transition-opacity hover:opacity-90" href="{{ route('shop.search.index') }}">
             <x-lucide-arrow-left class="mr-2 h-5 w-5" />
             @lang('visual-debut::shop.cart.continue-shopping')
           </a>

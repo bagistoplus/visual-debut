@@ -29,7 +29,7 @@
             @visual_design_mode
             @for ($i = 1; $i <= 4; $i++)
               <x-shop::ui.carousel.item>
-                <div class="bg-surface-alt group relative overflow-hidden rounded-md">
+                <div class="bg-surface-alt group relative overflow-hidden rounded-(--box-radius)">
                   <div class="aspect-square bg-surface-alt"></div>
                   <div class="p-4">
                     <h3 class="text-lg font-semibold">@lang('visual-debut::sections.product-list.placeholder.product', ['index' => $i])</h3>
@@ -53,7 +53,7 @@
           @if ($products->isEmpty())
             @visual_design_mode
             @for ($i = 1; $i <= 4; $i++)
-              <div class="bg-surface-alt group relative overflow-hidden rounded-md">
+              <div class="bg-surface-alt group relative overflow-hidden rounded-(--box-radius)">
                 <div class="aspect-square bg-surface-alt"></div>
                 <div class="p-4">
                   <h3 class="text-lg font-semibold">@lang('visual-debut::sections.product-list.placeholder.product', ['index' => $i])</h3>

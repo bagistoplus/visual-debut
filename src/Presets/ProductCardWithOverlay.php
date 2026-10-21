@@ -156,7 +156,7 @@ class ProductCardWithOverlay extends Preset
                                         'alignment' => 'start',
                                         'size' => 'sm',
                                         'variant' => 'solid',
-                                        'corner_radius' => 'md',
+                                        'corner_radius' => 'box',
                                     ]),
                             ]),
                     ]),

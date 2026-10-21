@@ -52,7 +52,7 @@ class TextWithImage extends Preset
                         'aspect_ratio' => 'square',
                         'object_fit' => 'cover',
                         'width' => 'fill',
-                        'border_radius' => 'sm',
+                        'border_radius' => 'xl',
                     ]),
 
                 // Content Container
