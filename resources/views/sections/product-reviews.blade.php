@@ -6,7 +6,7 @@
 >
   <div x-show="!showReviewForm">
     @if (count($reviews) > 0)
-      <h2 class="mb-8 font-serif text-2xl">
+      <h2 class="mb-8 text-2xl">
         @lang('shop::app.products.view.reviews.customer-review')
         ({{ $totalReviews }})
       </h2>
@@ -126,7 +126,7 @@
       </div>
     @else
       <div class="flex flex-col items-center justify-center gap-6 py-8">
-        <h2 class="mb-4 text-center font-serif text-2xl">
+        <h2 class="mb-4 text-center text-2xl">
           @lang('shop::app.products.view.reviews.customer-review')
         </h2>
 
