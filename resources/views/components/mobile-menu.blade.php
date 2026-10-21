@@ -4,14 +4,14 @@
   @foreach ($categories as $category)
     @if ($category->children->isEmpty())
       <li>
-        <a href="{{ $category->url }}" class="text-on-background block rounded px-3 py-2 text-sm font-medium hover:bg-neutral-100">
+        <a href="{{ $category->url }}" class="text-on-background block rounded px-3 py-2 text-sm font-medium hover:bg-surface-alt hover:text-on-surface-alt">
           {{ $category->name }}
         </a>
       </li>
     @else
       <li>
         <x-shop::ui.collapsible :id="'mobile-menu-category-' . $category->id">
-          <x-shop::ui.collapsible.trigger class="text-on-background flex w-full items-center justify-between rounded px-3 py-2 text-sm font-medium hover:bg-neutral-100">
+          <x-shop::ui.collapsible.trigger class="text-on-background flex w-full items-center justify-between rounded px-3 py-2 text-sm font-medium hover:bg-surface-alt hover:text-on-surface-alt">
             <span>{{ $category->name }}</span>
             <x-shop::ui.collapsible.indicator class="transition-transform data-[state=open]:rotate-90">
               <x-lucide-chevron-right class="h-4 w-4" />

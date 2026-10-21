@@ -304,7 +304,7 @@
             >
           </label>
           <template x-for="(image, index) in images" x-bind:key="index">
-            <span class="bg-surface flex items-center gap-2 rounded px-2 py-1 text-sm">
+            <span class="bg-surface text-on-surface flex items-center gap-2 rounded px-2 py-1 text-sm">
               <span class="max-w-48 truncate" x-text="image.name"></span>
               <button
                 type="button"

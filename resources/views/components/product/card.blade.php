@@ -24,7 +24,7 @@
 @endphp
 
 @if ($mode === 'grid')
-  <div {{ $attributes->class('bg-surface text-on-surface box group relative h-full overflow-hidden border-none shadow-sm transition-shadow hover:shadow-md') }}>
+  <div {{ $attributes->class('box group relative h-full overflow-hidden border-none shadow-sm transition-shadow hover:shadow-md') }}>
     <div class="relative aspect-square overflow-hidden">
       <img
         src="{{ $card['base_image']['medium_image_url'] }}"
@@ -81,7 +81,7 @@
         </div>
 
         @if ($card['on_sale'])
-          <span class="bg-danger text-danger-100 rounded-(--box-radius) px-2 py-1 text-xs">
+          <span class="bg-danger text-on-danger rounded-(--box-radius) px-2 py-1 text-xs">
             @lang('shop::app.components.products.card.sale')
           </span>
         @elseif($card['is_new'])
@@ -93,7 +93,7 @@
     </div>
   </div>
 @else
-  <div {{ $attributes->class('bg-surface box group relative hidden w-full overflow-hidden border-none shadow-sm transition-shadow hover:shadow-md sm:flex') }}>
+  <div {{ $attributes->class('box group relative hidden w-full overflow-hidden border-none shadow-sm transition-shadow hover:shadow-md sm:flex') }}>
     <div class="relative w-48 shrink-0">
       <img
         src="{{ $card['base_image']['medium_image_url'] }}"
@@ -110,7 +110,7 @@
           </a>
 
           @if ($card['on_sale'])
-            <span class="bg-danger text-danger-100 rounded-(--box-radius) px-2 py-1 text-xs">
+            <span class="bg-danger text-on-danger rounded-(--box-radius) px-2 py-1 text-xs">
               @lang('shop::app.components.products.card.sale')
             </span>
           @elseif($card['is_new'])

@@ -1,10 +1,10 @@
 <div {{ $section->editor_attributes }} class="flex items-center justify-center px-4 py-12">
-  <div class="bg-surface text-on-surface box w-full max-w-md space-y-8 p-8 shadow-sm">
+  <div class="bg-surface text-on-surface box w-full max-w-md space-y-8 border-0 p-8">
     <div class="text-center">
       <h2 class="text-3xl font-semibold">
         @lang('shop::app.customers.login-form.page-title')
       </h2>
-      <p class="text-on-surface-alt/80 mt-2">
+      <p class="text-on-surface/80 mt-2">
         @lang('shop::app.customers.login-form.form-login-text')
       </p>
     </div>

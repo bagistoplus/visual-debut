@@ -110,7 +110,7 @@
                 @if ($page == $paginator->currentPage())
                   <span aria-current="page" wire:key="paginator-{{ $paginator->getPageName() }}-page{{ $page }}">
                     <span
-                      class="bg-primary text-primary-100 relative inline-flex cursor-default items-center rounded-md px-4 py-2 text-sm font-medium leading-5">{{ $page }}</span>
+                      class="bg-primary text-on-primary relative inline-flex cursor-default items-center rounded-md px-4 py-2 text-sm font-medium leading-5">{{ $page }}</span>
                   </span>
                 @else
                   <button

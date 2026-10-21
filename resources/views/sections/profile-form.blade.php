@@ -59,11 +59,11 @@
             />
           </template>
           <div x-show="!avatar" class="flex h-full w-full items-center justify-center">
-            <x-lucide-user class="h-16 w-16 text-gray-400" />
+            <x-lucide-user class="h-16 w-16 text-neutral" />
           </div>
         </div>
 
-        <label class="bg-primary absolute bottom-0 right-0 cursor-pointer rounded-full p-2 text-white hover:opacity-90">
+        <label class="bg-primary absolute bottom-0 right-0 cursor-pointer rounded-full p-2 text-on-primary hover:opacity-90">
           <x-lucide-camera class="h-5 w-5" />
           <input
             type="file"

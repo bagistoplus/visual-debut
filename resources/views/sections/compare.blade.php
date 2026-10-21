@@ -7,10 +7,7 @@
       ],
   ];
 @endphp
-<div
-  x-data="VisualProductsCompare(@js($props))"
-  class="py-12"
->
+<div x-data="VisualProductsCompare(@js($props))" class="py-12">
   <div {{ $section->editor_attributes }} class="py-12">
     <div class="container">
       @if ($items->isEmpty())
@@ -22,7 +19,7 @@
             @lang('shop::app.compare.empty-text')
           </p>
 
-          <a class="bg-primary inline-flex items-center rounded-full px-6 py-3 text-white transition-opacity hover:opacity-90" href="{{ route('shop.search.index') }}">
+          <a class="bg-primary text-on-primary inline-flex items-center rounded-full px-6 py-3 transition-opacity hover:opacity-90" href="{{ route('shop.search.index') }}">
             <x-lucide-arrow-left class="mr-2 h-5 w-5" />
             @lang('visual-debut::shop.cart.continue-shopping')
           </a>
@@ -36,7 +33,7 @@
             @lang('shop::app.compare.delete-all')
           </button>
         </div>
-        <div class="bg-surface text-on-surface shadow-xs box overflow-x-auto border-none">
+        <div class="bg-surface text-on-surface box overflow-x-auto border-none">
           <div class="min-w-max">
             <div class="border-on-surface/8 flex border-b">
               <div class="text-on-background border-on-surface/8 w-50 shrink-0 border-r p-4">

@@ -17,7 +17,7 @@
         <template x-if="!massAction.options?.length">
           <a
             href="#"
-            class="relative flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none transition-colors hover:bg-neutral-100"
+            class="relative flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none transition-colors hover:bg-surface-alt hover:text-on-surface-alt"
             x-on:click.prevent="$el.closest('ui-popover').api.setOpen(false); handleMassAction(massAction)"
           >
             <span x-text="massAction.title"></span>
@@ -25,7 +25,7 @@
         </template>
         <template x-if="massAction.options?.length">
           <div class="group relative">
-            <div class="flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none transition-colors hover:bg-neutral-100">
+            <div class="flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none transition-colors hover:bg-surface-alt hover:text-on-surface-alt">
               <span x-text="massAction.title"></span>
               <x-lucide-chevron-right class="ml-auto h-4 w-4" />
             </div>
@@ -36,7 +36,7 @@
                 <template x-for="(option, optionIndex) in massAction.options">
                   <a
                     href="#"
-                    class="relative flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none transition-colors hover:bg-neutral-100"
+                    class="relative flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none transition-colors hover:bg-surface-alt hover:text-on-surface-alt"
                     x-on:click.prevent="$el.closest('ui-popover').api.setOpen(false); handleMassAction(massAction, option)"
                   >
                     <span x-text="option.label"></span>

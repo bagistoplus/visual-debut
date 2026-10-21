@@ -6,10 +6,10 @@
 
     <div class="mx-auto max-w-7xl px-4 sm:px-6 sm:py-8 lg:px-8">
       <div class="flex flex-col gap-8 lg:flex-row">
-        <div class="lg:w-[310px] lg:flex-shrink-0" x-data="{
+        <div class="lg:w-77.5 lg:shrink-0" x-data="{
             menuOpen: false,
             activeMenu: '',
-        
+
             init() {
                 this.activeMenu = this.$el.querySelector('.active-menu').textContent.trim().replace(/\s+/g, ' ');
             }
@@ -25,7 +25,7 @@
           </div>
 
           <div class="space-y-6 lg:block" x-bind:class="menuOpen ? 'block' : 'hidden'">
-            <div class="bg-surface text-on-surface box p-6 shadow-sm">
+            <div class="bg-surface text-on-surface box p-6">
               <div class="flex items-center gap-4">
                 @if ($customer->image_url)
                   <img
@@ -63,7 +63,7 @@
                 @if ($menuItem->haveChildren())
                   <nav class="space-y-1">
                     @foreach ($menuItem->getChildren() as $subMenuItem)
-                      <a class="{{ visual_is_menu_active($subMenuItem) ? 'active-menu bg-primary text-primary-50' : 'hover:bg-surface-600' }} group flex items-center justify-between rounded-lg px-4 py-3 transition-colors"
+                      <a class="{{ visual_is_menu_active($subMenuItem) ? 'active-menu bg-primary text-on-primary' : 'hover:bg-surface-600' }} group flex items-center justify-between rounded-lg px-4 py-3 transition-colors"
                         href="{{ $subMenuItem->getUrl() }}"
                       >
                         <div class="flex items-center gap-3">
@@ -86,7 +86,7 @@
               @csrf
               @method('DELETE')
               <button type="submit"
-                class="border-danger text-danger hover:bg-danger hover:text-danger-50 flex w-full items-center justify-center gap-2 rounded-lg border-2 px-4 py-3 transition-colors"
+                class="border-danger text-danger hover:bg-danger hover:text-on-danger flex w-full items-center justify-center gap-2 rounded-lg border-2 px-4 py-3 transition-colors"
               >
                 <x-lucide-log-out class="h-5 w-5" />
                 @lang('visual-debut::shop.header.logout')

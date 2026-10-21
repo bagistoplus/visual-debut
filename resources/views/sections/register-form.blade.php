@@ -1,5 +1,5 @@
 <div {{ $section->editor_attributes }} class="flex items-center justify-center px-4 py-12">
-  <div class="bg-surface text-on-surface w-full max-w-lg space-y-8 rounded-2xl p-8 shadow-sm">
+  <div class="bg-surface text-on-surface box w-full max-w-lg space-y-8 border-0 p-8">
     <div class="text-center">
       <h2 class="text-3xl font-semibold">
         @lang('shop::app.customers.signup-form.page-title')
@@ -37,7 +37,7 @@
             >
           </div>
           @error('first_name')
-            <span class="text-danger-500 text-xs">{{ $message }}</span>
+            <span class="text-danger text-xs">{{ $message }}</span>
           @enderror
         </div>
 
@@ -61,7 +61,7 @@
             >
           </div>
           @error('last_name')
-            <span class="text-danger-500 text-xs">{{ $message }}</span>
+            <span class="text-danger text-xs">{{ $message }}</span>
           @enderror
         </div>
 
@@ -85,7 +85,7 @@
             >
           </div>
           @error('email')
-            <span class="text-danger-500 text-xs">{{ $message }}</span>
+            <span class="text-danger text-xs">{{ $message }}</span>
           @enderror
         </div>
 
@@ -183,10 +183,7 @@
           </label>
 
           @if ($agreementContent = core()->getConfigData('general.gdpr.agreement.agreement_content'))
-            <x-shop::ui.modal
-              id="signup-terms"
-              :title="trim(trans('shop::app.customers.signup-form.terms-conditions'))"
-            >
+            <x-shop::ui.modal id="signup-terms" :title="trim(trans('shop::app.customers.signup-form.terms-conditions'))">
               <x-slot:trigger>
                 <button type="button" class="text-primary cursor-pointer hover:opacity-80">
                   @lang('shop::app.customers.signup-form.click-here')

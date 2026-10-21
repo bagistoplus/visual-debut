@@ -1,7 +1,7 @@
 <div>
   <div {{ $section->editor_attributes }} class="container py-8">
     @if (request()->has('image-search'))
-      <div class="bg-surface-alt text-on-surface-alt border-on-surface-alt/8 box flex p-5" x-data="{
+      <div class="bg-surface text-on-surface border-on-surface-alt/8 box flex p-5" x-data="{
           query: '{{ request('query') }}',
           searchedImageUrl: localStorage.searchedImageUrl,
           searchedTerms: (localStorage.searchedTerms && localStorage.searchedTerms !== '') ? localStorage.searchedTerms.split('_') : [],
@@ -21,7 +21,7 @@
               <span
                 x-text="term"
                 class="cursor-pointer rounded-full border px-4 py-1"
-                x-bind:class="term === query ? 'bg-primary text-primary-50 border-primary' : 'border-secondary text-on-background'"
+                x-bind:class="term === query ? 'bg-primary text-on-primary border-primary' : 'border-secondary text-on-background'"
                 x-on:click="search(term)"
               ></span>
             </template>

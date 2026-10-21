@@ -2,7 +2,7 @@
   <x-shop::ui.accordion.item
     value="estimate-shipping"
     :title="trans('shop::app.checkout.cart.summary.estimate-shipping.title')"
-    class="bg-surface border-on-surface-alt/10 box border! border-solid! py-1! px-3"
+    class="bg-background text-on-background border-on-background/10 box border! border-solid! py-1! px-3"
   >
     <form class="pb-2">
       @csrf

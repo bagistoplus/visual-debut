@@ -40,8 +40,8 @@
         wire:click="$set('displayMode', '{{ $mode }}')"
         @class([
             'focus:ring-primary inline-flex h-10 w-10 items-center justify-center rounded-lg focus:ring-2 focus:ring-offset-2',
-            'bg-primary text-primary-100' => $displayMode === $mode,
-            'bg-surface-alt-600 text-on-background' => $displayMode !== $mode,
+            'bg-primary text-on-primary' => $displayMode === $mode,
+            'bg-surface-alt-600 text-on-surface-alt' => $displayMode !== $mode,
         ])
       >
         @svg($icon, ['class' => 'h-5 w-5'])

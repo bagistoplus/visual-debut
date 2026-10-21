@@ -39,7 +39,7 @@
 
       <div class="order-first lg:order-last">
         <div id="test" class="lg:sticky lg:top-8">
-          <div class="bg-surface text-on-surface box border-none p-6 shadow-sm">
+          <div class="bg-surface text-on-surface box border-none p-6">
             <h2 class="mb-6 text-xl">
               @lang('shop::app.checkout.onepage.summary.cart-summary')
             </h2>

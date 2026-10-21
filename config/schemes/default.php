@@ -1,36 +1,36 @@
 <?php
 
 return [
-    'background' => '#f8f8f8',
-    'on-background' => '#272322',
+    'background' => '#ffffff',
+    'on-background' => '#1f1b18',
 
-    'surface' => '#f5f5f4',
-    'on-surface' => '#272322',
+    'surface' => '#f7f7f7',
+    'on-surface' => '#1f1b18',
 
-    'surface-alt' => '#e6e4e3',
-    'on-surface-alt' => '#272322',
+    'surface-alt' => '#efefef',
+    'on-surface-alt' => '#1f1b18',
 
     'primary' => '#92400e',
     'on-primary' => '#ffffff',
 
-    'secondary' => '#44403c',
+    'secondary' => '#3f3a36',
     'on-secondary' => '#ffffff',
 
-    'accent' => '#4ade80',
-    'on-accent' => '#000000',
+    'accent' => '#b7791f',
+    'on-accent' => '#1f1b18',
 
-    'neutral' => '#6b7280',
+    'neutral' => '#6b645e',
     'on-neutral' => '#ffffff',
 
-    'info' => '#2563eb',
+    'info' => '#1e5aa8',
     'on-info' => '#ffffff',
 
-    'success' => '#059669',
+    'success' => '#166534',
     'on-success' => '#ffffff',
 
-    'warning' => '#d97706',
+    'warning' => '#c2410c',
     'on-warning' => '#ffffff',
 
-    'danger' => '#dc2626',
+    'danger' => '#b42318',
     'on-danger' => '#ffffff',
 ];

@@ -4,7 +4,7 @@
   @endif
 @else
   @visual_design_mode
-  <div {{ $block->editor_attributes }} class="text-muted space-y-4">
+  <div {{ $block->editor_attributes }} class="space-y-4">
     <div>
       <h3 class="text-on-background mb-2 text-base font-semibold">@lang('visual-debut::blocks.product-downloadable-options.placeholder.samples')</h3>
       <ul>

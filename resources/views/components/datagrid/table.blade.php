@@ -1,6 +1,6 @@
 <table class="w-full">
   <thead class="max-sm:hidden">
-    <tr class="bg-surface border-on-surface/8 border-b">
+    <tr class="bg-surface text-on-surface border-on-surface/8 border-b">
       <template x-if="haveMassActions > 0">
         <th class="px-6 py-4 text-left">
           <input

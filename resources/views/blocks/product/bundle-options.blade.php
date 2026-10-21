@@ -4,7 +4,7 @@
   @endif
 @else
   @visual_design_mode
-  <div {{ $block->editor_attributes }} class="text-muted space-y-4">
+  <div {{ $block->editor_attributes }} class="space-y-4">
     <div class="grid gap-2">
       <div class="grid gap-4 border-b pb-3">
         <label>

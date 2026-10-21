@@ -512,7 +512,7 @@
               <div class="hidden overflow-x-auto sm:block">
                 <table class="min-w-full text-left text-sm">
                   <thead>
-                    <tr class="bg-surface border-b">
+                    <tr class="bg-surface text-on-surface border-b">
                       @foreach ($cols as $col)
                         <th class="text-on-background cursor-pointer px-4 py-3 text-left align-middle text-sm font-medium">
                           {{ $col }}
@@ -749,7 +749,7 @@
               <div class="hidden overflow-x-auto sm:block">
                 <table class="min-w-full text-left text-sm">
                   <thead>
-                    <tr class="bg-surface border-b">
+                    <tr class="bg-surface text-on-surface border-b">
                       @foreach ($cols as $col)
                         <th class="text-on-background cursor-pointer px-4 py-3 text-left align-middle text-sm font-medium">
                           {{ $col }}
@@ -929,7 +929,7 @@
               <div class="hidden overflow-x-auto sm:block">
                 <table class="min-w-full text-left text-sm">
                   <thead>
-                    <tr class="bg-surface border-b">
+                    <tr class="bg-surface text-on-surface border-b">
                       @foreach ($cols as $col)
                         <th class="text-on-background cursor-pointer px-4 py-3 text-left align-middle text-sm font-medium">
                           {{ $col }}
@@ -1012,7 +1012,7 @@
               </div>
             </div>
             <div class="mt-4 sm:mt-6">
-              <div class="bg-surface-alt text-on-background border-y px-4 py-2">
+              <div class="bg-surface-alt text-on-surface-alt border-y px-4 py-2">
                 @lang('shop::app.customers.account.orders.view.refunds.order-summary')
               </div>
               <div class="px-4 py-2 text-sm">

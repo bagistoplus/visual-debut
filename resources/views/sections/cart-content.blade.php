@@ -120,7 +120,7 @@
       </div>
 
       <div class="lg:col-span-1">
-        <div class="bg-surface-alt box p-6">
+        <div class="bg-surface text-on-surface box border-0 p-6">
           <h2 class="text-on-background mb-4 text-lg font-medium">
             @lang('shop::app.checkout.cart.summary.cart-summary')
           </h2>

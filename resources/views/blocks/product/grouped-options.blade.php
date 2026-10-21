@@ -4,7 +4,7 @@
   @endif
 @else
   @visual_design_mode
-  <div {{ $block->editor_attributes }} class="text-muted grid w-full max-w-sm gap-4">
+  <div {{ $block->editor_attributes }} class="grid w-full max-w-sm gap-4">
     <div class="flex items-center justify-between gap-4">
       <div class="text-xs">
         <p class="text-on-background font-semibold">@lang('visual-debut::blocks.product-grouped-options.placeholder.product-item')</p>

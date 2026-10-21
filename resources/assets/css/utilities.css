@@ -12,29 +12,29 @@
 
 .label-pending,
 .label-pending_payment {
-  @apply bg-warning text-warning-50;
+  @apply bg-warning text-on-warning;
 }
 
 .label-processing {
-  @apply bg-cyan-600 text-cyan-100;
+  @apply bg-info text-on-info;
 }
 
 .label-completed,
 .label-active {
-  @apply bg-success text-success-50;
+  @apply bg-success text-on-success;
 }
 
 .label-closed {
-  @apply bg-indigo-600 text-indigo-100;
+  @apply bg-neutral text-on-neutral;
 }
 
 .label-canceled,
 .label-fraud {
-  @apply bg-danger text-danger-50;
+  @apply bg-danger text-on-danger;
 }
 
 .label-info {
-  @apply bg-info-400 text-info-50;
+  @apply bg-info text-on-info;
 }
 
 .icon-eye {

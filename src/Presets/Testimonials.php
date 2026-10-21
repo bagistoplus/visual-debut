@@ -97,7 +97,7 @@ class Testimonials extends Preset
                 PresetBlock::make(Text::class)
                     ->settings([
                         'text' => _t('sections.flex-section.presets.testimonials.stars'),
-                        'color' => 'warning',
+                        'color' => 'accent',
                     ]),
 
                 PresetBlock::make(Text::class)

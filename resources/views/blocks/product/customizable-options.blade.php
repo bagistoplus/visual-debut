@@ -4,7 +4,7 @@
   @endif
 @else
   @visual_design_mode
-  <div {{ $block->editor_attributes }} class="text-muted">
+  <div {{ $block->editor_attributes }}>
     <div class="border-b pb-3">
       <label class="text-sm font-semibold">
         @lang('visual-debut::blocks.product-customizable-options.placeholder.customizable-option')

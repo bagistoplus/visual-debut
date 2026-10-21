@@ -220,7 +220,7 @@ $conversation = [
 
       <template x-for="message in thread" x-bind:key="message.id">
         <div class="flex" x-bind:class="isAdmin(message) ? 'justify-start' : 'justify-end'">
-          <div class="max-w-[85%] rounded-lg px-4 py-3 text-sm sm:max-w-[70%]" x-bind:class="isAdmin(message) ? 'bg-surface' : 'bg-primary/10'">
+          <div class="max-w-[85%] rounded-lg px-4 py-3 text-sm sm:max-w-[70%]" x-bind:class="isAdmin(message) ? 'bg-surface text-on-surface' : 'bg-primary/10'">
             <p class="text-on-background/70 mb-1 text-xs">
               <span class="font-semibold" x-text="author(message)"></span>
               <span x-text="'· ' + date(message.created_at)"></span>

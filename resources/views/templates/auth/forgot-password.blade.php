@@ -1,5 +1,5 @@
 <div class="flex items-center justify-center px-4 py-16">
-  <div class="bg-surface text-on-surface-alt box w-full max-w-md space-y-8 p-8 shadow-sm">
+  <div class="bg-surface text-on-surface box w-full max-w-md space-y-8 border-0 p-8">
     <div class="text-center">
       <h2 class="text-3xl font-semibold">
         @lang('shop::app.customers.forgot-password.title')
@@ -25,7 +25,7 @@
             @lang('shop::app.customers.login-form.email')
           </label>
           <div class="relative mt-1">
-            <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+            <div class="inset-s-0 pointer-events-none absolute inset-y-0 flex items-center ps-3">
               <x-lucide-mail class="h-5 w-5" />
             </div>
             <input
@@ -51,7 +51,7 @@
       @endif
 
       <button type="submit"
-        class="bg-primary focus:ring-primary text-primary-50 w-full rounded-lg border border-transparent px-4 py-3 shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
+        class="bg-primary focus:ring-primary text-on-primary w-full rounded-lg border border-transparent px-4 py-3 shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
       >
         <span>
           @lang('shop::app.customers.forgot-password.submit')

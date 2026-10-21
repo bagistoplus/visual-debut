@@ -7,7 +7,7 @@
     <h2 class="heading mb-4 text-center text-3xl" {{ $section->liveUpdate()->text('heading') }}>
       {{ $section->settings->heading }}
     </h2>
-    <div class="description text-on-surface-alt/70 prose mx-auto mb-8 max-w-2xl text-center" {{ $section->liveUpdate()->html('description') }}>
+    <div class="description text-on-surface/70 prose mx-auto mb-8 max-w-2xl text-center" {{ $section->liveUpdate()->html('description') }}>
       {!! $section->settings->description !!}
     </div>
     <form
@@ -29,7 +29,7 @@
       </div>
 
       @error('email')
-        <p class="text-danger-500 text-sm italic">{{ $message }}</p>
+        <p class="text-danger text-sm italic">{{ $message }}</p>
       @enderror
     </form>
   </div>

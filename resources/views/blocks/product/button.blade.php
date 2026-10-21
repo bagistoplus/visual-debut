@@ -27,7 +27,7 @@
     :rawAttributes="$editorAttrs"
   >
     @if (!$circle && !$square)
-      <span class="text-muted">
+      <span>
         {{ match ($action) {
             'wishlist' => __('visual-debut::blocks.product-button.placeholder.wishlist'),
             'compare' => __('visual-debut::blocks.product-button.placeholder.compare'),
