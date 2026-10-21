@@ -25,13 +25,6 @@ return [
         'name' => 'مجموعة بطاقات المنتج',
     ],
 
-    'category' => [
-        'name' => 'فئة',
-        'settings' => [
-            'category_label' => 'الفئة',
-        ],
-    ],
-
     'category-card' => [
         'name' => 'بطاقة الفئة',
         'settings' => [

@@ -5,7 +5,6 @@ namespace BagistoPlus\VisualDebut\Presets;
 use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
-use BagistoPlus\VisualDebut\Blocks\Category;
 use BagistoPlus\VisualDebut\Sections\CategoryList;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -59,19 +58,6 @@ class CategoryGrid extends Preset
                     ->static()
                     ->repeated()
                     ->name(_t('sections.category-list.presets.grid.category_card')),
-
-                // Ghost category examples
-                PresetBlock::make(Category::class)
-                    ->id('category-1')
-                    ->name(_t('sections.category-list.blocks.category.name'))
-                    ->ghost()
-                    ->settings(['category' => 2]),
-
-                PresetBlock::make(Category::class)
-                    ->id('category-2')
-                    ->name(_t('sections.category-list.blocks.category.name'))
-                    ->ghost()
-                    ->settings(['category' => 3]),
             ]);
     }
 }

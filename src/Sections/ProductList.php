@@ -356,7 +356,7 @@ class ProductList extends BladeSection
                 ->blocks([
                     PresetBlock::make(Heading::class)
                         ->settings([
-                            'text' => _t('sections.product-list.settings.new_label'),
+                            'text' => _t('sections.product-list.presets.new.heading'),
                             'heading_level' => 'h2',
                             'width' => 'fill',
                             'alignment' => 'center',

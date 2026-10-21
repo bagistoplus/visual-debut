@@ -267,7 +267,9 @@ return [
             'heading_default' => 'Shop by category',
 
             'parent_category_label' => 'Parent Category',
-            'parent_category_info' => 'Select a parent category to display its children. Leave empty to show manually added categories.',
+            'parent_category_info' => 'Select a parent category to display its children. Leave empty to show the store\'s top-level categories.',
+            'nb_categories_label' => 'Number of Categories',
+            'nb_categories_info' => 'Maximum number of categories to display. 0 shows all.',
 
             'layout_header' => 'Layout',
             'layout_type_label' => 'Layout Type',
@@ -317,13 +319,10 @@ return [
                 'heading' => 'Shop by Category',
                 'category_card' => 'Category Card',
             ],
-        ],
-        'blocks' => [
-            'category' => [
-                'name' => 'Category',
-                'settings' => [
-                    'category_label' => 'Category',
-                ],
+            'tiles' => [
+                'name' => 'Category Tiles',
+                'category_card' => 'Category Tile',
+                'cta' => 'Shop now →',
             ],
         ],
         'placeholder' => [
@@ -411,6 +410,7 @@ return [
             ],
             'new' => [
                 'name' => 'New Arrivals',
+                'heading' => 'New arrivals',
             ],
         ],
     ],
@@ -649,13 +649,26 @@ return [
                 'heading' => 'Image with text',
                 'description' => 'Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.',
                 'cta' => 'Shop now',
+                'image_alt' => 'Folded clothing on a wooden workshop table',
+            ],
+            'our_story' => [
+                'name' => 'Our Story',
+                'content' => 'Content',
+                'eyebrow' => 'Our story',
+                'heading' => 'Made slowly, worn for years',
+                'description' => 'We started with one simple idea: everyday clothes should feel good and last. Every piece is cut from natural linen and cotton and made in small batches, so it looks better with every wear.',
+                'cta' => 'Read our story',
+                'image_alt' => 'Folded linen and cotton clothing on a wooden workshop table',
             ],
             'hero_banner' => [
                 'name' => 'Hero Banner',
-                'heading' => 'Welcome to our store',
-                'description' => 'Discover our best products and offers.',
+                'eyebrow' => 'New season',
+                'heading' => 'Made for everyday, built to last',
+                'description' => 'Thoughtfully designed pieces for every day and every season. Discover what\'s new in store.',
+                'content' => 'Content',
                 'buttons' => 'Buttons',
-                'cta' => 'View collections',
+                'cta' => 'Shop all',
+                'secondary_cta' => 'Our story',
             ],
             'feature_icons' => [
                 'name' => 'Feature Icons',
@@ -679,6 +692,27 @@ return [
                     'easy_returns' => [
                         'title' => 'Easy Returns',
                         'description' => '30-day return policy',
+                    ],
+                ],
+            ],
+            'testimonials' => [
+                'name' => 'Testimonials',
+                'heading' => 'What our customers say',
+                'grid' => 'Testimonials Grid',
+                'card' => 'Testimonial',
+                'stars' => '★★★★★',
+                'items' => [
+                    'first' => [
+                        'quote' => 'The quality is outstanding and everything arrived well packed and right on time. I\'ll definitely order again.',
+                        'author' => 'Sarah M.',
+                    ],
+                    'second' => [
+                        'quote' => 'Great selection and a smooth checkout. Customer support answered my question within the hour.',
+                        'author' => 'James R.',
+                    ],
+                    'third' => [
+                        'quote' => 'Exactly as described and the fit is perfect. It has quickly become my go-to store.',
+                        'author' => 'Priya K.',
                     ],
                 ],
             ],

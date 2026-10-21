@@ -25,13 +25,6 @@ return [
         'name' => 'उत्पाद कार्ड समूह',
     ],
 
-    'category' => [
-        'name' => 'श्रेणी',
-        'settings' => [
-            'category_label' => 'श्रेणी',
-        ],
-    ],
-
     'category-card' => [
         'name' => 'श्रेणी कार्ड',
         'settings' => [

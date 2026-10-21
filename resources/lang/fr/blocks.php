@@ -25,13 +25,6 @@ return [
         'name' => 'Groupe de cartes produit',
     ],
 
-    'category' => [
-        'name' => 'Catégorie',
-        'settings' => [
-            'category_label' => 'Catégorie',
-        ],
-    ],
-
     'category-card' => [
         'name' => 'Carte de catégorie',
         'settings' => [

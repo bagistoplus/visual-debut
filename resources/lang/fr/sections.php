@@ -303,7 +303,9 @@ return [
             'heading_default' => 'Acheter par catégorie',
 
             'parent_category_label' => 'Catégorie parente',
-            'parent_category_info' => 'Sélectionnez une catégorie parente pour afficher ses enfants. Laissez vide pour afficher les catégories ajoutées manuellement.',
+            'parent_category_info' => 'Sélectionnez une catégorie parente pour afficher ses enfants. Laissez vide pour afficher les catégories principales de la boutique.',
+            'nb_categories_label' => 'Nombre de catégories',
+            'nb_categories_info' => 'Nombre maximum de catégories à afficher. 0 les affiche toutes.',
 
             'layout_header' => 'Mise en page',
             'layout_type_label' => 'Type de mise en page',
@@ -353,13 +355,10 @@ return [
                 'heading' => 'Acheter par catégorie',
                 'category_card' => 'Carte de catégorie',
             ],
-        ],
-        'blocks' => [
-            'category' => [
-                'name' => 'Catégorie',
-                'settings' => [
-                    'category_label' => 'Catégorie',
-                ],
+            'tiles' => [
+                'name' => 'Tuiles de catégories',
+                'category_card' => 'Tuile de catégorie',
+                'cta' => 'Découvrir →',
             ],
         ],
         'placeholder' => [
@@ -481,6 +480,7 @@ return [
             ],
             'new' => [
                 'name' => 'Nouveautés',
+                'heading' => 'Nouveautés',
             ],
         ],
     ],
@@ -825,13 +825,26 @@ return [
                 'heading' => 'Image avec texte',
                 'description' => 'Associez du texte à une image pour mettre en valeur un produit, une collection ou un article de blog. Ajoutez des détails sur la disponibilité, le style ou même un avis.',
                 'cta' => 'Acheter maintenant',
+                'image_alt' => 'Vêtements pliés sur un établi en bois',
+            ],
+            'our_story' => [
+                'name' => 'Notre histoire',
+                'content' => 'Contenu',
+                'eyebrow' => 'Notre histoire',
+                'heading' => 'Fabriqué avec soin, porté pendant des années',
+                'description' => 'Tout est parti d\'une idée simple : les vêtements du quotidien doivent être agréables à porter et durer. Chaque pièce est taillée dans du lin et du coton naturels et fabriquée en petites séries, pour devenir plus belle à chaque port.',
+                'cta' => 'Lire notre histoire',
+                'image_alt' => 'Vêtements en lin et coton pliés sur un établi en bois',
             ],
             'hero_banner' => [
                 'name' => 'Bannière Hero',
-                'heading' => 'Bienvenue dans notre boutique',
-                'description' => 'Découvrez nos meilleurs produits et offres.',
+                'eyebrow' => 'Nouvelle saison',
+                'heading' => 'Pensé pour le quotidien, fait pour durer',
+                'description' => 'Des pièces conçues avec soin pour chaque jour et chaque saison. Découvrez nos nouveautés.',
+                'content' => 'Contenu',
                 'buttons' => 'Boutons',
-                'cta' => 'Voir les collections',
+                'cta' => 'Tout voir',
+                'secondary_cta' => 'Notre histoire',
             ],
             'feature_icons' => [
                 'name' => 'Icônes de fonctionnalité',
@@ -855,6 +868,27 @@ return [
                     'easy_returns' => [
                         'title' => 'Retours faciles',
                         'description' => 'Politique de retour sous 30 jours',
+                    ],
+                ],
+            ],
+            'testimonials' => [
+                'name' => 'Témoignages',
+                'heading' => 'Ce que disent nos clients',
+                'grid' => 'Grille de témoignages',
+                'card' => 'Témoignage',
+                'stars' => '★★★★★',
+                'items' => [
+                    'first' => [
+                        'quote' => 'La qualité est remarquable et tout est arrivé bien emballé et à l\'heure. Je commanderai à nouveau sans hésiter.',
+                        'author' => 'Sarah M.',
+                    ],
+                    'second' => [
+                        'quote' => 'Un large choix et un paiement simple. Le service client a répondu à ma question en moins d\'une heure.',
+                        'author' => 'James R.',
+                    ],
+                    'third' => [
+                        'quote' => 'Conforme à la description et la coupe est parfaite. C\'est devenu ma boutique préférée.',
+                        'author' => 'Priya K.',
                     ],
                 ],
             ],

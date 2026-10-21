@@ -34,7 +34,7 @@ return [
             Settings\TypographyPresets::make('typography_presets', 'Typography Presets')
                 ->presets([
                     'body' => [
-                        'fontFamily' => 'poppins',
+                        'fontFamily' => 'inter',
                         'fontWeight' => '400',
                         'fontSize' => 'base',
                         'fontStyle' => 'normal',
@@ -43,7 +43,7 @@ return [
                         'textTransform' => 'none',
                     ],
                     'heading-1' => [
-                        'fontFamily' => 'poppins',
+                        'fontFamily' => 'outfit',
                         'fontWeight' => '700',
                         'fontSize' => ['_default' => '5xl', 'mobile' => '4xl'],
                         'fontStyle' => 'normal',
@@ -52,7 +52,7 @@ return [
                         'textTransform' => 'none',
                     ],
                     'heading-2' => [
-                        'fontFamily' => 'poppins',
+                        'fontFamily' => 'outfit',
                         'fontWeight' => '600',
                         'fontSize' => ['_default' => '4xl', 'mobile' => '3xl'],
                         'fontStyle' => 'normal',
@@ -61,7 +61,7 @@ return [
                         'textTransform' => 'none',
                     ],
                     'heading-3' => [
-                        'fontFamily' => 'poppins',
+                        'fontFamily' => 'outfit',
                         'fontWeight' => '600',
                         'fontSize' => ['_default' => '3xl', 'mobile' => '2xl'],
                         'fontStyle' => 'normal',
@@ -70,7 +70,7 @@ return [
                         'textTransform' => 'none',
                     ],
                     'heading-4' => [
-                        'fontFamily' => 'poppins',
+                        'fontFamily' => 'outfit',
                         'fontWeight' => '500',
                         'fontSize' => ['_default' => '2xl', 'mobile' => 'xl'],
                         'fontStyle' => 'normal',
@@ -79,7 +79,7 @@ return [
                         'textTransform' => 'none',
                     ],
                     'heading-5' => [
-                        'fontFamily' => 'poppins',
+                        'fontFamily' => 'outfit',
                         'fontWeight' => '500',
                         'fontSize' => ['_default' => 'xl', 'mobile' => 'lg'],
                         'fontStyle' => 'normal',
@@ -88,7 +88,7 @@ return [
                         'textTransform' => 'none',
                     ],
                     'heading-6' => [
-                        'fontFamily' => 'poppins',
+                        'fontFamily' => 'outfit',
                         'fontWeight' => '500',
                         'fontSize' => 'base',
                         'fontStyle' => 'normal',
@@ -97,7 +97,7 @@ return [
                         'textTransform' => 'none',
                     ],
                     'body-sm' => [
-                        'fontFamily' => 'poppins',
+                        'fontFamily' => 'inter',
                         'fontWeight' => '400',
                         'fontSize' => 'sm',
                         'fontStyle' => 'normal',
@@ -106,7 +106,7 @@ return [
                         'textTransform' => 'none',
                     ],
                     'body-xs' => [
-                        'fontFamily' => 'poppins',
+                        'fontFamily' => 'inter',
                         'fontWeight' => '400',
                         'fontSize' => 'xs',
                         'fontStyle' => 'normal',

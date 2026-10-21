@@ -20,6 +20,7 @@ use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
+use Webkul\Category\Repositories\CategoryRepository;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -159,6 +160,16 @@ class CategoryList extends BladeSection
 
     protected function getCategories()
     {
+        $categories = $this->fetchCategories();
+
+        // 0 means no limit
+        $limit = $this->section->settings->nb_categories ?? 0;
+
+        return $limit > 0 ? $categories->take($limit) : $categories;
+    }
+
+    protected function fetchCategories()
+    {
         // If parent category is selected, return its children
         if ($parentCategory = $this->section->settings->parent_category) {
             return $parentCategory->children()
@@ -167,11 +178,20 @@ class CategoryList extends BladeSection
                 ->get();
         }
 
-        // Otherwise, return manually added category blocks
-        return collect($this->section->children())
-            ->filter(fn ($child) => $child->type === '@visual-debut/category')
-            ->map(fn ($child) => $child->settings->category)
-            ->filter(); // Remove null values
+        // Otherwise, return the top-level categories of the current channel
+        // @phpstan-ignore-next-line
+        $rootCategoryId = core()->getCurrentChannel()->root_category_id;
+
+        $rootCategory = app(CategoryRepository::class)->find($rootCategoryId);
+
+        if (! $rootCategory) {
+            return collect();
+        }
+
+        return $rootCategory->children()
+            ->where('status', 1)
+            ->orderBy('position')
+            ->get();
     }
 
     public static function settings(): array
@@ -179,6 +199,10 @@ class CategoryList extends BladeSection
         return [
             Category::make('parent_category', _t('sections.category-list.settings.parent_category_label'))
                 ->info(_t('sections.category-list.settings.parent_category_info')),
+
+            Range::make('nb_categories', _t('sections.category-list.settings.nb_categories_label'))
+                ->default(0)->min(0)->max(24)->step(1)
+                ->info(_t('sections.category-list.settings.nb_categories_info')),
 
             Header::make(_t('sections.category-list.settings.layout_header')),
 

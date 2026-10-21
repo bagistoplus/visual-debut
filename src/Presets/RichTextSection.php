@@ -61,7 +61,7 @@ class RichTextSection extends Preset
                     ->id('button')
                     ->settings([
                         'text' => _t('sections.flex-section.presets.rich_text.cta'),
-                        'url' => '/collections/all',
+                        'url' => '/search',
                     ]),
             ]);
     }
