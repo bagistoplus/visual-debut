@@ -72,6 +72,11 @@ class Breadcrumbs extends BladeSection
 
             'shop.customers.account.reviews.index' => ['name' => 'reviews'],
             'shop.customers.account.downloadable_products.index' => ['name' => 'downloadable-products'],
+            'shop.customers.account.wishlist.index' => ['name' => 'wishlist'],
+
+            'shop.customers.account.rma.index' => ['name' => 'rma'],
+            'shop.customers.account.rma.create' => ['name' => 'rma.create'],
+            'shop.customers.account.rma.view' => ['name' => 'rma.view', 'id' => Route::current()->parameter('id')],
             default => []
         };
 

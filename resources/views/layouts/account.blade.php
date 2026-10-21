@@ -2,7 +2,7 @@
 
 @section('body')
   <div class="min-h-screen">
-    <visual:section name="visual-debut::breadcrumbs" />
+    @visualBlock('@visual-debut/breadcrumbs', 'account-breadcrumbs')
 
     <div class="mx-auto max-w-7xl px-4 sm:px-6 sm:py-8 lg:px-8">
       <div class="flex flex-col gap-8 lg:flex-row">
