@@ -65,9 +65,11 @@
                   <nav class="space-y-1">
                     @foreach ($menuItem->getChildren() as $subMenuItem)
                       @php
-                        // A withdrawal receipt lives outside the orders URL but belongs to an order
+                        // A withdrawal receipt lives outside the orders URL but belongs to an order.
+                        // Bagisto 2.5 names its routes in snake case, 2.4 in kebab case.
                         $isActive =
-                            visual_is_menu_active($subMenuItem) || ($subMenuItem->getKey() === 'account.orders' && request()->routeIs('shop.customers.account.eu_withdrawal.*'));
+                            visual_is_menu_active($subMenuItem) ||
+                            ($subMenuItem->getKey() === 'account.orders' && request()->routeIs('shop.customers.account.eu_withdrawal.*', 'shop.customers.account.eu-withdrawal.*'));
                       @endphp
                       <a class="{{ $isActive ? 'active-menu bg-primary text-on-primary' : 'hover:bg-surface-600' }} group flex items-center justify-between rounded-lg px-4 py-3 transition-colors"
                         href="{{ $subMenuItem->getUrl() }}"

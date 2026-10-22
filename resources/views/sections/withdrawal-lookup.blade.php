@@ -1,3 +1,7 @@
+@php
+  use BagistoPlus\VisualDebut\Support\Routes;
+@endphp
+
 <div
   {{ $section->editor_attributes }}
   {{ $section->settings->color_scheme?->attributes() }}
@@ -7,10 +11,10 @@
     <div class="bg-surface text-on-surface box space-y-8 border-0 p-8">
       <div class="text-center">
         <h1 class="text-3xl font-semibold">
-          @lang('shop::app.eu-withdrawal.lookup.heading')
+          @lang('visual-debut::shop.eu-withdrawal.lookup.heading')
         </h1>
         <p class="mt-2">
-          @lang('shop::app.eu-withdrawal.lookup.intro')
+          @lang('visual-debut::shop.eu-withdrawal.lookup.intro')
         </p>
       </div>
 
@@ -18,13 +22,13 @@
       @if (session('lookup_sent'))
         <div role="status" class="bg-success/10 border-success/30 rounded-(--box-radius) flex items-start gap-3 border p-4 text-sm">
           <x-lucide-mail-check class="text-success mt-0.5 h-5 w-5 shrink-0" />
-          <p>@lang('shop::app.eu-withdrawal.lookup.sent-notice')</p>
+          <p>@lang('visual-debut::shop.eu-withdrawal.lookup.sent-notice')</p>
         </div>
       @endif
 
       <form
         method="POST"
-        action="{{ route('shop.eu_withdrawal.guest.lookup.submit') }}"
+        action="{{ Routes::url('shop.eu_withdrawal.guest.lookup.submit') }}"
         class="grid gap-4"
       >
         @csrf
@@ -35,7 +39,7 @@
             class="block text-sm font-medium"
             required
           >
-            @lang('shop::app.eu-withdrawal.lookup.order-number')
+            @lang('visual-debut::shop.eu-withdrawal.lookup.order-number')
           </label>
           <div class="relative mt-1">
             <div class="inset-s-0 pointer-events-none absolute inset-y-0 flex items-center ps-3">
@@ -62,7 +66,7 @@
             class="block text-sm font-medium"
             required
           >
-            @lang('shop::app.eu-withdrawal.lookup.email')
+            @lang('visual-debut::shop.eu-withdrawal.lookup.email')
           </label>
           <div class="relative mt-1">
             <div class="inset-s-0 pointer-events-none absolute inset-y-0 flex items-center ps-3">
@@ -89,13 +93,13 @@
           block
           :loading="false"
         >
-          @lang('shop::app.eu-withdrawal.lookup.submit')
+          @lang('visual-debut::shop.eu-withdrawal.lookup.submit')
         </x-shop::ui.button>
       </form>
     </div>
 
     <p class="mt-6 text-center text-xs opacity-70">
-      @lang('shop::app.eu-withdrawal.lookup.legal-note')
+      @lang('visual-debut::shop.eu-withdrawal.lookup.legal-note')
     </p>
   </div>
 </div>

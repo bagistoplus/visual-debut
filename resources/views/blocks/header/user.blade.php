@@ -43,8 +43,8 @@
             </div>
 
             @if (\BagistoPlus\VisualDebut\Support\EuWithdrawal::available())
-              <a href="{{ route('shop.eu_withdrawal.guest.lookup') }}" class="text-primary mt-4 inline-block text-xs font-medium hover:underline">
-                @lang('shop::app.eu-withdrawal.guest-dropdown.link')
+              <a href="{{ \BagistoPlus\VisualDebut\Support\Routes::url('shop.eu_withdrawal.guest.lookup') }}" class="text-primary mt-4 inline-block text-xs font-medium hover:underline">
+                @lang('visual-debut::shop.eu-withdrawal.guest-dropdown.link')
               </a>
             @endif
           </div>

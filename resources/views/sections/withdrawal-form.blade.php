@@ -12,7 +12,7 @@
     <div class="border-b p-4">
       <div class="flex items-center justify-between gap-4">
         <h1 class="text-2xl">
-          @lang('shop::app.eu-withdrawal.form.heading')
+          @lang('visual-debut::shop.eu-withdrawal.form.heading')
         </h1>
         @unless ($isGuest)
           <x-shop::ui.button
@@ -40,10 +40,10 @@
 
         <div>
           <p class="text-sm font-semibold">
-            @lang('shop::app.eu-withdrawal.form.legal-notice-title')
+            @lang('visual-debut::shop.eu-withdrawal.form.legal-notice-title')
           </p>
           <p class="mt-1 text-sm">
-            @lang('shop::app.eu-withdrawal.form.legal-effect', ['order_id' => $orderNumber])
+            @lang('visual-debut::shop.eu-withdrawal.form.legal-effect', ['order_id' => $orderNumber])
           </p>
         </div>
       </div>
@@ -52,20 +52,20 @@
         <!-- Order -->
         <aside class="bg-surface text-on-surface rounded-(--box-radius) p-5">
           <p class="text-xs font-medium uppercase tracking-wide opacity-70">
-            @lang('shop::app.eu-withdrawal.form.order-summary')
+            @lang('visual-debut::shop.eu-withdrawal.form.order-summary')
           </p>
           <p class="mt-2 text-lg font-semibold">#{{ $orderNumber }}</p>
           <p class="mt-1 text-sm opacity-80">
-            @lang('shop::app.eu-withdrawal.form.placed-on', ['date' => core()->formatDate($order->created_at, 'd M Y')])
+            @lang('visual-debut::shop.eu-withdrawal.form.placed-on', ['date' => core()->formatDate($order->created_at, 'd M Y')])
           </p>
 
           <dl class="border-on-surface/10 mt-4 grid gap-2 border-t pt-4 text-sm">
             <div class="flex items-center justify-between gap-4">
-              <dt class="opacity-80">@lang('shop::app.eu-withdrawal.form.order-total')</dt>
+              <dt class="opacity-80">@lang('visual-debut::shop.eu-withdrawal.form.order-total')</dt>
               <dd class="font-medium">{{ core()->formatPrice($order->grand_total, $order->order_currency_code) }}</dd>
             </div>
             <div class="flex items-center justify-between gap-4">
-              <dt class="opacity-80">@lang('shop::app.eu-withdrawal.form.order-items')</dt>
+              <dt class="opacity-80">@lang('visual-debut::shop.eu-withdrawal.form.order-items')</dt>
               <dd class="font-medium">{{ $order->total_qty_ordered }}</dd>
             </div>
           </dl>
@@ -74,13 +74,13 @@
         <!-- Reason -->
         <div class="md:col-span-2">
           <label for="reason_text" class="block font-medium">
-            @lang('shop::app.eu-withdrawal.form.reason-label')
+            @lang('visual-debut::shop.eu-withdrawal.form.reason-label')
             <span class="ms-1 text-xs font-normal opacity-70">
-              @lang('shop::app.eu-withdrawal.form.reason-optional')
+              @lang('visual-debut::shop.eu-withdrawal.form.reason-optional')
             </span>
           </label>
           <p class="mt-1 text-xs opacity-70">
-            @lang('shop::app.eu-withdrawal.form.reason-help')
+            @lang('visual-debut::shop.eu-withdrawal.form.reason-help')
           </p>
           <textarea
             id="reason_text"
@@ -88,7 +88,7 @@
             rows="6"
             maxlength="5000"
             class="mt-3 w-full py-2"
-            placeholder="{{ trans('shop::app.eu-withdrawal.form.reason-placeholder') }}"
+            placeholder="{{ trans('visual-debut::shop.eu-withdrawal.form.reason-placeholder') }}"
           >{{ old('reason_text') }}</textarea>
           @error('reason_text')
             <span class="text-danger text-xs">{{ $message }}</span>
@@ -98,10 +98,10 @@
 
       <div class="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-end">
         <x-shop::ui.button variant="outline" :href="$backUrl">
-          @lang('shop::app.eu-withdrawal.form.cancel')
+          @lang('visual-debut::shop.eu-withdrawal.form.cancel')
         </x-shop::ui.button>
         <x-shop::ui.button type="submit" :loading="false">
-          @lang('shop::app.eu-withdrawal.form.submit')
+          @lang('visual-debut::shop.eu-withdrawal.form.submit')
         </x-shop::ui.button>
       </div>
     </form>

@@ -9,7 +9,7 @@
 
   if ($canWithdraw) {
       $withdrawal = EuWithdrawal::existingFor($order);
-      $withdrawalUrl = $withdrawal ? route('shop.customers.account.eu_withdrawal.show', $withdrawal->uuid) : route('shop.customers.account.eu_withdrawal.create', $order->id);
+      $withdrawalUrl = $withdrawal ? Routes::url('shop.customers.account.eu_withdrawal.show', $withdrawal->uuid) : Routes::url('shop.customers.account.eu_withdrawal.create', $order->id);
   }
 @endphp
 
@@ -59,7 +59,7 @@
           size="sm"
           :href="$withdrawalUrl"
         >
-          @lang('shop::app.eu-withdrawal.button.' . ($withdrawal ? 'view-existing' : 'withdraw'))
+          @lang('visual-debut::shop.eu-withdrawal.button.' . ($withdrawal ? 'view-existing' : 'withdraw'))
         </x-shop::ui.button>
       @endif
 
@@ -185,7 +185,7 @@
             :href="$withdrawalUrl"
             class="flex-1 whitespace-nowrap"
           >
-            @lang('shop::app.eu-withdrawal.button.' . ($withdrawal ? 'view-existing' : 'withdraw'))
+            @lang('visual-debut::shop.eu-withdrawal.button.' . ($withdrawal ? 'view-existing' : 'withdraw'))
           </x-shop::ui.button>
         @endif
 

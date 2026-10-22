@@ -1,16 +1,18 @@
 <?php
 
 use BagistoPlus\VisualDebut\Support\EuWithdrawal;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Webkul\Core\Facades\Core;
 use Webkul\EUWithdrawal\Repositories\WithdrawalRepository;
 
 /**
- * Registers the guest lookup route, which every Bagisto 2.5 store has.
+ * Registers the guest lookup route, which every store from Bagisto 2.4.8 on
+ * has. 2.5 names it in snake case, 2.4 in kebab case.
  */
-function withdrawalRoutes(): void
+function withdrawalRoutes(string $name = 'shop.eu_withdrawal.guest.lookup'): void
 {
-    Route::get('withdraw', fn () => '')->name('shop.eu_withdrawal.guest.lookup');
+    Route::get('withdraw', fn () => '')->name($name);
 
     Route::getRoutes()->refreshNameLookups();
 }
@@ -59,6 +61,13 @@ it('offers withdrawals only on a channel that switched them on', function () {
     expect(EuWithdrawal::available())->toBeTrue();
 });
 
+it('offers withdrawals on Bagisto 2.4', function () {
+    withdrawalRoutes('shop.eu-withdrawal.guest.lookup');
+    withdrawalChannels('default');
+
+    expect(EuWithdrawal::available())->toBeTrue();
+});
+
 it('decides by the channel the order was placed on', function () {
     withdrawalRoutes();
     withdrawalChannels('eu');
@@ -78,4 +87,22 @@ it('finds the withdrawal already declared for an order', function () {
 
     expect(EuWithdrawal::existingFor(orderOn('default'))?->uuid)->toBe('abc')
         ->and(EuWithdrawal::existingFor((object) ['id' => 8]))->toBeNull();
+});
+
+it('names withdrawal routes so Bagisto 2.4 finds them and owns the wording', function () {
+    $english = require dirname(__DIR__, 2).'/resources/lang/en/shop.php';
+
+    foreach (File::allFiles(dirname(__DIR__, 2).'/resources/views') as $view) {
+        $contents = $view->getContents();
+
+        expect($contents)
+            ->not->toMatch("/route\\('[^']*eu_withdrawal/", $view->getRelativePathname())
+            ->not->toContain('shop::app.eu-withdrawal', $view->getRelativePathname());
+
+        preg_match_all("/'visual-debut::shop\\.(eu-withdrawal\\.[a-z.-]+[a-z])'(?! \\.)/", $contents, $keys);
+
+        foreach ($keys[1] as $key) {
+            expect(data_get($english, $key))->toBeString($view->getRelativePathname().': '.$key);
+        }
+    }
 });

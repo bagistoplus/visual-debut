@@ -23,7 +23,7 @@
   {{ $section->editor_attributes }}
   {{ $section->settings->color_scheme?->attributes() }}
   @class(['mx-auto max-w-3xl px-4 py-12' => $isGuest])
-  x-data="VisualWithdrawalReceipt(@js(['copied' => trans('shop::app.eu-withdrawal.confirmation.reference-copied')]))"
+  x-data="VisualWithdrawalReceipt(@js(['copied' => trans('visual-debut::shop.eu-withdrawal.confirmation.reference-copied')]))"
 >
   <div class="bg-background text-on-background box border-none shadow-sm" x-ref="receipt">
     <!-- Outcome -->
@@ -38,10 +38,10 @@
 
       <div class="min-w-0 flex-1 basis-56">
         <h1 class="text-2xl">
-          @lang('shop::app.eu-withdrawal.confirmation.heading-' . $status)
+          @lang('visual-debut::shop.eu-withdrawal.confirmation.heading-' . $status)
         </h1>
         <p class="mt-1 text-sm opacity-80">
-          @lang('shop::app.eu-withdrawal.confirmation.intro-' . $status)
+          @lang('visual-debut::shop.eu-withdrawal.confirmation.intro-' . $status)
         </p>
       </div>
 
@@ -54,7 +54,7 @@
         data-print-hidden
         x-on:click="print()"
       >
-        @lang('shop::app.eu-withdrawal.confirmation.print')
+        @lang('visual-debut::shop.eu-withdrawal.confirmation.print')
       </x-shop::ui.button>
     </div>
 
@@ -63,22 +63,22 @@
       <dl class="grid gap-x-6 gap-y-5 text-sm sm:grid-cols-2">
         <div>
           <dt class="text-xs font-medium uppercase tracking-wide opacity-70">
-            @lang('shop::app.eu-withdrawal.confirmation.received-at')
+            @lang('visual-debut::shop.eu-withdrawal.confirmation.received-at')
           </dt>
           <dd class="mt-1 font-medium">{{ $utc($withdrawal->received_at) }}</dd>
         </div>
 
         <div>
           <dt class="text-xs font-medium uppercase tracking-wide opacity-70">
-            @lang('shop::app.eu-withdrawal.confirmation.reference')
+            @lang('visual-debut::shop.eu-withdrawal.confirmation.reference')
           </dt>
           <dd class="bg-surface text-on-surface mt-1 flex items-center gap-2 rounded-lg px-3 py-2">
             <code class="flex-1 break-all font-mono font-medium">{{ $withdrawal->uuid }}</code>
             <button
               type="button"
               class="hover:text-primary shrink-0 p-1 transition-colors"
-              title="{{ trans('shop::app.eu-withdrawal.confirmation.copy-reference') }}"
-              aria-label="{{ trans('shop::app.eu-withdrawal.confirmation.copy-reference') }}"
+              title="{{ trans('visual-debut::shop.eu-withdrawal.confirmation.copy-reference') }}"
+              aria-label="{{ trans('visual-debut::shop.eu-withdrawal.confirmation.copy-reference') }}"
               data-print-hidden
               x-on:click="copy(@js($withdrawal->uuid))"
             >
@@ -89,7 +89,7 @@
 
         <div>
           <dt class="text-xs font-medium uppercase tracking-wide opacity-70">
-            @lang('shop::app.eu-withdrawal.confirmation.order')
+            @lang('visual-debut::shop.eu-withdrawal.confirmation.order')
           </dt>
           <dd class="mt-1 font-medium">
             @if ($orderUrl)
@@ -102,25 +102,25 @@
 
         <div>
           <dt class="text-xs font-medium uppercase tracking-wide opacity-70">
-            @lang('shop::app.eu-withdrawal.confirmation.email')
+            @lang('visual-debut::shop.eu-withdrawal.confirmation.email')
           </dt>
           <dd class="mt-1 break-all font-medium">{{ $withdrawal->customer_email }}</dd>
         </div>
 
         <div>
           <dt class="text-xs font-medium uppercase tracking-wide opacity-70">
-            @lang('shop::app.eu-withdrawal.confirmation.status')
+            @lang('visual-debut::shop.eu-withdrawal.confirmation.status')
           </dt>
           <dd class="mt-1">
             <span class="{{ $badge }} inline-flex rounded-full px-3 py-1 text-xs font-semibold">
-              @lang('shop::app.eu-withdrawal.confirmation.status-' . $status)
+              @lang('visual-debut::shop.eu-withdrawal.confirmation.status-' . $status)
             </span>
           </dd>
         </div>
 
         <div>
           <dt class="text-xs font-medium uppercase tracking-wide opacity-70">
-            @lang('shop::app.eu-withdrawal.confirmation.reason')
+            @lang('visual-debut::shop.eu-withdrawal.confirmation.reason')
           </dt>
           <dd class="mt-1 whitespace-pre-wrap">{{ $withdrawal->reason_text ?: '—' }}</dd>
         </div>
@@ -129,7 +129,7 @@
       <!-- What happens next -->
       <div class="border-t pt-6">
         <h2 class="text-lg font-semibold">
-          @lang('shop::app.eu-withdrawal.confirmation.next-steps-title')
+          @lang('visual-debut::shop.eu-withdrawal.confirmation.next-steps-title')
         </h2>
 
         <ol class="mt-4 space-y-4 text-sm">
@@ -138,7 +138,7 @@
               @svg('lucide-check', ['class' => 'h-4 w-4', 'aria-hidden' => true])
             </span>
             <div>
-              <p class="font-medium">@lang('shop::app.eu-withdrawal.confirmation.step-received')</p>
+              <p class="font-medium">@lang('visual-debut::shop.eu-withdrawal.confirmation.step-received')</p>
               <p class="text-xs opacity-70">{{ $utc($withdrawal->received_at) }}</p>
             </div>
           </li>
@@ -150,16 +150,16 @@
               @endif
             </span>
             <div>
-              <p class="font-medium">@lang('shop::app.eu-withdrawal.confirmation.step-email')</p>
+              <p class="font-medium">@lang('visual-debut::shop.eu-withdrawal.confirmation.step-email')</p>
               <p @class([
                   'text-xs',
                   'text-warning-900' => $emailFailed,
                   'opacity-70' => !$emailFailed,
               ])>
                 @if ($withdrawal->confirmation_sent_at)
-                  @lang('shop::app.eu-withdrawal.confirmation.email-sent')
+                  @lang('visual-debut::shop.eu-withdrawal.confirmation.email-sent')
                 @else
-                  @lang('shop::app.eu-withdrawal.confirmation.email-pending')
+                  @lang('visual-debut::shop.eu-withdrawal.confirmation.email-pending')
                 @endif
               </p>
             </div>
@@ -171,7 +171,7 @@
                 @svg('lucide-check', ['class' => 'h-4 w-4', 'aria-hidden' => true])
               </span>
               <div>
-                <p class="font-medium">@lang('shop::app.eu-withdrawal.confirmation.step-refund-done')</p>
+                <p class="font-medium">@lang('visual-debut::shop.eu-withdrawal.confirmation.step-refund-done')</p>
                 <p class="text-xs opacity-70">{{ $utc($withdrawal->refunded_at) }}</p>
               </div>
             @elseif ($withdrawal->declined_at)
@@ -179,24 +179,24 @@
                 @svg('lucide-x', ['class' => 'h-4 w-4', 'aria-hidden' => true])
               </span>
               <div class="flex-1">
-                <p class="font-medium">@lang('shop::app.eu-withdrawal.confirmation.step-declined')</p>
+                <p class="font-medium">@lang('visual-debut::shop.eu-withdrawal.confirmation.step-declined')</p>
 
                 @if ($withdrawal->declined_reason)
                   <div class="bg-danger/10 border-danger/30 rounded-(--box-radius) mt-2 border p-3">
                     <p class="text-danger text-xs font-medium uppercase tracking-wide">
-                      @lang('shop::app.eu-withdrawal.confirmation.declined-reason-label')
+                      @lang('visual-debut::shop.eu-withdrawal.confirmation.declined-reason-label')
                     </p>
                     <p class="mt-1 whitespace-pre-wrap">{{ $withdrawal->declined_reason }}</p>
                   </div>
                 @endif
 
-                <p class="mt-2 text-xs opacity-70">@lang('shop::app.eu-withdrawal.confirmation.declined-notice')</p>
+                <p class="mt-2 text-xs opacity-70">@lang('visual-debut::shop.eu-withdrawal.confirmation.declined-notice')</p>
               </div>
             @else
               <span class="{{ $pending }} grid h-6 w-6 shrink-0 place-items-center rounded-full"></span>
               <div>
-                <p class="font-medium">@lang('shop::app.eu-withdrawal.confirmation.step-refund')</p>
-                <p class="text-xs opacity-70">@lang('shop::app.eu-withdrawal.confirmation.refund-notice')</p>
+                <p class="font-medium">@lang('visual-debut::shop.eu-withdrawal.confirmation.step-refund')</p>
+                <p class="text-xs opacity-70">@lang('visual-debut::shop.eu-withdrawal.confirmation.refund-notice')</p>
               </div>
             @endif
           </li>
@@ -204,7 +204,7 @@
       </div>
 
       <p class="text-xs opacity-70">
-        @lang('shop::app.eu-withdrawal.confirmation.durable-medium-notice')
+        @lang('visual-debut::shop.eu-withdrawal.confirmation.durable-medium-notice')
       </p>
     </div>
   </div>
