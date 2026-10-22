@@ -3,6 +3,7 @@
 use BagistoPlus\VisualDebut\Support\Rma;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
+use Webkul\RMA\Enums\DefaultRMAStatusEnum;
 use Webkul\RMA\Helpers\Helper;
 use Webkul\RMA\Repositories\RMARepository;
 
@@ -145,4 +146,4 @@ it('applies the same cancel rule itself before Bagisto 2.4.10', function (?int $
     'canceled' => [9, false],
     'a custom status' => [12, true],
     'no status' => [null, false],
-]);
+])->skip(! enum_exists(DefaultRMAStatusEnum::class), 'Bagisto 2.3 has no returns');

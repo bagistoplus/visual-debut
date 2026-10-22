@@ -31,8 +31,16 @@ jobs:
           node-version: '22'
           cache: 'npm'
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+
       - name: Install composer dependencies
         uses: ramsey/composer-install@v4
+        env:
+          COMPOSER_POLICY_ADVISORIES_BLOCK: 0
 
       - name: Install npm dependencies
         run: npm ci
