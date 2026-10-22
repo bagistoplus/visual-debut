@@ -26,7 +26,7 @@
     </h1>
 
     <span class="{{ 'label-' . $order->status }}">
-      @lang('shop::app.customers.account.orders.status.options.' . $order->status)
+      @lang('shop::app.customers.account.orders.status.options.' . str_replace('_', '-', $order->status))
     </span>
 
     <div class="ml-auto hidden gap-2 lg:flex">

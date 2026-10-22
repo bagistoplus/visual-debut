@@ -60,7 +60,7 @@
             <p class="text-xs opacity-70">{{ core()->formatDate($order->created_at, 'd M Y') }}</p>
           </div>
           <span class="{{ 'label-' . $order->status }}">
-            @lang('shop::app.customers.account.orders.status.options.' . $order->status)
+            @lang('shop::app.customers.account.orders.status.options.' . str_replace('_', '-', $order->status))
           </span>
           <span class="min-w-24 text-end font-medium">
             {{ core()->formatPrice($order->grand_total, $order->order_currency_code) }}
