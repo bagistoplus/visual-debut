@@ -12,7 +12,7 @@ use function BagistoPlus\VisualDebut\core;
  * Bagisto they run on.
  *
  * Withdrawal from a contract (Directive (EU) 2023/2673) ships with Bagisto
- * 2.4.8. Every store from then on has its routes, but each channel switches
+ * 2.4.5. Every store from then on has its routes, but each channel switches
  * the feature on in its own config, and Bagisto answers 404 on a channel that
  * has not. A link is only shown where Bagisto would serve the page behind it.
  */
@@ -21,7 +21,7 @@ class EuWithdrawal
     private const ENABLED_CONFIG = 'sales.eu_withdrawal.general.enabled';
 
     /**
-     * Whether the current channel takes withdrawals. Bagisto before 2.4.8
+     * Whether the current channel takes withdrawals. Bagisto before 2.4.5
      * does not have them at all.
      */
     public static function available(): bool
@@ -40,7 +40,7 @@ class EuWithdrawal
 
     /**
      * The withdrawal already declared for the order, if any. Only ask once
-     * `canWithdraw()` holds: before 2.4.8 there is nothing to look in.
+     * `canWithdraw()` holds: before 2.4.5 there is nothing to look in.
      */
     public static function existingFor(object $order): ?object
     {

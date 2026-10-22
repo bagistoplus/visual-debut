@@ -7,7 +7,7 @@ use Webkul\Core\Facades\Core;
 use Webkul\EUWithdrawal\Repositories\WithdrawalRepository;
 
 /**
- * Registers the guest lookup route, which every store from Bagisto 2.4.8 on
+ * Registers the guest lookup route, which every store from Bagisto 2.4.5 on
  * has. 2.5 names it in snake case, 2.4 in kebab case.
  */
 function withdrawalRoutes(string $name = 'shop.eu_withdrawal.guest.lookup'): void
