@@ -1,4 +1,4 @@
-@props(['product', 'mode' => 'grid', 'noCompare' => false])
+@props(['product', 'mode' => 'grid', 'noCompare' => false, 'lazy' => true])
 
 @php
   $typeInstance = $product->getTypeInstance();
@@ -30,6 +30,8 @@
         src="{{ $card['base_image']['medium_image_url'] }}"
         alt="{{ $card['name'] }}"
         class="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+        @if ($lazy) loading="lazy" @endif
+        decoding="async"
       >
 
       <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
@@ -99,6 +101,8 @@
         src="{{ $card['base_image']['medium_image_url'] }}"
         alt="{{ $card['name'] }}"
         class="h-full w-full object-cover object-center"
+        @if ($lazy) loading="lazy" @endif
+        decoding="async"
       >
     </div>
 

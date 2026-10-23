@@ -67,6 +67,7 @@
                   :key="$product->id"
                   :product="$product"
                   mode="grid"
+                  :lazy="$loop->index >= 4"
                 />
               @endforeach
             </div>
@@ -78,6 +79,7 @@
                   :key="$product->id"
                   :product="$product"
                   mode="list"
+                  :lazy="$loop->index >= 4"
                 />
               @endforeach
             </div>

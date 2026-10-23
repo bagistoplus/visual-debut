@@ -63,6 +63,8 @@
                         alt="{{ $review['name'] }}"
                         title="{{ $review['name'] }}"
                         class="box h-12 w-12 object-cover"
+                        loading="lazy"
+                        decoding="async"
                       >
                     @else
                       <div class="box bg-surface-alt text-on-surface-alt flex h-12 w-12 items-center justify-center" title="{{ $review['name'] }}">
@@ -94,6 +96,8 @@
                             src="{{ $media->url }}"
                             alt="{{ $review['title'] }}"
                             class="h-full w-full object-cover"
+                            loading="lazy"
+                            decoding="async"
                           >
                         @else
                           <video

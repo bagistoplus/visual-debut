@@ -89,6 +89,7 @@
           :src="selectedMedia.large_image_url"
           x-bind:alt="selectedMedia.large_image_url"
           class="aspect-square h-full w-full rounded-(--box-radius) object-cover object-center"
+          fetchpriority="high"
         >
       </template>
       <template x-if="selectedMedia.type === 'videos'">

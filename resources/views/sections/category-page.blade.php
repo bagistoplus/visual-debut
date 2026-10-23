@@ -6,6 +6,8 @@
           src="{{ $category->banner_url }}"
           alt="{{ $category->name }}"
           class="brightness-60 absolute inset-0 h-full w-full object-cover object-center"
+          fetchpriority="high"
+          decoding="async"
         >
       @endif
       <div class="{{ $category->banner_url ? 'text-white/80' : '' }} container relative">
@@ -85,6 +87,7 @@
                   wire:key="{{ 'product-' . $product->id }}"
                   mode="grid"
                   :product="$product"
+                  :lazy="$loop->index >= 4"
                 />
               @endforeach
             </div>
@@ -96,6 +99,7 @@
                   mode="list"
                   wire:key="{{ 'product-' . $product->id }}"
                   :product="$product"
+                  :lazy="$loop->index >= 4"
                 />
               @endforeach
             </div>

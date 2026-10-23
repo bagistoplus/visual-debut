@@ -16,6 +16,8 @@
                 src="{{ $item->base_image->small_image_url }}"
                 alt="{{ $item->name }}"
                 class="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </a>
           </div>

@@ -81,7 +81,7 @@
                     href="{{ $category->url }}"
                     class="text-white box relative flex min-h-64 w-40 shrink-0 items-end overflow-hidden border-none p-4"
                   >
-                    <img src="{{ $image }}" alt="" class="absolute inset-0 h-full object-cover brightness-50">
+                    <img src="{{ $image }}" alt="" class="absolute inset-0 h-full object-cover brightness-50" loading="lazy" decoding="async">
                     <span class="relative space-y-1.5">
                       <span class="block text-lg font-bold">{{ $category->name }}</span>
                       <span class="text-white/80 block text-sm">{{ $categoryDescription }}</span>
