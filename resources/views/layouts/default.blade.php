@@ -10,6 +10,9 @@
 
     @include('shop::partials.head')
 
+    {{-- In partials, so the settings stay out of the layout's variables, which Livewire blocks receive as context --}}
+    @include('shop::partials.custom-css')
+
     {!! view_render_event('bagisto.shop.layout.head.after') !!}
   </head>
 
@@ -54,6 +57,8 @@
 
     @stack('scripts')
     @livewireScriptConfig
+
+    @include('shop::partials.custom-javascript')
   </body>
 
 </html>
