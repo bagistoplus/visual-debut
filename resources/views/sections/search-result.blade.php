@@ -60,7 +60,9 @@
           wire:target="{{ $this->resultsTargets() }}"
         >
           <!-- Products grid view -->
-          @if ($displayMode === 'grid')
+          @if ($products->isEmpty())
+            @include('shop::partials.no-products')
+          @elseif ($displayMode === 'grid')
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               @foreach ($products as $product)
                 <x-shop::product.card

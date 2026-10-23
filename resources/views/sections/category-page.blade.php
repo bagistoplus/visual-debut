@@ -59,7 +59,9 @@
           wire:target="{{ $this->resultsTargets() }}"
         >
           <!-- Products grid view -->
-          @if ($displayMode === 'grid')
+          @if ($products->isEmpty())
+            @include('shop::partials.no-products')
+          @elseif ($displayMode === 'grid')
             @php
               $mobileClass = ['1' => 'grid-cols-1', '2' => 'grid-cols-2'][$section->settings->columns_mobile] ?? 'grid-cols-1';
               $tabletClass =
