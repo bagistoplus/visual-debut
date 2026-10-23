@@ -39,6 +39,8 @@ class HeroBanner extends Preset
                 ],
                 'background_size' => 'cover',
                 'background_repeat' => 'no-repeat',
+                // The homepage's largest image
+                'background_priority' => true,
                 'toggle_overlay' => true,
                 'overlay_style' => 'gradient',
                 'overlay_gradient' => 'linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 55%, rgba(0, 0, 0, 0) 100%)',
