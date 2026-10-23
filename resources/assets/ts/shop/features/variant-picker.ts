@@ -70,17 +70,16 @@ export default function (Alpine: AlpineType) {
         return variantId ?? null;
       },
 
-      // Default fallback is dropdown
-      isDropdownSwatch(swatchType?: string) {
-        return !swatchType || swatchType === 'dropdown';
-      },
-
       findAttribute(id: number) {
         return this.variantAttributes.find((attr: VariantAttribute) => attr.id === id);
       },
 
       findOption(attribute: VariantAttribute | undefined, optionId: number) {
         return attribute?.options.find((o: VariantOption) => o.id === optionId);
+      },
+
+      isAvailable(attributeId: number, optionId: number) {
+        return this.findOption(this.findAttribute(attributeId), optionId)?.isAvailable !== false;
       },
 
       findMatchingProducts(selections: Record<number, number>) {
