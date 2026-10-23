@@ -9,7 +9,8 @@
 
 @stack('meta')
 
-{{ $theme->settings->typography_presets->fontLinks() }}
+{{-- The weights the theme's templates set with font-medium, font-semibold and font-bold --}}
+{{ $theme->settings->typography_presets->fontLinks(includeWeights: ['500', '600', '700']) }}
 
 <script type="application/ld+json" id="currency-data">
   @json(core()->getCurrentCurrency()->toArray())
