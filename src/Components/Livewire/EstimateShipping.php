@@ -3,7 +3,6 @@
 namespace BagistoPlus\VisualDebut\Components\Livewire;
 
 use BagistoPlus\Visual\Enums\Events;
-use BagistoPlus\VisualDebut\Sections\CartContent;
 use Livewire\Component;
 use Webkul\Shop\Http\Controllers\API\CartController;
 
@@ -40,7 +39,9 @@ class EstimateShipping extends Component
         $this->shippingMethods = $response->resource['data']['shipping_methods'];
 
         if ($this->shippingMethod) {
-            $this->dispatch(Events::SHIPPING_METHOD_SET)->to(CartContent::class);
+            // Sent to every listener, like the coupon form does: the cart section's Livewire
+            // name is its full class name, so an event targeted at its class never reached it
+            $this->dispatch(Events::SHIPPING_METHOD_SET);
         }
     }
 

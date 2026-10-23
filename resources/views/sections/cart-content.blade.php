@@ -1,4 +1,8 @@
-<div {{ $section->editor_attributes }} {{ $section->settings->color_scheme?->attributes() }} class="container py-16">
+<div
+  {{ $section->editor_attributes }}
+  {{ $section->settings->color_scheme?->attributes() }}
+  class="container py-16"
+>
   @if ($this->isCartEmpty())
     <div class="flex flex-col items-center justify-center py-16 text-center">
       <p>@lang('shop::app.checkout.cart.index.empty-product')</p>
@@ -57,7 +61,7 @@
               x-model.number="selected"
               @change="allSelected = (selected.length === items.length)"
             >
-            <div class="h-24 w-24 shrink-0 overflow-hidden rounded-(--box-radius)">
+            <div class="rounded-(--box-radius) h-24 w-24 shrink-0 overflow-hidden">
               <img
                 src="{{ $item->base_image->small_image_url }}"
                 alt="{{ $item->name }}"
@@ -111,6 +115,7 @@
                   :id="'cart-item-qty-' . $item->id"
                   :min="1"
                   value="{{ $item->quantity }}"
+                  size="sm"
                   x-on:change="$wire.updateItemQuantity({{ $item->id }}, $event.detail)"
                 />
               </div>
