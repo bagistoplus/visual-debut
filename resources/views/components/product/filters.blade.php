@@ -19,6 +19,9 @@
     multiple
   >
     @foreach ($this->availableFilters as $filter)
+      {{-- No priced products, so there is no range to pick from --}}
+      @continue($filter->type === 'price' && intval($maxPrice) <= 0)
+
       <x-shop::ui.accordion.item :value="$filter->id" :title="$filter->name" open>
         @if ($filter->type === 'price')
           <div wire:ignore class="py-3 pr-3">
