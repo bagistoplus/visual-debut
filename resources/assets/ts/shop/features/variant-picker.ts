@@ -31,21 +31,7 @@ export default function (Alpine: AlpineType) {
     const variantImages = props.variantImages ?? {};
     const variantVideos = props.variantVideos ?? {};
 
-    const firstOption = variantAttributes[0]?.options[0];
-    const firstVariantId = firstOption?.products[0];
-
-    const defaultSelections: Record<number, number> = {};
-    if (firstVariantId) {
-      // Build default selections based on the first variant
-      for (const variant of variantAttributes) {
-        const option = variant.options.find((o) => o.products.includes(firstVariantId));
-        if (option) {
-          defaultSelections[variant.id] = option.id;
-        }
-      }
-    }
-
-    const selections = defaultSelections;
+    const selections: Record<number, number> = {};
     const matchingProducts = new Set<number>();
 
     let onCartUpdated: () => void;
@@ -186,6 +172,9 @@ export default function (Alpine: AlpineType) {
 
       init() {
         this.updateMatchingProducts();
+
+        // The buy buttons wait for a full selection, as they do when the shopper clears one
+        (this.$store.productForm as ProductForm).setDisabled(!this.selectedVariant);
 
         if (this.$wire) {
           this.$wire.set('variantAttributes', this.selections, false);
