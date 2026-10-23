@@ -1,4 +1,4 @@
-@aware(['id' => null, 'value' => null])
+@aware(['id' => null, 'value' => null, 'open' => false])
 
 <ui-accordion-item-trigger delegate>
   <button
@@ -7,7 +7,7 @@
     {{ $attributes->merge(['class' => 'flex items-center py-2 w-full']) }}
   >
     <span>{{ $slot }}</span>
-    <ui-accordion-item-indicator wire:ignore.self class="ms-auto shrink-0 transition-transform duration-200 data-[state=open]:rotate-180">
+    <ui-accordion-item-indicator data-state="{{ $open ? 'open' : 'closed' }}" wire:ignore.self class="ms-auto shrink-0 transition-transform duration-200 data-[state=open]:rotate-180">
       @if (isset($indicator))
         {{ $indicator }}
       @else

@@ -19,7 +19,7 @@
     multiple
   >
     @foreach ($this->availableFilters as $filter)
-      <x-shop::ui.accordion.item :value="$filter->id" :title="$filter->name">
+      <x-shop::ui.accordion.item :value="$filter->id" :title="$filter->name" open>
         @if ($filter->type === 'price')
           <div wire:ignore class="py-3 pr-3">
             <x-shop::range-input

@@ -16,3 +16,26 @@
   border-radius: var(--box-radius, 0);
   border-width: var(--box-border-width, 0px);
 }
+
+ui-accordion-item-content[data-state] {
+  display: grid !important;
+  grid-template-rows: 1fr;
+  transition:
+    grid-template-rows 200ms ease-out,
+    visibility 200ms;
+}
+
+ui-accordion-item-content[data-state][hidden] {
+  grid-template-rows: 0fr;
+  visibility: hidden;
+}
+
+ui-accordion-item-content[data-state] > * {
+  min-height: 0;
+  transition: overflow 0s 200ms allow-discrete;
+}
+
+ui-accordion-item-content[data-state][hidden] > * {
+  overflow: hidden;
+  transition: none;
+}

@@ -1,9 +1,11 @@
-@aware(['id' => null, 'value' => null])
+@aware(['id' => null, 'value' => null, 'open' => false])
 
 <ui-accordion-item-content
   @if ($id) id="{{ $id }}-content-{{ $value }}" @endif
+  {{-- Rendered in its starting state, so the first paint matches what the accordion sets once it upgrades --}}
+  data-state="{{ $open ? 'open' : 'closed' }}"
+  @unless ($open) hidden @endunless
   wire:ignore.self
-  class="[&:not([hidden])]:grid *:min-h-0 data-[state=open]:animate-accordion-open data-[state=closed]:animate-accordion-close"
 >
   <div>
     <div {{ $attributes->merge(['class' => 'pb-2']) }}>

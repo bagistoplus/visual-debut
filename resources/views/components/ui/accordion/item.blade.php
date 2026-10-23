@@ -1,9 +1,10 @@
-@props(['value', 'title' => null])
+@props(['value', 'title' => null, 'open' => false])
 @aware(['id' => null])
 
 <ui-accordion-item
   value="{{ $value }}"
   @if ($id) id="{{ $id }}-item-{{ $value }}" @endif
+  data-state="{{ $open ? 'open' : 'closed' }}"
   wire:ignore.self
   {{ $attributes->merge(['class' => 'block border-b last:border-none']) }}
 >

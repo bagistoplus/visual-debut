@@ -2,11 +2,8 @@
   $iconWidth = ($block->settings->width ?? 20) . 'px';
 @endphp
 
-<div
-  {{ $block->editor_attributes }}
-  class="accordion-row border-b last:border-none"
->
-  <x-shop::ui.accordion.item :value="$block->id">
+<div {{ $block->editor_attributes }} class="accordion-row border-b last:border-none">
+  <x-shop::ui.accordion.item :value="$block->id" :open="$block->settings->open_by_default">
     <x-shop::ui.accordion.item-trigger class="cursor-pointer justify-between gap-4">
       <span class="flex items-center gap-2">
         @if ($block->settings->icon)
