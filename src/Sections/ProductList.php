@@ -6,6 +6,7 @@ use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
 use BagistoPlus\BasicBlocks\Tailwind;
 use BagistoPlus\Visual\Actions\GetProducts;
 use BagistoPlus\Visual\Blocks\BladeSection;
+use BagistoPlus\Visual\Facades\ThemeEditor;
 use BagistoPlus\Visual\Settings\Category;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\ColorScheme;
@@ -74,9 +75,9 @@ class ProductList extends BladeSection
             ->values();
     }
 
-    private function limit(): int
+    protected function limit(): int
     {
-        return max(1, (int) ($this->section->settings->nb_products ?? 4));
+        return max(1, $this->section->settings->nb_products);
     }
 
     /**
@@ -106,6 +107,8 @@ class ProductList extends BladeSection
 
         return [
             'products' => $products,
+            // A heading over an empty row tells the shopper nothing; the editor keeps its placeholders
+            'hideSection' => $products->isEmpty() && ! ThemeEditor::inDesignMode(),
             'widthClass' => $this->computeWidthClass(),
             'columnClasses' => $this->computeColumnClasses(),
             'gapClass' => $this->computeGapClass(),
