@@ -41,7 +41,7 @@
         @class([
             'focus:ring-primary inline-flex h-10 w-10 items-center justify-center rounded-(--btn-radius) focus:ring-2 focus:ring-offset-2',
             'bg-primary text-on-primary' => $displayMode === $mode,
-            'bg-surface-alt-600 text-on-surface-alt' => $displayMode !== $mode,
+            'bg-on-surface-alt/15 text-on-surface-alt' => $displayMode !== $mode,
         ])
       >
         @svg($icon, ['class' => 'h-5 w-5'])

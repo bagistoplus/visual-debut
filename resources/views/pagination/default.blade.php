@@ -14,7 +14,7 @@
   >
     <div class="flex flex-1 justify-between sm:hidden">
       @if ($paginator->onFirstPage())
-        <span class="text text-neutral relative inline-flex cursor-default items-center rounded-(--btn-radius) border bg-neutral-50 px-4 py-2 text-sm font-medium leading-5">
+        <span class="text text-neutral relative inline-flex cursor-default items-center rounded-(--btn-radius) border bg-on-background/5 px-4 py-2 text-sm font-medium leading-5">
           {!! __('pagination.previous') !!}
         </span>
       @else
@@ -24,7 +24,7 @@
           wire:click.prevent="previousPage('{{ $paginator->getPageName() }}')"
           x-on:click.prevent="{{ $scrollIntoViewJsSnippet }}"
           dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}"
-          class="bg-surface text-on-surface border-on-surface/8 focus:ring-primary focus:border-primary hover:border-primary active:bg-surface-100 active:text-on-background relative inline-flex items-center rounded-(--btn-radius) border px-4 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
+          class="bg-surface text-on-surface border-on-surface/8 focus:ring-primary focus:border-primary hover:border-primary active:bg-on-surface/5 active:text-on-background relative inline-flex items-center rounded-(--btn-radius) border px-4 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
         >
           {!! __('pagination.previous') !!}
         </button>
@@ -37,12 +37,12 @@
           wire:click.prevent="nextPage('{{ $paginator->getPageName() }}')"
           x-on:click.prevent="{{ $scrollIntoViewJsSnippet }}"
           dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.before"
-          class="bg-surface text-on-surface border-on-surface/8 focus:ring-primary focus:border-primary hover:border-primary active:bg-surface-100 active:text-on-background relative inline-flex items-center rounded-(--btn-radius) border px-4 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
+          class="bg-surface text-on-surface border-on-surface/8 focus:ring-primary focus:border-primary hover:border-primary active:bg-on-surface/5 active:text-on-background relative inline-flex items-center rounded-(--btn-radius) border px-4 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
         >
           {!! __('pagination.next') !!}
         </button>
       @else
-        <span class="relative inline-flex cursor-default items-center rounded-(--btn-radius) border bg-neutral-50 px-4 py-2 text-sm font-medium leading-5">
+        <span class="relative inline-flex cursor-default items-center rounded-(--btn-radius) border bg-on-background/5 px-4 py-2 text-sm font-medium leading-5">
           {!! __('pagination.next') !!}
         </span>
       @endif
@@ -88,7 +88,7 @@
               wire:click.prevent="previousPage('{{ $paginator->getPageName() }}')"
               x-on.prevent:click="{{ $scrollIntoViewJsSnippet }}"
               dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after"
-              class="text-on-background/70 hover:bg-surface-alt active:bg-surface-alt-600 relative inline-flex items-center rounded-(--btn-radius) px-2 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:z-10 focus:outline-none"
+              class="text-on-background/70 hover:bg-surface-alt active:bg-on-surface-alt/15 relative inline-flex items-center rounded-(--btn-radius) px-2 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:z-10 focus:outline-none"
               aria-label="{{ __('pagination.previous') }}"
             >
               <x-lucide-chevron-left class="h-4 w-4 rtl:rotate-180 rtl:transform" />
@@ -100,7 +100,7 @@
             {{-- "Three Dots" Separator --}}
             @if (is_string($element))
               <span aria-disabled="true">
-                <span class="relative -ml-px inline-flex cursor-default items-center bg-neutral-50 px-4 py-2 text-sm font-medium leading-5">{{ $element }}</span>
+                <span class="relative -ml-px inline-flex cursor-default items-center bg-on-background/5 px-4 py-2 text-sm font-medium leading-5">{{ $element }}</span>
               </span>
             @endif
 
@@ -119,7 +119,7 @@
                     wire:key="paginator-{{ $paginator->getPageName() }}-page{{ $page }}"
                     wire:click.prevent="gotoPage({{ $page }}, '{{ $paginator->getPageName() }}')"
                     x-on:click.prevent="{{ $scrollIntoViewJsSnippet }}"
-                    class="text-on-background/70 hover:bg-surface-alt active:bg-surface-alt-600 active:text-on-background relative inline-flex items-center rounded-(--btn-radius) px-4 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:z-10 focus:outline-none"
+                    class="text-on-background/70 hover:bg-surface-alt active:bg-on-surface-alt/15 active:text-on-background relative inline-flex items-center rounded-(--btn-radius) px-4 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:z-10 focus:outline-none"
                     aria-label="{{ __('Go to page :page', ['page' => $page]) }}"
                   >
                     {{ $page }}
@@ -138,7 +138,7 @@
               wire:click.prevent="nextPage('{{ $paginator->getPageName() }}')"
               x-on:click.prevent="{{ $scrollIntoViewJsSnippet }}"
               dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after"
-              class="text-on-background/70 hover:bg-surface-alt active:bg-surface-alt-600 relative inline-flex items-center rounded-(--btn-radius) px-2 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:z-10 focus:outline-none"
+              class="text-on-background/70 hover:bg-surface-alt active:bg-on-surface-alt/15 relative inline-flex items-center rounded-(--btn-radius) px-2 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:z-10 focus:outline-none"
               aria-label="{{ __('pagination.next') }}"
             >
               <x-lucide-chevron-right class="h-4 w-4 rtl:rotate-180 rtl:transform" />

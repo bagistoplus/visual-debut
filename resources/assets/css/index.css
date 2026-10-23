@@ -161,6 +161,12 @@
   scroll-snap-type: y proximity;
 }
 
+/* An opaque tint of a scheme color, mixed into the background, for surfaces that
+   float over content (toasts), where a translucent bg-<color>/10 would show through. */
+@utility tint-* {
+  background-color: color-mix(in oklab, --value(--color-*) 10%, var(--color-background));
+}
+
 /* Prose color tokens mapped onto the theme color scheme.
    CSS-first replacement for the legacy tailwind.config.js typography block.
    Kept in the utilities layer, after the plugin's own .prose rule, so the
@@ -172,17 +178,17 @@
     --tw-prose-lead: var(--color-on-background);
     --tw-prose-links: var(--color-primary);
     --tw-prose-bold: currentColor;
-    --tw-prose-bullets: var(--color-neutral-300);
-    --tw-prose-hr: var(--color-neutral-200);
+    --tw-prose-bullets: color-mix(in oklab, var(--color-on-background) 27%, transparent);
+    --tw-prose-hr: color-mix(in oklab, var(--color-on-background) 17%, transparent);
     --tw-prose-quotes: var(--color-on-background);
-    --tw-prose-quote-borders: var(--color-neutral-200);
-    --tw-prose-captions: var(--color-neutral-500);
-    --tw-prose-kbd: var(--color-neutral-900);
-    --tw-prose-kbd-shadows: var(--color-neutral-900);
-    --tw-prose-code: var(--color-neutral-900);
-    --tw-prose-pre-code: var(--color-neutral-200);
-    --tw-prose-pre-bg: var(--color-neutral-800);
-    --tw-prose-th-borders: var(--color-neutral-300);
-    --tw-prose-td-borders: var(--color-neutral-200);
+    --tw-prose-quote-borders: color-mix(in oklab, var(--color-on-background) 17%, transparent);
+    --tw-prose-captions: var(--color-neutral);
+    --tw-prose-kbd: var(--color-on-background);
+    --tw-prose-kbd-shadows: var(--color-on-background);
+    --tw-prose-code: var(--color-on-background);
+    --tw-prose-pre-code: color-mix(in oklab, var(--color-background) 85%, var(--color-on-background));
+    --tw-prose-pre-bg: color-mix(in oklab, var(--color-on-background) 90%, var(--color-background));
+    --tw-prose-th-borders: color-mix(in oklab, var(--color-on-background) 27%, transparent);
+    --tw-prose-td-borders: color-mix(in oklab, var(--color-on-background) 17%, transparent);
   }
 }

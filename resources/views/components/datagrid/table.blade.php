@@ -34,7 +34,7 @@
     </tr>
   </thead>
 
-  <tbody class="divide-surface-alt-600 sm:divide-y">
+  <tbody class="divide-on-background/10 sm:divide-y">
     <template x-if="haveRecords">
       <template x-for="(record, index) in available.records" x-bind:key="recordKey(record) ?? index">
         <tr x-bind:data-selected="isRecordSelected(record) ? 'true' : 'false'" class="hover:bg-surface max-sm:mb-4 max-sm:block max-sm:rounded max-sm:border">

@@ -78,7 +78,7 @@
         <div class="w-64">
           <div class="border-on-surface/8 border-b px-4 py-3">
             <div class="flex items-center gap-3">
-              <div class="bg-primary-50 flex h-10 w-10 items-center justify-center rounded-full">
+              <div class="bg-primary/5 flex h-10 w-10 items-center justify-center rounded-full">
                 <x-lucide-user class="text-primary h-5 w-5" />
               </div>
               <div>

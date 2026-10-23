@@ -5,7 +5,7 @@
 >
   <div class="w-full max-w-md text-center">
     <div class="mb-8">
-      <div class="bg-danger-50 mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full">
+      <div class="bg-danger/10 mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full">
         <x-lucide-file-question class="text-danger h-10 w-10" />
       </div>
       <h1 class="text-secondary mb-4 text-4xl">

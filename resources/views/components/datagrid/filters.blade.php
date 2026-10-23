@@ -149,7 +149,7 @@
             <template x-for="value in getAppliedColumnValues(column.index)" :key="value.toString()">
               <div class="bg-secondary text-on-secondary border-on-secondary/8 box inline-flex items-center gap-2 px-2 py-0.5 text-sm">
                 <span x-text="getColumnValueLabel(column, value)"></span>
-                <button class="hover:bg-secondary-400 rounded-full p-px" x-on:click="removeAppliedColumnValue(column.index, value)">
+                <button class="hover:bg-on-secondary/20 rounded-full p-px" x-on:click="removeAppliedColumnValue(column.index, value)">
                   <x-lucide-x class="h-3 w-3" />
                 </button>
               </div>

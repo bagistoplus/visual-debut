@@ -8,7 +8,7 @@
 
   $badge =
       [
-          'received' => 'bg-warning-100 text-warning-900',
+          'received' => 'bg-warning/10 text-on-background',
           'refunded' => 'bg-success/15 text-success',
           'declined' => 'bg-danger/15 text-danger',
       ][$status] ?? 'bg-surface text-on-surface';
@@ -153,7 +153,7 @@
               <p class="font-medium">@lang('visual-debut::shop.eu-withdrawal.confirmation.step-email')</p>
               <p @class([
                   'text-xs',
-                  'text-warning-900' => $emailFailed,
+                  'text-warning' => $emailFailed,
                   'opacity-70' => !$emailFailed,
               ])>
                 @if ($withdrawal->confirmation_sent_at)

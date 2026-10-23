@@ -52,7 +52,7 @@
 
     <div class="mb-8 text-center">
       <div class="relative inline-block">
-        <div class="h-32 w-32 overflow-hidden rounded-full bg-neutral-100">
+        <div class="h-32 w-32 overflow-hidden rounded-full bg-on-background/5">
           <template x-if="avatar">
             <img
               x-bind:src="avatar"

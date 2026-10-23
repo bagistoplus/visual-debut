@@ -12,8 +12,8 @@
     <label class="mb-1 block font-medium">@lang('visual-debut::blocks.product-variant-picker.placeholder.color')</label>
     <div class="flex gap-4">
       <button class="ring-primary h-8 w-8 rounded-full border ring-2 ring-offset-2" style="background-color: #000000"></button>
-      <button class="h-8 w-8 rounded-full border hover:ring-2 hover:ring-neutral-200 hover:ring-offset-2" style="background-color: #FFFFFF"></button>
-      <button class="h-8 w-8 rounded-full border hover:ring-2 hover:ring-neutral-200 hover:ring-offset-2" style="background-color: #EF4444"></button>
+      <button class="h-8 w-8 rounded-full border hover:ring-2 hover:ring-on-background/20 hover:ring-offset-2" style="background-color: #FFFFFF"></button>
+      <button class="h-8 w-8 rounded-full border hover:ring-2 hover:ring-on-background/20 hover:ring-offset-2" style="background-color: #EF4444"></button>
     </div>
   </div>
 </div>

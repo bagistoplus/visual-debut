@@ -60,10 +60,10 @@
             x-bind:class="{
                 'data-[state=open]:animate-slide-in-down data-[state=closed]:animate-slide-out-up': toast.placement.includes('top'),
                 'data-[state=open]:animate-slide-in-up data-[state=closed]:animate-slide-out-down': toast.placement.includes('bottom'),
-                'bg-info-100 border-info text-info-900': toast.type === 'info',
-                'bg-success-100 border-success text-success-900': toast.type === 'success',
-                'bg-warning-100 border-warning text-warning-900': toast.type === 'warning',
-                'bg-danger-100 border-danger text-danger-900': toast.type === 'error'
+                'tint-info border-info text-on-background': toast.type === 'info',
+                'tint-success border-success text-on-background': toast.type === 'success',
+                'tint-warning border-warning text-on-background': toast.type === 'warning',
+                'tint-danger border-danger text-on-background': toast.type === 'error'
             }"
           >
             <div class="flex items-start justify-between">
@@ -78,10 +78,10 @@
                 x-on:click="dismiss(toast.id)"
                 class="absolute right-2 top-2 cursor-pointer rounded-full p-1"
                 x-bind:class="{
-                    'bg-info-100 hover:bg-info-200': toast.type === 'info',
-                    'bg-success-100 hover:bg-success-200': toast.type === 'success',
-                    'bg-warning-100 hover:bg-warning-200': toast.type === 'warning',
-                    'bg-danger-100 hover:bg-danger-200': toast.type === 'error',
+                    'hover:bg-info/15': toast.type === 'info',
+                    'hover:bg-success/15': toast.type === 'success',
+                    'hover:bg-warning/15': toast.type === 'warning',
+                    'hover:bg-danger/15': toast.type === 'error',
                 }"
               >
                 <span class="sr-only">@lang('visual-debut::shop.close')</span>

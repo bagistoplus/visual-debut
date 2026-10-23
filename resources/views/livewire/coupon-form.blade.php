@@ -4,7 +4,7 @@
   </label>
 
   @if ($cart->coupon_code)
-    <div class="bg-success-100 box flex items-center justify-between border-none p-3">
+    <div class="bg-success/10 box flex items-center justify-between border-none p-3">
       <div>
         <span class="text-success text-sm font-medium">
           @lang('shop::app.checkout.coupon.applied'): {{ $cart->coupon_code }}

@@ -64,7 +64,7 @@
 
   <!-- Mobile View -->
   @isset($mobile)
-    <div class="divide-surface-alt-600 divide-y lg:hidden">
+    <div class="divide-on-background/10 divide-y lg:hidden">
       {{ $mobile }}
     </div>
   @endisset

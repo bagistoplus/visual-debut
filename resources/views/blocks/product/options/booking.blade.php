@@ -54,7 +54,7 @@
   @unless ($booking['cancellable'])
     <div
       role="note"
-      class="bg-warning-100 border-warning text-warning-900 flex items-start gap-3 rounded-(--box-radius) border p-4"
+      class="bg-warning/10 border-warning text-on-background flex items-start gap-3 rounded-(--box-radius) border p-4"
     >
       @svg('lucide-triangle-alert', ['class' => 'mt-0.5 h-5 w-5 shrink-0', 'aria-hidden' => true])
 

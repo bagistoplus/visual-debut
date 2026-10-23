@@ -44,7 +44,7 @@
 
 <div class="absolute bottom-0 left-0 right-0 border-t p-4">
   <a href="@auth('customer') {{ route('shop.customers.account.profile.index') }}  @else {{ route('shop.customer.session.create') }} @endauth"
-    class="hover:text-primary hover:bg-surface-600/50 flex items-center justify-between rounded-lg px-4 py-3 transition-colors"
+    class="hover:text-primary hover:bg-on-surface/5 flex items-center justify-between rounded-lg px-4 py-3 transition-colors"
   >
     <span class="flex items-center">
       <x-lucide-user class="mr-3 h-5 w-5" />

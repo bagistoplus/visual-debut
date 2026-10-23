@@ -85,7 +85,7 @@
   </div>
 
   @if (Booking::warnsAboutCancellation($order))
-    <div role="note" class="bg-warning-100 border-warning text-warning-900 rounded-(--box-radius) my-4 flex items-start gap-3 border p-4">
+    <div role="note" class="bg-warning/10 border-warning text-on-background rounded-(--box-radius) my-4 flex items-start gap-3 border p-4">
       @svg('lucide-triangle-alert', ['class' => 'mt-0.5 h-5 w-5 shrink-0', 'aria-hidden' => true])
 
       <div>

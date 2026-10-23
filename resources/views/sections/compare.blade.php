@@ -12,7 +12,7 @@
     <div class="container">
       @if ($items->isEmpty())
         <div class="text-center">
-          <h1 class="text-secondary-700 mb-4 text-3xl font-medium">
+          <h1 class="text-on-background mb-4 text-3xl font-medium">
             @lang('shop::app.compare.title')
           </h1>
           <p class="mb-8">
@@ -26,7 +26,7 @@
         </div>
       @else
         <div class="mb-8 flex items-center justify-between">
-          <h1 class="text-secondary-700 mb-4 text-3xl font-medium">
+          <h1 class="text-on-background mb-4 text-3xl font-medium">
             @lang('shop::app.compare.title')
           </h1>
           <button class="hover:text-primary transition-colors" x-on:click="removeAllItems()">

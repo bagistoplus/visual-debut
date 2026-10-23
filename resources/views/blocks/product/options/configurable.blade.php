@@ -46,8 +46,8 @@
               x-bind:class="[
                   'w-8 h-8 border rounded-full flex items-center justify-center relative',
                   selections[attribute.id] === option.id ? 'ring-2 ring-offset-2 ring-primary' :
-                  'hover:ring-2 hover:ring-offset-2 hover:ring-neutral-200',
-                  !option.isAvailable ? 'cursor-not-allowed ring-primary-300!' : ''
+                  'hover:ring-2 hover:ring-offset-2 hover:ring-on-background/20',
+                  !option.isAvailable ? 'cursor-not-allowed ring-primary/40!' : ''
               ]"
               x-bind:style="{ backgroundColor: option.swatch_value }"
               x-bind:title="option.label + (!option.isAvailable ? ' (' + @js(trans('visual-debut::shop.unavailable')) + ')' : '')"
@@ -68,7 +68,7 @@
               x-bind:class="[
                   'w-10 h-10 rounded-(--btn-radius) relative overflow-hidden',
                   selections[attribute.id] === option.id ? 'ring-2 ring-offset-2 ring-primary' :
-                  'hover:ring-2 hover:ring-offset-2 hover:ring-neutral-200',
+                  'hover:ring-2 hover:ring-offset-2 hover:ring-on-background/20',
                   !option.isAvailable ? 'cursor-not-allowed' : ''
               ]"
               x-bind:title="option.label + (!option.isAvailable ? ' (' + @js(trans('visual-debut::shop.unavailable')) + ')' : '')"
