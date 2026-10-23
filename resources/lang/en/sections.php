@@ -423,6 +423,29 @@ return [
         ],
     ],
 
+    'product-recommendations' => [
+        'name' => 'Product Recommendations',
+        'description' => 'Show the current product\'s related products or up-sells, as a grid or a carousel.',
+
+        'settings' => [
+            'source_label' => 'Source',
+            'source_info' => 'The products linked to this product in the admin. The section is hidden when there are none.',
+            'source_options' => [
+                'related' => 'Related products',
+                'up_sells' => 'Up-sells',
+            ],
+        ],
+
+        'presets' => [
+            'related' => [
+                'name' => 'Related Products',
+            ],
+            'up_sells' => [
+                'name' => 'Up-sells',
+            ],
+        ],
+    ],
+
     'product-information' => [
         'name' => 'Product Information',
         'description' => 'Display product media gallery and details in a flexible grid layout.',

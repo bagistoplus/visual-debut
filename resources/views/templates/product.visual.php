@@ -1,6 +1,7 @@
 <?php
 
 use BagistoPlus\BasicBlocks\Blocks\Basic\Divider;
+use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductDescription;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductShortDescription;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductTitle;
@@ -15,9 +16,13 @@ use BagistoPlus\VisualDebut\Blocks\Product\ProductOptions;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductPrice;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductQuantitySelector;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductRating;
+use BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay;
 use BagistoPlus\VisualDebut\Sections\Breadcrumbs;
 use BagistoPlus\VisualDebut\Sections\ProductInformation;
+use BagistoPlus\VisualDebut\Sections\ProductRecommendations;
 use BagistoPlus\VisualDebut\Sections\ProductReviews;
+
+use function BagistoPlus\VisualDebut\_t;
 
 return TemplateBuilder::make()
     ->section('breadcrumbs', Breadcrumbs::class)
@@ -87,4 +92,58 @@ return TemplateBuilder::make()
                 ]),
         ]))
     ->section('product-reviews', ProductReviews::class)
-    ->order(['breadcrumbs', 'product-information', 'product-reviews']);
+    ->section('related-products', ProductRecommendations::class, fn ($section) => $section
+        ->name(_t('sections.product-recommendations.presets.related.name'))
+        ->properties([
+            'source' => 'related',
+            'nb_products' => 8,
+            'layout_type' => 'carousel',
+        ])
+        ->blocks([
+            PresetBlock::make(Heading::class)
+                ->settings([
+                    'text' => trans('shop::app.products.view.related-product-title'),
+                    'heading_level' => 'h2',
+                    'width' => 'fill',
+                    'alignment' => 'center',
+                    'typography' => 'heading-2',
+                    'padding' => [
+                        'top' => 4,
+                        'right' => 0,
+                        'bottom' => 4,
+                        'left' => 0,
+                    ],
+                ]),
+            ProductCardWithOverlay::asChild()
+                ->id('static-product-card')
+                ->static()
+                ->repeated(),
+        ]))
+    ->section('up-sells', ProductRecommendations::class, fn ($section) => $section
+        ->name(_t('sections.product-recommendations.presets.up_sells.name'))
+        ->properties([
+            'source' => 'up_sells',
+            'nb_products' => 8,
+            'layout_type' => 'carousel',
+        ])
+        ->blocks([
+            PresetBlock::make(Heading::class)
+                ->settings([
+                    'text' => trans('shop::app.products.view.up-sell-title'),
+                    'heading_level' => 'h2',
+                    'width' => 'fill',
+                    'alignment' => 'center',
+                    'typography' => 'heading-2',
+                    'padding' => [
+                        'top' => 4,
+                        'right' => 0,
+                        'bottom' => 4,
+                        'left' => 0,
+                    ],
+                ]),
+            ProductCardWithOverlay::asChild()
+                ->id('static-product-card')
+                ->static()
+                ->repeated(),
+        ]))
+    ->order(['breadcrumbs', 'product-information', 'product-reviews', 'related-products', 'up-sells']);

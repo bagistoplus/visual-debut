@@ -490,6 +490,29 @@ return [
         ],
     ],
 
+    'product-recommendations' => [
+        'name' => 'Recommandations de produits',
+        'description' => 'Affiche les produits associés ou les ventes incitatives du produit en cours, en grille ou en carrousel.',
+
+        'settings' => [
+            'source_label' => 'Source',
+            'source_info' => 'Les produits liés à ce produit dans l\'administration. La section est masquée s\'il n\'y en a aucun.',
+            'source_options' => [
+                'related' => 'Produits associés',
+                'up_sells' => 'Ventes incitatives',
+            ],
+        ],
+
+        'presets' => [
+            'related' => [
+                'name' => 'Produits associés',
+            ],
+            'up_sells' => [
+                'name' => 'Ventes incitatives',
+            ],
+        ],
+    ],
+
     'product-information' => [
         'name' => 'Informations produit',
         'description' => 'Affiche la galerie média et les détails du produit dans une mise en page en grille flexible.',
