@@ -16,15 +16,15 @@
       x-bind:data-attribute-id="attribute.id"
       x-bind:data-swatch-type="attribute.swatch_type"
       x-bind:data-selected="selections[attribute.id]"
-      class="mb-4 max-w-72"
+      class="mb-4"
     >
-      <label class="mb-1 block font-medium" x-text="attribute.label">
+      <label class="mb-1 block font-semibold" x-text="attribute.label">
       </label>
 
       <template x-if="isDropdownSwatch(attribute.swatch_type)">
         <select
           x-bind:id="attribute.id"
-          class="py-1"
+          class="max-w-72 py-1"
           x-on:change="onOptionSelected(attribute.id, $event.target.value)"
         >
           <option x-text="@js(trans('visual-debut::shop.select-option', ['option' => '__OPTION__'])).replace('__OPTION__', attribute.label)"></option>
@@ -43,6 +43,7 @@
         <div class="flex gap-4">
           <template x-for="option in attribute.options">
             <button
+              type="button"
               x-bind:class="[
                   'w-8 h-8 border rounded-full flex items-center justify-center relative',
                   selections[attribute.id] === option.id ? 'ring-2 ring-offset-2 ring-primary' :
@@ -65,6 +66,7 @@
         <div class="flex gap-4">
           <template x-for="option in attribute.options">
             <button
+              type="button"
               x-bind:class="[
                   'w-10 h-10 rounded-(--btn-radius) relative overflow-hidden',
                   selections[attribute.id] === option.id ? 'ring-2 ring-offset-2 ring-primary' :
@@ -87,6 +89,7 @@
         <div class="flex flex-wrap gap-2">
           <template x-for="option in attribute.options" :key="option.id">
             <button
+              type="button"
               :class="[
                   'min-w-12 py-2 px-3 text-sm font-medium whitespace-nowrap rounded-(--btn-radius) relative',
                   selections[attribute.id] === option.id ? 'bg-primary text-on-primary' :
