@@ -37,9 +37,9 @@
     <div class="bg-surface text-on-surface border-on-surface/8 box w-80 py-4 shadow-lg">
       <!-- Header -->
       <div class="px-4">
-        <h3 class="mb-1 text-xl font-medium" {!! $block->liveUpdate()->text('heading')->toHtml() !!}>
+        <p class="mb-1 text-xl font-medium" {!! $block->liveUpdate()->text('heading')->toHtml() !!}>
           {{ $block->settings->heading }}
-        </h3>
+        </p>
         <div class="text-on-surface/80 prose prose-sm mb-4 text-sm" {!! $block->liveUpdate()->html('description')->toHtml() !!}>
           {!! $block->settings->description !!}
         </div>
