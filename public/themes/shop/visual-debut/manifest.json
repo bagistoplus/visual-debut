@@ -25,7 +25,7 @@
     "name": "root"
   },
   "node_modules/@bagistoplus/ui/src/accordion/index.ts": {
-    "file": "assets/accordion-DBoE-cTc.js",
+    "file": "assets/accordion-CMCU3d26.js",
     "name": "accordion",
     "src": "node_modules/@bagistoplus/ui/src/accordion/index.ts",
     "isDynamicEntry": true,
@@ -35,7 +35,7 @@
     ]
   },
   "node_modules/@bagistoplus/ui/src/carousel/index.ts": {
-    "file": "assets/carousel-B9r6ip54.js",
+    "file": "assets/carousel-DgHYRa17.js",
     "name": "carousel",
     "src": "node_modules/@bagistoplus/ui/src/carousel/index.ts",
     "isDynamicEntry": true,
@@ -46,7 +46,7 @@
     ]
   },
   "node_modules/@bagistoplus/ui/src/number-input/index.ts": {
-    "file": "assets/number-input-BJei8RPM.js",
+    "file": "assets/number-input-D1CVcJBH.js",
     "name": "number-input",
     "src": "node_modules/@bagistoplus/ui/src/number-input/index.ts",
     "isDynamicEntry": true,
@@ -58,7 +58,7 @@
     ]
   },
   "node_modules/@bagistoplus/ui/src/rating/index.ts": {
-    "file": "assets/rating-CFFcveZS.js",
+    "file": "assets/rating-BkE7LvLr.js",
     "name": "rating",
     "src": "node_modules/@bagistoplus/ui/src/rating/index.ts",
     "isDynamicEntry": true,
@@ -69,7 +69,7 @@
     ]
   },
   "node_modules/@bagistoplus/ui/src/slider/index.ts": {
-    "file": "assets/slider-sWTZbsCe.js",
+    "file": "assets/slider-Dnu3vTvV.js",
     "name": "slider",
     "src": "node_modules/@bagistoplus/ui/src/slider/index.ts",
     "isDynamicEntry": true,
@@ -82,7 +82,7 @@
     ]
   },
   "resources/assets/css/index.css": {
-    "file": "assets/index-BHksqIJR.css",
+    "file": "assets/index-8I2SwdKS.css",
     "name": "index",
     "names": [
       "index.css"
@@ -91,7 +91,7 @@
     "isEntry": true
   },
   "resources/assets/ts/shop/index.ts": {
-    "file": "assets/index-CiUgg98J.js",
+    "file": "assets/index-CRhjzuNU.js",
     "name": "index",
     "src": "resources/assets/ts/shop/index.ts",
     "isEntry": true,
