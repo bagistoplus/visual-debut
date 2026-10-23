@@ -1,13 +1,10 @@
 import { Livewire, Alpine } from '../../../../vendor/livewire/livewire/dist/livewire.esm';
-import '@bagistoplus/ui/accordion';
-import '@bagistoplus/ui/carousel';
+// The header and drawers use these on every page.
 import '@bagistoplus/ui/collapsible';
 import '@bagistoplus/ui/dialog';
 import '@bagistoplus/ui/navigation-menu';
-import '@bagistoplus/ui/number-input';
 import '@bagistoplus/ui/popover';
-import '@bagistoplus/ui/rating';
-import '@bagistoplus/ui/slider';
+import { loadComponentsOnDemand } from './plugins/lazy-components';
 
 import toasts, { toaster } from './components/ui/toasts';
 import confirm from './plugins/confirm';
@@ -52,5 +49,7 @@ Alpine.plugin([
   variantPicker,
   withdrawal,
 ]);
+
+loadComponentsOnDemand();
 
 Livewire.start();
