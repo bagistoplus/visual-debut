@@ -1,6 +1,88 @@
 {
+  "_form-C_DwKORP.js": {
+    "file": "assets/form-C_DwKORP.js",
+    "name": "form",
+    "imports": [
+      "_root-CHE-gCTx.js"
+    ]
+  },
+  "_memo-BNRUKGky.js": {
+    "file": "assets/memo-BNRUKGky.js",
+    "name": "memo",
+    "imports": [
+      "_root-CHE-gCTx.js"
+    ]
+  },
+  "_resize-observer-yF2BYWfw.js": {
+    "file": "assets/resize-observer-yF2BYWfw.js",
+    "name": "resize-observer",
+    "imports": [
+      "_root-CHE-gCTx.js"
+    ]
+  },
+  "_root-CHE-gCTx.js": {
+    "file": "assets/root-CHE-gCTx.js",
+    "name": "root"
+  },
+  "node_modules/@bagistoplus/ui/src/accordion/index.ts": {
+    "file": "assets/accordion-DBoE-cTc.js",
+    "name": "accordion",
+    "src": "node_modules/@bagistoplus/ui/src/accordion/index.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/assets/ts/shop/index.ts",
+      "_root-CHE-gCTx.js"
+    ]
+  },
+  "node_modules/@bagistoplus/ui/src/carousel/index.ts": {
+    "file": "assets/carousel-B9r6ip54.js",
+    "name": "carousel",
+    "src": "node_modules/@bagistoplus/ui/src/carousel/index.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/assets/ts/shop/index.ts",
+      "_root-CHE-gCTx.js",
+      "_resize-observer-yF2BYWfw.js"
+    ]
+  },
+  "node_modules/@bagistoplus/ui/src/number-input/index.ts": {
+    "file": "assets/number-input-BJei8RPM.js",
+    "name": "number-input",
+    "src": "node_modules/@bagistoplus/ui/src/number-input/index.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/assets/ts/shop/index.ts",
+      "_root-CHE-gCTx.js",
+      "_memo-BNRUKGky.js",
+      "_form-C_DwKORP.js"
+    ]
+  },
+  "node_modules/@bagistoplus/ui/src/rating/index.ts": {
+    "file": "assets/rating-CFFcveZS.js",
+    "name": "rating",
+    "src": "node_modules/@bagistoplus/ui/src/rating/index.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/assets/ts/shop/index.ts",
+      "_root-CHE-gCTx.js",
+      "_form-C_DwKORP.js"
+    ]
+  },
+  "node_modules/@bagistoplus/ui/src/slider/index.ts": {
+    "file": "assets/slider-sWTZbsCe.js",
+    "name": "slider",
+    "src": "node_modules/@bagistoplus/ui/src/slider/index.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/assets/ts/shop/index.ts",
+      "_root-CHE-gCTx.js",
+      "_memo-BNRUKGky.js",
+      "_form-C_DwKORP.js",
+      "_resize-observer-yF2BYWfw.js"
+    ]
+  },
   "resources/assets/css/index.css": {
-    "file": "assets/index-B2PHe2lb.css",
+    "file": "assets/index-BYugu2cO.css",
     "name": "index",
     "names": [
       "index.css"
@@ -9,9 +91,19 @@
     "isEntry": true
   },
   "resources/assets/ts/shop/index.ts": {
-    "file": "assets/index-DtRHthWv.js",
+    "file": "assets/index-CiUgg98J.js",
     "name": "index",
     "src": "resources/assets/ts/shop/index.ts",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_root-CHE-gCTx.js"
+    ],
+    "dynamicImports": [
+      "node_modules/@bagistoplus/ui/src/accordion/index.ts",
+      "node_modules/@bagistoplus/ui/src/carousel/index.ts",
+      "node_modules/@bagistoplus/ui/src/number-input/index.ts",
+      "node_modules/@bagistoplus/ui/src/rating/index.ts",
+      "node_modules/@bagistoplus/ui/src/slider/index.ts"
+    ]
   }
 }
