@@ -47,6 +47,10 @@ return [
         'continue-shopping' => 'متابعة التسوق',
         'preview' => 'معاينة السلة',
         'loading' => 'جارٍ تحميل سلتك',
+        'excl-tax' => 'بدون ضريبة:',
+        'tax-included' => 'مشمولة',
+        'items-discount' => 'خصم المنتجات',
+        'shipping-discount' => 'خصم الشحن',
     ],
 
     'checkout' => [

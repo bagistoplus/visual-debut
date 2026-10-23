@@ -47,6 +47,10 @@ return [
         'continue-shopping' => 'Continuer vos achats',
         'preview' => 'Aperçu du panier',
         'loading' => 'Chargement de votre panier',
+        'excl-tax' => 'HT :',
+        'tax-included' => 'Incluse',
+        'items-discount' => 'Remise sur les articles',
+        'shipping-discount' => 'Remise sur la livraison',
     ],
 
     'checkout' => [

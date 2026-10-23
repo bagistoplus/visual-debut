@@ -47,6 +47,10 @@ return [
         'continue-shopping' => 'खरीदारी जारी रखें',
         'preview' => 'कार्ट पूर्वावलोकन',
         'loading' => 'आपका कार्ट लोड हो रहा है',
+        'excl-tax' => 'कर रहित:',
+        'tax-included' => 'शामिल',
+        'items-discount' => 'उत्पादों पर छूट',
+        'shipping-discount' => 'शिपिंग पर छूट',
     ],
 
     'checkout' => [

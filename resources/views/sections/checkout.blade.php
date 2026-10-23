@@ -61,7 +61,16 @@
                     @endif
 
                     <p class="text-sm">@lang('visual-debut::shop.order.quantity'): {{ $item->quantity }}</p>
-                    <p class="text-primary text-sm">{{ $item->formatted_price }}</p>
+                    @if ($this->shouldDisplayCartPricesIncludingTax())
+                      <p class="text-primary text-sm">{{ $item->formatted_price_incl_tax }}</p>
+                    @elseif ($this->shouldDisplayCartBothPrices())
+                      <p class="text-primary text-sm">{{ $item->formatted_price_incl_tax }}</p>
+                      <p class="text-on-surface/70 text-xs italic">
+                        @lang('visual-debut::shop.cart.excl-tax') {{ $item->formatted_price }}
+                      </p>
+                    @else
+                      <p class="text-primary text-sm">{{ $item->formatted_price }}</p>
+                    @endif
                   </div>
                 </div>
               @endforeach

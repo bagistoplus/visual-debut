@@ -47,6 +47,10 @@ return [
         'continue-shopping' => 'Continue Shopping',
         'preview' => 'Cart preview',
         'loading' => 'Loading your cart',
+        'excl-tax' => 'Excl. Tax:',
+        'tax-included' => 'Included',
+        'items-discount' => 'Items discount',
+        'shipping-discount' => 'Shipping discount',
     ],
 
     'checkout' => [
