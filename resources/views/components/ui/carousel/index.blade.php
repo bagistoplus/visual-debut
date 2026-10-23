@@ -27,20 +27,18 @@
 
 <ui-carousel
   id="{{ $id }}"
+  translations-prev-trigger="{{ trans('visual-debut::shop.previous') }}"
   slides-per-page="{{ $slidesPerPage }}"
   slides-per-move="1"
   spacing="{{ $spacing }}"
   @if ($config['loop'] ?? false) loop @endif
-  @if ($autoplay)
-    autoplay
+  @if ($autoplay) autoplay
     autoplay-delay="{{ $config['autoplay-delay'] ?? 3000 }}"
     x-data
     x-on:mouseenter="$el.api?.pause()"
     x-on:mouseleave="$el.api?.play()"
     x-on:focusin="$el.api?.pause()"
-    x-on:focusout="$el.contains($event.relatedTarget) || $el.api?.play()"
-  @endif
-  translations-prev-trigger="{{ trans('visual-debut::shop.previous') }}"
+    x-on:focusout="$el.contains($event.relatedTarget) || $el.api?.play()" @endif
   translations-next-trigger="{{ trans('visual-debut::shop.next') }}"
   style="--slide-spacing: {{ $spacing }}; {{ $perPageStyle }}"
   {{ $attributes->merge(['class' => 'relative block [--slides-per-page:var(--per-page,1)] tablet:[--slides-per-page:var(--per-page-tablet,var(--per-page,1))] mobile:[--slides-per-page:var(--per-page-mobile,var(--per-page-tablet,var(--per-page,1)))]']) }}
@@ -51,19 +49,19 @@
 
   @if ($arrows)
     <ui-carousel-prev-trigger delegate>
-      <button class="{{ $navClass }} inset-s-4 disabled:opacity-10">
+      <button class="{{ $navClass }} inset-s-4 disabled:invisible" @disabled(!($config['loop'] ?? false))>
         @svg($arrowIcon ? 'lucide-arrow-left' : 'lucide-chevron-left', ['class' => 'h-6 w-6 rtl:rotate-180'])
       </button>
     </ui-carousel-prev-trigger>
     <ui-carousel-next-trigger delegate>
-      <button class="{{ $navClass }} inset-e-4 disabled:opacity-30">
+      <button class="{{ $navClass }} inset-e-4 disabled:invisible">
         @svg($arrowIcon ? 'lucide-arrow-right' : 'lucide-chevron-right', ['class' => 'h-6 w-6 rtl:rotate-180'])
       </button>
     </ui-carousel-next-trigger>
   @endif
 
   @if ($dots)
-    <ui-carousel-indicator-group id="{{ $id }}-dots" class="mt-4 flex justify-center gap-2">
+    <ui-carousel-indicator-group id="{{ $id }}-dots" class="mt-4 flex min-h-3 justify-center gap-2 [&:not(:has(ui-carousel-indicator~ui-carousel-indicator))]:invisible">
       <template>
         <ui-carousel-indicator delegate>
           <button class="border-on-surface data-current:bg-on-surface h-3 w-3 rounded-full border-2 bg-transparent transition-colors"></button>
