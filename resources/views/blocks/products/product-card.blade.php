@@ -9,7 +9,7 @@
 >
   @children
   @if ($product && $product['url_key'])
-    <a class="text-on-background before:z-5 mb-1 line-clamp-2 text-base font-medium transition-colors before:absolute before:inset-0" href="{{ url($product['url_key']) }}">
+    <a class="text-on-background before:z-5 mb-1 line-clamp-2 text-base font-medium transition-colors before:absolute before:inset-0" href="{{ url($product['url_key']) }}" aria-label="{{ $product['name'] }}">
     </a>
   @endif
 </div>

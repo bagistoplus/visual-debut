@@ -95,6 +95,7 @@ class MinimalFooter extends Preset
                     ->settings([
                         'url' => '#',
                         'text' => '',
+                        'aria_label' => 'Facebook',
                         'icon' => 'lucide-facebook',
                         'style' => 'outline',
                         'color' => 'secondary',
@@ -106,6 +107,7 @@ class MinimalFooter extends Preset
                     ->settings([
                         'url' => '#',
                         'text' => '',
+                        'aria_label' => 'Instagram',
                         'icon' => 'lucide-instagram',
                         'style' => 'outline',
                         'color' => 'secondary',
@@ -117,6 +119,7 @@ class MinimalFooter extends Preset
                     ->settings([
                         'url' => '#',
                         'text' => '',
+                        'aria_label' => 'X',
                         'icon' => 'ri-twitter-x-line',
                         'style' => 'outline',
                         'color' => 'secondary',

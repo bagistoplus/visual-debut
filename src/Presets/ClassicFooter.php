@@ -192,8 +192,9 @@ class ClassicFooter extends Preset
             ->blocks([
                 PresetBlock::make(Button::class)
                     ->settings([
-                        'url' => 'https://web.faceboook.com',
+                        'url' => 'https://facebook.com',
                         'text' => '',
+                        'aria_label' => 'Facebook',
                         'icon' => 'lucide-facebook',
                         'style' => 'outline',
                         'color' => 'secondary',
@@ -205,6 +206,7 @@ class ClassicFooter extends Preset
                     ->settings([
                         'url' => 'https://instagram.com',
                         'text' => '',
+                        'aria_label' => 'Instagram',
                         'icon' => 'lucide-instagram',
                         'style' => 'outline',
                         'color' => 'secondary',
@@ -216,6 +218,7 @@ class ClassicFooter extends Preset
                     ->settings([
                         'url' => 'https://x.com',
                         'text' => '',
+                        'aria_label' => 'X',
                         'icon' => 'ri-twitter-x-line',
                         'style' => 'outline',
                         'color' => 'secondary',
