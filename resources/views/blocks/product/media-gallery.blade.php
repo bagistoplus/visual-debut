@@ -15,6 +15,9 @@
   $scrollButtonPosition = $isEnd ? 'end-7' : 'start-7';
 
   $mainImageMargin = $isEnd ? 'md:me-24' : 'md:ms-24';
+
+  // The first image is in the server HTML, so the browser finds the page's largest image without waiting for Alpine.
+  $firstImage = ($medias[0]['type'] ?? null) === 'image' ? $medias[0]['large_image_url'] : null;
 @endphp
 
 <div {{ $block->editor_attributes }} class="{{ $positionClass }}">
@@ -27,6 +30,7 @@
     <button
       type="button"
       x-show="hasOverflowAbove"
+      x-cloak
       x-on:click="scrollThumbs('up')"
       class="{{ $scrollButtonPosition }} absolute top-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-black/70 text-white"
     >
@@ -37,6 +41,7 @@
     <button
       type="button"
       x-show="hasOverflowBelow"
+      x-cloak
       x-on:click="scrollThumbs('down')"
       class="{{ $scrollButtonPosition }} absolute bottom-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-black/70 text-white"
     >
@@ -46,7 +51,7 @@
     <div
       x-ref="thumbs"
       x-on:scroll="checkOverflow()"
-      class="{{ $thumbsClasses }}"
+      @class([$thumbsClasses, 'min-h-20 md:min-h-0' => count($medias) > 1])
     >
       <template x-for="(media, index) in medias" :key="index">
         <button
@@ -63,7 +68,7 @@
           <template x-if="media.type !== 'videos'">
             <img
               x-bind:src="media.small_image_url"
-              x-bind:alt="media.small_image_url"
+              alt="{{ $productName }}"
               class="h-full w-full object-cover object-center"
             >
           </template>
@@ -84,15 +89,16 @@
     </div>
 
     <div class="{{ $mainImageMargin }} flex aspect-square h-auto flex-1 items-center justify-center overflow-hidden">
-      <template x-if="selectedMedia.type !== 'videos'">
-        <img
-          :src="selectedMedia.large_image_url"
-          x-bind:alt="selectedMedia.large_image_url"
-          class="aspect-square h-full w-full rounded-(--box-radius) object-cover object-center"
-          fetchpriority="high"
-        >
-      </template>
-      <template x-if="selectedMedia.type === 'videos'">
+      <img
+        @if ($firstImage) src="{{ $firstImage }}" @endif
+        x-bind:src="selectedMedia?.large_image_url"
+        x-show="selectedMedia && selectedMedia.type !== 'videos'"
+        @unless ($firstImage) style="display: none" @endunless
+        alt="{{ $productName }}"
+        class="aspect-square h-full w-full rounded-(--box-radius) object-cover object-center"
+        fetchpriority="high"
+      >
+      <template x-if="selectedMedia?.type === 'videos'">
         <video
           controls
           autoplay

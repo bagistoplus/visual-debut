@@ -2,7 +2,7 @@
 
 namespace BagistoPlus\VisualDebut\Blocks\Product;
 
-use BagistoPlus\Visual\Blocks\BladeBlock;
+use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
@@ -10,7 +10,7 @@ use BagistoPlus\Visual\Settings\Select;
 
 use function BagistoPlus\VisualDebut\_t;
 
-class ProductMediaGallery extends BladeBlock
+class ProductMediaGallery extends SimpleBlock
 {
     protected static string $type = '@visual-debut/product-media-gallery';
 
@@ -35,6 +35,7 @@ class ProductMediaGallery extends BladeBlock
                 'images' => [],
                 'videos' => [],
                 'thumbnailPosition' => 'start',
+                'productName' => '',
             ];
         }
 
@@ -52,6 +53,7 @@ class ProductMediaGallery extends BladeBlock
             'videos' => $videos,
             'medias' => [...$images, ...$videos],
             'thumbnailPosition' => $thumbnailPosition,
+            'productName' => (string) $product->name,
         ];
     }
 
