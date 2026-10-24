@@ -1,4 +1,12 @@
-<title>@yield('page_title', config('app.name'))</title>
+@php
+  $channel = core()->getCurrentChannel();
+  $homeTitle = $channel->home_seo['meta_title'] ?? null;
+
+  // A page without its own title gets the store's: the home page's SEO title, otherwise the channel name
+  $defaultTitle = request()->routeIs('shop.home.index') && filled($homeTitle) ? $homeTitle : ($channel->name ?: config('app.name'));
+@endphp
+
+<title>@yield('page_title', $defaultTitle)</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -21,7 +29,7 @@
 <link
   rel="icon"
   sizes="16x16"
-  href="{{ core()->getCurrentChannel()->favicon_url ?? asset('themes/shop/visual-debut/images/favicon.ico') }}"
+  href="{{ $theme->settings->favicon ?: $channel->favicon_url ?? asset('themes/shop/visual-debut/images/favicon.ico') }}"
 />
 
 @bagistoVite(['resources/assets/css/index.css', 'resources/assets/ts/shop/index.ts'])
