@@ -68,7 +68,7 @@
       required
       type="text"
       name="address[]"
-      :value="collect(old('vat_id', $addresses))->first()"
+      :value="old('address.0', $addresses[0] ?? '')"
       :label="trans('shop::app.customers.account.addresses.create.street-address')"
       :placeholder="trans('shop::app.customers.account.addresses.create.street-address')"
     />
@@ -79,7 +79,7 @@
         <x-shop::ui.form.input
           type="text"
           name="address[{{ $i }}]"
-          :value="old('address[{{ $i }}]', $addresses[$i] ?? '')"
+          :value="old('address.' . $i, $addresses[$i] ?? '')"
           :placeholder="trans('shop::app.customers.account.addresses.create.street-address') . ' ' . $i + 1"
         />
       @endfor
