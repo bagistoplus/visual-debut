@@ -161,7 +161,7 @@
   <div class="mt-4 space-y-4">
     <x-shop::ui.form.input
       required
-      type="text"
+      type="tel"
       name="phone"
       :value="old('phone', optional($address)->phone)"
       :label="trans('shop::app.customers.account.addresses.create.phone')"
