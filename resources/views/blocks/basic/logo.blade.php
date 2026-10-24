@@ -4,7 +4,7 @@
   $logoText = $block->settings->logo_text ?: config('app.name');
 @endphp
 
-<div {{ $block->editor_attributes }} {{ $block->settings->color_scheme?->attributes() }} class="flex items-center">
+<div {{ $block->editor_attributes }} {{ $block->settings->color_scheme?->attributes() }} class="flex items-center" data-header-logo>
   <a href="{{ url('/') }}" class="truncate text-2xl font-medium">
     @if ($logoDesktop)
       <span class="sr-only">{{ $logoText }}</span>
@@ -12,14 +12,14 @@
       <img
         src="{{ $logoDesktop }}"
         alt="{{ $logoText }}"
-        @class(['h-8 w-auto', 'hidden sm:inline' => $logoMobile])
+        @class(['h-8 w-auto object-contain', 'hidden sm:inline' => $logoMobile])
       />
 
       @if ($logoMobile)
         <img
           src="{{ $logoMobile }}"
           alt="{{ $logoText }}"
-          class="h-8 w-auto sm:hidden"
+          class="h-8 w-auto object-contain sm:hidden"
         />
       @endif
     @elseif ($logo = core()->getCurrentChannel()->logo_url)
@@ -27,7 +27,7 @@
       <img
         src="{{ $logo }}"
         alt="{{ $logoText }}"
-        class="h-8 w-auto"
+        class="h-8 w-auto object-contain"
       />
     @else
       <span>

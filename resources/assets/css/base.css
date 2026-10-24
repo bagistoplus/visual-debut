@@ -39,3 +39,12 @@ ui-accordion-item-content[data-state][hidden] > * {
   overflow: hidden;
   transition: none;
 }
+
+/*
+ * The header's menu group fills the row, and flex items shrink in proportion to
+ * their size, so the logo used to give up width the menu had spare. A near-zero
+ * factor lets the menu shrink first; the logo only shrinks once it cannot.
+ */
+.group:has(> [data-header-logo]) {
+  flex-shrink: 0.01;
+}
