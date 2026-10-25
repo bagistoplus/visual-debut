@@ -491,12 +491,6 @@ return [
         'name' => 'Product Reviews',
         'description' => 'Shows recent customer reviews for the current product.',
 
-        'settings' => [
-            'rating_summary_label' => 'Show Rating Summary',
-            'reviews_label' => 'Show Individual Reviews',
-            'limit_label' => 'Number of Reviews to Show',
-        ],
-
         'average_rating' => 'Average Rating',
         'no_reviews' => 'No reviews yet.',
     ],

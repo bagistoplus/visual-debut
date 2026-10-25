@@ -556,11 +556,6 @@ return [
     'product-reviews' => [
         'name' => 'Avis sur le produit',
         'description' => 'Affiche les avis récents des clients pour le produit actuel.',
-        'settings' => [
-            'rating_summary_label' => 'Afficher le résumé des évaluations',
-            'reviews_label' => 'Afficher les avis individuels',
-            'limit_label' => 'Nombre d\'avis à afficher',
-        ],
         'average_rating' => 'Note moyenne',
         'no_reviews' => 'Pas encore d\'avis.',
     ],

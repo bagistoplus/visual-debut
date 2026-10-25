@@ -5,7 +5,6 @@ namespace BagistoPlus\VisualDebut\Blocks\Product;
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Product as ProductSetting;
-use BagistoPlus\Visual\Settings\Select;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -30,13 +29,6 @@ class ProductBuyButtons extends SimpleBlock
     {
         return [
             ProductSetting::make('product', _t('blocks.common.product_label')),
-
-            Select::make('position', _t('blocks.product-buy-buttons.settings.position_label'))
-                ->options([
-                    'right' => _t('blocks.product-buy-buttons.settings.position_right'),
-                    'under_gallery' => _t('blocks.product-buy-buttons.settings.position_under_gallery'),
-                ])
-                ->default('right'),
 
             Checkbox::make('enable_buy_now', _t('blocks.product-buy-buttons.settings.enable_buy_now_label'))
                 ->info(_t('blocks.product-buy-buttons.settings.enable_buy_now_info'))

@@ -201,37 +201,19 @@ return [
 
     'product-price' => [
         'name' => 'Product Price',
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
     ],
 
     'product-rating' => [
         'name' => 'Product Rating',
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
     ],
 
     'product-quantity-selector' => [
         'name' => 'Quantity Selector',
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
     ],
 
     'product-buy-buttons' => [
         'name' => 'Buy Buttons',
         'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
             'enable_buy_now_label' => 'Enable Buy Now Button',
             'enable_buy_now_info' => 'Show a separate "Buy Now" button for quick checkout',
         ],
@@ -334,11 +316,6 @@ return [
 
     'product-variant-picker' => [
         'name' => 'Variant Picker',
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
         'placeholder' => [
             'size' => 'Size',
             'color' => 'Color',
@@ -347,11 +324,6 @@ return [
 
     'product-grouped-options' => [
         'name' => 'Grouped Options',
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
         'placeholder' => [
             'product-item' => 'Product Item',
             'sample-product' => 'Sample Product + :price',
@@ -361,11 +333,6 @@ return [
 
     'product-bundle-options' => [
         'name' => 'Bundle Options',
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
         'placeholder' => [
             'choose-processor' => 'Choose a Processor',
             'processor-i5' => 'Intel Core i5 + :price',
@@ -379,11 +346,6 @@ return [
 
     'product-downloadable-options' => [
         'name' => 'Downloadable Options',
-        'settings' => [
-            'position_label' => 'Position',
-            'position_right' => 'Right Column',
-            'position_under_gallery' => 'Under Gallery',
-        ],
         'placeholder' => [
             'samples' => 'Samples',
             'download-sample' => 'Download Sample :index',

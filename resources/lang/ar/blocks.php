@@ -207,37 +207,19 @@ return [
 
     'product-price' => [
         'name' => 'سعر المنتج',
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
     ],
 
     'product-rating' => [
         'name' => 'تقييم المنتج',
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
     ],
 
     'product-quantity-selector' => [
         'name' => 'محدد الكمية',
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
     ],
 
     'product-buy-buttons' => [
         'name' => 'أزرار الشراء',
         'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
             'enable_buy_now_label' => 'تمكين زر اشترِ الآن',
             'enable_buy_now_info' => 'إظهار زر "اشترِ الآن" منفصل للدفع السريع',
         ],
@@ -340,11 +322,6 @@ return [
 
     'product-variant-picker' => [
         'name' => 'محدد المتغيرات',
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
         'placeholder' => [
             'size' => 'المقاس',
             'color' => 'اللون',
@@ -353,11 +330,6 @@ return [
 
     'product-grouped-options' => [
         'name' => 'خيارات المنتج المجمع',
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
         'placeholder' => [
             'product-item' => 'عنصر منتج',
             'sample-product' => 'منتج تجريبي + :price',
@@ -367,11 +339,6 @@ return [
 
     'product-bundle-options' => [
         'name' => 'خيارات الحزمة',
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
         'placeholder' => [
             'choose-processor' => 'اختر المعالج',
             'processor-i5' => 'Intel Core i5 + :price',
@@ -385,11 +352,6 @@ return [
 
     'product-downloadable-options' => [
         'name' => 'خيارات التنزيل',
-        'settings' => [
-            'position_label' => 'الموضع',
-            'position_right' => 'العمود الأيمن',
-            'position_under_gallery' => 'تحت المعرض',
-        ],
         'placeholder' => [
             'samples' => 'نماذج',
             'download-sample' => 'تنزيل النموذج :index',

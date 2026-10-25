@@ -207,37 +207,19 @@ return [
 
     'product-price' => [
         'name' => 'उत्पाद मूल्य',
-        'settings' => [
-            'position_label' => 'स्थिति',
-            'position_right' => 'दाएं स्तंभ',
-            'position_under_gallery' => 'गैलरी के नीचे',
-        ],
     ],
 
     'product-rating' => [
         'name' => 'उत्पाद रेटिंग',
-        'settings' => [
-            'position_label' => 'स्थिति',
-            'position_right' => 'दाएं स्तंभ',
-            'position_under_gallery' => 'गैलरी के नीचे',
-        ],
     ],
 
     'product-quantity-selector' => [
         'name' => 'मात्रा चयनकर्ता',
-        'settings' => [
-            'position_label' => 'स्थिति',
-            'position_right' => 'दाएं स्तंभ',
-            'position_under_gallery' => 'गैलरी के नीचे',
-        ],
     ],
 
     'product-buy-buttons' => [
         'name' => 'खरीद बटन',
         'settings' => [
-            'position_label' => 'स्थिति',
-            'position_right' => 'दाएं स्तंभ',
-            'position_under_gallery' => 'गैलरी के नीचे',
             'enable_buy_now_label' => 'अभी खरीदें बटन सक्षम करें',
             'enable_buy_now_info' => 'त्वरित चेकआउट के लिए एक अलग "अभी खरीदें" बटन दिखाएं',
         ],
@@ -340,11 +322,6 @@ return [
 
     'product-variant-picker' => [
         'name' => 'वेरिएंट चयनकर्ता',
-        'settings' => [
-            'position_label' => 'स्थिति',
-            'position_right' => 'दाएं स्तंभ',
-            'position_under_gallery' => 'गैलरी के नीचे',
-        ],
         'placeholder' => [
             'size' => 'आकार',
             'color' => 'रंग',
@@ -353,11 +330,6 @@ return [
 
     'product-grouped-options' => [
         'name' => 'ग्रुप्ड विकल्प',
-        'settings' => [
-            'position_label' => 'स्थिति',
-            'position_right' => 'दाएं स्तंभ',
-            'position_under_gallery' => 'गैलरी के नीचे',
-        ],
         'placeholder' => [
             'product-item' => 'उत्पाद आइटम',
             'sample-product' => 'नमूना उत्पाद + :price',
@@ -367,11 +339,6 @@ return [
 
     'product-bundle-options' => [
         'name' => 'बंडल विकल्प',
-        'settings' => [
-            'position_label' => 'स्थिति',
-            'position_right' => 'दाएं स्तंभ',
-            'position_under_gallery' => 'गैलरी के नीचे',
-        ],
         'placeholder' => [
             'choose-processor' => 'प्रोसेसर चुनें',
             'processor-i5' => 'Intel Core i5 + :price',
@@ -385,11 +352,6 @@ return [
 
     'product-downloadable-options' => [
         'name' => 'डाउनलोड विकल्प',
-        'settings' => [
-            'position_label' => 'स्थिति',
-            'position_right' => 'दाएं स्तंभ',
-            'position_under_gallery' => 'गैलरी के नीचे',
-        ],
         'placeholder' => [
             'samples' => 'नमूने',
             'download-sample' => 'नमूना :index डाउनलोड करें',

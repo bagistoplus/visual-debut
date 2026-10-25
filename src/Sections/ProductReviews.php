@@ -5,8 +5,6 @@ namespace BagistoPlus\VisualDebut\Sections;
 use BagistoPlus\Visual\Actions\GetProductReviews;
 use BagistoPlus\Visual\Actions\StoreProductReview;
 use BagistoPlus\Visual\Blocks\LivewireSection;
-use BagistoPlus\Visual\Settings\Checkbox;
-use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\VisualDebut\Support\HasColorSchemeSetting;
 use Livewire\Attributes\Computed;
 use Livewire\WithFileUploads;
@@ -166,25 +164,7 @@ class ProductReviews extends LivewireSection
     public static function settings(): array
     {
         return [
-            Checkbox::make('show_rating_summary', _t('sections.product-reviews.settings.rating_summary_label'))
-                ->default(true),
-
-            Checkbox::make('show_reviews', _t('sections.product-reviews.settings.reviews_label'))
-                ->default(true),
-
-            Range::make('limit', _t('sections.product-reviews.settings.limit_label'))
-                ->min(1)->max(20)->step(1)
-                ->default(5),
-
             static::colorSchemeSetting(),
         ];
     }
-
-    protected static array $default = [
-        'settings' => [
-            'show_rating_summary' => true,
-            'show_reviews' => true,
-            'limit' => 5,
-        ],
-    ];
 }

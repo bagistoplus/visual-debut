@@ -4,7 +4,6 @@ namespace BagistoPlus\VisualDebut\Blocks\Product;
 
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\Product as ProductSetting;
-use BagistoPlus\Visual\Settings\Select;
 
 use function BagistoPlus\VisualDebut\_t;
 
@@ -35,13 +34,6 @@ class ProductVariantPicker extends SimpleBlock
     {
         return [
             ProductSetting::make('product', _t('blocks.common.product_label')),
-
-            Select::make('position', _t('blocks.product-variant-picker.settings.position_label'))
-                ->options([
-                    'right' => _t('blocks.product-variant-picker.settings.position_right'),
-                    'under_gallery' => _t('blocks.product-variant-picker.settings.position_under_gallery'),
-                ])
-                ->default('right'),
         ];
     }
 
