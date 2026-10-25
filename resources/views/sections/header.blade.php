@@ -6,7 +6,7 @@
 
 <div
   {{ $section->editor_attributes }}
-  {{ $theme->settings->default_scheme?->attributes() }}
+  {{ ($section->settings->color_scheme ?? $theme->settings->default_scheme)?->attributes() }}
   @if ($section->settings->sticky) data-sticky @endif
   class="w-full border-b"
 >
