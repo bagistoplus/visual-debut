@@ -21,6 +21,9 @@
       'ratings' => ['average' => $reviewsTotal > 0 ? $reviewHelper->getAverageRating($product) : 0],
       'reviews' => ['total' => $reviewsTotal],
   ];
+
+  // Two cards share a row on phones, too narrow for three large buttons
+  $actionSize = ['_default' => 'lg', 'mobile' => 'md'];
 @endphp
 
 @if ($mode === 'grid')
@@ -39,7 +42,7 @@
           <x-shop::product.action-button
             action="cart"
             :product-id="$card['id']"
-            size="lg"
+            :size="$actionSize"
             circle
           />
 
@@ -49,7 +52,7 @@
                 action="wishlist"
                 :product-id="$card['id']"
                 :in-wishlist="$card['is_wishlist']"
-                size="lg"
+                :size="$actionSize"
                 circle
               />
             @endif
@@ -58,7 +61,7 @@
             <x-shop::product.action-button
               action="compare"
               :product-id="$card['id']"
-              size="lg"
+              :size="$actionSize"
               circle
             />
           @endif

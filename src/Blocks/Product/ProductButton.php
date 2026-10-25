@@ -53,7 +53,8 @@ class ProductButton extends SimpleBlock
                     'lg' => _t('blocks.product-button.settings.size_options.lg'),
                     'xl' => _t('blocks.product-button.settings.size_options.xl'),
                 ])
-                ->default('md'),
+                ->default('md')
+                ->responsive(),
 
             Select::make('color', _t('blocks.product-button.settings.color_label'))
                 ->options([

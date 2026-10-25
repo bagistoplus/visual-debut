@@ -75,7 +75,7 @@ class ProductCardWithOverlay extends Preset
                                     ->properties([
                                         'action' => 'cart',
                                         'variant' => 'solid',
-                                        'size' => 'xl',
+                                        'size' => ['_default' => 'xl', 'mobile' => 'md'],
                                         'color' => 'primary',
                                         'circle' => true,
                                     ]),
@@ -86,7 +86,7 @@ class ProductCardWithOverlay extends Preset
                                     ->properties([
                                         'action' => 'wishlist',
                                         'variant' => 'solid',
-                                        'size' => 'xl',
+                                        'size' => ['_default' => 'xl', 'mobile' => 'md'],
                                         'color' => 'secondary',
                                         'circle' => true,
                                     ]),
@@ -97,7 +97,7 @@ class ProductCardWithOverlay extends Preset
                                     ->properties([
                                         'action' => 'compare',
                                         'variant' => 'soft',
-                                        'size' => 'xl',
+                                        'size' => ['_default' => 'xl', 'mobile' => 'md'],
                                         'color' => 'primary',
                                         'circle' => true,
                                     ]),
