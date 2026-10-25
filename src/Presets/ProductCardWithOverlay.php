@@ -125,6 +125,8 @@ class ProductCardWithOverlay extends Preset
                                 'width' => 'fit',
                                 'alignment' => 'left',
                                 'typography' => 'body',
+                                'truncate' => true,
+                                'max_lines' => 2,
                             ]),
 
                         // Price and Labels Container
