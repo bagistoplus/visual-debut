@@ -2,6 +2,7 @@
 
 use BagistoPlus\BasicBlocks\Blocks\Basic\Divider;
 use BagistoPlus\BasicBlocks\Blocks\Basic\Heading;
+use BagistoPlus\BasicBlocks\Blocks\Group;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductDescription;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductShortDescription;
 use BagistoPlus\BasicBlocks\Blocks\Product\ProductTitle;
@@ -9,6 +10,7 @@ use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\Visual\Support\TemplateBuilder;
 use BagistoPlus\VisualDebut\Blocks\Accordion;
 use BagistoPlus\VisualDebut\Blocks\AccordionRow;
+use BagistoPlus\VisualDebut\Blocks\Product\ProductButton;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductBuyButtons;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductDetails;
 use BagistoPlus\VisualDebut\Blocks\Product\ProductMediaGallery;
@@ -69,6 +71,31 @@ return TemplateBuilder::make()
                             'show_compare_price' => true,
                         ]),
                     PresetBlock::make(ProductRating::class)->id('rating'),
+                    PresetBlock::make(Group::class)
+                        ->id('product-actions')
+                        ->settings([
+                            'layout_type' => 'flex',
+                            'flex_direction' => 'row',
+                            'flex_gap' => 4,
+                        ])
+                        ->blocks([
+                            PresetBlock::make(ProductButton::class)
+                                ->id('wishlist')
+                                ->settings([
+                                    'action' => 'wishlist',
+                                    'variant' => 'link',
+                                    'color' => 'secondary',
+                                    'size' => 'sm',
+                                ]),
+                            PresetBlock::make(ProductButton::class)
+                                ->id('compare')
+                                ->settings([
+                                    'action' => 'compare',
+                                    'variant' => 'link',
+                                    'color' => 'secondary',
+                                    'size' => 'sm',
+                                ]),
+                        ]),
                     PresetBlock::make(Divider::class)->id('separator-1'),
                     PresetBlock::make(ProductShortDescription::class)->id('short-description'),
                     PresetBlock::make(ProductOptions::class)->id('options'),

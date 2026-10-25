@@ -73,7 +73,6 @@
   aria-label="{{ $label }}"
   {{ $attributes->merge($alpineAttributes, escape: false) }}
 >
-  @if ($action === 'cart')
-    {{ $label }}
-  @endif
+  {{-- A circle or square button shows the icon alone and keeps the label for screen readers --}}
+  {{ $label }}
 </x-basic-blocks::button>

@@ -36,6 +36,7 @@ class ProductDetails extends BladeBlock
         ProductShortDescription::class,
         ProductQuantitySelector::class,
         ProductBuyButtons::class,
+        ProductButton::class,
         ProductDescription::class,
         ProductOptions::class,
 
