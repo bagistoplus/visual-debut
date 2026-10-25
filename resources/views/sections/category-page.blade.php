@@ -63,27 +63,26 @@
             @include('shop::partials.no-products')
           @elseif ($displayMode === 'grid')
             @php
-              $mobileClass = ['1' => 'grid-cols-1', '2' => 'grid-cols-2'][$section->settings->columns_mobile] ?? 'grid-cols-1';
-              $tabletClass =
-                  [
-                      '1' => 'lg:grid-cols-1',
-                      '2' => 'lg:grid-cols-2',
-                      '3' => 'lg:grid-cols-3',
-                      '4' => 'lg:grid-cols-4',
-                  ][$section->settings->columns_tablet] ?? 'lg:grid-cols-3';
-
+              // Desktop starts at xl: below 1280px the container is 1024px wide and the filters take 256px of it,
+              // so a desktop count of 4 or more would squeeze the cards. Tablet covers 640px to 1279px.
               $desktopClass =
                   [
-                      '1' => 'xl:grid-cols-1',
-                      '2' => 'xl:grid-cols-2',
-                      '3' => 'xl:grid-cols-3',
-                      '4' => 'xl:grid-cols-4',
-                      '5' => 'xl:grid-cols-5',
-                      '6' => 'xl:grid-cols-6',
-                  ][$section->settings->columns] ?? 'xl:grid-cols-3';
+                      2 => 'xl:grid-cols-2',
+                      3 => 'xl:grid-cols-3',
+                      4 => 'xl:grid-cols-4',
+                      5 => 'xl:grid-cols-5',
+                      6 => 'xl:grid-cols-6',
+                  ][$section->settings->columns ?? 4] ?? 'xl:grid-cols-4';
+
+              $columnClasses = sprintf(
+                  'grid-cols-%d mobile:grid-cols-%d %s',
+                  $section->settings->columns_tablet ?? 3,
+                  $section->settings->columns_mobile ?? 2,
+                  $desktopClass,
+              );
             @endphp
 
-            <div class="{{ $mobileClass }} {{ $tabletClass }} {{ $desktopClass }} grid gap-6">
+            <div class="{{ $columnClasses }} grid gap-6">
               @foreach ($products as $product)
                 <x-shop::product.card
                   wire:key="{{ 'product-' . $product->id }}"
