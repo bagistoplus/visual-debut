@@ -2,6 +2,33 @@
 
 All notable changes to `Bagisto Visual Debut` will be documented in this file.
 
+# [2.0.0-alpha.14](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.13...v2.0.0-alpha.14) (2026-10-25)
+
+
+### Bug Fixes
+
+* **accordion:** open the row being edited and follow Open by default live in the editor ([66ed027](https://github.com/bagistoplus/visual-debut/commit/66ed02737e99a95677b852259ec58399f5ff52ca))
+* **account:** keep the typed street lines when the address form returns with errors ([466d037](https://github.com/bagistoplus/visual-debut/commit/466d0375ee6095566e126f0d4b93587b479eae51))
+* **account:** use the phone keypad for the address phone field ([6e14268](https://github.com/bagistoplus/visual-debut/commit/6e1426829fdafa01d7fcd5201a116b2e0cd6010e))
+* **announcement-bar:** keep long text clear of the close button ([9720301](https://github.com/bagistoplus/visual-debut/commit/9720301b8253a1e99db864619acfcac56705c5fd))
+* **carousel:** make cards in a carousel as tall as the tallest one, like the grid ([9e9baf6](https://github.com/bagistoplus/visual-debut/commit/9e9baf6307cf49a696c14e8c07b2afd130c45816))
+* **carousel:** put the arrows under the cards on phones, at a smaller size ([0b01e79](https://github.com/bagistoplus/visual-debut/commit/0b01e7981c6c731159013867eb0e94fa5535aaba))
+* **category-page:** apply the tablet column count on tablets ([fa013fd](https://github.com/bagistoplus/visual-debut/commit/fa013fd3e347b2874e3237eb384cbb843c8078c8))
+* **header:** apply the header's color scheme setting ([f6574bc](https://github.com/bagistoplus/visual-debut/commit/f6574bc2131b888076316606653b2c5ceed876ca))
+* **header:** keep image logos in proportion and shrink them only when the menu cannot ([0bffcf8](https://github.com/bagistoplus/visual-debut/commit/0bffcf8827eb86152ff1e2de9f109195dc8a884a))
+* **header:** remove the space before the logo on desktop ([7a0e22d](https://github.com/bagistoplus/visual-debut/commit/7a0e22d8bef69fa70d1da2dae890ed82d7d056ca))
+* **head:** use the theme's favicon setting and the store's title when a page sets none ([6d049a8](https://github.com/bagistoplus/visual-debut/commit/6d049a85065b106d9166c063a6e71a9efc8b4bdf))
+* **product-card:** wrap the price and labels row so badges are not cut off on phones ([6c29d45](https://github.com/bagistoplus/visual-debut/commit/6c29d456ed449fc5fb57353a31598938268b5f2e))
+* **product:** open the description row by default as the template intends ([4a8b1b0](https://github.com/bagistoplus/visual-debut/commit/4a8b1b0f6ca51ba2fc7f1efac217c0db42193b5b))
+
+
+### Features
+
+* **media-gallery:** apply the gallery settings and open images in a fullscreen viewer ([58d6cdb](https://github.com/bagistoplus/visual-debut/commit/58d6cdb87779528d84fd7008dee64fd08ba83942))
+* **product-card:** show the product name on at most 2 lines ([8d28542](https://github.com/bagistoplus/visual-debut/commit/8d28542e099d867a4d07dc5e5d735b940c333662))
+* **product-card:** smaller action buttons on phones ([eb2e125](https://github.com/bagistoplus/visual-debut/commit/eb2e125118e7d99fc63ff3d23c4eca6ff97c7dc7))
+* **product:** add wishlist and compare links to the product page ([83456db](https://github.com/bagistoplus/visual-debut/commit/83456db103e39ef54deca6c905bc9e1d9d5bc993))
+
 # [2.0.0-alpha.13](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.12...v2.0.0-alpha.13) (2026-10-23)
 
 
