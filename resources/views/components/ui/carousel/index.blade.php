@@ -12,7 +12,7 @@
   $slidesPerPage = $config['slides-per-page'] ?? '1';
   $spacing = $config['spacing'] ?? '0px';
   $autoplay = $config['autoplay'] ?? false;
-  $navClass = "bg-surface text-on-surface hover:bg-surface-alt {$navShapeClass} absolute top-1/2 z-10 -translate-y-1/2 cursor-pointer p-2 shadow-md transition-colors disabled:cursor-not-allowed";
+  $navClass = "bg-surface text-on-surface hover:bg-surface-alt {$navShapeClass} absolute top-1/2 z-10 -translate-y-1/2 mobile:static mobile:translate-y-0 cursor-pointer p-2 mobile:p-1.5 shadow-md transition-colors disabled:cursor-not-allowed";
 
   // Read by the static classes below until the bundle runs, so the row has the right width at any viewport
   $perPageStyle = collect([
@@ -47,26 +47,36 @@
     {{ $slot }}
   </ui-carousel-item-group>
 
-  @if ($arrows)
-    <ui-carousel-prev-trigger delegate>
-      <button class="{{ $navClass }} inset-s-4 disabled:invisible" @disabled(!($config['loop'] ?? false))>
-        @svg($arrowIcon ? 'lucide-arrow-left' : 'lucide-chevron-left', ['class' => 'h-6 w-6 rtl:rotate-180'])
-      </button>
-    </ui-carousel-prev-trigger>
-    <ui-carousel-next-trigger delegate>
-      <button class="{{ $navClass }} inset-e-4 disabled:invisible">
-        @svg($arrowIcon ? 'lucide-arrow-right' : 'lucide-chevron-right', ['class' => 'h-6 w-6 rtl:rotate-180'])
-      </button>
-    </ui-carousel-next-trigger>
-  @endif
+  {{-- On phones the arrows join the dots in a row under the cards, where they cover nothing. From 640px the row dissolves and the arrows sit over the cards --}}
+  @if ($arrows || $dots)
+    <div class="mobile:mt-4 mobile:flex mobile:items-center mobile:justify-center mobile:gap-3 contents">
+      @if ($arrows)
+        <ui-carousel-prev-trigger delegate>
+          <button class="{{ $navClass }} inset-s-4 disabled:invisible" @disabled(!($config['loop'] ?? false))>
+            @svg($arrowIcon ? 'lucide-arrow-left' : 'lucide-chevron-left', ['class' => 'h-6 w-6 mobile:h-5 mobile:w-5 rtl:rotate-180'])
+          </button>
+        </ui-carousel-prev-trigger>
+      @endif
 
-  @if ($dots)
-    <ui-carousel-indicator-group id="{{ $id }}-dots" class="mt-4 flex min-h-3 justify-center gap-2 [&:not(:has(ui-carousel-indicator~ui-carousel-indicator))]:invisible">
-      <template>
-        <ui-carousel-indicator delegate>
-          <button class="border-on-surface data-current:bg-on-surface h-3 w-3 rounded-full border-2 bg-transparent transition-colors"></button>
-        </ui-carousel-indicator>
-      </template>
-    </ui-carousel-indicator-group>
+      @if ($dots)
+        <ui-carousel-indicator-group id="{{ $id }}-dots"
+          class="mobile:mt-0 mt-4 flex min-h-3 justify-center gap-2 [&:not(:has(ui-carousel-indicator~ui-carousel-indicator))]:invisible"
+        >
+          <template>
+            <ui-carousel-indicator delegate>
+              <button class="border-on-surface data-current:bg-on-surface h-3 w-3 rounded-full border-2 bg-transparent transition-colors"></button>
+            </ui-carousel-indicator>
+          </template>
+        </ui-carousel-indicator-group>
+      @endif
+
+      @if ($arrows)
+        <ui-carousel-next-trigger delegate>
+          <button class="{{ $navClass }} inset-e-4 disabled:invisible">
+            @svg($arrowIcon ? 'lucide-arrow-right' : 'lucide-chevron-right', ['class' => 'h-6 w-6 mobile:h-5 mobile:w-5 rtl:rotate-180'])
+          </button>
+        </ui-carousel-next-trigger>
+      @endif
+    </div>
   @endif
 </ui-carousel>
