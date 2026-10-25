@@ -11,21 +11,25 @@
 <div
   {{ $section->editor_attributes }}
   {{ $section->settings->scheme?->attributes() }}
-  class="{{ $classes }} relative truncate px-4 py-2 text-center text-sm"
+  {{-- Padding on both sides keeps the text centered and clear of the close button --}}
+  class="{{ $classes }} relative px-10 py-2 text-center text-sm"
   x-data="{ show: true }"
   x-show="show"
 >
   @if ($section->settings->link)
+    {{-- The text truncates on its own so the arrow stays visible --}}
     <a
       href="{{ $section->settings->link }}"
-      class="hover:underline"
-      {{ $section->liveUpdate()->text('text')->attr('link', 'href') }}
+      class="group flex min-w-0 items-center justify-center gap-1"
+      {{ $section->liveUpdate()->attr('link', 'href') }}
     >
-      {{ $section->settings->text }}
+      <span class="truncate group-hover:underline" {{ $section->liveUpdate()->text('text') }}>
+        {{ $section->settings->text }}
+      </span>
+      @svg('lucide-arrow-right', ['class' => 'w-4 h-4 shrink-0 rtl:rotate-180', 'aria-hidden' => true])
     </a>
-    @svg('lucide-arrow-right', ['class' => 'w-4 h-4 inline-block', 'aria-hidden' => true])
   @else
-    <p class="announcement-text" {{ $section->liveUpdate()->text('text') }}>
+    <p class="announcement-text truncate" {{ $section->liveUpdate()->text('text') }}>
       {{ $section->settings->text }}
     </p>
   @endif
