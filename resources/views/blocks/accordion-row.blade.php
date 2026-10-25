@@ -11,7 +11,7 @@
             @svg($block->settings->icon, ['class' => 'size-full'])
           </span>
         @endif
-        <span class="font-medium" {{ $block->liveUpdate()->text('heading') }}>
+        <span class="font-semibold" {{ $block->liveUpdate()->text('heading') }}>
           {{ $block->settings->heading }}
         </span>
       </span>
