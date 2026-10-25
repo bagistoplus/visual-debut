@@ -16,6 +16,7 @@
         id="mobile-menu-drawer"
         placement="start"
         :title="trans('visual-debut::shop.menu')"
+        class="lg:-ms-4"
       >
         <x-slot:trigger>
           <button class="-ml-2 p-2 transition-colors lg:hidden" aria-label="{{ trans('visual-debut::shop.open-menu') }}">
