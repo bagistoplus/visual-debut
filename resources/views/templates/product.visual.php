@@ -82,7 +82,7 @@ return TemplateBuilder::make()
                                 ->id('description-row')
                                 ->settings([
                                     'heading' => 'Description',
-                                    'open' => true,
+                                    'open_by_default' => true,
                                 ])
                                 ->blocks([
                                     PresetBlock::make(ProductDescription::class)
