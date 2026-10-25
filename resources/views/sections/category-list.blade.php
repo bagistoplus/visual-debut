@@ -15,10 +15,12 @@
           :nav-shape-class="$navShapeClass"
           :arrow-icon="$useArrowIcon"
         >
+          {{-- The first two cards are one row on phones, where a tile is the largest image: their images load with the page --}}
           @foreach ($categoryItems as $category)
             <x-shop::ui.carousel.item>
               @visualBlock('@visual-debut/category-card', 'static-category-card', [
                   'category' => $category,
+                  'priority' => $loop->index < 2,
               ])
             </x-shop::ui.carousel.item>
           @endforeach
@@ -47,6 +49,7 @@
           @foreach ($categoryItems as $category)
             @visualBlock('@visual-debut/category-card', 'static-category-card', [
                 'category' => $category,
+                'priority' => $loop->index < 2,
             ])
           @endforeach
 
