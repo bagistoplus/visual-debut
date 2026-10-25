@@ -1,0 +1,1 @@
+import{v as e}from"./root-BnOPkZaZ.js";function t(t,n,r){let i=[],a;return o=>{let s=t(o);return s.length!==i.length||s.some((t,n)=>!e(i[n],t))?(i=s,a=n(s,o),r?.onChange?.(a),a):a}}export{t};

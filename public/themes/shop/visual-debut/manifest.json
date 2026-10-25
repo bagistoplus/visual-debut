@@ -1,88 +1,98 @@
 {
-  "_form-C_DwKORP.js": {
-    "file": "assets/form-C_DwKORP.js",
+  "_form-D1m705dA.js": {
+    "file": "assets/form-D1m705dA.js",
     "name": "form",
     "imports": [
-      "_root-CHE-gCTx.js"
+      "_root-BnOPkZaZ.js"
     ]
   },
-  "_memo-BNRUKGky.js": {
-    "file": "assets/memo-BNRUKGky.js",
+  "_memo-CxmjJu8p.js": {
+    "file": "assets/memo-CxmjJu8p.js",
     "name": "memo",
     "imports": [
-      "_root-CHE-gCTx.js"
+      "_root-BnOPkZaZ.js"
     ]
   },
-  "_resize-observer-yF2BYWfw.js": {
-    "file": "assets/resize-observer-yF2BYWfw.js",
+  "_resize-observer-CORIXYU6.js": {
+    "file": "assets/resize-observer-CORIXYU6.js",
     "name": "resize-observer",
     "imports": [
-      "_root-CHE-gCTx.js"
+      "resources/assets/ts/shop/index.ts",
+      "_root-BnOPkZaZ.js"
     ]
   },
-  "_root-CHE-gCTx.js": {
-    "file": "assets/root-CHE-gCTx.js",
+  "_root-BnOPkZaZ.js": {
+    "file": "assets/root-BnOPkZaZ.js",
     "name": "root"
   },
   "node_modules/@bagistoplus/ui/src/accordion/index.ts": {
-    "file": "assets/accordion-CMCU3d26.js",
+    "file": "assets/accordion-BSiZqJbz.js",
     "name": "accordion",
     "src": "node_modules/@bagistoplus/ui/src/accordion/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "resources/assets/ts/shop/index.ts",
-      "_root-CHE-gCTx.js"
+      "_root-BnOPkZaZ.js"
     ]
   },
   "node_modules/@bagistoplus/ui/src/carousel/index.ts": {
-    "file": "assets/carousel-DgHYRa17.js",
+    "file": "assets/carousel-Bug0V1k6.js",
     "name": "carousel",
     "src": "node_modules/@bagistoplus/ui/src/carousel/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "resources/assets/ts/shop/index.ts",
-      "_root-CHE-gCTx.js",
-      "_resize-observer-yF2BYWfw.js"
+      "_root-BnOPkZaZ.js",
+      "_resize-observer-CORIXYU6.js"
+    ]
+  },
+  "node_modules/@bagistoplus/ui/src/image-zoom/index.ts": {
+    "file": "assets/image-zoom-DDNpDQKT.js",
+    "name": "image-zoom",
+    "src": "node_modules/@bagistoplus/ui/src/image-zoom/index.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "_root-BnOPkZaZ.js"
     ]
   },
   "node_modules/@bagistoplus/ui/src/number-input/index.ts": {
-    "file": "assets/number-input-D1CVcJBH.js",
+    "file": "assets/number-input-CjJBIjpI.js",
     "name": "number-input",
     "src": "node_modules/@bagistoplus/ui/src/number-input/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "resources/assets/ts/shop/index.ts",
-      "_root-CHE-gCTx.js",
-      "_memo-BNRUKGky.js",
-      "_form-C_DwKORP.js"
+      "_root-BnOPkZaZ.js",
+      "_memo-CxmjJu8p.js",
+      "_form-D1m705dA.js"
     ]
   },
   "node_modules/@bagistoplus/ui/src/rating/index.ts": {
-    "file": "assets/rating-BkE7LvLr.js",
+    "file": "assets/rating-Cwi7WW-S.js",
     "name": "rating",
     "src": "node_modules/@bagistoplus/ui/src/rating/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "resources/assets/ts/shop/index.ts",
-      "_root-CHE-gCTx.js",
-      "_form-C_DwKORP.js"
+      "_root-BnOPkZaZ.js",
+      "_form-D1m705dA.js"
     ]
   },
   "node_modules/@bagistoplus/ui/src/slider/index.ts": {
-    "file": "assets/slider-Dnu3vTvV.js",
+    "file": "assets/slider-Dn2b1Syp.js",
     "name": "slider",
     "src": "node_modules/@bagistoplus/ui/src/slider/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "resources/assets/ts/shop/index.ts",
-      "_root-CHE-gCTx.js",
-      "_memo-BNRUKGky.js",
-      "_form-C_DwKORP.js",
-      "_resize-observer-yF2BYWfw.js"
+      "_root-BnOPkZaZ.js",
+      "_memo-CxmjJu8p.js",
+      "_form-D1m705dA.js",
+      "_resize-observer-CORIXYU6.js"
     ]
   },
   "resources/assets/css/index.css": {
-    "file": "assets/index-pHOcmxtL.css",
+    "file": "assets/index-BMSnZYBi.css",
     "name": "index",
     "names": [
       "index.css"
@@ -91,16 +101,17 @@
     "isEntry": true
   },
   "resources/assets/ts/shop/index.ts": {
-    "file": "assets/index-CRhjzuNU.js",
+    "file": "assets/index-DonDNpXo.js",
     "name": "index",
     "src": "resources/assets/ts/shop/index.ts",
     "isEntry": true,
     "imports": [
-      "_root-CHE-gCTx.js"
+      "_root-BnOPkZaZ.js"
     ],
     "dynamicImports": [
       "node_modules/@bagistoplus/ui/src/accordion/index.ts",
       "node_modules/@bagistoplus/ui/src/carousel/index.ts",
+      "node_modules/@bagistoplus/ui/src/image-zoom/index.ts",
       "node_modules/@bagistoplus/ui/src/number-input/index.ts",
       "node_modules/@bagistoplus/ui/src/rating/index.ts",
       "node_modules/@bagistoplus/ui/src/slider/index.ts"
