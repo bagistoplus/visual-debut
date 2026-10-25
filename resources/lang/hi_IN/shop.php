@@ -38,6 +38,11 @@ return [
     'unavailable' => 'उपलब्ध नहीं',
     'breadcrumbs' => 'ब्रेडक्रंब',
     'review-image' => 'समीक्षा छवि',
+    'media-viewer' => [
+        'open' => 'छवि को पूर्ण स्क्रीन में देखें',
+        'title' => 'उत्पाद मीडिया',
+        'thumbnail' => 'आइटम :index दिखाएँ',
+    ],
     'enter-code' => 'कोड दर्ज करें',
     'enter-your-email' => 'अपना ईमेल दर्ज करें',
     'add-media' => 'मीडिया जोड़ें',

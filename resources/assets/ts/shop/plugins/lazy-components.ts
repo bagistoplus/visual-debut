@@ -4,6 +4,7 @@
 const components: Record<string, () => Promise<unknown>> = {
   'ui-accordion': () => import('@bagistoplus/ui/accordion'),
   'ui-carousel': () => import('@bagistoplus/ui/carousel'),
+  'ui-image-zoom': () => import('@bagistoplus/ui/image-zoom'),
   'ui-number-input': () => import('@bagistoplus/ui/number-input'),
   'ui-rating': () => import('@bagistoplus/ui/rating'),
   'ui-slider': () => import('@bagistoplus/ui/slider'),

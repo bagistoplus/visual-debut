@@ -155,21 +155,6 @@ return [
     'product-media-gallery' => [
         'name' => 'معرض وسائط المنتج',
         'settings' => [
-            'presentation_header' => 'العرض',
-
-            'media_presentation_label' => 'عرض الوسائط',
-            'media_presentation_options' => [
-                'carousel' => 'دوار',
-                'grid' => 'شبكة',
-            ],
-            'media_presentation_info' => 'اختر كيفية عرض صور ومقاطع الفيديو للمنتج',
-
-            'grid_columns_label' => 'أعمدة الشبكة',
-            'grid_columns_info' => 'عدد الأعمدة عند استخدام عرض الشبكة',
-
-            'image_gap_label' => 'فجوة الصورة',
-            'image_gap_info' => 'المسافة بين الصور في عرض الشبكة',
-
             'image_settings_header' => 'إعدادات الصورة',
 
             'aspect_ratio_label' => 'نسبة العرض إلى الارتفاع',
@@ -188,8 +173,6 @@ return [
                 'contain' => 'احتواء',
                 'cover' => 'تغطية',
             ],
-
-            'media_radius_label' => 'نصف قطر زاوية الوسائط',
 
             'zoom_label' => 'تمكين التكبير',
             'zoom_info' => 'السماح للمستخدمين بالتكبير في صور المنتج',

@@ -44,8 +44,8 @@ return TemplateBuilder::make()
                 ->id('static-product-media')
                 ->static()
                 ->settings([
-                    'media_presentation' => 'carousel',
-                    'aspect_ratio' => 'adapt',
+                    'aspect_ratio' => 'square',
+                    'media_fit' => 'cover',
                     'zoom' => true,
                     'sticky' => true,
                 ]),

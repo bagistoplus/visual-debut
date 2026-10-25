@@ -38,6 +38,11 @@ return [
     'unavailable' => 'Unavailable',
     'breadcrumbs' => 'Breadcrumbs',
     'review-image' => 'Review Image',
+    'media-viewer' => [
+        'open' => 'View image fullscreen',
+        'title' => 'Product media',
+        'thumbnail' => 'Show item :index',
+    ],
     'enter-code' => 'Enter code',
     'enter-your-email' => 'Enter your email',
     'add-media' => 'Add media',

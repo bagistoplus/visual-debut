@@ -155,21 +155,6 @@ return [
     'product-media-gallery' => [
         'name' => 'Galerie média du produit',
         'settings' => [
-            'presentation_header' => 'Présentation',
-
-            'media_presentation_label' => 'Présentation des médias',
-            'media_presentation_options' => [
-                'carousel' => 'Carrousel',
-                'grid' => 'Grille',
-            ],
-            'media_presentation_info' => 'Choisissez comment afficher les images et vidéos du produit',
-
-            'grid_columns_label' => 'Colonnes de la grille',
-            'grid_columns_info' => 'Nombre de colonnes lors de l\'utilisation de la présentation en grille',
-
-            'image_gap_label' => 'Écart entre les images',
-            'image_gap_info' => 'Espace entre les images en vue grille',
-
             'image_settings_header' => 'Paramètres d\'image',
 
             'aspect_ratio_label' => 'Ratio d\'aspect',
@@ -188,8 +173,6 @@ return [
                 'contain' => 'Contenir',
                 'cover' => 'Couvrir',
             ],
-
-            'media_radius_label' => 'Rayon des coins des médias',
 
             'zoom_label' => 'Activer le zoom',
             'zoom_info' => 'Permettre aux utilisateurs de zoomer sur les images des produits',

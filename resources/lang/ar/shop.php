@@ -38,6 +38,11 @@ return [
     'unavailable' => 'غير متوفر',
     'breadcrumbs' => 'مسار التنقل',
     'review-image' => 'صورة المراجعة',
+    'media-viewer' => [
+        'open' => 'عرض الصورة بملء الشاشة',
+        'title' => 'وسائط المنتج',
+        'thumbnail' => 'عرض العنصر :index',
+    ],
     'enter-code' => 'أدخل الرمز',
     'enter-your-email' => 'أدخل بريدك الإلكتروني',
     'add-media' => 'إضافة وسائط',

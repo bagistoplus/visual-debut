@@ -5,7 +5,6 @@ namespace BagistoPlus\VisualDebut\Blocks\Product;
 use BagistoPlus\Visual\Blocks\SimpleBlock;
 use BagistoPlus\Visual\Settings\Checkbox;
 use BagistoPlus\Visual\Settings\Header;
-use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 
 use function BagistoPlus\VisualDebut\_t;
@@ -36,6 +35,7 @@ class ProductMediaGallery extends SimpleBlock
                 'videos' => [],
                 'thumbnailPosition' => 'start',
                 'productName' => '',
+                ...$this->imageSize(),
             ];
         }
 
@@ -54,37 +54,27 @@ class ProductMediaGallery extends SimpleBlock
             'medias' => [...$images, ...$videos],
             'thumbnailPosition' => $thumbnailPosition,
             'productName' => (string) $product->name,
+            ...$this->imageSize(),
+        ];
+    }
+
+    /**
+     * Bagisto crops large images to this size (Webkul\Shop\CacheFilters\Large), so the
+     * main image's box is known before it loads.
+     *
+     * @return array{imageWidth: int, imageHeight: int}
+     */
+    protected function imageSize(): array
+    {
+        return [
+            'imageWidth' => (int) (core()->getConfigData('catalog.products.cache_large_image.width') ?: 560),
+            'imageHeight' => (int) (core()->getConfigData('catalog.products.cache_large_image.height') ?: 610),
         ];
     }
 
     public static function settings(): array
     {
         return [
-            Header::make(_t('blocks.product-media-gallery.settings.presentation_header')),
-
-            Select::make('media_presentation', _t('blocks.product-media-gallery.settings.media_presentation_label'))
-                ->options([
-                    'carousel' => _t('blocks.product-media-gallery.settings.media_presentation_options.carousel'),
-                    'grid' => _t('blocks.product-media-gallery.settings.media_presentation_options.grid'),
-                ])
-                ->default('carousel'),
-
-            Select::make('grid_columns', _t('blocks.product-media-gallery.settings.grid_columns_label'))
-                ->options([
-                    '1' => '1',
-                    '2' => '2',
-                ])
-                ->default('1')
-                ->visibleWhen(fn ($rule) => $rule->when('media_presentation', 'grid')),
-
-            Range::make('image_gap', _t('blocks.product-media-gallery.settings.image_gap_label'))
-                ->min(0)
-                ->max(24)
-                ->step(4)
-                ->default(8)
-                ->unit('px')
-                ->visibleWhen(fn ($rule) => $rule->when('media_presentation', 'grid')),
-
             Header::make(_t('blocks.product-media-gallery.settings.image_settings_header')),
 
             Select::make('aspect_ratio', _t('blocks.product-media-gallery.settings.aspect_ratio_label'))
@@ -106,13 +96,6 @@ class ProductMediaGallery extends SimpleBlock
                     'cover' => _t('blocks.product-media-gallery.settings.media_fit_options.cover'),
                 ])
                 ->default('contain'),
-
-            Range::make('media_radius', _t('blocks.product-media-gallery.settings.media_radius_label'))
-                ->min(0)
-                ->max(24)
-                ->step(4)
-                ->default(0)
-                ->unit('px'),
 
             Checkbox::make('zoom', _t('blocks.product-media-gallery.settings.zoom_label'))
                 ->default(true)

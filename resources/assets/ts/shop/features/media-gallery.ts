@@ -18,8 +18,54 @@ export default function (Alpine: AlpineType) {
       hasOverflowAbove: false,
       hasOverflowBelow: false,
 
+      // Fullscreen viewer, mounted the first time it opens
+      viewerOpen: false,
+      viewerMounted: false,
+      viewerIndex: 0,
+
       get selectedMedia() {
         return this.medias[this.selectedIndex] ?? null;
+      },
+
+      // The viewer only shows images, so its index is a position in this list, not in medias
+      get viewerImages() {
+        return this.medias.filter((media) => media.type !== 'videos');
+      },
+
+      get viewerImage() {
+        return this.viewerImages[this.viewerIndex] ?? null;
+      },
+
+      openViewer(index: number) {
+        this.viewerIndex = Math.max(0, this.viewerImages.indexOf(this.medias[index]));
+        this.viewerOpen = true;
+        this.viewerMounted = true;
+      },
+
+      // The gallery shows the image the shopper ended on
+      closeViewer() {
+        this.viewerOpen = false;
+
+        const index = this.medias.indexOf(this.viewerImage);
+
+        if (index !== -1) {
+          this.selectedIndex = index;
+        }
+      },
+
+      step(delta: number) {
+        const count = this.viewerImages.length;
+
+        if (count === 0) return;
+
+        this.viewerIndex = (((this.viewerIndex + delta) % count) + count) % count;
+      },
+
+      // A key points at a side of the screen, and the side the next item is on flips with the text direction
+      arrow(key: 'left' | 'right') {
+        const rtl = getComputedStyle(this.$root).direction === 'rtl';
+
+        this.step(key === 'right' !== rtl ? 1 : -1);
       },
 
       isSelected(index: number) {
@@ -74,6 +120,8 @@ export default function (Alpine: AlpineType) {
 
           this.medias = images.length || videos.length ? [...images, ...videos] : [...this.defaultMedias];
           this.selectedIndex = 0;
+          this.viewerOpen = false;
+          this.viewerIndex = 0;
 
           this.$nextTick(() => this.checkOverflow());
         };

@@ -38,6 +38,11 @@ return [
     'unavailable' => 'Indisponible',
     'breadcrumbs' => 'Fil d\'Ariane',
     'review-image' => 'Image de l\'avis',
+    'media-viewer' => [
+        'open' => 'Afficher l\'image en plein écran',
+        'title' => 'Médias du produit',
+        'thumbnail' => 'Afficher l\'élément :index',
+    ],
     'enter-code' => 'Saisir le code',
     'enter-your-email' => 'Saisir votre e-mail',
     'add-media' => 'Ajouter un média',

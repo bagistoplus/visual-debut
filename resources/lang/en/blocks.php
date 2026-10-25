@@ -155,21 +155,6 @@ return [
     'product-media-gallery' => [
         'name' => 'Product Media Gallery',
         'settings' => [
-            'presentation_header' => 'Presentation',
-
-            'media_presentation_label' => 'Media Presentation',
-            'media_presentation_options' => [
-                'carousel' => 'Carousel',
-                'grid' => 'Grid',
-            ],
-            'media_presentation_info' => 'Choose how to display product images and videos',
-
-            'grid_columns_label' => 'Grid Columns',
-            'grid_columns_info' => 'Number of columns when using grid presentation',
-
-            'image_gap_label' => 'Image Gap',
-            'image_gap_info' => 'Space between images in grid view',
-
             'image_settings_header' => 'Image Settings',
 
             'aspect_ratio_label' => 'Aspect Ratio',
@@ -188,8 +173,6 @@ return [
                 'contain' => 'Contain',
                 'cover' => 'Cover',
             ],
-
-            'media_radius_label' => 'Media Corner Radius',
 
             'zoom_label' => 'Enable Zoom',
             'zoom_info' => 'Allow users to zoom into product images',

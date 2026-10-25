@@ -155,21 +155,6 @@ return [
     'product-media-gallery' => [
         'name' => 'उत्पाद मीडिया गैलरी',
         'settings' => [
-            'presentation_header' => 'प्रस्तुति',
-
-            'media_presentation_label' => 'मीडिया प्रस्तुति',
-            'media_presentation_options' => [
-                'carousel' => 'कैरोसेल',
-                'grid' => 'ग्रिड',
-            ],
-            'media_presentation_info' => 'उत्पाद छवियों और वीडियो को कैसे प्रदर्शित करना है चुनें',
-
-            'grid_columns_label' => 'ग्रिड स्तंभ',
-            'grid_columns_info' => 'ग्रिड प्रस्तुति का उपयोग करते समय स्तंभों की संख्या',
-
-            'image_gap_label' => 'छवि अंतर',
-            'image_gap_info' => 'ग्रिड दृश्य में छवियों के बीच स्थान',
-
             'image_settings_header' => 'छवि सेटिंग्स',
 
             'aspect_ratio_label' => 'पक्ष अनुपात',
@@ -188,8 +173,6 @@ return [
                 'contain' => 'समाहित',
                 'cover' => 'कवर',
             ],
-
-            'media_radius_label' => 'मीडिया कोना त्रिज्या',
 
             'zoom_label' => 'ज़ूम सक्षम करें',
             'zoom_info' => 'उपयोगकर्ताओं को उत्पाद छवियों में ज़ूम करने की अनुमति दें',
