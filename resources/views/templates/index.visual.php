@@ -24,7 +24,7 @@ return TemplateBuilder::make()
             ->properties([
                 'product_type' => 'new',
                 'nb_products' => 8,
-                'columns' => ['_default' => 4, 'mobile' => 2],
+                'columns' => ['_default' => 4, 'mobile' => 2, 'tablet' => 3],
                 'gap' => 6,
                 'padding' => [
                     'top' => 0,
