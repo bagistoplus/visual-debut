@@ -17,6 +17,7 @@ use BagistoPlus\Visual\Settings\Spacing;
 use BagistoPlus\Visual\Support\Preset;
 use BagistoPlus\Visual\Support\PresetBlock;
 use BagistoPlus\VisualDebut\Presets\ProductCardWithOverlay;
+use BagistoPlus\VisualDebut\Support\BuildsCarouselConfig;
 use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\Collection;
 use Webkul\Product\Helpers\Toolbar;
@@ -25,6 +26,8 @@ use function BagistoPlus\VisualDebut\_t;
 
 class ProductList extends BladeSection
 {
+    use BuildsCarouselConfig;
+
     protected static string $type = '@visual-debut/product-list';
 
     protected static array $disabledOn = [
@@ -139,7 +142,7 @@ class ProductList extends BladeSection
 
     protected function computeGapClass(): string
     {
-        return 'gap-'.($this->section->settings->gap ?? 4);
+        return Tailwind::responsive($this->section->settings->gap ?? 4, fn ($v) => "gap-{$v}");
     }
 
     protected function computeNavShapeClass(): string
@@ -162,41 +165,6 @@ class ProductList extends BladeSection
         }
 
         return $paddingClasses;
-    }
-
-    protected function buildCarouselConfig(): array
-    {
-        $config = [];
-
-        if ($this->section->settings->layout_type !== 'carousel') {
-            return $config;
-        }
-
-        $settings = $this->section->settings;
-        $itemsPerView = Tailwind::toResponsiveValue($settings->columns ?? 4);
-        $gap = $settings->gap ?? 4;
-
-        // Desktop first, like the grid layout's mobile:/tablet: classes: tablet falls back to
-        // the default, mobile to tablet. The tiers use the same widths as those variants.
-        $perPage = (int) $itemsPerView->value();
-        $perPageTablet = $itemsPerView->has('tablet') ? (int) $itemsPerView->get('tablet') : null;
-        $perPageMobile = $itemsPerView->has('mobile') ? (int) $itemsPerView->get('mobile') : null;
-
-        $tablet = $perPageTablet ?? $perPage;
-        $mobile = $perPageMobile ?? $tablet;
-
-        $autoplay = (bool) ($settings->autoplay ?? false);
-
-        return [
-            'slides-per-page' => "{$mobile} 640:{$tablet} 1024:{$perPage}",
-            'per-page' => $perPage,
-            'per-page-tablet' => $perPageTablet,
-            'per-page-mobile' => $perPageMobile,
-            'spacing' => ($gap * 4).'px',
-            'loop' => $autoplay || (bool) ($settings->loop ?? false),
-            'autoplay' => $autoplay,
-            'autoplay-delay' => (int) ($settings->autoplay_delay ?? 3000),
-        ];
     }
 
     public static function name(): string
@@ -245,6 +213,7 @@ class ProductList extends BladeSection
             Range::make('gap', _t('sections.product-list.settings.gap_label'))
                 ->min(0)->max(24)->step(1)
                 ->default(4)
+                ->responsive()
                 ->info(_t('sections.product-list.settings.gap_info')),
 
             Select::make('content_width', _t('sections.product-list.settings.content_width_label'))

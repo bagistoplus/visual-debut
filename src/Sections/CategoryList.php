@@ -20,12 +20,15 @@ use BagistoPlus\Visual\Settings\Header;
 use BagistoPlus\Visual\Settings\Range;
 use BagistoPlus\Visual\Settings\Select;
 use BagistoPlus\Visual\Settings\Spacing;
+use BagistoPlus\VisualDebut\Support\BuildsCarouselConfig;
 use Webkul\Category\Repositories\CategoryRepository;
 
 use function BagistoPlus\VisualDebut\_t;
 
 class CategoryList extends BladeSection
 {
+    use BuildsCarouselConfig;
+
     protected static string $type = '@visual-debut/category-list';
 
     protected static string $view = 'shop::sections.category-list';
@@ -98,7 +101,7 @@ class CategoryList extends BladeSection
 
     protected function computeGapClass(): string
     {
-        return 'gap-'.($this->section->settings->gap ?? 4);
+        return Tailwind::responsive($this->section->settings->gap ?? 4, fn ($v) => "gap-{$v}");
     }
 
     protected function computeNavShapeClass(): string
@@ -121,41 +124,6 @@ class CategoryList extends BladeSection
         }
 
         return $paddingClasses;
-    }
-
-    protected function buildCarouselConfig(): array
-    {
-        $config = [];
-
-        if ($this->section->settings->layout_type !== 'carousel') {
-            return $config;
-        }
-
-        $settings = $this->section->settings;
-        $itemsPerView = Tailwind::toResponsiveValue($settings->columns ?? 4);
-        $gap = $settings->gap ?? 4;
-
-        // Desktop first, like the grid layout's mobile:/tablet: classes: tablet falls back to
-        // the default, mobile to tablet. The tiers use the same widths as those variants.
-        $perPage = (int) $itemsPerView->value();
-        $perPageTablet = $itemsPerView->has('tablet') ? (int) $itemsPerView->get('tablet') : null;
-        $perPageMobile = $itemsPerView->has('mobile') ? (int) $itemsPerView->get('mobile') : null;
-
-        $tablet = $perPageTablet ?? $perPage;
-        $mobile = $perPageMobile ?? $tablet;
-
-        $autoplay = (bool) ($settings->autoplay ?? false);
-
-        return [
-            'slides-per-page' => "{$mobile} 640:{$tablet} 1024:{$perPage}",
-            'per-page' => $perPage,
-            'per-page-tablet' => $perPageTablet,
-            'per-page-mobile' => $perPageMobile,
-            'spacing' => ($gap * 4).'px',
-            'loop' => $autoplay || (bool) ($settings->loop ?? false),
-            'autoplay' => $autoplay,
-            'autoplay-delay' => (int) ($settings->autoplay_delay ?? 3000),
-        ];
     }
 
     protected function getCategories()
@@ -222,6 +190,7 @@ class CategoryList extends BladeSection
             Range::make('gap', _t('sections.category-list.settings.gap_label'))
                 ->min(0)->max(24)->step(1)
                 ->default(4)
+                ->responsive()
                 ->info(_t('sections.category-list.settings.gap_info')),
 
             Select::make('content_width', _t('sections.category-list.settings.content_width_label'))

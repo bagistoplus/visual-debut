@@ -30,7 +30,7 @@ class CategoryTiles extends Preset
                 'nb_categories' => 4,
                 'layout_type' => 'grid',
                 'columns' => ['_default' => 4, 'mobile' => 2],
-                'gap' => 6,
+                'gap' => ['_default' => 6, 'mobile' => 3],
                 'content_width' => 'container',
                 'nav_style' => 'arrow',
                 'nav_shape' => 'none',

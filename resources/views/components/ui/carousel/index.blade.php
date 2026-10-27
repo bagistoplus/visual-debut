@@ -1,6 +1,6 @@
 @props([
     'id',
-    // Built by the sections' buildCarouselConfig(): slides-per-page, per-page(-tablet|-mobile), spacing, loop, autoplay, autoplay-delay
+    // Built by the sections' buildCarouselConfig(): slides-per-page, per-page(-tablet|-mobile), spacing, spacing-(desktop|tablet|mobile), loop, autoplay, autoplay-delay
     'config' => [],
     'arrows' => false,
     'dots' => false,
@@ -14,11 +14,14 @@
   $autoplay = $config['autoplay'] ?? false;
   $navClass = "bg-surface text-on-surface hover:bg-surface-alt {$navShapeClass} absolute top-1/2 z-10 -translate-y-1/2 mobile:static mobile:translate-y-0 cursor-pointer p-2 mobile:p-1.5 shadow-md transition-colors disabled:cursor-not-allowed";
 
-  // Read by the static classes below until the bundle runs, so the row has the right width at any viewport
+  // Read by the static classes below until the bundle runs, so the row has the right width and gaps at any viewport
   $perPageStyle = collect([
       '--per-page' => $config['per-page'] ?? null,
       '--per-page-tablet' => $config['per-page-tablet'] ?? null,
       '--per-page-mobile' => $config['per-page-mobile'] ?? null,
+      '--slide-gap' => $config['spacing-desktop'] ?? $spacing,
+      '--slide-gap-tablet' => $config['spacing-tablet'] ?? null,
+      '--slide-gap-mobile' => $config['spacing-mobile'] ?? null,
   ])
       ->filter(fn($value) => $value !== null)
       ->map(fn($value, $property) => "{$property}: {$value};")
@@ -40,8 +43,8 @@
     x-on:focusin="$el.api?.pause()"
     x-on:focusout="$el.contains($event.relatedTarget) || $el.api?.play()" @endif
   translations-next-trigger="{{ trans('visual-debut::shop.next') }}"
-  style="--slide-spacing: {{ $spacing }}; {{ $perPageStyle }}"
-  {{ $attributes->merge(['class' => 'relative block [--slides-per-page:var(--per-page,1)] tablet:[--slides-per-page:var(--per-page-tablet,var(--per-page,1))] mobile:[--slides-per-page:var(--per-page-mobile,var(--per-page-tablet,var(--per-page,1)))]']) }}
+  style="{{ $perPageStyle }}"
+  {{ $attributes->merge(['class' => 'relative block [--slides-per-page:var(--per-page,1)] tablet:[--slides-per-page:var(--per-page-tablet,var(--per-page,1))] mobile:[--slides-per-page:var(--per-page-mobile,var(--per-page-tablet,var(--per-page,1)))] [--slide-spacing:var(--slide-gap,0px)] tablet:[--slide-spacing:var(--slide-gap-tablet,var(--slide-gap,0px))] mobile:[--slide-spacing:var(--slide-gap-mobile,var(--slide-gap-tablet,var(--slide-gap,0px)))]']) }}
 >
   <ui-carousel-item-group id="{{ $id }}-items" class="py-px">
     {{ $slot }}
