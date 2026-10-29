@@ -93,7 +93,7 @@
 
       <button
         type="button"
-        class="hover:bg-surface hover:border-on-surface/10 flex w-full cursor-pointer items-center gap-2 rounded-(--box-radius) border-2 border-dashed p-4 transition-colors"
+        class="hover:bg-surface hover:border-on-surface/10 rounded-(--box-radius) flex w-full cursor-pointer items-center gap-2 border-2 border-dashed p-4 transition-colors"
         x-on:click="addAddress()"
       >
         <x-lucide-plus class="h-5 w-5" />
@@ -101,155 +101,158 @@
       </button>
     </div>
 
-    <template x-if="showAddressFields">
-      <div class="space-y-4">
+    <fieldset
+      x-show="showAddressFields"
+      x-bind:disabled="!showAddressFields"
+      @if (count($savedAddresses) > 0) x-cloak @endif
+      class="min-w-0 space-y-4"
+    >
+      <x-shop::ui.form.input
+        type="text"
+        name="{{ $name }}[company_name]"
+        wire:model="{{ $addressName }}.company_name"
+        placeholder="{{ trans('shop::app.checkout.onepage.address.company-name') }}"
+        :label="trans('shop::app.checkout.onepage.address.company-name')"
+      />
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
         <x-shop::ui.form.input
           type="text"
-          name="{{ $name }}[company_name]"
-          wire:model="{{ $addressName }}.company_name"
-          placeholder="{{ trans('shop::app.checkout.onepage.address.company-name') }}"
-          :label="trans('shop::app.checkout.onepage.address.company-name')"
-        />
-
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <x-shop::ui.form.input
-            type="text"
-            required
-            name="{{ $name }}.first_name"
-            wire:model="{{ $addressName }}.first_name"
-            :label="trans('shop::app.checkout.onepage.address.first-name')"
-            :placeholder="trans('shop::app.checkout.onepage.address.first-name')"
-          />
-
-          <x-shop::ui.form.input
-            type="text"
-            required
-            name="{{ $name }}.last_name"
-            wire:model="{{ $addressName }}.last_name"
-            :label="trans('shop::app.checkout.onepage.address.last-name')"
-            :placeholder="trans('shop::app.checkout.onepage.address.last-name')"
-          />
-        </div>
-
-        <x-shop::ui.form.input
-          type="email"
           required
-          name="{{ $name }}.email"
-          wire:model="{{ $addressName }}.email"
-          :label="trans('shop::app.checkout.onepage.address.email')"
-          :placeholder="trans('shop::app.checkout.onepage.address.email')"
+          name="{{ $name }}.first_name"
+          wire:model="{{ $addressName }}.first_name"
+          :label="trans('shop::app.checkout.onepage.address.first-name')"
+          :placeholder="trans('shop::app.checkout.onepage.address.first-name')"
         />
 
         <x-shop::ui.form.input
           type="text"
           required
-          name="{{ $name }}.address.0"
-          wire:model="{{ $addressName }}.address.0"
-          :label="trans('shop::app.checkout.onepage.address.street-address')"
-          :placeholder="trans('shop::app.checkout.onepage.address.street-address')"
+          name="{{ $name }}.last_name"
+          wire:model="{{ $addressName }}.last_name"
+          :label="trans('shop::app.checkout.onepage.address.last-name')"
+          :placeholder="trans('shop::app.checkout.onepage.address.last-name')"
         />
-
-        @if (core()->getConfigData('customer.address.information.street_lines') > 1)
-          @for ($i = 1; $i < core()->getConfigData('customer.address.information.street_lines'); $i++)
-            <x-shop::ui.form.input
-              type="text"
-              name="{{ $name }}.address.{{ $i }}"
-              wire:model="{{ $addressName }}.address.{{ $i }}"
-              :placeholder="trans('shop::app.checkout.onepage.address.street-address')"
-            />
-          @endfor
-        @endif
-
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <x-shop::ui.form.select
-            autocomplete="off"
-            name="{{ $name }}.country"
-            wire:model="{{ $addressName }}.country"
-            :required="core()->isCountryRequired()"
-            :label="trans('shop::app.checkout.onepage.address.country')"
-            :placeholder="trans('shop::app.checkout.onepage.address.country')"
-            x-model="selectedCountry"
-          >
-            <option value="" @disabled(core()->isCountryRequired())>
-              @lang('shop::app.checkout.onepage.address.select-country')
-            </option>
-            @foreach ($countries as $country)
-              <option value="{{ $country->code }}">
-                {{ $country->name }}
-              </option>
-            @endforeach
-          </x-shop::ui.form.select>
-
-          <template x-if="haveStates">
-            <x-shop::ui.form.select
-              name="{{ $name }}.state"
-              wire:model="{{ $addressName }}.state"
-              :required="core()->isStateRequired()"
-              :label="trans('shop::app.customers.account.addresses.create.state')"
-            >
-              <option value="" @disabled(core()->isStateRequired())>
-                @lang('shop::app.checkout.onepage.address.select-state')
-              </option>
-              <template x-for="(state, index) in states">
-                <option x-bind:value="state.code" x-text="state.default_name"></option>
-              </template>
-            </x-shop::ui.form.select>
-          </template>
-          <template x-if="!haveStates">
-            <x-shop::ui.form.input
-              type="text"
-              name="{{ $name }}.state"
-              wire:model="{{ $addressName }}.state"
-              :required="core()->isStateRequired()"
-              :label="trans('shop::app.checkout.onepage.address.state')"
-              :placeholder="trans('shop::app.checkout.onepage.address.state')"
-            />
-          </template>
-        </div>
-
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <x-shop::ui.form.input
-            type="text"
-            required
-            name="{{ $name }}.city"
-            wire:model="{{ $addressName }}.city"
-            :label="trans('shop::app.checkout.onepage.address.city')"
-            :placeholder="trans('shop::app.checkout.onepage.address.city')"
-          />
-
-          <x-shop::ui.form.input
-            type="text"
-            required
-            name="{{ $name }}.postcode"
-            wire:model="{{ $addressName }}.postcode"
-            :label="trans('shop::app.checkout.onepage.address.postcode')"
-            :placeholder="trans('shop::app.checkout.onepage.address.postcode')"
-          />
-        </div>
-
-        <x-shop::ui.form.input
-          type="tel"
-          required
-          name="{{ $name }}.phone"
-          wire:model="{{ $addressName }}.phone"
-          :label="trans('visual-debut::shop.checkout.phone')"
-          :placeholder="trans('visual-debut::shop.checkout.phone')"
-        />
-
-        @auth('customer')
-          <label class="inline-flex items-center">
-            <input
-              type="checkbox"
-              name="{{ $name }}[save_address]"
-              wire:model="{{ $addressName }}.save_address"
-            >
-            <span class="ms-2">
-              {{ trans('shop::app.checkout.onepage.address.save-address') }}
-            </span>
-          </label>
-        @endauth
       </div>
-    </template>
+
+      <x-shop::ui.form.input
+        type="email"
+        required
+        name="{{ $name }}.email"
+        wire:model="{{ $addressName }}.email"
+        :label="trans('shop::app.checkout.onepage.address.email')"
+        :placeholder="trans('shop::app.checkout.onepage.address.email')"
+      />
+
+      <x-shop::ui.form.input
+        type="text"
+        required
+        name="{{ $name }}.address.0"
+        wire:model="{{ $addressName }}.address.0"
+        :label="trans('shop::app.checkout.onepage.address.street-address')"
+        :placeholder="trans('shop::app.checkout.onepage.address.street-address')"
+      />
+
+      @if (core()->getConfigData('customer.address.information.street_lines') > 1)
+        @for ($i = 1; $i < core()->getConfigData('customer.address.information.street_lines'); $i++)
+          <x-shop::ui.form.input
+            type="text"
+            name="{{ $name }}.address.{{ $i }}"
+            wire:model="{{ $addressName }}.address.{{ $i }}"
+            :placeholder="trans('shop::app.checkout.onepage.address.street-address')"
+          />
+        @endfor
+      @endif
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <x-shop::ui.form.select
+          autocomplete="off"
+          name="{{ $name }}.country"
+          wire:model="{{ $addressName }}.country"
+          :required="core()->isCountryRequired()"
+          :label="trans('shop::app.checkout.onepage.address.country')"
+          :placeholder="trans('shop::app.checkout.onepage.address.country')"
+          x-model="selectedCountry"
+        >
+          <option value="" @disabled(core()->isCountryRequired())>
+            @lang('shop::app.checkout.onepage.address.select-country')
+          </option>
+          @foreach ($countries as $country)
+            <option value="{{ $country->code }}">
+              {{ $country->name }}
+            </option>
+          @endforeach
+        </x-shop::ui.form.select>
+
+        <template x-if="haveStates">
+          <x-shop::ui.form.select
+            name="{{ $name }}.state"
+            wire:model="{{ $addressName }}.state"
+            :required="core()->isStateRequired()"
+            :label="trans('shop::app.customers.account.addresses.create.state')"
+          >
+            <option value="" @disabled(core()->isStateRequired())>
+              @lang('shop::app.checkout.onepage.address.select-state')
+            </option>
+            <template x-for="(state, index) in states">
+              <option x-bind:value="state.code" x-text="state.default_name"></option>
+            </template>
+          </x-shop::ui.form.select>
+        </template>
+        <template x-if="!haveStates">
+          <x-shop::ui.form.input
+            type="text"
+            name="{{ $name }}.state"
+            wire:model="{{ $addressName }}.state"
+            :required="core()->isStateRequired()"
+            :label="trans('shop::app.checkout.onepage.address.state')"
+            :placeholder="trans('shop::app.checkout.onepage.address.state')"
+          />
+        </template>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <x-shop::ui.form.input
+          type="text"
+          required
+          name="{{ $name }}.city"
+          wire:model="{{ $addressName }}.city"
+          :label="trans('shop::app.checkout.onepage.address.city')"
+          :placeholder="trans('shop::app.checkout.onepage.address.city')"
+        />
+
+        <x-shop::ui.form.input
+          type="text"
+          required
+          name="{{ $name }}.postcode"
+          wire:model="{{ $addressName }}.postcode"
+          :label="trans('shop::app.checkout.onepage.address.postcode')"
+          :placeholder="trans('shop::app.checkout.onepage.address.postcode')"
+        />
+      </div>
+
+      <x-shop::ui.form.input
+        type="tel"
+        required
+        name="{{ $name }}.phone"
+        wire:model="{{ $addressName }}.phone"
+        :label="trans('visual-debut::shop.checkout.phone')"
+        :placeholder="trans('visual-debut::shop.checkout.phone')"
+      />
+
+      @auth('customer')
+        <label class="inline-flex items-center">
+          <input
+            type="checkbox"
+            name="{{ $name }}[save_address]"
+            wire:model="{{ $addressName }}.save_address"
+          >
+          <span class="ms-2">
+            {{ trans('shop::app.checkout.onepage.address.save-address') }}
+          </span>
+        </label>
+      @endauth
+    </fieldset>
 
     @if ($showUseForShippingCheckbox)
       <label class="inline-flex items-center">
