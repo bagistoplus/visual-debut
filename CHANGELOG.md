@@ -2,6 +2,24 @@
 
 All notable changes to `Bagisto Visual Debut` will be documented in this file.
 
+# [2.0.0-alpha.15](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.14...v2.0.0-alpha.15) (2026-10-29)
+
+
+### Bug Fixes
+
+* **checkout:** accept a new address after a saved one ([256f66a](https://github.com/bagistoplus/visual-debut/commit/256f66a0bc60ebe181ecb6732ef1efb2ec542f5d))
+* **checkout:** show the address fields with the page ([e3722d1](https://github.com/bagistoplus/visual-debut/commit/e3722d17edde55c8bbd74a8a5d2607ee149e0769))
+
+
+### Features
+
+* **lists:** set the product and category list gap per device ([38fa2fb](https://github.com/bagistoplus/visual-debut/commit/38fa2fb6337c80ed583403a07be968097f704ad0))
+
+
+### Performance Improvements
+
+* **category-list:** load the first two category images with the page ([9de8bc7](https://github.com/bagistoplus/visual-debut/commit/9de8bc7b0475b92a2af10f51b8037823343b9f35))
+
 # [2.0.0-alpha.14](https://github.com/bagistoplus/visual-debut/compare/v2.0.0-alpha.13...v2.0.0-alpha.14) (2026-10-25)
 
 
