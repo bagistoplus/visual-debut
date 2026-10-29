@@ -27,7 +27,8 @@ class AddressData implements Arrayable
     public static function fromArray(array $data): self
     {
         return new self(
-            id: $data['id'] ?? null,
+            // The address form clears the id to an empty string when a new address is entered
+            id: is_numeric($data['id'] ?? null) ? (int) $data['id'] : null,
             company_name: $data['company_name'] ?? '',
             email: $data['email'] ?? '',
             first_name: $data['first_name'] ?? '',
